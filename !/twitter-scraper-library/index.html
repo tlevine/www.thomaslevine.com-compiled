@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Twitter Scraper Library</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>Twitter Scraper Library</h1>
+</header><article><p>I wanted to save the tweets from <a href="tcamp">Transparency Camp</a>.
+This prompted me to turn <a href="annaps">Anna</a>’s <a href="basic">basic Twitter scraper</a>
+into a <a href="twitter_search">library</a>. Here’s how you use it.</p>
+
+<p>Import it. (It only works on ScraperWiki, unfortunately.)</p>
+
+<pre><code>from scraperwiki import swimport
+search = swimport('twitter_search').search
+</code></pre>
+
+<p>Then search for terms.</p>
+
+<pre><code>search(['picnic #tcamp12', 'from:TCampDC', '@TCampDC', '#tcamp12', '#viphack'])
+</code></pre>
+
+<p>A separate search will be run on each of these phrases.</p>
+
+<h3 id="a-more-complete-search">A more complete search</h3>
+<p>Searching for <code>#tcamp12</code> and <code>#viphack</code> didn’t get me all of the
+tweets because I waited like a week to do this. In order to get
+a more complete list of the tweets, I looked at the tweets returned
+from that first search; I searched for tweets referencing the users
+who had tweeted those tweets.</p>
+
+<pre><code>from scraperwiki.sqlite import save, select
+from time import sleep
+
+# Search by user to get some more
+users = [row['from_user'] + ' tcamp12' for row in \
+    select('distinct from_user from swdata where from_user where user &gt; "%s"' \
+    % get_var('previous_from_user', ''))]
+
+for user in users:
+    search([user], num_pages = 2)
+    save_var('previous_from_user', user)
+    sleep(2)
+</code></pre>
+
+<p>By default, the <code>search</code> function retrieves 15 pages of results, which
+is the maximum. In order to save some time, I limited this second phase
+of searching to two pages, or 200 results; I doubted that there would
+be more than 200 relevant results mentioning a particular user.</p>
+
+<p>The <a href="tcamp_tweets">full script</a> also counts how many tweets were made
+by each user.</p>
+
+<h3 id="library">Library</h3>
+
+<p>Remember, this is a library, so you can easily reuse it in your own
+scripts, like <a href="max">Max Richman</a> has already <a href="datahh_tweets">started doing</a>.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

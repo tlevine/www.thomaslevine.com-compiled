@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://www.thomaslevine.com/</id>
+  <title>Thomas Levine</title>
+  <updated>2012-12-01T05:00:00Z</updated>
+  <link rel="alternate" href="http://www.thomaslevine.com/"/>
+  <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
+  <author>
+    <name>Thomas Levine</name>
+    <uri>http://www.thomaslevine.com</uri>
+  </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2012-12-01:/!/shell-testing/index.html</id>
+    <title type="html">Shell Testing</title>
+    <published>2012-12-01T05:00:00Z</published>
+    <updated>2012-12-01T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/shell-testing/index.html"/>
+    <content type="html">&lt;p&gt;Extreme hipster superheroes like me need tests for their shell. Here’s what’s
+available.&lt;/p&gt;
+
+&lt;h2 id="yolo-no-automated-testing"&gt;YOLO: No automated testing&lt;/h2&gt;
+&lt;p&gt;Few shell scripts have any automated testing because shell programmers live
+life on the edge. Inevitably, this results in tedious manual ‘testing’. Loads
+of projects use this approach.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/nvie/gitflow"&gt;git flow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/sstephenson/rbenv"&gt;rbenv&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Shell frameworks
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="http://www.bashinator.org/"&gt;bashinator&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://github.com/revans/bash-it"&gt;bash-it&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://github.com/sorin-ionescu/prezto"&gt;prezto&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;oh-my-zsh&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/xdissent/ievms/blob/master/ievms.sh"&gt;ievms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/rupa/z"&gt;z&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="posers-automated-commands-with-manual-human-review"&gt;Posers: Automated commands with manual human review&lt;/h2&gt;
+&lt;p&gt;You can easily generate a rough test suite by just saving the commands you used
+for manual debugging; this creates the illusion of living only once while
+actually living multiple times. Here are some examples.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/icefox/git-achievements/blob/9a8921e5a6fbf6adf2c20d34165d9269b693e40a/test/testscript"&gt;git-achievements&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://sourceforge.net/apps/mediawiki/xcat/index.php?title=Programming_Tips#Testing_Man_Pages"&gt;xcat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="mainstream-test-cases-are-functions"&gt;Mainstream: Test cases are functions&lt;/h2&gt;
+&lt;p&gt;This approach is somewhat standard in other languages. Write functions inside
+of files or classes, and run assertions within those functions. Failed
+assertions and other errors are caught and raised.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href="http://bmizerany.github.com/roundup/"&gt;Roundup&lt;/a&gt;, test cases are
+functions, and their return code determines whether the test passes. Shell
+already has a nice assertion function called &lt;code&gt;test&lt;/code&gt;, so Roundup doesn’t need
+to implement its own. It also helps you structure your tests; you can use the
+&lt;code&gt;describe&lt;/code&gt; function to name your tests, and you can define &lt;code&gt;before&lt;/code&gt; and &lt;code&gt;after&lt;/code&gt;
+functions to be run before and after test cases, respectively. For an example
+of roundup in action, check out &lt;a href="https://github.com/holman/spark/blob/master/spark-test.sh"&gt;spark&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://code.google.com/p/shunit2/"&gt;shunit&lt;/a&gt; is similar. One notable difference
+is that it defines its own assertion functions, like &lt;code&gt;assertEquals&lt;/code&gt; and
+&lt;code&gt;assertFalse&lt;/code&gt; &lt;a href="https://github.com/resmo/git-ftp/blob/develop/tests/git-ftp-test.sh"&gt;git-ftp&lt;/a&gt;
+uses it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/mpapis/tf"&gt;tf&lt;/a&gt; is also similar, but it is cool because it
+provides some special shell-style assertions (“Matchers”) that are specified as
+shell comments. Rather than just testing status codes or stdout, you can also
+test environment characteristics, and you can test multiple properties of one
+command. &lt;a href="https://github.com/wayneeseguin/rvm-test"&gt;rvm&lt;/a&gt; uses it.&lt;/p&gt;
+
+&lt;p&gt;There are some language-agnostic protocals with assertion libraries in multiple
+languages. The idea is that you can combine test results from several
+languages. I guess this is more of a big deal for shell than for other
+languages because shell is likely to be used for a small componend of a project
+that mostly uses another language.
+&lt;a href="https://github.com/apenwarr/wvtest/blob/master/sh/t/twvtest.sh"&gt;WvTest&lt;/a&gt; and
+&lt;a href="http://testanything.org/wiki/index.php/Tap-functions"&gt;Test Anything Protocal&lt;/a&gt;
+(This site is down for me right now.) are examples of that.&lt;/p&gt;
+
+&lt;p&gt;Even though all of these frameworks exist, the artisinal test frameworks are
+often specially crafted for a specific projects. This is the case for
+&lt;a href="https://github.com/codigorama/bash-toolbox/blob/master/lib/asserts.sh"&gt;bash-toolbox&lt;/a&gt;
+and &lt;a href="https://github.com/tlevine/treegit/blob/master/tests"&gt;treegit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Implementing your own framework like this is pretty simple; the main thing you
+need to know is that &lt;code&gt;$?&lt;/code&gt; gives you the exit code of the previous command, so
+something like this will tell you whether the previous command passed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ "$?" = '0' ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="ironic-elegance-design-for-the-shell"&gt;Ironic elegance: Design for the shell&lt;/h2&gt;
+&lt;p&gt;Assertion libraries are common and reasonable in other languages, but I don’t
+think they work as well for shell. Shell uses a bizarre concept of input and
+output, so the sort of assertion functions that work in other languages don’t
+feel natural to me in shell; shell thinks differently.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href="http://www.urchin.sh"&gt;Urchin&lt;/a&gt;, test cases are executable files. A test
+passes if its exit code is 0. You can define setup and teardown procedures;
+these are also files. For an example of Urchin tests, check out
+&lt;a href="https://github.com/creationix/nvm/tree/master/test/fast"&gt;nvm&lt;/a&gt;.
+(By the way, I wrote both Urchin and the nvm tests.)&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href="http://liw.fi/cmdtest/"&gt;cmdtest&lt;/a&gt;, one test case spans multiple files.
+Minimally, you provide the test script, but you can also provide files for the
+stdin, the intended stdout, the intended stderr and the intended exit code.
+Like in urchin, the setup and teardown procedures are files.&lt;/p&gt;
+
+&lt;p&gt;The fundamental similarity that I see between Urchin and cmdtest is that they
+are based on files rather than functions; this is totally the shell way to do
+things. There are obviously other similarities between these two frameworks,
+but I think most of the other similarities can be seen as stemming from the
+file basis of test cases.&lt;/p&gt;
+
+&lt;p&gt;Here’s one particularly cool feature that might not be obvious.
+Earlier, I mentioned some protocals for testing in multiple languages. I found
+them somewhat strange because I see shell as the standard interface between
+languages. In Urchin and cmdtest, test cases are just files, so you can
+actually use these frameworks to test code written in any language.&lt;/p&gt;
+
+&lt;h2 id="which-framework-should-i-use"&gt;Which framework should I use?&lt;/h2&gt;
+&lt;p&gt;If you are writing anything complicated in shell, it could probably use some
+tests. For the simplest tests, writing your own framework is fine, but for
+anything complicated, I recommend either Urchin or cmdtest. You’ll want to use
+a different one depending on your project.&lt;/p&gt;
+
+&lt;p&gt;cmdtest makes it easy to specify inputs and test outputs, but it doesn’t have
+a special way of testing what files have changed. Also, the installation is a
+bit more involved.&lt;/p&gt;
+
+&lt;p&gt;Urchin doesn’t help you at all with outputs, but it makes testing side-effects
+easier. In urchin, you can nest tests inside of directories; to test a
+side-effect, you make a subdirectory, put the command of interest in the
+&lt;code&gt;setup_dir&lt;/code&gt; file and then test your side effects in your test files.
+Urchin is also easier to install; it’s just a shell script.&lt;/p&gt;
+
+&lt;p&gt;I recommend cmdtest if you are mainly testing input and output; otherwise, I
+recommend Urchin. If you are working on a very simple project, you might also
+consider writing your own framework.&lt;/p&gt;
+
+&lt;p&gt;For whatever reason, test-driven development is mainstream in other languages
+but uncommon in shell. Nobody does test-driven development in shell, so all of
+these approaches are ahead of the curve. A hip programmer like you should be
+testing his shell scripts &lt;strong&gt;now&lt;/strong&gt;, before shell testing gets big.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2012-11-28:/!/hard-to-spell/index.html</id>
+    <title type="html">Words that are hard to spell</title>
+    <published>2012-11-28T05:00:00Z</published>
+    <updated>2012-11-28T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/hard-to-spell/index.html"/>
+    <content type="html">&lt;p&gt;I previously used “(es)perluette” as my name in a bunch of places. (It’s a
+French word for “ampersand”.) As such, people who didn’t know French wouldn’t
+understand what I was saying when I verbally told them my email address. And
+I would always have to write it out for them.&lt;/p&gt;
+
+&lt;p&gt;I decided to change my email address to a word with the reverse properties,
+to a word that would be easy to understand aurally but difficult to spell.
+I wound up with “occurrence”. Here are some other ideas.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pamphlet&lt;/li&gt;
+  &lt;li&gt;accidentally&lt;/li&gt;
+  &lt;li&gt;definitely&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some other ideas are &lt;a href="http://marvin.cs.uidaho.edu/misspell.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2012-11-21:/!/new-york-pizza/index.html</id>
+    <title type="html">New York Pizza</title>
+    <published>2012-11-21T05:00:00Z</published>
+    <updated>2012-11-21T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/new-york-pizza/index.html"/>
+    <content type="html">&lt;p&gt;I hadn’t eaten much New York pizza, so I asked
+&lt;a href="http://www.jaredlander.com"&gt;Jared Lander&lt;/a&gt; for some recommendations. He gave me
+a list of 22 establishments grouped by expertly chosen categories. I needed to
+know which one was closest to me at any given time, so I found the addresses
+and plotted them on a map.&lt;/p&gt;
+
+&lt;iframe src="https://tlevine.cartodb.com/tables/new_york_pizza/embed_map" height="589px"&gt;
+  &lt;img src="preview.png" alt="A preview of the map" /&gt;
+&lt;/iframe&gt;
+
+&lt;p&gt;Here’s the original list, by the way.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Coal:
+Lombardi’s
+Patsy’s (East Harlem)
+Totonno’s (Coney Island)
+Grimaldi’s (Brooklyn)
+Juliana (two doors from Grimaldi's when it opens)
+John’s of Bleecker
+  
+Neo-Neapolitan:
+Motorino
+Keste
+Don Antonio
+Zero Otto Nove
+Forcella
+  
+Squares:
+Maffei’s
+Vinny Vincenz
+New York Pizza Suprema
+L&amp;amp;B Spumoni Garden
+  
+New York:
+Di Fara
+Joe’s
+Nicks’ Pizza (Queens)
+Denino’s Pizzeria &amp;amp; Tavern (Staten Island)
+Joe &amp;amp; Pat’s
+  
+Specialty:
+Artichoke
+  
+Roman:
+No. 28
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2012-11-19:/!/pca/index.html</id>
+    <title type="html">How principle component analysis works</title>
+    <published>2012-11-19T05:00:00Z</published>
+    <updated>2012-11-19T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/pca/index.html"/>
+    <content type="html">&lt;p&gt;Principal component analysis (PCA) finds relationships in numerical
+(as opposed to categorical) data. It works by plotting the data on a
+many-dimensional dot plot and then switching the axes.&lt;/p&gt;
+
+&lt;p&gt;Here’s a simple explanation of how PCA works. For this explanation, I’ll
+assume that we only have two variables, but it’s conceptually the same with
+more variables. Here are two variables.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="1.png" alt="A scatterplot" /&gt;&lt;/p&gt;
+
+&lt;p&gt;These variables could be any numerical variable. Maybe &lt;em&gt;x&lt;/em&gt; is height and &lt;em&gt;y&lt;/em&gt;
+is arm length. For this explanation, however, let’s use coordinates on a map.&lt;/p&gt;
+
+&lt;p&gt;Let’s say that the axes cross at the center of town and that the &lt;em&gt;x&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt;
+axes are distances from the town in kilometers; this plot is just a map of
+the town. Let’s say that the points are houses. We can refer to the locations
+of these houses their &lt;em&gt;x&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt; coordinates; the red point has an &lt;em&gt;x&lt;/em&gt; of 12
+and a &lt;em&gt;y&lt;/em&gt; of 6, so it is at (12, 6).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="4.png" alt="A scatterplot with a red point at (12, 6)" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We start by drawing the best-fit line between these two variables.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="2.png" alt="The same scatterplot with a best-fit line" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This best-fit line is called the ‘first component’.&lt;/p&gt;
+
+&lt;p&gt;Next, we change axes so that the x-axis is the best-fit line and the y-axis
+is perpendicular to the best-fit line and in the middle of the cloud of points.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="3.png" alt="The scatterplot with the best-fit line and a line perpendicular the best-fit line" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This second line is called the ‘second component’.&lt;/p&gt;
+
+&lt;p&gt;Now, we can refer to points using the new coordinate system. Recall the (12, 6)
+point from the old coordinate system.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="4.png" alt="A scatterplot with a red point at (12, 6)" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the new system it has an &lt;em&gt;x&lt;/em&gt; value of 8 and a &lt;em&gt;y&lt;/em&gt; value of -1,
+so it would be (8, -1).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="5.png" alt="A scatterplot with the rotated axes and the same red point" /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s how PCA works, but &lt;strong&gt;what does it tell us&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;p&gt;Remember, we’re thinking of this plot as a map of the houses in a town. Without
+losing precision, we could decide to switch to the new coordinate system.
+Instead of using north-south and east-west as the axes, we could use
+east-northeast–west-southwest and north-northwest–south-southeast as axes.&lt;/p&gt;
+
+&lt;p&gt;It gets interesting when we decide to focus on only the first component. While
+we won’t be exact, we can explain a house’s position pretty well by giving its
+location along the new &lt;em&gt;x&lt;/em&gt; axis (east-northeast–west-southwest). This works
+because the PCA has uncovered some underlying relationship in the locations
+of the houses. Maybe the houses are arranged like this because the town is
+along a river, valley or highway.&lt;/p&gt;
+
+&lt;p&gt;Let’s say it’s along a river that runs west-southwest, along the new x-axis.
+Based on that, let’s come up with better names for these new axes; let’s call
+the new &lt;em&gt;x&lt;/em&gt;-axis “location along the river”, and let’s call the new &lt;em&gt;y&lt;/em&gt;-axis
+“distance from the river”.&lt;/p&gt;
+
+&lt;p&gt;The PCA has helped us find this line along which the houses stand. This was
+already obvious because we only had two variables and were thus able to plot
+them on a map; similar relationships are less obvious when you have 80
+variables. That alone is useful.&lt;/p&gt;
+
+&lt;p&gt;But another benefit is that PCA lets us &lt;strong&gt;reduce the number of variables&lt;/strong&gt;. We
+started with east and west as the two variables, but it turns out that people
+tend to live close to the river, so we might be able to get away with just
+using the “location along the river” variable for future analyses. Having just
+one variable can make statistics easier to compute and easier to explain.&lt;/p&gt;
+
+&lt;p&gt;(This explanation is taken from my work &lt;a href="http://tlevine.github.com/place2be/"&gt;for Place2Be&lt;/a&gt;.)&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2012-11-17:/!/shakespeare/index.html</id>
+    <title type="html">Shakespeare on the internet</title>
+    <published>2012-11-17T05:00:00Z</published>
+    <updated>2012-11-17T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/shakespeare/index.html"/>
+    <content type="html">&lt;p&gt;I want to perform a play on the internet. People seem to like the idea.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;http://www.facebook.com/perluette/posts/2193579043716&lt;/li&gt;
+  &lt;li&gt;https://twitter.com/thomaslevine/status/269907498755047425&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="concept"&gt;Concept&lt;/h2&gt;
+&lt;p&gt;Characters/actors post in an internet channel instead of acting on a stage.
+These internet channels provide a wide variation of connnotations, media,
+and privacy allowing complex situations to be conveyed.&lt;/p&gt;
+
+&lt;p&gt;I got to this idea by pondering the blurring of the distinction between fiction
+and reality through games that link to internet social media stuff (and
+“gamification”) and through movies that link to social media stuff (like those
+expermiental HTML5 movies from Google).&lt;/p&gt;
+
+&lt;h2 id="proposal"&gt;Proposal&lt;/h2&gt;
+&lt;p&gt;Let’s choose a particularly well-known play and adapt it to the internet.
+Shakespeare’s Hamlet seems like a good choice, but that’s quite arbitrary.
+How do we adapt it?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Public gatherings happen on Twitter/YouTube/FourSquare/Facebook and so on.&lt;/li&gt;
+  &lt;li&gt;Private conversations happen on Facebook walls.&lt;/li&gt;
+  &lt;li&gt;Rumors are retweets/shares/&amp;amp;c.&lt;/li&gt;
+  &lt;li&gt;Monologues happen in personal blogs.&lt;/li&gt;
+  &lt;li&gt;Travel is manifest through the location field on these various sites.&lt;/li&gt;
+  &lt;li&gt;The playwright could assemble these interactions in a Storify.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll note that some of these are private places that only a select group can
+see. Actors will use their real accounts rather than creating new accounts for
+their characters. The audience will be embedded within the performance,
+experiencing it from different perspectives based on their existing connections
+with the actors.&lt;/p&gt;
+
+&lt;h2 id="you"&gt;You&lt;/h2&gt;
+&lt;p&gt;I suspect that this is a lot easier to put on than a conventional play. A few
+people figure out what sorts of people we’d need to play each character,
+provide directions for each character, find appropriate people and disseminate
+the appropriate information. You might call this writing a script, casting
+actors and having one reading. I think that’s most of the work; it’ll be hard
+to really rehearse this, so I think the only other thing is the performance.&lt;/p&gt;
+
+&lt;p&gt;I have some questions.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Does this general idea sound interesting? Or were you expecting something
+ else?&lt;/li&gt;
+  &lt;li&gt;Would you act in it?&lt;/li&gt;
+  &lt;li&gt;Does anyone want to work with me on the planning part? I think it would
+ help to have someone who knows something about conventional theater.&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+  </entry>
+</feed>
+

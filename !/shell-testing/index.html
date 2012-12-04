@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Shell Testing</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>Shell Testing</h1>
+</header><article><p>Extreme hipster superheroes like me need tests for their shell. Here’s what’s
+available.</p>
+
+<h2 id="yolo-no-automated-testing">YOLO: No automated testing</h2>
+<p>Few shell scripts have any automated testing because shell programmers live
+life on the edge. Inevitably, this results in tedious manual ‘testing’. Loads
+of projects use this approach.</p>
+
+<ul>
+<li><a href="https://github.com/nvie/gitflow">git flow</a></li>
+  <li><a href="https://github.com/sstephenson/rbenv">rbenv</a></li>
+  <li>Shell frameworks
+    <ul>
+<li><a href="http://www.bashinator.org/">bashinator</a></li>
+      <li><a href="https://github.com/revans/bash-it">bash-it</a></li>
+      <li><a href="https://github.com/sorin-ionescu/prezto">prezto</a></li>
+      <li><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></li>
+    </ul>
+</li>
+  <li><a href="https://github.com/xdissent/ievms/blob/master/ievms.sh">ievms</a></li>
+  <li><a href="https://github.com/rupa/z">z</a></li>
+</ul>
+<h2 id="posers-automated-commands-with-manual-human-review">Posers: Automated commands with manual human review</h2>
+<p>You can easily generate a rough test suite by just saving the commands you used
+for manual debugging; this creates the illusion of living only once while
+actually living multiple times. Here are some examples.</p>
+
+<ul>
+<li>
+<a href="https://github.com/icefox/git-achievements/blob/9a8921e5a6fbf6adf2c20d34165d9269b693e40a/test/testscript">git-achievements</a>.</li>
+  <li><a href="http://sourceforge.net/apps/mediawiki/xcat/index.php?title=Programming_Tips#Testing_Man_Pages">xcat</a></li>
+</ul>
+<h2 id="mainstream-test-cases-are-functions">Mainstream: Test cases are functions</h2>
+<p>This approach is somewhat standard in other languages. Write functions inside
+of files or classes, and run assertions within those functions. Failed
+assertions and other errors are caught and raised.</p>
+
+<p>In <a href="http://bmizerany.github.com/roundup/">Roundup</a>, test cases are
+functions, and their return code determines whether the test passes. Shell
+already has a nice assertion function called <code>test</code>, so Roundup doesn’t need
+to implement its own. It also helps you structure your tests; you can use the
+<code>describe</code> function to name your tests, and you can define <code>before</code> and <code>after</code>
+functions to be run before and after test cases, respectively. For an example
+of roundup in action, check out <a href="https://github.com/holman/spark/blob/master/spark-test.sh">spark</a></p>
+
+<p><a href="https://code.google.com/p/shunit2/">shunit</a> is similar. One notable difference
+is that it defines its own assertion functions, like <code>assertEquals</code> and
+<code>assertFalse</code> <a href="https://github.com/resmo/git-ftp/blob/develop/tests/git-ftp-test.sh">git-ftp</a>
+uses it.</p>
+
+<p><a href="https://github.com/mpapis/tf">tf</a> is also similar, but it is cool because it
+provides some special shell-style assertions (“Matchers”) that are specified as
+shell comments. Rather than just testing status codes or stdout, you can also
+test environment characteristics, and you can test multiple properties of one
+command. <a href="https://github.com/wayneeseguin/rvm-test">rvm</a> uses it.</p>
+
+<p>There are some language-agnostic protocals with assertion libraries in multiple
+languages. The idea is that you can combine test results from several
+languages. I guess this is more of a big deal for shell than for other
+languages because shell is likely to be used for a small componend of a project
+that mostly uses another language.
+<a href="https://github.com/apenwarr/wvtest/blob/master/sh/t/twvtest.sh">WvTest</a> and
+<a href="http://testanything.org/wiki/index.php/Tap-functions">Test Anything Protocal</a>
+(This site is down for me right now.) are examples of that.</p>
+
+<p>Even though all of these frameworks exist, the artisinal test frameworks are
+often specially crafted for a specific projects. This is the case for
+<a href="https://github.com/codigorama/bash-toolbox/blob/master/lib/asserts.sh">bash-toolbox</a>
+and <a href="https://github.com/tlevine/treegit/blob/master/tests">treegit</a>.</p>
+
+<p>Implementing your own framework like this is pretty simple; the main thing you
+need to know is that <code>$?</code> gives you the exit code of the previous command, so
+something like this will tell you whether the previous command passed.</p>
+
+<pre><code>[ "$?" = '0' ]
+</code></pre>
+
+<h2 id="ironic-elegance-design-for-the-shell">Ironic elegance: Design for the shell</h2>
+<p>Assertion libraries are common and reasonable in other languages, but I don’t
+think they work as well for shell. Shell uses a bizarre concept of input and
+output, so the sort of assertion functions that work in other languages don’t
+feel natural to me in shell; shell thinks differently.</p>
+
+<p>In <a href="http://www.urchin.sh">Urchin</a>, test cases are executable files. A test
+passes if its exit code is 0. You can define setup and teardown procedures;
+these are also files. For an example of Urchin tests, check out
+<a href="https://github.com/creationix/nvm/tree/master/test/fast">nvm</a>.
+(By the way, I wrote both Urchin and the nvm tests.)</p>
+
+<p>In <a href="http://liw.fi/cmdtest/">cmdtest</a>, one test case spans multiple files.
+Minimally, you provide the test script, but you can also provide files for the
+stdin, the intended stdout, the intended stderr and the intended exit code.
+Like in urchin, the setup and teardown procedures are files.</p>
+
+<p>The fundamental similarity that I see between Urchin and cmdtest is that they
+are based on files rather than functions; this is totally the shell way to do
+things. There are obviously other similarities between these two frameworks,
+but I think most of the other similarities can be seen as stemming from the
+file basis of test cases.</p>
+
+<p>Here’s one particularly cool feature that might not be obvious.
+Earlier, I mentioned some protocals for testing in multiple languages. I found
+them somewhat strange because I see shell as the standard interface between
+languages. In Urchin and cmdtest, test cases are just files, so you can
+actually use these frameworks to test code written in any language.</p>
+
+<h2 id="which-framework-should-i-use">Which framework should I use?</h2>
+<p>If you are writing anything complicated in shell, it could probably use some
+tests. For the simplest tests, writing your own framework is fine, but for
+anything complicated, I recommend either Urchin or cmdtest. You’ll want to use
+a different one depending on your project.</p>
+
+<p>cmdtest makes it easy to specify inputs and test outputs, but it doesn’t have
+a special way of testing what files have changed. Also, the installation is a
+bit more involved.</p>
+
+<p>Urchin doesn’t help you at all with outputs, but it makes testing side-effects
+easier. In urchin, you can nest tests inside of directories; to test a
+side-effect, you make a subdirectory, put the command of interest in the
+<code>setup_dir</code> file and then test your side effects in your test files.
+Urchin is also easier to install; it’s just a shell script.</p>
+
+<p>I recommend cmdtest if you are mainly testing input and output; otherwise, I
+recommend Urchin. If you are working on a very simple project, you might also
+consider writing your own framework.</p>
+
+<p>For whatever reason, test-driven development is mainstream in other languages
+but uncommon in shell. Nobody does test-driven development in shell, so all of
+these approaches are ahead of the curve. A hip programmer like you should be
+testing his shell scripts <strong>now</strong>, before shell testing gets big.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

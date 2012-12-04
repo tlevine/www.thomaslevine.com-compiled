@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>How principle component analysis works</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>How principle component analysis works</h1>
+</header><article><p>Principal component analysis (PCA) finds relationships in numerical
+(as opposed to categorical) data. It works by plotting the data on a
+many-dimensional dot plot and then switching the axes.</p>
+
+<p>Here’s a simple explanation of how PCA works. For this explanation, I’ll
+assume that we only have two variables, but it’s conceptually the same with
+more variables. Here are two variables.</p>
+
+<p><img src="1.png" alt="A scatterplot"></p>
+
+<p>These variables could be any numerical variable. Maybe <em>x</em> is height and <em>y</em>
+is arm length. For this explanation, however, let’s use coordinates on a map.</p>
+
+<p>Let’s say that the axes cross at the center of town and that the <em>x</em> and <em>y</em>
+axes are distances from the town in kilometers; this plot is just a map of
+the town. Let’s say that the points are houses. We can refer to the locations
+of these houses their <em>x</em> and <em>y</em> coordinates; the red point has an <em>x</em> of 12
+and a <em>y</em> of 6, so it is at (12, 6).</p>
+
+<p><img src="4.png" alt="A scatterplot with a red point at (12, 6)"></p>
+
+<p>We start by drawing the best-fit line between these two variables.</p>
+
+<p><img src="2.png" alt="The same scatterplot with a best-fit line"></p>
+
+<p>This best-fit line is called the ‘first component’.</p>
+
+<p>Next, we change axes so that the x-axis is the best-fit line and the y-axis
+is perpendicular to the best-fit line and in the middle of the cloud of points.</p>
+
+<p><img src="3.png" alt="The scatterplot with the best-fit line and a line perpendicular the best-fit line"></p>
+
+<p>This second line is called the ‘second component’.</p>
+
+<p>Now, we can refer to points using the new coordinate system. Recall the (12, 6)
+point from the old coordinate system.</p>
+
+<p><img src="4.png" alt="A scatterplot with a red point at (12, 6)"></p>
+
+<p>In the new system it has an <em>x</em> value of 8 and a <em>y</em> value of -1,
+so it would be (8, -1).</p>
+
+<p><img src="5.png" alt="A scatterplot with the rotated axes and the same red point"></p>
+
+<p>That’s how PCA works, but <strong>what does it tell us</strong>?</p>
+
+<p>Remember, we’re thinking of this plot as a map of the houses in a town. Without
+losing precision, we could decide to switch to the new coordinate system.
+Instead of using north-south and east-west as the axes, we could use
+east-northeast–west-southwest and north-northwest–south-southeast as axes.</p>
+
+<p>It gets interesting when we decide to focus on only the first component. While
+we won’t be exact, we can explain a house’s position pretty well by giving its
+location along the new <em>x</em> axis (east-northeast–west-southwest). This works
+because the PCA has uncovered some underlying relationship in the locations
+of the houses. Maybe the houses are arranged like this because the town is
+along a river, valley or highway.</p>
+
+<p>Let’s say it’s along a river that runs west-southwest, along the new x-axis.
+Based on that, let’s come up with better names for these new axes; let’s call
+the new <em>x</em>-axis “location along the river”, and let’s call the new <em>y</em>-axis
+“distance from the river”.</p>
+
+<p>The PCA has helped us find this line along which the houses stand. This was
+already obvious because we only had two variables and were thus able to plot
+them on a map; similar relationships are less obvious when you have 80
+variables. That alone is useful.</p>
+
+<p>But another benefit is that PCA lets us <strong>reduce the number of variables</strong>. We
+started with east and west as the two variables, but it turns out that people
+tend to live close to the river, so we might be able to get away with just
+using the “location along the river” variable for future analyses. Having just
+one variable can make statistics easier to compute and easier to explain.</p>
+
+<p>(This explanation is taken from my work <a href="http://tlevine.github.com/place2be/">for Place2Be</a>.)</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

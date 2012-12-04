@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Utlity of Cobalt</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>Utlity of Cobalt</h1>
+</header><article><p>x.scraperwiki.com uses a new infrastructure for running scripts. We call it
+<a href="github.com/scraperwiki/cobalt">Cobalt</a>.</p>
+
+<p>It gives you HTTP APIs for creating computer boxes, running code inside them
+and querying SQLite databases stored inside them. It also gives you a static
+web server running on the box. We’ve been using it to run custom scripts for
+our data services.</p>
+
+<p>Setting up a project use Cobalt takes a minute, and figuring out how to use
+Cobalt the first time takes a few minutes, so tiny projects might be better
+off not using Cobalt. (I don’t use Cobalt for most things.)</p>
+
+<p>Making a Cobalt box is like making a virtual server, so it is sort of nice if
+you want access to GNU/Linux without running it on your main computer or if
+maintaining these services seems like too much work. But I still think it isn’t
+great for tiny, simple projects.</p>
+
+<p>But if it’s not that hard for you to set up a static web server and a database
+API and whatnot, it’s not that helpful that Cobalt has them. Loads of different
+tools can already accomplish most of these components, so there’s probably an
+easier way to set up a simple project than using Cobalt.</p>
+
+<p><img src="doodle.png" alt="Manually drawn line plot of 'Utility of Cobalt' as a function of 'Project Complexity'"></p>
+
+<p>The benefit of Cobalt comes in encapsulating different projects into different
+computers and in standardizing the ways that different people do things.
+Consider complexity to include the number of people working on the project and
+to include any reasonable measure of code/architecture complexity, then look
+at the doodle above.</p>
+
+<p>If you have more than one person working on one project, it is nice to have
+a standard way of doing things and a place to put everything. You could come
+up with your own standards, but if Cobalt’s standards work for you, you might
+as well use that. We know that the data will be in SQLite, that we can query
+it through the web in a particular way, that they are in a particular computer
+&amp;c. That’s still not that interesting, though, because there are other ways to
+standardize things.</p>
+
+<p>If you have more than one person working on one project, it is also nice not
+to have to trust other people’s code. Rather than someone else’s code on my
+computer, I can run it on the box. The box contains nothing but the project,
+so I don’t have to worry about it breaking anything else. When projects involve
+many different teams of people, you also might want to separate your project
+across multiple boxes, one box per team. The standard Cobalt interfaces make
+this a bit easier.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Data business models</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>Data business models</h1>
+</header><article><p>I’ve been at loads of hip and non-hip data talks here and there and have come
+four categories of data business model in this hip data ecosystem. Here they are.</p>
+
+<ol>
+<li>Big storage for big people</li>
+  <li>Money in, insight out: Vertically integrated data analysis</li>
+  <li>Internal data analysis on an organization’s own data</li>
+  <li>Quantitative finance</li>
+</ol>
+<h2 id="big-storage-for-big-people">Big storage for big people</h2>
+<p>This is mostly Hadoop. For example,</p>
+
+<ul>
+<li>Teradata</li>
+  <li>Hortonworks</li>
+  <li>MapR</li>
+  <li>Cloudera</li>
+</ul>
+<p>Some people are using NoHadoop. (I just invented this word.)</p>
+
+<ul>
+<li>Datastax (Cassandra)</li>
+  <li>Couchbase (Couch but not the original Couch)</li>
+  <li>10gen (Mongo)</li>
+</ul>
+<p>Either way, these companies sell consulting, training, hosting, proprietary
+special features &amp;c. to big businesses with shit tons of data.</p>
+
+<h2 id="money-in-insight-out-vertically-integrated-data-analysis">Money in, insight out: Vertically integrated data analysis</h2>
+
+<p>Several places package data collection, analysis and presentation. I think this
+is pretty close to “research”. One example is AIMIA, which manages the Nectar
+card scheme; as a small part of this, they analyze the data that they collect
+and present ideas to clients. Many producers of hip data tools also provide hip
+data consulting, so they too fall into this category.</p>
+
+<h3 id="data-hubs">Data hubs</h3>
+<p>Some companies produce suites of tools that approach this vertical integration;
+when you use these tools, you still have to look at the data yourself, but it
+is made much easier. This approaches the
+‘<a href="http://blog.scraperwiki.com/2012/03/09/from-cms-to-dms-c-is-for-content-d-is-for-data/">data hubs</a>’
+that Francis likes talking about.</p>
+
+<p>Lots of advertising, web and social media analytics tools fall into this
+category. You just configure your accounts, let data accumulate, and look at
+the flashy dashboard. You still have to put some thought into it, but the
+collection, analysis and presentation are all streamlined and integrated and
+thus easier for people who wouldn’t otherwise do this themselves.</p>
+
+<p>Tools like Tableau, ScraperWiki, RStudio (combined with its tangential R
+services) also fall into this category. You still have to do your analysis, but
+they let you do all of your analysis in one place, and connections between that
+place, your data sources and your presentatino media are easy. Well that’s the
+idea at least.</p>
+
+<h2 id="internal-data-analysis">Internal data analysis</h2>
+
+<p>Places with lots of data have internal person(s) do something with them. Any
+company that’s making money must have something like this. The mainstream
+companies might call these people “business analysts”, and they might do all
+their work <a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/">in Excel</a>.
+The hip companies are doing “data science” with open source software before it
+gets cool. And the New York City government has a team that just analyzes New
+York data to make the various government services more efficient. For the
+current discussion, I see these as similar sorts of people.</p>
+
+<p>I was pondering distinguishing between analysis that affects businessy
+decisions from models that get written into software. Since I’m just
+categorising business models and these things could both be produced by the
+same guy working inside a company with lots of data, I chose not to distinguish
+between them.</p>
+
+<h2 id="quantitative-finance">Quantitative finance</h2>
+
+<p>Quantitative finance is special in that the data analysis is very close to a
+product in itself; the conclusion of analysis or algorithm is “Make these
+trades when that happens.” rather than “If you market to these people, you
+might sell more products.”</p>
+
+<p>This has some interesting implications. For one thing, you could have a whole
+company doing quantative finance. On a similar note, I suspect that analyses
+can be more complicated because the analyses might only need to be conveyed to
+people with quantitative literacy; in the other categories, it might be more
+important to convey insights to non-technical managers.</p>
+
+<h2 id="conclusionary">Conclusionary</h2>
+<p>Pretend that I made some insightful, conclusionary conclusion in this sentence.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

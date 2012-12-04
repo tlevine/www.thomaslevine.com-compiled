@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Handling exceptions in scrapers</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>Handling exceptions in scrapers</h1>
+</header><article><p>When requesting and parsing data from a source with unknown properties
+and random behavior (i.e., scraping), I expect all kinds of bizarrities to occur.
+Managing exceptions is particularly helpful in such cases.</p>
+
+<p>Here is some ways that an exception might be raised.</p>
+
+<pre><code>[][0] #The list has no zeroth element, so this raises an IndexError
+{}['foo'] #The dictionary has no foo element, so this raises a KeyError
+</code></pre>
+
+<p>I would generally try to prevent the exception
+from coming up in the first place,
+but catching the exception might make sense.</p>
+
+<h2 id="example-1-inconsistant-date-formats">Example 1: Inconsistant date formats</h2>
+<p>Let’s say we’re parsing dates.</p>
+
+<pre><code>import datetime
+</code></pre>
+
+<p>This doesn’t raise an error.</p>
+
+<pre><code>datetime.datetime.strptime('2012-04-19', '%Y-%m-%d')
+</code></pre>
+
+<p>But this does.</p>
+
+<pre><code>datetime.datetime.strptime('April 19, 2012', '%Y-%m-%d')
+</code></pre>
+
+<p>It raises a ValueError because the date formats don’t match.
+So what do we do if we’re scraping a data source with multiple date formats?</p>
+
+<h3 id="ignoring-unexpected-date-formats">Ignoring unexpected date formats</h3>
+<p>A simple thing is to ignore the date formats that we didn’t expect.</p>
+
+<pre><code>import lxml.html
+import datetime
+
+def parse_date1(source):
+    rawdate = lxml.html.fromstring(source).get_element_by_id('date').text
+
+    try:
+         cleandate = datetime.datetime.strptime(rawdate, '%Y-%m-%d')
+    except ValueError:
+         cleandate = None
+
+    return cleandate
+
+print parse_date1('&lt;div id="date"&gt;2012-04-19&lt;/div&gt;')
+</code></pre>
+
+<p>If we make a clean date column in a database and put this in there,
+we’ll have some rows with dates and some rows with nulls. If there
+are only a few nulls, we might just parse those by hand.</p>
+
+<h3 id="trying-multiple-date-formats">Trying multiple date formats</h3>
+<p>Maybe we have determined that this particular data source uses
+three different date formats. We can try all three.</p>
+
+<pre><code>import lxml.html
+import datetime
+
+def parse_date2(source):
+    rawdate = lxml.html.fromstring(source).get_element_by_id('date').text
+
+    for date_format in ['%Y-%m-%d', '%B %d, %Y', '%d %B, %Y']:
+        try:
+             cleandate = datetime.datetime.strptime(rawdate, date_format)
+        except ValueError:
+             cleandate = None
+        else:
+             break
+
+    return cleandate
+
+print parse_date2('&lt;div id="date"&gt;19 April, 2012&lt;/div&gt;')
+</code></pre>
+
+<p>This loops through three different date formats and returns the first
+one that doesn’t raise the error.</p>
+
+<h2 id="example-2-unreliable-http-connection">Example 2: Unreliable HTTP connection</h2>
+<p>If you’re scraping an unreliable website or you are behind
+an unreliable internet connection, you may sometimes get
+HTTPErrors or URLErrors for valid URLs. Trying again later
+might help.</p>
+
+<pre><code>import urllib2
+
+def load(url):
+    retries = 3
+    for i in range(retries):
+        try:
+            handle = urllib2.urlopen(url)
+        except urllib2.URLError:
+            if i + 1 == retries:
+                raise
+            else:
+                time.sleep(42)
+        else:
+            break
+    return handle.read()
+
+print load('http://thomaslevine.com')
+</code></pre>
+
+<p>This function tries thrice to download the page.
+On the first two fails, it waits 42 seconds and tries again.
+On the third failure, it raises the error.
+On a success, it returs the content of the page.</p>
+
+<h2 id="example-3-logging-errors-rather-than-raising-them">Example 3: Logging errors rather than raising them</h2>
+<p>For more complicated parses, you might find loads
+of errors popping up in weird places, so you might
+want to go through all of the documents before deciding
+which to fix first or whether to do some of them manually.</p>
+
+<pre><code>import scraperwiki
+
+for document_name in document_names:
+    try:
+        parse_document(document_name)
+    except Exception as e:
+        scraperwiki.sqlite.save([], {
+            'documentName': document_name,
+            'exceptionType': str(type(e)),
+            'exceptionMessage': str(e)
+        }, 'errors')
+</code></pre>
+
+<p>This catches any exception raised by a particular document,
+stores it in the database and then continues with the next document.
+Looking at the database afterwards, you might notice some trends
+in the errors that you can easily fix and some others where you
+might hard-code the correct parse.</p>
+
+<h2 id="example-4-exiting-gracefully">Example 4: Exiting gracefully</h2>
+
+<p>When I’m scraping over 9000 pages and my script fails
+on page 8765, I like to be able to resume where I left off.
+I can often figure out where I left off based on
+the previous row that I saved to a database or file,
+but sometimes I can’t, particularly when I don’t have
+a unique index.</p>
+
+<pre><code>for bar in bars:
+    try:
+        foo(bar)
+    except:
+        print('Failure at bar = "%s"' % bar)
+        raise
+</code></pre>
+
+<p>This will tell me which bar I left off on.
+It’s fancier if I save the information to the database,
+so here is how I might do that with ScraperWiki.</p>
+
+<pre><code>import scraperwiki
+
+resume_index = scraperwiki.sqlite.get_var('resume_index', 0)
+for i, bar in enumerate(bars[resume_index:]):
+    try:
+        foo(bar)
+    except:
+        scraperwiki.sqlite.save_var('resume_index', i)
+        raise
+scraperwiki.sqlite.save_var('resume_index', 0)
+</code></pre>
+
+<p>ScraperWiki has a limit on CPU time, so an error that often concerns me is the
+<a href="https://scraperwiki.com/docs/python/python_help_documentation/">scraperwiki.CPUTimeExceededError</a>.
+This error is raised after the script has used 80 seconds of CPU time;
+if you catch the exception, you have two CPU seconds to clean up.
+You might want to handle this error differently from other errors.</p>
+
+<pre><code>import scraperwiki
+
+resume_index = scraperwiki.sqlite.get_var('resume_index', 0)
+for i, bar in enumerate(bars[resume_index:]):
+    try:
+        foo(bar)
+    except scraperwiki.CPUTimeExceededError:
+        scraperwiki.sqlite.save_var('resume_index', i)
+        raise
+    except Exception as e:
+        scraperwiki.sqlite.save_var('resume_index', i)
+        scraperwiki.sqlite.save([], {
+            'bar': bar,
+            'exceptionType': str(type(e)),
+            'exceptionMessage': str(e)
+        }, 'errors')
+scraperwiki.sqlite.save_var('resume_index', 0)
+</code></pre>
+
+<h2 id="tldr">tl;dr</h2>
+<p>Expect exceptions to occur when you are scraping a
+randomly unreliable website with randomly inconsistent content,
+and consider handling them in ways that allow the script
+to keep running when one document of interest is bizarrely
+formatted or not available.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

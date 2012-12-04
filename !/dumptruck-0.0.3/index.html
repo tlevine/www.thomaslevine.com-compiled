@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>DumpTruck Version 0.0.3</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>DumpTruck Version 0.0.3</h1>
+</header><article><p>I’ve added some new features to <a href="http://www.dumptruck.io">DumpTruck</a>.</p>
+
+<h2 id="changes">Changes</h2>
+
+<h3 id="dictionary-case-sensitivity">Dictionary case sensitivity</h3>
+<p>I removed the dictionaries with case-insensitive keys because that just seemed
+to be delaying the conversion to case sensitivity.</p>
+
+<h3 id="ordered-dictionaries">Ordered Dictionaries</h3>
+<p><code>DumpTruck.execute</code> now returns a <code>collections.OrderedDict</code> for each row rather
+than a <code>dict</code> for each row. Also, order is respected on insert, so you can pass
+OrderedDicts to <code>DumpTruck.insert</code> or <code>DumpTruck.create_table</code> to specify
+column order.</p>
+
+<h3 id="index-creation-syntax">Index creation syntax</h3>
+<p>Previously, indices were created with</p>
+
+<pre><code>#!python
+DumpTruck.create_index(table_name, column_names)
+</code></pre>
+
+<p>This order was chosen to match SQL syntax. It has been changed to</p>
+
+<pre><code>#!python
+DumpTruck.create_index(column_names, table_name)
+</code></pre>
+
+<p>to match the syntax for <code>DumpTruck.insert</code>.</p>
+
+<h3 id="handling-null-values">Handling NULL values</h3>
+<p>Null value handling has been documented and tweaked.</p>
+
+<h3 id="rowid">RowId</h3>
+<p><code>dt.insert</code> returns the
+the <a href="http://www.sqlite.org/lang_createtable.html#rowid">rowid</a>
+or rowids of the inserted row or rows.</p>
+
+<h2 id="scraperwikilocal">scraperwiki_local</h2>
+
+<p>The DumpTruck interface has changed slightly, so I also adjusted
+scraperwiki_local based on those changes.</p>
+
+<h2 id="install">Install</h2>
+
+<p>Get the new version from pip.</p>
+
+<pre><code>#!sh
+pip install dumptruck
+</code></pre>
+
+<h2 id="more-documentation">More documentation</h2>
+
+<p>The full documentation is <a href="https://github.com/tlevine/dumptruck">on GitHub</a>.</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

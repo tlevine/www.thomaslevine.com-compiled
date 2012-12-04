@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+ <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9 lt-ie8"></html>
+ <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="no-js lt-ie9"></html>
+ <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>CentOS cluster slaves</title>
+<meta content="" name="description">
+<meta content="Thomas Levine" name="author">
+<meta content="nanoc 3.4.2" name="generator">
+<meta content="width=device-width" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7 ]>
+      <p class="chromeframe">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="wrapper">
+      <div id="container">
+<nav><ul class="nobullet">
+<a href="../../">
+      <li class="link">
+        <div>~</div>
+      </li>
+    </a>
+    <a href="../">
+      <li class="link">
+        <div>!</div>
+      </li>
+    </a>
+    <a href="../about">
+      <li class="link">
+        <div>?</div>
+      </li>
+    </a>
+  </ul></nav><header class="title-card"><h1>CentOS cluster slaves</h1>
+</header><article><p>I’m setting up workers for my cluster to be accessed from R. I got a VPS from
+NodeDeploy and found CentOS easiest to install. Here’s the extra configuration
+I needed.</p>
+
+<p><a href="http://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-dhcp-configuring-client.html">Connecting to the network on boot</a></p>
+
+<pre><code>sed -i s/no/yes/ /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre>
+
+<p><a href="http://stackoverflow.com/questions/9468164/problems-installing-r-on-linux-centos-6-2">Install R</a></p>
+
+<pre><code>rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm  
+yum install R make
+</code></pre>
+
+<p>Other nice packages</p>
+
+<pre><code>yum install htop
+</code></pre>
+
+<p>Install the packages I want.</p>
+
+<pre><code>#!/usr/bin/env Rscript
+#
+# These run in different lines so they can be separated if need be.
+#
+
+# General
+install.packages(c('plyr', 'ggplot2', 'reshape', 'stringr', 'ProjectTemplate'))
+
+# One parallel framework
+install.packages('snowfall')
+
+# Another, with two backends
+install.packages(c('foreach'))
+install.packages(c('parallel', 'doParallel'))
+install.packages(c('snow', 'doSNOW'))
+</code></pre>
+
+<p>I tried making symlinks to make the CentOS R environment look more like mine,
+but I started getting problems without error messages, so I stopped trying.
+I wound up just running the master on another NodeDeploy server.</p>
+
+<p>Try configuring hosts to deal with those errors.
+http://serverfault.com/questions/260706/possible-break-in-attempt-in-var-log-secure-what-does-this-mean</p></article><div id="pagination"></div>
+</div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>
