@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <title>Scarsdale High School bus schedule weirdness</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'><nav>
+  <ul class='nobullet'>
+    <a href='/'>
+      <li class='link'>
+        <div>~</div>
+      </li>
+    </a>
+    <a href='/!/'>
+      <li class='link'>
+        <div>!</div>
+      </li>
+    </a>
+    <a href='/!/about'>
+      <li class='link'>
+        <div>?</div>
+      </li>
+    </a>
+  </ul>
+</nav>
+<header class='title-card'>
+  <h1>
+    <a href="/!/scarsdale-high-school-bus-schedule-weirdness/">Scarsdale High School bus schedule weirdness</a>
+  </h1>
+  <footer>
+    February 04, 2013
+  </footer>
+</header>
+<article><p>Scarsdale High School bus schedules are
+<a href="http://www.scarsdaleschools.org/cms/lib5/NY01001205/Centricity/Domain/13/SHSBusSchedule.pdf">here</a>.
+I want to make a map of them! And maybe do other things.</p>
+
+<p>I manually transcribed the file because it’s a small messy scan.
+In my <a href="https://raw.github.com/tlevine/scarsdale-data/master/school-buses/bus_stops.csv">resulting spreadsheet</a>,
+each row is a bus stop on a trip. (The trip from home to school and the trip
+from school to home are different trips.)</p>
+
+<p>I found some funny rows in the spreadsheet.</p>
+
+<p>The same stop is presented twice.</p>
+
+<pre><code>route.name,route.number,stop.id,time,n.students,location
+...
+HS 25 AM,           157,    10, 7:27 am,      0,ROCK CREEK LN &amp; SYCAMORE RD
+HS 25 AM,           157,    11, 7:27 am,      6,ROCK CREEK LN &amp; SYCAMORE RD
+...
+</code></pre>
+
+<p>Some locations are weird.</p>
+
+<pre><code>route.name,route.number,stop.id,time,n.students,location
+...
+HS 28 AM,           155,     3, 7:02 am,      2,OLD WHITE PLAINS RD &amp; WELLHOUSE CLOSE &amp; OLD WHITE PLAINS RD
+...
+HS 28 AM,           155,    15, 7:21 am,      1,WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; HILLANDALE DR &amp;  HILLANDDALE DR &amp; HILLANDALE CLOSE
+...
+HS 70 PM(3:10),     157,    12, 3:40 pm,      0,GRIFFEN AVENUE &amp; BRITTANY CLOSE &amp; GRIFFEN AVENUE
+...
+HS 74 PM(4:15),      95,     3, 4:19 pm,      0,WHITE RD &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; WHITE RD
+...
+HS 74 PM(4:15),      95,    18, 4:45 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; CARTHAGE RD
+HS 74 PM(4:15),      95,    19, 4:47 pm,      0,INNES RD &amp; HEATHCOTE RD &amp; HEATHCOTE RD
+HS 74 PM(4:15),      95,    20, 4:50 pm,      0,HAVERFORD AVE &amp; WEAVER ST &amp; HWY 125 &amp; WEAVER ST &amp; HWY 125
+HS 74 PM(4:15),      95,    21, 4:51 pm,      0,BRADFORD RD &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129
+...
+HS 74 PM(4:15),      95,    23, 4:54 pm,      0,GRIFFEN AVENUE &amp; GRAND PK AVE &amp; GRIFFEN AVENUE
+HS 74 PM(4:15),      95,    24, 4:56 pm,      0,GRIFFEN AVENUE &amp; MURDOCK RD &amp; GRIFFEN AVENUE
+...
+HS 74 PM(4:15),      95,    26, 4:59 pm,      0,FAIRWAY DR &amp; BARNWALL LN &amp; FAIRWAY DR
+HS 74 PM(4:15),      95,    27, 5:00 pm,      0,MAMARONECK RD &amp; BARKER LN &amp; MAMARONECK RD
+HS 74 PM(4:15),      95,    28, 5:01 pm,      0,MAMARONECK RD &amp; COLONIAL RD &amp; MAMARONECK RD
+HS 74 PM(4:15),      95,    29, 5:01 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; STRATTON RD
+</code></pre>
+
+<p>And several other rows have “location[s]” at three-street intersections.</p>
+
+<p>Analyses if the schedules will come eventually; I just thought I’d share this
+first. And if you can’t wait for me, you can take a look at the 
+<a href="https://github.com/tlevine/scarsdale-data/tree/master/school-buses">data</a> yourself.</p></article>
+<div id='pagination'></div></div>
+      <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+      <script>
+        //<![CDATA[
+          window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+        //]]>
+      </script>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

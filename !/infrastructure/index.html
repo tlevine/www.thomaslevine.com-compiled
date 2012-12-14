@@ -1,58 +1,67 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
- <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9 lt-ie8"></html>
- <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9"></html>
- <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
-<!--<![endif]--><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<title>My personal computer infrastructure</title>
-<meta content="" name="description">
-<meta content="Thomas Levine" name="author">
-<meta content="nanoc 3.4.2" name="generator">
-<meta content="width=device-width" name="viewport">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<link href="../../css/style-cb7e8fdfc7c.css" rel="stylesheet">
-<script src="../../js/vendor/modernizr-cb42306a279.js"></script>
-</head>
-<body>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <title>My personal computer infrastructure</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
     <!--[if lt IE 7 ]>
-      <p class="chromeframe">
+      <p class='chromeframe'>
         You are using an <strong>outdated</strong> browser.
         Please <a href="http://browsehappy.com/">upgrade your browser</a> or
         <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
         to improve your experience.
       </p>
     <![endif]-->
-    <div id="wrapper">
-      <div id="container">
-        <nav><ul class="nobullet">
-<a href="../../">
-              <li class="link">
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <a href='/'>
+              <li class='link'>
                 <div>~</div>
               </li>
             </a>
-            <a href="../">
-              <li class="link">
+            <a href='/!/'>
+              <li class='link'>
                 <div>!</div>
               </li>
             </a>
-            <a href="../about">
-              <li class="link">
+            <a href='/!/about'>
+              <li class='link'>
                 <div>?</div>
               </li>
             </a>
-          </ul></nav><header class="title-card"><h1>My personal computer infrastructure</h1>
-        </header><article><p>This is the architecture that runs my various sites and other services</p>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            <a href="/!/infrastructure/">My personal computer infrastructure</a>
+          </h1>
+          <footer>
+            
+          </footer>
+        </header>
+        <article>
+          <p>This is the architecture that runs my various sites and other services</p>
           
           <h3 id="hardware">Hardware</h3>
           
           <ul>
-<li>My office houses a Beaglebone cluster, called “cluster”, my main
+            <li>My office houses a Beaglebone cluster, called “cluster”, my main
             workstation, called “desk”, and sometimes my Lenovo IdeaPad Y560,
             called “laptop”.</li>
             <li>I have three small virtual private servers hosted at Prometeus in Italy.
@@ -64,61 +73,50 @@
             <li>I access all of these through a dumb terminal, typically my desk, Chromebook
             or Android netbook.</li>
           </ul>
-<h3 id="services">Services</h3>
+          
+          <h3 id="services">Services</h3>
           <p>Here are the services and their associated computers. This might be out-of-date.
           Also, I need a better way of structuring this.</p>
           
           <ul>
-<li>
-<a href="http://git.thomaslevine.com">Git</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1192)</li>
-            <li>
-<a href="http://redirect.thomaslevine.com">HTTP redirects</a> (<a href="https://manage.chicagovps.net:5656/control.php?_v=w2v2r2y2q2r2c4u2v284">ChicagoVPS cvps_4746</a>)</li>
-            <li>
-<a href="http://fadelee.com">Fade Lee</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li>
-<a href="http://pager.thomaslevine.com">Pager</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li>
-<a href="ttp://ntpjs.thomaslevine.com">ntp.js</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li>
-<a href="http://occurrence.thomaslevine.com">&amp;c.</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li>
-<a href="http://couch.thomasevine.com">couch</a> (XXX <a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1015)</li>
+            <li><a href="http://git.thomaslevine.com">Git</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1192)</li>
+            <li><a href="http://redirect.thomaslevine.com">HTTP redirects</a> (<a href="https://manage.chicagovps.net:5656/control.php?_v=w2v2r2y2q2r2c4u2v284">ChicagoVPS cvps_4746</a>)</li>
+            <li><a href="http://fadelee.com">Fade Lee</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+            <li><a href="http://pager.thomaslevine.com">Pager</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+            <li><a href="ttp://ntpjs.thomaslevine.com">ntp.js</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+            <li><a href="http://occurrence.thomaslevine.com">&amp;c.</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+            <li><a href="http://couch.thomasevine.com">couch</a> (XXX <a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1015)</li>
             <li>Email backup (<a href="">Tarsnap</a>)</li>
-            <li>
-<a href="http://www.thomaslevine.com">Home page</a> (<a href="https://console">S3</a>)</li>
-            <li>
-<a href="http://scraperwiki.thomaslevine.com">Scraping tutorial</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.bettercoa.ch">BetterCoach</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.lorena.co.nz">lorena.co.nz</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.deadpeoplebornonmybirthday.com">Dead People Born on my Birthday</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.dumptruck.io">DumpTruck</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.urchin.sh">Urchin</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.genderneutralhousing.org">Christian Students for Gender-Neutral Housing</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://www.whitbygroup.com">Whitby Group</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li>
-<a href="http://piwik.thomaslevine.com">Piwik</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-piwik">NearlyFreeSpeech.net</a>)</li>
-            <li>
-<a href="http://piwik.thomaslevine.com">Status</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-status">NearlyFreeSpeech.net</a>)</li>
+            <li><a href="http://www.thomaslevine.com">Home page</a> (<a href="https://console">S3</a>)</li>
+            <li><a href="http://scraperwiki.thomaslevine.com">Scraping tutorial</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.bettercoa.ch">BetterCoach</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.lorena.co.nz">lorena.co.nz</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.deadpeoplebornonmybirthday.com">Dead People Born on my Birthday</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.dumptruck.io">DumpTruck</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.urchin.sh">Urchin</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.genderneutralhousing.org">Christian Students for Gender-Neutral Housing</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://www.whitbygroup.com">Whitby Group</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+            <li><a href="http://piwik.thomaslevine.com">Piwik</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-piwik">NearlyFreeSpeech.net</a>)</li>
+            <li><a href="http://piwik.thomaslevine.com">Status</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-status">NearlyFreeSpeech.net</a>)</li>
           </ul>
-<h3 id="home-network">Home network</h3>
+          
+          <h3 id="home-network">Home network</h3>
           <p>My <a href="http://chainsaw.chickenkiller.com">home network</a> does assorted things.
           * cluster: distributed computations)
           * desk: database, email (offlineimap, notmuch, mutt), main workstation
           * laptop: arduino and distributed computations</p>
-        </article><div id="pagination"></div>
+        </article>
+        <div id='pagination'></div>
       </div>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><script>
+      <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+      <script>
         //<![CDATA[
           window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
         //]]>
-      </script><script src="../../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+      </script>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
       document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
       </script><script type="text/javascript">
@@ -127,7 +125,7 @@
       piwikTracker.trackPageView();
       piwikTracker.enableLinkTracking();
       } catch( err ) {}
-      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt=""></p></noscript>
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
       <!-- End Piwik Tracking Code -->
     </div>
   </body>
