@@ -2,13 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-05-05T04:00:00Z</updated>
+  <updated>2013-09-24T04:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-09-24:/!/want/index.html</id>
+    <title type="html">Things I want</title>
+    <published>2013-09-24T04:00:00Z</published>
+    <updated>2013-09-24T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/want/index.html"/>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;Pink fedora&lt;/li&gt;
+  &lt;li&gt;Stenotype (working on it)&lt;/li&gt;
+  &lt;li&gt;Fast scanner for old papers
+    &lt;ul&gt;
+      &lt;li&gt;A book-scanner would be even better.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Many Injinji toe socks, specifically 
+  &lt;a href="http://www.rei.com/product/711809/injinji-performance-series-original-weight-mini-crew-toesocks"&gt;these&lt;/a&gt;
+  and &lt;a href="http://www.rei.com/product/728375/injinji-performance-series-original-weight-crew-toesocks"&gt;these&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;More TechWick shirts&lt;/li&gt;
+  &lt;li&gt;Soldering iron with a thin tip&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-05-05:/!/utility-of-cobalt/index.html</id>
     <title type="html">Utlity of Cobalt</title>
@@ -180,68 +202,6 @@ I wound up with “occurrence”. Here are some other ideas.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Some other ideas are &lt;a href="http://marvin.cs.uidaho.edu/misspell.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-01-21:/!/scarsdale-2008-budget-shift/index.html</id>
-    <title type="html">Changes in Scarsdale appropriations</title>
-    <published>2013-01-21T05:00:00Z</published>
-    <updated>2013-01-21T05:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/scarsdale-2008-budget-shift/index.html"/>
-    <content type="html">
-&lt;p&gt;The village substantially reduced expenditures after 2008, mainly in
-the capital projects fund.&lt;/p&gt;
-
-&lt;p&gt;(I have a graph.)&lt;/p&gt;
-
-&lt;p&gt;The fund’s appropriation typically increases by a couple million dollars each
-year, but the appropriation was decreased by about $20 million in 2009-2010,
-or about two-thirds.&lt;/p&gt;
-
-&lt;h2 id="changes"&gt;2009 Changes&lt;/h2&gt;
-&lt;p&gt;More specifically, public building costs were decreased by about $11.5 million,
-and highway improvement costs were decreased by about $8.5 million.
-(See page 109 of the &lt;a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf"&gt;2009-2010 budget&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;The decrease in public building cost can be explained by reduced work on the
-Public Safety HQ Renovation/Expansion, which had cost $12 million in 2008-2009.
-(See page 117 of the &lt;a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf"&gt;2009-2010 budget&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;The decrease in highway improvement cost can be explained by reduced bridge
-construction, for which about $9 million had been allocated in 2009-2010.
-(See page 119 of the &lt;a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf"&gt;2009-2010 budget&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h2 id="previous-appropriations"&gt;Previous appropriations&lt;/h2&gt;
-&lt;p&gt;Each budget shows the information for a few years prior. Based on this, it
-appears that the budgeted appropriations jumped to a higher level a few years
-ago.&lt;/p&gt;
-
-&lt;h2 id="public-safety-hq-expansion"&gt;Public Safety HQ expansion&lt;/h2&gt;
-&lt;p&gt;In 2005-2006, the public safety HQ expansion ($5.5 million) was budgeted but
-not undertaken. It was to be funded by a bond, so I guess they just didn’t take
-out the loan.&lt;/p&gt;
-
-&lt;p&gt;The same happened in 2006-2007. It happened yet again in 2007-2008, but the
-cost estimate was $11 million instead of $5.5 million. It finally happened in
-2009-2010. That year, the cost was originally predicted to be $12 million, but
-it appears to have wound up costing only $11.5 million.&lt;/p&gt;
-
-&lt;h2 id="popham-road-bridge-construction"&gt;Popham Road Bridge construction&lt;/h2&gt;
-&lt;p&gt;The same sort of thing happened for the Popham Road Bridge construction. In
-2005-2006, 2006-2007 and 2007-2008 it had been budget $6.8 million of grant
-money, but the money. In 2008-2009, it was budgeted at $8.5 million of grant
-money. It finally happened, but it was funded by the federal stimulus.&lt;/p&gt;
-
-&lt;p&gt;These numbers are a bit off; I need to add things up properly.&lt;/p&gt;
-
-&lt;h2 id="difference-between-adopted-planned-expenditures-and-actual-expenditures"&gt;Difference between adopted (planned) expenditures and actual expenditures&lt;/h2&gt;
-&lt;p&gt;There had been plans for years to spend money on the public safety HQ and the
-Popham Road Bridge, but it took a few years before they were realized. They
-remained in the budget, however, so you might get the wrong impression of what
-the village is spending if you just look at the budget every year.&lt;/p&gt;
-
-&lt;p&gt;This gets me wondering about general trends in the difference between what is
-planned and what actually happens.&lt;/p&gt;
 </content>
   </entry>
 </feed>
