@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <title>Magic R commands</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'><nav>
+  <ul class='nobullet'>
+    <a href='/'>
+      <li class='link'>
+        <div>~</div>
+      </li>
+    </a>
+    <a href='/!/'>
+      <li class='link'>
+        <div>!</div>
+      </li>
+    </a>
+    <a href='/!/about/'>
+      <li class='link'>
+        <div>?</div>
+      </li>
+    </a>
+  </ul>
+</nav>
+<header class='title-card'>
+  <h1>
+    <a href="/!/magic-r-commands/">Magic R commands</a>
+  </h1>
+  <footer>
+    
+  </footer>
+</header>
+<article><p>I’ve never come up with a good way for learning/teaching the cool parts of R.
+I guess that’s just how R is; it’s all a hack. Anyway, here are some magic
+incantations.</p>
+
+<h2 id="general-stuff">General stuff</h2>
+<p>When loading a CSV, don’t convert strings to factors.</p>
+
+<pre><code>read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
+</code></pre>
+
+<p>Use ProjectTemplate.</p>
+
+<pre><code>library(ProjectTemplate)
+</code></pre>
+
+<p><code>sqldf</code> works on R data.frames and on other databases</p>
+
+<pre><code>sqldf('SELECT foo FROM bar') # Use the bar data.frame
+sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
+</code></pre>
+
+<p><code>mapply</code> maps along a matrix, passing multiple arguments to the function</p>
+
+<h2 id="maintenance">Maintenance</h2>
+<p>Update your packages.</p>
+
+<pre><code>update.packages()
+</code></pre>
+
+<h2 id="rprofile">.Rprofile</h2>
+<p>Set your preferred mirror</p>
+
+<pre><code>r &lt;- getOption("repos")
+r["CRAN"] &lt;- "http://cran.mirrors.hoobly.com"
+options(repos = r)
+rm(r)
+</code></pre>
+
+<p>Remove the carrots from the beginnings of the lines so that you can run code
+that you’ve copied from the shell.</p>
+
+<pre><code>options(prompt="  ")
+options(continue="+ ") 
+</code></pre>
+
+<p>Make the screen wide</p>
+
+<pre><code>options(width=160)
+</code></pre>
+
+<p>Save your command history and output</p>
+
+<pre><code>Sys.setenv(R_HISTSIZE='100000')
+sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)
+</code></pre></article>
+<div id='pagination'></div></div>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>
