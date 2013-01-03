@@ -47,77 +47,178 @@
       </a>
     </li>
   </ul></nav><header class="title-card"><h1>
-    <a href="../!/scarsdale-2008-budget-shift/">Capital projects</a>
+    <a href="../!/scarsdale-tax-bill/">Reading your tax bill</a>
   </h1>
   <div class="date">
-    December 23, 2012
+    January 03, 2013
   </div>
-</header><article><p>The village substantially reduced its budget after 2008, mainly in the capital
-projects fund.</p>
+</header><article><!--
+  I'm sorry for you if you are reading this source code. It's an ugly mess, but
+  it seemed to work, so I haven't refactored it.
+--><style scoped>@import url("/!/scarsdale-tax-bill/style.css");</style>
+<!-- Layout --><div id="about">
+    <p>
+        Scarsdale's <a href="https://github.com/tlevine/scarsdale-data/blob/master/grandma/village.jpg">tax bills</a>
+        aren't
+        the most straightforward of documents. They've been this bad for
+        years, and I don't expect any change soon, so here's a guide for
+        reading them.
+    </p>
+    <p>
+        Your house is assessed to determine its Assessed Total Value, then
+        excemptions are subtracted to it to produce the Assessed Taxable Value.
+        This times the tax rate (in permil) produces your Tax Amount.
+    </p>
+    <p>
+        If you add up the county, village and school tax rates, it comes to about
+        $1,000, so your tax payments are about equal to the assessed value of your
+        house. There are also the sewer and solid waste taxes, but those are much
+        smaller.
+    </p>
+</div>
+<div id="directions">
+    <p>
+        Enter the assessed taxable value of your house to find out what you pay in
+        taxes and how you compare to everyone else. You can find your house's
+        assessed total and taxable values <a href="https://github.com/tlevine/scarsdale-data/blob/master/assessor/2012.pdf?raw=true">here</a>.
+    </p>
+</div>
+<div id="screen-size-warning">Make this window wider (to 1008 pixels)<br>to see the table.</div>
+<div id="app">
+    <div id="input"></div>
+    <table class="levy">
+<thead><tr>
+<th class="levy-description">Levy Description</th>
+                <th class="total-tax-levy">Total Tax Levy</th>
+                <th class="percent-change">% Change from Prior Year</th>
+                <th class="assessed-total-value">Assessed Total Value</th>
+                <th class="assessed-taxable-value">Assessed Taxable Value</th>
+                <th class="tax-rate">Tax Rate</th>
+                <th class="tax-amount">Tax Amount</th>
+            </tr></thead>
+<tbody>
+<tr class="county">
+<td class="levy-description">2012 COUNTY TAX</td>
+                <td class="total-tax-levy">27,078,607</td>
+                <td class="percent-change">3.17</td>
+                <td class="assessed-total-value"></td>
+                <td class="assessed-taxable-value"></td>
+                <td class="tax-rate">194.908400</td>
+                <td class="tax-amount"></td>
+            </tr>
+<tr class="village">
+<td class="levy-description">2012-2013 VILLAGE TX</td>
+                <td class="total-tax-levy">33,093,095</td>
+                <td class="percent-change">3.72</td>
+                <td class="assessed-total-value"></td>
+                <td class="assessed-taxable-value"></td>
+                <td class="tax-rate">238.420000</td>
+                <td class="tax-amount"></td>
+            </tr>
+<tr class="school">
+<td class="levy-description">2012-2013 School Tax</td>
+                <td class="total-tax-levy">127,045,773</td>
+                <td class="percent-change">2.89</td>
+                <td class="assessed-total-value"></td>
+                <td class="assessed-taxable-value"></td>
+                <td class="tax-rate">868.927000</td>
+                <td class="tax-amount"></td>
+            </tr>
+</tbody>
+<tfoot><tr class="total">
+<td class="note" colspan="6" style="text-align: right;">Total:</td>
+                <td class="tax-amount"></td>
+            </tr></tfoot>
+</table>
+<div id="distribution"></div>
+</div>
 
-<p><a href="../!/scarsdale-2008-budget-shift/appropriations.png"><img src="../!/scarsdale-2008-budget-shift/appropriations.png" alt="Appropriation by year and fund"></a></p>
 
-<p>The fund’s appropriation typically increases by a couple million dollars each
-year, but the appropriation was decreased by about $20 million in 2009-2010,
-or about two-thirds. Let’s figure out why.</p>
-
-<h2 id="changes">2009 Changes</h2>
-<p>More specifically, public building costs were decreased by about $11.5 million,
-and highway improvement costs were decreased by about $8.5 million.
-(See page 109 of the <a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf">2009-2010 budget</a>)</p>
-
-<p>The decrease in public building cost can be explained by reduced work on the
-Public Safety HQ Renovation/Expansion, which had cost $12 million in 2008-2009.
-(See page 117 of the <a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf">2009-2010 budget</a>)</p>
-
-<p>The decrease in highway improvement cost can be explained by reduced bridge
-construction, for which about $9 million had been allocated in 2009-2010.
-(See page 119 of the <a href="https://github.com/tlevine/scarsdale-data/raw/master/budget/2009-2010_adopted_budget.pdf">2009-2010 budget</a>)</p>
-
-<h2 id="previous-appropriations">Previous appropriations</h2>
-<p>Each budget shows the information for a few years prior. Based on this, it
-appears that the budgeted appropriations jumped to a higher level a few years
-ago.</p>
-
-<h3 id="public-safety-hq-expansion">Public Safety HQ expansion</h3>
-<p><a href="../!/scarsdale-2008-budget-shift/04-public_safety.png"><img src="../!/scarsdale-2008-budget-shift/04-public_safety.png" alt=""></a></p>
-
-<p>In 2005-2006, the public safety HQ expansion was budgeted $6 million, of which
-about $500,000 was for planning and $5.5 million was for construction.
-Apparently, the planning was conducted but the construction apparently not.
-The construction was to be funded by a bond, so I guess they just didn’t take
-out the loan.</p>
-
-<p>Not having constructed the expansion, the village budgeted about $5.5 million
-for the the expansion in 2006-2007. It happened yet again in 2007-2008, but the
-cost estimate was $11 million instead of $5.5 million. The project was finally
-realized in 2009-2010. That year, the cost was originally predicted to be $12
-million, but it wound up costing only $11.5 million.</p>
-
-<h3 id="popham-road-bridge-construction">Popham Road Bridge construction</h3>
-<p><a href="../!/scarsdale-2008-budget-shift/04-popham_road_bridge.png"><img src="../!/scarsdale-2008-budget-shift/04-popham_road_bridge.png" alt=""></a></p>
-
-<p>The same sort of thing happened for the Popham Road Bridge construction. In
-2005-2006, 2006-2007 and 2007-2008 it had been budget $10.5 million of mostly
-grant money, but little was spent on the project for these three years. (Maybe
-we didn’t get the grant?) In 2008-2009, it was budgeted about $10 million, of
-which about $8.5 million was a grant. The bridge construction finally started,
-but it was funded by the federal stimulus instead of the grant.</p>
-
-<h2 id="difference-between-adopted-planned-expenditures-and-actual-expenditures">Difference between adopted (planned) expenditures and actual expenditures</h2>
-<p>There had been plans for years to spend money on the public safety HQ and the
-Popham Road Bridge, but it took a few years before they were realized. They
-remained in the budget, however, so you might get the wrong impression of what
-the village is spending if you just look at the budget every year.</p>
-
-<p><a href="../!/scarsdale-2008-budget-shift/04-difference.png"><img src="../!/scarsdale-2008-budget-shift/04-difference.png" alt=""></a></p>
-
-<p>The differences between the adopted (planned) expenditures and the estimated
-(close to the actual) expenditures for these two projects is on the order of
-$15 million each year, or about one-fifth of the adopted budget for the whole
-village. This gets me wondering about general trends in the difference between
-what is planned and what actually happens.</p>
-</article><div class="clearfix" id="links">
+<!-- Libraries -->
+<script src="../js/vendor/jquery-cb0b6ecf17e.js" type="text/javascript"></script><script src="../!/scarsdale-tax-bill/underscore-min.js" type="text/javascript"></script><script src="../!/scarsdale-tax-bill/backbone-min.js"></script><script src="../!/scarsdale-tax-bill/backbone.queryparams.js"></script><script>
+$.fn.serializeObject = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+</script><!-- https://github.com/fryn/html5slider/raw/master/html5slider.js --><script src="../!/scarsdale-tax-bill/html5slider.js"></script><!--
+  Templates 
+  The exclamation points are so Nanoc's erb filter doesn't try to fill them in.
+--><script type="text/template" id="input-basic">
+    <form class="calculator calculator-basic">
+        <label for="total">Assessed total value</label>
+        <input class="slider" name="total" type="range" min="0" max="100000" value="<!%= total %>" step="100" />
+        <div class="scale">
+            <span class="min">$0</span>
+            <span class="current" style="left: <!%= slider %>;">$<!%= pretty_total %></span>
+            <span class="max">$100,000</span>
+        </div>
+        <a href="#?advanced=true&total=<!%= total %>">Advanced version</a>
+    </form>
+</script><script type="text/template" id="input-advanced">
+    <form class="calculator calculator-advanced">
+        <div class="form-field">
+            <label for="total">Assessed total value</label>
+            <input name="total" type="text" value="<!%= total %>" pattern="[0-9]*" />
+        </div>
+        <div class="form-field">
+            <label for="taxable_county">Assessed taxable value for county tax</label>
+            <input name="taxable_county" type="text" value="<!%= taxable_county %>" pattern="[0-9]*" />
+        </div>
+        <div class="form-field">
+            <label for="taxable_village">Assessed taxable value for village tax</label>
+            <input name="taxable_village" type="text" value="<!%= taxable_village %>" pattern="[0-9]*" />
+        </div>
+        <div class="form-field">
+            <label for="taxable_school">Assessed taxable value for school tax</label>
+            <input name="taxable_school" type="text" value="<!%= taxable_school %>" pattern="[0-9]*" />
+        </div>
+        <div class="form-field">
+            <a href="#?advanced=false&total=<!%= total %>">Simple version</a>
+            <input type="submit" value="Go">
+        </div>
+    </form>
+</script><script type="text/template" id="distribution-template">
+    <table class="additional-information">
+        <thead>
+            <tr>
+                <th colspan="2">Additional Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Full market value of this Property</td>
+                <td class="number"><!%= market_value %></td>
+            </tr>
+            <tr>
+                <td>Uniform percent used to calculate full market value</td>
+                <td class="number">1.87</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>You house's assessed <strong>total</strong> value is greater than that of <strong><!%= total %></strong> of properties.</li>
+    <p>You house's assessed taxable value for <strong>county</strong> taxes is greater than that of <strong><!%= taxable_county %></strong> of properties.</li>
+    <p>You house's assessed taxable value for <strong>village</strong> taxes is greater than that of <strong><!%= taxable_village %></strong> of properties.</li>
+    <p>You house's assessed taxable value for <strong>school</strong> taxes is greater than that of <strong><!%= taxable_school %></strong> of properties.</li>
+</script><!-- Assessed value distribution data --><script src="../!/scarsdale-tax-bill/data.js" type="text/javascript"></script><!-- Go --><script src="../!/scarsdale-tax-bill/main.js" type="text/javascript"></script></article><div class="clearfix" id="links">
+  <div class="link">
+    <strong>
+      <a href="../!/scarsdale-tax-bill/">Reading your tax bill</a>
+    </strong>
+    <footer>
+      Jan 03, 2013
+    </footer>
+</div>
   <div class="link">
     <strong>
       <a href="../!/scarsdale-2008-budget-shift/">Capital projects</a>
@@ -140,14 +241,6 @@ what is planned and what actually happens.</p>
     </strong>
     <footer>
       Dec 02, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-tax-bill/">Reading your tax bill</a>
-    </strong>
-    <footer>
-      Jan 03, 2012
     </footer>
 </div>
 </div>
