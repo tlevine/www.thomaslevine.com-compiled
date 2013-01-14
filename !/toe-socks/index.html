@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Where does the "market value" on your tax bill come from?</title>
+    <title></title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
@@ -50,52 +50,54 @@
         </nav>
         <header class='title-card'>
           <h1>
-            <a href="/!/scarsdale-estimated-market-values/">Where does the "market value" on your tax bill come from?</a>
+            <a href="/!/toe-socks/"></a>
           </h1>
           <div class='date'>
-            January 14, 2013
+            
           </div>
         </header>
         <article>
-          <p>Scarsdale’s tax bills look like this.</p>
+          <p>I have nine pairs of these socks.</p>
           
-          <p><a href="/!/scarsdale-estimated-market-values/village.jpg"><img src="/!/scarsdale-estimated-market-values/village.jpg" alt="Picture of a village tax bill" /></a></p>
+          <p><img src="" alt="A pair of feet wearing black toe socks" /></p>
           
-          <p>At the end, they use a “uniform percent” to calculate a “full market value”.</p>
+          <p>Each pair contains a left sock and a right sock; the left sock only fits on the
+          left foot.</p>
           
-          <p><a href="/!/scarsdale-estimated-market-values/additional.jpg"><img src="/!/scarsdale-estimated-market-values/additional.jpg" alt="Picture of the &quot;ADDITIONAL INFORMATION&quot; section of the bill" /></a></p>
+          <p>Figuring out whether a sock is a left sock or a right sock takes some time. I
+          could figure this out right after doing a wash and tie them in pairs. But not
+          having to do that is one of the benefits of all having all the same socks.</p>
           
-          <h2 id="what-does-that-percentage-mean">What does that percentage mean?</h2>
+          <p>I could also just sort them into a pile of left socks and a pile of right
+          socks. But I wouldn’t trust the piles to stay intact, at least if I’m not at
+          home.</p>
           
-          <p>You can divide the assessed value of your house by the percentage to arrive at
-          the “market value” that is listed on the bill. For example, a house assessed at
-          $10,000 could be divided by 2% to yield an estimated market value of $500,000.</p>
+          <p>If I have a pile of mixed left socks and right socks, I can confidently select
+          enough to have as many as I need for a trip by taking extra socks. Some mental
+          arithmetic told me how many I need. I’ve drawn it on paper so it’s easier to
+          explain.</p>
           
-          <h2 id="how-is-it-chosen">How is it chosen?</h2>
+          <p>If I have <script type="math/tex">n</script> socks, how many can I expect to be left socks? Well the best
+          guess is <script type="math/tex">\frac{n}{2}</script>, but how variable is it?</p>
           
-          <p>Now that I’ve explained that, where does the figure come from? As you’ll see,
-          it’s not particularly obvious, so I suspect that it comes from some reasonably
-          informed calculation. But what is the calculation?</p>
+          <p>Treat sock foot (left or right) as a binomial random variable with
+          <script type="math/tex">p = \frac{1}{2}</script>. The proportion of left socks can be modeled with a binomial
+          distribution, which can be approximated as a normal random variable with
+          a variance of <script type="math/tex">\frac{p\times\(1 - p\)}{n}</script>.</p>
           
-          <p>In an attempt to find out, I plotted the estimated value of a house assessed at
-          $10,000 for each year. The x-axis is the value of a dollar in 2012 dollars
-          during the year of the tax bill, based on the Consumer Price Index. (This is an
-          attempt at adjusting for inflation.) The percentages are just the percentages
-          listed on the tax bills, which are equivalent to the y-axis estimated house
-          market value.</p>
+          <!-- images -->
           
-          <p><a href="/!/scarsdale-estimated-market-values/plot.png"><img src="/!/scarsdale-estimated-market-values/plot.png" alt="Plot of nominal market value as a function of the value of a dollar over time" /></a></p>
+          <p>We can find a confidence interval for this proportion</p>
           
-          <p>If the percentage were simply a crude adjustment for inflation, the line would
-          be straight and increasing. It looks sort of like that until 2008, but it went
-          back down after that. Since the line isn’t straight and increasing, it seems
-          that the percentage is derived some other way. How anti-climatic.</p>
+          <p>Now we multiply the conservative end of that convidence interval by the number
+          of socks to see how many socks are confidently left socks.</p>
           
-          <h2 id="thank-you-grandma">Thank you, Grandma</h2>
-          <p>The budgets <a href="http://www.scarsdale.com/Home/Departments/VillageTreasurer.aspx">posted online</a>
-          only go back to 2006, so I collected
-          <a href="https://github.com/tlevine/scarsdale-data/tree/master/grandma">these data</a>
-          from my grandmother’s tax bills.</p>
+          <p>Let’s flip these equations around so that I can choose how many socks to bring
+          given that I want at least <script type="math/tex">m</script> socks. We’ll approximate <script type="math/tex">n</script> by <script type="math/tex">m</script> so
+          we can do the calculations in our head. This will overestimate the variance
+          because the sample size will be smaller than it really is, so it’s safe to do
+          this. We just compute the standard error, multiply it by <script type="math/tex">m</script> and add it to
+          <script type="math/tex">m</script>. That should be enough socks.</p>
         </article>
         <div id='pagination'></div>
       </div>

@@ -78,6 +78,12 @@ sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
 
 <p><code>mapply</code> maps along a matrix, passing multiple arguments to the function</p>
 
+<p>Show all factor levels in a ggplot</p>
+
+<pre><code>ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +
+  scale_x_discrete('Species', drop = F) + geom_point()
+</code></pre>
+
 <h2 id="maintenance">Maintenance</h2>
 <p>Update your packages.</p>
 
