@@ -47,51 +47,71 @@
       </a>
     </li>
   </ul></nav><header class="title-card"><h1>
-    <a href="../!/scarsdale-estimated-market-values/">Where does the "market value" on your tax bill come from?</a>
+    <a href="../!/scarsdale-high-school-bus-schedule-weirdness/">Scarsdale High School bus schedule weirdness</a>
   </h1>
   <div class="date">
-    January 14, 2013
+    January 25, 2013
   </div>
-</header><article><p>Scarsdale’s tax bills look like this.</p>
-  
-  <p><a href="../!/scarsdale-estimated-market-values/village.jpg"><img src="../!/scarsdale-estimated-market-values/village.jpg" alt="Picture of a village tax bill"></a></p>
-  
-  <p>At the end, they use a “uniform percent” to calculate a “full market value”.</p>
-  
-  <p><a href="../!/scarsdale-estimated-market-values/additional.jpg"><img src="../!/scarsdale-estimated-market-values/additional.jpg" alt='Picture of the "ADDITIONAL INFORMATION" section of the bill'></a></p>
-  
-  <h2 id="what-does-that-percentage-mean">What does that percentage mean?</h2>
-  
-  <p>You can divide the assessed value of your house by the percentage to arrive at
-  the “market value” that is listed on the bill. For example, a house assessed at
-  $10,000 could be divided by 2% to yield an estimated market value of $500,000.</p>
-  
-  <h2 id="how-is-it-chosen">How is it chosen?</h2>
-  
-  <p>Now that I’ve explained that, where does the figure come from? As you’ll see,
-  it’s not particularly obvious, so I suspect that it comes from some reasonably
-  informed calculation. But what is the calculation?</p>
-  
-  <p>In an attempt to find out, I plotted the estimated value of a house assessed at
-  $10,000 for each year. The x-axis is the value of a dollar in 2012 dollars
-  during the year of the tax bill, based on the Consumer Price Index. (This is an
-  attempt at adjusting for inflation.) The percentages are just the percentages
-  listed on the tax bills, which are equivalent to the y-axis estimated house
-  market value.</p>
-  
-  <p><a href="../!/scarsdale-estimated-market-values/plot.png"><img src="../!/scarsdale-estimated-market-values/plot.png" alt="Plot of nominal market value as a function of the value of a dollar over time"></a></p>
-  
-  <p>If the percentage were simply a crude adjustment for inflation, the line would
-  be straight and increasing. It looks sort of like that until 2008, but it went
-  back down after that. Since the line isn’t straight and increasing, it seems
-  that the percentage is derived some other way. How anti-climatic.</p>
-  
-  <h2 id="thank-you-grandma">Thank you, Grandma</h2>
-  <p>The budgets <a href="http://www.scarsdale.com/Home/Departments/VillageTreasurer.aspx">posted online</a>
-  only go back to 2006, so I collected
-  <a href="https://github.com/tlevine/scarsdale-data/tree/master/grandma">these data</a>
-  from my grandmother’s tax bills.</p>
+</header><article><p>Scarsdale High School bus schedules are
+<a href="http://www.scarsdaleschools.org/cms/lib5/NY01001205/Centricity/Domain/13/SHSBusSchedule.pdf">here</a>.
+I want to make a map of them! And maybe do other things.</p>
+
+<p>I manually transcribed the file because it’s a small messy scan.
+In my <a href="https://raw.github.com/tlevine/scarsdale-data/master/school-buses/bus_stops.csv">resulting spreadsheet</a>,
+each row is a bus stop on a trip. (The trip from home to school and the trip
+from school to home are different trips.)</p>
+
+<p>I found some funny rows in the data.</p>
+
+<p>The same stop is presented twice.</p>
+
+<pre><code>route.name,route.number,stop.id,time,n.students,location
+...
+HS 25 AM,           157,    10, 7:27 am,      0,ROCK CREEK LN &amp; SYCAMORE RD
+HS 25 AM,           157,    11, 7:27 am,      6,ROCK CREEK LN &amp; SYCAMORE RD
+...
+</code></pre>
+
+<p>Some locations are weird.</p>
+
+<pre><code>route.name,route.number,stop.id,time,n.students,location
+...
+HS 28 AM,           155,     3, 7:02 am,      2,OLD WHITE PLAINS RD &amp; WELLHOUSE CLOSE &amp; OLD WHITE PLAINS RD
+...
+HS 28 AM,           155,    15, 7:21 am,      1,WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; HILLANDALE DR &amp;  HILLANDDALE DR &amp; HILLANDALE CLOSE
+...
+HS 70 PM(3:10),     157,    12, 3:40 pm,      0,GRIFFEN AVENUE &amp; BRITTANY CLOSE &amp; GRIFFEN AVENUE
+...
+HS 74 PM(4:15),      95,     3, 4:19 pm,      0,WHITE RD &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; WHITE RD
+...
+HS 74 PM(4:15),      95,    18, 4:45 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; CARTHAGE RD
+HS 74 PM(4:15),      95,    19, 4:47 pm,      0,INNES RD &amp; HEATHCOTE RD &amp; HEATHCOTE RD
+HS 74 PM(4:15),      95,    20, 4:50 pm,      0,HAVERFORD AVE &amp; WEAVER ST &amp; HWY 125 &amp; WEAVER ST &amp; HWY 125
+HS 74 PM(4:15),      95,    21, 4:51 pm,      0,BRADFORD RD &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129
+...
+HS 74 PM(4:15),      95,    23, 4:54 pm,      0,GRIFFEN AVENUE &amp; GRAND PK AVE &amp; GRIFFEN AVENUE
+HS 74 PM(4:15),      95,    24, 4:56 pm,      0,GRIFFEN AVENUE &amp; MURDOCK RD &amp; GRIFFEN AVENUE
+...
+HS 74 PM(4:15),      95,    26, 4:59 pm,      0,FAIRWAY DR &amp; BARNWALL LN &amp; FAIRWAY DR
+HS 74 PM(4:15),      95,    27, 5:00 pm,      0,MAMARONECK RD &amp; BARKER LN &amp; MAMARONECK RD
+HS 74 PM(4:15),      95,    28, 5:01 pm,      0,MAMARONECK RD &amp; COLONIAL RD &amp; MAMARONECK RD
+HS 74 PM(4:15),      95,    29, 5:01 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; STRATTON RD
+</code></pre>
+
+<p>And several other rows have “location[s]” at three-street intersections.</p>
+
+<p>Analyses if the schedules will come eventually; I just thought I’d share this
+first. And if you can’t wait for me, you can take a look at the 
+<a href="https://github.com/tlevine/scarsdale-data/tree/master/school-buses">data</a> yourself.</p>
 </article><div class="clearfix" id="links">
+  <div class="link">
+    <strong>
+      <a href="../!/scarsdale-high-school-bus-schedule-weirdness/">Weird bus schedules</a>
+    </strong>
+    <footer>
+      Jan 25, 2013
+    </footer>
+</div>
   <div class="link">
     <strong>
       <a href="../!/scarsdale-estimated-market-values/">Tax bill "market value"</a>
