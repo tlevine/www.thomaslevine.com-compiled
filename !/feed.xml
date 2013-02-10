@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-09-24T05:00:00Z</updated>
+  <updated>2013-09-24T04:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -12,8 +12,8 @@
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-24:/!/want/index.html</id>
     <title type="html">Things I want</title>
-    <published>2013-09-24T05:00:00Z</published>
-    <updated>2013-09-24T05:00:00Z</updated>
+    <published>2013-09-24T04:00:00Z</published>
+    <updated>2013-09-24T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/want/index.html"/>
     <content type="html">&lt;ul&gt;
   &lt;li&gt;Pink fedora&lt;/li&gt;
@@ -34,8 +34,8 @@
   <entry>
     <id>tag:www.thomaslevine.com,2013-05-05:/!/utility-of-cobalt/index.html</id>
     <title type="html">Utlity of Cobalt</title>
-    <published>2013-05-05T05:00:00Z</published>
-    <updated>2013-05-05T05:00:00Z</updated>
+    <published>2013-05-05T04:00:00Z</published>
+    <updated>2013-05-05T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/utility-of-cobalt/index.html"/>
     <content type="html">&lt;p&gt;x.scraperwiki.com uses a new infrastructure for running scripts. We call it
 &lt;a href="https://github.com/scraperwiki/cobalt"&gt;Cobalt&lt;/a&gt;.&lt;/p&gt;
@@ -85,10 +85,34 @@ this a bit easier.&lt;/p&gt;
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-03-28:/!/hard-to-spell/index.html</id>
+    <title type="html">Words that are hard to spell</title>
+    <published>2013-03-28T04:00:00Z</published>
+    <updated>2013-03-28T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/hard-to-spell/index.html"/>
+    <content type="html">&lt;p&gt;I previously used “(es)perluette” as my name in a bunch of places. (It’s a
+French word for “ampersand”.) As such, people who didn’t know French wouldn’t
+understand what I was saying when I verbally told them my email address. And
+I would always have to write it out for them.&lt;/p&gt;
+
+&lt;p&gt;I decided to change my email address to a word with the reverse properties,
+to a word that would be easy to understand aurally but difficult to spell.
+I wound up with “occurrence”. Here are some other ideas.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pamphlet&lt;/li&gt;
+  &lt;li&gt;accidentally&lt;/li&gt;
+  &lt;li&gt;definitely&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some other ideas are &lt;a href="http://marvin.cs.uidaho.edu/misspell.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-03-21:/!/checkbook/index.html</id>
     <title type="html">On balancing checkbooks</title>
-    <published>2013-03-21T05:00:00Z</published>
-    <updated>2013-03-21T05:00:00Z</updated>
+    <published>2013-03-21T04:00:00Z</published>
+    <updated>2013-03-21T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/checkbook/index.html"/>
     <content type="html">&lt;p&gt;Balancing checkbooks is one of those things that people say everyone should
 know how to do. It’s also one of those should learn in school or whatnot. I
@@ -122,147 +146,32 @@ just use some proper computer-based accounting system.&lt;/p&gt;
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-02-20:/!/scarsdale-tax-rate/index.html</id>
-    <title type="html">Scarsdale Village tax rates and inflation</title>
-    <published>2013-02-20T06:00:00Z</published>
-    <updated>2013-02-20T06:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/scarsdale-tax-rate/index.html"/>
-    <content type="html">&lt;p&gt;I took some &lt;a href="https://github.com/tlevine/scarsdale-data/blob/master/budget/appendix_a1-tax.csv"&gt;information&lt;/a&gt;
-out of the Scarsdale budgets and noticed that the property tax rate increases quite consisently.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/scarsdale-tax-rate/tax_rate_by_year.png" alt="Tax rate over time" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The property tax rate is a proportion of the assessed value of the house; if
-your house is assessed at $10,000 and the tax rate is 24%, you pay $2,400 in
-village taxes.&lt;/p&gt;
-
-&lt;p&gt;On your bill and in the budget, it’s actually represented in permil rather
-than percent; for every $1,000 of assessed value, you pay $240 in taxes.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="" alt="Example budget" /&gt;
-&lt;img src="" alt="Example bill" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Anyway, I was somewhat surprised by the consistent increase, so I looked a bit further.
-I wondered whether the increase could be explained by inflation, so I plotted
-the tax rate against the value of a dollar in today’s dollars based on the
-Consumer Price Index. (This tries to adjust for inflation.)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/scarsdale-tax-rate/adj_tax_rate.png" alt="Raw and inflation-adjusted tax rate over time" /&gt;&lt;/p&gt;
-
-&lt;p&gt;This doesn’t look that different from the previous plot becauses the value of
-a dollar changes quite consistently. I didn’t find it that helpful for figuring
-out whether inflation explained the changes.&lt;/p&gt;
-
-&lt;p&gt;Next, I adjusted the tax rate for inflation. You can think of the adjusted tax
-rate (dotted line) as the fair tax rate for each year if you were to pay for
-that year’s taxes (the solid line) in 2009 rather than in the year to which
-they correspond.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/scarsdale-tax-rate/tax_rate_by_inflation.png" alt="Tax rate as a function of inflation" /&gt;&lt;/p&gt;
-
-&lt;p&gt;If the increase in property tax rate is explained only by inflation, this line
-should be flat. Well, it would have bumps, bu wouldn’t increase or decrease on
-average. Aside from the shift in 2008, the line is sort of flat, but it does
-tend upwards. This suggests to me that something other than general inflation
-is increasing the property tax.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-02-15:/!/data-business-models/index.html</id>
-    <title type="html">Data business models</title>
-    <published>2013-02-15T06:00:00Z</published>
-    <updated>2013-02-15T06:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/data-business-models/index.html"/>
-    <content type="html">&lt;p&gt;I’ve been at loads of hip and non-hip data talks here and there and have come
-four categories of data business model in this hip data ecosystem. Here they are.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Big storage for big people&lt;/li&gt;
-  &lt;li&gt;Money in, insight out: Vertically integrated data analysis&lt;/li&gt;
-  &lt;li&gt;Internal data analysis on an organization’s own data&lt;/li&gt;
-  &lt;li&gt;Quantitative finance&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="big-storage-for-big-people"&gt;Big storage for big people&lt;/h2&gt;
-&lt;p&gt;This is mostly Hadoop. For example,&lt;/p&gt;
+    <id>tag:www.thomaslevine.com,2013-03-08:/!/movies/index.html</id>
+    <title type="html">Movies I like</title>
+    <published>2013-03-08T05:00:00Z</published>
+    <updated>2013-03-08T05:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/movies/index.html"/>
+    <content type="html">&lt;p&gt;I tend to fall asleep during movies, so I prefer movies for which falling
+asleep enhances them. Most of these are really trippy movies that get
+even more trippy if you drift in and out of sleep during them. Some examples:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Teradata&lt;/li&gt;
-  &lt;li&gt;Hortonworks&lt;/li&gt;
-  &lt;li&gt;MapR&lt;/li&gt;
-  &lt;li&gt;Cloudera&lt;/li&gt;
+  &lt;li&gt;Donnie Darko&lt;/li&gt;
+  &lt;li&gt;Serial Experiments Lain (if you watch a bunch of episodes at once)&lt;/li&gt;
+  &lt;li&gt;Eternal Sunshine of the Spotless Mind&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Some people are using NoHadoop. (I just invented this word.)&lt;/p&gt;
+&lt;p&gt;But that’s not the only sort of movie that falling asleep enhances; falling
+asleep enhances the following movies for other reasons.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Datastax (Cassandra)&lt;/li&gt;
-  &lt;li&gt;Couchbase (Couch but not the original Couch)&lt;/li&gt;
-  &lt;li&gt;10gen (Mongo)&lt;/li&gt;
+  &lt;li&gt;Inception&lt;/li&gt;
+  &lt;li&gt;Clerks, Clerks 2 and Jay and Silent Bob Strike Back, watched in succession&lt;/li&gt;
+  &lt;li&gt;Snakes on a Plane&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Either way, these companies sell consulting, training, hosting, proprietary
-special features &amp;amp;c. to big businesses with shit tons of data.&lt;/p&gt;
-
-&lt;h2 id="money-in-insight-out-vertically-integrated-data-analysis"&gt;Money in, insight out: Vertically integrated data analysis&lt;/h2&gt;
-
-&lt;p&gt;Several places package data collection, analysis and presentation. I think this
-is pretty close to “research”. One example is AIMIA, which manages the Nectar
-card scheme; as a small part of this, they analyze the data that they collect
-and present ideas to clients. Many producers of hip data tools also provide hip
-data consulting, so they too fall into this category.&lt;/p&gt;
-
-&lt;h3 id="data-hubs"&gt;Data hubs&lt;/h3&gt;
-&lt;p&gt;Some companies produce suites of tools that approach this vertical integration;
-when you use these tools, you still have to look at the data yourself, but it
-is made much easier. This approaches the
-‘&lt;a href="http://blog.scraperwiki.com/2012/03/09/from-cms-to-dms-c-is-for-content-d-is-for-data/"&gt;data hubs&lt;/a&gt;’
-that Francis likes talking about.&lt;/p&gt;
-
-&lt;p&gt;Lots of advertising, web and social media analytics tools fall into this
-category. You just configure your accounts, let data accumulate, and look at
-the flashy dashboard. You still have to put some thought into it, but the
-collection, analysis and presentation are all streamlined and integrated and
-thus easier for people who wouldn’t otherwise do this themselves.&lt;/p&gt;
-
-&lt;p&gt;Tools like Tableau, ScraperWiki, RStudio (combined with its tangential R
-services) also fall into this category. You still have to do your analysis, but
-they let you do all of your analysis in one place, and connections between that
-place, your data sources and your presentatino media are easy. Well that’s the
-idea at least.&lt;/p&gt;
-
-&lt;h2 id="internal-data-analysis"&gt;Internal data analysis&lt;/h2&gt;
-
-&lt;p&gt;Places with lots of data have internal person(s) do something with them. Any
-company that’s making money must have something like this. The mainstream
-companies might call these people “business analysts”, and they might do all
-their work &lt;a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/"&gt;in Excel&lt;/a&gt;.
-The hip companies are doing “data science” with open source software before it
-gets cool. And the New York City government has a team that just analyzes New
-York data to make the various government services more efficient. For the
-current discussion, I see these as similar sorts of people.&lt;/p&gt;
-
-&lt;p&gt;I was pondering distinguishing between analysis that affects businessy
-decisions from models that get written into software. Since I’m just
-categorising business models and these things could both be produced by the
-same guy working inside a company with lots of data, I chose not to distinguish
-between them.&lt;/p&gt;
-
-&lt;h2 id="quantitative-finance"&gt;Quantitative finance&lt;/h2&gt;
-
-&lt;p&gt;Quantitative finance is special in that the data analysis is very close to a
-product in itself; the conclusion of analysis or algorithm is “Make these
-trades when that happens.” rather than “If you market to these people, you
-might sell more products.”&lt;/p&gt;
-
-&lt;p&gt;This has some interesting implications. For one thing, you could have a whole
-company doing quantative finance. On a similar note, I suspect that analyses
-can be more complicated because the analyses might only need to be conveyed to
-people with quantitative literacy; in the other categories, it might be more
-important to convey insights to non-technical managers.&lt;/p&gt;
-
-&lt;h2 id="conclusionary"&gt;Conclusionary&lt;/h2&gt;
-&lt;p&gt;Pretend that I made some insightful, conclusionary conclusion in this sentence.&lt;/p&gt;
+&lt;p&gt;These lists are both quite short, so I’d love to hear any other suggestions of
+movies that are enhanced when the viewer falls asleep.&lt;/p&gt;
 </content>
   </entry>
 </feed>
