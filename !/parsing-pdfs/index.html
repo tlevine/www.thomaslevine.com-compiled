@@ -1,60 +1,64 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
- <![endif]--><!--[if IE 7]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9 lt-ie8"></html>
- <![endif]--><!--[if IE 8]>    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html class="no-js lt-ie9"></html>
- <![endif]--><!--[if gt IE 8]><!--><html class="no-js">
-<!--<![endif]--><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title></title>
-<meta content="" name="description">
-<meta content="Thomas Levine" name="author">
-<meta content="nanoc 3.4.2" name="generator">
-<meta content="width=device-width" name="viewport">
-<link href="../favicon.ico" rel="icon" type="image/x-icon">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<link href="../css/style-cb7e8fdfc7c.css" rel="stylesheet">
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script><script src="../js/vendor/modernizr-cb42306a279.js"></script>
-</head>
-<body class="blog">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Parsing PDF Files</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
     <!--[if lt IE 7 ]>
-      <p class="chromeframe">
+      <p class='chromeframe'>
         You are using an <strong>outdated</strong> browser.
         Please <a href="http://browsehappy.com/">upgrade your browser</a> or
         <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
         to improve your experience.
       </p>
     <![endif]-->
-    <div id="wrapper">
-      <div id="container">
-<nav><ul class="nobullet">
-<li class="link">
-      <a href="../">
+    <div id='wrapper'>
+      <div id='container'><nav>
+  <ul class='nobullet'>
+    <li class='link'>
+      <a href='/'>
         <div>~</div>
       </a>
     </li>
-    <li class="link">
-      <a href="./">
+    <li class='link'>
+      <a href='/!/'>
         <div>!</div>
       </a>
     </li>
-    <li class="link">
-      <a href="about/">
+    <li class='link'>
+      <a href='/!/about/'>
         <div>?</div>
       </a>
     </li>
-  </ul></nav><header class="title-card"><h1>
-    <a href="parsing-pdfs/">Parsing PDF Files</a>
+  </ul>
+</nav>
+<header class='title-card'>
+  <h1>
+    <a href="/!/parsing-pdfs/">Parsing PDF Files</a>
   </h1>
-  <div class="date">
+  <div class='date'>
     February 13, 2013
   </div>
-</header><article><style>
+</header>
+<article><style>
 article pre code { font-size: 0.7em; }
 </style>
+
 <p>Much of the world’s data are stored in portable document format (PDF) files.
 This is not my preferred storage or presentation format, so I often convert
 such files into databases, graphs, or <a href="http://csvsoundsystem.com">spreadsheets</a>.</p>
@@ -66,10 +70,11 @@ data format conversion is feasible: It is.</p>
 this decision process.</p>
 
 <ol>
-<li>Do we need to read the file contents at all?</li>
+  <li>Do we need to read the file contents at all?</li>
   <li>Do we only need to extract the text and/or images?</li>
   <li>Do we care about the layout of the file?</li>
 </ol>
+
 <p>I’ll show a few different approaches to parsing and analyzing
 <a href="https://github.com/tlevine/scott-documents">these</a> PDF files.
 Different approaches make sense depending on the question you ask.</p>
@@ -186,11 +191,10 @@ related to a permit transfer request. Interesting.</p>
 <p>Those are here</p>
 
 <ul>
-<li>
-<a href="https://github.com/tlevine/scott-documents/raw/master/MVN-2012-006152-WII/public_notice-2012-11-20.pdf">MVN-2012-006152-WII</a>.</li>
-  <li>
-<a href="https://github.com/tlevine/scott-documents/raw/master/MVN-2012-1797-CU/public_notice-2012-10-02.pdf">MVN-2012-1797-CU</a>.</li>
+  <li><a href="https://github.com/tlevine/scott-documents/raw/master/MVN-2012-006152-WII/public_notice-2012-11-20.pdf">MVN-2012-006152-WII</a>.</li>
+  <li><a href="https://github.com/tlevine/scott-documents/raw/master/MVN-2012-1797-CU/public_notice-2012-10-02.pdf">MVN-2012-1797-CU</a>.</li>
 </ul>
+
 <p>Hmm. Nothing special about those. People see patterns in randomness.</p>
 
 <p>Now let’s look at some basic properties of the pdf files. This will give us a
@@ -307,7 +311,7 @@ Page-2
 Page-3
 $ head MVN-2013-00180-ETT/public_notice.xml 
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+&lt;!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd"&gt;
 
 &lt;pdf2xml producer="poppler" version="0.22.0"&gt;
 &lt;page number="1" position="absolute" top="0" left="0" height="1188" width="918"&gt;
@@ -399,366 +403,22 @@ do more of the work for me. I prefer the ones towards the end as the job gets
 more complex because these tools give me more control.</p>
 
 <ol>
-<li>Basic file analysis tools (<code>ls</code> or another language’s equivalent)</li>
+  <li>Basic file analysis tools (<code>ls</code> or another language’s equivalent)</li>
   <li>PDF metadata tools (<code>pdfinfo</code> or an equivalent)</li>
   <li><code>pdftotext</code></li>
   <li><code>pdftohtml -xml</code></li>
-  <li>Inkscape via <a href="https://github.com/scraperwiki/pdf2svg"><code>pdf2svg</code></a>
-</li>
+  <li>Inkscape via <a href="https://github.com/scraperwiki/pdf2svg"><code>pdf2svg</code></a></li>
   <li><a href="http://www.unixuser.org/~euske/python/pdfminer/">PDFMiner</a></li>
 </ol>
+
 <p>If I need OCR, I use <code>pdfimages</code> to remove the images and <code>tesseract</code> to run
 OCR. If I needed to run OCR and know more about the layout, I might convert the
 PDFs to SVG with Inkscape and, and then take the images out of the SVG in order
-to know more precisely where they are in the page’s structure.</p>
-</article><div class="clearfix" id="links">
-  <div class="link">
-    <strong>
-      <a href="parsing-pdfs/">Parsing PDF Files</a>
-    </strong>
-    <footer>
-      Feb 13, 2013
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="cherrywood-menu/">Design for varied ability</a>
-    </strong>
-    <footer>
-      Feb 09, 2013
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-high-school-bus-schedule-weirdness/">Weird bus schedules</a>
-    </strong>
-    <footer>
-      Jan 25, 2013
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-estimated-market-values/">Tax bill "market value"</a>
-    </strong>
-    <footer>
-      Jan 14, 2013
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-tax-bill/">Reading your tax bill</a>
-    </strong>
-    <footer>
-      Jan 03, 2013
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="covariance-drawings/">Covariance drawings</a>
-    </strong>
-    <footer>
-      Dec 29, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-2008-budget-shift/">Capital projects</a>
-    </strong>
-    <footer>
-      Dec 23, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-village-funds/">Village funds</a>
-    </strong>
-    <footer>
-      Dec 14, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="shell-testing/">Tests for your shell</a>
-    </strong>
-    <footer>
-      Dec 12, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scarsdale-why/">Scarsdale data journalism</a>
-    </strong>
-    <footer>
-      Dec 02, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="new-york-pizza/">New York Pizza</a>
-    </strong>
-    <footer>
-      Nov 21, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="pca/">How PCA works</a>
-    </strong>
-    <footer>
-      Nov 19, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="shakespeare/">Shakespeare on the internet</a>
-    </strong>
-    <footer>
-      Nov 17, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="buzz-buzz-buzz/">Buzz buzz buzz</a>
-    </strong>
-    <footer>
-      Nov 11, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="centos/">CentOS cluster slaves</a>
-    </strong>
-    <footer>
-      Oct 29, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="english/">English and American</a>
-    </strong>
-    <footer>
-      Oct 28, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="hhba/">HHBA Media Party</a>
-    </strong>
-    <footer>
-      Sep 21, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="big-data-ergonomics/">Big Data Ergonomics</a>
-    </strong>
-    <footer>
-      Aug 26, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="learn-programming-through/">Learn Computers Through _____</a>
-    </strong>
-    <footer>
-      Aug 09, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="dumptruck-0.0.3/">DumpTruck Version 0.0.3</a>
-    </strong>
-    <footer>
-      Aug 02, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="excel/">Do all "analysts" use Excel?</a>
-    </strong>
-    <footer>
-      Jul 23, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="klout-may-2012/">Klout jump on May 25</a>
-    </strong>
-    <footer>
-      Jul 04, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="bare-domain-redirect-server/">Bare domain redirect server</a>
-    </strong>
-    <footer>
-      Jun 18, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-  <a href="middle-names/">Prevalence of Middle Names</a>
-</strong>
-<footer>
-  Jun 12, 2012
-</footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="dumptruck-0.0.1/">Local ScraperWiki Library</a>
-    </strong>
-    <footer>
-      Jun 07, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="twinkle/">Twinkle</a>
-    </strong>
-    <footer>
-      May 27, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="mix-data-scraping/">Microfinance Data Scraping</a>
-    </strong>
-    <footer>
-      May 24, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="beaglebone-power/">BeagleBone Power Supply</a>
-    </strong>
-    <footer>
-      May 07, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="twitter-scraper-library/">Twitter Scraper Library</a>
-    </strong>
-    <footer>
-      May 04, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="selenium/">Installing Selenium</a>
-    </strong>
-    <footer>
-      Apr 24, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="scraper_exceptions/">Handling exceptions in scrapers</a>
-    </strong>
-    <footer>
-      Apr 17, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="hovering-cycle/">The Hovering Cycle</a>
-    </strong>
-    <footer>
-      Feb 13, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="htmltable2matrix/">HTML table to matrix</a>
-    </strong>
-    <footer>
-      Feb 02, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="hip-data-nonsense/">Hip 'Data' Terms</a>
-    </strong>
-    <footer>
-      Jan 15, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="mouse-locations/">Effect of the number pad on mousing location</a>
-    </strong>
-    <footer>
-      Jan 08, 2012
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="bettercoach/">BetterCoach</a>
-    </strong>
-    <footer>
-      Nov 13, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="keyboard-locations/">Keyboard locations</a>
-    </strong>
-    <footer>
-      Aug 24, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="uris-library/">Library reading room</a>
-    </strong>
-    <footer>
-      Jul 18, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="risley-toilets/">Unsanitary conditions in dormitory bathrooms</a>
-    </strong>
-    <footer>
-      Jun 27, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="jello-wrestling/">Nude Jello Wrestling</a>
-    </strong>
-    <footer>
-      Apr 21, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="burqua/">Burqua</a>
-    </strong>
-    <footer>
-      Mar 24, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="christmas-gifts/">Christmas Gifts</a>
-    </strong>
-    <footer>
-      Jan 05, 2011
-    </footer>
-</div>
-  <div class="link">
-    <strong>
-      <a href="emergency-exit-only/">Emergency Exit Only</a>
-    </strong>
-    <footer>
-      Jul 02, 2009
-    </footer>
-</div>
-</div>
-</div>
-      <script src="../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
+to know more precisely where they are in the page’s structure.</p></article>
+<div id='pagination'></div></div>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
       document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
       </script><script type="text/javascript">
@@ -767,7 +427,7 @@ to know more precisely where they are in the page’s structure.</p>
       piwikTracker.trackPageView();
       piwikTracker.enableLinkTracking();
       } catch( err ) {}
-      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image"></p></noscript>
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
       <!-- End Piwik Tracking Code -->
     </div>
   </body>
