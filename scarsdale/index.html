@@ -30,130 +30,71 @@
     <![endif]-->
     <div id="wrapper">
       <div id="container">
-<nav><ul class="nobullet">
+        <nav><ul class="nobullet">
 <li class="link">
-      <a href="../">
-        <div>~</div>
-      </a>
-    </li>
-    <li class="link">
-      <a href="../!/">
-        <div>!</div>
-      </a>
-    </li>
-    <li class="link">
-      <a href="../!/about/">
-        <div>?</div>
-      </a>
-    </li>
-  </ul></nav><header class="title-card"><h1>
-    <a href="../!/scarsdale-high-school-bus-schedule-weirdness/">Scarsdale High School bus schedule weirdness</a>
-  </h1>
-  <div class="date">
-    January 25, 2013
-  </div>
-</header><article><p>Scarsdale High School bus schedules are
-<a href="http://www.scarsdaleschools.org/cms/lib5/NY01001205/Centricity/Domain/13/SHSBusSchedule.pdf">here</a>.
-I want to make a map of them! And maybe do other things.</p>
-
-<p>I manually transcribed the file because it’s a small messy scan.
-In my <a href="https://raw.github.com/tlevine/scarsdale-data/master/school-buses/bus_stops.csv">resulting spreadsheet</a>,
-each row is a bus stop on a trip. (The trip from home to school and the trip
-from school to home are different trips.)</p>
-
-<p>I found some funny rows in the data.</p>
-
-<p>The same stop is presented twice.</p>
-
-<pre><code>route.name,route.number,stop.id,time,n.students,location
-...
-HS 25 AM,           157,    10, 7:27 am,      0,ROCK CREEK LN &amp; SYCAMORE RD
-HS 25 AM,           157,    11, 7:27 am,      6,ROCK CREEK LN &amp; SYCAMORE RD
-...
-</code></pre>
-
-<p>Some locations are weird.</p>
-
-<pre><code>route.name,route.number,stop.id,time,n.students,location
-...
-HS 28 AM,           155,     3, 7:02 am,      2,OLD WHITE PLAINS RD &amp; WELLHOUSE CLOSE &amp; OLD WHITE PLAINS RD
-...
-HS 28 AM,           155,    15, 7:21 am,      1,WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; HILLANDALE DR &amp;  HILLANDDALE DR &amp; HILLANDALE CLOSE
-...
-HS 70 PM(3:10),     157,    12, 3:40 pm,      0,GRIFFEN AVENUE &amp; BRITTANY CLOSE &amp; GRIFFEN AVENUE
-...
-HS 74 PM(4:15),      95,     3, 4:19 pm,      0,WHITE RD &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; SPRAGUE RD &amp; SPRAGUE AVE &amp; WHITE RD
-...
-HS 74 PM(4:15),      95,    18, 4:45 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; CARTHAGE RD
-HS 74 PM(4:15),      95,    19, 4:47 pm,      0,INNES RD &amp; HEATHCOTE RD &amp; HEATHCOTE RD
-HS 74 PM(4:15),      95,    20, 4:50 pm,      0,HAVERFORD AVE &amp; WEAVER ST &amp; HWY 125 &amp; WEAVER ST &amp; HWY 125
-HS 74 PM(4:15),      95,    21, 4:51 pm,      0,BRADFORD RD &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129 &amp; WEAVER ST &amp; HWY 125 &amp; CO HWY 129
-...
-HS 74 PM(4:15),      95,    23, 4:54 pm,      0,GRIFFEN AVENUE &amp; GRAND PK AVE &amp; GRIFFEN AVENUE
-HS 74 PM(4:15),      95,    24, 4:56 pm,      0,GRIFFEN AVENUE &amp; MURDOCK RD &amp; GRIFFEN AVENUE
-...
-HS 74 PM(4:15),      95,    26, 4:59 pm,      0,FAIRWAY DR &amp; BARNWALL LN &amp; FAIRWAY DR
-HS 74 PM(4:15),      95,    27, 5:00 pm,      0,MAMARONECK RD &amp; BARKER LN &amp; MAMARONECK RD
-HS 74 PM(4:15),      95,    28, 5:01 pm,      0,MAMARONECK RD &amp; COLONIAL RD &amp; MAMARONECK RD
-HS 74 PM(4:15),      95,    29, 5:01 pm,      0,MAMARONECK RD &amp; MAMARONECK RD &amp; STRATTON RD
-</code></pre>
-
-<p>And several other rows have “location[s]” at three-street intersections.</p>
-
-<p>Analyses if the schedules will come eventually; I just thought I’d share this
-first. And if you can’t wait for me, you can take a look at the 
-<a href="https://github.com/tlevine/scarsdale-data/tree/master/school-buses">data</a> yourself.</p>
-</article><div class="clearfix" id="links">
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-high-school-bus-schedule-weirdness/">Weird bus schedules</a>
-    </strong>
-    <footer>
-      Jan 25, 2013
-    </footer>
+              <a href="../">
+                <div>~</div>
+              </a>
+            </li>
+            <li class="link">
+              <a href="../!/">
+                <div>!</div>
+              </a>
+            </li>
+            <li class="link">
+              <a href="../!/about/">
+                <div>?</div>
+              </a>
+            </li>
+          </ul></nav><header class="title-card"><h1>
+            <a href="../!/scarsdale-high-school-bus-schedule-weirdness/">Scarsdale High School bus schedule weirdness</a>
+          </h1>
+          <div class="date">
+            January 25, 2013
+          </div>
+        </header><div class="clearfix" id="links">
+          <div class="link">
+            <strong>
+              <a href="../!/scarsdale-estimated-market-values/">Tax bill "market value"</a>
+            </strong>
+            <footer>
+              Jan 14, 2013
+            </footer>
 </div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-estimated-market-values/">Tax bill "market value"</a>
-    </strong>
-    <footer>
-      Jan 14, 2013
-    </footer>
+          <div class="link">
+            <strong>
+              <a href="../!/scarsdale-tax-bill/">Reading your tax bill</a>
+            </strong>
+            <footer>
+              Jan 03, 2013
+            </footer>
 </div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-tax-bill/">Reading your tax bill</a>
-    </strong>
-    <footer>
-      Jan 03, 2013
-    </footer>
+          <div class="link">
+            <strong>
+              <a href="../!/scarsdale-2008-budget-shift/">Capital projects</a>
+            </strong>
+            <footer>
+              Dec 23, 2012
+            </footer>
 </div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-2008-budget-shift/">Capital projects</a>
-    </strong>
-    <footer>
-      Dec 23, 2012
-    </footer>
+          <div class="link">
+            <strong>
+              <a href="../!/scarsdale-village-funds/">Village funds</a>
+            </strong>
+            <footer>
+              Dec 14, 2012
+            </footer>
 </div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-village-funds/">Village funds</a>
-    </strong>
-    <footer>
-      Dec 14, 2012
-    </footer>
+          <div class="link">
+            <strong>
+              <a href="../!/scarsdale-why/">Scarsdale data journalism</a>
+            </strong>
+            <footer>
+              Dec 02, 2012
+            </footer>
 </div>
-  <div class="link">
-    <strong>
-      <a href="../!/scarsdale-why/">Scarsdale data journalism</a>
-    </strong>
-    <footer>
-      Dec 02, 2012
-    </footer>
-</div>
-</div>
-</div>
+        </div>
+      </div>
       <script src="../js/application-cba00577e3a.js"></script><!-- Piwik --><script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
       document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
