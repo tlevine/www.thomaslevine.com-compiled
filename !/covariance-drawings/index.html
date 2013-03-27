@@ -13,6 +13,7 @@
     <meta content='nanoc 3.4.2' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
@@ -56,43 +57,45 @@
             December 29, 2012
           </div>
         </header>
-        <article>
-          <h2 id="covariance">Covariance</h2>
-          <p>Covariance is the average of these rectangles.</p>
-          
-          <p><img src="/!/covariance-drawings/cov.jpg" alt="Scribbles" /></p>
-          
-          <h2 id="variance">Variance</h2>
-          <p>Variance is just the covariance of something with itself.</p>
-          
-          <h2 id="correlation">Correlation</h2>
-          <p>We can form a rectangle with the sides of the variance squares. We can draw
-          two overlapping rectangles on top of that based on the covariance, and their
-          intersection forms another rectangle.</p>
-          
-          <p><img src="/!/covariance-drawings/total-variance.jpg" alt="Rectangles" /></p>
-          
-          <p>It happens that the absolute area of the covariance rectangle is less than or
-          equal to the area of this rectangle. The following doodle might convince you
-          of that.</p>
-          
-          <p><img src="/!/covariance-drawings/bounds.jpg" alt="Rectangles" /></p>
-          
-          <p>Correlation is how much of the aforedoodled rectangle is filled by the
-          covariance; <script type="math/tex">R</script> is the proportion along a side, and <script type="math/tex">R^2</script> is the proportion
-          of the area. The dimensions of that rectangle and of three rectangles that it
-          encloses are drawn below.</p>
-          
-          <p><img src="/!/covariance-drawings/dimensions.jpg" alt="Four rectangles" /></p>
-          
-          <h2 id="ordinary-least-squares-regression">Ordinary least squares regression</h2>
-          <p>Each OLS regression coefficient is like the quotient of the
-          rectangles in the top of this doodle and the squares in the bottom.</p>
-          
-          <p><img src="/!/covariance-drawings/ols.jpg" alt="Scribbles" /></p>
-          
-          <p>I’ll be shocked if anyone followed these scribbles; I’ll make a video eventually.</p>
-        </article>
+        <div id='article-wrapper'>
+          <article>
+            <h2 id="covariance">Covariance</h2>
+            <p>Covariance is the average of these rectangles.</p>
+            
+            <p><img src="/!/covariance-drawings/cov.jpg" alt="Scribbles" /></p>
+            
+            <h2 id="variance">Variance</h2>
+            <p>Variance is just the covariance of something with itself.</p>
+            
+            <h2 id="correlation">Correlation</h2>
+            <p>We can form a rectangle with the sides of the variance squares. We can draw
+            two overlapping rectangles on top of that based on the covariance, and their
+            intersection forms another rectangle.</p>
+            
+            <p><img src="/!/covariance-drawings/total-variance.jpg" alt="Rectangles" /></p>
+            
+            <p>It happens that the absolute area of the covariance rectangle is less than or
+            equal to the area of this rectangle. The following doodle might convince you
+            of that.</p>
+            
+            <p><img src="/!/covariance-drawings/bounds.jpg" alt="Rectangles" /></p>
+            
+            <p>Correlation is how much of the aforedoodled rectangle is filled by the
+            covariance; <script type="math/tex">R</script> is the proportion along a side, and <script type="math/tex">R^2</script> is the proportion
+            of the area. The dimensions of that rectangle and of three rectangles that it
+            encloses are drawn below.</p>
+            
+            <p><img src="/!/covariance-drawings/dimensions.jpg" alt="Four rectangles" /></p>
+            
+            <h2 id="ordinary-least-squares-regression">Ordinary least squares regression</h2>
+            <p>Each OLS regression coefficient is like the quotient of the
+            rectangles in the top of this doodle and the squares in the bottom.</p>
+            
+            <p><img src="/!/covariance-drawings/ols.jpg" alt="Scribbles" /></p>
+            
+            <p>I’ll be shocked if anyone followed these scribbles; I’ll make a video eventually.</p>
+          </article>
+        </div>
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/covariance-drawings/index.md">View source</a>

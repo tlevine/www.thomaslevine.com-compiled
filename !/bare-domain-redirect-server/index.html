@@ -13,6 +13,7 @@
     <meta content='nanoc 3.4.2' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
@@ -55,7 +56,8 @@
     June 18, 2012
   </div>
 </header>
-<article><p>I just switched most of my sites to S3. This has made things so simple and
+<div id='article-wrapper'>
+  <article><p>I just switched most of my sites to S3. This has made things so simple and
 easy. I have a script that mounts my S3 buckets in ~/s3 (I’ll blog about it
 and link that here). It uses s3fs, so when I copy my websites, it sets
 appropriate headers. Then I just set bucket policies and CNAME records and
@@ -91,6 +93,7 @@ worth trying to use it to its full extend.</p>
 <p>I might get a couple of these more for git and piwik, respectively.
 Also, if you find yourself needing bare domain redirects, tell me, and I’ll
 be happy to set them up for you.</p></article>
+</div>
 <div id='pagination'>
   <div class='base-little-card'>
     <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bare-domain-redirect-server/index.md">View source</a>

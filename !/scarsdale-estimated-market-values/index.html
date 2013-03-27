@@ -13,6 +13,7 @@
     <meta content='nanoc 3.4.2' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
@@ -56,47 +57,51 @@
             January 14, 2013
           </div>
         </header>
-        <article>
-          <p>Scarsdale’s tax bills look like this.</p>
-          
-          <p><a href="/!/scarsdale-estimated-market-values/village.jpg"><img src="/!/scarsdale-estimated-market-values/village.jpg" alt="Picture of a village tax bill" /></a></p>
-          
-          <p>At the end, they use a “uniform percent” to calculate a “full market value”.</p>
-          
-          <p><a href="/!/scarsdale-estimated-market-values/additional.jpg"><img src="/!/scarsdale-estimated-market-values/additional.jpg" alt="Picture of the &quot;ADDITIONAL INFORMATION&quot; section of the bill" /></a></p>
-          
-          <h2 id="what-does-that-percentage-mean">What does that percentage mean?</h2>
-          
-          <p>You can divide the assessed value of your house by the percentage to arrive at
-          the “market value” that is listed on the bill. For example, a house assessed at
-          $10,000 could be divided by 2% to yield an estimated market value of $500,000.</p>
-          
-          <h2 id="how-is-it-chosen">How is it chosen?</h2>
-          
-          <p>Now that I’ve explained that, where does the figure come from? As you’ll see,
-          it’s not particularly obvious, so I suspect that it comes from some reasonably
-          informed calculation. But what is the calculation?</p>
-          
-          <p>In an attempt to find out, I plotted the estimated value of a house assessed at
-          $10,000 for each year. The x-axis is the value of a dollar in 2012 dollars
-          during the year of the tax bill, based on the Consumer Price Index. (This is an
-          attempt at adjusting for inflation.) The percentages are just the percentages
-          listed on the tax bills, which are equivalent to the y-axis estimated house
-          market value.</p>
-          
-          <p><a href="/!/scarsdale-estimated-market-values/plot.png"><img src="/!/scarsdale-estimated-market-values/plot.png" alt="Plot of nominal market value as a function of the value of a dollar over time" /></a></p>
-          
-          <p>If the percentage were simply a crude adjustment for inflation, the line would
-          be straight and increasing. It looks sort of like that until 2008, but it went
-          back down after that. Since the line isn’t straight and increasing, it seems
-          that the percentage is derived some other way. How anti-climatic.</p>
-          
-          <h2 id="thank-you-grandma">Thank you, Grandma</h2>
-          <p>The budgets <a href="http://www.scarsdale.com/Home/Departments/VillageTreasurer.aspx">posted online</a>
-          only go back to 2006, so I collected
-          <a href="https://github.com/tlevine/scarsdale-data/tree/master/grandma">these data</a>
-          from my grandmother’s tax bills.</p>
-        </article>
+        <div id='article-wrapper'>
+          <article>
+            <p>Scarsdale’s tax bills look like this.</p>
+            
+            <p><a href="/!/scarsdale-estimated-market-values/village.jpg"><img src="/!/scarsdale-estimated-market-values/village.jpg" alt="Picture of a village tax bill" /></a></p>
+            
+            <p>At the end, they use a “uniform percent” to calculate a “full market value”.</p>
+            
+            <p><a href="/!/scarsdale-estimated-market-values/additional.jpg"><img alt="Picture of the &quot;ADDITIONAL INFORMATION&quot; section of the bill" src="/!/scarsdale-estimated-market-values/additional.jpg" class="wide" />
+            </a></p>
+            
+            <h2 id="what-does-that-percentage-mean">What does that percentage mean?</h2>
+            
+            <p>You can divide the assessed value of your house by the percentage to arrive at
+            the “market value” that is listed on the bill. For example, a house assessed at
+            $10,000 could be divided by 2% to yield an estimated market value of $500,000.</p>
+            
+            <h2 id="how-is-it-chosen">How is it chosen?</h2>
+            
+            <p>Now that I’ve explained that, where does the figure come from? As you’ll see,
+            it’s not particularly obvious, so I suspect that it comes from some reasonably
+            informed calculation. But what is the calculation?</p>
+            
+            <p>In an attempt to find out, I plotted the estimated value of a house assessed at
+            $10,000 for each year. The x-axis is the value of a dollar in 2012 dollars
+            during the year of the tax bill, based on the Consumer Price Index. (This is an
+            attempt at adjusting for inflation.) The percentages are just the percentages
+            listed on the tax bills, which are equivalent to the y-axis estimated house
+            market value.</p>
+            
+            <p><a href="/!/scarsdale-estimated-market-values/plot.png"><img alt="Plot of nominal market value as a function of the value of a dollar over time" src="/!/scarsdale-estimated-market-values/plot.png" class="wide" />
+            </a></p>
+            
+            <p>If the percentage were simply a crude adjustment for inflation, the line would
+            be straight and increasing. It looks sort of like that until 2008, but it went
+            back down after that. Since the line isn’t straight and increasing, it seems
+            that the percentage is derived some other way. How anti-climatic.</p>
+            
+            <h2 id="thank-you-grandma">Thank you, Grandma</h2>
+            <p>The budgets <a href="http://www.scarsdale.com/Home/Departments/VillageTreasurer.aspx">posted online</a>
+            only go back to 2006, so I collected
+            <a href="https://github.com/tlevine/scarsdale-data/tree/master/grandma">these data</a>
+            from my grandmother’s tax bills.</p>
+          </article>
+        </div>
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/scarsdale-estimated-market-values/index.md">View source</a>

@@ -7,12 +7,13 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title></title>
+    <title>Thomas Levine</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
@@ -56,49 +57,51 @@
             
           </div>
         </header>
-        <article>
-          <p>I have nine pairs of these socks.</p>
-          
-          <p><img src="" alt="A pair of feet wearing black toe socks" /></p>
-          
-          <p>Each pair contains a left sock and a right sock; the left sock only fits on the
-          left foot.</p>
-          
-          <p>Figuring out whether a sock is a left sock or a right sock takes some time. I
-          could figure this out right after doing a wash and tie them in pairs. But not
-          having to do that is one of the benefits of all having all the same socks.</p>
-          
-          <p>I could also just sort them into a pile of left socks and a pile of right
-          socks. But I wouldn’t trust the piles to stay intact, at least if I’m not at
-          home.</p>
-          
-          <p>If I have a pile of mixed left socks and right socks, I can confidently select
-          enough to have as many as I need for a trip by taking extra socks. Some mental
-          arithmetic told me how many I need. I’ve drawn it on paper so it’s easier to
-          explain.</p>
-          
-          <p>If I have <script type="math/tex">n</script> socks, how many can I expect to be left socks? Well the best
-          guess is <script type="math/tex">\frac{n}{2}</script>, but how variable is it?</p>
-          
-          <p>Treat sock foot (left or right) as a binomial random variable with
-          <script type="math/tex">p = \frac{1}{2}</script>. The proportion of left socks can be modeled with a binomial
-          distribution, which can be approximated as a normal random variable with
-          a variance of <script type="math/tex">\frac{p\times\(1 - p\)}{n}</script>.</p>
-          
-          <!-- images -->
-          
-          <p>We can find a confidence interval for this proportion</p>
-          
-          <p>Now we multiply the conservative end of that convidence interval by the number
-          of socks to see how many socks are confidently left socks.</p>
-          
-          <p>Let’s flip these equations around so that I can choose how many socks to bring
-          given that I want at least <script type="math/tex">m</script> socks. We’ll approximate <script type="math/tex">n</script> by <script type="math/tex">m</script> so
-          we can do the calculations in our head. This will overestimate the variance
-          because the sample size will be smaller than it really is, so it’s safe to do
-          this. We just compute the standard error, multiply it by <script type="math/tex">m</script> and add it to
-          <script type="math/tex">m</script>. That should be enough socks.</p>
-        </article>
+        <div id='article-wrapper'>
+          <article>
+            <p>I have nine pairs of these socks.</p>
+            
+            <p><img src="" alt="A pair of feet wearing black toe socks" /></p>
+            
+            <p>Each pair contains a left sock and a right sock; the left sock only fits on the
+            left foot.</p>
+            
+            <p>Figuring out whether a sock is a left sock or a right sock takes some time. I
+            could figure this out right after doing a wash and tie them in pairs. But not
+            having to do that is one of the benefits of all having all the same socks.</p>
+            
+            <p>I could also just sort them into a pile of left socks and a pile of right
+            socks. But I wouldn’t trust the piles to stay intact, at least if I’m not at
+            home.</p>
+            
+            <p>If I have a pile of mixed left socks and right socks, I can confidently select
+            enough to have as many as I need for a trip by taking extra socks. Some mental
+            arithmetic told me how many I need. I’ve drawn it on paper so it’s easier to
+            explain.</p>
+            
+            <p>If I have <script type="math/tex">n</script> socks, how many can I expect to be left socks? Well the best
+            guess is <script type="math/tex">\frac{n}{2}</script>, but how variable is it?</p>
+            
+            <p>Treat sock foot (left or right) as a binomial random variable with
+            <script type="math/tex">p = \frac{1}{2}</script>. The proportion of left socks can be modeled with a binomial
+            distribution, which can be approximated as a normal random variable with
+            a variance of <script type="math/tex">\frac{p\times\(1 - p\)}{n}</script>.</p>
+            
+            <!-- images -->
+            
+            <p>We can find a confidence interval for this proportion</p>
+            
+            <p>Now we multiply the conservative end of that convidence interval by the number
+            of socks to see how many socks are confidently left socks.</p>
+            
+            <p>Let’s flip these equations around so that I can choose how many socks to bring
+            given that I want at least <script type="math/tex">m</script> socks. We’ll approximate <script type="math/tex">n</script> by <script type="math/tex">m</script> so
+            we can do the calculations in our head. This will overestimate the variance
+            because the sample size will be smaller than it really is, so it’s safe to do
+            this. We just compute the standard error, multiply it by <script type="math/tex">m</script> and add it to
+            <script type="math/tex">m</script>. That should be enough socks.</p>
+          </article>
+        </div>
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/toe-socks/index.md">View source</a>

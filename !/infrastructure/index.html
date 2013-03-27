@@ -13,6 +13,7 @@
     <meta content='nanoc 3.4.2' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
@@ -56,65 +57,67 @@
             
           </div>
         </header>
-        <article>
-          <p>This is the architecture that runs my various sites and other services</p>
-          
-          <h3 id="hardware">Hardware</h3>
-          
-          <ul>
-            <li>My office houses a Beaglebone cluster, called “cluster”, my main
-            workstation, called “desk”, and sometimes my Lenovo IdeaPad Y560,
-            called “laptop”.</li>
-            <li>I have three small virtual private servers hosted at Prometeus in Italy.
-            Call these watermelon, honeydew and mango.</li>
-            <li>I have one small virtual private servers hosted at ChicagoVPS in Chicago.</li>
-            <li>A bunch of websites and backups are stored on Amason S3.</li>
-            <li>Dynamic websites get hosted on NearlyFreeSpeech.net if possible.</li>
-            <li>Incremental backups of private things might go to Tarsnap eventually.</li>
-            <li>I access all of these through a dumb terminal, typically my desk, Chromebook
-            or Android netbook.</li>
-          </ul>
-          
-          <h3 id="services">Services</h3>
-          <p>Here are the services and their associated computers. This might be out-of-date.
-          Also, I need a better way of structuring this.</p>
-          
-          <ul>
-            <li><a href="http://git.thomaslevine.com">Git</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1192)</li>
-            <li><a href="http://redirect.thomaslevine.com">HTTP redirects</a> (<a href="https://manage.chicagovps.net:5656/control.php?_v=w2v2r2y2q2r2c4u2v284">ChicagoVPS cvps_4746</a>)</li>
-            <li><a href="http://fadelee.com">Fade Lee</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li><a href="http://pager.thomaslevine.com">Pager</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li><a href="ttp://ntpjs.thomaslevine.com">ntp.js</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li><a href="http://occurrence.thomaslevine.com">&amp;c.</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
-            <li><a href="http://couch.thomasevine.com">couch</a> (XXX <a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1015)</li>
-            <li>Email backup (<a href="">Tarsnap</a>)</li>
-            <li><a href="http://www.thomaslevine.com">Home page</a> (<a href="https://console">S3</a>)</li>
-            <li><a href="http://scraperwiki.thomaslevine.com">Scraping tutorial</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.bettercoa.ch">BetterCoach</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.lorena.co.nz">lorena.co.nz</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.deadpeoplebornonmybirthday.com">Dead People Born on my Birthday</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.dumptruck.io">DumpTruck</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.urchin.sh">Urchin</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.genderneutralhousing.org">Christian Students for Gender-Neutral Housing</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://www.whitbygroup.com">Whitby Group</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
-            <li><a href="http://piwik.thomaslevine.com">Piwik</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-piwik">NearlyFreeSpeech.net</a>)</li>
-            <li><a href="http://piwik.thomaslevine.com">Status</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-status">NearlyFreeSpeech.net</a>)</li>
-          </ul>
-          
-          <h3 id="home-network">Home network</h3>
-          <p>My <a href="http://chainsaw.chickenkiller.com">home network</a> does assorted things.
-          * cluster: distributed computations)
-          * desk: database, email (offlineimap, notmuch, mutt), main workstation
-          * laptop: arduino and distributed computations</p>
-          
-          <h3 id="services-that-need-to-keep-running">Services that need to keep running</h3>
-          
-          <ul>
-            <li>Facebook study data logger</li>
-            <li>Wetlands importer</li>
-            <li>Human trafficking importer</li>
-          </ul>
-        </article>
+        <div id='article-wrapper'>
+          <article>
+            <p>This is the architecture that runs my various sites and other services</p>
+            
+            <h3 id="hardware">Hardware</h3>
+            
+            <ul>
+              <li>My office houses a Beaglebone cluster, called “cluster”, my main
+              workstation, called “desk”, and sometimes my Lenovo IdeaPad Y560,
+              called “laptop”.</li>
+              <li>I have three small virtual private servers hosted at Prometeus in Italy.
+              Call these watermelon, honeydew and mango.</li>
+              <li>I have one small virtual private servers hosted at ChicagoVPS in Chicago.</li>
+              <li>A bunch of websites and backups are stored on Amason S3.</li>
+              <li>Dynamic websites get hosted on NearlyFreeSpeech.net if possible.</li>
+              <li>Incremental backups of private things might go to Tarsnap eventually.</li>
+              <li>I access all of these through a dumb terminal, typically my desk, Chromebook
+              or Android netbook.</li>
+            </ul>
+            
+            <h3 id="services">Services</h3>
+            <p>Here are the services and their associated computers. This might be out-of-date.
+            Also, I need a better way of structuring this.</p>
+            
+            <ul>
+              <li><a href="http://git.thomaslevine.com">Git</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1192)</li>
+              <li><a href="http://redirect.thomaslevine.com">HTTP redirects</a> (<a href="https://manage.chicagovps.net:5656/control.php?_v=w2v2r2y2q2r2c4u2v284">ChicagoVPS cvps_4746</a>)</li>
+              <li><a href="http://fadelee.com">Fade Lee</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+              <li><a href="http://pager.thomaslevine.com">Pager</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+              <li><a href="ttp://ntpjs.thomaslevine.com">ntp.js</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+              <li><a href="http://occurrence.thomaslevine.com">&amp;c.</a> (<a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1020)</li>
+              <li><a href="http://couch.thomasevine.com">couch</a> (XXX <a href="https://www.prometeus.net/billing/clientarea.php?action=products">Prometeus</a> id 1015)</li>
+              <li>Email backup (<a href="">Tarsnap</a>)</li>
+              <li><a href="http://www.thomaslevine.com">Home page</a> (<a href="https://console">S3</a>)</li>
+              <li><a href="http://scraperwiki.thomaslevine.com">Scraping tutorial</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.bettercoa.ch">BetterCoach</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.lorena.co.nz">lorena.co.nz</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.deadpeoplebornonmybirthday.com">Dead People Born on my Birthday</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.dumptruck.io">DumpTruck</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.urchin.sh">Urchin</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.genderneutralhousing.org">Christian Students for Gender-Neutral Housing</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://www.whitbygroup.com">Whitby Group</a> (<a href="https://console.aws.amazon.com/s3/home">S3</a>)</li>
+              <li><a href="http://piwik.thomaslevine.com">Piwik</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-piwik">NearlyFreeSpeech.net</a>)</li>
+              <li><a href="http://piwik.thomaslevine.com">Status</a> (<a href="https://members.nearlyfreespeech.net/tlevine/sites/thomaslevine-status">NearlyFreeSpeech.net</a>)</li>
+            </ul>
+            
+            <h3 id="home-network">Home network</h3>
+            <p>My <a href="http://chainsaw.chickenkiller.com">home network</a> does assorted things.
+            * cluster: distributed computations)
+            * desk: database, email (offlineimap, notmuch, mutt), main workstation
+            * laptop: arduino and distributed computations</p>
+            
+            <h3 id="services-that-need-to-keep-running">Services that need to keep running</h3>
+            
+            <ul>
+              <li>Facebook study data logger</li>
+              <li>Wetlands importer</li>
+              <li>Human trafficking importer</li>
+            </ul>
+          </article>
+        </div>
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/infrastructure/index.md">View source</a>
