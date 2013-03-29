@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>imapfilter</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'><nav>
+  <ul class='nobullet'>
+    <li class='link'>
+      <a href='/'>
+        <div>~</div>
+      </a>
+    </li>
+    <li class='link'>
+      <a href='/!/'>
+        <div>!</div>
+      </a>
+    </li>
+    <li class='link'>
+      <a href='/!/about/'>
+        <div>?</div>
+      </a>
+    </li>
+  </ul>
+</nav>
+<header class='title-card'>
+  <h1>
+    <a href="/!/imapfilter/">imapfilter</a>
+  </h1>
+  <div class='date'>
+    March 29, 2013
+  </div>
+</header>
+<div id='article-wrapper'>
+  <article><p>I use <a href="https://github.com/lefcha/imapfilter">imapfilter</a> to filter my mail.
+It’s awesome.</p>
+
+<h2 id="so-simple">So simple</h2>
+<p>I just wrote a <code>~/.imapfilter/config.lua</code> file and added <code>imapfilter</code>
+to my email-synchronization <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/54c7b7ec472ac53c2dbf445e81b393c3bc26ad3e/crontab">crontab</a> entry.</p>
+
+<pre><code>@hourly imapfilter &amp;&amp; offlineimap &amp;&amp; notmuch new 
+</code></pre>
+
+<p>The configuration file is quite well documented in <code>man imapfilter_config</code>.</p>
+
+<h2 id="overview-of-filters">Overview of filters</h2>
+<p>All mail comes into the “INBOX” folder.</p>
+
+<p>I use imapfilter to move some messages into “Spam” and others into “Pulse”.
+“Spam” is for spam, “Pulse” is for emails that I use for statistical
+modelling but don’t read directly.</p>
+
+<p>Most of my emails go to “Pulse”, but some stay in “INBOX”.</p>
+
+<pre><code>        Pulse
+          |
+Mail -&gt; INBOX
+          |
+        Spam 
+</code></pre>
+
+<h2 id="my-configuration">My configuration</h2>
+<p>Some of the filters that I use contain information that could be unsafe to post
+publically, so I’ve removed some of the pulse filters, replaced them with the
+line <code>-- ...</code>, and posted the configuration <a href="/!/imapfilter/config.lua">here</a>.
+I walk through it below.</p>
+
+<p>First, I set some options that were in some other configuration files.
+If you want to know what they do see <code>man imapfilter_config</code>.</p>
+
+<pre><code>options.timeout = 120
+options.subscribe = true
+</code></pre>
+
+<p>Second, I define a function for pulling my email address and password from my
+<a href="http://offlineimap.org/">.offlineimaprc</a>.</p>
+
+<pre><code>function offlineimap (key)
+  local status
+  local value
+  status, value = pipe_from('grep -A2 mail.gandi.net ~/.offlineimaprc | grep ' .. key .. '|cut -d= -f2')
+  value = string.gsub(value, ' ', '')
+  value = string.gsub(value, '\n', '')
+  return value
+end
+</code></pre>
+
+<p>Third, I set the IMAP account credentials.</p>
+
+<pre><code>T = IMAP {
+    server   = offlineimap('remotehost'),
+    username = offlineimap('remoteuser'),
+    password = offlineimap('remotepass'),
+
+    ssl = 'ssl3',
+    port = 993,
+}
+</code></pre>
+
+<p>I select the things to be moved into “Pulse”.</p>
+
+<pre><code>pulse = (
+    T.INBOX:contain_from('voice-noreply@google.com') +
+    T.INBOX:contain_from('linkedin.com') +
+    T.INBOX:contain_field('Reply-To', 'reply.linkedin.com') +
+    -- ...
+    T.INBOX:contain_from('github.com')
+)
+</code></pre>
+
+<p>Then I move them.</p>
+
+<pre><code>pulse:move_messages(T.Pulse)
+</code></pre>
+
+<p>And I do the same for “Spam”.</p>
+
+<pre><code>spam = (
+    T.INBOX:contain_from('FattorossTedCEO@aol.com') +
+    T.INBOX:contain_subject('PMX:#')
+)
+spam:move_messages(T.Spam)
+</code></pre></article>
+</div>
+<div id='pagination'>
+  <div class='base-little-card'>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/imapfilter/index.md">View source</a>
+    <a href="https://twitter.com/thomaslevine">Discuss</a>
+  </div>
+</div></div>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

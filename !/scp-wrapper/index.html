@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Words that are hard to spell</title>
+    <title>scp wrapper</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
@@ -50,33 +50,62 @@
 </nav>
 <header class='title-card'>
   <h1>
-    <a href="/!/hard-to-spell/">Words that are hard to spell</a>
+    <a href="/!/scp-wrapper/">scp wrapper</a>
   </h1>
   <div class='date'>
     
   </div>
 </header>
 <div id='article-wrapper'>
-  <article><p>I previously used “(es)perluette” as my name in a bunch of places. (It’s a
-French word for “ampersand”.) As such, people who didn’t know French wouldn’t
-understand what I was saying when I verbally told them my email address. And
-I would always have to write it out for them.</p>
+  <article><p>This has happened to me too many times.</p>
 
-<p>I decided to change my email address to a word with the reverse properties,
-to a word that would be easy to understand aurally but difficult to spell.
-I wound up with “occurrence”. Here are some other ideas.</p>
+<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
+$
+</code></pre>
 
-<ul>
-  <li>pamphlet</li>
-  <li>accidentally</li>
-  <li>definitely</li>
-</ul>
+<p>I wanted to copy the file <code>bicycles.csv</code> to the home directory of <code>$USER</code> on
+<code>chainsaw.thomaslevine.com</code>. I meant to write this.</p>
 
-<p>Some other ideas are <a href="http://marvin.cs.uidaho.edu/misspell.html">here</a>.</p></article>
+<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com:
+</code></pre>
+
+<p>But I forgot the colon, so instead of copying the file to a different computer,
+I copied the file to the local computer, naming it <code>chainsaw.thomaslevine.com</code>.</p>
+
+<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
+$ ls
+bicycles.csv  chainsaw.thomaslevine.com
+</code></pre>
+
+<!--- finish the link -->
+<p><a href="https://github.com/tlevine/.prophyl-teh-awesum">Here</a> is my solution.</p>
+
+<pre><code>scp() {
+  # Require a colon to be provided.
+  if echo "$*"|grep ':' &gt; /dev/null; then
+    command scp $*
+  else
+    command scp --help
+    echo \ 
+    echo "warning: The scp command that you ran has no colon, so you probably don't"
+    echo '         want to run it. Use "env scp" if you really meant to do that;'
+    echo '         you can run "env !!".'
+    return 1
+  fi
+}
+</code></pre>
+
+<p>If the wrapper function finds no colon in the grep arguments, it warns you that
+you probably wanted a colon to be in the function. If you really did want to
+run the command without a colon, you can just run it with <code>env !!</code>.</p>
+
+<p>Elsewhere in my <code>.profile</code>, I make sure that the <code>.profile</code> is only applied in
+login shells, and not in scripts, so if scripts that use <code>scp</code> without a colon
+are still fine.</p></article>
 </div>
 <div id='pagination'>
   <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/hard-to-spell/index.md">View source</a>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/scp-wrapper/index.md">View source</a>
     <a href="https://twitter.com/thomaslevine">Discuss</a>
   </div>
 </div></div>

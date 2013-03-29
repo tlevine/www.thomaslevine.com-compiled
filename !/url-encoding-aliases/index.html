@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Words that are hard to spell</title>
+    <title>URL Encoding and Decoding</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
@@ -50,33 +50,31 @@
 </nav>
 <header class='title-card'>
   <h1>
-    <a href="/!/hard-to-spell/">Words that are hard to spell</a>
+    <a href="/!/url-encoding-aliases/">URL Encoding and Decoding</a>
   </h1>
   <div class='date'>
     
   </div>
 </header>
 <div id='article-wrapper'>
-  <article><p>I previously used “(es)perluette” as my name in a bunch of places. (It’s a
-French word for “ampersand”.) As such, people who didn’t know French wouldn’t
-understand what I was saying when I verbally told them my email address. And
-I would always have to write it out for them.</p>
+  <article><p>There was a time when I quite often wanted to encode or decode a URL.
+Conveniently, someone had already written
+<a href="http://ruslanspivak.com/2010/06/02/urlencode-and-urldecode-from-a-command-line/">this</a>.</p>
 
-<p>I decided to change my email address to a word with the reverse properties,
-to a word that would be easy to understand aurally but difficult to spell.
-I wound up with “occurrence”. Here are some other ideas.</p>
+<pre><code>alias urlencode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.quote_plus(orig)"'
+alias urldecode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.unquote_plus(orig)"'
+</code></pre>
 
-<ul>
-  <li>pamphlet</li>
-  <li>accidentally</li>
-  <li>definitely</li>
-</ul>
+<p>It accepts input from <code>/dev/stdin</code> and from <code>$1</code>. That is, both of these
+commands produce the same thing.</p>
 
-<p>Some other ideas are <a href="http://marvin.cs.uidaho.edu/misspell.html">here</a>.</p></article>
+<pre><code>urlencode 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'
+echo 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'|urlencode
+</code></pre></article>
 </div>
 <div id='pagination'>
   <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/hard-to-spell/index.md">View source</a>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/url-encoding-aliases/index.md">View source</a>
     <a href="https://twitter.com/thomaslevine">Discuss</a>
   </div>
 </div></div>

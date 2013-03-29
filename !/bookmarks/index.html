@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Words that are hard to spell</title>
+    <title>Bookmarks</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
@@ -50,33 +50,47 @@
 </nav>
 <header class='title-card'>
   <h1>
-    <a href="/!/hard-to-spell/">Words that are hard to spell</a>
+    <a href="/!/bookmarks/">Bookmarks</a>
   </h1>
   <div class='date'>
     
   </div>
 </header>
 <div id='article-wrapper'>
-  <article><p>I previously used “(es)perluette” as my name in a bunch of places. (It’s a
-French word for “ampersand”.) As such, people who didn’t know French wouldn’t
-understand what I was saying when I verbally told them my email address. And
-I would always have to write it out for them.</p>
+  <article><p>I used to use <a href="">delicious</a>,
+but I always found it rather clumsy. I tried
+<a href="">gitmarks</a>,
+but it also seemed clumsy. So I made my own bookmark manager,
+<a href="">Medial-temporal lobe</a>.
+Here’s how you used it.</p>
 
-<p>I decided to change my email address to a word with the reverse properties,
-to a word that would be easy to understand aurally but difficult to spell.
-I wound up with “occurrence”. Here are some other ideas.</p>
+<p>Save a webpage.</p>
 
-<ul>
-  <li>pamphlet</li>
-  <li>accidentally</li>
-  <li>definitely</li>
-</ul>
+<pre><code>mtl add http://thomaslevine.com
+</code></pre>
 
-<p>Some other ideas are <a href="http://marvin.cs.uidaho.edu/misspell.html">here</a>.</p></article>
+<p>A randomly-named directory gets created in
+<code>~/.medial_temporal_lobe/memories</code>. Inside that directory are
+an <code>info</code> file with metadata, like the URL, and a <code>source</code> file,
+with the content of the webpage (downloaded with wget).</p>
+
+<p>You can also set tags.</p>
+
+<pre><code>mtl add -t people,pink http://thomaslevine.com
+</code></pre>
+
+<p>This creates symlinks inside <code>~/.medial_temporal_lobe/tags</code>,
+linking to the file in <code>~/.medial_temporal_lobe/memories</code>.</p>
+
+<p><code>~/.medial_temporal_lobe</code> is a directory, so you can
+<a href="">version it with git</a>.</p>
+
+<p>I haven’t implemented any functions other than <code>add</code>, so you have to use
+other tools for viewing, editing and deleting the bookmarks.</p></article>
 </div>
 <div id='pagination'>
   <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/hard-to-spell/index.md">View source</a>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bookmarks/index.md">View source</a>
     <a href="https://twitter.com/thomaslevine">Discuss</a>
   </div>
 </div></div>

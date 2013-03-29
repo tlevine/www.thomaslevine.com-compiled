@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Words that are hard to spell</title>
+    <title>tmux aliases</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.4.2' name='generator'>
@@ -50,33 +50,48 @@
 </nav>
 <header class='title-card'>
   <h1>
-    <a href="/!/hard-to-spell/">Words that are hard to spell</a>
+    <a href="/!/tmux-aliases/">tmux aliases</a>
   </h1>
   <div class='date'>
     
   </div>
 </header>
 <div id='article-wrapper'>
-  <article><p>I previously used “(es)perluette” as my name in a bunch of places. (It’s a
-French word for “ampersand”.) As such, people who didn’t know French wouldn’t
-understand what I was saying when I verbally told them my email address. And
-I would always have to write it out for them.</p>
+  <article><p>Before I implemented my <code>tmuxa</code> and <code>tmuxl</code> aliases, the three <code>tmux</code> calls
+that I used most often were <code>tmux</code>, <code>tmux list-sessions</code> and <code>tmux attach</code>.</p>
 
-<p>I decided to change my email address to a word with the reverse properties,
-to a word that would be easy to understand aurally but difficult to spell.
-I wound up with “occurrence”. Here are some other ideas.</p>
+<pre><code>$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
+    127 tmux
+    149 tmuxa
+      2 tmuxa 0
+      1 tmuxa -t0
+      3 tmuxa -t 0
+      6 tmuxa -t23
+      1 tmuxa -t 23
+      4 tmuxa -t32
+      1 tmuxa -t 5
+     15 tmux attach
+      2 tmux attach -t0
+      1 tmux attach -t16
+      1 tmux attach -t18
+      2 tmux attach -t 23
+      1 tmux attach -t27
+      1 tmux attach -t28
+      1 tmux attach -t 32
+     18 tmuxl
+      1 tmux --list-sessions
+      7 tmux list-sessions
+</code></pre>
 
-<ul>
-  <li>pamphlet</li>
-  <li>accidentally</li>
-  <li>definitely</li>
-</ul>
+<p>Those commands are long, so I <a href="">made them shorter</a>.</p>
 
-<p>Some other ideas are <a href="http://marvin.cs.uidaho.edu/misspell.html">here</a>.</p></article>
+<pre><code>alias tmuxl='tmux list-sessions'
+alias tmuxa='tmux attach'
+</code></pre></article>
 </div>
 <div id='pagination'>
   <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/hard-to-spell/index.md">View source</a>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/tmux-aliases/index.md">View source</a>
     <a href="https://twitter.com/thomaslevine">Discuss</a>
   </div>
 </div></div>
