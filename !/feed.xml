@@ -183,6 +183,74 @@ important to convey insights to non-technical managers.&lt;/p&gt;
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-04-10:/!/sensory-data-experiences/index.html</id>
+    <title type="html">Multisensory data experiences</title>
+    <published>2013-04-10T04:00:00Z</published>
+    <updated>2013-04-10T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/sensory-data-experiences/index.html"/>
+    <content type="html">&lt;p&gt;Big data leads quickly to information overload.&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;For handle big data, solution is very simple: buy bigger monitor and use smaller font in the terminal.&lt;/p&gt;&amp;mdash; MySQL Borat (@mysqlborat) &lt;a href="https://twitter.com/mysqlborat/status/306078371182428161"&gt;February 25, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;How can we deal with this?&lt;/p&gt;
+
+&lt;p&gt;I’ve recently been seeing a trend towards animated visual/audio data presentation
+experiences. I started toying with this a few years ago around Christmas time.&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/rLZDvXPIDa0" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+&lt;p&gt;They’ve recently become more popular. My &lt;a href="http://csvsoundsystem.com"&gt;band&lt;/a&gt;
+made a music video of treasury data.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://fms.csvsoundsystem.com"&gt;&lt;img alt="FMS Symphony" src="fms.png" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Küechenstudio made a &lt;a href="http://www.kuechenstud.io/datenschau/podcast/ds008/"&gt;podcast&lt;/a&gt;
+about some of the other recent advances in data music.&lt;/p&gt;
+
+&lt;p&gt;Combining data with music, specifically, may also appeal to a younger audience.
+This is because both data is “in”.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[S]tatisticians are the new sexy vampires, only even more pasty.
+(&lt;a href="http://www.newyorker.com/humor/2012/11/19/121119sh_shouts_rudnick"&gt;Emma Gertlowitz&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Recognizing this, the White House released to advertise the State of the
+Union Address. It uses pie charts and dubstep to appeal to a younger audience.&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/i85haOoK5os" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Data animations are also becoming popular in experimental physics, for both the
+ATLAS and CMS experiments.&lt;/p&gt;
+
+&lt;!-- https://twiki.cern.ch/twiki/pub/AtlasPublic/HiggsPublicResults//4l-FixedScale-NoMuProf2.gif --&gt;
+&lt;p&gt;&lt;a href="4l-FixedScale-NoMuProf2.gif"&gt;&lt;img src="4l-FixedScale-NoMuProf2-preview.png" alt="ATLAS" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;!-- https://twiki.cern.ch/twiki/pub/CMSPublic/Hig13002TWiki/HZZ4l_animated.gif --&gt;
+&lt;p&gt;&lt;a href="HZZ4l_animated.gif"&gt;&lt;img src="HZZ4l_animated-preview.png" alt="CMS" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Dynamic, multisensory data experiences will help us make sense of big data.
+In the long term, we really need to gastronomify data in order to experience
+them with all of the senses, but that isn’t feasible right now because of the
+reasonably high cost of food printers (three-dimensional printers).&lt;/p&gt;
+
+&lt;p&gt;Until we develop cheaper taste and smell APIs, we are stuck with what we have
+on our smartphones, laptops, &amp;amp;c., which is vision, hearing and touch. We need
+to make data music videos in order to make the most of these tools.&lt;/p&gt;
+
+&lt;h2 id="other-resources"&gt;Other resources&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://brianabelson.com"&gt;Brian Abelson&lt;/a&gt;
+and I gave a &lt;a href="http://www.meetup.com/nyhackr/events/111193682/"&gt;talk&lt;/a&gt; on this at the
+&lt;a href="http://www.meetup.com/nyhackr/"&gt;New York Open Statistical Programming Meetup&lt;/a&gt;.
+Here are &lt;a href="http://tlevine.github.com/music-videos-in-r"&gt;my slides&lt;/a&gt;,
+my &lt;a href="http://tlevine.github.io/music-videos-in-r/live-code-christmas.r"&gt;code&lt;/a&gt;
+&lt;a href="http://tlevine.github.io/music-videos-in-r/live-code-fms.r"&gt;demos&lt;/a&gt;,
+&lt;a href="http://csv.github.io/ddr_nyhackr/"&gt;Brian’s slides&lt;/a&gt; and Brian’s
+&lt;a href="https://github.com/csv/ddr"&gt;data-driven rhythms&lt;/a&gt; package.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-04-07:/!/new-york-addiction-recovery-meetings/index.html</id>
     <title type="html">Addiction Recovery Meetings</title>
     <published>2013-04-07T04:00:00Z</published>
@@ -269,115 +337,6 @@ in table form; here are the locations that had at least ten meetings.
 &lt;/table&gt;
 
 &lt;p&gt;This begins to show us who runs addiction recovery meetings, what places host them, &amp;amp;c.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-03-29:/!/imapfilter/index.html</id>
-    <title type="html">imapfilter</title>
-    <published>2013-03-29T04:00:00Z</published>
-    <updated>2013-03-29T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/imapfilter/index.html"/>
-    <content type="html">&lt;p&gt;I use &lt;a href="https://github.com/lefcha/imapfilter"&gt;imapfilter&lt;/a&gt; to filter my mail.
-It’s awesome.&lt;/p&gt;
-
-&lt;h2 id="so-simple"&gt;So simple&lt;/h2&gt;
-&lt;p&gt;I just wrote a &lt;code&gt;~/.imapfilter/config.lua&lt;/code&gt; file and added &lt;code&gt;imapfilter&lt;/code&gt;
-to my email-synchronization &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/54c7b7ec472ac53c2dbf445e81b393c3bc26ad3e/crontab"&gt;crontab&lt;/a&gt; entry.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@hourly imapfilter &amp;amp;&amp;amp; offlineimap &amp;amp;&amp;amp; notmuch new 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The configuration file is quite well documented in &lt;code&gt;man imapfilter_config&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id="overview-of-filters"&gt;Overview of filters&lt;/h2&gt;
-&lt;p&gt;All mail comes into the “INBOX” folder.&lt;/p&gt;
-
-&lt;p&gt;I use imapfilter to move some messages into “Spam” and others into “Pulse”.
-“Spam” is for spam, “Pulse” is for emails that I use for statistical
-modelling but don’t read directly.&lt;/p&gt;
-
-&lt;p&gt;Most of my emails go to “Pulse”, but some stay in “INBOX”.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        Pulse
-          |
-Mail -&amp;gt; INBOX
-          |
-        Spam 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="my-configuration"&gt;My configuration&lt;/h2&gt;
-&lt;p&gt;Some of the filters that I use contain information that could be unsafe to post
-publically, so I’ve removed some of the pulse filters, replaced them with the
-line &lt;code&gt;-- ...&lt;/code&gt;, and posted the configuration &lt;a href="/!/imapfilter/config.lua"&gt;here&lt;/a&gt;.
-I walk through it below.&lt;/p&gt;
-
-&lt;p&gt;First, I set some options that were in some other configuration files.
-If you want to know what they do see &lt;code&gt;man imapfilter_config&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;options.timeout = 120
-options.subscribe = true
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Second, I define a function for pulling my email address and password from my
-&lt;a href="http://offlineimap.org/"&gt;.offlineimaprc&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function offlineimap (key)
-  local status
-  local value
-  status, value = pipe_from('grep -A2 mail.gandi.net ~/.offlineimaprc | grep ' .. key .. '|cut -d= -f2')
-  value = string.gsub(value, ' ', '')
-  value = string.gsub(value, '\n', '')
-  return value
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Third, I set the IMAP account credentials.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;T = IMAP {
-    server   = offlineimap('remotehost'),
-    username = offlineimap('remoteuser'),
-    password = offlineimap('remotepass'),
-
-    ssl = 'ssl3',
-    port = 993,
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I select the things to be moved into “Pulse”.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pulse = (
-    T.INBOX:contain_from('voice-noreply@google.com') +
-    T.INBOX:contain_from('linkedin.com') +
-    T.INBOX:contain_field('Reply-To', 'reply.linkedin.com') +
-    -- ...
-    T.INBOX:contain_from('github.com')
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then I move them.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pulse:move_messages(T.Pulse)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And I do the same for “Spam”.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;spam = (
-    T.INBOX:contain_from('FattorossTedCEO@aol.com') +
-    T.INBOX:contain_subject('PMX:#')
-)
-spam:move_messages(T.Spam)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;p&gt;Here are some other posts on imapfilter. I don’t remember which ones I used
-when writing the file, but they’re probably in this list.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://noorul.com/blog/2010/07/09/filtering-imap-mails-using-imapfilter/"&gt;Filtering IMAP mails using imapfilter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.npcglib.org/~stathis/blog/2012/07/09/linux-task-sorting-mail-with-imapfilter/"&gt;linux task: sorting mail with imapfilter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://moiristo.wordpress.com/2008/11/18/sorting-imap-mail-with-imapfilter/"&gt;Sorting IMAP Mail with Imapfilter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://gaillourdet.net/2011/05/server-side-imap-filtering-done-right/"&gt;Server-side IMAP filtering done right&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
