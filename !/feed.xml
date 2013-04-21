@@ -85,6 +85,31 @@
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-04-21:/!/five-stages-of-phd/index.html</id>
+    <title type="html">Five stages of PhD</title>
+    <published>2013-04-21T04:00:00Z</published>
+    <updated>2013-04-21T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/five-stages-of-phd/index.html"/>
+    <content type="html">&lt;p&gt;In my categorical data analysis class (BTRY 6030), 
+&lt;a href="http://www.ilr.cornell.edu/directory/tjd9/"&gt;Tom DiCiccio&lt;/a&gt;
+taught me much more than logistic regression.&lt;/p&gt;
+
+&lt;p&gt;On April 20, 2011, we learned about the five stages of PhD. They’re&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Naïve optimism&lt;/li&gt;
+  &lt;li&gt;Vague anxiety&lt;/li&gt;
+  &lt;li&gt;Complete dispair&lt;/li&gt;
+  &lt;li&gt;I can’t believe nobody’s done it.&lt;/li&gt;
+  &lt;li&gt;God I could have done this in five months.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here’s a picture of my notes from that day.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="A hand-written list of the five stages of PhD" src="/!/five-stages-of-phd/notebook.jpg" class="wide" /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-04-17:/!/scp-wrapper/index.html</id>
     <title type="html">scp wrapper</title>
     <published>2013-04-17T04:00:00Z</published>
@@ -232,77 +257,6 @@ important to convey insights to non-technical managers.&lt;/p&gt;
 
 &lt;h2 id="conclusionary"&gt;Conclusionary&lt;/h2&gt;
 &lt;p&gt;Pretend that I made some insightful, conclusionary conclusion in this sentence.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-04-10:/!/sensory-data-experiences/index.html</id>
-    <title type="html">Multisensory data experiences</title>
-    <published>2013-04-10T04:00:00Z</published>
-    <updated>2013-04-10T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/sensory-data-experiences/index.html"/>
-    <content type="html">&lt;p&gt;Big data leads quickly to information overload.&lt;/p&gt;
-
-&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;For handle big data, solution is very simple: buy bigger monitor and use smaller font in the terminal.&lt;/p&gt;&amp;mdash; MySQL Borat (@mysqlborat) &lt;a href="https://twitter.com/mysqlborat/status/306078371182428161"&gt;February 25, 2013&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-
-&lt;p&gt;How can we deal with this?&lt;/p&gt;
-
-&lt;p&gt;I’ve recently been seeing a trend towards animated visual/audio data presentation
-experiences. I started toying with this a few years ago around Christmas time.&lt;/p&gt;
-
-&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/rLZDvXPIDa0" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
-
-&lt;p&gt;They’ve recently become more popular. My &lt;a href="http://csvsoundsystem.com"&gt;band&lt;/a&gt;
-made a music video of treasury data.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://fms.csvsoundsystem.com"&gt;&lt;img alt="FMS Symphony" src="fms.png" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Küechenstudio made a &lt;a href="http://www.kuechenstud.io/datenschau/podcast/ds008/"&gt;podcast&lt;/a&gt;
-about some of the other recent advances in data music.&lt;/p&gt;
-
-&lt;p&gt;Combining data with music, specifically, may also appeal to a younger audience.
-This is because both data is “in”.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;[S]tatisticians are the new sexy vampires, only even more pasty.
-(&lt;a href="http://www.newyorker.com/humor/2012/11/19/121119sh_shouts_rudnick"&gt;Emma Gertlowitz&lt;/a&gt;)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Recognizing this, the White House released to advertise the State of the
-Union Address. It uses pie charts and dubstep to appeal to a younger audience.&lt;/p&gt;
-
-&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/i85haOoK5os" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Data animations are also becoming popular in experimental physics, for both the
-ATLAS and CMS experiments.&lt;/p&gt;
-
-&lt;!-- https://twiki.cern.ch/twiki/pub/AtlasPublic/HiggsPublicResults//4l-FixedScale-NoMuProf2.gif --&gt;
-&lt;p&gt;&lt;a href="4l-FixedScale-NoMuProf2.gif"&gt;&lt;img src="4l-FixedScale-NoMuProf2-preview.png" alt="ATLAS" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;!-- https://twiki.cern.ch/twiki/pub/CMSPublic/Hig13002TWiki/HZZ4l_animated.gif --&gt;
-&lt;p&gt;&lt;a href="HZZ4l_animated.gif"&gt;&lt;img src="HZZ4l_animated-preview.png" alt="CMS" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Dynamic, multisensory data experiences will help us make sense of big data.
-In the long term, we really need to gastronomify data in order to experience
-them with all of the senses, but that isn’t feasible right now because of the
-reasonably high cost of food printers (three-dimensional printers).&lt;/p&gt;
-
-&lt;p&gt;Until we develop cheaper taste and smell APIs, we are stuck with what we have
-on our smartphones, laptops, &amp;amp;c., which is vision, hearing and touch. We need
-to make data music videos in order to make the most of these tools.&lt;/p&gt;
-
-&lt;h2 id="other-resources"&gt;Other resources&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://brianabelson.com"&gt;Brian Abelson&lt;/a&gt;
-and I gave a &lt;a href="http://www.meetup.com/nyhackr/events/111193682/"&gt;talk&lt;/a&gt; on this at the
-&lt;a href="http://www.meetup.com/nyhackr/"&gt;New York Open Statistical Programming Meetup&lt;/a&gt;.
-Here are &lt;a href="http://tlevine.github.com/music-videos-in-r"&gt;my slides&lt;/a&gt;,
-my &lt;a href="http://tlevine.github.io/music-videos-in-r/live-code-christmas.r"&gt;code&lt;/a&gt;
-&lt;a href="http://tlevine.github.io/music-videos-in-r/live-code-fms.r"&gt;demos&lt;/a&gt;,
-&lt;a href="http://csv.github.io/ddr_nyhackr/"&gt;Brian’s slides&lt;/a&gt; and Brian’s
-&lt;a href="https://github.com/csv/ddr"&gt;data-driven rhythms&lt;/a&gt; package.
-A video of the talk is below.&lt;/p&gt;
-
-&lt;iframe width="560" height="340" src="http://cdn.livestream.com/embed/knerd?layout=4&amp;amp;clip=pla_a5d59285-9399-47dc-aaef-2b9a77142d5e&amp;amp;height=340&amp;amp;width=560&amp;amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"&gt;&lt;/iframe&gt;
 </content>
   </entry>
 </feed>
