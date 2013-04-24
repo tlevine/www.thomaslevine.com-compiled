@@ -85,6 +85,346 @@
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-04-24:/!/april-25-stats-talks/index.html</id>
+    <title type="html">Attendees decide between statistics talks</title>
+    <published>2013-04-24T04:00:00Z</published>
+    <updated>2013-04-24T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/april-25-stats-talks/index.html"/>
+    <content type="html">&lt;p&gt;Recent statistics indicate resolutions of indecision regarding April 25 statistics talks.&lt;/p&gt;
+
+&lt;p&gt;Two statistics talks are competing in New York on April 25, 2013.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://www.meetup.com/DataKind-NYC/events/112727792/"&gt;Data in the Big City&lt;/a&gt;
+  (&lt;a href="http://www.meetup.com/DataKind-NYC/"&gt;DataKind&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.meetup.com/nyhackr/events/112271042/"&gt;Bigvis: visualising 100,000,000 observations in R with Hadley Wickham&lt;/a&gt;
+  (&lt;a href="http://www.meetup.com/nyhackr/"&gt;New York Open Statistical Programming Meetup&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ve been &lt;a href="https://github.com/tlevine/april-25-stats"&gt;downloading the RSVPs&lt;/a&gt;
+to see who signs up for which one or both. Here are some quick results.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./crossovers.py
+Currently attending DataKind: 146 people
+Michael Wimsatt
+Matt Wilson
+samuel weiss
+Aparna
+Robert Doherty
+Elias
+Kaushik Reddy
+graham stalker-wilde
+Yoav Caspi
+Ray Schwartz
+Ken H
+Travis Korte
+Upma Sharma
+Dan
+Stefan
+Peter Darche
+Kempton
+Patrick Yurgosky
+Richard Dunks
+Dan Blum
+Karl Jin
+Kamalesh Rao
+Jason Loup
+Katie Brown
+Aileen Gemma Smith
+Brian Abelson
+Elyse Ross
+Louie
+Charlie Guthrie
+Lauren Moores
+Thomas Levine
+Kyle Hausmann
+Bryan Falk
+Kevin Wilson
+Erich Morisse
+Nick K
+Nora Granville
+Philipp Brandt
+christina zou
+Martina Skender
+Jeremy Singer-Vine
+Gideon
+John
+Garrett Drapala
+Dave
+Anna
+Jennifer Sterling
+Vladimir Dubovskiy
+Korey
+Merlyn Deng
+Evan Misshula
+Ekene 
+Gokce Gizer
+Rick Saporta
+Thuy Mai
+michael s
+wei yin
+Doug Daniels
+Tyler Selby
+Charles Lee
+Julian
+Matthew Lapora
+Scott Teesdale
+Brian Eoff
+Enrico Bertini
+David
+Bliksem Tobey
+Niko
+John Spens
+Jackie Lu
+eric tang
+Ezra Spier
+Tom
+Justin Vincent
+James Schintz
+Karl Sluis
+Jason Capehart
+Ariel Marcus
+Chris Smith
+Udi Schlessinger
+Zubin Jelveh
+Maria 
+Jake Porway
+Sagar
+Rob Oden
+Doug Rausch
+ewig
+Rebecca Shows
+George Wang
+Doug Kanter
+rajasekhar yakkali
+Mark V
+Lara Torvi
+Richipal Singh
+Alainna
+Bianca Sophie
+bug
+Kriti
+Michael Discenza
+Michael Scharf
+Nicholas Johnson
+Olga Musayev
+Tiffany
+Liza Mueller
+Ben Burke
+Suzanne Tee
+Carl Smith
+Mia
+Nicholas Ursa
+Allister
+Brian
+Danielle
+Jennifer Milk
+Sarah Tan
+Craig Barowsky
+as17237
+sharath rao
+Wei Wang
+leizer
+Casey Webb
+Femi Anthony
+carlos manuel manzueta
+John 
+Dan Schneiderman
+mark davenport
+Rahul Lath
+Michael Keller
+Parker Mitchell
+Greg Michnikov
+Paul Salama
+Gregory Gorin
+Cindy
+Ingrid
+Samuel Crane
+James Quacinella
+David LaBarbera
+JD Godchaux
+Rafael Mejia
+Julie
+Andrew Altman
+Siyun Fan
+Kayan
+Sweeney Verma
+David Russell
+yilong zhang
+Amik Ahmad
+
+Currently attending nyhackr: 130 people
+Andreas
+Jim
+Jochen
+JL
+Daniel
+jj knitis
+Bill Alpert
+James Lawry
+Jim Llewellyn
+Jake Bialer
+Matthew Hui
+Abiel Reinhart
+Tom Hughes
+Dimitri Liakhovitski
+Lena Groeger
+Haobo Lai
+Dan
+Hao Lu
+Ben Cohen
+aaron
+Micha Segeritz
+luba
+George Sexton
+Krishnan Manickam
+Silas Merez
+Bryan Lewis
+Eugene Krel
+Seth
+Jon Baer
+Ritesh
+Adi Ray
+Phillip Cloud
+Kate Stafford
+Michael Kane
+Jared Lander
+Andrea Parker
+Vincent Saulys
+Mayra
+Thomas Levine
+Michael Y.
+Susan Helfter
+Emily Ho
+Yipster
+John Weir
+hogu
+Mike Malecki
+Carlos Arenas
+Woo Chang KANG
+Andy Liaw
+Pedro Avila
+Naomi B. Robbins
+Roman Kubiak
+Matthew Perle
+Greg McDonald
+Sisi W.
+Leo
+Kostas Evangelinos
+Tony D
+Nukhet Kayahan
+Saar Golde
+Mark Damien
+Michelle Gill
+Yongchao Ge
+Marcin Mejran
+Kevin Krabbenhoeft
+Doug Petkanics
+Rick Saporta
+Sean J Taylor
+Gang Ma
+Chris Bethel
+John McDonnell
+Aaron Schumacher
+Steve Jaffe
+Yuri Vilinski
+Shangxuan Vivian Zhang
+James Beveridge
+andrei zege
+Ryan Witt
+Jacki Buros
+Haider Ali
+Alexandra Frankel
+Steven Soloway
+Paddy Mullen
+Tom
+Yair Ghitza
+Mehmet Yunt
+Lalit
+Randy Wilson
+Christina
+John Myles White
+Matthew Perkins
+MdV
+Seth Surchin
+David Purdy
+Tiffany
+Christoph Ungemach
+Josh Laurito
+Andrew Sheppard
+Vishal Goklani
+Paul Puglia
+Mike Spaner
+Brian Lee Yung Rowe
+David Crawford
+Adam Laiacano
+Aliona M
+Pablo Barberá
+Roberto Medri
+Tim Zhao
+Jeremy Stanley
+Keith Frost
+René Clausen Nielsen
+Alicia
+Amir Halfon
+Nitin
+Prashant
+Brian Mack
+Carl Vogel
+Charles Lewis
+Alex
+Matt Zeidenberg
+Ryan Raaum
+Esther Drill
+Hongyan Jing
+Yoni Ben-Meshulam
+Chrys Wu
+Frank Deutschmann
+andrew m
+Eric
+Jonathan Shore
+Elliot Noma
+
+Currently attending both, at the same time: 5 people
+Thomas Levine
+Dan
+Rick Saporta
+Tiffany
+Tom
+
+These people were once listed in each event, not necessarily at the same time (24 people).
+Travis Korte
+Nicholas Ursa
+Tom
+Kaushik Reddy
+Jason Capehart
+John McDonnell
+andrew m
+Dan
+Xu Fei
+Femi Anthony
+Vladimir Dubovskiy
+Kamalesh Rao
+Christina
+mark davenport
+Rick Saporta
+Ritesh
+Yoni Ben-Meshulam
+Chrys Wu
+Aaron Schumacher
+Tiffany
+Vishal Goklani
+Thomas Levine
+Suzanne Tee
+Thuy Mai
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At least 24 people were somewhat indecisive, but all but five of them have
+resolved their indecision as of 5:00 pm on Wednesday, April 24, the day before
+the talks.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-04-21:/!/five-stages-of-phd/index.html</id>
     <title type="html">Five stages of PhD</title>
     <published>2013-04-21T04:00:00Z</published>
@@ -159,104 +499,6 @@ run the command without a colon, you can just run it with &lt;code&gt;env !!&lt;
 &lt;p&gt;Elsewhere in my &lt;code&gt;.profile&lt;/code&gt;, I make sure that the &lt;code&gt;.profile&lt;/code&gt; is only applied in
 login shells, and not in scripts, so scripts that use &lt;code&gt;scp&lt;/code&gt; without a colon
 are still fine.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-04-15:/!/data-business-models/index.html</id>
-    <title type="html">Data business models</title>
-    <published>2013-04-15T04:00:00Z</published>
-    <updated>2013-04-15T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/data-business-models/index.html"/>
-    <content type="html">&lt;p&gt;I’ve been at loads of hip and non-hip data talks here and there and have come
-four categories of data business model in this hip data ecosystem. Here they are.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Big storage for big people&lt;/li&gt;
-  &lt;li&gt;Money in, insight out: Vertically integrated data analysis&lt;/li&gt;
-  &lt;li&gt;Internal data analysis on an organization’s own data&lt;/li&gt;
-  &lt;li&gt;Quantitative finance&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="big-storage-for-big-people"&gt;Big storage for big people&lt;/h2&gt;
-&lt;p&gt;This is mostly Hadoop. For example,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Teradata&lt;/li&gt;
-  &lt;li&gt;Hortonworks&lt;/li&gt;
-  &lt;li&gt;MapR&lt;/li&gt;
-  &lt;li&gt;Cloudera&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Some people are using NoHadoop. (I just invented this word.)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Datastax (Cassandra)&lt;/li&gt;
-  &lt;li&gt;Couchbase (Couch but not the original Couch)&lt;/li&gt;
-  &lt;li&gt;10gen (Mongo)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Either way, these companies sell consulting, training, hosting, proprietary
-special features &amp;amp;c. to big businesses with shit tons of data.&lt;/p&gt;
-
-&lt;h2 id="money-in-insight-out-vertically-integrated-data-analysis"&gt;Money in, insight out: Vertically integrated data analysis&lt;/h2&gt;
-
-&lt;p&gt;Several places package data collection, analysis and presentation. I think this
-is pretty close to “research”. One example is AIMIA, which manages the Nectar
-card scheme; as a small part of this, they analyze the data that they collect
-and present ideas to clients. Many producers of hip data tools also provide hip
-data consulting, so they too fall into this category.&lt;/p&gt;
-
-&lt;h3 id="data-hubs"&gt;Data hubs&lt;/h3&gt;
-&lt;p&gt;Some companies produce suites of tools that approach this vertical integration;
-when you use these tools, you still have to look at the data yourself, but it
-is made much easier. This approaches the
-‘&lt;a href="http://blog.scraperwiki.com/2012/03/09/from-cms-to-dms-c-is-for-content-d-is-for-data/"&gt;data hubs&lt;/a&gt;’
-that Francis likes talking about.&lt;/p&gt;
-
-&lt;p&gt;Lots of advertising, web and social media analytics tools fall into this
-category. You just configure your accounts, let data accumulate, and look at
-the flashy dashboard. You still have to put some thought into it, but the
-collection, analysis and presentation are all streamlined and integrated and
-thus easier for people who wouldn’t otherwise do this themselves.&lt;/p&gt;
-
-&lt;p&gt;Tools like Tableau, ScraperWiki, RStudio (combined with its tangential R
-services) also fall into this category. You still have to do your analysis, but
-they let you do all of your analysis in one place, and connections between that
-place, your data sources and your presentatino media are easy. Well that’s the
-idea at least.&lt;/p&gt;
-
-&lt;h2 id="internal-data-analysis"&gt;Internal data analysis&lt;/h2&gt;
-
-&lt;p&gt;Places with lots of data have internal person(s) do something with them. Any
-company that’s making money must have something like this. The mainstream
-companies might call these people “business analysts”, and they might do all
-their work &lt;a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/"&gt;in Excel&lt;/a&gt;.
-The hip companies are doing “data science” with open source software before it
-gets cool. And the New York City government has a team that just analyzes New
-York data to make the various government services more efficient. For the
-current discussion, I see these as similar sorts of people.&lt;/p&gt;
-
-&lt;p&gt;I was pondering distinguishing between analysis that affects businessy
-decisions from models that get written into software. Since I’m just
-categorising business models and these things could both be produced by the
-same guy working inside a company with lots of data, I chose not to distinguish
-between them.&lt;/p&gt;
-
-&lt;h2 id="quantitative-finance"&gt;Quantitative finance&lt;/h2&gt;
-
-&lt;p&gt;Quantitative finance is special in that the data analysis is very close to a
-product in itself; the conclusion of analysis or algorithm is “Make these
-trades when that happens.” rather than “If you market to these people, you
-might sell more products.”&lt;/p&gt;
-
-&lt;p&gt;This has some interesting implications. For one thing, you could have a whole
-company doing quantative finance. On a similar note, I suspect that analyses
-can be more complicated because the analyses might only need to be conveyed to
-people with quantitative literacy; in the other categories, it might be more
-important to convey insights to non-technical managers.&lt;/p&gt;
-
-&lt;h2 id="conclusionary"&gt;Conclusionary&lt;/h2&gt;
-&lt;p&gt;Pretend that I made some insightful, conclusionary conclusion in this sentence.&lt;/p&gt;
 </content>
   </entry>
 </feed>
