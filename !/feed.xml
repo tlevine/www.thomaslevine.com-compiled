@@ -85,6 +85,32 @@
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-04-28:/!/wsync/index.html</id>
+    <title type="html">wsync</title>
+    <published>2013-04-28T04:00:00Z</published>
+    <updated>2013-04-28T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/wsync/index.html"/>
+    <content type="html">&lt;p&gt;I like to encapsulate the non-deterministic parts of data analysis systems.
+For me, a main part of this is the retrieval of data from sources other than
+the filesystem, like websites. I prefer to use crude and robust methods for
+acquiring the data from elsewhere and then to analyze everything
+deterministically based on the local version of the data.&lt;/p&gt;
+
+&lt;p&gt;To that end, I have this awesome tiny script that I call
+&lt;a href="https://github.com/tlevine/wsync"&gt;&lt;code&gt;wsync&lt;/code&gt;&lt;/a&gt;. You use it like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wsync http://thomaslevine.com/\!/wsync wsync html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I typically use &lt;code&gt;wsync&lt;/code&gt; with a cron job to download files into a git submodule
+for a larger project. For example, in &lt;a href="http://scott.thomaslevine.com"&gt;Scott&lt;/a&gt;,
+I &lt;a href="https://github.com/tlevine/scott/tree/master/reader/bin"&gt;download&lt;/a&gt;
+an &lt;a href="https://github.com/tlevine/scott-listings"&gt;unreliable and dynamic webpage&lt;/a&gt;
+periodically. In my &lt;a href="/!/april-25-stats-talks/"&gt;competing April 25 meetup analysis&lt;/a&gt;,
+I use it to save historical RSVP statuses from Meetup groups.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-04-24:/!/april-25-stats-talks/index.html</id>
     <title type="html">Attendees decide between statistics talks</title>
     <published>2013-04-24T04:00:00Z</published>
@@ -447,58 +473,6 @@ taught me much more than logistic regression.&lt;/p&gt;
 &lt;p&gt;Here’s a picture of my notes from that day.&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="A hand-written list of the five stages of PhD" src="/!/five-stages-of-phd/notebook.jpg" class="wide" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-04-17:/!/scp-wrapper/index.html</id>
-    <title type="html">scp wrapper</title>
-    <published>2013-04-17T04:00:00Z</published>
-    <updated>2013-04-17T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/scp-wrapper/index.html"/>
-    <content type="html">&lt;p&gt;This has happened to me too many times.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ scp bicycles.csv chainsaw.thomaslevine.com
-$
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I wanted to copy the file &lt;code&gt;bicycles.csv&lt;/code&gt; to the home directory of &lt;code&gt;$USER&lt;/code&gt; on
-&lt;code&gt;chainsaw.thomaslevine.com&lt;/code&gt;. I meant to write this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ scp bicycles.csv chainsaw.thomaslevine.com:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But I forgot the colon, so instead of copying the file to a different computer,
-I copied the file to the local computer, naming it &lt;code&gt;chainsaw.thomaslevine.com&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ scp bicycles.csv chainsaw.thomaslevine.com
-$ ls
-bicycles.csv  chainsaw.thomaslevine.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/scp"&gt;Here&lt;/a&gt; is my solution.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;scp() {
-  # Require a colon to be provided.
-  if echo "$*"|grep ':' &amp;gt; /dev/null; then
-    command scp $*
-  else
-    command scp --help
-    echo \ 
-    echo "warning: The scp command that you ran has no colon, so you probably don't"
-    echo '         want to run it. Use "env scp" if you really meant to do that;'
-    echo '         you can run "env !!".'
-    return 1
-  fi
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If the wrapper function finds no colon in the grep arguments, it warns you that
-you probably wanted a colon to be in the function. If you really did want to
-run the command without a colon, you can just run it with &lt;code&gt;env !!&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Elsewhere in my &lt;code&gt;.profile&lt;/code&gt;, I make sure that the &lt;code&gt;.profile&lt;/code&gt; is only applied in
-login shells, and not in scripts, so scripts that use &lt;code&gt;scp&lt;/code&gt; without a colon
-are still fine.&lt;/p&gt;
 </content>
   </entry>
 </feed>

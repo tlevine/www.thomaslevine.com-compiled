@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>wsync</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'><nav>
+  <ul class='nobullet'>
+    <li class='link'>
+      <a href='/'>
+        <div>~</div>
+      </a>
+    </li>
+    <li class='link'>
+      <a href='/!/'>
+        <div>!</div>
+      </a>
+    </li>
+    <li class='link'>
+      <a href='/!/about/'>
+        <div>?</div>
+      </a>
+    </li>
+  </ul>
+</nav>
+<header class='title-card'>
+  <h1>
+    wsync
+  </h1>
+  <div class='date'>
+    April 28, 2013
+  </div>
+</header>
+<div id='article-wrapper'>
+  <article><p>I like to encapsulate the non-deterministic parts of data analysis systems.
+For me, a main part of this is the retrieval of data from sources other than
+the filesystem, like websites. I prefer to use crude and robust methods for
+acquiring the data from elsewhere and then to analyze everything
+deterministically based on the local version of the data.</p>
+
+<p>To that end, I have this awesome tiny script that I call
+<a href="https://github.com/tlevine/wsync"><code>wsync</code></a>. You use it like this.</p>
+
+<pre><code>wsync http://thomaslevine.com/\!/wsync wsync html
+</code></pre>
+
+<p>I typically use <code>wsync</code> with a cron job to download files into a git submodule
+for a larger project. For example, in <a href="http://scott.thomaslevine.com">Scott</a>,
+I <a href="https://github.com/tlevine/scott/tree/master/reader/bin">download</a>
+an <a href="https://github.com/tlevine/scott-listings">unreliable and dynamic webpage</a>
+periodically. In my <a href="/!/april-25-stats-talks/">competing April 25 meetup analysis</a>,
+I use it to save historical RSVP statuses from Meetup groups.</p></article>
+</div>
+<div id='pagination'>
+  <div class='base-little-card'>
+    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/wsync/index.md">View source</a>
+    <a href="https://twitter.com/thomaslevine">Discuss</a>
+  </div>
+</div></div>
+      <script src='/js/application-cba00577e3a.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>
