@@ -85,6 +85,82 @@
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-05-09:/!/terminal-history/index.html</id>
+    <title type="html">Terminal history</title>
+    <published>2013-05-09T04:00:00Z</published>
+    <updated>2013-05-09T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/terminal-history/index.html"/>
+    <content type="html">&lt;p&gt;If you use the default shell environment settings, you’ll probably wind up
+storing very little of your history. Computers are so big, powerful and cheap
+these days that this is stupid; we should store more.&lt;/p&gt;
+
+&lt;p&gt;My history configuration is better. Here are some things it does.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;History is never deleted.&lt;/li&gt;
+  &lt;li&gt;History is backed up and synchronized across computers with git.&lt;/li&gt;
+  &lt;li&gt;Commands are timestamped.&lt;/li&gt;
+  &lt;li&gt;A new file is created for each shell window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here’s how I implement that. First, make sure that we never delete history.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Too many commands of history per session
+export HISTSIZE=100000000000000000000
+
+# Ten gigabytes of maximum history size
+export HISTFILESIZE=10000000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Put timestamps in the history files; the timestamp goes in the line above the command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Save timestamps in the history.
+export HISTTIMEFORMAT="[%F %T %Z]" 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save to a new file. Datestamp the file to make it easy to search. Add a random
+number so that history files from multiple shells opened in the same nanosecond,
+perhaps across different computers, do not have name clashes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Save history to ~/.history/sh-date-host-randomnumber
+export HISTFILE="$HOME/.history/sh-$(date --rfc-3339 ns)-${RANDOM}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Write to the history file after each command; do not wait until the shell session
+has been exited.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Append continuously
+# http://ask.fedoraproject.org/question/18/how-to-keep-history-commands-in-sync-across
+_sync_history(){
+  builtin history -a
+  HISTFILESIZE=$HISTFILESIZE
+}
+PROMPT_COMMAND=_sync_history
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When we separate the history files like this, the built-in history command
+becomes near-useless. Override that command; instead of searching the current
+session’s history, search the last month’s history.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;history(){
+  # Search the current month's history.
+  if [ "$#" = '0' ]; then
+    grep -hv '^#[0-9]*$' "$HOME/.history/sh-$(date +%Y-%m)"*
+  else
+    builtin history "$@"
+  fi
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above discourse is just documention of &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/history-sh"&gt;this file&lt;/a&gt;.
+The other part is a &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/crontab"&gt;crontab&lt;/a&gt; entry that synchronizes my &lt;code&gt;~/.history&lt;/code&gt;
+directory every hour.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@hourly cd "${HOME}/.history" &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp;  git commit . -m "@hourly commit" &amp;amp;&amp;amp; git pull ; git push
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-04-28:/!/wsync/index.html</id>
     <title type="html">Datestamped archives of a webpage</title>
     <published>2013-04-28T04:00:00Z</published>
@@ -464,31 +540,6 @@ Thuy Mai
 &lt;p&gt;At least 24 people were somewhat indecisive, but all but five of them have
 resolved their indecision as of 5:00 pm on Wednesday, April 24, the day before
 the talks.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-04-21:/!/five-stages-of-phd/index.html</id>
-    <title type="html">Five stages of PhD</title>
-    <published>2013-04-21T04:00:00Z</published>
-    <updated>2013-04-21T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/five-stages-of-phd/index.html"/>
-    <content type="html">&lt;p&gt;In my categorical data analysis class (BTRY 6030), 
-&lt;a href="http://www.ilr.cornell.edu/directory/tjd9/"&gt;Tom DiCiccio&lt;/a&gt;
-taught me much more than logistic regression.&lt;/p&gt;
-
-&lt;p&gt;On April 20, 2011, we learned about the five stages of PhD. They’re&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Naïve optimism&lt;/li&gt;
-  &lt;li&gt;Vague anxiety&lt;/li&gt;
-  &lt;li&gt;Complete dispair&lt;/li&gt;
-  &lt;li&gt;I can’t believe nobody’s done it.&lt;/li&gt;
-  &lt;li&gt;God I could have done this in five months.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Here’s a picture of my notes from that day.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="A hand-written list of the five stages of PhD" src="/!/five-stages-of-phd/notebook.jpg" class="wide" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>

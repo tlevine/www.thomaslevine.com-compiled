@@ -53,7 +53,7 @@
     Terminal history
   </h1>
   <div class='date'>
-    
+    May 09, 2013
   </div>
 </header>
 <div id='article-wrapper'>
@@ -119,8 +119,8 @@ session’s history, search the last month’s history.</p>
 }
 </code></pre>
 
-<p>I’ve just documented the contents of <a href="">this file</a>.
-The other part is a <a href="">crontab entry</a> that synchronizes my <code>~/.history</code>
+<p>The above discourse is just documention of <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/history-sh">this file</a>.
+The other part is a <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/crontab">crontab</a> entry that synchronizes my <code>~/.history</code>
 directory every hour.</p>
 
 <pre><code>@hourly cd "${HOME}/.history" &amp;&amp; git init &amp;&amp; git add . &amp;&amp;  git commit . -m "@hourly commit" &amp;&amp; git pull ; git push
