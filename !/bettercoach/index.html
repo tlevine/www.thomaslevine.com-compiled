@@ -10,12 +10,12 @@
     <title>BetterCoach and the merits of the inferior schedule-finder</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,102 +29,106 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    BetterCoach and the merits of the inferior schedule-finder
-  </h1>
-  <div class='date'>
-    November 13, 2011
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>The <a href="http://coachusa.com">Coach</a> <a href="http://coachcanada.ca">bus</a>
-<a href="http://shortlinebus.com">schedule-finder</a> is hard-to-use,
-so I made a <a href="http://bettercoach.thomaslevine.com">better one</a>.</p>
-
-<p>But the official schedule-finder is actually sort of cool,
-at least for its time.</p>
-
-<h2 id="original-finder">Original finder</h2>
-<p>The Coach site’s way of changing one drop-down menu option when you change another
-is simple and robust. And it probably made a lot more sense if you were using dial-up.</p>
-
-<p>It works like this.
-It’s one little section of the main Coach website.
-You first select the state from where you’re starting your trip.
-Then it presents you the cities in that state. Then you select one,
-and it shows you the states you can go to. And so on.</p>
-
-<p>Getting feedback like this before having completed the form is
-pretty common these days with asynchronous JavaScript.
-I suspect that the Coach site was built before people knew how to do that.
-So they did something slightly different.</p>
-
-<p>First, they wrap the whole schedule-finder in an iframe.
-This way, they can reload the schedule-finder without reloading
-the rest of the Coach homepage.</p>
-
-<p>The four drop-down menus are inside this iframe.
-Instead of asynchronously contacting the server on each
-change of the form, they submit the form each time;
-there are four form elements (Actually more, but those are unnecessary.)
-inside the iframe, and javascript automatically
-submits each individual form when you change its drop-down menu.
-This is actually quite similar to how we do form validation
-today, except that it’s synchronous.</p>
-
-<p>It’s quite slow, but that’s mainly because of something in the backend,
-like maybe an over-loaded, poorly configured server
-making inefficient database queries.
-Aside from that, it’s seems slow because it’s synchronous.</p>
-
-<p>But consider what it would have been like on dial-up.
-Making multiple connections and having a slow server
-would be less significant because of how long each transfer
-would take. By dividing up the list and putting it in an iframe,
-they allow you to stay on the home page, reloading just a small part.
-The real savings in time is errors; if they didn’t have this sort of validation,
-they would have to send two lists of 360 stations each every time you
-selected a route that didn’t exist. By doing it as they did, they
-prevent errors and thus prevent this slow sending of station lists.</p>
-
-<h2 id="problems-with-the-original-finder">Problems with the original finder</h2>
-<p>As cool as I think the original finder is, I still think it sucks.
-The main annoyance is that it’s slow. Secondarily, the page could
-be less visually noisy. I only ever go to the website to check
-schedules, and the other things probably just distract me.</p>
-
-<p>While working on BetterCoach, I also noticed that the
-official schedule-finder requires Javascript.
-To say it fancy-like, it does not degrade gracefully.
-They could have done without Javascript by adding appropriate buttons.</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bettercoach/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            BetterCoach and the merits of the inferior schedule-finder
+          </h1>
+          <div class='date'>
+            November 13, 2011
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>The <a href="http://coachusa.com">Coach</a> <a href="http://coachcanada.ca">bus</a>
+            <a href="http://shortlinebus.com">schedule-finder</a> is hard-to-use,
+            so I made a <a href="http://bettercoach.thomaslevine.com">better one</a>.</p>
+            
+            <p>But the official schedule-finder is actually sort of cool,
+            at least for its time.</p>
+            
+            <h2 id="original-finder">Original finder</h2>
+            <p>The Coach site’s way of changing one drop-down menu option when you change another
+            is simple and robust. And it probably made a lot more sense if you were using dial-up.</p>
+            
+            <p>It works like this.
+            It’s one little section of the main Coach website.
+            You first select the state from where you’re starting your trip.
+            Then it presents you the cities in that state. Then you select one,
+            and it shows you the states you can go to. And so on.</p>
+            
+            <p>Getting feedback like this before having completed the form is
+            pretty common these days with asynchronous JavaScript.
+            I suspect that the Coach site was built before people knew how to do that.
+            So they did something slightly different.</p>
+            
+            <p>First, they wrap the whole schedule-finder in an iframe.
+            This way, they can reload the schedule-finder without reloading
+            the rest of the Coach homepage.</p>
+            
+            <p>The four drop-down menus are inside this iframe.
+            Instead of asynchronously contacting the server on each
+            change of the form, they submit the form each time;
+            there are four form elements (Actually more, but those are unnecessary.)
+            inside the iframe, and javascript automatically
+            submits each individual form when you change its drop-down menu.
+            This is actually quite similar to how we do form validation
+            today, except that it’s synchronous.</p>
+            
+            <p>It’s quite slow, but that’s mainly because of something in the backend,
+            like maybe an over-loaded, poorly configured server
+            making inefficient database queries.
+            Aside from that, it’s seems slow because it’s synchronous.</p>
+            
+            <p>But consider what it would have been like on dial-up.
+            Making multiple connections and having a slow server
+            would be less significant because of how long each transfer
+            would take. By dividing up the list and putting it in an iframe,
+            they allow you to stay on the home page, reloading just a small part.
+            The real savings in time is errors; if they didn’t have this sort of validation,
+            they would have to send two lists of 360 stations each every time you
+            selected a route that didn’t exist. By doing it as they did, they
+            prevent errors and thus prevent this slow sending of station lists.</p>
+            
+            <h2 id="problems-with-the-original-finder">Problems with the original finder</h2>
+            <p>As cool as I think the original finder is, I still think it sucks.
+            The main annoyance is that it’s slow. Secondarily, the page could
+            be less visually noisy. I only ever go to the website to check
+            schedules, and the other things probably just distract me.</p>
+            
+            <p>While working on BetterCoach, I also noticed that the
+            official schedule-finder requires Javascript.
+            To say it fancy-like, it does not degrade gracefully.
+            They could have done without Javascript by adding appropriate buttons.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bettercoach/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

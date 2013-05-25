@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-10-10T04:00:00Z</updated>
+  <updated>2013-07-01T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -10,536 +10,223 @@
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-10-10:/!/fifteen/index.html</id>
-    <title type="html">Foo</title>
-    <published>2013-10-10T04:00:00Z</published>
-    <updated>2013-10-10T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/fifteen/index.html"/>
-    <content type="html">&lt;p&gt;This happened.&lt;/p&gt;
+    <id>tag:www.thomaslevine.com,2013-07-01:/!/setxkbmap-aliases/index.html</id>
+    <title type="html">setxkbmap aliases</title>
+    <published>2013-07-01T07:00:00Z</published>
+    <updated>2013-07-01T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/setxkbmap-aliases/index.html"/>
+    <content type="html">&lt;p&gt;I normally use the Dvorak keyboard layout, so I configure Dvorak to be the
+default layout on my computers. When other people use my computers, they
+normally want to switch the layout to qwerty. So I have this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="" alt="Screenshot of a facebook message where Danger &amp;quot;gives&amp;quot; Tom the &amp;quot;age&amp;quot; &amp;quot;15&amp;quot;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I received no further direction. So the present writing happened.&lt;/p&gt;
-
-&lt;p&gt;While I was fifteen, I sent 989 emails.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) from:Thomas\ Levine|grep 'All Mail'|wc -l
-989
+&lt;pre&gt;&lt;code&gt;alias aoeu='setxkbmap us'
+alias asdf='setxkbmap us -variant dvorak'
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;I received 9730 (10719 minus 989) emails.&lt;/p&gt;
+&lt;p&gt;Now I can just type the home row left hand to switch between these two
+layouts.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) |grep 'All Mail'|wc -l
-10719
+&lt;p&gt;I sometimes use the Dvorak-inspired French and Swedish layouts. I can select
+the French one with &lt;code&gt;setxkbmap&lt;/code&gt; like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias fr='setxkbmap fr -variant dvorak'
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;I made some plots and stuff. Something happened in June 2005.&lt;/p&gt;
+&lt;p&gt;I still haven’t figured out how to select the Swedish one with &lt;code&gt;setxkbmap&lt;/code&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-06-14:/!/brainstorming/index.html</id>
+    <title type="html">Inspiration for questions</title>
+    <published>2013-06-14T07:00:00Z</published>
+    <updated>2013-06-14T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/brainstorming/index.html"/>
+    <content type="html">&lt;p&gt;I have various mental lists of ways of asking more questions, but I only seem
+to remember them when I need them. I’m trying to write them all down here.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;notmuch search $(date -d 2005-06-01 +%s)..$(date -d 2005-07-01 +%s) from:Thomas\ Levine
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It looks like that was just a conversation about some mathematical series.&lt;/p&gt;
-
-&lt;p&gt;I found it slightly more interesting just to read the titles of the emails.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;notmuch search $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s)|less
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Things that stand out:&lt;/p&gt;
+&lt;p&gt;When you want to think of something new about some thing, ask questions about
+it that emphasize the words listed below. The quoted questions are responses
+to the sentence “I like broccili”.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;I emailed lots of Gmail invites to myself.&lt;/li&gt;
-  &lt;li&gt;I studied some Esperanto with the help of a tutor, Detlef&lt;/li&gt;
-  &lt;li&gt;Many emails pertained to these school clubs
+  &lt;li&gt;Five Ws
     &lt;ul&gt;
-      &lt;li&gt;Shakespeare&lt;/li&gt;
-      &lt;li&gt;Math team, Pythagoreans and chess club (the same group of people)&lt;/li&gt;
-      &lt;li&gt;Technology club&lt;/li&gt;
+      &lt;li&gt;who (“Who else do you know who likes broccili?”)&lt;/li&gt;
+      &lt;li&gt;what (“What else do you like?”)&lt;/li&gt;
+      &lt;li&gt;when (“When did you start liking broccili?”)&lt;/li&gt;
+      &lt;li&gt;where (“Where do you like to eat broccili?”)&lt;/li&gt;
+      &lt;li&gt;why (“Why do you like broccili?”)&lt;/li&gt;
+      &lt;li&gt;how (“How do you prepare broccili?”)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;I emailed school assignments to myself.&lt;/li&gt;
-  &lt;li&gt;I went to France that summer.&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-09-24:/!/want/index.html</id>
-    <title type="html">Things I want</title>
-    <published>2013-09-24T04:00:00Z</published>
-    <updated>2013-09-24T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/want/index.html"/>
-    <content type="html">&lt;ul&gt;
-  &lt;li&gt;Pink fedora&lt;/li&gt;
-  &lt;li&gt;Stenotype (working on it)&lt;/li&gt;
-  &lt;li&gt;Fast scanner for old papers
+  &lt;li&gt;Senses
     &lt;ul&gt;
-      &lt;li&gt;A book-scanner would be even better.&lt;/li&gt;
+      &lt;li&gt;sound (“What does broccili sound like?”)&lt;/li&gt;
+      &lt;li&gt;feel (“What does broccili feel like?”)&lt;/li&gt;
+      &lt;li&gt;smell (“What does broccili smell like?”)&lt;/li&gt;
+      &lt;li&gt;taste (“What does broccili taste like?”)&lt;/li&gt;
+      &lt;li&gt;look (“What does broccili look like?”)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Many Injinji toe socks, specifically 
-  &lt;a href="http://www.rei.com/product/711809/injinji-performance-series-original-weight-mini-crew-toesocks"&gt;these&lt;/a&gt;
-  and &lt;a href="http://www.rei.com/product/728375/injinji-performance-series-original-weight-crew-toesocks"&gt;these&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;More TechWick shirts&lt;/li&gt;
-  &lt;li&gt;Soldering iron with a thin tip&lt;/li&gt;
+  &lt;li&gt;Switch the roles of observers. (“Does broccili like you?”)&lt;/li&gt;
+  &lt;li&gt;Vocabulary
+    &lt;ul&gt;
+      &lt;li&gt;“What is broccili?”&lt;/li&gt;
+      &lt;li&gt;“What do you mean by ‘like’?”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Motivation
+    &lt;ul&gt;
+      &lt;li&gt;Why do you mention that you like broccili?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-05-09:/!/terminal-history/index.html</id>
-    <title type="html">Terminal history</title>
-    <published>2013-05-09T04:00:00Z</published>
-    <updated>2013-05-09T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/terminal-history/index.html"/>
-    <content type="html">&lt;p&gt;If you use the default shell environment settings, you’ll probably wind up
-storing very little of your history. Computers are so big, powerful and cheap
-these days that this is stupid; we should store more.&lt;/p&gt;
+    <id>tag:www.thomaslevine.com,2013-06-07:/!/tmux-aliases/index.html</id>
+    <title type="html">tmux aliases</title>
+    <published>2013-06-07T07:00:00Z</published>
+    <updated>2013-06-07T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/tmux-aliases/index.html"/>
+    <content type="html">&lt;p&gt;Before I implemented my &lt;code&gt;tmuxa&lt;/code&gt; and &lt;code&gt;tmuxl&lt;/code&gt; aliases, the three &lt;code&gt;tmux&lt;/code&gt; calls
+that I used most often were &lt;code&gt;tmux&lt;/code&gt;, &lt;code&gt;tmux list-sessions&lt;/code&gt; and &lt;code&gt;tmux attach&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;My history configuration is better. Here are some things it does.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;History is never deleted.&lt;/li&gt;
-  &lt;li&gt;History is backed up and synchronized across computers with git.&lt;/li&gt;
-  &lt;li&gt;Commands are timestamped.&lt;/li&gt;
-  &lt;li&gt;A new file is created for each shell window.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here’s how I implement that. First, make sure that we never delete history.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Too many commands of history per session
-export HISTSIZE=100000000000000000000
-
-# Ten gigabytes of maximum history size
-export HISTFILESIZE=10000000000
+&lt;pre&gt;&lt;code&gt;$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
+    127 tmux
+    149 tmuxa
+      2 tmuxa 0
+      1 tmuxa -t0
+      3 tmuxa -t 0
+      6 tmuxa -t23
+      1 tmuxa -t 23
+      4 tmuxa -t32
+      1 tmuxa -t 5
+     15 tmux attach
+      2 tmux attach -t0
+      1 tmux attach -t16
+      1 tmux attach -t18
+      2 tmux attach -t 23
+      1 tmux attach -t27
+      1 tmux attach -t28
+      1 tmux attach -t 32
+     18 tmuxl
+      1 tmux --list-sessions
+      7 tmux list-sessions
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Put timestamps in the history files; the timestamp goes in the line above the command.&lt;/p&gt;
+&lt;p&gt;Those commands are long, so I &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/tmux"&gt;made them shorter&lt;/a&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# Save timestamps in the history.
-export HISTTIMEFORMAT="[%F %T %Z]" 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Save to a new file. Datestamp the file to make it easy to search. Add a random
-number so that history files from multiple shells opened in the same nanosecond,
-perhaps across different computers, do not have name clashes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Save history to ~/.history/sh-date-host-randomnumber
-export HISTFILE="$HOME/.history/sh-$(date --rfc-3339 ns)-${RANDOM}"
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Write to the history file after each command; do not wait until the shell session
-has been exited.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Append continuously
-# http://ask.fedoraproject.org/question/18/how-to-keep-history-commands-in-sync-across
-_sync_history(){
-  builtin history -a
-  HISTFILESIZE=$HISTFILESIZE
-}
-PROMPT_COMMAND=_sync_history
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When we separate the history files like this, the built-in history command
-becomes near-useless. Override that command; instead of searching the current
-session’s history, search the last month’s history.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;history(){
-  # Search the current month's history.
-  if [ "$#" = '0' ]; then
-    grep -hv '^#[0-9]*$' "$HOME/.history/sh-$(date +%Y-%m)"*
-  else
-    builtin history "$@"
-  fi
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above discourse is just documention of &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/history-sh"&gt;this file&lt;/a&gt;.
-The other part is a &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/crontab"&gt;crontab&lt;/a&gt; entry that synchronizes my &lt;code&gt;~/.history&lt;/code&gt;
-directory every hour.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@hourly cd "${HOME}/.history" &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp;  git commit . -m "@hourly commit" &amp;amp;&amp;amp; git pull ; git push
+&lt;pre&gt;&lt;code&gt;alias tmuxl='tmux list-sessions'
+alias tmuxa='tmux attach'
 &lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-04-28:/!/wsync/index.html</id>
-    <title type="html">Datestamped archives of a webpage</title>
-    <published>2013-04-28T04:00:00Z</published>
-    <updated>2013-04-28T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/wsync/index.html"/>
-    <content type="html">&lt;p&gt;I like to encapsulate the non-deterministic parts of data analysis systems,
-particularly the acquisition of data from a remote server.
-I prefer to use crude and robust methods for acquiring the data from
-elsewhere and then to analyze everything deterministically based on the
-local version of the data.&lt;/p&gt;
+    <id>tag:www.thomaslevine.com,2013-06-02:/!/magic-r-commands/index.html</id>
+    <title type="html">Magic R commands</title>
+    <published>2013-06-02T07:00:00Z</published>
+    <updated>2013-06-02T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/magic-r-commands/index.html"/>
+    <content type="html">&lt;p&gt;I’ve never come up with a good way for learning/teaching the cool parts of R.
+I guess that’s just how R is; it’s all a hack. Anyway, here are some magic
+incantations.&lt;/p&gt;
 
-&lt;p&gt;To that end, I have this awesome tiny script that I call
-&lt;a href="https://github.com/tlevine/wsync"&gt;&lt;code&gt;wsync&lt;/code&gt;&lt;/a&gt;. You use it like this.&lt;/p&gt;
+&lt;h2 id="general-stuff"&gt;General stuff&lt;/h2&gt;
+&lt;p&gt;When loading a CSV, don’t convert strings to factors.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;wsync http://thomaslevine.com/\!/wsync wsync html
+&lt;pre&gt;&lt;code&gt;read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;wsync&lt;/code&gt; versions one file. The first time you run that command, &lt;code&gt;wsync&lt;/code&gt; will
-download the file, saves it with a datestamp and links a current version to
-the datestamped version.&lt;/p&gt;
+&lt;p&gt;Use ProjectTemplate.&lt;/p&gt;
 
-&lt;h2 id="what-it-does"&gt;What it does&lt;/h2&gt;
-&lt;p&gt;If you’ve already run it, &lt;code&gt;wsync&lt;/code&gt; downloads the file and checks for differences
-between the it and the old file (referenced by the symlink). If the new file is
-the same as the previous version, nothing new is saved. If the new file is
-different, the new file is saved, with a datestamp, and the symlink is changed.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(ProjectTemplate)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;I typically use &lt;code&gt;wsync&lt;/code&gt; with a cron job to download files into a git submodule
-for a larger project. For example, in &lt;a href="http://scott.thomaslevine.com"&gt;Scott&lt;/a&gt;,
-I &lt;a href="https://github.com/tlevine/scott/tree/master/reader/bin"&gt;download&lt;/a&gt;
-an &lt;a href="https://github.com/tlevine/scott-listings"&gt;unreliable and dynamic webpage&lt;/a&gt;
-periodically. In my &lt;a href="/!/april-25-stats-talks/"&gt;competing April 25 meetup analysis&lt;/a&gt;,
-I use it to save historical RSVP statuses from Meetup groups.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sqldf&lt;/code&gt; works on R data.frames and on other databases&lt;/p&gt;
 
-&lt;h2 id="moral-of-the-story"&gt;Moral of the story&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;wsync&lt;/code&gt; is a particular implementation of my data retrieval cache, in shell,
-but I apply this approach more broadly, and I recommend that you do too if
-you’re periodically downloading the same file. This allows you to write
-deterministic (“pure”) data analyses, which are often more robust be easier to debug.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqldf('SELECT foo FROM bar') # Use the bar data.frame
+sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;mapply&lt;/code&gt; maps along a matrix, passing multiple arguments to the function&lt;/p&gt;
+
+&lt;p&gt;Show all factor levels in a ggplot&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +
+  scale_x_discrete('Species', drop = F) + geom_point()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="maintenance"&gt;Maintenance&lt;/h2&gt;
+&lt;p&gt;Update your packages.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;update.packages()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="rprofile"&gt;.Rprofile&lt;/h2&gt;
+&lt;p&gt;Set your preferred mirror&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;r &amp;lt;- getOption("repos")
+r["CRAN"] &amp;lt;- "http://cran.mirrors.hoobly.com"
+options(repos = r)
+rm(r)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remove the carrots from the beginnings of the lines so that you can run code
+that you’ve copied from the shell.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;options(prompt="  ")
+options(continue="+ ") 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make the screen wide&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;options(width=160)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save your command history and output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Sys.setenv(R_HISTSIZE='100000')
+sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)
+&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-04-24:/!/april-25-stats-talks/index.html</id>
-    <title type="html">Attendees decide between statistics talks</title>
-    <published>2013-04-24T04:00:00Z</published>
-    <updated>2013-04-24T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/april-25-stats-talks/index.html"/>
-    <content type="html">&lt;p&gt;Recent statistics indicate resolutions of indecision regarding April 25 statistics talks.&lt;/p&gt;
+    <id>tag:www.thomaslevine.com,2013-05-29:/!/bookmarks/index.html</id>
+    <title type="html">Bookmarks</title>
+    <published>2013-05-29T07:00:00Z</published>
+    <updated>2013-05-29T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/bookmarks/index.html"/>
+    <content type="html">&lt;p&gt;I used to use &lt;a href=""&gt;delicious&lt;/a&gt;,
+but I always found it rather clumsy. I tried
+&lt;a href=""&gt;gitmarks&lt;/a&gt;,
+but it also seemed clumsy. So I made my own bookmark manager,
+&lt;a href=""&gt;Medial-temporal lobe&lt;/a&gt;.
+Here’s how you used it.&lt;/p&gt;
 
-&lt;p&gt;Two statistics talks are competing in New York on April 25, 2013.&lt;/p&gt;
+&lt;p&gt;Save a webpage.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://www.meetup.com/DataKind-NYC/events/112727792/"&gt;Data in the Big City&lt;/a&gt;
-  (&lt;a href="http://www.meetup.com/DataKind-NYC/"&gt;DataKind&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.meetup.com/nyhackr/events/112271042/"&gt;Bigvis: visualising 100,000,000 observations in R with Hadley Wickham&lt;/a&gt;
-  (&lt;a href="http://www.meetup.com/nyhackr/"&gt;New York Open Statistical Programming Meetup&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’ve been &lt;a href="https://github.com/tlevine/april-25-stats"&gt;downloading the RSVPs&lt;/a&gt;
-to see who signs up for which one or both. Here are some quick results.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ./crossovers.py
-Currently attending DataKind: 146 people
-Michael Wimsatt
-Matt Wilson
-samuel weiss
-Aparna
-Robert Doherty
-Elias
-Kaushik Reddy
-graham stalker-wilde
-Yoav Caspi
-Ray Schwartz
-Ken H
-Travis Korte
-Upma Sharma
-Dan
-Stefan
-Peter Darche
-Kempton
-Patrick Yurgosky
-Richard Dunks
-Dan Blum
-Karl Jin
-Kamalesh Rao
-Jason Loup
-Katie Brown
-Aileen Gemma Smith
-Brian Abelson
-Elyse Ross
-Louie
-Charlie Guthrie
-Lauren Moores
-Thomas Levine
-Kyle Hausmann
-Bryan Falk
-Kevin Wilson
-Erich Morisse
-Nick K
-Nora Granville
-Philipp Brandt
-christina zou
-Martina Skender
-Jeremy Singer-Vine
-Gideon
-John
-Garrett Drapala
-Dave
-Anna
-Jennifer Sterling
-Vladimir Dubovskiy
-Korey
-Merlyn Deng
-Evan Misshula
-Ekene 
-Gokce Gizer
-Rick Saporta
-Thuy Mai
-michael s
-wei yin
-Doug Daniels
-Tyler Selby
-Charles Lee
-Julian
-Matthew Lapora
-Scott Teesdale
-Brian Eoff
-Enrico Bertini
-David
-Bliksem Tobey
-Niko
-John Spens
-Jackie Lu
-eric tang
-Ezra Spier
-Tom
-Justin Vincent
-James Schintz
-Karl Sluis
-Jason Capehart
-Ariel Marcus
-Chris Smith
-Udi Schlessinger
-Zubin Jelveh
-Maria 
-Jake Porway
-Sagar
-Rob Oden
-Doug Rausch
-ewig
-Rebecca Shows
-George Wang
-Doug Kanter
-rajasekhar yakkali
-Mark V
-Lara Torvi
-Richipal Singh
-Alainna
-Bianca Sophie
-bug
-Kriti
-Michael Discenza
-Michael Scharf
-Nicholas Johnson
-Olga Musayev
-Tiffany
-Liza Mueller
-Ben Burke
-Suzanne Tee
-Carl Smith
-Mia
-Nicholas Ursa
-Allister
-Brian
-Danielle
-Jennifer Milk
-Sarah Tan
-Craig Barowsky
-as17237
-sharath rao
-Wei Wang
-leizer
-Casey Webb
-Femi Anthony
-carlos manuel manzueta
-John 
-Dan Schneiderman
-mark davenport
-Rahul Lath
-Michael Keller
-Parker Mitchell
-Greg Michnikov
-Paul Salama
-Gregory Gorin
-Cindy
-Ingrid
-Samuel Crane
-James Quacinella
-David LaBarbera
-JD Godchaux
-Rafael Mejia
-Julie
-Andrew Altman
-Siyun Fan
-Kayan
-Sweeney Verma
-David Russell
-yilong zhang
-Amik Ahmad
-
-Currently attending nyhackr: 130 people
-Andreas
-Jim
-Jochen
-JL
-Daniel
-jj knitis
-Bill Alpert
-James Lawry
-Jim Llewellyn
-Jake Bialer
-Matthew Hui
-Abiel Reinhart
-Tom Hughes
-Dimitri Liakhovitski
-Lena Groeger
-Haobo Lai
-Dan
-Hao Lu
-Ben Cohen
-aaron
-Micha Segeritz
-luba
-George Sexton
-Krishnan Manickam
-Silas Merez
-Bryan Lewis
-Eugene Krel
-Seth
-Jon Baer
-Ritesh
-Adi Ray
-Phillip Cloud
-Kate Stafford
-Michael Kane
-Jared Lander
-Andrea Parker
-Vincent Saulys
-Mayra
-Thomas Levine
-Michael Y.
-Susan Helfter
-Emily Ho
-Yipster
-John Weir
-hogu
-Mike Malecki
-Carlos Arenas
-Woo Chang KANG
-Andy Liaw
-Pedro Avila
-Naomi B. Robbins
-Roman Kubiak
-Matthew Perle
-Greg McDonald
-Sisi W.
-Leo
-Kostas Evangelinos
-Tony D
-Nukhet Kayahan
-Saar Golde
-Mark Damien
-Michelle Gill
-Yongchao Ge
-Marcin Mejran
-Kevin Krabbenhoeft
-Doug Petkanics
-Rick Saporta
-Sean J Taylor
-Gang Ma
-Chris Bethel
-John McDonnell
-Aaron Schumacher
-Steve Jaffe
-Yuri Vilinski
-Shangxuan Vivian Zhang
-James Beveridge
-andrei zege
-Ryan Witt
-Jacki Buros
-Haider Ali
-Alexandra Frankel
-Steven Soloway
-Paddy Mullen
-Tom
-Yair Ghitza
-Mehmet Yunt
-Lalit
-Randy Wilson
-Christina
-John Myles White
-Matthew Perkins
-MdV
-Seth Surchin
-David Purdy
-Tiffany
-Christoph Ungemach
-Josh Laurito
-Andrew Sheppard
-Vishal Goklani
-Paul Puglia
-Mike Spaner
-Brian Lee Yung Rowe
-David Crawford
-Adam Laiacano
-Aliona M
-Pablo Barberá
-Roberto Medri
-Tim Zhao
-Jeremy Stanley
-Keith Frost
-René Clausen Nielsen
-Alicia
-Amir Halfon
-Nitin
-Prashant
-Brian Mack
-Carl Vogel
-Charles Lewis
-Alex
-Matt Zeidenberg
-Ryan Raaum
-Esther Drill
-Hongyan Jing
-Yoni Ben-Meshulam
-Chrys Wu
-Frank Deutschmann
-andrew m
-Eric
-Jonathan Shore
-Elliot Noma
-
-Currently attending both, at the same time: 5 people
-Thomas Levine
-Dan
-Rick Saporta
-Tiffany
-Tom
-
-These people were once listed in each event, not necessarily at the same time (24 people).
-Travis Korte
-Nicholas Ursa
-Tom
-Kaushik Reddy
-Jason Capehart
-John McDonnell
-andrew m
-Dan
-Xu Fei
-Femi Anthony
-Vladimir Dubovskiy
-Kamalesh Rao
-Christina
-mark davenport
-Rick Saporta
-Ritesh
-Yoni Ben-Meshulam
-Chrys Wu
-Aaron Schumacher
-Tiffany
-Vishal Goklani
-Thomas Levine
-Suzanne Tee
-Thuy Mai
+&lt;pre&gt;&lt;code&gt;mtl add http://thomaslevine.com
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At least 24 people were somewhat indecisive, but all but five of them have
-resolved their indecision as of 5:00 pm on Wednesday, April 24, the day before
-the talks.&lt;/p&gt;
+&lt;p&gt;A randomly-named directory gets created in
+&lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;. Inside that directory are
+an &lt;code&gt;info&lt;/code&gt; file with metadata, like the URL, and a &lt;code&gt;source&lt;/code&gt; file,
+with the content of the webpage (downloaded with wget).&lt;/p&gt;
+
+&lt;p&gt;You can also set tags.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mtl add -t people,pink http://thomaslevine.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates symlinks inside &lt;code&gt;~/.medial_temporal_lobe/tags&lt;/code&gt;,
+linking to the file in &lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~/.medial_temporal_lobe&lt;/code&gt; is a directory, so you can
+&lt;a href=""&gt;version it with git&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I haven’t implemented any functions other than &lt;code&gt;add&lt;/code&gt;, so you have to use
+other tools for viewing, editing and deleting the bookmarks.&lt;/p&gt;
 </content>
   </entry>
 </feed>

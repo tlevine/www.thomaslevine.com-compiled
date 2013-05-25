@@ -10,12 +10,12 @@
     <title>scp wrapper</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,86 +29,90 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    scp wrapper
-  </h1>
-  <div class='date'>
-    April 17, 2013
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>This has happened to me too many times.</p>
-
-<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
-$
-</code></pre>
-
-<p>I wanted to copy the file <code>bicycles.csv</code> to the home directory of <code>$USER</code> on
-<code>chainsaw.thomaslevine.com</code>. I meant to write this.</p>
-
-<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com:
-</code></pre>
-
-<p>But I forgot the colon, so instead of copying the file to a different computer,
-I copied the file to the local computer, naming it <code>chainsaw.thomaslevine.com</code>.</p>
-
-<pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
-$ ls
-bicycles.csv  chainsaw.thomaslevine.com
-</code></pre>
-
-<p><a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/scp">Here</a> is my solution.</p>
-
-<pre><code>scp() {
-  # Require a colon to be provided.
-  if echo "$*"|grep ':' &gt; /dev/null; then
-    command scp $*
-  else
-    command scp --help
-    echo \ 
-    echo "warning: The scp command that you ran has no colon, so you probably don't"
-    echo '         want to run it. Use "env scp" if you really meant to do that;'
-    echo '         you can run "env !!".'
-    return 1
-  fi
-}
-</code></pre>
-
-<p>If the wrapper function finds no colon in the grep arguments, it warns you that
-you probably wanted a colon to be in the function. If you really did want to
-run the command without a colon, you can just run it with <code>env !!</code>.</p>
-
-<p>Elsewhere in my <code>.profile</code>, I make sure that the <code>.profile</code> is only applied in
-login shells, and not in scripts, so scripts that use <code>scp</code> without a colon
-are still fine.</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/scp-wrapper/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            scp wrapper
+          </h1>
+          <div class='date'>
+            April 17, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>This has happened to me too many times.</p>
+            
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
+            $
+            </code></pre>
+            
+            <p>I wanted to copy the file <code>bicycles.csv</code> to the home directory of <code>$USER</code> on
+            <code>chainsaw.thomaslevine.com</code>. I meant to write this.</p>
+            
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com:
+            </code></pre>
+            
+            <p>But I forgot the colon, so instead of copying the file to a different computer,
+            I copied the file to the local computer, naming it <code>chainsaw.thomaslevine.com</code>.</p>
+            
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
+            $ ls
+            bicycles.csv  chainsaw.thomaslevine.com
+            </code></pre>
+            
+            <p><a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/scp">Here</a> is my solution.</p>
+            
+            <pre><code>scp() {
+              # Require a colon to be provided.
+              if echo "$*"|grep ':' &gt; /dev/null; then
+                command scp $*
+              else
+                command scp --help
+                echo \ 
+                echo "warning: The scp command that you ran has no colon, so you probably don't"
+                echo '         want to run it. Use "env scp" if you really meant to do that;'
+                echo '         you can run "env !!".'
+                return 1
+              fi
+            }
+            </code></pre>
+            
+            <p>If the wrapper function finds no colon in the grep arguments, it warns you that
+            you probably wanted a colon to be in the function. If you really did want to
+            run the command without a colon, you can just run it with <code>env !!</code>.</p>
+            
+            <p>Elsewhere in my <code>.profile</code>, I make sure that the <code>.profile</code> is only applied in
+            login shells, and not in scripts, so scripts that use <code>scp</code> without a colon
+            are still fine.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/scp-wrapper/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

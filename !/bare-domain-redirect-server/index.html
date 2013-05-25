@@ -10,12 +10,12 @@
     <title>Bare domain redirect server</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,78 +29,82 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    Bare domain redirect server
-  </h1>
-  <div class='date'>
-    June 18, 2012
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>I just switched most of my sites to S3. This has made things so simple and
-easy. I have a script that mounts my S3 buckets in ~/s3 (I’ll blog about it
-and link that here). It uses s3fs, so when I copy my websites, it sets
-appropriate headers. Then I just set bucket policies and CNAME records and
-all is well. And now I have come up with a nice solution for bare domain
-redirects.</p>
-
-<p>I sort of wanted <a href="https://twitter.com/thomaslevine/status/214749416635105281">mod_rewrite as a service</a>,
-but I couldn’t find that, so I looked for a cheap VPS. I found a bunch of
-them through <a href="http://www.lowendbox.com">lowendbox</a>. I settled on the cheapest
-plan I could find. Here are the specs.</p>
-
-<pre><code>KVM1 Budget KVM VPS
-1 Core / 128MB RAM / 6GB HD
-Bandwidth: 256GB
-SAS2 10K RAID storage
-</code></pre>
-
-<p>I installed Debian and set up a little script that lets me do this.</p>
-
-<p><code>#sh
-ssh rewrite.thomaslevine.com 'add_rewrite thomaslevine.com'
-</code></p>
-
-<p>I just need to point the <code>thomaslevine.com</code> A record to <code>rewrite</code>’s
-IP address, run the above command, and host <code>www.thomaslevine.com</code>
-somewhere else.</p>
-
-<h2 id="low-end-vps-plans">Low-end VPS plans</h2>
-<p>This VPS is absurdly powerful, so I was pondering doing some other things on
-the same box too. But it’s so cheap (€11.25 per year) that it’s sort of not
-worth trying to use it to its full extend.</p>
-
-<p>I might get a couple of these more for git and piwik, respectively.
-Also, if you find yourself needing bare domain redirects, tell me, and I’ll
-be happy to set them up for you.</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bare-domain-redirect-server/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Bare domain redirect server
+          </h1>
+          <div class='date'>
+            June 18, 2012
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I just switched most of my sites to S3. This has made things so simple and
+            easy. I have a script that mounts my S3 buckets in ~/s3 (I’ll blog about it
+            and link that here). It uses s3fs, so when I copy my websites, it sets
+            appropriate headers. Then I just set bucket policies and CNAME records and
+            all is well. And now I have come up with a nice solution for bare domain
+            redirects.</p>
+            
+            <p>I sort of wanted <a href="https://twitter.com/thomaslevine/status/214749416635105281">mod_rewrite as a service</a>,
+            but I couldn’t find that, so I looked for a cheap VPS. I found a bunch of
+            them through <a href="http://www.lowendbox.com">lowendbox</a>. I settled on the cheapest
+            plan I could find. Here are the specs.</p>
+            
+            <pre><code>KVM1 Budget KVM VPS
+            1 Core / 128MB RAM / 6GB HD
+            Bandwidth: 256GB
+            SAS2 10K RAID storage
+            </code></pre>
+            
+            <p>I installed Debian and set up a little script that lets me do this.</p>
+            
+            <p><code>#sh
+            ssh rewrite.thomaslevine.com 'add_rewrite thomaslevine.com'
+            </code></p>
+            
+            <p>I just need to point the <code>thomaslevine.com</code> A record to <code>rewrite</code>’s
+            IP address, run the above command, and host <code>www.thomaslevine.com</code>
+            somewhere else.</p>
+            
+            <h2 id="low-end-vps-plans">Low-end VPS plans</h2>
+            <p>This VPS is absurdly powerful, so I was pondering doing some other things on
+            the same box too. But it’s so cheap (€11.25 per year) that it’s sort of not
+            worth trying to use it to its full extend.</p>
+            
+            <p>I might get a couple of these more for git and piwik, respectively.
+            Also, if you find yourself needing bare domain redirects, tell me, and I’ll
+            be happy to set them up for you.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bare-domain-redirect-server/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

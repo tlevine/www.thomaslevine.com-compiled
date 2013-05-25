@@ -10,12 +10,12 @@
     <title>Couch-style data versioning in sqlite</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,106 +29,110 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    Couch-style data versioning in sqlite
-  </h1>
-  <div class='date'>
-    
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>How do we retrieve old versions of data conveniently and efficiently?</p>
-
-<h2 id="couchdb-approach">CouchDB approach</h2>
-<p>Couch documents have an <code>_id</code> and a <code>_rev</code>. When updating a document,
-you specify the <code>_id</code> and the <code>_rev</code> of the version that you have.
-You are not allowed to update it if the <code>_rev</code> is not the most recent one;
-this ensures that changes are not overwritten.</p>
-
-<p>If Couch stores documents with the same <code>_id</code> but different <code>_rev</code>s
-and with the links between <code>_rev</code>s, it can retrive old versions.</p>
-
-<p>With some abstraction, this paradigm becomes a convenient form of
-distributed data version control.</p>
-
-<h2 id="sqlite-implementation">SQLite implementation</h2>
-<p>Not everyone likes Couch as much as I do, and ScraperWiki uses SQLite,
-so I’ve been making SQLite feel more like Couch. How do we put this
-data version control in couch?</p>
-
-<p>Let’s start by trying to version one table that does not reference
-other tables.</p>
-
-<p>Create the table, and create a unique index on <code>_id</code> and <code>_rev</code>.</p>
-
-<pre><code>CREATE TABLE foo (
-  _id INTEGER, _currentrev INTEGER, _previousrev INTEGER,
-  bar INTEGER, baz TEXT,
-  FOREIGN KEY (_previousref) REFERENCES foo(_currentrev)
-);
-CREATE UNIQUE INDEX version ON foo (_id, _currentrev);
-</code></pre>
-
-<p>To get the latest version, select by <code>_id</code> and retrieve only
-the highest <code>_previousrev</code>.</p>
-
-<pre><code>SELECT * FROM foo GROUP BY _id -- and something about the version
-</code></pre>
-
-<p>Rather than updating rows, insert new rows that reference
-old <code>_rev</code>s; for example, this is how you revise the record
-for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to “answer”.</p>
-
-<pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");
-</code></pre>
-
-<p>When combining two database files that have gotten out of sync,
-find the discrepencies and add a newer <code>_currentrev</code> that merges
-the changes.</p>
-
-<h2 id="simplify">Simplify</h2>
-
-<p>Let’s write custom SQLite functions to simplify this retrieval.</p>
-
-<pre><code>SELECT * FROM foo WHERE version(*) = 12
-</code></pre>
-
-<p>And let’s allow you to specify tags.</p>
-
-<pre><code>SELECT * FROM foo WHERE version(*) = "master";
-SELECT * FROM foo WHERE version(*) = "0.2.1";
-</code></pre>
-
-<h2 id="sudden-ending">Sudden ending</h2>
-<p>I got bored of writing. Please imagine some awesome insightful continuation.</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/couch-versioning-in-sqlite/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Couch-style data versioning in sqlite
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>How do we retrieve old versions of data conveniently and efficiently?</p>
+            
+            <h2 id="couchdb-approach">CouchDB approach</h2>
+            <p>Couch documents have an <code>_id</code> and a <code>_rev</code>. When updating a document,
+            you specify the <code>_id</code> and the <code>_rev</code> of the version that you have.
+            You are not allowed to update it if the <code>_rev</code> is not the most recent one;
+            this ensures that changes are not overwritten.</p>
+            
+            <p>If Couch stores documents with the same <code>_id</code> but different <code>_rev</code>s
+            and with the links between <code>_rev</code>s, it can retrive old versions.</p>
+            
+            <p>With some abstraction, this paradigm becomes a convenient form of
+            distributed data version control.</p>
+            
+            <h2 id="sqlite-implementation">SQLite implementation</h2>
+            <p>Not everyone likes Couch as much as I do, and ScraperWiki uses SQLite,
+            so I’ve been making SQLite feel more like Couch. How do we put this
+            data version control in couch?</p>
+            
+            <p>Let’s start by trying to version one table that does not reference
+            other tables.</p>
+            
+            <p>Create the table, and create a unique index on <code>_id</code> and <code>_rev</code>.</p>
+            
+            <pre><code>CREATE TABLE foo (
+              _id INTEGER, _currentrev INTEGER, _previousrev INTEGER,
+              bar INTEGER, baz TEXT,
+              FOREIGN KEY (_previousref) REFERENCES foo(_currentrev)
+            );
+            CREATE UNIQUE INDEX version ON foo (_id, _currentrev);
+            </code></pre>
+            
+            <p>To get the latest version, select by <code>_id</code> and retrieve only
+            the highest <code>_previousrev</code>.</p>
+            
+            <pre><code>SELECT * FROM foo GROUP BY _id -- and something about the version
+            </code></pre>
+            
+            <p>Rather than updating rows, insert new rows that reference
+            old <code>_rev</code>s; for example, this is how you revise the record
+            for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to “answer”.</p>
+            
+            <pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");
+            </code></pre>
+            
+            <p>When combining two database files that have gotten out of sync,
+            find the discrepencies and add a newer <code>_currentrev</code> that merges
+            the changes.</p>
+            
+            <h2 id="simplify">Simplify</h2>
+            
+            <p>Let’s write custom SQLite functions to simplify this retrieval.</p>
+            
+            <pre><code>SELECT * FROM foo WHERE version(*) = 12
+            </code></pre>
+            
+            <p>And let’s allow you to specify tags.</p>
+            
+            <pre><code>SELECT * FROM foo WHERE version(*) = "master";
+            SELECT * FROM foo WHERE version(*) = "0.2.1";
+            </code></pre>
+            
+            <h2 id="sudden-ending">Sudden ending</h2>
+            <p>I got bored of writing. Please imagine some awesome insightful continuation.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/couch-versioning-in-sqlite/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

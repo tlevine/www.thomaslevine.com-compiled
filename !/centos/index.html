@@ -10,12 +10,12 @@
     <title>CentOS cluster slaves</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,87 +29,91 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    CentOS cluster slaves
-  </h1>
-  <div class='date'>
-    October 29, 2012
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>I’m setting up workers for my cluster to be accessed from R. I got a VPS from
-NodeDeploy and found CentOS easiest to install. Here’s the extra configuration
-I needed.</p>
-
-<p><a href="http://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-dhcp-configuring-client.html">Connecting to the network on boot</a></p>
-
-<pre><code>sed -i s/no/yes/ /etc/sysconfig/network-scripts/ifcfg-eth0
-</code></pre>
-
-<p><a href="http://stackoverflow.com/questions/9468164/problems-installing-r-on-linux-centos-6-2">Install R</a></p>
-
-<pre><code>rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm  
-yum install R make
-</code></pre>
-
-<p>Other nice packages</p>
-
-<pre><code>yum install htop
-</code></pre>
-
-<p>Install the packages I want.</p>
-
-<pre><code>#!/usr/bin/env Rscript
-#
-# These run in different lines so they can be separated if need be.
-#
-
-# General
-install.packages(c('plyr', 'ggplot2', 'reshape', 'stringr', 'ProjectTemplate'))
-
-# One parallel framework
-install.packages('snowfall')
-
-# Another, with two backends
-install.packages(c('foreach'))
-install.packages(c('parallel', 'doParallel'))
-install.packages(c('snow', 'doSNOW'))
-</code></pre>
-
-<p>I tried making symlinks to make the CentOS R environment look more like mine,
-but I started getting problems without error messages, so I stopped trying.
-I wound up just running the master on another NodeDeploy server.</p>
-
-<p>Try configuring hosts to deal with those errors.
-http://serverfault.com/questions/260706/possible-break-in-attempt-in-var-log-secure-what-does-this-mean</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/centos/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            CentOS cluster slaves
+          </h1>
+          <div class='date'>
+            October 29, 2012
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I’m setting up workers for my cluster to be accessed from R. I got a VPS from
+            NodeDeploy and found CentOS easiest to install. Here’s the extra configuration
+            I needed.</p>
+            
+            <p><a href="http://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-dhcp-configuring-client.html">Connecting to the network on boot</a></p>
+            
+            <pre><code>sed -i s/no/yes/ /etc/sysconfig/network-scripts/ifcfg-eth0
+            </code></pre>
+            
+            <p><a href="http://stackoverflow.com/questions/9468164/problems-installing-r-on-linux-centos-6-2">Install R</a></p>
+            
+            <pre><code>rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm  
+            yum install R make
+            </code></pre>
+            
+            <p>Other nice packages</p>
+            
+            <pre><code>yum install htop
+            </code></pre>
+            
+            <p>Install the packages I want.</p>
+            
+            <pre><code>#!/usr/bin/env Rscript
+            #
+            # These run in different lines so they can be separated if need be.
+            #
+            
+            # General
+            install.packages(c('plyr', 'ggplot2', 'reshape', 'stringr', 'ProjectTemplate'))
+            
+            # One parallel framework
+            install.packages('snowfall')
+            
+            # Another, with two backends
+            install.packages(c('foreach'))
+            install.packages(c('parallel', 'doParallel'))
+            install.packages(c('snow', 'doSNOW'))
+            </code></pre>
+            
+            <p>I tried making symlinks to make the CentOS R environment look more like mine,
+            but I started getting problems without error messages, so I stopped trying.
+            I wound up just running the master on another NodeDeploy server.</p>
+            
+            <p>Try configuring hosts to deal with those errors.
+            http://serverfault.com/questions/260706/possible-break-in-attempt-in-var-log-secure-what-does-this-mean</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/centos/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

@@ -10,12 +10,12 @@
     <title>Foo</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,87 +29,91 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    Foo
-  </h1>
-  <div class='date'>
-    October 10, 2013
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>This happened.</p>
-
-<p><img src="" alt="Screenshot of a facebook message where Danger &quot;gives&quot; Tom the &quot;age&quot; &quot;15&quot;" /></p>
-
-<p>I received no further direction. So the present writing happened.</p>
-
-<p>While I was fifteen, I sent 989 emails.</p>
-
-<pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) from:Thomas\ Levine|grep 'All Mail'|wc -l
-989
-</code></pre>
-
-<p>I received 9730 (10719 minus 989) emails.</p>
-
-<pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) |grep 'All Mail'|wc -l
-10719
-</code></pre>
-
-<p>I made some plots and stuff. Something happened in June 2005.</p>
-
-<pre><code>notmuch search $(date -d 2005-06-01 +%s)..$(date -d 2005-07-01 +%s) from:Thomas\ Levine
-</code></pre>
-
-<p>It looks like that was just a conversation about some mathematical series.</p>
-
-<p>I found it slightly more interesting just to read the titles of the emails.</p>
-
-<pre><code>notmuch search $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s)|less
-</code></pre>
-
-<p>Things that stand out:</p>
-
-<ul>
-  <li>I emailed lots of Gmail invites to myself.</li>
-  <li>I studied some Esperanto with the help of a tutor, Detlef</li>
-  <li>Many emails pertained to these school clubs
-    <ul>
-      <li>Shakespeare</li>
-      <li>Math team, Pythagoreans and chess club (the same group of people)</li>
-      <li>Technology club</li>
-    </ul>
-  </li>
-  <li>I emailed school assignments to myself.</li>
-  <li>I went to France that summer.</li>
-</ul></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/fifteen/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Foo
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>This happened.</p>
+            
+            <p><img src="" alt="Screenshot of a facebook message where Danger &quot;gives&quot; Tom the &quot;age&quot; &quot;15&quot;" /></p>
+            
+            <p>I received no further direction. So the present writing happened.</p>
+            
+            <p>While I was fifteen, I sent 989 emails.</p>
+            
+            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) from:Thomas\ Levine|grep 'All Mail'|wc -l
+            989
+            </code></pre>
+            
+            <p>I received 9730 (10719 minus 989) emails.</p>
+            
+            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) |grep 'All Mail'|wc -l
+            10719
+            </code></pre>
+            
+            <p>I made some plots and stuff. Something happened in June 2005.</p>
+            
+            <pre><code>notmuch search $(date -d 2005-06-01 +%s)..$(date -d 2005-07-01 +%s) from:Thomas\ Levine
+            </code></pre>
+            
+            <p>It looks like that was just a conversation about some mathematical series.</p>
+            
+            <p>I found it slightly more interesting just to read the titles of the emails.</p>
+            
+            <pre><code>notmuch search $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s)|less
+            </code></pre>
+            
+            <p>Things that stand out:</p>
+            
+            <ul>
+              <li>I emailed lots of Gmail invites to myself.</li>
+              <li>I studied some Esperanto with the help of a tutor, Detlef</li>
+              <li>Many emails pertained to these school clubs
+                <ul>
+                  <li>Shakespeare</li>
+                  <li>Math team, Pythagoreans and chess club (the same group of people)</li>
+                  <li>Technology club</li>
+                </ul>
+              </li>
+              <li>I emailed school assignments to myself.</li>
+              <li>I went to France that summer.</li>
+            </ul>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/fifteen/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

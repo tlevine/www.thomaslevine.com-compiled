@@ -10,12 +10,12 @@
     <title>Twitter Scraper Library</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
-    <meta content='nanoc 3.4.2' name='generator'>
+    <meta content='nanoc 3.6.3' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cb7e8fdfc7c.css' rel='stylesheet'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -29,92 +29,96 @@
       </p>
     <![endif]-->
     <div id='wrapper'>
-      <div id='container'><nav>
-  <ul class='nobullet'>
-    <li class='link'>
-      <a href='/'>
-        <div>~</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/'>
-        <div>!</div>
-      </a>
-    </li>
-    <li class='link'>
-      <a href='/!/about/'>
-        <div>?</div>
-      </a>
-    </li>
-  </ul>
-</nav>
-<header class='title-card'>
-  <h1>
-    Twitter Scraper Library
-  </h1>
-  <div class='date'>
-    May 04, 2012
-  </div>
-</header>
-<div id='article-wrapper'>
-  <article><p>I wanted to save the tweets from <a href="tcamp">Transparency Camp</a>.
-This prompted me to turn <a href="annaps">Anna</a>’s <a href="basic">basic Twitter scraper</a>
-into a <a href="twitter_search">library</a>. Here’s how you use it.</p>
-
-<p>Import it. (It only works on ScraperWiki, unfortunately.)</p>
-
-<pre><code>from scraperwiki import swimport
-search = swimport('twitter_search').search
-</code></pre>
-
-<p>Then search for terms.</p>
-
-<pre><code>search(['picnic #tcamp12', 'from:TCampDC', '@TCampDC', '#tcamp12', '#viphack'])
-</code></pre>
-
-<p>A separate search will be run on each of these phrases.</p>
-
-<h3 id="a-more-complete-search">A more complete search</h3>
-<p>Searching for <code>#tcamp12</code> and <code>#viphack</code> didn’t get me all of the
-tweets because I waited like a week to do this. In order to get
-a more complete list of the tweets, I looked at the tweets returned
-from that first search; I searched for tweets referencing the users
-who had tweeted those tweets.</p>
-
-<pre><code>from scraperwiki.sqlite import save, select
-from time import sleep
-
-# Search by user to get some more
-users = [row['from_user'] + ' tcamp12' for row in \
-    select('distinct from_user from swdata where from_user where user &gt; "%s"' \
-    % get_var('previous_from_user', ''))]
-
-for user in users:
-    search([user], num_pages = 2)
-    save_var('previous_from_user', user)
-    sleep(2)
-</code></pre>
-
-<p>By default, the <code>search</code> function retrieves 15 pages of results, which
-is the maximum. In order to save some time, I limited this second phase
-of searching to two pages, or 200 results; I doubted that there would
-be more than 200 relevant results mentioning a particular user.</p>
-
-<p>The <a href="tcamp_tweets">full script</a> also counts how many tweets were made
-by each user.</p>
-
-<h3 id="library">Library</h3>
-
-<p>Remember, this is a library, so you can easily reuse it in your own
-scripts, like <a href="max">Max Richman</a> has already <a href="datahh_tweets">started doing</a>.</p></article>
-</div>
-<div id='pagination'>
-  <div class='base-little-card'>
-    <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/twitter-scraper-library/index.md">View source</a>
-    <a href="https://twitter.com/thomaslevine">Discuss</a>
-  </div>
-</div></div>
-      <script src='/js/application-cba00577e3a.js'></script>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Twitter Scraper Library
+          </h1>
+          <div class='date'>
+            May 04, 2012
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I wanted to save the tweets from <a href="tcamp">Transparency Camp</a>.
+            This prompted me to turn <a href="annaps">Anna</a>’s <a href="basic">basic Twitter scraper</a>
+            into a <a href="twitter_search">library</a>. Here’s how you use it.</p>
+            
+            <p>Import it. (It only works on ScraperWiki, unfortunately.)</p>
+            
+            <pre><code>from scraperwiki import swimport
+            search = swimport('twitter_search').search
+            </code></pre>
+            
+            <p>Then search for terms.</p>
+            
+            <pre><code>search(['picnic #tcamp12', 'from:TCampDC', '@TCampDC', '#tcamp12', '#viphack'])
+            </code></pre>
+            
+            <p>A separate search will be run on each of these phrases.</p>
+            
+            <h3 id="a-more-complete-search">A more complete search</h3>
+            <p>Searching for <code>#tcamp12</code> and <code>#viphack</code> didn’t get me all of the
+            tweets because I waited like a week to do this. In order to get
+            a more complete list of the tweets, I looked at the tweets returned
+            from that first search; I searched for tweets referencing the users
+            who had tweeted those tweets.</p>
+            
+            <pre><code>from scraperwiki.sqlite import save, select
+            from time import sleep
+            
+            # Search by user to get some more
+            users = [row['from_user'] + ' tcamp12' for row in \
+                select('distinct from_user from swdata where from_user where user &gt; "%s"' \
+                % get_var('previous_from_user', ''))]
+            
+            for user in users:
+                search([user], num_pages = 2)
+                save_var('previous_from_user', user)
+                sleep(2)
+            </code></pre>
+            
+            <p>By default, the <code>search</code> function retrieves 15 pages of results, which
+            is the maximum. In order to save some time, I limited this second phase
+            of searching to two pages, or 200 results; I doubted that there would
+            be more than 200 relevant results mentioning a particular user.</p>
+            
+            <p>The <a href="tcamp_tweets">full script</a> also counts how many tweets were made
+            by each user.</p>
+            
+            <h3 id="library">Library</h3>
+            
+            <p>Remember, this is a library, so you can easily reuse it in your own
+            scripts, like <a href="max">Max Richman</a> has already <a href="datahh_tweets">started doing</a>.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/twitter-scraper-library/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb3c4e0d4e8.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
