@@ -192,10 +192,10 @@ sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-05-29:/!/bookmarks/index.html</id>
+    <id>tag:www.thomaslevine.com,2013-05-30:/!/bookmarks/index.html</id>
     <title type="html">Bookmarks</title>
-    <published>2013-05-29T07:00:00Z</published>
-    <updated>2013-05-29T07:00:00Z</updated>
+    <published>2013-05-30T07:00:00Z</published>
+    <updated>2013-05-30T07:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/bookmarks/index.html"/>
     <content type="html">&lt;p&gt;I used to use &lt;a href="https://delicious.com/tlevine"&gt;delicious&lt;/a&gt;,
 but I always found it rather clumsy. I tried
