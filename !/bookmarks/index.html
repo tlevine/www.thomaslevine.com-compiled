@@ -59,12 +59,14 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>I used to use <a href="">delicious</a>,
+            <p>I used to use <a href="https://delicious.com/tlevine">delicious</a>,
             but I always found it rather clumsy. I tried
-            <a href="">gitmarks</a>,
+            <a href="https://github.com/tlevine/medial_temporal_lobe">gitmarks</a>,
             but it also seemed clumsy. So I made my own bookmark manager,
-            <a href="">Medial-temporal lobe</a>.
-            Here’s how you used it.</p>
+            <a href="https://github.com/tlevine/medial_temporal_lobe">medial-temporal lobe</a>.</p>
+            
+            <h2 id="how">How</h2>
+            <p>Here’s how you use it.</p>
             
             <p>Save a webpage.</p>
             
@@ -85,10 +87,44 @@
             linking to the file in <code>~/.medial_temporal_lobe/memories</code>.</p>
             
             <p><code>~/.medial_temporal_lobe</code> is a directory, so you can
-            <a href="">version it with git</a>.</p>
+            <a href="https://github.com/tlevine/.medial_temporal_lobe">version it with git</a>.</p>
             
             <p>I haven’t implemented any functions other than <code>add</code>, so you have to use
             other tools for viewing, editing and deleting the bookmarks.</p>
+            
+            <h2 id="differences">Differences</h2>
+            <p>I find it much easier and faster and generally more convenient to
+            add bookmarks with <code>mtl</code> than with Delicious, and I wind up saving
+            more things.</p>
+            
+            <p>It is quite easy to tag things, so I add more tags. I generally make an
+            alias to facilitate this. For example, I was reading about configuring
+            bundler earlier today, so I wound up with a bunch of things that I wanted
+            to tag with “ruby” and “bundler”, so I made this alias.</p>
+            
+            <pre><code>alias a='mtl add -t ruby,bundler'
+            </code></pre>
+            
+            <p>And then I ran <code>a $url</code> for a bunch of urls.</p>
+            
+            <p>It is also quite easy to search things, even though I haven’t implemented
+            an <code>mtl</code> command for it. I just run something like this.</p>
+            
+            <pre><code>cd ~/.medial_temporal_temporal/tags/ruby
+            cat */info
+            </code></pre>
+            
+            <p>You could also search within the files, including the saved files.</p>
+            
+            <pre><code>grep -r ruby ~/.medial_temporal_lobe/memories
+            </code></pre>
+            
+            <p>I also use this as a mirror for files I want to read. This is especially
+            helpful when I’m on a train. (I like trains.) I can bookmark/download a
+            bunch of files, commit them, push them, pull them from my laptop, get on
+            the train and then read them without an internet connection. This is, of
+            course, quite easy to do by other means, but it’s not something I would
+            have done with Delicious.</p>
           </article>
         </div>
         <div id='pagination'>
@@ -98,7 +134,7 @@
           </div>
         </div>
       </div>
-      <script src='/js/application-cb3c4e0d4e8.js'></script>
+      <script src='/js/application-cb1c0d9d011.js'></script>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");

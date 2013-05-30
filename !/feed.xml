@@ -197,12 +197,14 @@ sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-
     <published>2013-05-29T07:00:00Z</published>
     <updated>2013-05-29T07:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/bookmarks/index.html"/>
-    <content type="html">&lt;p&gt;I used to use &lt;a href=""&gt;delicious&lt;/a&gt;,
+    <content type="html">&lt;p&gt;I used to use &lt;a href="https://delicious.com/tlevine"&gt;delicious&lt;/a&gt;,
 but I always found it rather clumsy. I tried
-&lt;a href=""&gt;gitmarks&lt;/a&gt;,
+&lt;a href="https://github.com/tlevine/medial_temporal_lobe"&gt;gitmarks&lt;/a&gt;,
 but it also seemed clumsy. So I made my own bookmark manager,
-&lt;a href=""&gt;Medial-temporal lobe&lt;/a&gt;.
-Here’s how you used it.&lt;/p&gt;
+&lt;a href="https://github.com/tlevine/medial_temporal_lobe"&gt;medial-temporal lobe&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="how"&gt;How&lt;/h2&gt;
+&lt;p&gt;Here’s how you use it.&lt;/p&gt;
 
 &lt;p&gt;Save a webpage.&lt;/p&gt;
 
@@ -223,10 +225,44 @@ with the content of the webpage (downloaded with wget).&lt;/p&gt;
 linking to the file in &lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;~/.medial_temporal_lobe&lt;/code&gt; is a directory, so you can
-&lt;a href=""&gt;version it with git&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://github.com/tlevine/.medial_temporal_lobe"&gt;version it with git&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I haven’t implemented any functions other than &lt;code&gt;add&lt;/code&gt;, so you have to use
 other tools for viewing, editing and deleting the bookmarks.&lt;/p&gt;
+
+&lt;h2 id="differences"&gt;Differences&lt;/h2&gt;
+&lt;p&gt;I find it much easier and faster and generally more convenient to
+add bookmarks with &lt;code&gt;mtl&lt;/code&gt; than with Delicious, and I wind up saving
+more things.&lt;/p&gt;
+
+&lt;p&gt;It is quite easy to tag things, so I add more tags. I generally make an
+alias to facilitate this. For example, I was reading about configuring
+bundler earlier today, so I wound up with a bunch of things that I wanted
+to tag with “ruby” and “bundler”, so I made this alias.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias a='mtl add -t ruby,bundler'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then I ran &lt;code&gt;a $url&lt;/code&gt; for a bunch of urls.&lt;/p&gt;
+
+&lt;p&gt;It is also quite easy to search things, even though I haven’t implemented
+an &lt;code&gt;mtl&lt;/code&gt; command for it. I just run something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_temporal/tags/ruby
+cat */info
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also search within the files, including the saved files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep -r ruby ~/.medial_temporal_lobe/memories
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also use this as a mirror for files I want to read. This is especially
+helpful when I’m on a train. (I like trains.) I can bookmark/download a
+bunch of files, commit them, push them, pull them from my laptop, get on
+the train and then read them without an internet connection. This is, of
+course, quite easy to do by other means, but it’s not something I would
+have done with Delicious.&lt;/p&gt;
 </content>
   </entry>
 </feed>
