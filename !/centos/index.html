@@ -65,38 +65,19 @@
             
             <p><a href="http://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-dhcp-configuring-client.html">Connecting to the network on boot</a></p>
             
-            <pre><code>sed -i s/no/yes/ /etc/sysconfig/network-scripts/ifcfg-eth0
-            </code></pre>
+            <pre><code>sed -i s/no/yes/ /etc/sysconfig/network-scripts/ifcfg-eth0&#x000A;</code></pre>
             
             <p><a href="http://stackoverflow.com/questions/9468164/problems-installing-r-on-linux-centos-6-2">Install R</a></p>
             
-            <pre><code>rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm  
-            yum install R make
-            </code></pre>
+            <pre><code>rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm  &#x000A;yum install R make&#x000A;</code></pre>
             
             <p>Other nice packages</p>
             
-            <pre><code>yum install htop
-            </code></pre>
+            <pre><code>yum install htop&#x000A;</code></pre>
             
             <p>Install the packages I want.</p>
             
-            <pre><code>#!/usr/bin/env Rscript
-            #
-            # These run in different lines so they can be separated if need be.
-            #
-            
-            # General
-            install.packages(c('plyr', 'ggplot2', 'reshape', 'stringr', 'ProjectTemplate'))
-            
-            # One parallel framework
-            install.packages('snowfall')
-            
-            # Another, with two backends
-            install.packages(c('foreach'))
-            install.packages(c('parallel', 'doParallel'))
-            install.packages(c('snow', 'doSNOW'))
-            </code></pre>
+            <pre><code>#!/usr/bin/env Rscript&#x000A;#&#x000A;# These run in different lines so they can be separated if need be.&#x000A;#&#x000A;&#x000A;# General&#x000A;install.packages(c('plyr', 'ggplot2', 'reshape', 'stringr', 'ProjectTemplate'))&#x000A;&#x000A;# One parallel framework&#x000A;install.packages('snowfall')&#x000A;&#x000A;# Another, with two backends&#x000A;install.packages(c('foreach'))&#x000A;install.packages(c('parallel', 'doParallel'))&#x000A;install.packages(c('snow', 'doSNOW'))&#x000A;</code></pre>
             
             <p>I tried making symlinks to make the CentOS R environment look more like mine,
             but I started getting problems without error messages, so I stopped trying.

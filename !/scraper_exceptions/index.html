@@ -65,9 +65,7 @@
             
             <p>Here is some ways that an exception might be raised.</p>
             
-            <pre><code>[][0] #The list has no zeroth element, so this raises an IndexError
-            {}['foo'] #The dictionary has no foo element, so this raises a KeyError
-            </code></pre>
+            <pre><code>[][0] #The list has no zeroth element, so this raises an IndexError&#x000A;{}['foo'] #The dictionary has no foo element, so this raises a KeyError&#x000A;</code></pre>
             
             <p>I would generally try to prevent the exception
             from coming up in the first place,
@@ -76,18 +74,15 @@
             <h2 id="example-1-inconsistant-date-formats">Example 1: Inconsistant date formats</h2>
             <p>Let’s say we’re parsing dates.</p>
             
-            <pre><code>import datetime
-            </code></pre>
+            <pre><code>import datetime&#x000A;</code></pre>
             
             <p>This doesn’t raise an error.</p>
             
-            <pre><code>datetime.datetime.strptime('2012-04-19', '%Y-%m-%d')
-            </code></pre>
+            <pre><code>datetime.datetime.strptime('2012-04-19', '%Y-%m-%d')&#x000A;</code></pre>
             
             <p>But this does.</p>
             
-            <pre><code>datetime.datetime.strptime('April 19, 2012', '%Y-%m-%d')
-            </code></pre>
+            <pre><code>datetime.datetime.strptime('April 19, 2012', '%Y-%m-%d')&#x000A;</code></pre>
             
             <p>It raises a ValueError because the date formats don’t match.
             So what do we do if we’re scraping a data source with multiple date formats?</p>
@@ -95,21 +90,7 @@
             <h3 id="ignoring-unexpected-date-formats">Ignoring unexpected date formats</h3>
             <p>A simple thing is to ignore the date formats that we didn’t expect.</p>
             
-            <pre><code>import lxml.html
-            import datetime
-            
-            def parse_date1(source):
-                rawdate = lxml.html.fromstring(source).get_element_by_id('date').text
-            
-                try:
-                     cleandate = datetime.datetime.strptime(rawdate, '%Y-%m-%d')
-                except ValueError:
-                     cleandate = None
-            
-                return cleandate
-            
-            print parse_date1('&lt;div id="date"&gt;2012-04-19&lt;/div&gt;')
-            </code></pre>
+            <pre><code>import lxml.html&#x000A;import datetime&#x000A;&#x000A;def parse_date1(source):&#x000A;    rawdate = lxml.html.fromstring(source).get_element_by_id('date').text&#x000A;&#x000A;    try:&#x000A;         cleandate = datetime.datetime.strptime(rawdate, '%Y-%m-%d')&#x000A;    except ValueError:&#x000A;         cleandate = None&#x000A;&#x000A;    return cleandate&#x000A;&#x000A;print parse_date1('&lt;div id="date"&gt;2012-04-19&lt;/div&gt;')&#x000A;</code></pre>
             
             <p>If we make a clean date column in a database and put this in there,
             we’ll have some rows with dates and some rows with nulls. If there
@@ -119,24 +100,7 @@
             <p>Maybe we have determined that this particular data source uses
             three different date formats. We can try all three.</p>
             
-            <pre><code>import lxml.html
-            import datetime
-            
-            def parse_date2(source):
-                rawdate = lxml.html.fromstring(source).get_element_by_id('date').text
-            
-                for date_format in ['%Y-%m-%d', '%B %d, %Y', '%d %B, %Y']:
-                    try:
-                         cleandate = datetime.datetime.strptime(rawdate, date_format)
-                    except ValueError:
-                         cleandate = None
-                    else:
-                         break
-            
-                return cleandate
-            
-            print parse_date2('&lt;div id="date"&gt;19 April, 2012&lt;/div&gt;')
-            </code></pre>
+            <pre><code>import lxml.html&#x000A;import datetime&#x000A;&#x000A;def parse_date2(source):&#x000A;    rawdate = lxml.html.fromstring(source).get_element_by_id('date').text&#x000A;&#x000A;    for date_format in ['%Y-%m-%d', '%B %d, %Y', '%d %B, %Y']:&#x000A;        try:&#x000A;             cleandate = datetime.datetime.strptime(rawdate, date_format)&#x000A;        except ValueError:&#x000A;             cleandate = None&#x000A;        else:&#x000A;             break&#x000A;&#x000A;    return cleandate&#x000A;&#x000A;print parse_date2('&lt;div id="date"&gt;19 April, 2012&lt;/div&gt;')&#x000A;</code></pre>
             
             <p>This loops through three different date formats and returns the first
             one that doesn’t raise the error.</p>
@@ -147,24 +111,7 @@
             HTTPErrors or URLErrors for valid URLs. Trying again later
             might help.</p>
             
-            <pre><code>import urllib2
-            
-            def load(url):
-                retries = 3
-                for i in range(retries):
-                    try:
-                        handle = urllib2.urlopen(url)
-                    except urllib2.URLError:
-                        if i + 1 == retries:
-                            raise
-                        else:
-                            time.sleep(42)
-                    else:
-                        break
-                return handle.read()
-            
-            print load('http://thomaslevine.com')
-            </code></pre>
+            <pre><code>import urllib2&#x000A;&#x000A;def load(url):&#x000A;    retries = 3&#x000A;    for i in range(retries):&#x000A;        try:&#x000A;            handle = urllib2.urlopen(url)&#x000A;        except urllib2.URLError:&#x000A;            if i + 1 == retries:&#x000A;                raise&#x000A;            else:&#x000A;                time.sleep(42)&#x000A;        else:&#x000A;            break&#x000A;    return handle.read()&#x000A;&#x000A;print load('http://thomaslevine.com')&#x000A;</code></pre>
             
             <p>This function tries thrice to download the page.
             On the first two fails, it waits 42 seconds and tries again.
@@ -177,18 +124,7 @@
             want to go through all of the documents before deciding
             which to fix first or whether to do some of them manually.</p>
             
-            <pre><code>import scraperwiki
-            
-            for document_name in document_names:
-                try:
-                    parse_document(document_name)
-                except Exception as e:
-                    scraperwiki.sqlite.save([], {
-                        'documentName': document_name,
-                        'exceptionType': str(type(e)),
-                        'exceptionMessage': str(e)
-                    }, 'errors')
-            </code></pre>
+            <pre><code>import scraperwiki&#x000A;&#x000A;for document_name in document_names:&#x000A;    try:&#x000A;        parse_document(document_name)&#x000A;    except Exception as e:&#x000A;        scraperwiki.sqlite.save([], {&#x000A;            'documentName': document_name,&#x000A;            'exceptionType': str(type(e)),&#x000A;            'exceptionMessage': str(e)&#x000A;        }, 'errors')&#x000A;</code></pre>
             
             <p>This catches any exception raised by a particular document,
             stores it in the database and then continues with the next document.
@@ -205,29 +141,13 @@
             but sometimes I can’t, particularly when I don’t have
             a unique index.</p>
             
-            <pre><code>for bar in bars:
-                try:
-                    foo(bar)
-                except:
-                    print('Failure at bar = "%s"' % bar)
-                    raise
-            </code></pre>
+            <pre><code>for bar in bars:&#x000A;    try:&#x000A;        foo(bar)&#x000A;    except:&#x000A;        print('Failure at bar = "%s"' % bar)&#x000A;        raise&#x000A;</code></pre>
             
             <p>This will tell me which bar I left off on.
             It’s fancier if I save the information to the database,
             so here is how I might do that with ScraperWiki.</p>
             
-            <pre><code>import scraperwiki
-            
-            resume_index = scraperwiki.sqlite.get_var('resume_index', 0)
-            for i, bar in enumerate(bars[resume_index:]):
-                try:
-                    foo(bar)
-                except:
-                    scraperwiki.sqlite.save_var('resume_index', i)
-                    raise
-            scraperwiki.sqlite.save_var('resume_index', 0)
-            </code></pre>
+            <pre><code>import scraperwiki&#x000A;&#x000A;resume_index = scraperwiki.sqlite.get_var('resume_index', 0)&#x000A;for i, bar in enumerate(bars[resume_index:]):&#x000A;    try:&#x000A;        foo(bar)&#x000A;    except:&#x000A;        scraperwiki.sqlite.save_var('resume_index', i)&#x000A;        raise&#x000A;scraperwiki.sqlite.save_var('resume_index', 0)&#x000A;</code></pre>
             
             <p>ScraperWiki has a limit on CPU time, so an error that often concerns me is the
             <a href="https://scraperwiki.com/docs/python/python_help_documentation/">scraperwiki.CPUTimeExceededError</a>.
@@ -235,24 +155,7 @@
             if you catch the exception, you have two CPU seconds to clean up.
             You might want to handle this error differently from other errors.</p>
             
-            <pre><code>import scraperwiki
-            
-            resume_index = scraperwiki.sqlite.get_var('resume_index', 0)
-            for i, bar in enumerate(bars[resume_index:]):
-                try:
-                    foo(bar)
-                except scraperwiki.CPUTimeExceededError:
-                    scraperwiki.sqlite.save_var('resume_index', i)
-                    raise
-                except Exception as e:
-                    scraperwiki.sqlite.save_var('resume_index', i)
-                    scraperwiki.sqlite.save([], {
-                        'bar': bar,
-                        'exceptionType': str(type(e)),
-                        'exceptionMessage': str(e)
-                    }, 'errors')
-            scraperwiki.sqlite.save_var('resume_index', 0)
-            </code></pre>
+            <pre><code>import scraperwiki&#x000A;&#x000A;resume_index = scraperwiki.sqlite.get_var('resume_index', 0)&#x000A;for i, bar in enumerate(bars[resume_index:]):&#x000A;    try:&#x000A;        foo(bar)&#x000A;    except scraperwiki.CPUTimeExceededError:&#x000A;        scraperwiki.sqlite.save_var('resume_index', i)&#x000A;        raise&#x000A;    except Exception as e:&#x000A;        scraperwiki.sqlite.save_var('resume_index', i)&#x000A;        scraperwiki.sqlite.save([], {&#x000A;            'bar': bar,&#x000A;            'exceptionType': str(type(e)),&#x000A;            'exceptionMessage': str(e)&#x000A;        }, 'errors')&#x000A;scraperwiki.sqlite.save_var('resume_index', 0)&#x000A;</code></pre>
             
             <h2 id="tldr">tl;dr</h2>
             <p>Expect exceptions to occur when you are scraping a

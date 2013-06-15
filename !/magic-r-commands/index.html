@@ -54,7 +54,7 @@
             Magic R commands
           </h1>
           <div class='date'>
-            June 02, 2013
+            June 22, 2013
           </div>
         </header>
         <div id='article-wrapper'>
@@ -66,60 +66,44 @@
             <h2 id="general-stuff">General stuff</h2>
             <p>When loading a CSV, don’t convert strings to factors.</p>
             
-            <pre><code>read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
-            </code></pre>
+            <pre><code>read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)&#x000A;</code></pre>
             
             <p>Use ProjectTemplate.</p>
             
-            <pre><code>library(ProjectTemplate)
-            </code></pre>
+            <pre><code>library(ProjectTemplate)&#x000A;</code></pre>
             
             <p><code>sqldf</code> works on R data.frames and on other databases</p>
             
-            <pre><code>sqldf('SELECT foo FROM bar') # Use the bar data.frame
-            sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
-            </code></pre>
+            <pre><code>sqldf('SELECT foo FROM bar') # Use the bar data.frame&#x000A;sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database&#x000A;</code></pre>
             
             <p><code>mapply</code> maps along a matrix, passing multiple arguments to the function</p>
             
             <p>Show all factor levels in a ggplot</p>
             
-            <pre><code>ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +
-              scale_x_discrete('Species', drop = F) + geom_point()
-            </code></pre>
+            <pre><code>ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +&#x000A;  scale_x_discrete('Species', drop = F) + geom_point()&#x000A;</code></pre>
             
             <h2 id="maintenance">Maintenance</h2>
             <p>Update your packages.</p>
             
-            <pre><code>update.packages()
-            </code></pre>
+            <pre><code>update.packages()&#x000A;</code></pre>
             
             <h2 id="rprofile">.Rprofile</h2>
             <p>Set your preferred mirror</p>
             
-            <pre><code>r &lt;- getOption("repos")
-            r["CRAN"] &lt;- "http://cran.mirrors.hoobly.com"
-            options(repos = r)
-            rm(r)
-            </code></pre>
+            <pre><code>r &lt;- getOption("repos")&#x000A;r["CRAN"] &lt;- "http://cran.mirrors.hoobly.com"&#x000A;options(repos = r)&#x000A;rm(r)&#x000A;</code></pre>
             
             <p>Remove the carrots from the beginnings of the lines so that you can run code
             that you’ve copied from the shell.</p>
             
-            <pre><code>options(prompt="  ")
-            options(continue="+ ") 
-            </code></pre>
+            <pre><code>options(prompt="  ")&#x000A;options(continue="+ ") &#x000A;</code></pre>
             
             <p>Make the screen wide</p>
             
-            <pre><code>options(width=160)
-            </code></pre>
+            <pre><code>options(width=160)&#x000A;</code></pre>
             
             <p>Save your command history and output</p>
             
-            <pre><code>Sys.setenv(R_HISTSIZE='100000')
-            sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)
-            </code></pre>
+            <pre><code>Sys.setenv(R_HISTSIZE='100000')&#x000A;sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)&#x000A;</code></pre>
           </article>
         </div>
         <div id='pagination'>

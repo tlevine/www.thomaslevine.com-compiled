@@ -65,14 +65,11 @@
             
             <p>Import it. (It only works on ScraperWiki, unfortunately.)</p>
             
-            <pre><code>from scraperwiki import swimport
-            search = swimport('twitter_search').search
-            </code></pre>
+            <pre><code>from scraperwiki import swimport&#x000A;search = swimport('twitter_search').search&#x000A;</code></pre>
             
             <p>Then search for terms.</p>
             
-            <pre><code>search(['picnic #tcamp12', 'from:TCampDC', '@TCampDC', '#tcamp12', '#viphack'])
-            </code></pre>
+            <pre><code>search(['picnic #tcamp12', 'from:TCampDC', '@TCampDC', '#tcamp12', '#viphack'])&#x000A;</code></pre>
             
             <p>A separate search will be run on each of these phrases.</p>
             
@@ -83,19 +80,7 @@
             from that first search; I searched for tweets referencing the users
             who had tweeted those tweets.</p>
             
-            <pre><code>from scraperwiki.sqlite import save, select
-            from time import sleep
-            
-            # Search by user to get some more
-            users = [row['from_user'] + ' tcamp12' for row in \
-                select('distinct from_user from swdata where from_user where user &gt; "%s"' \
-                % get_var('previous_from_user', ''))]
-            
-            for user in users:
-                search([user], num_pages = 2)
-                save_var('previous_from_user', user)
-                sleep(2)
-            </code></pre>
+            <pre><code>from scraperwiki.sqlite import save, select&#x000A;from time import sleep&#x000A;&#x000A;# Search by user to get some more&#x000A;users = [row['from_user'] + ' tcamp12' for row in \&#x000A;    select('distinct from_user from swdata where from_user where user &gt; "%s"' \&#x000A;    % get_var('previous_from_user', ''))]&#x000A;&#x000A;for user in users:&#x000A;    search([user], num_pages = 2)&#x000A;    save_var('previous_from_user', user)&#x000A;    sleep(2)&#x000A;</code></pre>
             
             <p>By default, the <code>search</code> function retrieves 15 pages of results, which
             is the maximum. In order to save some time, I limited this second phase

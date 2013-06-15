@@ -71,17 +71,11 @@
             them through <a href="http://www.lowendbox.com">lowendbox</a>. I settled on the cheapest
             plan I could find. Here are the specs.</p>
             
-            <pre><code>KVM1 Budget KVM VPS
-            1 Core / 128MB RAM / 6GB HD
-            Bandwidth: 256GB
-            SAS2 10K RAID storage
-            </code></pre>
+            <pre><code>KVM1 Budget KVM VPS&#x000A;1 Core / 128MB RAM / 6GB HD&#x000A;Bandwidth: 256GB&#x000A;SAS2 10K RAID storage&#x000A;</code></pre>
             
             <p>I installed Debian and set up a little script that lets me do this.</p>
             
-            <p><code>#sh
-            ssh rewrite.thomaslevine.com 'add_rewrite thomaslevine.com'
-            </code></p>
+            <p><code>#sh&#x000A;ssh rewrite.thomaslevine.com 'add_rewrite thomaslevine.com'</code></p>
             
             <p>I just need to point the <code>thomaslevine.com</code> A record to <code>rewrite</code>’s
             IP address, run the above command, and host <code>www.thomaslevine.com</code>

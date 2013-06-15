@@ -63,16 +63,12 @@
             Conveniently, someone had already written
             <a href="http://ruslanspivak.com/2010/06/02/urlencode-and-urldecode-from-a-command-line/">this</a>.</p>
             
-            <pre><code>alias urlencode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.quote_plus(orig)"'
-            alias urldecode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.unquote_plus(orig)"'
-            </code></pre>
+            <pre><code>alias urlencode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.quote_plus(orig)"'&#x000A;alias urldecode='python -c "import sys, urllib as ul; orig = sys.argv[1] if len(sys.argv) == 2 else sys.stdin.read() ; print ul.unquote_plus(orig)"'&#x000A;</code></pre>
             
             <p>It accepts input from <code>/dev/stdin</code> and from <code>$1</code>. That is, both of these
             commands produce the same thing.</p>
             
-            <pre><code>urlencode 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'
-            echo 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'|urlencode
-            </code></pre>
+            <pre><code>urlencode 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'&#x000A;echo 'localhost:8000/?q=SELECT needle FROM haystack LIMIT 3;'|urlencode&#x000A;</code></pre>
           </article>
         </div>
         <div id='pagination'>

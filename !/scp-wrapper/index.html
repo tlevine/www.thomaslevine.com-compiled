@@ -61,40 +61,21 @@
           <article>
             <p>This has happened to me too many times.</p>
             
-            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
-            $
-            </code></pre>
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com&#x000A;$&#x000A;</code></pre>
             
             <p>I wanted to copy the file <code>bicycles.csv</code> to the home directory of <code>$USER</code> on
             <code>chainsaw.thomaslevine.com</code>. I meant to write this.</p>
             
-            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com:
-            </code></pre>
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com:&#x000A;</code></pre>
             
             <p>But I forgot the colon, so instead of copying the file to a different computer,
             I copied the file to the local computer, naming it <code>chainsaw.thomaslevine.com</code>.</p>
             
-            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com
-            $ ls
-            bicycles.csv  chainsaw.thomaslevine.com
-            </code></pre>
+            <pre><code>$ scp bicycles.csv chainsaw.thomaslevine.com&#x000A;$ ls&#x000A;bicycles.csv  chainsaw.thomaslevine.com&#x000A;</code></pre>
             
             <p><a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/scp">Here</a> is my solution.</p>
             
-            <pre><code>scp() {
-              # Require a colon to be provided.
-              if echo "$*"|grep ':' &gt; /dev/null; then
-                command scp $*
-              else
-                command scp --help
-                echo \ 
-                echo "warning: The scp command that you ran has no colon, so you probably don't"
-                echo '         want to run it. Use "env scp" if you really meant to do that;'
-                echo '         you can run "env !!".'
-                return 1
-              fi
-            }
-            </code></pre>
+            <pre><code>scp() {&#x000A;  # Require a colon to be provided.&#x000A;  if echo "$*"|grep ':' &gt; /dev/null; then&#x000A;    command scp $*&#x000A;  else&#x000A;    command scp --help&#x000A;    echo \ &#x000A;    echo "warning: The scp command that you ran has no colon, so you probably don't"&#x000A;    echo '         want to run it. Use "env scp" if you really meant to do that;'&#x000A;    echo '         you can run "env !!".'&#x000A;    return 1&#x000A;  fi&#x000A;}&#x000A;</code></pre>
             
             <p>If the wrapper function finds no colon in the grep arguments, it warns you that
             you probably wanted a colon to be in the function. If you really did want to

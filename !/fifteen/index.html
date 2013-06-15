@@ -67,27 +67,21 @@
             
             <p>While I was fifteen, I sent 989 emails.</p>
             
-            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) from:Thomas\ Levine|grep 'All Mail'|wc -l
-            989
-            </code></pre>
+            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) from:Thomas\ Levine|grep 'All Mail'|wc -l&#x000A;989&#x000A;</code></pre>
             
             <p>I received 9730 (10719 minus 989) emails.</p>
             
-            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) |grep 'All Mail'|wc -l
-            10719
-            </code></pre>
+            <pre><code>$ notmuch search --output=files $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s) |grep 'All Mail'|wc -l&#x000A;10719&#x000A;</code></pre>
             
             <p>I made some plots and stuff. Something happened in June 2005.</p>
             
-            <pre><code>notmuch search $(date -d 2005-06-01 +%s)..$(date -d 2005-07-01 +%s) from:Thomas\ Levine
-            </code></pre>
+            <pre><code>notmuch search $(date -d 2005-06-01 +%s)..$(date -d 2005-07-01 +%s) from:Thomas\ Levine&#x000A;</code></pre>
             
             <p>It looks like that was just a conversation about some mathematical series.</p>
             
             <p>I found it slightly more interesting just to read the titles of the emails.</p>
             
-            <pre><code>notmuch search $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s)|less
-            </code></pre>
+            <pre><code>notmuch search $(date -d 2005-03-30 +%s)..$(date -d 2006-03-30 +%s)|less&#x000A;</code></pre>
             
             <p>Things that stand out:</p>
             

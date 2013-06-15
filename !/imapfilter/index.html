@@ -66,8 +66,7 @@
             <p>I just wrote a <code>~/.imapfilter/config.lua</code> file and added <code>imapfilter</code>
             to my email-synchronization <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/54c7b7ec472ac53c2dbf445e81b393c3bc26ad3e/crontab">crontab</a> entry.</p>
             
-            <pre><code>@hourly imapfilter &amp;&amp; offlineimap &amp;&amp; notmuch new 
-            </code></pre>
+            <pre><code>@hourly imapfilter &amp;&amp; offlineimap &amp;&amp; notmuch new &#x000A;</code></pre>
             
             <p>The configuration file is quite well documented in <code>man imapfilter_config</code>.</p>
             
@@ -80,12 +79,7 @@
             
             <p>Most of my emails go to “Pulse”, but some stay in “INBOX”.</p>
             
-            <pre><code>        Pulse
-                      |
-            Mail -&gt; INBOX
-                      |
-                    Spam 
-            </code></pre>
+            <pre><code>        Pulse&#x000A;          |&#x000A;Mail -&gt; INBOX&#x000A;          |&#x000A;        Spam &#x000A;</code></pre>
             
             <h2 id="my-configuration">My configuration</h2>
             <p>Some of the filters that I use contain information that could be unsafe to post
@@ -96,59 +90,28 @@
             <p>First, I set some options that were in some other configuration files.
             If you want to know what they do see <code>man imapfilter_config</code>.</p>
             
-            <pre><code>options.timeout = 120
-            options.subscribe = true
-            </code></pre>
+            <pre><code>options.timeout = 120&#x000A;options.subscribe = true&#x000A;</code></pre>
             
             <p>Second, I define a function for pulling my email address and password from my
             <a href="http://offlineimap.org/">.offlineimaprc</a>.</p>
             
-            <pre><code>function offlineimap (key)
-              local status
-              local value
-              status, value = pipe_from('grep -A2 mail.gandi.net ~/.offlineimaprc | grep ' .. key .. '|cut -d= -f2')
-              value = string.gsub(value, ' ', '')
-              value = string.gsub(value, '\n', '')
-              return value
-            end
-            </code></pre>
+            <pre><code>function offlineimap (key)&#x000A;  local status&#x000A;  local value&#x000A;  status, value = pipe_from('grep -A2 mail.gandi.net ~/.offlineimaprc | grep ' .. key .. '|cut -d= -f2')&#x000A;  value = string.gsub(value, ' ', '')&#x000A;  value = string.gsub(value, '\n', '')&#x000A;  return value&#x000A;end&#x000A;</code></pre>
             
             <p>Third, I set the IMAP account credentials.</p>
             
-            <pre><code>T = IMAP {
-                server   = offlineimap('remotehost'),
-                username = offlineimap('remoteuser'),
-                password = offlineimap('remotepass'),
-            
-                ssl = 'ssl3',
-                port = 993,
-            }
-            </code></pre>
+            <pre><code>T = IMAP {&#x000A;    server   = offlineimap('remotehost'),&#x000A;    username = offlineimap('remoteuser'),&#x000A;    password = offlineimap('remotepass'),&#x000A;&#x000A;    ssl = 'ssl3',&#x000A;    port = 993,&#x000A;}&#x000A;</code></pre>
             
             <p>I select the things to be moved into “Pulse”.</p>
             
-            <pre><code>pulse = (
-                T.INBOX:contain_from('voice-noreply@google.com') +
-                T.INBOX:contain_from('linkedin.com') +
-                T.INBOX:contain_field('Reply-To', 'reply.linkedin.com') +
-                -- ...
-                T.INBOX:contain_from('github.com')
-            )
-            </code></pre>
+            <pre><code>pulse = (&#x000A;    T.INBOX:contain_from('voice-noreply@google.com') +&#x000A;    T.INBOX:contain_from('linkedin.com') +&#x000A;    T.INBOX:contain_field('Reply-To', 'reply.linkedin.com') +&#x000A;    -- ...&#x000A;    T.INBOX:contain_from('github.com')&#x000A;)&#x000A;</code></pre>
             
             <p>Then I move them.</p>
             
-            <pre><code>pulse:move_messages(T.Pulse)
-            </code></pre>
+            <pre><code>pulse:move_messages(T.Pulse)&#x000A;</code></pre>
             
             <p>And I do the same for “Spam”.</p>
             
-            <pre><code>spam = (
-                T.INBOX:contain_from('FattorossTedCEO@aol.com') +
-                T.INBOX:contain_subject('PMX:#')
-            )
-            spam:move_messages(T.Spam)
-            </code></pre>
+            <pre><code>spam = (&#x000A;    T.INBOX:contain_from('FattorossTedCEO@aol.com') +&#x000A;    T.INBOX:contain_subject('PMX:#')&#x000A;)&#x000A;spam:move_messages(T.Spam)&#x000A;</code></pre>
             
             <h2 id="references">References</h2>
             <p>Here are some other posts on imapfilter. I don’t remember which ones I used

@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>DumpTruck Version 0.0.3</title>
+    <title>Preserving whitespace in haml</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.6.4' name='generator'>
@@ -51,66 +51,45 @@
         </nav>
         <header class='title-card'>
           <h1>
-            DumpTruck Version 0.0.3
+            Preserving whitespace in haml
           </h1>
           <div class='date'>
-            August 02, 2012
+            June 15, 2013
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>I’ve added some new features to <a href="http://www.dumptruck.io">DumpTruck</a>.</p>
+            <p>If been to this site in the last few weeks, you’ve seen ugly code blocks like
+            this one (from my article on my <a href="/!/scp-wrapper/">scp wrapper</a>).</p>
             
-            <h2 id="changes">Changes</h2>
+            <p><img alt="Code block with weird indenting" src="/!/preserve-whitespace-in-haml/unpreserved.png" class="wide" /></p>
             
-            <h3 id="dictionary-case-sensitivity">Dictionary case sensitivity</h3>
-            <p>I removed the dictionaries with case-insensitive keys because that just seemed
-            to be delaying the conversion to case sensitivity.</p>
+            <p>But I had intended for the blocks to look like this.</p>
             
-            <h3 id="ordered-dictionaries">Ordered Dictionaries</h3>
-            <p><code>DumpTruck.execute</code> now returns a <code>collections.OrderedDict</code> for each row rather
-            than a <code>dict</code> for each row. Also, order is respected on insert, so you can pass
-            OrderedDicts to <code>DumpTruck.insert</code> or <code>DumpTruck.create_table</code> to specify
-            column order.</p>
+            <p><img alt="Code block with ordinary lack of indenting" src="/!/preserve-whitespace-in-haml/preserved.png" class="wide" /></p>
             
-            <h3 id="index-creation-syntax">Index creation syntax</h3>
-            <p>Previously, indices were created with</p>
+            <p>What happened?
+            I recently updated Ruby and the various gems related to my nanoc installation,
+            and this apparently changed the behavior of haml.</p>
             
-            <pre><code>#!python&#x000A;DumpTruck.create_index(table_name, column_names)&#x000A;</code></pre>
+            <p>Haml pretty-prints the html that it produces, but it has a command for
+            <a href="http://haml.info/docs/yardoc/file.REFERENCE.html#whitespace_preservation">preserving whitespace</a>
+            in tags like <code>pre</code> and <code>textarea</code> where you care about the whitespace.
+            That command is
+            <a href="http://haml.info/docs/yardoc/file.REFERENCE.html#tilde"><code>~</code></a>,
+            as opposed to <a href="http://haml.info/docs/yardoc/file.REFERENCE.html#inserting_ruby_"><code>=</code></a>,
+            and it just runs the function
+            <a href="http://haml.info/docs/yardoc/Haml/Helpers.html#find_and_preserve-instance_method"><code>find_and_preserve</code></a> with the default tags.</p>
             
-            <p>This order was chosen to match SQL syntax. It has been changed to</p>
-            
-            <pre><code>#!python&#x000A;DumpTruck.create_index(column_names, table_name)&#x000A;</code></pre>
-            
-            <p>to match the syntax for <code>DumpTruck.insert</code>.</p>
-            
-            <h3 id="handling-null-values">Handling NULL values</h3>
-            <p>Null value handling has been documented and tweaked.</p>
-            
-            <h3 id="rowid">RowId</h3>
-            <p><code>dt.insert</code> returns the
-            the <a href="http://www.sqlite.org/lang_createtable.html#rowid">rowid</a>
-            or rowids of the inserted row or rows.</p>
-            
-            <h2 id="scraperwikilocal">scraperwiki_local</h2>
-            
-            <p>The DumpTruck interface has changed slightly, so I also adjusted
-            scraperwiki_local based on those changes.</p>
-            
-            <h2 id="install">Install</h2>
-            
-            <p>Get the new version from pip.</p>
-            
-            <pre><code>#!sh&#x000A;pip install dumptruck&#x000A;</code></pre>
-            
-            <h2 id="more-documentation">More documentation</h2>
-            
-            <p>The full documentation is <a href="https://github.com/tlevine/dumptruck">on GitHub</a>.</p>
+            <p>I was using <code>=</code>, so the whitespace in the code blocks was not being preserved.
+            I fixed this by
+            <a href="https://github.com/tlevine/www.thomaslevine.com/commit/bfa9a908ed4be14baf7366ddc0957e060f956ff5">changing</a>
+            a <code>=</code> to a <code>~</code>.</p>
           </article>
         </div>
         <div id='pagination'>
           <div class='base-little-card'>
-            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/dumptruck-0.0.3/index.md">View source</a>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/preserve-whitespace-in-haml/index.md">View source</a>
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
         </div>

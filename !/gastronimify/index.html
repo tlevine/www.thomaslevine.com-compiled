@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>gastronomify</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/vendor/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            gastronomify
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I just wrote an R package that lets you turn data into food.
+            It’s called <a href="https://github.com/tlevine/gastronomify"><code>gastronomify</code></a>.
+            Install it like so.</p>
+            
+            <p><code>&#x000A;install_git('git://github.com/tlevine/gastronomify.git')</code></p>
+            
+            <p>Then generate recipes. <a href="/!/gastronimify/yahoo-finance.r">Here</a>’s
+            an example gastronomification of four stocks’ prices for the past six
+            years; it creates one recipe for each day.</p>
+            
+            <p>```
+            #!/usr/bin/env Rscript
+            library(quantmod)
+            library(gastronomify)
+            library(plyr)</p>
+            
+            <p>dow &lt;- c(
+              ‘MMM’,
+              ‘AA’,
+              ‘T’,
+              ‘AXP’,
+              ‘BAC’,
+              ‘BA’,
+              ‘CAT’,
+              ‘CSCO’,
+              ‘CVX’,
+              ‘KO’,
+              ‘DD’,
+              ‘XOM’,
+              ‘GE’,
+              ‘HPQ’,
+              ‘HD’,
+              ‘INTC’,
+              ‘IBM’,
+              ‘JPM’,
+              ‘JNJ’,
+              ‘KFT’,
+              ‘MCD’,
+              ‘MRK’,
+              ‘MSFT’,
+              ‘PFE’,
+              ‘PG’,
+              ‘TRV’,
+              ‘UTX’,
+              ‘VZ’,
+              ‘WMT’,
+              ‘DIS’
+            )
+            # getSymbols(paste(dow[1:5], collapse=’;’), src=’yahoo’)
+            recent.prices &lt;- alply(dow[1:5], 1, get)
+            names(recent.prices) &lt;- dow[1:5]</p>
+            
+            <p>data &lt;- data.frame(
+              close = c(
+                recent.prices$MMM$MMM.Close,
+                recent.prices$AA$AA.Close,
+                recent.prices$AXP$AXP.Close,
+                recent.prices$BAC$BAC.Close
+              ),
+              stock = rep(c(‘MMM’, ‘AA’, ‘AXP’, ‘BAC’), each = nrow(recent.prices$MMM)),
+              date = c(
+                rownames(as.data.frame(recent.prices$MMM)),
+                rownames(as.data.frame(recent.prices$AA)),
+                rownames(as.data.frame(recent.prices$AXP)),
+                rownames(as.data.frame(recent.prices$BAC))
+              ) 
+            )
+            names(data)[1] &lt;- ‘close’</p>
+            
+            <p>recipes &lt;- gastronomify(
+              x = ‘date’, y = ‘close’, group = ‘stock’,
+              data = data, recipe = guacamole
+            )</p>
+            
+            <p>print(recipes[1:30,])
+            ```</p>
+            
+            <p>And <a href="/!/gastronimify/math-tests.r">here</a>’s one of math test scores.
+            ```
+            #!/usr/bin/env Rscript
+            library(plyr)
+            library(reshape2)
+            library(gastronomify)</p>
+            
+            <h1 id="httpsdatacityofnewyorkuseducationmath-test-results-2006-2012-district-all-students7yig-nj52">https://data.cityofnewyork.us/Education/Math-Test-Results-2006-2012-District-All-Students/7yig-nj52?</h1>
+            <p>if (!(‘math.tests’ %in% ls())) {
+              math.tests &lt;- read.csv(‘http://data.cityofnewyork.us/api/views/7yig-nj52/rows.csv?accessType=DOWNLOAD’)
+              math.tests &lt;- math.tests[c(‘District’, ‘Grade’, ‘Year’, ‘Number.Tested’, ‘Mean.Scale.Score’, ‘Num.Level.1’, ‘Num.Level.2’, ‘Num.Level.3’, ‘Num.Level.4’)]
+              math.tests &lt;- subset(math.tests, Grade != ‘All Grades’)
+              math.tests &lt;- math.tests[c(‘District’, ‘Grade’, ‘Year’, ‘Mean.Scale.Score’)]
+            }</p>
+            
+            <p>data &lt;- ddply(math.tests, c(‘Year’, ‘Grade’), function(df) {
+              c(Mean.score=mean(df$Mean.Scale.Score))
+            })</p>
+            
+            <p>print(‘Each recipe represents the average tests scores by grade for a particular year.’)
+            data.guacamole &lt;- gastronomify(data$Year, data$Mean.score, data$Grade, recipe = guacamole, inflation = 50)
+            print(round(data.guacamole, 2))
+            ```</p>
+            
+            <h2 id="the-future">The future</h2>
+            <p>I plan on extending this package in two main ways.</p>
+            
+            <p>First, I’d like to add more recipes, including recipes
+            that can go horribly wrong when you mess up the
+            proportions; these will make it easy to detect outliers.</p>
+            
+            <p>Second, I’d like to integrate taskrabbit so that you can
+            convert your data directly to food, without leaving R.
+            This will involve improving the metadata around recipes
+            so that the taskrabbits know what to do.</p>
+            
+            <p>I’m also going to explore other ways of representing data
+            through food, but I don’t know where that will take me.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/gastronimify/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+      <script src='/js/application-cb1c0d9d011.js'></script>
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+      <!-- End Piwik Tracking Code -->
+    </div>
+  </body>
+</html>

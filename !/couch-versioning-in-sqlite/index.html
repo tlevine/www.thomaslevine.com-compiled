@@ -83,26 +83,18 @@
             
             <p>Create the table, and create a unique index on <code>_id</code> and <code>_rev</code>.</p>
             
-            <pre><code>CREATE TABLE foo (
-              _id INTEGER, _currentrev INTEGER, _previousrev INTEGER,
-              bar INTEGER, baz TEXT,
-              FOREIGN KEY (_previousref) REFERENCES foo(_currentrev)
-            );
-            CREATE UNIQUE INDEX version ON foo (_id, _currentrev);
-            </code></pre>
+            <pre><code>CREATE TABLE foo (&#x000A;  _id INTEGER, _currentrev INTEGER, _previousrev INTEGER,&#x000A;  bar INTEGER, baz TEXT,&#x000A;  FOREIGN KEY (_previousref) REFERENCES foo(_currentrev)&#x000A;);&#x000A;CREATE UNIQUE INDEX version ON foo (_id, _currentrev);&#x000A;</code></pre>
             
             <p>To get the latest version, select by <code>_id</code> and retrieve only
             the highest <code>_previousrev</code>.</p>
             
-            <pre><code>SELECT * FROM foo GROUP BY _id -- and something about the version
-            </code></pre>
+            <pre><code>SELECT * FROM foo GROUP BY _id -- and something about the version&#x000A;</code></pre>
             
             <p>Rather than updating rows, insert new rows that reference
             old <code>_rev</code>s; for example, this is how you revise the record
             for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to “answer”.</p>
             
-            <pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");
-            </code></pre>
+            <pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");&#x000A;</code></pre>
             
             <p>When combining two database files that have gotten out of sync,
             find the discrepencies and add a newer <code>_currentrev</code> that merges
@@ -112,14 +104,11 @@
             
             <p>Let’s write custom SQLite functions to simplify this retrieval.</p>
             
-            <pre><code>SELECT * FROM foo WHERE version(*) = 12
-            </code></pre>
+            <pre><code>SELECT * FROM foo WHERE version(*) = 12&#x000A;</code></pre>
             
             <p>And let’s allow you to specify tags.</p>
             
-            <pre><code>SELECT * FROM foo WHERE version(*) = "master";
-            SELECT * FROM foo WHERE version(*) = "0.2.1";
-            </code></pre>
+            <pre><code>SELECT * FROM foo WHERE version(*) = "master";&#x000A;SELECT * FROM foo WHERE version(*) = "0.2.1";&#x000A;</code></pre>
             
             <h2 id="sudden-ending">Sudden ending</h2>
             <p>I got bored of writing. Please imagine some awesome insightful continuation.</p>

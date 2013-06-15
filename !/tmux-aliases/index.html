@@ -54,7 +54,7 @@
             tmux aliases
           </h1>
           <div class='date'>
-            June 07, 2013
+            June 26, 2013
           </div>
         </header>
         <div id='article-wrapper'>
@@ -62,34 +62,11 @@
             <p>Before I implemented my <code>tmuxa</code> and <code>tmuxl</code> aliases, the three <code>tmux</code> calls
             that I used most often were <code>tmux</code>, <code>tmux list-sessions</code> and <code>tmux attach</code>.</p>
             
-            <pre><code>$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
-                127 tmux
-                149 tmuxa
-                  2 tmuxa 0
-                  1 tmuxa -t0
-                  3 tmuxa -t 0
-                  6 tmuxa -t23
-                  1 tmuxa -t 23
-                  4 tmuxa -t32
-                  1 tmuxa -t 5
-                 15 tmux attach
-                  2 tmux attach -t0
-                  1 tmux attach -t16
-                  1 tmux attach -t18
-                  2 tmux attach -t 23
-                  1 tmux attach -t27
-                  1 tmux attach -t28
-                  1 tmux attach -t 32
-                 18 tmuxl
-                  1 tmux --list-sessions
-                  7 tmux list-sessions
-            </code></pre>
+            <pre><code>$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c&#x000A;    127 tmux&#x000A;    149 tmuxa&#x000A;      2 tmuxa 0&#x000A;      1 tmuxa -t0&#x000A;      3 tmuxa -t 0&#x000A;      6 tmuxa -t23&#x000A;      1 tmuxa -t 23&#x000A;      4 tmuxa -t32&#x000A;      1 tmuxa -t 5&#x000A;     15 tmux attach&#x000A;      2 tmux attach -t0&#x000A;      1 tmux attach -t16&#x000A;      1 tmux attach -t18&#x000A;      2 tmux attach -t 23&#x000A;      1 tmux attach -t27&#x000A;      1 tmux attach -t28&#x000A;      1 tmux attach -t 32&#x000A;     18 tmuxl&#x000A;      1 tmux --list-sessions&#x000A;      7 tmux list-sessions&#x000A;</code></pre>
             
             <p>Those commands are long, so I <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/tmux">made them shorter</a>.</p>
             
-            <pre><code>alias tmuxl='tmux list-sessions'
-            alias tmuxa='tmux attach'
-            </code></pre>
+            <pre><code>alias tmuxl='tmux list-sessions'&#x000A;alias tmuxa='tmux attach'&#x000A;</code></pre>
           </article>
         </div>
         <div id='pagination'>

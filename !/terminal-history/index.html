@@ -74,59 +74,34 @@
             
             <p>Here’s how I implement that. First, make sure that we never delete history.</p>
             
-            <pre><code># Too many commands of history per session
-            export HISTSIZE=100000000000000000000
-            
-            # Ten gigabytes of maximum history size
-            export HISTFILESIZE=10000000000
-            </code></pre>
+            <pre><code># Too many commands of history per session&#x000A;export HISTSIZE=100000000000000000000&#x000A;&#x000A;# Ten gigabytes of maximum history size&#x000A;export HISTFILESIZE=10000000000&#x000A;</code></pre>
             
             <p>Put timestamps in the history files; the timestamp goes in the line above the command.</p>
             
-            <pre><code># Save timestamps in the history.
-            export HISTTIMEFORMAT="[%F %T %Z]" 
-            </code></pre>
+            <pre><code># Save timestamps in the history.&#x000A;export HISTTIMEFORMAT="[%F %T %Z]" &#x000A;</code></pre>
             
             <p>Save to a new file. Datestamp the file to make it easy to search. Add a random
             number so that history files from multiple shells opened in the same nanosecond,
             perhaps across different computers, do not have name clashes.</p>
             
-            <pre><code># Save history to ~/.history/sh-date-host-randomnumber
-            export HISTFILE="$HOME/.history/sh-$(date --rfc-3339 ns)-${RANDOM}"
-            </code></pre>
+            <pre><code># Save history to ~/.history/sh-date-host-randomnumber&#x000A;export HISTFILE="$HOME/.history/sh-$(date --rfc-3339 ns)-${RANDOM}"&#x000A;</code></pre>
             
             <p>Write to the history file after each command; do not wait until the shell session
             has been exited.</p>
             
-            <pre><code># Append continuously
-            # http://ask.fedoraproject.org/question/18/how-to-keep-history-commands-in-sync-across
-            _sync_history(){
-              builtin history -a
-              HISTFILESIZE=$HISTFILESIZE
-            }
-            PROMPT_COMMAND=_sync_history
-            </code></pre>
+            <pre><code># Append continuously&#x000A;# http://ask.fedoraproject.org/question/18/how-to-keep-history-commands-in-sync-across&#x000A;_sync_history(){&#x000A;  builtin history -a&#x000A;  HISTFILESIZE=$HISTFILESIZE&#x000A;}&#x000A;PROMPT_COMMAND=_sync_history&#x000A;</code></pre>
             
             <p>When we separate the history files like this, the built-in history command
             becomes near-useless. Override that command; instead of searching the current
             session’s history, search the last month’s history.</p>
             
-            <pre><code>history(){
-              # Search the current month's history.
-              if [ "$#" = '0' ]; then
-                grep -hv '^#[0-9]*$' "$HOME/.history/sh-$(date +%Y-%m)"*
-              else
-                builtin history "$@"
-              fi
-            }
-            </code></pre>
+            <pre><code>history(){&#x000A;  # Search the current month's history.&#x000A;  if [ "$#" = '0' ]; then&#x000A;    grep -hv '^#[0-9]*$' "$HOME/.history/sh-$(date +%Y-%m)"*&#x000A;  else&#x000A;    builtin history "$@"&#x000A;  fi&#x000A;}&#x000A;</code></pre>
             
             <p>The above discourse is just documention of <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/history-sh">this file</a>.
             The other part is a <a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/crontab">crontab</a> entry that synchronizes my <code>~/.history</code>
             directory every hour.</p>
             
-            <pre><code>@hourly cd "${HOME}/.history" &amp;&amp; git init &amp;&amp; git add . &amp;&amp;  git commit . -m "@hourly commit" &amp;&amp; git pull ; git push
-            </code></pre>
+            <pre><code>@hourly cd "${HOME}/.history" &amp;&amp; git init &amp;&amp; git add . &amp;&amp;  git commit . -m "@hourly commit" &amp;&amp; git pull ; git push&#x000A;</code></pre>
           </article>
         </div>
         <div id='pagination'>
