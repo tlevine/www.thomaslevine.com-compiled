@@ -59,12 +59,12 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>Extreme hipster superheroes like me need tests for their shell. Here’s what’s
+            <p>Extreme hipster superheroes like me need tests for their shell. Here&#8217;s what&#8217;s
             available.</p>
             
             <h2 id="yolo-no-automated-testing">YOLO: No automated testing</h2>
             <p>Few shell scripts have any automated testing because shell programmers live
-            life on the edge. Inevitably, this results in tedious manual ‘testing’. Loads
+            life on the edge. Inevitably, this results in tedious manual &#8216;testing&#8217;. Loads
             of projects use this approach.</p>
             
             <ul>
@@ -75,7 +75,7 @@
               <li><a href="https://github.com/rupa/z">z</a></li>
             </ul>
             
-            <p>Here are some more. I separated them because they’re all shell profiles.</p>
+            <p>Here are some more. I separated them because they&#8217;re all shell profiles.</p>
             
             <ul>
               <li><a href="http://www.bashinator.org/">bashinator</a></li>
@@ -87,7 +87,7 @@
             <p>This is actually okay much of the time. Shell is often convenient for
             connecting different programs and configuring stuff, but other languages have
             structures and syntax that are convenient for more complex things. If your
-            shell scripts are short and easy to read, maybe you don’t need tests.</p>
+            shell scripts are short and easy to read, maybe you don&#8217;t need tests.</p>
             
             <p>I often see shell scripts as just notes of what I did to configure software on
             a particular computer rather than as a program that I intend for many other
@@ -110,7 +110,7 @@
             
             <p>In <a href="http://bmizerany.github.com/roundup/">Roundup</a>, test cases are
             functions, and their return code determines whether the test passes. Shell
-            already has a nice assertion function called <code>test</code>, so Roundup doesn’t need
+            already has a nice assertion function called <code>test</code>, so Roundup doesn&#8217;t need
             to implement its own. It also helps you structure your tests; you can use the
             <code>describe</code> function to name your tests, and you can define <code>before</code> and <code>after</code>
             functions to be run before and after test cases, respectively. For an example
@@ -122,7 +122,7 @@
             uses it.</p>
             
             <p><a href="https://github.com/mpapis/tf">tf</a> is also similar, but it is cool because it
-            provides some special shell-style assertions (“matchers”) that are specified as
+            provides some special shell-style assertions (&#8220;matchers&#8221;) that are specified as
             shell comments. Rather than just testing status codes or stdout, you can also
             test environment characteristics, and you can test multiple properties of one
             command. <a href="https://github.com/wayneeseguin/rvm-test">rvm</a> uses it.</p>
@@ -148,9 +148,9 @@
             <pre><code>test "$?" = '0'&#x000A;</code></pre>
             
             <h2 id="ironic-elegance-design-for-the-shell">Ironic elegance: Design for the shell</h2>
-            <p>Assertion libraries are common and reasonable in other languages, but I don’t
+            <p>Assertion libraries are common and reasonable in other languages, but I don&#8217;t
             think they work as well for shell. Shell uses a bizarre concept of input and
-            output, so the sort of assertion functions that work in other languages don’t
+            output, so the sort of assertion functions that work in other languages don&#8217;t
             feel natural to me in shell; shell thinks differently.</p>
             
             <p>In <a href="http://www.urchin.sh">Urchin</a>, test cases are executable files. A test
@@ -170,7 +170,7 @@
             but I think most of the other similarities can be seen as stemming from the
             file basis of test cases.</p>
             
-            <p>Here’s one particularly cool feature that might not be obvious.
+            <p>Here&#8217;s one particularly cool feature that might not be obvious.
             Earlier, I mentioned some protocals for testing in multiple languages. I found
             them somewhat strange because I see shell as the standard interface between
             languages. In Urchin and cmdtest, test cases are just files, so you can
@@ -179,18 +179,18 @@
             <h2 id="which-framework-should-i-use">Which framework should I use?</h2>
             <p>If you are writing anything complicated in shell, it could probably use some
             tests. For the simplest tests, writing your own framework is fine, but for
-            anything complicated, I recommend either Urchin or cmdtest. You’ll want to use
+            anything complicated, I recommend either Urchin or cmdtest. You&#8217;ll want to use
             a different one depending on your project.</p>
             
-            <p>cmdtest makes it easy to specify inputs and test outputs, but it doesn’t have
+            <p>cmdtest makes it easy to specify inputs and test outputs, but it doesn&#8217;t have
             a special way of testing what files have changed. Also, the installation is a
             bit more involved.</p>
             
-            <p>Urchin doesn’t help you at all with outputs, but it makes testing side-effects
+            <p>Urchin doesn&#8217;t help you at all with outputs, but it makes testing side-effects
             easier. In urchin, you can nest tests inside of directories; to test a
             side-effect, you make a subdirectory, put the command of interest in the
             <code>setup_dir</code> file and then test your side effects in your test files.
-            Urchin is also easier to install; it’s just a shell script.</p>
+            Urchin is also easier to install; it&#8217;s just a shell script.</p>
             
             <p>I recommend cmdtest if you are mainly testing input and output; otherwise, I
             recommend Urchin. If you are working on a very simple project, you might also
@@ -200,7 +200,7 @@
             <p>Test-driven development is mainstream in other languages
             but uncommon in shell. Nobody does test-driven development in shell, so all of
             these approaches are ahead of the curve. Hip programmers like me know this, so
-            we’re testing our shell scripts now, before shell testing gets big.</p>
+            we&#8217;re testing our shell scripts now, before shell testing gets big.</p>
           </article>
         </div>
         <div id='pagination'>

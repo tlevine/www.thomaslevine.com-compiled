@@ -60,7 +60,7 @@
         <div id='article-wrapper'>
           <article>
             <p>I use <a href="https://github.com/lefcha/imapfilter">imapfilter</a> to filter my mail.
-            It’s awesome.</p>
+            It&#8217;s awesome.</p>
             
             <h2 id="so-simple">So simple</h2>
             <p>I just wrote a <code>~/.imapfilter/config.lua</code> file and added <code>imapfilter</code>
@@ -71,19 +71,19 @@
             <p>The configuration file is quite well documented in <code>man imapfilter_config</code>.</p>
             
             <h2 id="overview-of-filters">Overview of filters</h2>
-            <p>All mail comes into the “INBOX” folder.</p>
+            <p>All mail comes into the &#8220;INBOX&#8221; folder.</p>
             
-            <p>I use imapfilter to move some messages into “Spam” and others into “Pulse”.
-            “Spam” is for spam, “Pulse” is for emails that I use for statistical
-            modelling but don’t read directly.</p>
+            <p>I use imapfilter to move some messages into &#8220;Spam&#8221; and others into &#8220;Pulse&#8221;.
+            &#8220;Spam&#8221; is for spam, &#8220;Pulse&#8221; is for emails that I use for statistical
+            modelling but don&#8217;t read directly.</p>
             
-            <p>Most of my emails go to “Pulse”, but some stay in “INBOX”.</p>
+            <p>Most of my emails go to &#8220;Pulse&#8221;, but some stay in &#8220;INBOX&#8221;.</p>
             
             <pre><code>        Pulse&#x000A;          |&#x000A;Mail -&gt; INBOX&#x000A;          |&#x000A;        Spam &#x000A;</code></pre>
             
             <h2 id="my-configuration">My configuration</h2>
             <p>Some of the filters that I use contain information that could be unsafe to post
-            publically, so I’ve removed some of the pulse filters, replaced them with the
+            publically, so I&#8217;ve removed some of the pulse filters, replaced them with the
             line <code>-- ...</code>, and posted the configuration <a href="/!/imapfilter/config.lua">here</a>.
             I walk through it below.</p>
             
@@ -101,7 +101,7 @@
             
             <pre><code>T = IMAP {&#x000A;    server   = offlineimap('remotehost'),&#x000A;    username = offlineimap('remoteuser'),&#x000A;    password = offlineimap('remotepass'),&#x000A;&#x000A;    ssl = 'ssl3',&#x000A;    port = 993,&#x000A;}&#x000A;</code></pre>
             
-            <p>I select the things to be moved into “Pulse”.</p>
+            <p>I select the things to be moved into &#8220;Pulse&#8221;.</p>
             
             <pre><code>pulse = (&#x000A;    T.INBOX:contain_from('voice-noreply@google.com') +&#x000A;    T.INBOX:contain_from('linkedin.com') +&#x000A;    T.INBOX:contain_field('Reply-To', 'reply.linkedin.com') +&#x000A;    -- ...&#x000A;    T.INBOX:contain_from('github.com')&#x000A;)&#x000A;</code></pre>
             
@@ -109,13 +109,13 @@
             
             <pre><code>pulse:move_messages(T.Pulse)&#x000A;</code></pre>
             
-            <p>And I do the same for “Spam”.</p>
+            <p>And I do the same for &#8220;Spam&#8221;.</p>
             
             <pre><code>spam = (&#x000A;    T.INBOX:contain_from('FattorossTedCEO@aol.com') +&#x000A;    T.INBOX:contain_subject('PMX:#')&#x000A;)&#x000A;spam:move_messages(T.Spam)&#x000A;</code></pre>
             
             <h2 id="references">References</h2>
-            <p>Here are some other posts on imapfilter. I don’t remember which ones I used
-            when writing the file, but they’re probably in this list.</p>
+            <p>Here are some other posts on imapfilter. I don&#8217;t remember which ones I used
+            when writing the file, but they&#8217;re probably in this list.</p>
             
             <ul>
               <li><a href="http://noorul.com/blog/2010/07/09/filtering-imap-mails-using-imapfilter/">Filtering IMAP mails using imapfilter</a></li>
