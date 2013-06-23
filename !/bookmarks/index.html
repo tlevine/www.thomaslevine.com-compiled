@@ -31,7 +31,7 @@
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='/css/style-cbd940725df.css' rel='stylesheet'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
     <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/vendor/modernizr-cb42306a279.js'></script>
   </head>
@@ -111,6 +111,7 @@
             add bookmarks with <code>mtl</code> than with Delicious, and I wind up saving
             more things.</p>
             
+            <h3 id="tagging-is-easy">Tagging is easy.</h3>
             <p>It is quite easy to tag things, so I add more tags. I generally make an
             alias to facilitate this. For example, I was reading about configuring
             bundler earlier today, so I wound up with a bunch of things that I wanted
@@ -120,6 +121,7 @@
             
             <p>And then I ran <code>a $url</code> for a bunch of urls.</p>
             
+            <h3 id="searching-is-easy">Searching is easy.</h3>
             <p>It is also quite easy to search things, even though I haven’t implemented
             an <code>mtl</code> command for it. I just run something like this.</p>
             
@@ -133,10 +135,12 @@
             
             <pre><code>$ find ~/.medial_temporal_lobe/tags -type l|cut -d/ -f2|uniq -c|head -n20&#x000A;  2 happstack&#x000A;  1 encoding&#x000A;  3 html&#x000A;  1 poverty&#x000A;  1 s3cmd&#x000A;  1 plots&#x000A; 11 passwords&#x000A;  1 heroku&#x000A;  3 bundler&#x000A;  6 javascript&#x000A;  1 popular&#x000A;  1 ggplot&#x000A;  5 shell&#x000A;  2 new_york&#x000A;  4 aluminum_bed&#x000A;  2 statistics&#x000A;  2 hlm&#x000A;  2 foi&#x000A;  1 video&#x000A;  1 networkx&#x000A;</code></pre>
             
+            <h3 id="editing-is-easy">Editing is easy.</h3>
             <p>And combine tags.</p>
             
             <pre><code>cd ~/.medial_temporal_lobe/tags&#x000A;git mv arch/* arch_linux&#x000A;rmdir arch&#x000A;git commit . -m 'Combine arch tags'&#x000A;</code></pre>
             
+            <h3 id="mirroring-is-built-in">Mirroring is built in.</h3>
             <p>I also use this as a mirror for files I want to read. This is especially
             helpful when I’m on a train. (I like trains.) I can bookmark/download a
             bunch of files, commit them, push them, pull them from my laptop, get on

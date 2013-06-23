@@ -187,6 +187,7 @@ other tools for viewing, editing and deleting the bookmarks.&lt;/p&gt;
 add bookmarks with &lt;code&gt;mtl&lt;/code&gt; than with Delicious, and I wind up saving
 more things.&lt;/p&gt;
 
+&lt;h3 id="tagging-is-easy"&gt;Tagging is easy.&lt;/h3&gt;
 &lt;p&gt;It is quite easy to tag things, so I add more tags. I generally make an
 alias to facilitate this. For example, I was reading about configuring
 bundler earlier today, so I wound up with a bunch of things that I wanted
@@ -197,6 +198,7 @@ to tag with “ruby” and “bundler”, so I made this alias.&lt;/p&gt;
 
 &lt;p&gt;And then I ran &lt;code&gt;a $url&lt;/code&gt; for a bunch of urls.&lt;/p&gt;
 
+&lt;h3 id="searching-is-easy"&gt;Searching is easy.&lt;/h3&gt;
 &lt;p&gt;It is also quite easy to search things, even though I haven’t implemented
 an &lt;code&gt;mtl&lt;/code&gt; command for it. I just run something like this.&lt;/p&gt;
 
@@ -234,6 +236,7 @@ cat */info
   1 networkx
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h3 id="editing-is-easy"&gt;Editing is easy.&lt;/h3&gt;
 &lt;p&gt;And combine tags.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_lobe/tags
@@ -242,6 +245,7 @@ rmdir arch
 git commit . -m 'Combine arch tags'
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h3 id="mirroring-is-built-in"&gt;Mirroring is built in.&lt;/h3&gt;
 &lt;p&gt;I also use this as a mirror for files I want to read. This is especially
 helpful when I’m on a train. (I like trains.) I can bookmark/download a
 bunch of files, commit them, push them, pull them from my laptop, get on
