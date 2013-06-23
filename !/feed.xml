@@ -2,90 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-07-01T04:00:00Z</updated>
-  <link href="http://www.thomaslevine.com/" rel="alternate"/>
-  <link href="http://www.thomaslevine.com/!/feed.xml" rel="self"/>
+  <updated>2013-07-06T07:00:00Z</updated>
+  <link rel="alternate" href="http://www.thomaslevine.com/"/>
+  <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-07-01:/!/setxkbmap-aliases/index.html</id>
-    <title type="html">setxkbmap aliases</title>
-    <published>2013-07-01T04:00:00Z</published>
-    <updated>2013-07-01T04:00:00Z</updated>
-    <link href="http://www.thomaslevine.com/!/setxkbmap-aliases/index.html" rel="alternate"/>
-    <content type="html">&lt;p&gt;I normally use the Dvorak keyboard layout, so I configure Dvorak to be the
-default layout on my computers. When other people use my computers, they
-normally want to switch the layout to qwerty. So I have this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias aoeu='setxkbmap us'
-alias asdf='setxkbmap us -variant dvorak'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now I can just type the home row left hand to switch between these two
-layouts.&lt;/p&gt;
-
-&lt;p&gt;I sometimes use the Dvorak-inspired French and Swedish layouts. I can select
-the French one with &lt;code&gt;setxkbmap&lt;/code&gt; like so.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias fr='setxkbmap fr -variant dvorak'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I still haven&amp;#8217;t figured out how to select the Swedish one with &lt;code&gt;setxkbmap&lt;/code&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-06-26:/!/tmux-aliases/index.html</id>
-    <title type="html">tmux aliases</title>
-    <published>2013-06-26T04:00:00Z</published>
-    <updated>2013-06-26T04:00:00Z</updated>
-    <link href="http://www.thomaslevine.com/!/tmux-aliases/index.html" rel="alternate"/>
-    <content type="html">&lt;p&gt;Before I implemented my &lt;code&gt;tmuxa&lt;/code&gt; and &lt;code&gt;tmuxl&lt;/code&gt; aliases, the three &lt;code&gt;tmux&lt;/code&gt; calls
-that I used most often were &lt;code&gt;tmux&lt;/code&gt;, &lt;code&gt;tmux list-sessions&lt;/code&gt; and &lt;code&gt;tmux attach&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
-    127 tmux
-    149 tmuxa
-      2 tmuxa 0
-      1 tmuxa -t0
-      3 tmuxa -t 0
-      6 tmuxa -t23
-      1 tmuxa -t 23
-      4 tmuxa -t32
-      1 tmuxa -t 5
-     15 tmux attach
-      2 tmux attach -t0
-      1 tmux attach -t16
-      1 tmux attach -t18
-      2 tmux attach -t 23
-      1 tmux attach -t27
-      1 tmux attach -t28
-      1 tmux attach -t 32
-     18 tmuxl
-      1 tmux --list-sessions
-      7 tmux list-sessions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Those commands are long, so I &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/tmux"&gt;made them shorter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias tmuxl='tmux list-sessions'
-alias tmuxa='tmux attach'
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-06-22:/!/magic-r-commands/index.html</id>
+    <id>tag:www.thomaslevine.com,2013-07-06:/!/magic-r-commands/index.html</id>
     <title type="html">Magic R commands</title>
-    <published>2013-06-22T04:00:00Z</published>
-    <updated>2013-06-22T04:00:00Z</updated>
-    <link href="http://www.thomaslevine.com/!/magic-r-commands/index.html" rel="alternate"/>
-    <content type="html">&lt;p&gt;I&amp;#8217;ve never come up with a good way for learning/teaching the cool parts of R.
-I guess that&amp;#8217;s just how R is; it&amp;#8217;s all a hack. Anyway, here are some magic
+    <published>2013-07-06T07:00:00Z</published>
+    <updated>2013-07-06T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/magic-r-commands/index.html"/>
+    <content type="html">&lt;p&gt;I’ve never come up with a good way for learning/teaching the cool parts of R.
+I guess that’s just how R is; it’s all a hack. Anyway, here are some magic
 incantations.&lt;/p&gt;
 
 &lt;h2 id="general-stuff"&gt;General stuff&lt;/h2&gt;
-&lt;p&gt;When loading a CSV, don&amp;#8217;t convert strings to factors.&lt;/p&gt;
+&lt;p&gt;When loading a CSV, don’t convert strings to factors.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
 &lt;/code&gt;&lt;/pre&gt;
@@ -125,7 +60,7 @@ rm(r)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Remove the carrots from the beginnings of the lines so that you can run code
-that you&amp;#8217;ve copied from the shell.&lt;/p&gt;
+that you’ve copied from the shell.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;options(prompt="  ")
 options(continue="+ ") 
@@ -144,11 +79,76 @@ sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-06-18:/!/bookmarks/index.html</id>
+    <id>tag:www.thomaslevine.com,2013-07-01:/!/setxkbmap-aliases/index.html</id>
+    <title type="html">setxkbmap aliases</title>
+    <published>2013-07-01T07:00:00Z</published>
+    <updated>2013-07-01T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/setxkbmap-aliases/index.html"/>
+    <content type="html">&lt;p&gt;I normally use the Dvorak keyboard layout, so I configure Dvorak to be the
+default layout on my computers. When other people use my computers, they
+normally want to switch the layout to qwerty. So I have this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias aoeu='setxkbmap us'
+alias asdf='setxkbmap us -variant dvorak'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I can just type the home row left hand to switch between these two
+layouts.&lt;/p&gt;
+
+&lt;p&gt;I sometimes use the Dvorak-inspired French and Swedish layouts. I can select
+the French one with &lt;code&gt;setxkbmap&lt;/code&gt; like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias fr='setxkbmap fr -variant dvorak'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I still haven’t figured out how to select the Swedish one with &lt;code&gt;setxkbmap&lt;/code&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-06-26:/!/tmux-aliases/index.html</id>
+    <title type="html">tmux aliases</title>
+    <published>2013-06-26T07:00:00Z</published>
+    <updated>2013-06-26T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/tmux-aliases/index.html"/>
+    <content type="html">&lt;p&gt;Before I implemented my &lt;code&gt;tmuxa&lt;/code&gt; and &lt;code&gt;tmuxl&lt;/code&gt; aliases, the three &lt;code&gt;tmux&lt;/code&gt; calls
+that I used most often were &lt;code&gt;tmux&lt;/code&gt;, &lt;code&gt;tmux list-sessions&lt;/code&gt; and &lt;code&gt;tmux attach&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
+    127 tmux
+    149 tmuxa
+      2 tmuxa 0
+      1 tmuxa -t0
+      3 tmuxa -t 0
+      6 tmuxa -t23
+      1 tmuxa -t 23
+      4 tmuxa -t32
+      1 tmuxa -t 5
+     15 tmux attach
+      2 tmux attach -t0
+      1 tmux attach -t16
+      1 tmux attach -t18
+      2 tmux attach -t 23
+      1 tmux attach -t27
+      1 tmux attach -t28
+      1 tmux attach -t 32
+     18 tmuxl
+      1 tmux --list-sessions
+      7 tmux list-sessions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Those commands are long, so I &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/tmux"&gt;made them shorter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias tmuxl='tmux list-sessions'
+alias tmuxa='tmux attach'
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-06-23:/!/bookmarks/index.html</id>
     <title type="html">Bookmarks</title>
-    <published>2013-06-18T04:00:00Z</published>
-    <updated>2013-06-18T04:00:00Z</updated>
-    <link href="http://www.thomaslevine.com/!/bookmarks/index.html" rel="alternate"/>
+    <published>2013-06-23T07:00:00Z</published>
+    <updated>2013-06-23T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/bookmarks/index.html"/>
     <content type="html">&lt;p&gt;I used to use &lt;a href="https://delicious.com/tlevine"&gt;delicious&lt;/a&gt;,
 but I always found it rather clumsy. I tried
 &lt;a href="https://github.com/tlevine/medial_temporal_lobe"&gt;gitmarks&lt;/a&gt;,
@@ -156,7 +156,7 @@ but it also seemed clumsy. So I made my own bookmark manager,
 &lt;a href="https://github.com/tlevine/medial_temporal_lobe"&gt;medial-temporal lobe&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id="how"&gt;How&lt;/h2&gt;
-&lt;p&gt;Here&amp;#8217;s how you use it.&lt;/p&gt;
+&lt;p&gt;Here’s how you use it.&lt;/p&gt;
 
 &lt;p&gt;Save a webpage.&lt;/p&gt;
 
@@ -179,7 +179,7 @@ linking to the file in &lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;
 &lt;p&gt;&lt;code&gt;~/.medial_temporal_lobe&lt;/code&gt; is a directory, so you can
 &lt;a href="https://github.com/tlevine/.medial_temporal_lobe"&gt;version it with git&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I haven&amp;#8217;t implemented any functions other than &lt;code&gt;add&lt;/code&gt;, so you have to use
+&lt;p&gt;I haven’t implemented any functions other than &lt;code&gt;add&lt;/code&gt;, so you have to use
 other tools for viewing, editing and deleting the bookmarks.&lt;/p&gt;
 
 &lt;h2 id="differences"&gt;Differences&lt;/h2&gt;
@@ -190,14 +190,14 @@ more things.&lt;/p&gt;
 &lt;p&gt;It is quite easy to tag things, so I add more tags. I generally make an
 alias to facilitate this. For example, I was reading about configuring
 bundler earlier today, so I wound up with a bunch of things that I wanted
-to tag with &amp;#8220;ruby&amp;#8221; and &amp;#8220;bundler&amp;#8221;, so I made this alias.&lt;/p&gt;
+to tag with “ruby” and “bundler”, so I made this alias.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;alias a='mtl add -t ruby,bundler'
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And then I ran &lt;code&gt;a $url&lt;/code&gt; for a bunch of urls.&lt;/p&gt;
 
-&lt;p&gt;It is also quite easy to search things, even though I haven&amp;#8217;t implemented
+&lt;p&gt;It is also quite easy to search things, even though I haven’t implemented
 an &lt;code&gt;mtl&lt;/code&gt; command for it. I just run something like this.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_temporal/tags/ruby
@@ -209,21 +209,54 @@ cat */info
 &lt;pre&gt;&lt;code&gt;grep -r ruby ~/.medial_temporal_lobe/memories
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Or see which how many things are in each tag.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ find ~/.medial_temporal_lobe/tags -type l|cut -d/ -f2|uniq -c|head -n20
+  2 happstack
+  1 encoding
+  3 html
+  1 poverty
+  1 s3cmd
+  1 plots
+ 11 passwords
+  1 heroku
+  3 bundler
+  6 javascript
+  1 popular
+  1 ggplot
+  5 shell
+  2 new_york
+  4 aluminum_bed
+  2 statistics
+  2 hlm
+  2 foi
+  1 video
+  1 networkx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And combine tags.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_lobe/tags
+git mv arch/* arch_linux
+rmdir arch
+git commit . -m 'Combine arch tags'
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;I also use this as a mirror for files I want to read. This is especially
-helpful when I&amp;#8217;m on a train. (I like trains.) I can bookmark/download a
+helpful when I’m on a train. (I like trains.) I can bookmark/download a
 bunch of files, commit them, push them, pull them from my laptop, get on
 the train and then read them without an internet connection. This is, of
-course, quite easy to do by other means, but it&amp;#8217;s not something I would
+course, quite easy to do by other means, but it’s not something I would
 have done with Delicious.&lt;/p&gt;
 </content>
   </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-06-15:/!/preserve-whitespace-in-haml/index.html</id>
     <title type="html">Preserving whitespace in haml</title>
-    <published>2013-06-15T04:00:00Z</published>
-    <updated>2013-06-15T04:00:00Z</updated>
-    <link href="http://www.thomaslevine.com/!/preserve-whitespace-in-haml/index.html" rel="alternate"/>
-    <content type="html">&lt;p&gt;If been to this site in the last few weeks, you&amp;#8217;ve seen ugly code blocks like
+    <published>2013-06-15T07:00:00Z</published>
+    <updated>2013-06-15T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/preserve-whitespace-in-haml/index.html"/>
+    <content type="html">&lt;p&gt;If been to this site in the last few weeks, you’ve seen ugly code blocks like
 this one (from my article on my &lt;a href="/!/scp-wrapper/"&gt;scp wrapper&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="Code block with weird indenting" src="/!/preserve-whitespace-in-haml/unpreserved.png" class="wide" /&gt;&lt;/p&gt;

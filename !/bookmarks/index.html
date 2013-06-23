@@ -8,10 +8,26 @@
   <head>
     <meta charset='utf-8'>
     <title>Bookmarks</title>
-    <meta content='' name='description'>
+    <meta content='Underwhelmed by existing bookmark programs, I wound up writing my own.' name='description'>
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Bookmarks' name='twitter:title'>
+    <meta content='Underwhelmed by existing bookmark programs, I wound up writing my own.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/bookmarks/tags.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -54,7 +70,7 @@
             Bookmarks
           </h1>
           <div class='date'>
-            June 18, 2013
+            June 23, 2013
           </div>
         </header>
         <div id='article-wrapper'>
@@ -66,7 +82,7 @@
             <a href="https://github.com/tlevine/medial_temporal_lobe">medial-temporal lobe</a>.</p>
             
             <h2 id="how">How</h2>
-            <p>Here&#8217;s how you use it.</p>
+            <p>Here’s how you use it.</p>
             
             <p>Save a webpage.</p>
             
@@ -87,7 +103,7 @@
             <p><code>~/.medial_temporal_lobe</code> is a directory, so you can
             <a href="https://github.com/tlevine/.medial_temporal_lobe">version it with git</a>.</p>
             
-            <p>I haven&#8217;t implemented any functions other than <code>add</code>, so you have to use
+            <p>I haven’t implemented any functions other than <code>add</code>, so you have to use
             other tools for viewing, editing and deleting the bookmarks.</p>
             
             <h2 id="differences">Differences</h2>
@@ -98,13 +114,13 @@
             <p>It is quite easy to tag things, so I add more tags. I generally make an
             alias to facilitate this. For example, I was reading about configuring
             bundler earlier today, so I wound up with a bunch of things that I wanted
-            to tag with &#8220;ruby&#8221; and &#8220;bundler&#8221;, so I made this alias.</p>
+            to tag with “ruby” and “bundler”, so I made this alias.</p>
             
             <pre><code>alias a='mtl add -t ruby,bundler'&#x000A;</code></pre>
             
             <p>And then I ran <code>a $url</code> for a bunch of urls.</p>
             
-            <p>It is also quite easy to search things, even though I haven&#8217;t implemented
+            <p>It is also quite easy to search things, even though I haven’t implemented
             an <code>mtl</code> command for it. I just run something like this.</p>
             
             <pre><code>cd ~/.medial_temporal_temporal/tags/ruby&#x000A;cat */info&#x000A;</code></pre>
@@ -113,11 +129,19 @@
             
             <pre><code>grep -r ruby ~/.medial_temporal_lobe/memories&#x000A;</code></pre>
             
+            <p>Or see which how many things are in each tag.</p>
+            
+            <pre><code>$ find ~/.medial_temporal_lobe/tags -type l|cut -d/ -f2|uniq -c|head -n20&#x000A;  2 happstack&#x000A;  1 encoding&#x000A;  3 html&#x000A;  1 poverty&#x000A;  1 s3cmd&#x000A;  1 plots&#x000A; 11 passwords&#x000A;  1 heroku&#x000A;  3 bundler&#x000A;  6 javascript&#x000A;  1 popular&#x000A;  1 ggplot&#x000A;  5 shell&#x000A;  2 new_york&#x000A;  4 aluminum_bed&#x000A;  2 statistics&#x000A;  2 hlm&#x000A;  2 foi&#x000A;  1 video&#x000A;  1 networkx&#x000A;</code></pre>
+            
+            <p>And combine tags.</p>
+            
+            <pre><code>cd ~/.medial_temporal_lobe/tags&#x000A;git mv arch/* arch_linux&#x000A;rmdir arch&#x000A;git commit . -m 'Combine arch tags'&#x000A;</code></pre>
+            
             <p>I also use this as a mirror for files I want to read. This is especially
-            helpful when I&#8217;m on a train. (I like trains.) I can bookmark/download a
+            helpful when I’m on a train. (I like trains.) I can bookmark/download a
             bunch of files, commit them, push them, pull them from my laptop, get on
             the train and then read them without an internet connection. This is, of
-            course, quite easy to do by other means, but it&#8217;s not something I would
+            course, quite easy to do by other means, but it’s not something I would
             have done with Delicious.</p>
           </article>
         </div>

@@ -12,6 +12,22 @@
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='BetterCoach and the merits of the inferior schedule-finder' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -67,12 +83,12 @@
             at least for its time.</p>
             
             <h2 id="original-finder">Original finder</h2>
-            <p>The Coach site&#8217;s way of changing one drop-down menu option when you change another
+            <p>The Coach site’s way of changing one drop-down menu option when you change another
             is simple and robust. And it probably made a lot more sense if you were using dial-up.</p>
             
             <p>It works like this.
-            It&#8217;s one little section of the main Coach website.
-            You first select the state from where you&#8217;re starting your trip.
+            It’s one little section of the main Coach website.
+            You first select the state from where you’re starting your trip.
             Then it presents you the cities in that state. Then you select one,
             and it shows you the states you can go to. And so on.</p>
             
@@ -92,26 +108,26 @@
             inside the iframe, and javascript automatically
             submits each individual form when you change its drop-down menu.
             This is actually quite similar to how we do form validation
-            today, except that it&#8217;s synchronous.</p>
+            today, except that it’s synchronous.</p>
             
-            <p>It&#8217;s quite slow, but that&#8217;s mainly because of something in the backend,
+            <p>It’s quite slow, but that’s mainly because of something in the backend,
             like maybe an over-loaded, poorly configured server
             making inefficient database queries.
-            Aside from that, it&#8217;s seems slow because it&#8217;s synchronous.</p>
+            Aside from that, it’s seems slow because it’s synchronous.</p>
             
             <p>But consider what it would have been like on dial-up.
             Making multiple connections and having a slow server
             would be less significant because of how long each transfer
             would take. By dividing up the list and putting it in an iframe,
             they allow you to stay on the home page, reloading just a small part.
-            The real savings in time is errors; if they didn&#8217;t have this sort of validation,
+            The real savings in time is errors; if they didn’t have this sort of validation,
             they would have to send two lists of 360 stations each every time you
-            selected a route that didn&#8217;t exist. By doing it as they did, they
+            selected a route that didn’t exist. By doing it as they did, they
             prevent errors and thus prevent this slow sending of station lists.</p>
             
             <h2 id="problems-with-the-original-finder">Problems with the original finder</h2>
             <p>As cool as I think the original finder is, I still think it sucks.
-            The main annoyance is that it&#8217;s slow. Secondarily, the page could
+            The main annoyance is that it’s slow. Secondarily, the page could
             be less visually noisy. I only ever go to the website to check
             schedules, and the other things probably just distract me.</p>
             

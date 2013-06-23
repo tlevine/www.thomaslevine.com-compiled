@@ -12,6 +12,22 @@
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Local ScraperWiki Library' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -62,7 +78,7 @@
             <p>It rather annoying that you can only use the scraperwiki library
             on a ScraperWiki instance; most of it could work fine elsewhere.</p>
             
-            <p>So I&#8217;ve pulled it out so you can use it offline. Well I&#8217;ve actually
+            <p>So I’ve pulled it out so you can use it offline. Well I’ve actually
             only done it for Python so far. You can install it from PyPI.</p>
             
             <pre><code>#!sh&#x000A;pip install scraperwiki_local&#x000A;</code></pre>
@@ -78,7 +94,7 @@
             
             <p>DumpTruck works a bit differently from (and better than) the hosted ScraperWiki,
             library, and some of these are passed on to the scraperwiki_local library,
-            but the change shouldn&#8217;t break much existing code. To give you an idea of the
+            but the change shouldn’t break much existing code. To give you an idea of the
             ways they differ, here are two differences.</p>
             
             <h3 id="complex-cell-values">Complex cell values</h3>
@@ -97,7 +113,7 @@
             <pre><code>#!python&#x000A;["carrots","orange juice","chainsaw"]&#x000A;</code></pre>
             
             <p>And when you retrieve it, it comes back as a list rather than as a string.
-            And if it can&#8217;t be encoded to JSON, you get an error.</p>
+            And if it can’t be encoded to JSON, you get an error.</p>
             
             <h3 id="case-insensitive-column-names">Case-insensitive column names</h3>
             
@@ -106,9 +122,9 @@
             
             <pre><code>#!python&#x000A;In [1]: shopping_list = ['carrots', 'orange juice', 'chainsaw']&#x000A;&#x000A;In [2]: scraperwiki.sqlite.save([], {'shopping_list': shopping_list})&#x000A;&#x000A;In [3]: scraperwiki.sqlite.save([], {'sHOpPiNg_liST': shopping_list})&#x000A;&#x000A;In [4]: scraperwiki.sqlite.select('* from swdata')&#x000A;&#x000A;Out[4]: &#x000A;[{u'shopping_list': [u'carrots', u'orange juice', u'chainsaw']},&#x000A; {u'shopping_list': [u'carrots', u'orange juice', u'chainsaw']}]&#x000A;</code></pre>
             
-            <p>Note that the key in the returned data is &#8216;shopping_list&#8217; and not
-            &#8216;sHOpPiNg_liST&#8217;; the database uses the first one that was sent.
-            Now let&#8217;s retrieve the individual cell values.</p>
+            <p>Note that the key in the returned data is ‘shopping_list’ and not
+            ‘sHOpPiNg_liST’; the database uses the first one that was sent.
+            Now let’s retrieve the individual cell values.</p>
             
             <pre><code>#!python&#x000A;In [5]: data = scraperwiki.sqlite.select('* from swdata')&#x000A;&#x000A;In [6]: print([row['shopping_list'] for row in data])&#x000A;Out[6][[u'carrots', u'orange juice', u'chainsaw'], [u'carrots', u'orange juice', u'chainsaw']]&#x000A;</code></pre>
             
@@ -124,18 +140,18 @@
             
             <h2 id="develop-locally">Develop locally</h2>
             
-            <p>Here&#8217;s a start at developing ScraperWiki scripts locally, with whatever coding
+            <p>Here’s a start at developing ScraperWiki scripts locally, with whatever coding
             environment you are used to.</p>
             
             <p>For a lot of things, the local library will do the same thing as the hosted.
-            For another lot of things, there will be differences and the differences won&#8217;t matter.</p>
+            For another lot of things, there will be differences and the differences won’t matter.</p>
             
             <p>If you want to develop locally (just Python for now), you can use the local library
-            and then move your script to a ScraperWiki script when you&#8217;ve finished developing it.
+            and then move your script to a ScraperWiki script when you’ve finished developing it.
             Or you could just run it somewhere else.</p>
             
             <p>If you like developing locally, you might also want to take a look at
-            <a href="https://github.com/twneale/scraperwikiscraper">Thom Neale&#8217;s ScraperWiki scraper</a>.</p>
+            <a href="https://github.com/twneale/scraperwikiscraper">Thom Neale’s ScraperWiki scraper</a>.</p>
           </article>
         </div>
         <div id='pagination'>

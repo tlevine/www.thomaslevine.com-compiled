@@ -12,6 +12,22 @@
     <meta content='Thomas Levine' name='author'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Couch-style data versioning in sqlite' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -75,10 +91,10 @@
             
             <h2 id="sqlite-implementation">SQLite implementation</h2>
             <p>Not everyone likes Couch as much as I do, and ScraperWiki uses SQLite,
-            so I&#8217;ve been making SQLite feel more like Couch. How do we put this
+            so I’ve been making SQLite feel more like Couch. How do we put this
             data version control in couch?</p>
             
-            <p>Let&#8217;s start by trying to version one table that does not reference
+            <p>Let’s start by trying to version one table that does not reference
             other tables.</p>
             
             <p>Create the table, and create a unique index on <code>_id</code> and <code>_rev</code>.</p>
@@ -92,7 +108,7 @@
             
             <p>Rather than updating rows, insert new rows that reference
             old <code>_rev</code>s; for example, this is how you revise the record
-            for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to &#8220;answer&#8221;.</p>
+            for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to “answer”.</p>
             
             <pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");&#x000A;</code></pre>
             
@@ -102,11 +118,11 @@
             
             <h2 id="simplify">Simplify</h2>
             
-            <p>Let&#8217;s write custom SQLite functions to simplify this retrieval.</p>
+            <p>Let’s write custom SQLite functions to simplify this retrieval.</p>
             
             <pre><code>SELECT * FROM foo WHERE version(*) = 12&#x000A;</code></pre>
             
-            <p>And let&#8217;s allow you to specify tags.</p>
+            <p>And let’s allow you to specify tags.</p>
             
             <pre><code>SELECT * FROM foo WHERE version(*) = "master";&#x000A;SELECT * FROM foo WHERE version(*) = "0.2.1";&#x000A;</code></pre>
             
