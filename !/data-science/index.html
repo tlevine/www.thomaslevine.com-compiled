@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>I reluctantly define data science</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='I reluctantly define data science' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            I reluctantly define data science
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I’ve been resisting using and defining the term “data science”, but I’m
+            starting to give in. People define “data science” such that they are doing it,
+            so its meaning is never that clear. But maybe all fields are like this.</p>
+            
+            <p>Either way, there is some newly useful approach to quantitative research,
+            and I’m going to call that “data science”.</p>
+            
+            <h2 id="the-mindset">The mindset</h2>
+            <p>I see data science as a mindset. (By the way, I also see ergonomics as a mindset.)
+            Here are the main parts of the mindset.</p>
+            
+            <ol>
+              <li>I want to study how complex systems work.</li>
+              <li>Everything can be turned into a number, and these numbers can be put in tables.</li>
+              <li>Don’t use questionnaires, lab studies or other highly manual data collection
+             processes; it is often cheaper and more statistically sound to unobtrusobly
+             record things that people are already doing.</li>
+              <li>You don’t need a full-fleged research plan before you start collecting data;
+             record everything that is convenient, and store it in the most raw form.</li>
+              <li>When asked a question about the world, adapt the question so that it can be
+             answered with an existing and convenient dataset.</li>
+            </ol>
+            
+            <p>I think these points stem from the first point, the desire to learn how complex
+            systems work. If you want to do that and you are alive today, you might get
+            excited by the potential off the ease of collecting and storing quantitative
+            information, and the aspects above follow logically.</p>
+            
+            <h2 id="overview">Overview</h2>
+            <p>I came up with a concept of data science by thinking about how I would teach
+            it. If I were giving a course on data science, it would have these main parts</p>
+            
+            <ol>
+              <li>The data mindset (explained above)</li>
+              <li>Converting a mess into data (ETL/scraping, data formats, logging, messaging, databases, feature extraction, distributed systems, &amp;c.)</li>
+              <li>Stuff you can do once you have data (graphs, interactives, web development, algorithms for statistics/predictions/recommendation, online/realtime statistics &amp;c.)</li>
+            </ol>
+            
+            <p>(I apologize for the parethetical use of startlingly many buzzterms above.)</p>
+            
+            <p>These points are ordered chronologically by approximate step in a data workflow,
+            but I think they should be taught all at once in separate projects.</p>
+            
+            <h2 id="details">Details</h2>
+            
+            <h3 id="the-data-mindset">The data mindset</h3>
+            <p>If you have the aforementioned data mindset, the following are true.</p>
+            
+            <ul>
+              <li>You see little difference between “qualitative” and “quantitative” data
+              nor between “unstructured” and “structured” data because you know that
+              you can convert between these opposites.</li>
+              <li>You look for opportunities to use existing stores of data in unintended ways.</li>
+              <li>All analyses should be scripted.</li>
+            </ul>
+            
+            <p>Some lessons that would fall under this topic</p>
+            
+            <ul>
+              <li>Development practices (test-driven development, &amp;c.)</li>
+              <li>git</li>
+              <li>a good text editor</li>
+              <li>Brainstorming</li>
+              <li>User research methods</li>
+            </ul>
+            
+            <h3 id="converting-a-mess-into-data">Converting a mess into data</h3>
+            <p>Here are some things that I’d introduce related to preparing data.</p>
+            
+            <ul>
+              <li>The concept of tidy data tables (from Hadley Wickham)</li>
+              <li>Data serialization formats (CSV, JSON, XML, &amp;c.)</li>
+              <li>The POSIX shell</li>
+              <li>Storage API paradigms (filesystem, MapReduce, SQL and variants, ReST)</li>
+              <li>Performance concerns (memory, storage, CPU, network, parallelizing)</li>
+              <li>Microcontrollers, sensors, &amp;c.</li>
+              <li>How client-side and server-side web analytics work</li>
+              <li>Making HTTP requests, mainly for web scraping</li>
+              <li>Parsing XML and HTML, mainly for web scraping</li>
+              <li>Messaging, queues, &amp;c.</li>
+              <li>Regular expressions</li>
+            </ul>
+            
+            <h3 id="what-you-can-do-with-data">What you can do with data</h3>
+            <p>Here are things I’d introduce on what you can do with data.</p>
+            
+            <ul>
+              <li>Tufte’s thoughts on visual displays of quantitative information</li>
+              <li>The grammar of graphics</li>
+              <li>Conveying data through a story, interactively</li>
+              <li>The concepts of prediction and inference</li>
+              <li>The difference or lack thereof between statistics and machine learning</li>
+              <li>How to think about the type signature of a prediction formula
+              (numerical/categorical, response variable, supervized/unsupervized)</li>
+              <li>Common machine learning algorithms (You can also call these “stastical
+              methods”.)</li>
+              <li>Natural language processing approaches</li>
+              <li>Web development, focusing on simple static websites</li>
+            </ul>
+            
+            <h2 id="incompleteness">Incompleteness</h2>
+            <p>That definition is quite involved, but I’m likely to keep adding to it as
+            I remember things. Also, keep in mind that these topics would be only
+            shallowly discussed in an introductory course and that the professional
+            data scientist would have deeper knowledge in many of these areas.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/data-science/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+        <script>
+          //$()
+        </script>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
