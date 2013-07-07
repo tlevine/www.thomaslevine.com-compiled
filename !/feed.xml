@@ -79,11 +79,11 @@ sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-
 </content>
   </entry>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-07-07:/!/socrata-analysis-introduction/index.html</id>
+    <id>tag:www.thomaslevine.com,2013-07-07:/!/socrata-summary/index.html</id>
     <title type="html">Analyze all the datasets</title>
     <published>2013-07-07T07:00:00Z</published>
     <updated>2013-07-07T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-analysis-introduction/index.html"/>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-summary/index.html"/>
     <content type="html">
 &lt;p&gt;I downloaded the metadata files for all of the datasets across all of the Socrata data portals.
 Here I explain how I did that and present an summary of the sorts of data that we find in the portals.&lt;/p&gt;
@@ -93,7 +93,7 @@ Here I explain how I did that and present an summary of the sorts of data that w
 except that I had substantial assistance from robot scripts.
 You can see the general workflow below.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="/!/socrata-analysis-introduction/architecture.jpg"&gt;&lt;img src="/!/socrata-analysis-introduction/architecture.jpg" alt="A flow chart diagraming how the program works" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/!/socrata-summary/architecture.jpg"&gt;&lt;img src="/!/socrata-summary/architecture.jpg" alt="A flow chart diagraming how the program works" /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id="listing-the-portals"&gt;Listing the portals&lt;/h3&gt;
 &lt;p&gt;First, I get a list of Socrata portals from the Socrata &lt;a href="http://status.socrata.com"&gt;status page&lt;/a&gt;.
