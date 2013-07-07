@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Analyze all the datasets</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Analyze all the datasets' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='/!/socrata-analysis-introduction/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Analyze all the datasets' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Analyze all the datasets
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            
+            <p>I downloaded the metadata files for most of the datasets across most of the Socrata data portals.
+            Here I explain how I did that and present an summary of the sorts of data that we find in the portals.</p>
+            
+            <h2 id="acquiring-the-data">Acquiring the data</h2>
+            <p>I acquired the data the same way any ordinary person could have,
+            except that I had substantial assistance from robot scripts.
+            You can see the general workflow below.</p>
+            
+            <p><a href="/!/socrata-analysis-introduction/architecture.jpg"><img src="/!/socrata-analysis-introduction/architecture.jpg" alt="A flow chart diagraming how the program works" /></a></p>
+            
+            <h3 id="listing-the-portals">Listing the portals</h3>
+            <p>First, I get a list of Socrata portals from the Socrata <a href="http://status.socrata.com">status page</a>.
+            This page makes loads the portal names and descriptions from <a href="http://status.socrata.com/sites">this JSON file</a>.
+            I download parse that file in <a href="https://github.com/tlevine/socrata-analysis/tree/master/portals.py"><code>portals.py</code></a>. Most of the portal URLs
+            are in the <code>description</code> fields, but this isn’t always the case, so I used some heuristics to
+            tidy that up.</p>
+            
+            <pre><code>#&#x000A;# From portals.py&#x000A;# &#x000A;if is_domain(portal['description']):&#x000A;    domain = portal['description']&#x000A;elif is_domain(portal['name']):&#x000A;    domain = portal['name']&#x000A;elif portal['name'] == 'Socrata':&#x000A;    continue&#x000A;else:&#x000A;    warnings.warn('Could not find a valid domain for %s, skipping' % portal['name'])&#x000A;    continue&#x000A;&#x000A;domain = domain.replace('https://', '').replace('http://', '')&#x000A;</code></pre>
+            
+            <p>It turns out that the <a href="https://opendata.socrata.com">opendata.socrata.com</a> portal isn’t
+             listed there, so I add that one manually.</p>
+            
+            <p>Next, I create a directory for each data portal and start downloading and parsing data
+            from each individual portal. Most of the portal-specific stuff is enclosed in the
+            <a href="https://github.com/tlevine/socrata-analysis/tree/master/run_one.sh"><code>run_one.sh</code></a> script.</p>
+            
+            <h3 id="search-for-datasets">Search for datasets</h3>
+            <p>As far as I could tell, Socrata doesn’t have a formal API for searching datasets, so I
+            just searched with the ordinary web interface. In <a href="https://github.com/tlevine/socrata-analysis/tree/master/search.sh"><code>search.sh</code></a>,
+            I make a search for all datasets of all kinds, and then I keep going to the next page
+            as long as there are results. I save all of the results in a <code>searches</code> directory inside
+            of the portal data folder. For example, search results for <code>data.colorado.gov</code> go in
+            <code>data/data.colorado.gov/searches</code>.</p>
+            
+            <h3 id="find-dataset-identifiers">Find dataset identifiers</h3>
+            <p>The search result pages are big HTML blobs. The script <a href="https://github.com/tlevine/socrata-analysis/tree/master/viewids.py"><code>viewids.py</code></a>
+            finds the Socrata 4x4 identifiers in these HTML files and saves them to a file called
+            <code>viewids</code>. It makes a separate file for each portal.</p>
+            
+            <h3 id="download-dataset-metadata">Download dataset metadata</h3>
+            <p>You can download the metadata for a particular dataset at the url
+            <code>https://${SOCRATA_URL}/views/${viewid}.json</code>, where <code>SOCRATA_URL</code> is something like
+            <code>dati.lombardia.it</code> and <code>viewid</code> is something like <code>tuar-wxya</code>.
+            The script <a href="https://github.com/tlevine/socrata-analysis/tree/master/views.sh"><code>views.sh</code></a> downloads the metadata files.</p>
+            
+            <p>There are sometimes other attachments that you can read about in the “About” section
+            of a dataset, and those don’t get downloaded automatically.</p>
+            
+            <h3 id="download-the-datasets-themselves">Download the datasets themselves</h3>
+            <p>Downloading the datasets is similarly straightforward; you just go to 
+            <code>https://$SOCRATA_URL/api/views/${viewid}/rows.csv?accessType=DOWNLOAD</code>,
+            where <code>SOCRATA_URL</code> is again something like
+            <code>dati.lombardia.it</code> and <code>viewid</code> is again something like <code>tuar-wxya</code>.
+            <a href="https://github.com/tlevine/socrata-analysis/tree/master/rows.sh"><code>rows.sh</code></a> does this.</p>
+            
+            <p>Unfortunately, Socrata is pretty slow enough that this is actually pretty annoying,
+            so I’m not downloading the actual datasets for now, just the metadata.</p>
+            
+            <h3 id="conversion-to-a-table">Conversion to a table</h3>
+            <p>All of the steps so far are encapsulated in the file <a href="https://github.com/tlevine/socrata-analysis/tree/master/run.sh"><code>run.sh</code></a>,
+            and that is the file that I run. This resulted in a bunch of inconsistently structured
+            JSON files. There are a lot of different ways that one may want to reformat these
+            files, and I happened to want a table with specific sorts of information, so I decided
+            to separate that into a different file (and repository altogether).</p>
+            
+            <p>A script in the <a href="https://github.com/tlevine/socrata-analysis">analysis repository</a>
+            opens all of the JSON files and makes a row in a CSV file for each one. It doesn’t take
+            all of the fields. It handles nested structures by extracting flat features from them;
+            for example, I take the number of dataset tags rather than the full list of tags.</p>
+            
+            <p>You can download this table <a href="socrata.csv">here</a>. The following analyses all come from
+            that table.</p>
+            
+            <h3 id="missing-metadata">Missing metadata</h3>
+            <p><a href="https://github.com/tlevine/socrata-analysis/tree/master/summary.sh"><code>summary.sh</code></a> tells me which files are empty (as a result of
+            HTTP errors) and how total files there are. It turns out that six of the Hawaii files
+            are empty. The Hawaii data portal had only just started as I was downloading the files,
+            so it might be that these datasets got changed suddenly between the searching and the
+            downloading.</p>
+            
+            <pre><code>$ ./summary.sh &#x000A;Empty files:&#x000A;data/data.hawaii.gov/views/qbr3-puhj&#x000A;data/data.hawaii.gov/views/s8xa-f7xy&#x000A;data/data.hawaii.gov/views/mmnd-twmz&#x000A;data/data.hawaii.gov/views/bi6a-gquj&#x000A;data/data.hawaii.gov/views/r7hz-w7x9&#x000A;data/data.hawaii.gov/views/wbtr-iq8j&#x000A;There are 89120 total datasets in all of the Socrata portals.&#x000A;Of those, 89114 contain metadata; the others are empty files.&#x000A;</code></pre>
+            
+            <h2 id="two-interesting-points-about-the-socrata-software">Two interesting points about the Socrata software</h2>
+            <p>I learned some fun things about Socrata in doing all of this.</p>
+            
+            <h3 id="multi-portal-architecture">Multi-portal architecture</h3>
+            <p>All of the different Socrata portals are probably served from the same web application.
+            I say this because rate limits apply across portals rather than within portals and because
+            all of the sites were down for maintenance on the same day (6/26/2013).</p>
+            
+            <p>When I open Socrata portals in my web browser, I feel like they are different installations
+            for each city. I suspect that Socrata found that people want to feel like they have their
+            own curated portal rather than feeling like they are dumping data into the abyss of
+            <a href="https://opendata.socrata.com">opendata.socrata.com</a>.</p>
+            
+            <h3 id="urls">URLs</h3>
+            <p>If you navigate to a dataset in Socrata in your web browser, you’ll wind up with a URL like this.</p>
+            
+            <blockquote>
+              <p><a href="https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf">https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf</a>.</p>
+            </blockquote>
+            
+            <p>It turns out that the directories don’t matter; this URL also works.</p>
+            
+            <blockquote>
+              <p><a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf">https://iranhumanrights.socrata.com/-/-/uqfx-z9cf</a></p>
+            </blockquote>
+            
+            <p>So if you ever are curious for more information about a dataset that you find in the spreadsheet,
+            you can just type in a URL like that for the particular dataset and look at all of the information
+            that Socrata has on it.</p>
+            
+            <h2 id="initial-analysis">Initial analysis</h2>
+            <p>Anyway, on to the quantitative analysis.</p>
+            
+            <p>For now, I’m just going to give a broader summary of the datasets in Socrata. I’m mainly
+            looking at the following variables, each of which has one observation per dataset.</p>
+            
+            <ul>
+              <li>Data portal</li>
+              <li>Date published</li>
+              <li>Download count</li>
+              <li>Number of rows</li>
+              <li>Number of columns</li>
+            </ul>
+            
+            <h3 id="sizes">Sizes</h3>
+            <p>Let’s first see which portals are biggest. Which has the most datasets?</p>
+            
+            <pre><code>socrata$portal &lt;- factor(socrata$portal, levels = names(sort(table(socrata$portal), &#x000A;    decreasing = T)))&#x000A;&#x000A;ggplot(socrata) + aes(x = portal) + geom_bar() + coord_flip() + scale_y_log10("Number of datasets", &#x000A;    breaks = 10^(0:4)) + scale_x_discrete("Data portal")&#x000A;</code></pre>
+            
+            <p><a href="figure/big_portals_datasets.png"><img src="figure/big_portals_datasets.png" alt="plot of chunk big_portals_datasets" class="wide" /></a></p>
+            
+            <p>Which portals get the most downloads?</p>
+            
+            <pre><code>.download &lt;- ddply(socrata, "portal", function(df) {&#x000A;    c(datasets = nrow(df), downloads = sum(df$downloadCount))&#x000A;})&#x000A;socrata$portal &lt;- factor(socrata$portal, levels = .download$portal[order(.download$downloads, &#x000A;    decreasing = T)])&#x000A;&#x000A;ggplot(.download) + aes(x = portal, y = downloads) + geom_point() + coord_flip() + &#x000A;    scale_y_log10("Number of dataset downloads", labels = comma, breaks = 10^c(2:9)) + &#x000A;    scale_x_discrete("Data portal")&#x000A;</code></pre>
+            
+            <p><a href="figure/big_portals_downloads.png"><img src="figure/big_portals_downloads.png" alt="plot of chunk big_portals_downloads" class="wide" /></a></p>
+            
+            <p>Do any of them have few datasets but get a lot of downloads?</p>
+            
+            <pre><code>ggplot(.download) + aes(x = datasets, y = downloads, color = portal) + geom_point() + &#x000A;    scale_x_log10("Number of datasets", breaks = 10^(0:4)) + scale_y_log10("Number of dataset downloads", &#x000A;    labels = comma, breaks = 10^c(2:9))&#x000A;</code></pre>
+            
+            <p><a href="figure/big_portals_density_scatter.png"><img src="figure/big_portals_density_scatter.png" alt="plot of chunk big_portals_density_scatter" /></a> </p>
+            
+            <p>Here’s the same plot except with the portal names in the plot.
+            This might be easier or harder to read.</p>
+            
+            <pre><code>ggplot(.download) + aes(x = datasets, y = downloads, label = portal) + geom_text() + &#x000A;    scale_x_log10("Number of datasets", breaks = 10^(0:4)) + scale_y_log10("Number of dataset downloads", &#x000A;    labels = comma, breaks = 10^c(2:9))&#x000A;</code></pre>
+            
+            <p><a href="figure/big_portals_density_text.png"><img src="figure/big_portals_density_text.png" alt="plot of chunk big_portals_density_text" class="wide" /></a></p>
+            
+            <p>What are the most popular datasets for each portal? Let’s first do the one with
+            the most downloads.</p>
+            
+            <pre><code>datasets &lt;- ddply(socrata, "portal", function(df) {&#x000A;    df[order(df$downloadCount, decreasing = T)[1], c("id", "name", "createdAt", &#x000A;        "downloadCount")]&#x000A;})&#x000A;(listify(datasets))&#x000A;</code></pre>
+            
+            <ul>
+              <li><code>data.ny.gov</code>: <a href="https://data.ny.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63084 downloads)</li>
+              <li><code>data.oregon.gov</code>: <a href="https://data.oregon.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63086 downloads)</li>
+              <li><code>data.hawaii.gov</code>: <a href="https://data.hawaii.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63085 downloads)</li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63086 downloads)</li>
+              <li><code>data.illinois.gov</code>: <a href="https://data.illinois.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63084 downloads)</li>
+              <li><code>opendata.socrata.com</code>: <a href="https://opendata.socrata.com/-/-/wv3s-d6ja">Watch Finder</a> (37999 downloads)</li>
+              <li><code>explore.data.gov</code>: <a href="https://explore.data.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63084 downloads)</li>
+              <li><code>data.seattle.gov</code>: <a href="https://data.seattle.gov/-/-/kzjm-xkqj">Seattle Real Time Fire 911 Calls</a> (436431 downloads)</li>
+              <li><code>www.metrochicagodata.org</code>: <a href="https://www.metrochicagodata.org/-/-/jpfu-k3rv">Snow Alerts</a> (47389 downloads)</li>
+              <li><code>data.cityofchicago.org</code>: <a href="https://data.cityofchicago.org/-/-/jpfu-k3rv">Snow Alerts</a> (46890 downloads)</li>
+              <li><code>bronx.lehman.cuny.edu</code>: <a href="https://bronx.lehman.cuny.edu/-/-/erm2-nwe9">311 Service Requests from 2010 to Present</a> (50101 downloads)</li>
+              <li><code>data.cityofnewyork.us</code>: <a href="https://data.cityofnewyork.us/-/-/erm2-nwe9">311 Service Requests from 2010 to Present</a> (47969 downloads)</li>
+              <li><code>data.baltimorecity.gov</code>: <a href="https://data.baltimorecity.gov/-/-/cut3-c4bx">Baltimore City Government Entities</a> (68268 downloads)</li>
+              <li><code>data.sfgov.org</code>: <a href="https://data.sfgov.org/-/-/uupn-yfaw">Off-Street parking lots and parking garages</a> (93951 downloads)</li>
+              <li><code>data.medicare.gov</code>: <a href="https://data.medicare.gov/-/-/v287-28n3">Hospital General Information</a> (8773 downloads)</li>
+              <li><code>opendata.go.ke</code>: <a href="https://opendata.go.ke/-/-/zn6m-25cf">Kenya County Fact Sheets Dec 2011</a> (12312 downloads)</li>
+              <li><code>data.kingcounty.gov</code>: <a href="https://data.kingcounty.gov/-/-/j56h-zgnm">Adult Jail Booking: Jun. 1, 2012 to May 31, 2013 as of Jun. 6, 2013</a> (6294 downloads)</li>
+              <li><code>finances.worldbank.org</code>: <a href="https://finances.worldbank.org/-/-/besw-hc5u">Number of Contracts per Supplier</a> (2146 downloads)</li>
+              <li><code>data.govloop.com</code>: <a href="https://data.govloop.com/-/-/qcqe-y2ms">GovLoop Member Data</a> (5855 downloads)</li>
+              <li><code>www.opendatanyc.com</code>: <a href="https://www.opendatanyc.com/-/-/39qk-dccg">NYCERS Meeting Agenda 4-26-2011</a> (1176 downloads)</li>
+              <li><code>data.sunlightlabs.com</code>: <a href="https://data.sunlightlabs.com/-/-/6brm-4efm">White House Visitor Logs &amp; Lobbyists</a> (4885 downloads)</li>
+              <li><code>data.energystar.gov</code>: <a href="https://data.energystar.gov/-/-/cmae-djp4">ENERGY STAR Certified Residential Clothes Washers</a> (2503 downloads)</li>
+              <li><code>healthmeasures.aspe.hhs.gov</code>: <a href="https://healthmeasures.aspe.hhs.gov/-/-/8wsm-y3sw">User Guide</a> (207 downloads)</li>
+              <li><code>cookcounty.socrata.com</code>: <a href="https://cookcounty.socrata.com/-/-/q8p4-325d">Comptroller - Annual Salaries As Of Sep 16 2011</a> (2958 downloads)</li>
+              <li><code>datacatalog.cookcountyil.gov</code>: <a href="https://datacatalog.cookcountyil.gov/-/-/q8p4-325d">Comptroller - Annual Salaries As Of Sep 16 2011</a> (2958 downloads)</li>
+              <li><code>dati.lombardia.it</code>: <a href="https://dati.lombardia.it/-/-/xy9p-k9bj">Elenco Regionale degli agriturismo</a> (7259 downloads)</li>
+              <li><code>data.nola.gov</code>: <a href="https://data.nola.gov/-/-/div8-5v7i">NOLA Addresses</a> (1275 downloads)</li>
+              <li><code>info.samhsa.gov</code>: <a href="https://info.samhsa.gov/-/-/y8ub-8msh">SAMHSA Publications</a> (904 downloads)</li>
+              <li><code>data.austintexas.gov</code>: <a href="https://data.austintexas.gov/-/-/ecmv-9xxi">Restaurant Inspection Scores</a> (4091 downloads)</li>
+              <li><code>data.edmonton.ca</code>: <a href="https://data.edmonton.ca/-/-/7gh5-bnbs">Residential Snow Clearing Schedule</a> (1125 downloads)</li>
+              <li><code>data.mo.gov</code>: <a href="https://data.mo.gov/-/-/2448-477a">Missouri Employee Phone Directory API</a> (2039 downloads)</li>
+              <li><code>data.maryland.gov</code>: <a href="https://data.maryland.gov/-/-/w6r7-apye">Certified Cover Crops Planted in the Chesapeake Bay Watershed (Annually)</a> (258 downloads)</li>
+              <li><code>data.cms.gov</code>: <a href="https://data.cms.gov/-/-/97k6-zzx3">Inpatient Prospective Payment System (IPPS) Provider Summary for the Top 100 Diagnosis-Related Groups (DRG)</a> (1321 downloads)</li>
+              <li><code>data.wa.gov</code>: <a href="https://data.wa.gov/-/-/hvq3-y2jb">Unemployment Rates for Washington State and Counties, 1990 - 2010</a> (696 downloads)</li>
+              <li><code>health.data.ny.gov</code>: <a href="https://health.data.ny.gov/-/-/cw3n-fkji">Cancer Mapping Data: 2005-2009</a> (519 downloads)</li>
+              <li><code>data.colorado.gov</code>: <a href="https://data.colorado.gov/-/-/tedy-p7a5">Colorado Department of Education’s School View</a> (257 downloads)</li>
+              <li><code>data.consumerfinance.gov</code>: <a href="https://data.consumerfinance.gov/-/-/25ei-6bcr">Credit Card Complaints</a> (4042 downloads)</li>
+              <li><code>data.undp.org</code>: <a href="https://data.undp.org/-/-/jner-twha">UNDP Projects - 2011</a> (400 downloads)</li>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/79hh-qgjg">Approved Public Comments for Aquaculture Listening Sessions (2010)</a> (766 downloads)</li>
+              <li><code>data.cityofboston.gov</code>: <a href="https://data.cityofboston.gov/-/-/qndu-wx8w">Food Establishment Inspections</a> (185 downloads)</li>
+              <li><code>data.honolulu.gov</code>: <a href="https://data.honolulu.gov/-/-/383v-jhbi">Parking Facilties</a> (243 downloads)</li>
+              <li><code>www.data.act.gov.au</code>: <a href="https://www.data.act.gov.au/-/-/2acm-wq55">ACTION timetables - Google Transit Feed</a> (185 downloads)</li>
+              <li><code>data.montgomerycountymd.gov</code>: <a href="https://data.montgomerycountymd.gov/-/-/r89j-py2p">Budget</a> (430 downloads)</li>
+              <li><code>gettingpastgo.socrata.com</code>: <a href="https://gettingpastgo.socrata.com/-/-/5zve-3pvy">State Developmental Education Policies</a> (166 downloads)</li>
+              <li><code>data.somervillema.gov</code>: <a href="https://data.somervillema.gov/-/-/tp6j-gpfj">Rodent Information</a> (50 downloads)</li>
+              <li><code>iranhumanrights.socrata.com</code>: <a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf">List of Prisoners of Conscience in Iran</a> (359 downloads)</li>
+              <li><code>data.acgov.org</code>: <a href="https://data.acgov.org/-/-/3d5b-2rnz">Alameda County Restaurants Inspections</a> (274 downloads)</li>
+              <li><code>deleon.socrata.com</code>: <a href="https://deleon.socrata.com/-/-/ebc4-7c6f">De Leon Community Profile</a> (104 downloads)</li>
+              <li><code>electionsdata.kingcounty.gov</code>: <a href="https://electionsdata.kingcounty.gov/-/-/k59d-q4u8">Master KC Ballot Drop Box Dataset</a> (17 downloads)</li>
+              <li><code>data.cityofmadison.com</code>: <a href="https://data.cityofmadison.com/-/-/u7ns-6d4x">Assessor Property Information</a> (86 downloads)</li>
+              <li><code>data.wellingtonfl.gov</code>: <a href="https://data.wellingtonfl.gov/-/-/gria-8rsx">Test SD Active Rental Licenses</a> (92 downloads)</li>
+              <li><code>data.taxpayer.net</code>: <a href="https://data.taxpayer.net/-/-/jwqi-dvsg">Earmarks 2010</a> (25 downloads)</li>
+              <li><code>data.oaklandnet.com</code>: <a href="https://data.oaklandnet.com/-/-/ym6k-rx7a">CrimeWatch Maps Past 90-Days</a> (18 downloads)</li>
+              <li><code>www.halifaxopendata.ca</code>: <a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi">LIDAR DEM 5M</a> (78 downloads)</li>
+              <li><code>data.raleighnc.gov</code>: <a href="https://data.raleighnc.gov/-/-/2ukz-55ex">GoTriangle</a> (27 downloads)</li>
+              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky’s Wish List- USA</a> (14 downloads)</li>
+              <li><code>data.weatherfordtx.gov</code>: <a href="https://data.weatherfordtx.gov/-/-/2ek5-qq7s">Animal Shelter - All Animal Cases</a> (7 downloads)</li>
+              <li><code>data.slcgov.com</code>: <a href="https://data.slcgov.com/-/-/myq9-p4zu">Planning Permits</a> (5 downloads)</li>
+              <li><code>data.snostat.org</code>: <a href="https://data.snostat.org/-/-/sn24-xxit">Budget Information 2011-2013</a> (4 downloads)</li>
+              <li><code>data.redmond.gov</code>: <a href="https://data.redmond.gov/-/-/7v22-4z3a">Check Register</a> (6 downloads)</li>
+            </ul>
+            
+            <p>Next, let’s do the one with the most downloads per time since published.</p>
+            
+            <pre><code>datasets &lt;- ddply(socrata, "portal", function(df) {&#x000A;    df[order(df$downloadCount/as.numeric(as.Date("2013-07-01") - df$createdAt), &#x000A;        decreasing = T)[1], c("id", "name", "createdAt", "downloadCount")]&#x000A;})&#x000A;(listify(datasets))&#x000A;</code></pre>
+            
+            <ul>
+              <li><code>data.ny.gov</code>: <a href="https://data.ny.gov/-/-/erm2-nwe9">311 Service Requests from 2010 to Present</a> (50398 downloads)</li>
+              <li><code>data.oregon.gov</code>: <a href="https://data.oregon.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63086 downloads)</li>
+              <li><code>data.hawaii.gov</code>: <a href="https://data.hawaii.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63085 downloads)</li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63086 downloads)</li>
+              <li><code>data.illinois.gov</code>: <a href="https://data.illinois.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63084 downloads)</li>
+              <li><code>opendata.socrata.com</code>: <a href="https://opendata.socrata.com/-/-/wv3s-d6ja">Watch Finder</a> (37999 downloads)</li>
+              <li><code>explore.data.gov</code>: <a href="https://explore.data.gov/-/-/5gah-bvex">U.S. Overseas Loans and Grants (Greenbook)</a> (63084 downloads)</li>
+              <li><code>data.seattle.gov</code>: <a href="https://data.seattle.gov/-/-/kzjm-xkqj">Seattle Real Time Fire 911 Calls</a> (436431 downloads)</li>
+              <li><code>www.metrochicagodata.org</code>: <a href="https://www.metrochicagodata.org/-/-/jpfu-k3rv">Snow Alerts</a> (47389 downloads)</li>
+              <li><code>data.cityofchicago.org</code>: <a href="https://data.cityofchicago.org/-/-/jpfu-k3rv">Snow Alerts</a> (46890 downloads)</li>
+              <li><code>bronx.lehman.cuny.edu</code>: <a href="https://bronx.lehman.cuny.edu/-/-/yucu-pifp">WasteTonnagebyBorough</a> (1 downloads)</li>
+              <li><code>data.cityofnewyork.us</code>: <a href="https://data.cityofnewyork.us/-/-/yucu-pifp">WasteTonnagebyBorough</a> (1 downloads)</li>
+              <li><code>data.baltimorecity.gov</code>: <a href="https://data.baltimorecity.gov/-/-/qgsp-ij25">propertytaxes</a> (1 downloads)</li>
+              <li><code>data.sfgov.org</code>: <a href="https://data.sfgov.org/-/-/uupn-yfaw">Off-Street parking lots and parking garages</a> (93951 downloads)</li>
+              <li><code>data.medicare.gov</code>: <a href="https://data.medicare.gov/-/-/v287-28n3">Hospital General Information</a> (8773 downloads)</li>
+              <li><code>opendata.go.ke</code>: <a href="https://opendata.go.ke/-/-/zn6m-25cf">Kenya County Fact Sheets Dec 2011</a> (12312 downloads)</li>
+              <li><code>data.kingcounty.gov</code>: <a href="https://data.kingcounty.gov/-/-/j56h-zgnm">Adult Jail Booking: Jun. 1, 2012 to May 31, 2013 as of Jun. 6, 2013</a> (6294 downloads)</li>
+              <li><code>finances.worldbank.org</code>: <a href="https://finances.worldbank.org/-/-/k2jv-62pr">mexico</a> (1 downloads)</li>
+              <li><code>data.govloop.com</code>: <a href="https://data.govloop.com/-/-/qcqe-y2ms">GovLoop Member Data</a> (5855 downloads)</li>
+              <li><code>www.opendatanyc.com</code>: <a href="https://www.opendatanyc.com/-/-/rzrg-u63k">POLICE Investment Meeting Public Agenda 1-14-13</a> (28 downloads)</li>
+              <li><code>data.sunlightlabs.com</code>: <a href="https://data.sunlightlabs.com/-/-/6brm-4efm">White House Visitor Logs &amp; Lobbyists</a> (4885 downloads)</li>
+              <li><code>data.energystar.gov</code>: <a href="https://data.energystar.gov/-/-/6rww-hpns">ENERGY STAR Certified Boilers</a> (1102 downloads)</li>
+              <li><code>healthmeasures.aspe.hhs.gov</code>: <a href="https://healthmeasures.aspe.hhs.gov/-/-/8wsm-y3sw">User Guide</a> (207 downloads)</li>
+              <li><code>cookcounty.socrata.com</code>: <a href="https://cookcounty.socrata.com/-/-/q8p4-325d">Comptroller - Annual Salaries As Of Sep 16 2011</a> (2958 downloads)</li>
+              <li><code>datacatalog.cookcountyil.gov</code>: <a href="https://datacatalog.cookcountyil.gov/-/-/q8p4-325d">Comptroller - Annual Salaries As Of Sep 16 2011</a> (2958 downloads)</li>
+              <li><code>dati.lombardia.it</code>: <a href="https://dati.lombardia.it/-/-/xy9p-k9bj">Elenco Regionale degli agriturismo</a> (7259 downloads)</li>
+              <li><code>data.nola.gov</code>: <a href="https://data.nola.gov/-/-/fhra-haa6">NOLA GIS Planning And Zoning Data</a> (875 downloads)</li>
+              <li><code>info.samhsa.gov</code>: <a href="https://info.samhsa.gov/-/-/nszz-zta2">Health Reform Webinars</a> (842 downloads)</li>
+              <li><code>data.austintexas.gov</code>: <a href="https://data.austintexas.gov/-/-/ecmv-9xxi">Restaurant Inspection Scores</a> (4091 downloads)</li>
+              <li><code>data.edmonton.ca</code>: <a href="https://data.edmonton.ca/-/-/7gh5-bnbs">Residential Snow Clearing Schedule</a> (1125 downloads)</li>
+              <li><code>data.mo.gov</code>: <a href="https://data.mo.gov/-/-/2448-477a">Missouri Employee Phone Directory API</a> (2039 downloads)</li>
+              <li><code>data.maryland.gov</code>: <a href="https://data.maryland.gov/-/-/ax7z-6f32">Greenhouse Gas Emissions Estimates Chart</a> (228 downloads)</li>
+              <li><code>data.cms.gov</code>: <a href="https://data.cms.gov/-/-/97k6-zzx3">Inpatient Prospective Payment System (IPPS) Provider Summary for the Top 100 Diagnosis-Related Groups (DRG)</a> (1321 downloads)</li>
+              <li><code>data.wa.gov</code>: <a href="https://data.wa.gov/-/-/t2ye-2r5a">Hazardous Waste Generation by Location</a> (404 downloads)</li>
+              <li><code>health.data.ny.gov</code>: <a href="https://health.data.ny.gov/-/-/cw3n-fkji">Cancer Mapping Data: 2005-2009</a> (519 downloads)</li>
+              <li><code>data.colorado.gov</code>: <a href="https://data.colorado.gov/-/-/6syd-2xqm">SOC Authorization Consent Form V1 042013</a> (61 downloads)</li>
+              <li><code>data.consumerfinance.gov</code>: <a href="https://data.consumerfinance.gov/-/-/x94z-ydhh">Consumer Complaints</a> (1902 downloads)</li>
+              <li><code>data.undp.org</code>: <a href="https://data.undp.org/-/-/jner-twha">UNDP Projects - 2011</a> (400 downloads)</li>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/79hh-qgjg">Approved Public Comments for Aquaculture Listening Sessions (2010)</a> (766 downloads)</li>
+              <li><code>data.cityofboston.gov</code>: <a href="https://data.cityofboston.gov/-/-/7cdf-6fgx">Crime Incident Reports</a> (139 downloads)</li>
+              <li><code>data.honolulu.gov</code>: <a href="https://data.honolulu.gov/-/-/383v-jhbi">Parking Facilties</a> (243 downloads)</li>
+              <li><code>www.data.act.gov.au</code>: <a href="https://www.data.act.gov.au/-/-/2acm-wq55">ACTION timetables - Google Transit Feed</a> (185 downloads)</li>
+              <li><code>data.montgomerycountymd.gov</code>: <a href="https://data.montgomerycountymd.gov/-/-/r89j-py2p">Budget</a> (430 downloads)</li>
+              <li><code>gettingpastgo.socrata.com</code>: <a href="https://gettingpastgo.socrata.com/-/-/5zve-3pvy">State Developmental Education Policies</a> (166 downloads)</li>
+              <li><code>data.somervillema.gov</code>: <a href="https://data.somervillema.gov/-/-/tp6j-gpfj">Rodent Information</a> (50 downloads)</li>
+              <li><code>iranhumanrights.socrata.com</code>: <a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf">List of Prisoners of Conscience in Iran</a> (359 downloads)</li>
+              <li><code>data.acgov.org</code>: <a href="https://data.acgov.org/-/-/3d5b-2rnz">Alameda County Restaurants Inspections</a> (274 downloads)</li>
+              <li><code>deleon.socrata.com</code>: <a href="https://deleon.socrata.com/-/-/ebc4-7c6f">De Leon Community Profile</a> (104 downloads)</li>
+              <li><code>electionsdata.kingcounty.gov</code>: <a href="https://electionsdata.kingcounty.gov/-/-/mx4r-zru7">KC Fire Protection District 44</a> (6 downloads)</li>
+              <li><code>data.cityofmadison.com</code>: <a href="https://data.cityofmadison.com/-/-/u7ns-6d4x">Assessor Property Information</a> (86 downloads)</li>
+              <li><code>data.wellingtonfl.gov</code>: <a href="https://data.wellingtonfl.gov/-/-/gria-8rsx">Test SD Active Rental Licenses</a> (92 downloads)</li>
+              <li><code>data.taxpayer.net</code>: <a href="https://data.taxpayer.net/-/-/3c67-qqqv">FY2008 Earmarks</a> (19 downloads)</li>
+              <li><code>data.oaklandnet.com</code>: <a href="https://data.oaklandnet.com/-/-/b8mb-8tti">City of Oakland Proposed Policy Budget FY2013-15</a> (12 downloads)</li>
+              <li><code>www.halifaxopendata.ca</code>: <a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi">LIDAR DEM 5M</a> (78 downloads)</li>
+              <li><code>data.raleighnc.gov</code>: <a href="https://data.raleighnc.gov/-/-/ffzc-kk5q">Police Crime Data</a> (3 downloads)</li>
+              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky’s Wish List- USA</a> (14 downloads)</li>
+              <li><code>data.weatherfordtx.gov</code>: <a href="https://data.weatherfordtx.gov/-/-/c4zr-3y7x">Monthly Sales Tax Collections</a> (6 downloads)</li>
+              <li><code>data.slcgov.com</code>: <a href="https://data.slcgov.com/-/-/myq9-p4zu">Planning Permits</a> (5 downloads)</li>
+              <li><code>data.snostat.org</code>: <a href="https://data.snostat.org/-/-/pdma-n7bb">Snohomish County Buildings</a> (4 downloads)</li>
+              <li><code>data.redmond.gov</code>: <a href="https://data.redmond.gov/-/-/7v22-4z3a">Check Register</a> (6 downloads)</li>
+            </ul>
+            
+            <h3 id="dataset-shapes">Dataset shapes</h3>
+            <p>Within the context of the current analysis, a datasets is a table. A table has columns and rows.
+            How tall and fat are these datasets?</p>
+            
+            <p>I thought it would be cool to show dataset size as a rectangle because datasets are tables.</p>
+            
+            <pre><code>ggplot(socrata) + aes(xmin = 0, ymin = 0, xmax = ncol, ymax = nrow, fill = portal) + &#x000A;    geom_rect(alpha = 0.1) + scale_x_log10("Number of columns", labels = comma) + &#x000A;    scale_y_log10("Number of rows", labels = comma)&#x000A;</code></pre>
+            
+            <p><a href="figure/shapes_rect.png"><img src="figure/shapes_rect.png" alt="plot of chunk shapes_rect" /></a> </p>
+            
+            <p>But that looks bad, so let’s do it as points.</p>
+            
+            <pre><code>ggplot(socrata) + aes(x = ncol, y = nrow, color = portal) + geom_point(alpha = 0.5) + &#x000A;    scale_x_log10("Number of columns", labels = comma) + scale_y_log10("Number of rows", &#x000A;    labels = comma)&#x000A;&#x000A;## Warning: Removed 542 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/shapes_scatter.png"><img src="figure/shapes_scatter.png" alt="plot of chunk shapes_scatter" class="wide" /></a></p>
+            
+            <p>Some datasets have no rows nor columns. Here are ten of them.</p>
+            
+            <pre><code>deleted &lt;- socrata[(socrata$nrow == 0 &amp; socrata$ncol == 0), ]&#x000A;set.seed(13984382)&#x000A;(listify(deleted[sample.int(nrow(deleted), 10), ]))&#x000A;</code></pre>
+            
+            <ul>
+              <li><code>data.illinois.gov</code>: <a href="https://data.illinois.gov/-/-/xtgy-ahki">U.S. Air Force Biographies</a> (554 downloads)</li>
+              <li><code>data.oregon.gov</code>: <a href="https://data.oregon.gov/-/-/wi7k-6su5">1991 Toxics Release Inventory data for the state of New Hampshire</a> (297 downloads)</li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/ehs2-pq45">List of Public Elementary and Secondary Schools: 1986-Present</a> (557 downloads)</li>
+              <li><code>data.ny.gov</code>: <a href="https://data.ny.gov/-/-/3n4u-7vms">1999 Toxics Release Inventory data for the state of Idaho</a> (265 downloads)</li>
+              <li><code>data.ny.gov</code>: <a href="https://data.ny.gov/-/-/tzgk-ytkj">Social Security Administration Percentage of Fast-Track Receipts for Fiscal Year 2010 and 2011</a> (219 downloads)</li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/6qji-a8pa">2011 Federal Register in XML</a> (345 downloads)</li>
+              <li><code>data.ny.gov</code>: <a href="https://data.ny.gov/-/-/ecmx-ixe4">Alternative Transportation Fuels (ATF) and Alternative Fueled Vehicles (AFV) 2007</a> (1066 downloads)</li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/m2bb-jypa">Gravesite locations of Veterans and beneficiaries in KANSAS, as of October 2012.</a> (17 downloads)</li>
+              <li><code>data.illinois.gov</code>: <a href="https://data.illinois.gov/-/-/rd3u-gh5c">1991 Toxics Release Inventory data for the District of Columbia</a> (401 downloads)</li>
+              <li><code>data.oregon.gov</code>: <a href="https://data.oregon.gov/-/-/mzwa-q9aa">National Bridge Inventory - Louisiana-2002</a> (3 downloads)</li>
+            </ul>
+            
+            <p>These datasets appear to be either deleted or non-tabular.</p>
+            
+            <p>Now let’s look at average dataset size by portal, where size is number of columns (<code>ncol</code>),
+            number of rows (<code>nrow</code>) or number of cells (<code>ncell</code>).</p>
+            
+            <pre><code>.sizes &lt;- ddply(socrata, "portal", function(df) {&#x000A;    c(ncol = mean(df$ncol), nrow = mean(df$nrow), ncell = mean(df$ncol * df$nrow))&#x000A;})&#x000A;base &lt;- ggplot(.sizes) + aes(y = portal) + geom_point() + scale_x_log10(labels = comma)&#x000A;&#x000A;print(base + aes(x = nrow))&#x000A;&#x000A;## Warning: Removed 17 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/dataset_size_by_portal1.png"><img src="figure/dataset_size_by_portal1.png" alt="plot of chunk dataset_size_by_portal" /></a> </p>
+            
+            <pre><code>print(base + aes(x = ncol))&#x000A;</code></pre>
+            
+            <p><a href="figure/dataset_size_by_portal2.png"><img src="figure/dataset_size_by_portal2.png" alt="plot of chunk dataset_size_by_portal" /></a> </p>
+            
+            <pre><code>print(base + aes(x = nrow * ncol))&#x000A;&#x000A;## Warning: Removed 17 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/dataset_size_by_portal3.png"><img src="figure/dataset_size_by_portal3.png" alt="plot of chunk dataset_size_by_portal" /></a> </p>
+            
+            <h3 id="time">Time</h3>
+            <p>What does the growth of downloads of a dataset look like? We don’t have the data
+            for individual datasets, but we can compare the current download counts between
+            old datasets and new datasets.</p>
+            
+            <p>Has dataset size changed over the past couple years?</p>
+            
+            <pre><code>base &lt;- ggplot(socrata) + aes(x = createdAt, group = portal, color = portal) + &#x000A;    geom_point(alpha = 0.5) + scale_y_log10(labels = comma)&#x000A;&#x000A;print(base + aes(y = nrow))&#x000A;&#x000A;## Warning: Removed 621 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/datasets_size_over_time1.png"><img src="figure/datasets_size_over_time1.png" alt="plot of chunk datasets_size_over_time" /></a> </p>
+            
+            <pre><code>print(base + aes(y = ncol))&#x000A;&#x000A;## Warning: Removed 79 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/datasets_size_over_time2.png"><img src="figure/datasets_size_over_time2.png" alt="plot of chunk datasets_size_over_time" /></a> </p>
+            
+            <pre><code>print(base + aes(y = nrow * ncol))&#x000A;&#x000A;## Warning: Removed 621 rows containing missing values (geom_point).&#x000A;</code></pre>
+            
+            <p><a href="figure/datasets_size_over_time3.png"><img src="figure/datasets_size_over_time3.png" alt="plot of chunk datasets_size_over_time" /></a> </p>
+            
+            <p>When did datasets get uploaded?</p>
+            
+            <pre><code>ggplot(socrata) + aes(x = createdAt, group = portal, fill = portal) + geom_bar()&#x000A;&#x000A;## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust&#x000A;## this.&#x000A;&#x000A;## Warning: position_stack requires constant width: output may be incorrect&#x000A;</code></pre>
+            
+            <p><a href="figure/datasets_when_uploaded.png"><img src="figure/datasets_when_uploaded.png" alt="plot of chunk datasets_when_uploaded" /></a> </p>
+            
+            <p>On what days of the week do datasets get uploaded?</p>
+            
+            <pre><code>socrata$createdAt.dayOfWeek &lt;- factor(strftime(socrata$createdAt, format = "%a"), &#x000A;    levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))&#x000A;ggplot(socrata) + aes(x = createdAt.dayOfWeek, group = portal, fill = portal) + &#x000A;    geom_bar() + scale_y_continuous("Dataset uploads", labels = comma) + scale_x_discrete("Day of the week")&#x000A;</code></pre>
+            
+            <p><a href="figure/datasets_day_of_week_uploaded.png"><img src="figure/datasets_day_of_week_uploaded.png" alt="plot of chunk datasets_day_of_week_uploaded" /></a> </p>
+            
+            <h2 id="future-plans">Future plans</h2>
+            <p>I’m conducting more detailed studies around more pointed data portal considerations;
+            expect those to come out over the next few months. And I could use your help. If you
+            use or publish open data, I’d love to talk and see what you would like to know about
+            how open data get used; there’s probably a lot we can learn from this dataset.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-analysis-introduction/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+        <script>
+          //$()
+        </script>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
