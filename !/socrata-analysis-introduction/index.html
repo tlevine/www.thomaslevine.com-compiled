@@ -94,7 +94,7 @@
             <h3 id="listing-the-portals">Listing the portals</h3>
             <p>First, I get a list of Socrata portals from the Socrata <a href="http://status.socrata.com">status page</a>.
             This page makes loads the portal names and descriptions from <a href="http://status.socrata.com/sites">this JSON file</a>.
-            I download parse that file in <a href="https://github.com/tlevine/socrata-analysis/tree/master/portals.py" class="code"><code>portals.py</code></a>. Most of the portal URLs
+            I download parse that file in <a href="https://github.com/tlevine/socrata-download/tree/master/portals.py" class="code"><code>portals.py</code></a>. Most of the portal URLs
             are in the <code>description</code> fields, but this isn’t always the case, so I used some heuristics to
             tidy that up.</p>
             
@@ -105,18 +105,18 @@
             
             <p>Next, I create a directory for each data portal and start downloading and parsing data
             from each individual portal. Most of the portal-specific stuff is enclosed in the
-            <a href="https://github.com/tlevine/socrata-analysis/tree/master/run_one.sh" class="code"><code>run_one.sh</code></a> script.</p>
+            <a href="https://github.com/tlevine/socrata-download/tree/master/run_one.sh" class="code"><code>run_one.sh</code></a> script.</p>
             
             <h3 id="search-for-datasets">Search for datasets</h3>
             <p>As far as I could tell, Socrata doesn’t have a formal API for searching datasets, so I
-            just searched with the ordinary web interface. In <a href="https://github.com/tlevine/socrata-analysis/tree/master/search.sh" class="code"><code>search.sh</code></a>,
+            just searched with the ordinary web interface. In <a href="https://github.com/tlevine/socrata-download/tree/master/search.sh" class="code"><code>search.sh</code></a>,
             I make a search for all datasets of all kinds, and then I keep going to the next page
             as long as there are results. I save all of the results in a <code>searches</code> directory inside
             of the portal data folder. For example, search results for <code>data.colorado.gov</code> go in
             <code>data/data.colorado.gov/searches</code>.</p>
             
             <h3 id="find-dataset-identifiers">Find dataset identifiers</h3>
-            <p>The search result pages are big HTML blobs. The script <a href="https://github.com/tlevine/socrata-analysis/tree/master/viewids.py" class="code"><code>viewids.py</code></a>
+            <p>The search result pages are big HTML blobs. The script <a href="https://github.com/tlevine/socrata-download/tree/master/viewids.py" class="code"><code>viewids.py</code></a>
             finds the Socrata 4x4 identifiers in these HTML files and saves them to a file called
             <code>viewids</code>. It makes a separate file for each portal.</p>
             
@@ -124,7 +124,7 @@
             <p>You can download the metadata for a particular dataset at the url
             <code>https://${SOCRATA_URL}/views/${viewid}.json</code>, where <code>SOCRATA_URL</code> is something like
             <code>dati.lombardia.it</code> and <code>viewid</code> is something like <code>tuar-wxya</code>.
-            The script <a href="https://github.com/tlevine/socrata-analysis/tree/master/views.sh" class="code"><code>views.sh</code></a> downloads the metadata files.</p>
+            The script <a href="https://github.com/tlevine/socrata-download/tree/master/views.sh" class="code"><code>views.sh</code></a> downloads the metadata files.</p>
             
             <p>There are sometimes other attachments that you can read about in the “About” section
             of a dataset, and those don’t get downloaded automatically.</p>
@@ -134,13 +134,13 @@
             <code>https://${SOCRATA_URL}/api/views/${viewid}/rows.csv?accessType=DOWNLOAD</code>,
             where <code>SOCRATA_URL</code> is again something like
             <code>dati.lombardia.it</code> and <code>viewid</code> is again something like <code>tuar-wxya</code>.
-            <a href="https://github.com/tlevine/socrata-analysis/tree/master/rows.sh" class="code"><code>rows.sh</code></a> does this.</p>
+            <a href="https://github.com/tlevine/socrata-download/tree/master/rows.sh" class="code"><code>rows.sh</code></a> does this.</p>
             
             <p>Unfortunately, Socrata is pretty slow enough that this is actually pretty annoying,
             so I’m not downloading the actual datasets for now, just the metadata.</p>
             
             <h3 id="conversion-to-a-table">Conversion to a table</h3>
-            <p>All of the steps so far are encapsulated in the file <a href="https://github.com/tlevine/socrata-analysis/tree/master/run.sh" class="code"><code>run.sh</code></a>,
+            <p>All of the steps so far are encapsulated in the file <a href="https://github.com/tlevine/socrata-download/tree/master/run.sh" class="code"><code>run.sh</code></a>,
             and that is the file that I run. This resulted in a bunch of inconsistently structured
             JSON files. There are a lot of different ways that one may want to reformat these
             files, and I happened to want a table with specific sorts of information, so I decided
@@ -151,11 +151,11 @@
             all of the fields. It handles nested structures by extracting flat features from them;
             for example, I take the number of dataset tags rather than the full list of tags.</p>
             
-            <p>You can download this table <a href="socrata.csv">here</a>. The following analyses all come from
-            that table.</p>
+            <p>You can download this table <a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv">here</a>.
+            The following analyses all come from that table.</p>
             
             <h3 id="missing-metadata">Missing metadata</h3>
-            <p><a href="https://github.com/tlevine/socrata-analysis/tree/master/summary.sh" class="code"><code>summary.sh</code></a> tells me which files are empty (as a result of
+            <p><a href="https://github.com/tlevine/socrata-analysis/blob/master/python/summary.sh" class="code"><code>summary.sh</code></a> tells me which files are empty (as a result of
             HTTP errors) and how total files there are. It turns out that six of the Hawaii files
             are empty. The Hawaii data portal had only just started as I was downloading the files,
             so it might be that these datasets got changed suddenly between the searching and the
