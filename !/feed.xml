@@ -79,6 +79,487 @@ sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-07-07:/!/socrata-analysis-introduction/index.html</id>
+    <title type="html">Analyze all the datasets</title>
+    <published>2013-07-07T07:00:00Z</published>
+    <updated>2013-07-07T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-analysis-introduction/index.html"/>
+    <content type="html">
+&lt;p&gt;I downloaded the metadata files for most of the datasets across most of the Socrata data portals.
+Here I explain how I did that and present an summary of the sorts of data that we find in the portals.&lt;/p&gt;
+
+&lt;h2 id="acquiring-the-data"&gt;Acquiring the data&lt;/h2&gt;
+&lt;p&gt;I acquired the data the same way any ordinary person could have,
+except that I had substantial assistance from robot scripts.
+You can see the general workflow below.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="/!/socrata-analysis-introduction/architecture.jpg"&gt;&lt;img src="/!/socrata-analysis-introduction/architecture.jpg" alt="A flow chart diagraming how the program works" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="listing-the-portals"&gt;Listing the portals&lt;/h3&gt;
+&lt;p&gt;First, I get a list of Socrata portals from the Socrata &lt;a href="http://status.socrata.com"&gt;status page&lt;/a&gt;.
+This page makes loads the portal names and descriptions from &lt;a href="http://status.socrata.com/sites"&gt;this JSON file&lt;/a&gt;.
+I download parse that file in &lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/portals.py" class="code"&gt;&lt;code&gt;portals.py&lt;/code&gt;&lt;/a&gt;. Most of the portal URLs
+are in the &lt;code&gt;description&lt;/code&gt; fields, but this isn’t always the case, so I used some heuristics to
+tidy that up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#
+# From portals.py
+# 
+if is_domain(portal['description']):
+    domain = portal['description']
+elif is_domain(portal['name']):
+    domain = portal['name']
+elif portal['name'] == 'Socrata':
+    continue
+else:
+    warnings.warn('Could not find a valid domain for %s, skipping' % portal['name'])
+    continue
+
+domain = domain.replace('https://', '').replace('http://', '')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It turns out that the &lt;a href="https://opendata.socrata.com"&gt;opendata.socrata.com&lt;/a&gt; portal isn’t
+ listed there, so I add that one manually.&lt;/p&gt;
+
+&lt;p&gt;Next, I create a directory for each data portal and start downloading and parsing data
+from each individual portal. Most of the portal-specific stuff is enclosed in the
+&lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/run_one.sh" class="code"&gt;&lt;code&gt;run_one.sh&lt;/code&gt;&lt;/a&gt; script.&lt;/p&gt;
+
+&lt;h3 id="search-for-datasets"&gt;Search for datasets&lt;/h3&gt;
+&lt;p&gt;As far as I could tell, Socrata doesn’t have a formal API for searching datasets, so I
+just searched with the ordinary web interface. In &lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/search.sh" class="code"&gt;&lt;code&gt;search.sh&lt;/code&gt;&lt;/a&gt;,
+I make a search for all datasets of all kinds, and then I keep going to the next page
+as long as there are results. I save all of the results in a &lt;code&gt;searches&lt;/code&gt; directory inside
+of the portal data folder. For example, search results for &lt;code&gt;data.colorado.gov&lt;/code&gt; go in
+&lt;code&gt;data/data.colorado.gov/searches&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="find-dataset-identifiers"&gt;Find dataset identifiers&lt;/h3&gt;
+&lt;p&gt;The search result pages are big HTML blobs. The script &lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/viewids.py" class="code"&gt;&lt;code&gt;viewids.py&lt;/code&gt;&lt;/a&gt;
+finds the Socrata 4x4 identifiers in these HTML files and saves them to a file called
+&lt;code&gt;viewids&lt;/code&gt;. It makes a separate file for each portal.&lt;/p&gt;
+
+&lt;h3 id="download-dataset-metadata"&gt;Download dataset metadata&lt;/h3&gt;
+&lt;p&gt;You can download the metadata for a particular dataset at the url
+&lt;code&gt;https://${SOCRATA_URL}/views/${viewid}.json&lt;/code&gt;, where &lt;code&gt;SOCRATA_URL&lt;/code&gt; is something like
+&lt;code&gt;dati.lombardia.it&lt;/code&gt; and &lt;code&gt;viewid&lt;/code&gt; is something like &lt;code&gt;tuar-wxya&lt;/code&gt;.
+The script &lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/views.sh" class="code"&gt;&lt;code&gt;views.sh&lt;/code&gt;&lt;/a&gt; downloads the metadata files.&lt;/p&gt;
+
+&lt;p&gt;There are sometimes other attachments that you can read about in the “About” section
+of a dataset, and those don’t get downloaded automatically.&lt;/p&gt;
+
+&lt;h3 id="download-the-datasets-themselves"&gt;Download the datasets themselves&lt;/h3&gt;
+&lt;p&gt;Downloading the datasets is similarly straightforward; you just go to 
+&lt;code&gt;https://${SOCRATA_URL}/api/views/${viewid}/rows.csv?accessType=DOWNLOAD&lt;/code&gt;,
+where &lt;code&gt;SOCRATA_URL&lt;/code&gt; is again something like
+&lt;code&gt;dati.lombardia.it&lt;/code&gt; and &lt;code&gt;viewid&lt;/code&gt; is again something like &lt;code&gt;tuar-wxya&lt;/code&gt;.
+&lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/rows.sh" class="code"&gt;&lt;code&gt;rows.sh&lt;/code&gt;&lt;/a&gt; does this.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, Socrata is pretty slow enough that this is actually pretty annoying,
+so I’m not downloading the actual datasets for now, just the metadata.&lt;/p&gt;
+
+&lt;h3 id="conversion-to-a-table"&gt;Conversion to a table&lt;/h3&gt;
+&lt;p&gt;All of the steps so far are encapsulated in the file &lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/run.sh" class="code"&gt;&lt;code&gt;run.sh&lt;/code&gt;&lt;/a&gt;,
+and that is the file that I run. This resulted in a bunch of inconsistently structured
+JSON files. There are a lot of different ways that one may want to reformat these
+files, and I happened to want a table with specific sorts of information, so I decided
+to separate that into a different file (and repository altogether).&lt;/p&gt;
+
+&lt;p&gt;A script in the &lt;a href="https://github.com/tlevine/socrata-analysis"&gt;analysis repository&lt;/a&gt;
+opens all of the JSON files and makes a row in a CSV file for each one. It doesn’t take
+all of the fields. It handles nested structures by extracting flat features from them;
+for example, I take the number of dataset tags rather than the full list of tags.&lt;/p&gt;
+
+&lt;p&gt;You can download this table &lt;a href="socrata.csv"&gt;here&lt;/a&gt;. The following analyses all come from
+that table.&lt;/p&gt;
+
+&lt;h3 id="missing-metadata"&gt;Missing metadata&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/tree/master/summary.sh" class="code"&gt;&lt;code&gt;summary.sh&lt;/code&gt;&lt;/a&gt; tells me which files are empty (as a result of
+HTTP errors) and how total files there are. It turns out that six of the Hawaii files
+are empty. The Hawaii data portal had only just started as I was downloading the files,
+so it might be that these datasets got changed suddenly between the searching and the
+downloading.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./summary.sh 
+Empty files:
+data/data.hawaii.gov/views/qbr3-puhj
+data/data.hawaii.gov/views/s8xa-f7xy
+data/data.hawaii.gov/views/mmnd-twmz
+data/data.hawaii.gov/views/bi6a-gquj
+data/data.hawaii.gov/views/r7hz-w7x9
+data/data.hawaii.gov/views/wbtr-iq8j
+There are 89120 total datasets in all of the Socrata portals.
+Of those, 89114 contain metadata; the others are empty files.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="two-interesting-points-about-the-socrata-software"&gt;Two interesting points about the Socrata software&lt;/h2&gt;
+&lt;p&gt;I learned some fun things about Socrata in doing all of this.&lt;/p&gt;
+
+&lt;h3 id="multi-portal-architecture"&gt;Multi-portal architecture&lt;/h3&gt;
+&lt;p&gt;All of the different Socrata portals are probably served from the same web application.
+I say this because rate limits apply across portals rather than within portals and because
+all of the sites were down for maintenance on the same day (6/26/2013).&lt;/p&gt;
+
+&lt;p&gt;When I open Socrata portals in my web browser, I feel like they are different installations
+for each city. I suspect that Socrata found that people want to feel like they have their
+own curated portal rather than feeling like they are dumping data into the abyss of
+&lt;a href="https://opendata.socrata.com"&gt;opendata.socrata.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="urls"&gt;URLs&lt;/h3&gt;
+&lt;p&gt;If you navigate to a dataset in Socrata in your web browser, you’ll wind up with a URL like this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href="https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf"&gt;https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It turns out that the directories don’t matter; this URL also works.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf"&gt;https://iranhumanrights.socrata.com/-/-/uqfx-z9cf&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So if you ever are curious for more information about a dataset that you find in the spreadsheet,
+you can just type in a URL like that for the particular dataset and look at all of the information
+that Socrata has on it.&lt;/p&gt;
+
+&lt;h2 id="initial-analysis"&gt;Initial analysis&lt;/h2&gt;
+&lt;p&gt;Anyway, on to the quantitative analysis.&lt;/p&gt;
+
+&lt;p&gt;For now, I’m just going to give a broader summary of the datasets in Socrata. I’m mainly
+looking at the following variables, each of which has one observation per dataset.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Data portal&lt;/li&gt;
+  &lt;li&gt;Date published&lt;/li&gt;
+  &lt;li&gt;Download count&lt;/li&gt;
+  &lt;li&gt;Number of rows&lt;/li&gt;
+  &lt;li&gt;Number of columns&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="sizes"&gt;Sizes&lt;/h3&gt;
+&lt;p&gt;Let’s first see which portals are biggest. Which has the most datasets?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;socrata$portal &amp;lt;- factor(socrata$portal, levels = names(sort(table(socrata$portal), 
+    decreasing = T)))
+
+ggplot(socrata) + aes(x = portal) + geom_bar() + coord_flip() + scale_y_log10("Number of datasets", 
+    breaks = 10^(0:4)) + scale_x_discrete("Data portal")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/big_portals_datasets.png"&gt;&lt;img src="figure/big_portals_datasets.png" alt="plot of chunk big_portals_datasets" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Which portals get the most downloads?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.download &amp;lt;- ddply(socrata, "portal", function(df) {
+    c(datasets = nrow(df), downloads = sum(df$downloadCount))
+})
+socrata$portal &amp;lt;- factor(socrata$portal, levels = .download$portal[order(.download$downloads, 
+    decreasing = T)])
+
+ggplot(.download) + aes(x = portal, y = downloads) + geom_point() + coord_flip() + 
+    scale_y_log10("Number of dataset downloads", labels = comma, breaks = 10^c(2:9)) + 
+    scale_x_discrete("Data portal")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/big_portals_downloads.png"&gt;&lt;img src="figure/big_portals_downloads.png" alt="plot of chunk big_portals_downloads" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Do any of them have few datasets but get a lot of downloads?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(.download) + aes(x = datasets, y = downloads, color = portal) + geom_point() + 
+    scale_x_log10("Number of datasets", breaks = 10^(0:4)) + scale_y_log10("Number of dataset downloads", 
+    labels = comma, breaks = 10^c(2:9))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/big_portals_density_scatter.png"&gt;&lt;img src="figure/big_portals_density_scatter.png" alt="plot of chunk big_portals_density_scatter" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;Here’s the same plot except with the portal names in the plot.
+This might be easier or harder to read.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(.download) + aes(x = datasets, y = downloads, label = portal) + geom_text() + 
+    scale_x_log10("Number of datasets", breaks = 10^(0:4)) + scale_y_log10("Number of dataset downloads", 
+    labels = comma, breaks = 10^c(2:9))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/big_portals_density_text.png"&gt;&lt;img src="figure/big_portals_density_text.png" alt="plot of chunk big_portals_density_text" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;What are the most popular datasets for each portal? Let’s first do the one with
+the most downloads.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;datasets &amp;lt;- ddply(socrata, "portal", function(df) {
+    df[order(df$downloadCount, decreasing = T)[1], c("id", "name", "createdAt", 
+        "downloadCount")]
+})
+(listify(datasets))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;data.ny.gov&lt;/code&gt;: &lt;a href="https://data.ny.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63084 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oregon.gov&lt;/code&gt;: &lt;a href="https://data.oregon.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63086 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.hawaii.gov&lt;/code&gt;: &lt;a href="https://data.hawaii.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63085 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63086 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.illinois.gov&lt;/code&gt;: &lt;a href="https://data.illinois.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63084 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;opendata.socrata.com&lt;/code&gt;: &lt;a href="https://opendata.socrata.com/-/-/wv3s-d6ja"&gt;Watch Finder&lt;/a&gt; (37999 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;explore.data.gov&lt;/code&gt;: &lt;a href="https://explore.data.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63084 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.seattle.gov&lt;/code&gt;: &lt;a href="https://data.seattle.gov/-/-/kzjm-xkqj"&gt;Seattle Real Time Fire 911 Calls&lt;/a&gt; (436431 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.metrochicagodata.org&lt;/code&gt;: &lt;a href="https://www.metrochicagodata.org/-/-/jpfu-k3rv"&gt;Snow Alerts&lt;/a&gt; (47389 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofchicago.org&lt;/code&gt;: &lt;a href="https://data.cityofchicago.org/-/-/jpfu-k3rv"&gt;Snow Alerts&lt;/a&gt; (46890 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;bronx.lehman.cuny.edu&lt;/code&gt;: &lt;a href="https://bronx.lehman.cuny.edu/-/-/erm2-nwe9"&gt;311 Service Requests from 2010 to Present&lt;/a&gt; (50101 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofnewyork.us&lt;/code&gt;: &lt;a href="https://data.cityofnewyork.us/-/-/erm2-nwe9"&gt;311 Service Requests from 2010 to Present&lt;/a&gt; (47969 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.baltimorecity.gov&lt;/code&gt;: &lt;a href="https://data.baltimorecity.gov/-/-/cut3-c4bx"&gt;Baltimore City Government Entities&lt;/a&gt; (68268 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.sfgov.org&lt;/code&gt;: &lt;a href="https://data.sfgov.org/-/-/uupn-yfaw"&gt;Off-Street parking lots and parking garages&lt;/a&gt; (93951 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.medicare.gov&lt;/code&gt;: &lt;a href="https://data.medicare.gov/-/-/v287-28n3"&gt;Hospital General Information&lt;/a&gt; (8773 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;opendata.go.ke&lt;/code&gt;: &lt;a href="https://opendata.go.ke/-/-/zn6m-25cf"&gt;Kenya County Fact Sheets Dec 2011&lt;/a&gt; (12312 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.kingcounty.gov&lt;/code&gt;: &lt;a href="https://data.kingcounty.gov/-/-/j56h-zgnm"&gt;Adult Jail Booking: Jun. 1, 2012 to May 31, 2013 as of Jun. 6, 2013&lt;/a&gt; (6294 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;finances.worldbank.org&lt;/code&gt;: &lt;a href="https://finances.worldbank.org/-/-/besw-hc5u"&gt;Number of Contracts per Supplier&lt;/a&gt; (2146 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.govloop.com&lt;/code&gt;: &lt;a href="https://data.govloop.com/-/-/qcqe-y2ms"&gt;GovLoop Member Data&lt;/a&gt; (5855 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.opendatanyc.com&lt;/code&gt;: &lt;a href="https://www.opendatanyc.com/-/-/39qk-dccg"&gt;NYCERS Meeting Agenda 4-26-2011&lt;/a&gt; (1176 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.sunlightlabs.com&lt;/code&gt;: &lt;a href="https://data.sunlightlabs.com/-/-/6brm-4efm"&gt;White House Visitor Logs &amp;amp; Lobbyists&lt;/a&gt; (4885 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.energystar.gov&lt;/code&gt;: &lt;a href="https://data.energystar.gov/-/-/cmae-djp4"&gt;ENERGY STAR Certified Residential Clothes Washers&lt;/a&gt; (2503 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;healthmeasures.aspe.hhs.gov&lt;/code&gt;: &lt;a href="https://healthmeasures.aspe.hhs.gov/-/-/8wsm-y3sw"&gt;User Guide&lt;/a&gt; (207 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;cookcounty.socrata.com&lt;/code&gt;: &lt;a href="https://cookcounty.socrata.com/-/-/q8p4-325d"&gt;Comptroller - Annual Salaries As Of Sep 16 2011&lt;/a&gt; (2958 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;datacatalog.cookcountyil.gov&lt;/code&gt;: &lt;a href="https://datacatalog.cookcountyil.gov/-/-/q8p4-325d"&gt;Comptroller - Annual Salaries As Of Sep 16 2011&lt;/a&gt; (2958 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;dati.lombardia.it&lt;/code&gt;: &lt;a href="https://dati.lombardia.it/-/-/xy9p-k9bj"&gt;Elenco Regionale degli agriturismo&lt;/a&gt; (7259 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.nola.gov&lt;/code&gt;: &lt;a href="https://data.nola.gov/-/-/div8-5v7i"&gt;NOLA Addresses&lt;/a&gt; (1275 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;info.samhsa.gov&lt;/code&gt;: &lt;a href="https://info.samhsa.gov/-/-/y8ub-8msh"&gt;SAMHSA Publications&lt;/a&gt; (904 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.austintexas.gov&lt;/code&gt;: &lt;a href="https://data.austintexas.gov/-/-/ecmv-9xxi"&gt;Restaurant Inspection Scores&lt;/a&gt; (4091 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.edmonton.ca&lt;/code&gt;: &lt;a href="https://data.edmonton.ca/-/-/7gh5-bnbs"&gt;Residential Snow Clearing Schedule&lt;/a&gt; (1125 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.mo.gov&lt;/code&gt;: &lt;a href="https://data.mo.gov/-/-/2448-477a"&gt;Missouri Employee Phone Directory API&lt;/a&gt; (2039 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.maryland.gov&lt;/code&gt;: &lt;a href="https://data.maryland.gov/-/-/w6r7-apye"&gt;Certified Cover Crops Planted in the Chesapeake Bay Watershed (Annually)&lt;/a&gt; (258 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cms.gov&lt;/code&gt;: &lt;a href="https://data.cms.gov/-/-/97k6-zzx3"&gt;Inpatient Prospective Payment System (IPPS) Provider Summary for the Top 100 Diagnosis-Related Groups (DRG)&lt;/a&gt; (1321 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.wa.gov&lt;/code&gt;: &lt;a href="https://data.wa.gov/-/-/hvq3-y2jb"&gt;Unemployment Rates for Washington State and Counties, 1990 - 2010&lt;/a&gt; (696 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;health.data.ny.gov&lt;/code&gt;: &lt;a href="https://health.data.ny.gov/-/-/cw3n-fkji"&gt;Cancer Mapping Data: 2005-2009&lt;/a&gt; (519 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.colorado.gov&lt;/code&gt;: &lt;a href="https://data.colorado.gov/-/-/tedy-p7a5"&gt;Colorado Department of Education’s School View&lt;/a&gt; (257 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.consumerfinance.gov&lt;/code&gt;: &lt;a href="https://data.consumerfinance.gov/-/-/25ei-6bcr"&gt;Credit Card Complaints&lt;/a&gt; (4042 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.undp.org&lt;/code&gt;: &lt;a href="https://data.undp.org/-/-/jner-twha"&gt;UNDP Projects - 2011&lt;/a&gt; (400 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/79hh-qgjg"&gt;Approved Public Comments for Aquaculture Listening Sessions (2010)&lt;/a&gt; (766 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofboston.gov&lt;/code&gt;: &lt;a href="https://data.cityofboston.gov/-/-/qndu-wx8w"&gt;Food Establishment Inspections&lt;/a&gt; (185 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.honolulu.gov&lt;/code&gt;: &lt;a href="https://data.honolulu.gov/-/-/383v-jhbi"&gt;Parking Facilties&lt;/a&gt; (243 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.data.act.gov.au&lt;/code&gt;: &lt;a href="https://www.data.act.gov.au/-/-/2acm-wq55"&gt;ACTION timetables - Google Transit Feed&lt;/a&gt; (185 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.montgomerycountymd.gov&lt;/code&gt;: &lt;a href="https://data.montgomerycountymd.gov/-/-/r89j-py2p"&gt;Budget&lt;/a&gt; (430 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;gettingpastgo.socrata.com&lt;/code&gt;: &lt;a href="https://gettingpastgo.socrata.com/-/-/5zve-3pvy"&gt;State Developmental Education Policies&lt;/a&gt; (166 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.somervillema.gov&lt;/code&gt;: &lt;a href="https://data.somervillema.gov/-/-/tp6j-gpfj"&gt;Rodent Information&lt;/a&gt; (50 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;iranhumanrights.socrata.com&lt;/code&gt;: &lt;a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf"&gt;List of Prisoners of Conscience in Iran&lt;/a&gt; (359 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.acgov.org&lt;/code&gt;: &lt;a href="https://data.acgov.org/-/-/3d5b-2rnz"&gt;Alameda County Restaurants Inspections&lt;/a&gt; (274 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;deleon.socrata.com&lt;/code&gt;: &lt;a href="https://deleon.socrata.com/-/-/ebc4-7c6f"&gt;De Leon Community Profile&lt;/a&gt; (104 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;electionsdata.kingcounty.gov&lt;/code&gt;: &lt;a href="https://electionsdata.kingcounty.gov/-/-/k59d-q4u8"&gt;Master KC Ballot Drop Box Dataset&lt;/a&gt; (17 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofmadison.com&lt;/code&gt;: &lt;a href="https://data.cityofmadison.com/-/-/u7ns-6d4x"&gt;Assessor Property Information&lt;/a&gt; (86 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.wellingtonfl.gov&lt;/code&gt;: &lt;a href="https://data.wellingtonfl.gov/-/-/gria-8rsx"&gt;Test SD Active Rental Licenses&lt;/a&gt; (92 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.taxpayer.net&lt;/code&gt;: &lt;a href="https://data.taxpayer.net/-/-/jwqi-dvsg"&gt;Earmarks 2010&lt;/a&gt; (25 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oaklandnet.com&lt;/code&gt;: &lt;a href="https://data.oaklandnet.com/-/-/ym6k-rx7a"&gt;CrimeWatch Maps Past 90-Days&lt;/a&gt; (18 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.halifaxopendata.ca&lt;/code&gt;: &lt;a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi"&gt;LIDAR DEM 5M&lt;/a&gt; (78 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.raleighnc.gov&lt;/code&gt;: &lt;a href="https://data.raleighnc.gov/-/-/2ukz-55ex"&gt;GoTriangle&lt;/a&gt; (27 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.nfpa.org&lt;/code&gt;: &lt;a href="https://data.nfpa.org/-/-/xrhe-tp5d"&gt;Sparky’s Wish List- USA&lt;/a&gt; (14 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.weatherfordtx.gov&lt;/code&gt;: &lt;a href="https://data.weatherfordtx.gov/-/-/2ek5-qq7s"&gt;Animal Shelter - All Animal Cases&lt;/a&gt; (7 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.slcgov.com&lt;/code&gt;: &lt;a href="https://data.slcgov.com/-/-/myq9-p4zu"&gt;Planning Permits&lt;/a&gt; (5 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.snostat.org&lt;/code&gt;: &lt;a href="https://data.snostat.org/-/-/sn24-xxit"&gt;Budget Information 2011-2013&lt;/a&gt; (4 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.redmond.gov&lt;/code&gt;: &lt;a href="https://data.redmond.gov/-/-/7v22-4z3a"&gt;Check Register&lt;/a&gt; (6 downloads)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Next, let’s do the one with the most downloads per time since published.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;datasets &amp;lt;- ddply(socrata, "portal", function(df) {
+    df[order(df$downloadCount/as.numeric(as.Date("2013-07-01") - df$createdAt), 
+        decreasing = T)[1], c("id", "name", "createdAt", "downloadCount")]
+})
+(listify(datasets))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;data.ny.gov&lt;/code&gt;: &lt;a href="https://data.ny.gov/-/-/erm2-nwe9"&gt;311 Service Requests from 2010 to Present&lt;/a&gt; (50398 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oregon.gov&lt;/code&gt;: &lt;a href="https://data.oregon.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63086 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.hawaii.gov&lt;/code&gt;: &lt;a href="https://data.hawaii.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63085 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63086 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.illinois.gov&lt;/code&gt;: &lt;a href="https://data.illinois.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63084 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;opendata.socrata.com&lt;/code&gt;: &lt;a href="https://opendata.socrata.com/-/-/wv3s-d6ja"&gt;Watch Finder&lt;/a&gt; (37999 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;explore.data.gov&lt;/code&gt;: &lt;a href="https://explore.data.gov/-/-/5gah-bvex"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt; (63084 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.seattle.gov&lt;/code&gt;: &lt;a href="https://data.seattle.gov/-/-/kzjm-xkqj"&gt;Seattle Real Time Fire 911 Calls&lt;/a&gt; (436431 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.metrochicagodata.org&lt;/code&gt;: &lt;a href="https://www.metrochicagodata.org/-/-/jpfu-k3rv"&gt;Snow Alerts&lt;/a&gt; (47389 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofchicago.org&lt;/code&gt;: &lt;a href="https://data.cityofchicago.org/-/-/jpfu-k3rv"&gt;Snow Alerts&lt;/a&gt; (46890 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;bronx.lehman.cuny.edu&lt;/code&gt;: &lt;a href="https://bronx.lehman.cuny.edu/-/-/yucu-pifp"&gt;WasteTonnagebyBorough&lt;/a&gt; (1 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofnewyork.us&lt;/code&gt;: &lt;a href="https://data.cityofnewyork.us/-/-/yucu-pifp"&gt;WasteTonnagebyBorough&lt;/a&gt; (1 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.baltimorecity.gov&lt;/code&gt;: &lt;a href="https://data.baltimorecity.gov/-/-/qgsp-ij25"&gt;propertytaxes&lt;/a&gt; (1 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.sfgov.org&lt;/code&gt;: &lt;a href="https://data.sfgov.org/-/-/uupn-yfaw"&gt;Off-Street parking lots and parking garages&lt;/a&gt; (93951 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.medicare.gov&lt;/code&gt;: &lt;a href="https://data.medicare.gov/-/-/v287-28n3"&gt;Hospital General Information&lt;/a&gt; (8773 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;opendata.go.ke&lt;/code&gt;: &lt;a href="https://opendata.go.ke/-/-/zn6m-25cf"&gt;Kenya County Fact Sheets Dec 2011&lt;/a&gt; (12312 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.kingcounty.gov&lt;/code&gt;: &lt;a href="https://data.kingcounty.gov/-/-/j56h-zgnm"&gt;Adult Jail Booking: Jun. 1, 2012 to May 31, 2013 as of Jun. 6, 2013&lt;/a&gt; (6294 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;finances.worldbank.org&lt;/code&gt;: &lt;a href="https://finances.worldbank.org/-/-/k2jv-62pr"&gt;mexico&lt;/a&gt; (1 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.govloop.com&lt;/code&gt;: &lt;a href="https://data.govloop.com/-/-/qcqe-y2ms"&gt;GovLoop Member Data&lt;/a&gt; (5855 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.opendatanyc.com&lt;/code&gt;: &lt;a href="https://www.opendatanyc.com/-/-/rzrg-u63k"&gt;POLICE Investment Meeting Public Agenda 1-14-13&lt;/a&gt; (28 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.sunlightlabs.com&lt;/code&gt;: &lt;a href="https://data.sunlightlabs.com/-/-/6brm-4efm"&gt;White House Visitor Logs &amp;amp; Lobbyists&lt;/a&gt; (4885 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.energystar.gov&lt;/code&gt;: &lt;a href="https://data.energystar.gov/-/-/6rww-hpns"&gt;ENERGY STAR Certified Boilers&lt;/a&gt; (1102 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;healthmeasures.aspe.hhs.gov&lt;/code&gt;: &lt;a href="https://healthmeasures.aspe.hhs.gov/-/-/8wsm-y3sw"&gt;User Guide&lt;/a&gt; (207 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;cookcounty.socrata.com&lt;/code&gt;: &lt;a href="https://cookcounty.socrata.com/-/-/q8p4-325d"&gt;Comptroller - Annual Salaries As Of Sep 16 2011&lt;/a&gt; (2958 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;datacatalog.cookcountyil.gov&lt;/code&gt;: &lt;a href="https://datacatalog.cookcountyil.gov/-/-/q8p4-325d"&gt;Comptroller - Annual Salaries As Of Sep 16 2011&lt;/a&gt; (2958 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;dati.lombardia.it&lt;/code&gt;: &lt;a href="https://dati.lombardia.it/-/-/xy9p-k9bj"&gt;Elenco Regionale degli agriturismo&lt;/a&gt; (7259 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.nola.gov&lt;/code&gt;: &lt;a href="https://data.nola.gov/-/-/fhra-haa6"&gt;NOLA GIS Planning And Zoning Data&lt;/a&gt; (875 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;info.samhsa.gov&lt;/code&gt;: &lt;a href="https://info.samhsa.gov/-/-/nszz-zta2"&gt;Health Reform Webinars&lt;/a&gt; (842 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.austintexas.gov&lt;/code&gt;: &lt;a href="https://data.austintexas.gov/-/-/ecmv-9xxi"&gt;Restaurant Inspection Scores&lt;/a&gt; (4091 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.edmonton.ca&lt;/code&gt;: &lt;a href="https://data.edmonton.ca/-/-/7gh5-bnbs"&gt;Residential Snow Clearing Schedule&lt;/a&gt; (1125 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.mo.gov&lt;/code&gt;: &lt;a href="https://data.mo.gov/-/-/2448-477a"&gt;Missouri Employee Phone Directory API&lt;/a&gt; (2039 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.maryland.gov&lt;/code&gt;: &lt;a href="https://data.maryland.gov/-/-/ax7z-6f32"&gt;Greenhouse Gas Emissions Estimates Chart&lt;/a&gt; (228 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cms.gov&lt;/code&gt;: &lt;a href="https://data.cms.gov/-/-/97k6-zzx3"&gt;Inpatient Prospective Payment System (IPPS) Provider Summary for the Top 100 Diagnosis-Related Groups (DRG)&lt;/a&gt; (1321 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.wa.gov&lt;/code&gt;: &lt;a href="https://data.wa.gov/-/-/t2ye-2r5a"&gt;Hazardous Waste Generation by Location&lt;/a&gt; (404 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;health.data.ny.gov&lt;/code&gt;: &lt;a href="https://health.data.ny.gov/-/-/cw3n-fkji"&gt;Cancer Mapping Data: 2005-2009&lt;/a&gt; (519 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.colorado.gov&lt;/code&gt;: &lt;a href="https://data.colorado.gov/-/-/6syd-2xqm"&gt;SOC Authorization Consent Form V1 042013&lt;/a&gt; (61 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.consumerfinance.gov&lt;/code&gt;: &lt;a href="https://data.consumerfinance.gov/-/-/x94z-ydhh"&gt;Consumer Complaints&lt;/a&gt; (1902 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.undp.org&lt;/code&gt;: &lt;a href="https://data.undp.org/-/-/jner-twha"&gt;UNDP Projects - 2011&lt;/a&gt; (400 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/79hh-qgjg"&gt;Approved Public Comments for Aquaculture Listening Sessions (2010)&lt;/a&gt; (766 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofboston.gov&lt;/code&gt;: &lt;a href="https://data.cityofboston.gov/-/-/7cdf-6fgx"&gt;Crime Incident Reports&lt;/a&gt; (139 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.honolulu.gov&lt;/code&gt;: &lt;a href="https://data.honolulu.gov/-/-/383v-jhbi"&gt;Parking Facilties&lt;/a&gt; (243 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.data.act.gov.au&lt;/code&gt;: &lt;a href="https://www.data.act.gov.au/-/-/2acm-wq55"&gt;ACTION timetables - Google Transit Feed&lt;/a&gt; (185 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.montgomerycountymd.gov&lt;/code&gt;: &lt;a href="https://data.montgomerycountymd.gov/-/-/r89j-py2p"&gt;Budget&lt;/a&gt; (430 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;gettingpastgo.socrata.com&lt;/code&gt;: &lt;a href="https://gettingpastgo.socrata.com/-/-/5zve-3pvy"&gt;State Developmental Education Policies&lt;/a&gt; (166 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.somervillema.gov&lt;/code&gt;: &lt;a href="https://data.somervillema.gov/-/-/tp6j-gpfj"&gt;Rodent Information&lt;/a&gt; (50 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;iranhumanrights.socrata.com&lt;/code&gt;: &lt;a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf"&gt;List of Prisoners of Conscience in Iran&lt;/a&gt; (359 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.acgov.org&lt;/code&gt;: &lt;a href="https://data.acgov.org/-/-/3d5b-2rnz"&gt;Alameda County Restaurants Inspections&lt;/a&gt; (274 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;deleon.socrata.com&lt;/code&gt;: &lt;a href="https://deleon.socrata.com/-/-/ebc4-7c6f"&gt;De Leon Community Profile&lt;/a&gt; (104 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;electionsdata.kingcounty.gov&lt;/code&gt;: &lt;a href="https://electionsdata.kingcounty.gov/-/-/mx4r-zru7"&gt;KC Fire Protection District 44&lt;/a&gt; (6 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofmadison.com&lt;/code&gt;: &lt;a href="https://data.cityofmadison.com/-/-/u7ns-6d4x"&gt;Assessor Property Information&lt;/a&gt; (86 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.wellingtonfl.gov&lt;/code&gt;: &lt;a href="https://data.wellingtonfl.gov/-/-/gria-8rsx"&gt;Test SD Active Rental Licenses&lt;/a&gt; (92 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.taxpayer.net&lt;/code&gt;: &lt;a href="https://data.taxpayer.net/-/-/3c67-qqqv"&gt;FY2008 Earmarks&lt;/a&gt; (19 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oaklandnet.com&lt;/code&gt;: &lt;a href="https://data.oaklandnet.com/-/-/b8mb-8tti"&gt;City of Oakland Proposed Policy Budget FY2013-15&lt;/a&gt; (12 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;www.halifaxopendata.ca&lt;/code&gt;: &lt;a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi"&gt;LIDAR DEM 5M&lt;/a&gt; (78 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.raleighnc.gov&lt;/code&gt;: &lt;a href="https://data.raleighnc.gov/-/-/ffzc-kk5q"&gt;Police Crime Data&lt;/a&gt; (3 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.nfpa.org&lt;/code&gt;: &lt;a href="https://data.nfpa.org/-/-/xrhe-tp5d"&gt;Sparky’s Wish List- USA&lt;/a&gt; (14 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.weatherfordtx.gov&lt;/code&gt;: &lt;a href="https://data.weatherfordtx.gov/-/-/c4zr-3y7x"&gt;Monthly Sales Tax Collections&lt;/a&gt; (6 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.slcgov.com&lt;/code&gt;: &lt;a href="https://data.slcgov.com/-/-/myq9-p4zu"&gt;Planning Permits&lt;/a&gt; (5 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.snostat.org&lt;/code&gt;: &lt;a href="https://data.snostat.org/-/-/pdma-n7bb"&gt;Snohomish County Buildings&lt;/a&gt; (4 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.redmond.gov&lt;/code&gt;: &lt;a href="https://data.redmond.gov/-/-/7v22-4z3a"&gt;Check Register&lt;/a&gt; (6 downloads)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="dataset-shapes"&gt;Dataset shapes&lt;/h3&gt;
+&lt;p&gt;Within the context of the current analysis, a datasets is a table. A table has columns and rows.
+How tall and fat are these datasets?&lt;/p&gt;
+
+&lt;p&gt;I thought it would be cool to show dataset size as a rectangle because datasets are tables.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(socrata) + aes(xmin = 0, ymin = 0, xmax = ncol, ymax = nrow, fill = portal) + 
+    geom_rect(alpha = 0.1) + scale_x_log10("Number of columns", labels = comma) + 
+    scale_y_log10("Number of rows", labels = comma)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/shapes_rect.png"&gt;&lt;img src="figure/shapes_rect.png" alt="plot of chunk shapes_rect" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;But that looks bad, so let’s do it as points.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(socrata) + aes(x = ncol, y = nrow, color = portal) + geom_point(alpha = 0.5) + 
+    scale_x_log10("Number of columns", labels = comma) + scale_y_log10("Number of rows", 
+    labels = comma)
+
+## Warning: Removed 542 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/shapes_scatter.png"&gt;&lt;img src="figure/shapes_scatter.png" alt="plot of chunk shapes_scatter" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Some datasets have no rows nor columns. Here are ten of them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deleted &amp;lt;- socrata[(socrata$nrow == 0 &amp;amp; socrata$ncol == 0), ]
+set.seed(13984382)
+(listify(deleted[sample.int(nrow(deleted), 10), ]))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;data.illinois.gov&lt;/code&gt;: &lt;a href="https://data.illinois.gov/-/-/xtgy-ahki"&gt;U.S. Air Force Biographies&lt;/a&gt; (554 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oregon.gov&lt;/code&gt;: &lt;a href="https://data.oregon.gov/-/-/wi7k-6su5"&gt;1991 Toxics Release Inventory data for the state of New Hampshire&lt;/a&gt; (297 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/ehs2-pq45"&gt;List of Public Elementary and Secondary Schools: 1986-Present&lt;/a&gt; (557 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ny.gov&lt;/code&gt;: &lt;a href="https://data.ny.gov/-/-/3n4u-7vms"&gt;1999 Toxics Release Inventory data for the state of Idaho&lt;/a&gt; (265 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ny.gov&lt;/code&gt;: &lt;a href="https://data.ny.gov/-/-/tzgk-ytkj"&gt;Social Security Administration Percentage of Fast-Track Receipts for Fiscal Year 2010 and 2011&lt;/a&gt; (219 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/6qji-a8pa"&gt;2011 Federal Register in XML&lt;/a&gt; (345 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ny.gov&lt;/code&gt;: &lt;a href="https://data.ny.gov/-/-/ecmx-ixe4"&gt;Alternative Transportation Fuels (ATF) and Alternative Fueled Vehicles (AFV) 2007&lt;/a&gt; (1066 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/m2bb-jypa"&gt;Gravesite locations of Veterans and beneficiaries in KANSAS, as of October 2012.&lt;/a&gt; (17 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.illinois.gov&lt;/code&gt;: &lt;a href="https://data.illinois.gov/-/-/rd3u-gh5c"&gt;1991 Toxics Release Inventory data for the District of Columbia&lt;/a&gt; (401 downloads)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oregon.gov&lt;/code&gt;: &lt;a href="https://data.oregon.gov/-/-/mzwa-q9aa"&gt;National Bridge Inventory - Louisiana-2002&lt;/a&gt; (3 downloads)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These datasets appear to be either deleted or non-tabular.&lt;/p&gt;
+
+&lt;p&gt;Now let’s look at average dataset size by portal, where size is number of columns (&lt;code&gt;ncol&lt;/code&gt;),
+number of rows (&lt;code&gt;nrow&lt;/code&gt;) or number of cells (&lt;code&gt;ncell&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.sizes &amp;lt;- ddply(socrata, "portal", function(df) {
+    c(ncol = mean(df$ncol), nrow = mean(df$nrow), ncell = mean(df$ncol * df$nrow))
+})
+base &amp;lt;- ggplot(.sizes) + aes(y = portal) + geom_point() + scale_x_log10(labels = comma)
+
+print(base + aes(x = nrow))
+
+## Warning: Removed 17 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/dataset_size_by_portal1.png"&gt;&lt;img src="figure/dataset_size_by_portal1.png" alt="plot of chunk dataset_size_by_portal" class="wide" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(base + aes(x = ncol))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/dataset_size_by_portal2.png"&gt;&lt;img src="figure/dataset_size_by_portal2.png" alt="plot of chunk dataset_size_by_portal" class="wide" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(base + aes(x = nrow * ncol))
+
+## Warning: Removed 17 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/dataset_size_by_portal3.png"&gt;&lt;img src="figure/dataset_size_by_portal3.png" alt="plot of chunk dataset_size_by_portal" class="wide" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;h3 id="time"&gt;Time&lt;/h3&gt;
+&lt;p&gt;What does the growth of downloads of a dataset look like? We don’t have the data
+for individual datasets, but we can compare the current download counts old datasets
+to new datasets.&lt;/p&gt;
+
+&lt;p&gt;Has dataset size changed over the past couple years?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;base &amp;lt;- ggplot(socrata) + aes(x = createdAt, group = portal, color = portal) + 
+    geom_point(alpha = 0.5) + scale_y_log10(labels = comma)
+
+print(base + aes(y = nrow))
+
+## Warning: Removed 621 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/datasets_size_over_time1.png"&gt;&lt;img src="figure/datasets_size_over_time1.png" alt="plot of chunk datasets_size_over_time" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(base + aes(y = ncol))
+
+## Warning: Removed 79 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/datasets_size_over_time2.png"&gt;&lt;img src="figure/datasets_size_over_time2.png" alt="plot of chunk datasets_size_over_time" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(base + aes(y = nrow * ncol))
+
+## Warning: Removed 621 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/datasets_size_over_time3.png"&gt;&lt;img src="figure/datasets_size_over_time3.png" alt="plot of chunk datasets_size_over_time" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;When did datasets get uploaded?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(socrata) + aes(x = createdAt, group = portal, fill = portal) + geom_bar()
+
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust
+## this.
+
+## Warning: position_stack requires constant width: output may be incorrect
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/datasets_when_uploaded.png"&gt;&lt;img src="figure/datasets_when_uploaded.png" alt="plot of chunk datasets_when_uploaded" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;On what days of the week do datasets get uploaded?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;socrata$createdAt.dayOfWeek &amp;lt;- factor(strftime(socrata$createdAt, format = "%a"), 
+    levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
+ggplot(socrata) + aes(x = createdAt.dayOfWeek, group = portal, fill = portal) + 
+    geom_bar() + scale_y_continuous("Dataset uploads", labels = comma) + scale_x_discrete("Day of the week")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="figure/datasets_day_of_week_uploaded.png"&gt;&lt;img src="figure/datasets_day_of_week_uploaded.png" alt="plot of chunk datasets_day_of_week_uploaded" /&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;h2 id="future-plans"&gt;Future plans&lt;/h2&gt;
+&lt;p&gt;I’m conducting more detailed studies around more pointed data portal considerations;
+expect those to come out over the next few months. And I could use your help. If you
+use or publish open data, I’d love to talk and see what you would like to know about
+how open data get used; there’s probably a lot we can learn from this dataset.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-07-06:/!/ear-muffs/index.html</id>
     <title type="html">Earmuffs</title>
     <published>2013-07-06T07:00:00Z</published>
@@ -256,117 +737,6 @@ that I used most often were &lt;code&gt;tmux&lt;/code&gt;, &lt;code&gt;tmux list
 &lt;pre&gt;&lt;code&gt;alias tmuxl='tmux list-sessions'
 alias tmuxa='tmux attach'
 &lt;/code&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-06-23:/!/bookmarks/index.html</id>
-    <title type="html">Bookmarks</title>
-    <published>2013-06-23T07:00:00Z</published>
-    <updated>2013-06-23T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/bookmarks/index.html"/>
-    <content type="html">&lt;p&gt;I used to use &lt;a href="https://delicious.com/tlevine"&gt;delicious&lt;/a&gt;,
-but I always found it rather clumsy. I tried
-&lt;a href="https://github.com/FarMcKon/gitmarks_2"&gt;gitmarks&lt;/a&gt;,
-but it also seemed clumsy. So I made my own bookmark manager,
-&lt;a href="https://github.com/tlevine/medial_temporal_lobe"&gt;medial-temporal lobe&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id="how"&gt;How&lt;/h2&gt;
-&lt;p&gt;Here’s how you use it.&lt;/p&gt;
-
-&lt;p&gt;Save a webpage.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mtl add http://thomaslevine.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A randomly-named directory gets created in
-&lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;. Inside that directory are
-an &lt;code&gt;info&lt;/code&gt; file with metadata, like the URL, and a &lt;code&gt;source&lt;/code&gt; file,
-with the content of the webpage (downloaded with wget).&lt;/p&gt;
-
-&lt;p&gt;You can also set tags.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mtl add -t people,pink http://thomaslevine.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This creates symlinks inside &lt;code&gt;~/.medial_temporal_lobe/tags&lt;/code&gt;,
-linking to the file in &lt;code&gt;~/.medial_temporal_lobe/memories&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;~/.medial_temporal_lobe&lt;/code&gt; is a directory, so you can
-&lt;a href="https://github.com/tlevine/.medial_temporal_lobe"&gt;version it with git&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I haven’t implemented any functions other than &lt;code&gt;add&lt;/code&gt;, so you have to use
-other tools for viewing, editing and deleting the bookmarks.&lt;/p&gt;
-
-&lt;h2 id="differences"&gt;Differences&lt;/h2&gt;
-&lt;p&gt;I find it much easier and faster and generally more convenient to
-add bookmarks with &lt;code&gt;mtl&lt;/code&gt; than with Delicious, and I wind up saving
-more things.&lt;/p&gt;
-
-&lt;h3 id="tagging-is-easy"&gt;Tagging is easy.&lt;/h3&gt;
-&lt;p&gt;It is quite easy to tag things, so I add more tags. I generally make an
-alias to facilitate this. For example, I was reading about configuring
-bundler earlier today, so I wound up with a bunch of things that I wanted
-to tag with “ruby” and “bundler”, so I made this alias.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias a='mtl add -t ruby,bundler'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And then I ran &lt;code&gt;a $url&lt;/code&gt; for a bunch of urls.&lt;/p&gt;
-
-&lt;h3 id="searching-is-easy"&gt;Searching is easy.&lt;/h3&gt;
-&lt;p&gt;It is also quite easy to search things, even though I haven’t implemented
-an &lt;code&gt;mtl&lt;/code&gt; command for it. I just run something like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_temporal/tags/ruby
-cat */info
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You could also search within the files, including the saved files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;grep -r ruby ~/.medial_temporal_lobe/memories
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or see which how many things are in each tag.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ find ~/.medial_temporal_lobe/tags -type l|cut -d/ -f2|uniq -c|head -n20
-  2 happstack
-  1 encoding
-  3 html
-  1 poverty
-  1 s3cmd
-  1 plots
- 11 passwords
-  1 heroku
-  3 bundler
-  6 javascript
-  1 popular
-  1 ggplot
-  5 shell
-  2 new_york
-  4 aluminum_bed
-  2 statistics
-  2 hlm
-  2 foi
-  1 video
-  1 networkx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="editing-is-easy"&gt;Editing is easy.&lt;/h3&gt;
-&lt;p&gt;And combine tags.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/.medial_temporal_lobe/tags
-git mv arch/* arch_linux
-rmdir arch
-git commit . -m 'Combine arch tags'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="mirroring-is-built-in"&gt;Mirroring is built in.&lt;/h3&gt;
-&lt;p&gt;I also use this as a mirror for files I want to read. This is especially
-helpful when I’m on a train. (I like trains.) I can bookmark/download a
-bunch of files, commit them, push them, pull them from my laptop, get on
-the train and then read them without an internet connection. This is, of
-course, quite easy to do by other means, but it’s not something I would
-have done with Delicious.&lt;/p&gt;
 </content>
   </entry>
 </feed>
