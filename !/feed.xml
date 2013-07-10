@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-07-26T07:00:00Z</updated>
+  <updated>2013-07-10T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -10,39 +10,126 @@
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-07-26:/!/magic-r-commands/index.html</id>
-    <title type="html">Magic R commands</title>
-    <published>2013-07-26T07:00:00Z</published>
-    <updated>2013-07-26T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/magic-r-commands/index.html"/>
+    <id>tag:www.thomaslevine.com,2013-07-10:/!/r-spells-for-data-wizards/index.html</id>
+    <title type="html">R spells for data wizards</title>
+    <published>2013-07-10T07:00:00Z</published>
+    <updated>2013-07-10T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/r-spells-for-data-wizards/index.html"/>
     <content type="html">&lt;p&gt;I’ve never come up with a good way for learning/teaching the cool parts of R.
-I guess that’s just how R is; it’s all a hack. Anyway, here are some magic
-incantations.&lt;/p&gt;
+I feel like that’s sort of how R is; there’s an awesome way to do everything,
+but it’s all very specific and kind of hacky.&lt;/p&gt;
 
-&lt;h2 id="general-stuff"&gt;General stuff&lt;/h2&gt;
+&lt;p&gt;I thought of some magic incantations that you might not find in
+introductory R books/documentation/classes and wrote about them below.&lt;/p&gt;
+
+&lt;h2 id="csv"&gt;CSV&lt;/h2&gt;
 &lt;p&gt;When loading a CSV, don’t convert strings to factors.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Use ProjectTemplate.&lt;/p&gt;
+&lt;p&gt;When writing a CSV, don’t add the rownames.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;library(ProjectTemplate)
+&lt;pre&gt;&lt;code&gt;write.csv(iris, file = 'iris.csv', row.names = F)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;sqldf&lt;/code&gt; works on R data.frames and on other databases&lt;/p&gt;
+&lt;h2 id="indexing"&gt;Indexing&lt;/h2&gt;
+&lt;p&gt;It’s easy to miss a level of indexing, especially with lists.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sqldf('SELECT foo FROM bar') # Use the bar data.frame
-sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
+&lt;pre&gt;&lt;code&gt;str(list(a = 3)[1][[1]])
+# num 3
+
+str(list(a = 3)[1])
+# List of 1
+# $ a: num 3
+
+str(list(a = 3))
+# List of 1
+# $ a: num 3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;mapply&lt;/code&gt; maps along a matrix, passing multiple arguments to the function&lt;/p&gt;
+&lt;p&gt;You can use character vectors indices.&lt;/p&gt;
 
-&lt;p&gt;Show all factor levels in a ggplot&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;row.names(HairEyeColor)
+# [1] "Black" "Brown" "Red"   "Blond"
+
+row.names(HairEyeColor) &amp;lt;- c('Pink', 'Blue', 'Green', 'Clear')
+HairEyeColor['Pink',,]
+#        Sex
+# Eye     Male Female
+#   Brown   32     36
+#   Blue    11      9
+#   Hazel   10      5
+#   Green    3      2
+
+HairEyeColor[,,'Male']
+#        Eye
+# Hair    Brown Blue Hazel Green
+#   Pink     32   11    10     3
+#   Blue     53   50    25    15
+#   Green    10   10     7     7
+#   Clear     3   30     5     8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="factors"&gt;Factors&lt;/h2&gt;
+&lt;p&gt;Factor levels are sorted alphabetically by default&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;levels(factor(10:1))
+# [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to change that, just create a new factor,
+specifying the level order manually.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;factor(parking$GarOrLot, levels = c('G', 'L'))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And you rename a level or levels like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;levels(OrchardSprays&amp;lt;reatment)[3:5] &amp;lt;- c('X', 'Y', 'Z')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="concatenating-text"&gt;Concatenating text&lt;/h2&gt;
+&lt;p&gt;This is how you concatenate text.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;paste('abc', 'def', sep = '')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In JavaScript, this would be &lt;code&gt;'abc' + 'def'&lt;/code&gt;. Sort of.
+R’s &lt;code&gt;paste&lt;/code&gt; is more powerful because supports vectors!
+If you pass it vectors, &lt;code&gt;paste&lt;/code&gt; will ordinarily concatenate corresponding elements
+across vector.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;paste(c('a','b','c'), 1:3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to concatenate the elements within a vector,
+use &lt;code&gt;collapse&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;paste(c('Pack', 'my', 'box', 'with', 'five', 'dozen', 'liquor', 'jugs.'), collapse = ' ')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In case that isn’t clear, it would look like this in JavaScript:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;['Pack', 'my', 'box', 'with', 'five', 'dozen', 'liquor', 'jugs.'].join(' ')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="plotting"&gt;Plotting&lt;/h2&gt;
+&lt;p&gt;Show all factor levels in a ggplot.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +
-  scale_x_discrete('Species', drop = F) + geom_point()
+  scale_x_discrete('Species', drop = F) + geom_jitter()
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, in general, &lt;strong&gt;use ggplot&lt;/strong&gt;. Base R graphics are
+&lt;a href="http://www.livestream.com/knerd/video?clipId=pla_a5d59285-9399-47dc-aaef-2b9a77142d5e"&gt;more work than they’re worth&lt;/a&gt;,
+except maybe if you’re
+&lt;a href="http://www.youtube.com/watch?v=rLZDvXPIDa0"&gt;making&lt;/a&gt;
+&lt;a href="http://fms.csvsoundsystem.com"&gt;music&lt;/a&gt;
+&lt;a href="http://www.youtube.com/watch?v=tcnoBL0tvpc"&gt;videos&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That said, if you do use base R graphics, try using &lt;code&gt;locator&lt;/code&gt;
+when you’re perfecting the layout of base R graphics.&lt;/p&gt;
 
 &lt;h2 id="maintenance"&gt;Maintenance&lt;/h2&gt;
 &lt;p&gt;Update your packages.&lt;/p&gt;
@@ -75,6 +162,52 @@ options(continue="+ ")
 
 &lt;pre&gt;&lt;code&gt;Sys.setenv(R_HISTSIZE='100000')
 sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="higher-order-functions"&gt;Higher-order functions&lt;/h2&gt;
+&lt;p&gt;R’s “apply” functions would be called “maps” in other languages.
+If you’re applying along a list or vector, &lt;code&gt;lapply&lt;/code&gt; or &lt;code&gt;sapply&lt;/code&gt;, respectively, are convenient.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;apply&lt;/code&gt; maps along any dimension of an array; you specify the dimension as an argument.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mapply&lt;/code&gt; maps along a matrix, passing multiple arguments to the function&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;rollapply&lt;/code&gt; is really cool. It applies a function with a rolling window.
+For example, here’s a rolling z-score that &lt;a href="http://brianabelson.com"&gt;Brian&lt;/a&gt; wrote.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(zoo)
+
+roll_z &amp;lt;- function(x){
+    scores &amp;lt;- z(x)
+    scores[length(x)]
+}
+
+z_change &amp;lt;- rollapply(rnorm(1000), 40, roll_z)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="other-stuff"&gt;Other stuff&lt;/h2&gt;
+&lt;p&gt;Use ProjectTemplate.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ProjectTemplate)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;str&lt;/code&gt; to find out something’s type.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;str(ChickWeight)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;sqldf&lt;/code&gt; works both on R data.frames and on other databases&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sqldf('SELECT foo FROM bar') # Use the bar data.frame
+sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;download.file&lt;/code&gt; to download files.&lt;/p&gt;
+
+&lt;p&gt;Sort one thing by another thing.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;iris[order(iris$Sepal.Length),]
+cars$speed[order(cars$dist)]
 &lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
