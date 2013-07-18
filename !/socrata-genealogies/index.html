@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Progenies of Nine Socrata datasets</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Progenies of Nine Socrata datasets' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-genealogies/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Progenies of Nine Socrata datasets' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Progenies of Nine Socrata datasets
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>As the Twitters have pointed out, the dataset counts that I presented
+            in my initial <a href="/!/socrata-summary">summary</a> of Socrata portals is somewhat deceptive.</p>
+            
+            <p><a href="https://twitter.com/tomschenkjr/status/354010005504147456"><img src="tomschenkjr.png" alt="@tomschenkjr Tweets about Chicago's filters" /></a></p>
+            
+            <p><a href="https://twitter.com/SR_spatial/status/354088265344749568"><img src="SR_spatial.png" alt="@SR_spatial Tweets about patterns of derived datasets" /></a></p>
+            
+            <p><a href="https://twitter.com/richmanmax/status/353956877501087746"><img src="deduuuuuupe.png" alt="@richmanmax Tweets &quot;deduuuuuupe.&quot;" /></a></p>
+            
+            <p>Many of the things that I was calling a dataset can be seen as a
+            copy or a derivative of another dataset. In this post, I’ll discuss</p>
+            
+            <ol>
+              <li>Socrata concepts and terminology</li>
+              <li>ways that we can arrive at apparent duplicates in Socrata data</li>
+              <li>the progeny of nine Socrata datasets</li>
+              <li>ideas for future study</li>
+            </ol>
+            
+            <h2 id="socrata-terminology">Socrata terminology</h2>
+            <p>Most of my work on this for the past week has been figuring out
+            Socrata’s terminology and schema. Let’s define some Socrata terms.</p>
+            
+            <h3 id="everything-is-a-view">Everything is a view</h3>
+            <p>When you go to the home page of a Socrata portal, you can
+            “Search &amp; Browse Datasets and Views”. This phrasing is sort
+            of wrong. “<strong>view</strong>” is just a generic concept that refers
+            to any sort of file or data that is presented to a user.</p>
+            
+            <p>Everything in that list on the home page is a view. I haven’t
+            yet explained what a dataset is, but a dataset is a type of
+            view. For example, the top two views in
+            <a href="https://explore.data.gov/">explore.data.gov</a> are currently (July 17)
+            <a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut">White House Visitor Records Requests</a>
+            and <a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut">U.S. Overseas Loans and Grants (Greenbook)</a>.</p>
+            
+            <p><a href="https://explore.data.gov/"><img src="search-browse.png" alt="Search &amp; Browse Datasets and Views" /></a></p>
+            
+            <p>You also get a list of “View Types”. Below, I define some
+            of these view types.</p>
+            
+            <h3 id="datasets">Datasets</h3>
+            <p>Let’s start with the <strong>dataset</strong>.
+            A dataset is when you get when you upload data to Socrata in one of
+            its supported tabular formats.</p>
+            
+            <h3 id="filtered-views">Filtered views</h3>
+            <p>Before I define “filtered views”, I want to explain why they exist.
+            Socrata helps people publish their data by providing various APIs
+            for importing from different data sources, and Socrata helps people
+            consume data by providing a data analysis suite inside the web browser.
+            This includes maps and graphs and whatnot that you can embed in
+            websites rather than just in PDF documents.</p>
+            
+            <p>Socrata also allows you to “Filter”
+            datasets. For example, here I filter the list of
+            <a href="https://data.oaklandnet.com/Environmental/Public-Works-Volunteer-Opportunities/sduu-bfki">Public Works Volunteer Opportunities</a>
+            to include only opportunities on July 29.</p>
+            
+            <p><a href="filter.png"><img src="filter.png" alt="Filtering on date July 29" /></a></p>
+            
+            <p><a href="https://data.oaklandnet.com/Environmental/Volunteer-Opportunities-on-July-29/vyhb-nqtw">Here</a>’s the resulting filtered view.</p>
+            
+            <p><strong>Filtered views</strong> are queries on a dataset. The queries are represented internally in the
+            <a href="http://dev.socrata.com/deprecated/querying-datasets">SODA filter query language</a>.</p>
+            
+            <h3 id="charts-and-maps">Charts and maps</h3>
+            <p><strong>Charts</strong> and <strong>maps</strong> are also queries on a dataset.
+            The difference between filtered views, charts and maps is quite subtle.
+            They are all queries on datasets; they just display a different
+            visualization when you view them on the Socrata website.</p>
+            
+            <p>There are other types of views, but we don’t need to know about them
+            for now.</p>
+            
+            <h3 id="tables">Tables</h3>
+            <p>There is also a concept of a <strong>table</strong>, and
+            it is somewhat abstract. Here are two ways of thinking of it.</p>
+            
+            <p>First, a more conceptual explanation.
+            After someone uploads a dataset, a variety of filtered views,
+            charts and maps can emerge. I see this as a family of views,
+            with the parent being the original dataset and the ancestors
+            being all of the filtered views, charts and maps that make
+            SODA queries on the original dataset. In Socrata, this family
+            is called a table.</p>
+            
+            <p>Next, a more technical explanation.
+            The data are stored in a table, and this table is not exposed directly to users. 
+            The most raw form of the table is exposed through a dataset, which is an empty
+            query on the dataset (equivalent to <code>SELECT * FROM table_name;</code>). Filtered views,
+            charts and maps act on the table rather than on the source dataset; they’re just
+            like datasets, except that they include a query.</p>
+            
+            <h3 id="federation">Federation</h3>
+            <p>Socrata doesn’t provide a particularly obvious means for searching multiple
+            data portals at once. (This was part of my motivation for downloading all of
+            the datasets.) But it is possible for one data portal to include all of
+            another portal’s datasets.</p>
+            
+            <p>Sometimes, you’ll see a view in the search &amp; browse pane with a grey background,
+            instead of white. Hawaii has a bunch of these.</p>
+            
+            <p><a href="https://data.hawaii.gov/"><img src="hawaii.png" alt="Hawaii data portal" /></a></p>
+            
+            <p>These views are “provided” by other portals through a process called
+            “federation”. The destination portal (data.hawaii.gov in the above screenshot)
+            makes a request to the source portal (data.explore.gov in the above screenshot)
+            to federate the source portal’s data.</p>
+            
+            <p>This request shows up in the administrator interface for the source portal.
+            If the source portal accepts the request, all of the views from the source portal
+            are provided to the destination portal as in the screenshot above.</p>
+            
+            <p>If you look closely, you’ll notice that the federated views are actually just
+            links to the source portal; the views show up in the search, but they aren’t
+            otherwise copied to the destination portal.</p>
+            
+            <h2 id="types-of-duplicate-datasets">Types of duplicate datasets</h2>
+            <p>Now that you know a bit more about how Socrata works, I can explain my three
+            categories of datasets-that-I-counted-twice.</p>
+            
+            <h3 id="soda-queries-filtered-views-charts-maps">SODA queries: Filtered views, charts, maps</h3>
+            <p>After a dataset is uploaded, people can create many views that derive from it.
+            Depending on what you want to know, it might not make sense to treat these as
+            separate entities.</p>
+            
+            <p>In my previous analysis, I did count filtered views, charts and maps all as separate
+            entities. I think it’s worth separating these because they can be derived from the
+            source datasets.</p>
+            
+            <p>If people are using Socrata as it is intended, there should be tons of filtered
+            views, charts and maps, and they’ll give us an interesting picture of how the
+            portal is being used.</p>
+            
+            <h3 id="federation-1">Federation</h3>
+            <p>When datasets are federated, <em>all</em> of the datasets from the source portal are
+            provided to the destination. (You can’t pick and choose.) That is, they show up
+            in search as links to the source portal.</p>
+            
+            <p>In my previous analysis, I counted federated datasets as belonging to the portal
+            to which they’re provided. Also, I downloaded them in a way that made it hard for
+            me figure out what the source portal was. It’s easy to fix, so I might download
+            them all again and graph the network of federation across Socrata portals.</p>
+            
+            <p>(For those who are curious, the issue was that I followed HTTP redirects and
+            didn’t record whether I was following a redirect or accessing the page directly.)</p>
+            
+            <h3 id="copied-rather-than-elegantly-linked">Copied rather than elegantly linked</h3>
+            <p>Some datasets have simply been uploaded to two different portals.
+            Lombardia’s museums is an example of that.</p>
+            
+            <!-- I don't know why the Kramdown table syntax isn't working here. -->
+            <table>
+              <thead>
+                <tr>
+                  <th>Portal</th>
+                  <th>Identifier</th>
+                  <th>Rows</th>
+                  <th>Columns</th>
+                  <th>Downloads</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>dati.lombardia.it</td>
+                  <td><a href="https://dati.lombardia.it/Cultura/Musei/3syc-54zf?">3syc-54zf</a></td>
+                  <td>234</td>
+                  <td>56</td>
+                  <td>1675</td>
+                </tr>
+                <tr>
+                  <td>opendata.socrata.com</td>
+                  <td><a href="https://opendata.socrata.com/Education/Musei-Lombardi/54y8-wyde?">54y8-wyde</a></td>
+                  <td>234</td>
+                  <td>56</td>
+                  <td>9</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>I identified this group by looking for datasets with the same numbers of rows,
+            the same number of columns, and similar names.
+            I haven’t done it on a larger scale, but that would be fun to do later.</p>
+            
+            <h2 id="nine-large-dataset-families">Nine large dataset families</h2>
+            <p>It took me quite a while to figure out how all of this works.
+            (That’s a story in itself.) My goal all along was to start looking
+            at how families of datasets are related. I figured I’d make something
+            a bit less sloppy than ggplot plots tiny text and with legends
+            hanging off of the page.</p>
+            
+            <h3 id="methodology">Methodology</h3>
+            <p>I grouped all of the views that I had collected by table. (Recall that
+            a table in Socrata is a dataset plus the family of views that derives
+            from that particular dataset.)</p>
+            
+            <p>Once I had grouped them, I found the ten largest families, by number of
+            different views. To be clear, this is the number of Socrata entities
+            called “views” rather than the number of times people viewed the dataset.
+            (Confusingly, Socrata also provides the latter sort of view count, and 
+            I’ve included that figure in the present report.)</p>
+            
+            <p>Out of these datasets, I took out nine of the top ten datasets, and I
+            show their families in the table at the end of this page. Select a dataset,
+            and then you can see all of that dataset plus all of the filtered views,
+            maps and charts of that dataset. You can also see which portals each of
+            these datasets is federated to. You can sort by the different columns,
+            and you can click on a row to see more detail.</p>
+            
+            <h3 id="caveats">Caveats</h3>
+            <p>The one dataset that I skipped is 
+            <a href="https://explore.data.gov/Contributors/FEC-Contributions/4dkz-64bn?">FEC contributions</a>.
+            I skipped it because some of the child views appeared to be in different portals.
+            I’m not really sure what’s going on there; we can worry about that one some other time.</p>
+            
+            <p>And In case you’re reading this a year later, the data were collected from
+            Socrata portals at the end of May 2013.</p>
+            
+            <h3 id="why-its-not-a-tree">Why it’s not a tree</h3>
+            <p>In Socrata, you can create a filtered view, chart or map based on a dataset,
+            and the link to the source dataset will be preserved. This is represented
+            in the table below.</p>
+            
+            <p>Unfortunately, the genealogy is not recorded any deeper than this; if you
+            create a new filtered view based on an existing filtered view, the SODA query
+            is simply combined between the two views, and the new filtered view is
+            represented as a child of the original dataset rather than a child of the old
+            filtered view.</p>
+            
+            <h2 id="future-research">Future research</h2>
+            <p>Before you scroll down to the table of dataset progeny, I’m going to comment
+            on some ideas for future study that I’ve come up with. I’ve already alluded to
+            some future study above; belowe, I’m focusing on things that I haven’t really
+            discussed above.</p>
+            
+            <p>A small note on grammar:
+            I talk about these studies as if I’m going to do them, but that’s just because
+            I normally find that easier than convincing other people to help; all of the code
+            and data is free/libre/open, so you can also help or do these yourself rather
+            than waiting for me.</p>
+            
+            <h3 id="users">Users</h3>
+            <p>As far as I could tell, Socrata’s API doesn’t make it particularly easy to
+            get a list of all of the users, so I started with views. But now I have
+            a list of all of the users who have created views, which is close enough to
+            the list of all of the users. I’d like to see who is creating views, what
+            sorts of views they’re creating. I’m particularly interested in ordinary
+            citizens who are creating lots of views.</p>
+            
+            <h3 id="socrata-features">Socrata features</h3>
+            <p>Socrata sells a bunch of add-on integration features. I’m somewhat curious to
+            see which cities are using which features, and we can determine this based on
+            the sorts of data that are in each portal.</p>
+            
+            <h3 id="data-quality">Data quality</h3>
+            <p>A couple months ago, <a href="https://twitter.com/ag_dubs">Ashley Williams</a> and I
+            <a href="http://www.appgen.me/audit/report">prototyped</a> a tool for identifying
+            data quality issues in the data portal. We had a
+            <a href="http://www.appgen.me/audit">slew of best practices</a> that we had found to
+            be frequently violated in the New York data portal, but we didn’t know
+            enough about Socrata to evaluate them properly. Many of these were already
+            on my list for further study, but I got some more ideas on this front
+            through my conversation with <a href="https://twitter.com/nneditch">Nicole Neditch</a>,
+            who administrates Oakland’s data portal.</p>
+            
+            <p><strong>Codebooks</strong>: Socrata doesn’t really have a feature for including
+            explanations of what the different variables in a dataset mean. (I’d call
+            this a data dictionary or a codebook.) However, some datasets may already
+            include codebooks. I’m personally just a bit curious as to which datasets
+            have codebooks and whether that impacts their use. But this could also work
+            its way into our hypothetical tool. For example, we could look for datasets
+            with lots of views and without codebooks; those might be useful datasets
+            to write codebooks for.</p>
+            
+            <p><strong>Geocoding</strong>: Socrata is quite slow at geocoding. Nicole suspects that
+            this is because all of the geocoding for all of the portals runs on
+            one server. This is something that Socrata could improve, but there’s
+            a lot that cities can already do about this. This issue came up in relation
+            to Oakland’s <a href="https://data.oaklandnet.com/Public-Safety/CrimeWatch-Maps-Past-90-Days/ym6k-rx7a">CrimeWatch maps</a>.
+            The dataset has geospatial coordinates, is quite long, and is updated
+            frequently. Every time it is updated, all of the geocoded coordinates
+            get cleared, and the geocoding restarts, so the geocoding never finishes.
+            Oakland actually has the geospatial data in its database, but through
+            some accident, it wasn’t appearing in the dataset. If we could identify
+            datasets like these, we could fix geocoding problems before people complain about them.</p>
+            
+            <h2 id="the-aforementioned-table-of-dataset-progeny">The aforementioned table of dataset progeny</h2>
+            
+            <!-- Scripts after the introduction so you don't notice the table loading -->
+            <script src="angular.min.js"></script>
+            
+            <script src="angular-table.js"></script>
+            
+            <script src="angular-strap.js"></script>
+            
+            <script src="script.js"></script>
+            
+            <link rel="stylesheet" href="style.css" />
+            
+            <div ng-app="genealogy">
+              <div ng-controller="GenealogyCtrl">
+                <select ng-model="table" ng-options="t.source.name for t in tables">
+                  <option value="">Choose a dataset</option>
+                </select>
+                <div ng-show="table">
+                  <h3>The family/table</h3>
+                  <ul>
+                    <li><strong>Original source</strong>: <a href="https://{{table.source.portal}}/-/-/{{table.source.id}}">{{table.source.portal}}</a></li>
+                    <li><strong>Number of children</strong>: {{table.datasets.length}}</li>
+                    <li><strong>Total downloads</strong>: {{ table.totals.downloadCount }}</li>
+                    <li><strong>Total views</strong>: {{ table.totals.viewCount }}</li>
+                    <li><strong>Description</strong>: {{table.source.description}}</li>
+                  </ul>
+                  <h3>Its member views</h3>
+                  <angular-table model="table.datasets" default-sort-column="createdAt">
+                    <header-row>
+            
+                      <header-column sortable="true" sort-field-name="name">
+                        <div style="display: inline-block;">Name</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                      <header-column class="skinny" sortable="true" sort-field-name="createdAt">
+                        <div style="display: inline-block;">Created</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                      <header-column class="skinny" sortable="true" sort-field-name="viewCount">
+                        <div style="display: inline-block;">Hits</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                      <header-column class="skinny" sortable="true" sort-field-name="downloadCount">
+                        <div style="display: inline-block;">Down-loads</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                      <header-column class="less-skinny" sortable="true" sort-field-name="ncell">
+                        <div style="display: inline-block;">Size</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                      <header-column sortable="true" sort-field-name="ncopies">
+                        <div style="display: inline-block;">Federation</div>
+                        <sort-arrow-ascending></sort-arrow-ascending>
+                        <sort-arrow-descending></sort-arrow-descending>
+                      </header-column>
+            
+                    </header-row>
+            
+                    <row on-selected="emptyFunction" selected-color="#111">
+                      <column><a href="https://{{row.source_portal_hack}}/-/-/{{row.id}}" title="{{row.name}}">{{row.shortName}}</a></column>
+                      <column class="skinny">{{row.prettyDate}}</column>
+                      <column class="skinny number">{{row.viewCountPretty}}</column>
+                      <column class="skinny number">{{row.downloadCountPretty}}</column>
+                      <column class="less-skinny">
+                        {{row.ncellPretty}} cells
+                        <ul style="list-style: none;" class="snug" ng-show="row.rowSelected">
+                          <li class="snug"><small>{{row.ncolPretty}} variables</small></li>
+                          <li class="snug"><small>{{row.nrowPretty}} records</small></li>
+                        </ul>
+                      </column>
+                      <column>
+                        <span ng-hide="row.rowSelected">{{row.ncopiesPretty}}</span>
+                        <ul class="snug" style="list-style: none;" ng-show="row.rowSelected">
+                          <li class="snug" ng-repeat="portal in row.portals"><small>{{portal}}</small></li>
+                        </ul>
+                      </column>
+                    </row>
+                  </angular-table>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-genealogies/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
