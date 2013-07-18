@@ -218,7 +218,7 @@ cars$speed[order(cars$dist)]
     <updated>2013-07-07T07:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-summary/index.html"/>
     <content type="html">
-&lt;p&gt;I downloaded the metadata files for all of the datasets across all of the Socrata data portals.
+&lt;p&gt;I downloaded the metadata files for all of the datasets across all of the &lt;a href="http://www.socrata.com/"&gt;Socrata&lt;/a&gt; data portals.
 Here I explain how I did that and present an summary of the sorts of data that we find in the portals.&lt;/p&gt;
 
 &lt;h2 id="acquiring-the-data"&gt;Acquiring the data&lt;/h2&gt;

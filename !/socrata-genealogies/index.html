@@ -7,18 +7,18 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Progenies of Nine Socrata datasets</title>
-    <meta content='' name='description'>
+    <title>Progenies of Ten Socrata datasets</title>
+    <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Progenies of Nine Socrata datasets' name='twitter:title'>
-    <meta content='' name='twitter:description'>
+    <meta content='Progenies of Ten Socrata datasets' name='twitter:title'>
+    <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
-    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='http://thomaslevine.com/!/socrata-genealogies/screenshot.png' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
     <meta content='' name='twitter:app:name:iphone'>
     <meta content='' name='twitter:app:name:ipad'>
@@ -31,9 +31,9 @@
     <meta content='' name='twitter:app:id:googleplay'>
     <meta content='http://thomaslevine.com/!/socrata-genealogies/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content='' property='og:description'>
-    <meta content='Progenies of Nine Socrata datasets' property='og:title'>
-    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <meta content="It's cool what you can do when data analysis is logged and exposed publically over the web." property='og:description'>
+    <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' property='og:title'>
+    <meta content='http://thomaslevine.com/!/socrata-genealogies/screenshot.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -73,7 +73,7 @@
         </nav>
         <header class='title-card'>
           <h1>
-            Progenies of Nine Socrata datasets
+            Progenies of Ten Socrata datasets
           </h1>
           <div class='date'>
             
@@ -81,8 +81,18 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>As the Twitters have pointed out, the dataset counts that I presented
-            in my initial <a href="/!/socrata-summary">summary</a> of Socrata portals is somewhat deceptive.</p>
+            <p>Governments and other organizations have recently been trying to open up their
+            data in order that the public may benefit from them. Socrata’s <a href="http://www.socrata.com/open-data-portal/">Open Data Portal</a> software
+            is one tool that tries to help with this; an organization using Socrata is given a website
+            (“portal”) hosted by Socrata where they can upload their datasets and where
+            the public can download them.</p>
+            
+            <p>I recently downloaded all of the metadata about all of the datasets from all
+            of the Socrata portals and then posted this <a href="/!/socrata-summary">summary</a> of
+            the data. Now on to some deeper further analysis.</p>
+            
+            <p>As the Twitters have pointed out,the dataset counts that I presented in my
+            initial summary are somewhat deceptive.</p>
             
             <p><a href="https://twitter.com/tomschenkjr/status/354010005504147456"><img src="tomschenkjr.png" alt="@tomschenkjr Tweets about Chicago's filters" /></a></p>
             
@@ -96,7 +106,7 @@
             <ol>
               <li>Socrata concepts and terminology</li>
               <li>ways that we can arrive at apparent duplicates in Socrata data</li>
-              <li>the progeny of nine Socrata datasets</li>
+              <li>the progenies of ten Socrata datasets</li>
               <li>ideas for future study</li>
             </ol>
             
@@ -266,7 +276,7 @@
             the same number of columns, and similar names.
             I haven’t done it on a larger scale, but that would be fun to do later.</p>
             
-            <h2 id="nine-large-dataset-families">Nine large dataset families</h2>
+            <h2 id="ten-large-dataset-families">Ten large dataset families</h2>
             <p>It took me quite a while to figure out how all of this works.
             (That’s a story in itself.) My goal all along was to start looking
             at how families of datasets are related. I figured I’d make something
@@ -284,18 +294,12 @@
             (Confusingly, Socrata also provides the latter sort of view count, and 
             I’ve included that figure in the present report.)</p>
             
-            <p>Out of these datasets, I took out nine of the top ten datasets, and I
+            <p>Out of these datasets, I took the top ten datasets, and I
             show their families in the table at the end of this page. Select a dataset,
             and then you can see all of that dataset plus all of the filtered views,
             maps and charts of that dataset. You can also see which portals each of
             these datasets is federated to. You can sort by the different columns,
             and you can click on a row to see more detail.</p>
-            
-            <h3 id="caveats">Caveats</h3>
-            <p>The one dataset that I skipped is 
-            <a href="https://explore.data.gov/Contributors/FEC-Contributions/4dkz-64bn?">FEC contributions</a>.
-            I skipped it because some of the child views appeared to be in different portals.
-            I’m not really sure what’s going on there; we can worry about that one some other time.</p>
             
             <p>And In case you’re reading this a year later, the data were collected from
             Socrata portals at the end of May 2013.</p>
@@ -311,8 +315,34 @@
             represented as a child of the original dataset rather than a child of the old
             filtered view.</p>
             
+            <h3 id="things-to-play-with">Things to play with</h3>
+            <p>If you sort by “Created” date, the first one should be the source dataset.</p>
+            
+            <p>In some cases, like with the White House visitor records requests, most of the
+            downloads and hits for the whole family are from this source dataset.
+            In other cases, like the World Bank major contract awards, only a small
+            minority comes from this source dataset. This might tell us something about
+            how people like to use the data. Perhaps people working with the World Bank
+            contracts are interested in subsets for their particular region and time.
+            And maybe people are just playing with the White House data because it’s the
+            first one in the list.</p>
+            
+            <p>The dataset size gives us an idea of what sort of queries people are running.
+            Are people selecting certain variables, or are they aggregating or subsetting
+            the records?</p>
+            
+            <p>As I discussed earlier, federation is all-or-nothing; you either include all
+            of the source portal’s datasets or none of them. So you would expect that the
+            “Federation” column would list the same number of copies for each dataset.
+            In at least one instance (FEC contributions), this is not the case. what’s
+            going on there?</p>
+            
+            <p>Frankly, this table is a rather terrible way of exploring these broader trends,
+            but it conveys the scale with which datasets are being adapted on Socrata and
+            lets us drill down to the views on Socrata to see more detail.</p>
+            
             <h2 id="future-research">Future research</h2>
-            <p>Before you scroll down to the table of dataset progeny, I’m going to comment
+            <p>Before you scroll down to the table of dataset progenies, I’m going to comment
             on some ideas for future study that I’ve come up with. I’ve already alluded to
             some future study above; belowe, I’m focusing on things that I haven’t really
             discussed above.</p>
@@ -331,10 +361,12 @@
             sorts of views they’re creating. I’m particularly interested in ordinary
             citizens who are creating lots of views.</p>
             
-            <h3 id="socrata-features">Socrata features</h3>
-            <p>Socrata sells a bunch of add-on integration features. I’m somewhat curious to
+            <!--
+            ### Socrata features
+            Socrata sells a bunch of add-on integration features. I'm somewhat curious to
             see which cities are using which features, and we can determine this based on
-            the sorts of data that are in each portal.</p>
+            the sorts of data that are in each portal.
+            -->
             
             <h3 id="data-quality">Data quality</h3>
             <p>A couple months ago, <a href="https://twitter.com/ag_dubs">Ashley Williams</a> and I
@@ -368,7 +400,7 @@
             some accident, it wasn’t appearing in the dataset. If we could identify
             datasets like these, we could fix geocoding problems before people complain about them.</p>
             
-            <h2 id="the-aforementioned-table-of-dataset-progeny">The aforementioned table of dataset progeny</h2>
+            <h2 id="the-aforementioned-table-of-dataset-progenies">The aforementioned table of dataset progenies</h2>
             
             <!-- Scripts after the introduction so you don't notice the table loading -->
             <script src="angular.min.js"></script>
