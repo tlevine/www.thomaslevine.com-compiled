@@ -2,13 +2,411 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-07-10T07:00:00Z</updated>
+  <updated>2013-07-19T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-07-19:/!/socrata-genealogies/index.html</id>
+    <title type="html">Progeny of Ten Socrata Datasets</title>
+    <published>2013-07-19T07:00:00Z</published>
+    <updated>2013-07-19T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-genealogies/index.html"/>
+    <content type="html">&lt;p&gt;Governments and other organizations have recently been trying to open up their
+data. Socrata’s &lt;a href="http://www.socrata.com/open-data-portal/"&gt;Open Data Portal&lt;/a&gt; software
+is one tool that tries to help with this; an organization using Socrata is given a website
+(“portal”) hosted by Socrata where they can upload their datasets and where
+the public can download them.&lt;/p&gt;
+
+&lt;p&gt;I recently downloaded all of the metadata about all of the datasets from all
+of the Socrata portals and then posted this &lt;a href="/!/socrata-summary"&gt;summary&lt;/a&gt; of
+the data. Now on to some deeper analysis.&lt;/p&gt;
+
+&lt;h2 id="what-is-a-dataset"&gt;What is a dataset?&lt;/h2&gt;
+&lt;p&gt;As the Twitters have pointed out,the dataset counts that I presented in my
+initial summary are somewhat deceptive.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/tomschenkjr/status/354010005504147456"&gt;&lt;img src="tomschenkjr.png" alt="@tomschenkjr Tweets about Chicago's filters" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/SR_spatial/status/354088265344749568"&gt;&lt;img src="SR_spatial.png" alt="@SR_spatial Tweets about patterns of derived datasets" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Many of the things that I was calling a dataset can be seen as a
+copy or a derivative of another dataset. In this post, I’ll discuss&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Socrata concepts and terminology&lt;/li&gt;
+  &lt;li&gt;Ways that we can arrive at apparent duplicates in Socrata data&lt;/li&gt;
+  &lt;li&gt;The progeny of ten Socrata datasets&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id="socrata-terminology"&gt;Socrata terminology&lt;/h2&gt;
+&lt;p&gt;Most of my work on this for the past week has been figuring out
+Socrata’s terminology and schema. Let’s define some Socrata terms.&lt;/p&gt;
+
+&lt;h3 id="everything-is-a-view"&gt;Everything is a view&lt;/h3&gt;
+&lt;p&gt;When you go to the home page of a Socrata portal, you can
+“Search &amp;amp; Browse Datasets and Views”. This phrasing is sort
+of wrong. “&lt;strong&gt;view&lt;/strong&gt;” is just a generic concept that refers
+to any sort of file or data that is presented to a user.&lt;/p&gt;
+
+&lt;p&gt;Everything in that list on the home page is a view. I haven’t
+yet explained what a dataset is, but a dataset is a type of
+view. For example, the top two views in
+&lt;a href="https://explore.data.gov/"&gt;explore.data.gov&lt;/a&gt; are currently (July 17)
+&lt;a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut"&gt;White House Visitor Records Requests&lt;/a&gt;
+and &lt;a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://explore.data.gov/"&gt;&lt;img src="search-browse.png" alt="Search &amp;amp; Browse Datasets and Views" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You also get a list of “View Types”. Below, I define some
+of these view types.&lt;/p&gt;
+
+&lt;h3 id="datasets"&gt;Datasets&lt;/h3&gt;
+&lt;p&gt;Let’s start with the &lt;strong&gt;dataset&lt;/strong&gt;.
+A dataset is when you get when you upload data to Socrata in one of
+its supported tabular formats.&lt;/p&gt;
+
+&lt;h3 id="filtered-views"&gt;Filtered views&lt;/h3&gt;
+&lt;p&gt;Before I define “filtered views”, I want to explain why they exist.
+Socrata helps people publish their data by providing various APIs
+for importing from different data sources, and Socrata helps people
+consume data by providing a data analysis suite inside the web browser.
+This includes maps and graphs and whatnot that you can embed in
+websites rather than just in PDF documents.&lt;/p&gt;
+
+&lt;p&gt;Socrata also allows you to “Filter”
+datasets. For example, here I filter the list of
+&lt;a href="https://data.oaklandnet.com/Environmental/Public-Works-Volunteer-Opportunities/sduu-bfki"&gt;Public Works Volunteer Opportunities&lt;/a&gt;
+to include only opportunities on July 29.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="filter.png" alt="Filtering on date July 29" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://data.oaklandnet.com/Environmental/Volunteer-Opportunities-on-July-29/vyhb-nqtw"&gt;Here&lt;/a&gt;’s the resulting filtered view.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Filtered views&lt;/strong&gt; are queries on a dataset. The queries are represented internally in the
+&lt;a href="http://dev.socrata.com/deprecated/querying-datasets"&gt;SODA filter query language&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="charts-and-maps"&gt;Charts and maps&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Charts&lt;/strong&gt; and &lt;strong&gt;maps&lt;/strong&gt; are also queries on a dataset.
+The difference between filtered views, charts and maps is quite subtle.
+They are all queries on datasets; they just display a different
+visualization when you view them on the Socrata website.&lt;/p&gt;
+
+&lt;p&gt;There are other types of views, but we don’t need to know about them
+for now.&lt;/p&gt;
+
+&lt;h3 id="tables"&gt;Tables&lt;/h3&gt;
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/family.jpg" alt="A table family, containing a dataset and several filtered views, charts and maps" class="wide" /&gt;
+&lt;!-- Icons from https://explore.data.gov/stylesheets/images/icons/type_icons_30.png?1 --&gt;&lt;/p&gt;
+
+&lt;p&gt;There is also a concept of a &lt;strong&gt;table&lt;/strong&gt;, and
+it is somewhat abstract. Here are two ways of thinking of it.&lt;/p&gt;
+
+&lt;p&gt;First, a more conceptual explanation.
+After someone uploads a dataset, a variety of filtered views,
+charts and maps can emerge. I see this as a family of views,
+with the parent being the original dataset and the ancestors
+being all of the filtered views, charts and maps that make
+SODA queries on the original dataset. In Socrata, this family
+is called a table.&lt;/p&gt;
+
+&lt;p&gt;Next, a more technical explanation.
+The data are stored in a table, and this table is not exposed directly to users. 
+The most raw form of the table is exposed through a dataset, which is an empty
+query on the dataset (equivalent to &lt;code&gt;SELECT * FROM table_name;&lt;/code&gt;). Filtered views,
+charts and maps act on the table rather than on the source dataset; they’re just
+like datasets, except that they include a query.&lt;/p&gt;
+
+&lt;h3 id="federation"&gt;Federation&lt;/h3&gt;
+&lt;p&gt;Socrata doesn’t provide a particularly obvious means for searching multiple
+data portals at once. (This was part of my motivation for downloading all of
+the datasets.) But it is possible for one data portal to include all of
+another portal’s datasets.&lt;/p&gt;
+
+&lt;p&gt;Sometimes, you’ll see a view in the search &amp;amp; browse pane with a gray background,
+instead of white. Hawaii has a bunch of these.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://data.hawaii.gov/"&gt;&lt;img src="hawaii.png" alt="Hawaii data portal" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;These views are “provided” by other portals through a process called
+“federation”. The destination portal (data.hawaii.gov in the above screenshot)
+makes a request to the source portal (data.explore.gov in the above screenshot)
+to federate the source portal’s data.&lt;/p&gt;
+
+&lt;p&gt;This request shows up in the administrator interface for the source portal.
+If the source portal accepts the request, all of the views from the source portal
+are provided to the destination portal as in the screenshot above. Here are
+&lt;a href="http://www.socrata.com/video/socrata-open-data-federation-demonstration/"&gt;two&lt;/a&gt;
+&lt;a href="http://www.socrata.com/datagov/open-data-federation-video/"&gt;videos&lt;/a&gt; about that.&lt;/p&gt;
+
+&lt;p&gt;If you look closely, you’ll notice that the federated views are actually just
+links to the source portal; the views show up in the search, but they aren’t
+otherwise copied to the destination portal.&lt;/p&gt;
+
+&lt;h2 id="types-of-duplicate-datasets"&gt;Types of duplicate datasets&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/richmanmax/status/353956877501087746"&gt;&lt;img src="deduuuuuupe.png" alt="@richmanmax Tweets &amp;quot;deduuuuuupe.&amp;quot;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that you know a bit more about how Socrata works, I can explain my three
+categories of datasets-that-I-counted-twice.&lt;/p&gt;
+
+&lt;h3 id="soda-queries-filtered-views-charts-maps"&gt;SODA queries: Filtered views, charts, maps&lt;/h3&gt;
+&lt;p&gt;After a dataset is uploaded, people can create many views that derive from it.
+In my previous analysis, I counted filtered views, charts and maps all as separate
+entities. I think it’s worth separating these because they can be derived from the
+source datasets.&lt;/p&gt;
+
+&lt;p&gt;If people are using Socrata as it is intended, there should be tons of filtered
+views, charts and maps, and they’ll give us an interesting picture of how the
+portal is being used.&lt;/p&gt;
+
+&lt;h3 id="federation-1"&gt;Federation&lt;/h3&gt;
+&lt;p&gt;When datasets are federated, &lt;em&gt;all&lt;/em&gt; of the datasets from the source portal are
+provided to the destination. (You can’t pick and choose.) That is, they show up
+in search as links to the source portal.&lt;/p&gt;
+
+&lt;p&gt;In my previous analysis, I counted federated datasets as belonging to the portal
+to which they’re provided. Also, I downloaded them in a way that made it hard for
+me figure out what the source portal was. It’s easy to fix, so I might download
+them all again and graph the network of federation across Socrata portals.&lt;/p&gt;
+
+&lt;p&gt;(For those who are curious, the issue was that I followed HTTP redirects and
+didn’t record whether I was following a redirect or accessing the page directly.)&lt;/p&gt;
+
+&lt;h3 id="copied-rather-than-elegantly-linked"&gt;Copied rather than elegantly linked&lt;/h3&gt;
+&lt;p&gt;Some datasets have simply been uploaded to two different portals.
+Lombardia’s museums is an example of that.&lt;/p&gt;
+
+&lt;!-- I don't know why the Kramdown table syntax isn't working here. --&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Portal&lt;/th&gt;
+      &lt;th&gt;Identifier&lt;/th&gt;
+      &lt;th&gt;Rows&lt;/th&gt;
+      &lt;th&gt;Columns&lt;/th&gt;
+      &lt;th&gt;Downloads&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dati.lombardia.it&lt;/td&gt;
+      &lt;td&gt;&lt;a href="https://dati.lombardia.it/Cultura/Musei/3syc-54zf?"&gt;3syc-54zf&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;234&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+      &lt;td&gt;1675&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;opendata.socrata.com&lt;/td&gt;
+      &lt;td&gt;&lt;a href="https://opendata.socrata.com/Education/Musei-Lombardi/54y8-wyde?"&gt;54y8-wyde&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;234&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I identified this group by looking for datasets with the same numbers of rows,
+the same number of columns, and similar names.
+I haven’t done it on a larger scale, but that would be fun to do later.&lt;/p&gt;
+
+&lt;h2 id="ten-large-dataset-families"&gt;Ten large dataset families&lt;/h2&gt;
+&lt;p&gt;It took me quite a while to figure out everything that I explained above.
+(That’s a story in itself.) My goal all along was to start looking
+at how families of datasets are related, so now I’ll talk about what I
+did on that front.&lt;/p&gt;
+
+&lt;h3 id="methodology"&gt;Methodology&lt;/h3&gt;
+&lt;p&gt;I grouped all of the views that I had collected by table. (Recall that
+a table in Socrata is a dataset plus the family of views that derives
+from that particular dataset.)&lt;/p&gt;
+
+&lt;p&gt;Once I had grouped them, I found the ten largest families, by number of
+different views. To be clear, this is the number of Socrata entities
+called “views” rather than the number of times people viewed the dataset.
+(Confusingly, Socrata also provides the latter sort of view count, and 
+I’ve included that figure in the present report.)&lt;/p&gt;
+
+&lt;p&gt;Out of these datasets, I took the top ten datasets, and I
+show their families in the fancy table at the end of this page. Select a dataset,
+and then you can see all of that dataset plus all of the filtered views,
+maps and charts of that dataset. You can also see which portals each of
+these datasets is federated to. You can sort by the different columns,
+and you can click on a row to see more detail.&lt;/p&gt;
+
+&lt;p&gt;And In case you’re reading this a year later, the data were collected from
+Socrata portals at the end of May 2013.&lt;/p&gt;
+
+&lt;h3 id="discussion"&gt;Discussion&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;This section might make more sense if you play with the fancy table first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id="why-its-not-a-tree"&gt;Why it’s not a tree&lt;/h4&gt;
+&lt;p&gt;In Socrata, you can create a filtered view, chart or map based on a dataset,
+and the link to the source dataset will be preserved. This is represented
+in the table below.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, the genealogy is not recorded any deeper than this; if you
+create a new filtered view based on an existing filtered view, the SODA query
+is simply combined between the two views, and the new filtered view is
+represented as a child of the original dataset rather than a child of the old
+filtered view.&lt;/p&gt;
+
+&lt;p&gt;Thus, we don’t get the full family tree that you might have expected.&lt;/p&gt;
+
+&lt;h4 id="compare-family-statistics-with-view-statistics"&gt;Compare family statistics with view statistics&lt;/h4&gt;
+&lt;p&gt;In some cases, like with the White House visitor records requests, most of the
+downloads and hits for the whole family are from this source dataset.
+In other cases, like the World Bank major contract awards, only a small
+minority comes from this source dataset. This occurrence is illustrated by the
+plots below.&lt;/p&gt;
+
+&lt;p&gt;The first plot looks at hits, and the second at downloads. Within each plot,
+the left (red) dot is the number of hits/downloads that the source dataset
+received and the right (blue) dot is the total hits/downloads across the whole
+family.&lt;/p&gt;
+
+&lt;p&gt;If these are close to each other (that is, the black line is short),
+most of the hits/downloads came from the source dataset.
+If they are far apart, most
+hits/downloads came from filtered views, charts and maps.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/hits.png" alt="Hits by dataset family" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/downloads.png" alt="Downloads by dataset family" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This information might tell us something about
+how people like to use the data. Perhaps people working with the World Bank
+contracts are interested in subsets for their particular region and time.
+And maybe people are just playing with the White House data because it’s the
+first one in the list.&lt;/p&gt;
+
+&lt;h4 id="view-size-and-shape"&gt;View size and shape&lt;/h4&gt;
+&lt;p&gt;The view size and shape give us an idea of what sort of queries people are running.
+Are people selecting certain variables, or are they aggregating or subsetting
+the records?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-1.jpg" alt="A rectangle indicating the original dataset" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-2.jpg" alt="The same rectangle, with a shorter one for a record subset" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-3.jpg" alt="The same rectangles, with a tall, thin one for a selection of variables" /&gt;&lt;/p&gt;
+
+&lt;h4 id="federation-2"&gt;Federation&lt;/h4&gt;
+&lt;p&gt;As I discussed earlier, federation is all-or-nothing; you either include all
+of the source portal’s datasets or none of them. So you would expect that the
+“Federation” column would list the same number of copies for each dataset.
+In at least one instance (FEC contributions), this is not the case.
+I haven’t figured out what’s going on there.&lt;/p&gt;
+
+&lt;h3 id="relevance"&gt;Relevance&lt;/h3&gt;
+&lt;p&gt;Socrata exposes enough of the data analysis process that we can start to see
+what sorts of analyses different people are doing. We can see what sorts of
+datasets are interesting to people. We may even be able to develop new
+guidelines for publishing datasets through analysis of what makes datasets more
+likely to be viewed, downloaded and filtered on Socrata.&lt;/p&gt;
+
+&lt;h3 id="data-family-explorer"&gt;Data family explorer&lt;/h3&gt;
+&lt;p&gt;And now, the aforementioned fancy table. As I said above, this table contains
+the families/tables associated with the ten datasets with the largest families.
+Select a dataset, and then you can see all of that dataset plus all of the
+filtered views, charts and maps, with some information about each. And if you
+sort by “Created” date, the first one should be the source dataset.&lt;/p&gt;
+
+&lt;!-- Scripts after the introduction so you don't notice the table loading --&gt;
+&lt;script src="angular.min.js"&gt;&lt;/script&gt;
+
+&lt;script src="angular-table.js"&gt;&lt;/script&gt;
+
+&lt;script src="angular-strap.js"&gt;&lt;/script&gt;
+
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;link rel="stylesheet" href="style.css" /&gt;
+
+&lt;div ng-app="genealogy"&gt;
+  &lt;div ng-controller="GenealogyCtrl"&gt;
+    &lt;select ng-model="table" ng-options="t.source.name for t in tables"&gt;
+      &lt;option value=""&gt;Choose a dataset&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div ng-show="table"&gt;
+      &lt;h3&gt;The family/table&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;Original source&lt;/strong&gt;: &lt;a href="https://{{table.source.portal}}/-/-/{{table.source.id}}"&gt;{{table.source.portal}}&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Number of children&lt;/strong&gt;: {{table.datasets.length}}&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Total downloads&lt;/strong&gt;: {{ table.totals.downloadCount }}&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Total views&lt;/strong&gt;: {{ table.totals.viewCount }}&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: {{table.source.description}}&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;h3&gt;Its member views&lt;/h3&gt;
+      &lt;angular-table model="table.datasets" default-sort-column="createdAt"&gt;
+        &lt;header-row&gt;
+
+          &lt;header-column sortable="true" sort-field-name="name"&gt;
+            &lt;div style="display: inline-block;"&gt;Name&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+          &lt;header-column class="skinny" sortable="true" sort-field-name="createdAt"&gt;
+            &lt;div style="display: inline-block;"&gt;Created&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+          &lt;header-column class="skinny" sortable="true" sort-field-name="viewCount"&gt;
+            &lt;div style="display: inline-block;"&gt;Hits&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+          &lt;header-column class="skinny" sortable="true" sort-field-name="downloadCount"&gt;
+            &lt;div style="display: inline-block;"&gt;Down-loads&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+          &lt;header-column class="less-skinny" sortable="true" sort-field-name="ncell"&gt;
+            &lt;div style="display: inline-block;"&gt;Size&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+          &lt;header-column sortable="true" sort-field-name="ncopies"&gt;
+            &lt;div style="display: inline-block;"&gt;Federation&lt;/div&gt;
+            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
+            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
+          &lt;/header-column&gt;
+
+        &lt;/header-row&gt;
+
+        &lt;row on-selected="emptyFunction" selected-color="#111"&gt;
+          &lt;column&gt;&lt;a href="https://{{row.source_portal_hack}}/-/-/{{row.id}}" title="{{row.name}}"&gt;{{row.shortName}}&lt;/a&gt;&lt;/column&gt;
+          &lt;column class="skinny"&gt;{{row.prettyDate}}&lt;/column&gt;
+          &lt;column class="skinny number"&gt;{{row.viewCountPretty}}&lt;/column&gt;
+          &lt;column class="skinny number"&gt;{{row.downloadCountPretty}}&lt;/column&gt;
+          &lt;column class="less-skinny"&gt;
+            {{row.ncellPretty}} cells
+            &lt;ul style="list-style: none;" class="snug" ng-show="row.rowSelected"&gt;
+              &lt;li class="snug"&gt;&lt;small&gt;{{row.ncolPretty}} variables&lt;/small&gt;&lt;/li&gt;
+              &lt;li class="snug"&gt;&lt;small&gt;{{row.nrowPretty}} records&lt;/small&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/column&gt;
+          &lt;column&gt;
+            &lt;span ng-hide="row.rowSelected"&gt;{{row.ncopiesPretty}}&lt;/span&gt;
+            &lt;ul class="snug" style="list-style: none;" ng-show="row.rowSelected"&gt;
+              &lt;li class="snug" ng-repeat="portal in row.portals"&gt;&lt;small&gt;{{portal}}&lt;/small&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/column&gt;
+        &lt;/row&gt;
+      &lt;/angular-table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-07-10:/!/r-spells-for-data-wizards/index.html</id>
     <title type="html">R spells for data wizards</title>
@@ -831,45 +1229,6 @@ the French one with &lt;code&gt;setxkbmap&lt;/code&gt; like so.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I still haven’t figured out how to select the Swedish one with &lt;code&gt;setxkbmap&lt;/code&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-06-26:/!/tmux-aliases/index.html</id>
-    <title type="html">tmux aliases</title>
-    <published>2013-06-26T07:00:00Z</published>
-    <updated>2013-06-26T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/tmux-aliases/index.html"/>
-    <content type="html">&lt;p&gt;Before I implemented my &lt;code&gt;tmuxa&lt;/code&gt; and &lt;code&gt;tmuxl&lt;/code&gt; aliases, the three &lt;code&gt;tmux&lt;/code&gt; calls
-that I used most often were &lt;code&gt;tmux&lt;/code&gt;, &lt;code&gt;tmux list-sessions&lt;/code&gt; and &lt;code&gt;tmux attach&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ grep ^tmux ~/.history/sh-201*|sed -e s/^.*:// -e 's/ *$//' |sort|uniq -c
-    127 tmux
-    149 tmuxa
-      2 tmuxa 0
-      1 tmuxa -t0
-      3 tmuxa -t 0
-      6 tmuxa -t23
-      1 tmuxa -t 23
-      4 tmuxa -t32
-      1 tmuxa -t 5
-     15 tmux attach
-      2 tmux attach -t0
-      1 tmux attach -t16
-      1 tmux attach -t18
-      2 tmux attach -t 23
-      1 tmux attach -t27
-      1 tmux attach -t28
-      1 tmux attach -t 32
-     18 tmuxl
-      1 tmux --list-sessions
-      7 tmux list-sessions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Those commands are long, so I &lt;a href="https://github.com/tlevine/.prophyl-teh-awesum/blob/master/source/tmux"&gt;made them shorter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias tmuxl='tmux list-sessions'
-alias tmuxa='tmux attach'
-&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>

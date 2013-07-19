@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Progenies of Ten Socrata Datasets</title>
+    <title>Progeny of Ten Socrata Datasets</title>
     <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,10 +15,10 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Progenies of Ten Socrata Datasets' name='twitter:title'>
+    <meta content='Progeny of Ten Socrata Datasets' name='twitter:title'>
     <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
-    <meta content='http://thomaslevine.com/!/socrata-genealogies/screenshot.png' name='twitter:image:src'>
+    <meta content='http://thomaslevine.com/!/socrata-genealogies/family.png' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
     <meta content='' name='twitter:app:name:iphone'>
     <meta content='' name='twitter:app:name:ipad'>
@@ -31,9 +31,9 @@
     <meta content='' name='twitter:app:id:googleplay'>
     <meta content='http://thomaslevine.com/!/socrata-genealogies/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content="It's cool what you can do when data analysis is logged and exposed publically over the web." property='og:description'>
+    <meta content="It's cool what you can do when everyone's data analysis is logged and exposed publicly over the web." property='og:description'>
     <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' property='og:title'>
-    <meta content='http://thomaslevine.com/!/socrata-genealogies/screenshot.png' property='og:image'>
+    <meta content='http://thomaslevine.com/!/socrata-genealogies/family.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -73,10 +73,10 @@
         </nav>
         <header class='title-card'>
           <h1>
-            Progenies of Ten Socrata Datasets
+            Progeny of Ten Socrata Datasets
           </h1>
           <div class='date'>
-            
+            July 19, 2013
           </div>
         </header>
         <div id='article-wrapper'>
@@ -89,7 +89,7 @@
             
             <p>I recently downloaded all of the metadata about all of the datasets from all
             of the Socrata portals and then posted this <a href="/!/socrata-summary">summary</a> of
-            the data. Now on to some deeper further analysis.</p>
+            the data. Now on to some deeper analysis.</p>
             
             <h2 id="what-is-a-dataset">What is a dataset?</h2>
             <p>As the Twitters have pointed out,the dataset counts that I presented in my
@@ -105,7 +105,7 @@
             <ol>
               <li>Socrata concepts and terminology</li>
               <li>Ways that we can arrive at apparent duplicates in Socrata data</li>
-              <li>The progenies of ten Socrata datasets</li>
+              <li>The progeny of ten Socrata datasets</li>
             </ol>
             
             <h2 id="socrata-terminology">Socrata terminology</h2>
@@ -148,7 +148,7 @@
             <a href="https://data.oaklandnet.com/Environmental/Public-Works-Volunteer-Opportunities/sduu-bfki">Public Works Volunteer Opportunities</a>
             to include only opportunities on July 29.</p>
             
-            <p><a href="filter.png"><img src="filter.png" alt="Filtering on date July 29" class="wide" /></a></p>
+            <p><img src="filter.png" alt="Filtering on date July 29" class="wide" /></p>
             
             <p><a href="https://data.oaklandnet.com/Environmental/Volunteer-Opportunities-on-July-29/vyhb-nqtw">Here</a>’s the resulting filtered view.</p>
             
@@ -165,6 +165,9 @@
             for now.</p>
             
             <h3 id="tables">Tables</h3>
+            <p><img src="/!/socrata-genealogies/family.jpg" alt="A table family, containing a dataset and several filtered views, charts and maps" class="wide" />
+            <!-- Icons from https://explore.data.gov/stylesheets/images/icons/type_icons_30.png?1 --></p>
+            
             <p>There is also a concept of a <strong>table</strong>, and
             it is somewhat abstract. Here are two ways of thinking of it.</p>
             
@@ -189,7 +192,7 @@
             the datasets.) But it is possible for one data portal to include all of
             another portal’s datasets.</p>
             
-            <p>Sometimes, you’ll see a view in the search &amp; browse pane with a grey background,
+            <p>Sometimes, you’ll see a view in the search &amp; browse pane with a gray background,
             instead of white. Hawaii has a bunch of these.</p>
             
             <p><a href="https://data.hawaii.gov/"><img src="hawaii.png" alt="Hawaii data portal" class="wide" /></a></p>
@@ -201,7 +204,9 @@
             
             <p>This request shows up in the administrator interface for the source portal.
             If the source portal accepts the request, all of the views from the source portal
-            are provided to the destination portal as in the screenshot above.</p>
+            are provided to the destination portal as in the screenshot above. Here are
+            <a href="http://www.socrata.com/video/socrata-open-data-federation-demonstration/">two</a>
+            <a href="http://www.socrata.com/datagov/open-data-federation-video/">videos</a> about that.</p>
             
             <p>If you look closely, you’ll notice that the federated views are actually just
             links to the source portal; the views show up in the search, but they aren’t
@@ -216,10 +221,7 @@
             
             <h3 id="soda-queries-filtered-views-charts-maps">SODA queries: Filtered views, charts, maps</h3>
             <p>After a dataset is uploaded, people can create many views that derive from it.
-            Depending on what you want to know, it might not make sense to treat these as
-            separate entities.</p>
-            
-            <p>In my previous analysis, I did count filtered views, charts and maps all as separate
+            In my previous analysis, I counted filtered views, charts and maps all as separate
             entities. I think it’s worth separating these because they can be derived from the
             source datasets.</p>
             
@@ -278,11 +280,10 @@
             I haven’t done it on a larger scale, but that would be fun to do later.</p>
             
             <h2 id="ten-large-dataset-families">Ten large dataset families</h2>
-            <p>It took me quite a while to figure out how all of this works.
+            <p>It took me quite a while to figure out everything that I explained above.
             (That’s a story in itself.) My goal all along was to start looking
-            at how families of datasets are related. I figured I’d make something
-            a bit less sloppy than ggplot plots tiny text and with legends
-            hanging off of the page.</p>
+            at how families of datasets are related, so now I’ll talk about what I
+            did on that front.</p>
             
             <h3 id="methodology">Methodology</h3>
             <p>I grouped all of the views that I had collected by table. (Recall that
@@ -296,7 +297,7 @@
             I’ve included that figure in the present report.)</p>
             
             <p>Out of these datasets, I took the top ten datasets, and I
-            show their families in the table at the end of this page. Select a dataset,
+            show their families in the fancy table at the end of this page. Select a dataset,
             and then you can see all of that dataset plus all of the filtered views,
             maps and charts of that dataset. You can also see which portals each of
             these datasets is federated to. You can sort by the different columns,
@@ -305,7 +306,10 @@
             <p>And In case you’re reading this a year later, the data were collected from
             Socrata portals at the end of May 2013.</p>
             
-            <h3 id="why-its-not-a-tree">Why it’s not a tree</h3>
+            <h3 id="discussion">Discussion</h3>
+            <p><em>This section might make more sense if you play with the fancy table first.</em></p>
+            
+            <h4 id="why-its-not-a-tree">Why it’s not a tree</h4>
             <p>In Socrata, you can create a filtered view, chart or map based on a dataset,
             and the link to the source dataset will be preserved. This is represented
             in the table below.</p>
@@ -316,45 +320,66 @@
             represented as a child of the original dataset rather than a child of the old
             filtered view.</p>
             
-            <h3 id="things-to-look-for">Things to look for</h3>
-            
-            <h4 id="the-source-dataset">The source dataset</h4>
-            <p>If you sort by “Created” date, the first one should be the source dataset.</p>
+            <p>Thus, we don’t get the full family tree that you might have expected.</p>
             
             <h4 id="compare-family-statistics-with-view-statistics">Compare family statistics with view statistics</h4>
             <p>In some cases, like with the White House visitor records requests, most of the
             downloads and hits for the whole family are from this source dataset.
             In other cases, like the World Bank major contract awards, only a small
-            minority comes from this source dataset. This might tell us something about
+            minority comes from this source dataset. This occurrence is illustrated by the
+            plots below.</p>
+            
+            <p>The first plot looks at hits, and the second at downloads. Within each plot,
+            the left (red) dot is the number of hits/downloads that the source dataset
+            received and the right (blue) dot is the total hits/downloads across the whole
+            family.</p>
+            
+            <p>If these are close to each other (that is, the black line is short),
+            most of the hits/downloads came from the source dataset.
+            If they are far apart, most
+            hits/downloads came from filtered views, charts and maps.</p>
+            
+            <p><img src="/!/socrata-genealogies/hits.png" alt="Hits by dataset family" class="wide" /></p>
+            
+            <p><img src="/!/socrata-genealogies/downloads.png" alt="Downloads by dataset family" class="wide" /></p>
+            
+            <p>This information might tell us something about
             how people like to use the data. Perhaps people working with the World Bank
             contracts are interested in subsets for their particular region and time.
             And maybe people are just playing with the White House data because it’s the
             first one in the list.</p>
             
-            <h4 id="view-size">View size</h4>
-            <p>The view size gives us an idea of what sort of queries people are running.
+            <h4 id="view-size-and-shape">View size and shape</h4>
+            <p>The view size and shape give us an idea of what sort of queries people are running.
             Are people selecting certain variables, or are they aggregating or subsetting
             the records?</p>
+            
+            <p><img src="/!/socrata-genealogies/query-1.jpg" alt="A rectangle indicating the original dataset" /></p>
+            
+            <p><img src="/!/socrata-genealogies/query-2.jpg" alt="The same rectangle, with a shorter one for a record subset" /></p>
+            
+            <p><img src="/!/socrata-genealogies/query-3.jpg" alt="The same rectangles, with a tall, thin one for a selection of variables" /></p>
             
             <h4 id="federation-2">Federation</h4>
             <p>As I discussed earlier, federation is all-or-nothing; you either include all
             of the source portal’s datasets or none of them. So you would expect that the
             “Federation” column would list the same number of copies for each dataset.
-            In at least one instance (FEC contributions), this is not the case. what’s
-            going on there?</p>
+            In at least one instance (FEC contributions), this is not the case.
+            I haven’t figured out what’s going on there.</p>
             
             <h3 id="relevance">Relevance</h3>
-            <p>Frankly, this table is a rather terrible way of exploring these broader trends,
-            but it conveys the scale with which datasets are being adapted on Socrata and
-            lets us drill down to the views on Socrata to see more detail.</p>
-            
             <p>Socrata exposes enough of the data analysis process that we can start to see
             what sorts of analyses different people are doing. We can see what sorts of
             datasets are interesting to people. We may even be able to develop new
             guidelines for publishing datasets through analysis of what makes datasets more
             likely to be viewed, downloaded and filtered on Socrata.</p>
             
-            <p>And now, the dataset progeny explorer:</p>
+            <h3 id="data-family-explorer">Data family explorer</h3>
+            <p>And now, the aforementioned fancy table. As I said above, this table contains
+            the families/tables associated with the ten datasets with the largest families.
+            Select a dataset, and then you can see all of that dataset plus all of the
+            filtered views, charts and maps, with some information about each. And if you
+            sort by “Created” date, the first one should be the source dataset.</p>
             
             <!-- Scripts after the introduction so you don't notice the table loading -->
             <script src="angular.min.js"></script>
