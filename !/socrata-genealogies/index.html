@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Progenies of Ten Socrata datasets</title>
+    <title>Progenies of Ten Socrata Datasets</title>
     <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Progenies of Ten Socrata datasets' name='twitter:title'>
+    <meta content='Progenies of Ten Socrata Datasets' name='twitter:title'>
     <meta content='How are datasets are transformed in Socrata, and what can we can learn from that?' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/!/socrata-genealogies/screenshot.png' name='twitter:image:src'>
@@ -73,7 +73,7 @@
         </nav>
         <header class='title-card'>
           <h1>
-            Progenies of Ten Socrata datasets
+            Progenies of Ten Socrata Datasets
           </h1>
           <div class='date'>
             
@@ -82,7 +82,7 @@
         <div id='article-wrapper'>
           <article>
             <p>Governments and other organizations have recently been trying to open up their
-            data in order that the public may benefit from them. Socrata’s <a href="http://www.socrata.com/open-data-portal/">Open Data Portal</a> software
+            data. Socrata’s <a href="http://www.socrata.com/open-data-portal/">Open Data Portal</a> software
             is one tool that tries to help with this; an organization using Socrata is given a website
             (“portal”) hosted by Socrata where they can upload their datasets and where
             the public can download them.</p>
@@ -91,6 +91,7 @@
             of the Socrata portals and then posted this <a href="/!/socrata-summary">summary</a> of
             the data. Now on to some deeper further analysis.</p>
             
+            <h2 id="what-is-a-dataset">What is a dataset?</h2>
             <p>As the Twitters have pointed out,the dataset counts that I presented in my
             initial summary are somewhat deceptive.</p>
             
@@ -98,16 +99,13 @@
             
             <p><a href="https://twitter.com/SR_spatial/status/354088265344749568"><img src="SR_spatial.png" alt="@SR_spatial Tweets about patterns of derived datasets" /></a></p>
             
-            <p><a href="https://twitter.com/richmanmax/status/353956877501087746"><img src="deduuuuuupe.png" alt="@richmanmax Tweets &quot;deduuuuuupe.&quot;" /></a></p>
-            
             <p>Many of the things that I was calling a dataset can be seen as a
             copy or a derivative of another dataset. In this post, I’ll discuss</p>
             
             <ol>
               <li>Socrata concepts and terminology</li>
-              <li>ways that we can arrive at apparent duplicates in Socrata data</li>
-              <li>the progenies of ten Socrata datasets</li>
-              <li>ideas for future study</li>
+              <li>Ways that we can arrive at apparent duplicates in Socrata data</li>
+              <li>The progenies of ten Socrata datasets</li>
             </ol>
             
             <h2 id="socrata-terminology">Socrata terminology</h2>
@@ -127,7 +125,7 @@
             <a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut">White House Visitor Records Requests</a>
             and <a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut">U.S. Overseas Loans and Grants (Greenbook)</a>.</p>
             
-            <p><a href="https://explore.data.gov/"><img src="search-browse.png" alt="Search &amp; Browse Datasets and Views" /></a></p>
+            <p><a href="https://explore.data.gov/"><img src="search-browse.png" alt="Search &amp; Browse Datasets and Views" class="wide" /></a></p>
             
             <p>You also get a list of “View Types”. Below, I define some
             of these view types.</p>
@@ -150,7 +148,7 @@
             <a href="https://data.oaklandnet.com/Environmental/Public-Works-Volunteer-Opportunities/sduu-bfki">Public Works Volunteer Opportunities</a>
             to include only opportunities on July 29.</p>
             
-            <p><a href="filter.png"><img src="filter.png" alt="Filtering on date July 29" /></a></p>
+            <p><a href="filter.png"><img src="filter.png" alt="Filtering on date July 29" class="wide" /></a></p>
             
             <p><a href="https://data.oaklandnet.com/Environmental/Volunteer-Opportunities-on-July-29/vyhb-nqtw">Here</a>’s the resulting filtered view.</p>
             
@@ -194,7 +192,7 @@
             <p>Sometimes, you’ll see a view in the search &amp; browse pane with a grey background,
             instead of white. Hawaii has a bunch of these.</p>
             
-            <p><a href="https://data.hawaii.gov/"><img src="hawaii.png" alt="Hawaii data portal" /></a></p>
+            <p><a href="https://data.hawaii.gov/"><img src="hawaii.png" alt="Hawaii data portal" class="wide" /></a></p>
             
             <p>These views are “provided” by other portals through a process called
             “federation”. The destination portal (data.hawaii.gov in the above screenshot)
@@ -210,6 +208,9 @@
             otherwise copied to the destination portal.</p>
             
             <h2 id="types-of-duplicate-datasets">Types of duplicate datasets</h2>
+            
+            <p><a href="https://twitter.com/richmanmax/status/353956877501087746"><img src="deduuuuuupe.png" alt="@richmanmax Tweets &quot;deduuuuuupe.&quot;" /></a></p>
+            
             <p>Now that you know a bit more about how Socrata works, I can explain my three
             categories of datasets-that-I-counted-twice.</p>
             
@@ -315,9 +316,12 @@
             represented as a child of the original dataset rather than a child of the old
             filtered view.</p>
             
-            <h3 id="things-to-play-with">Things to play with</h3>
+            <h3 id="things-to-look-for">Things to look for</h3>
+            
+            <h4 id="the-source-dataset">The source dataset</h4>
             <p>If you sort by “Created” date, the first one should be the source dataset.</p>
             
+            <h4 id="compare-family-statistics-with-view-statistics">Compare family statistics with view statistics</h4>
             <p>In some cases, like with the White House visitor records requests, most of the
             downloads and hits for the whole family are from this source dataset.
             In other cases, like the World Bank major contract awards, only a small
@@ -327,80 +331,30 @@
             And maybe people are just playing with the White House data because it’s the
             first one in the list.</p>
             
-            <p>The dataset size gives us an idea of what sort of queries people are running.
+            <h4 id="view-size">View size</h4>
+            <p>The view size gives us an idea of what sort of queries people are running.
             Are people selecting certain variables, or are they aggregating or subsetting
             the records?</p>
             
+            <h4 id="federation-2">Federation</h4>
             <p>As I discussed earlier, federation is all-or-nothing; you either include all
             of the source portal’s datasets or none of them. So you would expect that the
             “Federation” column would list the same number of copies for each dataset.
             In at least one instance (FEC contributions), this is not the case. what’s
             going on there?</p>
             
+            <h3 id="relevance">Relevance</h3>
             <p>Frankly, this table is a rather terrible way of exploring these broader trends,
             but it conveys the scale with which datasets are being adapted on Socrata and
             lets us drill down to the views on Socrata to see more detail.</p>
             
-            <h2 id="future-research">Future research</h2>
-            <p>Before you scroll down to the table of dataset progenies, I’m going to comment
-            on some ideas for future study that I’ve come up with. I’ve already alluded to
-            some future study above; belowe, I’m focusing on things that I haven’t really
-            discussed above.</p>
+            <p>Socrata exposes enough of the data analysis process that we can start to see
+            what sorts of analyses different people are doing. We can see what sorts of
+            datasets are interesting to people. We may even be able to develop new
+            guidelines for publishing datasets through analysis of what makes datasets more
+            likely to be viewed, downloaded and filtered on Socrata.</p>
             
-            <p>A small note on grammar:
-            I talk about these studies as if I’m going to do them, but that’s just because
-            I normally find that easier than convincing other people to help; all of the code
-            and data is free/libre/open, so you can also help or do these yourself rather
-            than waiting for me.</p>
-            
-            <h3 id="users">Users</h3>
-            <p>As far as I could tell, Socrata’s API doesn’t make it particularly easy to
-            get a list of all of the users, so I started with views. But now I have
-            a list of all of the users who have created views, which is close enough to
-            the list of all of the users. I’d like to see who is creating views, what
-            sorts of views they’re creating. I’m particularly interested in ordinary
-            citizens who are creating lots of views.</p>
-            
-            <!--
-            ### Socrata features
-            Socrata sells a bunch of add-on integration features. I'm somewhat curious to
-            see which cities are using which features, and we can determine this based on
-            the sorts of data that are in each portal.
-            -->
-            
-            <h3 id="data-quality">Data quality</h3>
-            <p>A couple months ago, <a href="https://twitter.com/ag_dubs">Ashley Williams</a> and I
-            <a href="http://www.appgen.me/audit/report">prototyped</a> a tool for identifying
-            data quality issues in the data portal. We had a
-            <a href="http://www.appgen.me/audit">slew of best practices</a> that we had found to
-            be frequently violated in the New York data portal, but we didn’t know
-            enough about Socrata to evaluate them properly. Many of these were already
-            on my list for further study, but I got some more ideas on this front
-            through my conversation with <a href="https://twitter.com/nneditch">Nicole Neditch</a>,
-            who administrates Oakland’s data portal.</p>
-            
-            <p><strong>Codebooks</strong>: Socrata doesn’t really have a feature for including
-            explanations of what the different variables in a dataset mean. (I’d call
-            this a data dictionary or a codebook.) However, some datasets may already
-            include codebooks. I’m personally just a bit curious as to which datasets
-            have codebooks and whether that impacts their use. But this could also work
-            its way into our hypothetical tool. For example, we could look for datasets
-            with lots of views and without codebooks; those might be useful datasets
-            to write codebooks for.</p>
-            
-            <p><strong>Geocoding</strong>: Socrata is quite slow at geocoding. Nicole suspects that
-            this is because all of the geocoding for all of the portals runs on
-            one server. This is something that Socrata could improve, but there’s
-            a lot that cities can already do about this. This issue came up in relation
-            to Oakland’s <a href="https://data.oaklandnet.com/Public-Safety/CrimeWatch-Maps-Past-90-Days/ym6k-rx7a">CrimeWatch maps</a>.
-            The dataset has geospatial coordinates, is quite long, and is updated
-            frequently. Every time it is updated, all of the geocoded coordinates
-            get cleared, and the geocoding restarts, so the geocoding never finishes.
-            Oakland actually has the geospatial data in its database, but through
-            some accident, it wasn’t appearing in the dataset. If we could identify
-            datasets like these, we could fix geocoding problems before people complain about them.</p>
-            
-            <h2 id="the-aforementioned-table-of-dataset-progenies">The aforementioned table of dataset progenies</h2>
+            <p>And now, the dataset progeny explorer:</p>
             
             <!-- Scripts after the introduction so you don't notice the table loading -->
             <script src="angular.min.js"></script>

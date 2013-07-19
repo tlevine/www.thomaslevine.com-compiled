@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Thomas Levine</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-schema/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            
+            <h2 id="future-research">Future research</h2>
+            <p>Before you scroll down to the table of dataset progenies, I’m going to comment
+            on some ideas for future study that I’ve come up with. I’ve already alluded to
+            some future study above; belowe, I’m focusing on things that I haven’t really
+            discussed above.</p>
+            
+            <p>A small note on grammar:
+            I talk about these studies as if I’m going to do them, but that’s just because
+            I normally find that easier than convincing other people to help; all of the code
+            and data is free/libre/open, so you can also help or do these yourself rather
+            than waiting for me.</p>
+            
+            <h3 id="users">Users</h3>
+            <p>As far as I could tell, Socrata’s API doesn’t make it particularly easy to
+            get a list of all of the users, so I started with views. But now I have
+            a list of all of the users who have created views, which is close enough to
+            the list of all of the users. I’d like to see who is creating views, what
+            sorts of views they’re creating. I’m particularly interested in ordinary
+            citizens who are creating lots of views.</p>
+            
+            <!--
+            ### Socrata features
+            Socrata sells a bunch of add-on integration features. I'm somewhat curious to
+            see which cities are using which features, and we can determine this based on
+            the sorts of data that are in each portal.
+            -->
+            
+            <h3 id="data-quality">Data quality</h3>
+            <p>A couple months ago, <a href="https://twitter.com/ag_dubs">Ashley Williams</a> and I
+            <a href="http://www.appgen.me/audit/report">prototyped</a> a tool for identifying
+            data quality issues in the data portal. We had a
+            <a href="http://www.appgen.me/audit">slew of best practices</a> that we had found to
+            be frequently violated in the New York data portal, but we didn’t know
+            enough about Socrata to evaluate them properly. Many of these were already
+            on my list for further study, but I got some more ideas on this front
+            through my conversation with <a href="https://twitter.com/nneditch">Nicole Neditch</a>,
+            who administrates Oakland’s data portal.</p>
+            
+            <p><strong>Codebooks</strong>: Socrata doesn’t really have a feature for including
+            explanations of what the different variables in a dataset mean. (I’d call
+            this a data dictionary or a codebook.) However, some datasets may already
+            include codebooks. I’m personally just a bit curious as to which datasets
+            have codebooks and whether that impacts their use. But this could also work
+            its way into our hypothetical tool. For example, we could look for datasets
+            with lots of views and without codebooks; those might be useful datasets
+            to write codebooks for.</p>
+            
+            <p><strong>Geocoding</strong>: Socrata is quite slow at geocoding. Nicole suspects that
+            this is because all of the geocoding for all of the portals runs on
+            one server. This is something that Socrata could improve, but there’s
+            a lot that cities can already do about this. This issue came up in relation
+            to Oakland’s <a href="https://data.oaklandnet.com/Public-Safety/CrimeWatch-Maps-Past-90-Days/ym6k-rx7a">CrimeWatch maps</a>.
+            The dataset has geospatial coordinates, is quite long, and is updated
+            frequently. Every time it is updated, all of the geocoded coordinates
+            get cleared, and the geocoding restarts, so the geocoding never finishes.
+            Oakland actually has the geospatial data in its database, but through
+            some accident, it wasn’t appearing in the dataset. If we could identify
+            datasets like these, we could fix geocoding problems before people complain about them.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-schema/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
