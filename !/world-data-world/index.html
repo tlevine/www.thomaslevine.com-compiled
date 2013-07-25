@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>World -> Data -> World</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='World -&gt; Data -&gt; World' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/world-data-world/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='World -&gt; Data -&gt; World' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            World -> Data -> World
+          </h1>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>To me, it is common sense that data could be extracted from a pair
+            of pants and that that data could be converted into a slice of apple pie.
+            But for many (most?) people, it is not common sense. I think this is a
+            particularly important concept to convey if we want to teach data literacy
+            (or whatever you want to call it). So now I’ll talk about some ways that
+            I teach this concept.</p>
+            
+            <h2 id="what-is-data">What is data?</h2>
+            <p>People use the word “data” to mean everything, so I never really know
+            what people mean when they’re talking about it. But when I think of
+            “data”, I’m thinking specifically of tables, with variables as columns.
+            Hadley Wickham would call this “<a href="http://vita.had.co.nz/papers/tidy-data.pdf">tidy data</a>”.</p>
+            
+            <p>(A note for non-relational hipsters: This doesn’t have anything to do
+            with database paradigms; non-relational databases store tidy data too.)</p>
+            
+            <h2 id="world---data">World -&gt; Data</h2>
+            <p>We can collect information from the world and convert it into data.
+            This tends to come to people more easily. My main points here are that
+            data is simply a concise representation of ordinary human knowledge
+            and that fancy computers use the same processes that people do.</p>
+            
+            <p>The concept that the world can be converted into data seems to come
+            quite naturally to people when I find a situation where the people are
+            already doing that. People often ask me to teach web scraping, and I
+            generally subvert that request to teach them about how anything can
+            be converted into data. I do that by walking through the architecture
+            of a complex data-driven system and by brainstorming different types
+            of information that can be extracted from a web page.</p>
+            
+            <h3 id="architecture-walkthrough">Architecture walkthrough</h3>
+            <p>People expect me to tell them what Python code to write to pull the
+            numbers out of the web page. If I have time, I get to that, but I
+            start by breaking down the process by which a human would collect the
+            data. If the students don’t have a good example, I use
+            <a href="http://scott.thomaslevine.com">Scott</a>, my wetlands permit application
+            monitoring thing. The resulting diagram looks like this.</p>
+            
+            <p>We walk through it as a human process, and then we start converting
+            it to a computerized process, trying to start with the parts that are
+            harder for people to do and easier for computers do do.</p>
+            
+            <h3 id="brainstorming-information-extraction">Brainstorming information extraction</h3>
+            <p>Eventually, someone asks how to extract information from PDF files, and
+            this is my opportunity to brainstorm different types of information that
+            can be extracted. People often want something that will give them the
+            text of the PDF file formatted in semantically reasonable way. Maybe they
+            just want <a href="http://communityboostr.org/resource/searching-lots-inconveniently-formatted-files-once">search</a></p>
+            
+            <p>But sometimes (normally?) people would be better off with something much
+            simpler. And here is where it becomes helpful to think about converting
+            the PDFs to data. Rather then getting the full text of the PDF, what if
+            we create a few variables to describe the different PDFs? Here are some
+            possibilities.</p>
+            
+            <ul>
+              <li>Number of pages</li>
+              <li>Identity number, zip code, &amp;c.</li>
+              <li>Whether the PDF contains a particular word</li>
+            </ul>
+            
+            <p>The utility of these different possibilties depends on what you’re doing.
+            Read more about that <a href="/!/parsing-pdfs/">here</a>.</p>
+            
+            <p>The point is that we can collect any number of features from PDF files,
+            represent those features as a table, with one row per PDF file and then
+            use ordinary quantitative methods on that table.</p>
+            
+            <h2 id="data---world-csv-soundsystem">Data -&gt; World: CSV Soundsystem</h2>
+            <p>I just talked for way-too-long about how to convert the world into data.
+            Now let’s go in the other direction: How do we convert tidy data tables
+            back into real things?</p>
+            
+            <p>This theme underlies much of <a href="http://csvsoundsystem.com">CSV Soundsystem</a>’s work.
+            Most of us in CSV work in journalism, so it makes sense that we’re always thinking
+            about how to make data into stories that are accessible to ordinary people.</p>
+            
+            <h3 id="music-videos">Music videos</h3>
+            <p>We’re most known for our music videos.</p>
+            
+            <p>A while ago, I made a video about the gifts my true love gave to me
+            on the twelve days of Christmas.</p>
+            
+            <iframe width="560" height="315" src="http://www.youtube.com/embed/rLZDvXPIDa0" frameborder="0" allowfullscreen=""></iframe>
+            
+            <p>Then CSV made a music video about the financial crisis.</p>
+            
+            <p><a href="http://fms.csvsoundsystem.com"><img alt="FMS Symphony" src="fms.png" class="wide" /></a></p>
+            
+            <p>Most recently, I made one about transit ridership in Chicago and New York.</p>
+            
+            <video src="http://tlevine.github.io/multisensory-data-zipfian/transit.webm"></video>
+            
+            <h3 id="data-gastronomification">Data gastronomification</h3>
+            <p>https://github.com/csv/gastronomify
+            http://www.youtube.com/watch?v=3CiDW7NVa8o
+            https://twitter.com/internetrebecca/status/352955293291913217</p>
+            
+            <p>And our tools for making music videos
+            https://github.com/csv/ddr
+            https://github.com/csv/transit-ridership/blob/master/merge.sh</p>
+            
+            <p>And there are related things that I’ve been less involved in,
+            like Twitter bots and haiku-searchers.</p>
+            
+            <p>Do you think I can make a blog post about all of these and count it as one project?
+            The general theme making data real to people through media other than graphs.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/world-data-world/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
