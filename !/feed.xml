@@ -980,6 +980,55 @@ sort by “Created” date, the first one should be the source dataset.&lt;/p&gt
 </content>
   </entry>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-07-14:/!/ridership-rachenitsa/index.html</id>
+    <title type="html">The Ridership Rachenitsa</title>
+    <published>2013-07-14T07:00:00Z</published>
+    <updated>2013-07-14T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/ridership-rachenitsa/index.html"/>
+    <content type="html">&lt;p&gt;This is a music video about the ridership of Chicago buses and New York subways
+for the past few years.&lt;/p&gt;
+
+&lt;video src="/!/ridership-rachenitsa/transit.webm" controls="" width="100%"&gt;&lt;/video&gt;
+
+&lt;h2 id="music"&gt;Music&lt;/h2&gt;
+&lt;p&gt;Each musical beat is a day, as is each vertical line. One musical instrument
+represents the daily ridership of Chicago buses, and the other represens the daily
+ridership of New York subways. (Both are measured at fare collection points.)&lt;/p&gt;
+
+&lt;h2 id="video"&gt;Video&lt;/h2&gt;
+&lt;p&gt;The vertical line on the graph also represents the daily ridership. It is colored
+according to the city whose ridership was proportionately higher for that day.
+The top of the line is the rate for the city with proportionately higher ridership,
+and the bottom of the line is for the one with proportionately lower ridership.&lt;/p&gt;
+
+&lt;p&gt;Daily ridership is also represented by the white/grey ticks at the left and right
+of the video. The brightest tick is for the present day, and the duller ticks are
+for progressively earlier days going back seven days.&lt;/p&gt;
+
+&lt;h2 id="related"&gt;Related&lt;/h2&gt;
+&lt;p&gt;More music&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://csvsoundsystem.com"&gt;CSV Soundsystem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://fms.csvsoundsystem.com"&gt;FMS Symphony&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Why&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://www.livestream.com/knerd/video?clipId=pla_a5d59285-9399-47dc-aaef-2b9a77142d5e"&gt;Music videos in R&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/!/sensory-data-experiences"&gt;Sensory data experiences&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Software&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/csv/transit-ridership"&gt;Source code for the Ridership Rachenitsa&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/csv/ddr"&gt;Data-driven rhythms&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-07-10:/!/r-spells-for-data-wizards/index.html</id>
     <title type="html">R spells for data wizards</title>
     <published>2013-07-10T07:00:00Z</published>
@@ -1660,121 +1709,6 @@ ggplot(socrata) + aes(x = createdAt.dayOfWeek, group = portal, fill = portal) +
 expect those to come out over the next few months. And I could use your help. If you
 use or publish open data, I’d love to talk and see what you would like to know about
 how open data get used; there’s probably a lot we can learn from this dataset.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-07-06:/!/ear-muffs/index.html</id>
-    <title type="html">Earmuffs</title>
-    <published>2013-07-06T07:00:00Z</published>
-    <updated>2013-07-06T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/ear-muffs/index.html"/>
-    <content type="html">&lt;h2 id="previous-ear-muffs"&gt;Previous ear muffs&lt;/h2&gt;
-&lt;p&gt;Ear plugs get annoying, so I got a pair of ear muffs two and a half years ago on
-Christmas. &lt;!-- thread:00000000000116c9 --&gt;
-They’re the &lt;a href="http://www.opticsplanet.com/glock-peltor-hearing-protector-muffs.html"&gt;Glock Peltor Hearing Protector Muffs AP60212&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;They were pretty awesome. They’re much more convenient than ear plugs, they don’t
-dampen quite as much noise as ear plugs, they look slick enough that I didn’t feel
-weird wearing them at parties, they were cheap, and they didn’t use electricity.&lt;/p&gt;
-
-&lt;p&gt;But here are some things I didn’t like. My ears got sweaty and soft, and I wonder
-whether that did something bad to them. They also pressed pretty hard against my
-head. And, most problematically, they broke.&lt;/p&gt;
-
-&lt;h2 id="choosing-another-pair"&gt;Choosing another pair&lt;/h2&gt;
-&lt;p&gt;So now I’m going to get some new ones. I think I looked at some ear muff review
-site when I got them, but I can’t find that site, so I just went to OpticsPlanet,
-the store from which I bought the AP60212.&lt;/p&gt;
-
-&lt;p&gt;I looked at their &lt;a href="http://www.opticsplanet.com/hearing-protection-best-rated.html"&gt;best-rated hearing protection&lt;/a&gt;.
-The most expensive highly rated passive earmuffs are the
-&lt;a href="http://www.opticsplanet.com/pro-ears-ultra-passive-33-shooting-hearing-protection-heads-pe-33-u-b-black.html"&gt;Pro-Ears Ultra Passive 33&lt;/a&gt;.
-Bizarrely, these are more expensive than the
-&lt;a href="https://www.opticsplanet.com/pro-ears-ultra-passive-28-shooting-hearing-protection-heads-pe-28-u-b-black.html"&gt;28 NRR version&lt;/a&gt;.
-Also, this one comes in pink. :)&lt;/p&gt;
-
-&lt;p&gt;They have a plastic band connecting the sides, rather than a steel band like my
-AP60212 had. This makes them more comfortable and less durable, at least according
-to the reviews.&lt;/p&gt;
-
-&lt;p&gt;I decided to get an active hearing protector as well. The following models each
-had at least ten reviews and cost at least $50. I put them here in ascending order
-by price.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href="http://www.opticsplanet.com/howard-leight-impact-sound-management-electronic-hearing-proctection-earmuffs-r01526.html"&gt;Howard Leight Impact Sport Electronic Noise Amplification Earmuffs R-01526&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.opticsplanet.com/peltor-tactical-hearing-protectors.html"&gt;3M Peltor 6S Tactical Hearing Protection Ear Muffs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.opticsplanet.com/browning-midas-electronic-hearing-protector-black-12627.html"&gt;Browning Midas Electronic Hearing Protector - Black 12627&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.opticsplanet.com/pro-ears-predator-plus-shooting-hearing-protection-headsets-p300p-black.html"&gt;Pro-Ears Pro 300 Shooting Hearing Protection Headsets&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.opticsplanet.com/peltor-protac-electronic-headset-collapsable-folding-headband-mt15h7f-sv.html"&gt;Peltor TacticalPro Electronic Hearing Protector - Collapsable Folding Headband MT15H7F-SV&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The first is also noise “amplification”. Maybe I don’t want that.
-Reviews for 2 and 3 suggest that they’re good value. Reviews for the fourth
-suggest that it’s good but overpriced. The reviews for the last one suggest that
-it’s quite good in all possible aspects. And one of these aspects, which the other
-reviews mentioned less, was comfort over an extended period of time.&lt;/p&gt;
-
-&lt;p&gt;Reading these reviews, I get the impression that the fancy active hearing protectors
-detect loud noises and add more noise cancelling when things get particularly loud.
-This is quite nice for things like shooting guns, but I started wondering whether it
-would work for me. Here are the things I want them for&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Ambient noise in offices and whatnot&lt;/li&gt;
-  &lt;li&gt;Train, bus, car, &amp;amp;c. noise&lt;/li&gt;
-  &lt;li&gt;Loud music at parties&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I read somewhere that active noise reduction is best at ambient noise, so the special
-part about the fancy ones might be how they handle sudden noises like gunshots.&lt;/p&gt;
-
-&lt;h2 id="the-ear-muffs-i-chose"&gt;The ear muffs I chose&lt;/h2&gt;
-&lt;p&gt;I ordered (and received) these two pairs of ear muffs.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Passive&lt;/strong&gt;: &lt;a href="http://www.opticsplanet.com/pro-ears-ultra-passive-33-shooting-hearing-protection-heads-pe-33-u-b-black.html"&gt;Pro-Ears Ultra Passive 33&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Active&lt;/strong&gt;: &lt;a href="http://www.opticsplanet.com/peltor-protac-electronic-headset-collapsable-folding-headband-mt15h7f-sv.html"&gt;Peltor TacticalPro Electronic Hearing Protector - Collapsable Folding Headband MT15H7F-SV&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="pro-ears-ultra-passive-33"&gt;Pro-Ears Ultra Passive 33&lt;/h3&gt;
-&lt;p&gt;I’ve only worn the first pair for a couple seconds; I was more interested in trying
-second one because it seemed so fancy. But here are my thoughts on the first pair.
-It’s a bit small for my head, though it’s fine if I rotate it back a bit.
-And I think it’s more comfortable than my pair that broke.&lt;/p&gt;
-
-&lt;h3 id="peltor-tacticalpro"&gt;Peltor TacticalPro&lt;/h3&gt;
-&lt;p&gt;Like the other pair, this one is quite comfortable, and it reduces noise quite a bit.&lt;/p&gt;
-
-&lt;p&gt;And now I know what “active” means.
-It has a microphone outside each earmuff (half of an earmuffs?) and a speaker inside
-each earmuff. When the earmuffs are off, they make thing quiet. When they’re on, the
-speakers play the sounds that the microphones pick up, but at a lower volume. (You can
-set the volume.) This would explain why it was called “amplification” in one of the
-other products’ descriptions.&lt;/p&gt;
-
-&lt;p&gt;These earmuffs also supposedly know not to amplify sudden loud noises like gunshots,
-but I haven’t really noticed.&lt;/p&gt;
-
-&lt;p&gt;The sound amplification might be nice for conversations in parties, loud offices and
-subways, but I’ve mostly been leaving it off.&lt;/p&gt;
-
-&lt;h2 id="thoughts-for-when-i-get-another-pair"&gt;Thoughts for when I get another pair&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Always have something. I got two pairs partly so that I would have one in case I
- lost the other. And passive earmuffs are cheap.&lt;/li&gt;
-  &lt;li&gt;The active thing doesn’t do very much, but the earmuffs with sound amplication
- might tend to be better in other ways. The TacticalPro feels a bit more comfortable
- and sturdy than I remember the Glock Peltor feeling.&lt;/li&gt;
-  &lt;li&gt;I read in the manual for the Peltor TacticalPro that it and some other earmuffs have
- lots of fancy attachments. Notably, one is a system for talking to other people
- wearing earmuffs in loud places. That might be cool.&lt;/li&gt;
-  &lt;li&gt;All these earmuffs press against my glasses. This is slightly painful, it does
- something to my glasses, and it makes the world more loud (because it breaks the
- seal formed by the earmuffs). I want to get glasses that don’t clash with the
- earmuffs.&lt;/li&gt;
-&lt;/ol&gt;
 </content>
   </entry>
 </feed>
