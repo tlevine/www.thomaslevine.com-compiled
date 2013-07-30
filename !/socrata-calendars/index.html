@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Open Calendars</title>
+    <meta content='Open calendars on Socrata suggest an elegant open data strategy.' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Why we should prevent data-siloing at the source' name='twitter:title'>
+    <meta content='Open calendars on Socrata suggest an elegant open data strategy.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/socrata-calendars/figure/meeting-length-2.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-calendars/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='Open calendars on Socrata suggest an elegant open data strategy.' property='og:description'>
+    <meta content='Open Calendars' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Open Calendars
+          </h1>
+          <div class='date'>
+            July 29, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>My new favorite Socrata visualization is the calendar.</p>
+            
+            <h2 id="socrata-visualization-types">Socrata visualization types</h2>
+            <p>Socrata is more than a place to dump raw tables, or at least
+            it tries to be; you can make various charts and maps, and you
+            can serve non-tabular information to some degree.</p>
+            
+            <p>There are many ways that a particular dataset could be visualized.
+            Socrata has 20 ways. Here they are.</p>
+            
+            <p><img src="figure/display-types.png" alt="plot of chunk display-types" class="wide" /></p>
+            
+            <p>There are a lot of Socrata <a href="/!/socrata-genealogies#term-view">views</a> that don’t
+            have display types listed. I don’t know what’s up with that.</p>
+            
+            <p>Anyway, I looked through the different visualization types and became quite interested
+            in calendars.</p>
+            
+            <h2 id="people-actually-use-calendars">People actually use calendars</h2>
+            <p>The calendar is
+            <a href="https://data.oregon.gov/dataset/Public-Meetings-3-Month-View-/4775-yg3b?">what it sounds like</a>.
+            Some of them are reasonably popular.</p>
+            
+            <p><img src="figure/calendar-use.png" alt="plot of chunk calendar-use" class="wide" /></p>
+            
+            <p>Let’s look at some specific calendars.</p>
+            
+            <pre><code>calendar.use &lt;- subset(socrata, displayType == "calendar")[c("portal", "id", "viewCount")]&#x000A;calendar.use[order(calendar.use$viewCount, decreasing = T), ][1:5, c("portal", "id", "viewCount")]&#x000A;##                    portal        id viewCount&#x000A;## 32659         data.mo.gov mahp-izvx    121455&#x000A;## 43101 data.kingcounty.gov p98f-kyer     11164&#x000A;## 49823     data.oregon.gov 4wcf-m6kg     11080&#x000A;## 49741     data.oregon.gov imfn-d2p5     10559&#x000A;## 52858     data.oregon.gov pw6y-72a2      6167&#x000A;</code></pre>
+            
+            <p>The most-viewed is Missouri’s <a href="https://data.mo.gov/Government-Administration/Open-Meetings-Calendar/mahp-izvx?">open meetings calendar</a>.
+            They also have a different view of the calendar <a href="http://www.mo.gov/meetings/">outside the portal</a>,
+            with an RSS feed from the Socrata portal. But I don’t know how the calendar on Socrata got so many views.</p>
+            
+            <p>It looks like some other portals are using calendars a lot too,
+            but usually with several separate calendars instead of one huge one.</p>
+            
+            <p><img src="figure/calendar-use-3.png" alt="plot of chunk calendar-use-3" class="wide" /></p>
+            
+            <h2 id="the-cool-thing-about-socrata-calendars">The cool thing about Socrata calendars</h2>
+            <p>The cool thing about Socrata calendars is that you can download them
+            as a spreadsheet.</p>
+            
+            <p>There are lots of different calendar programs. Most of them are way
+            better for calendaring than Socrata. They also typically have import
+            and export tools for transferring your calendar between different
+            calendar tools.</p>
+            
+            <p>But as far as I can tell, none of the main calendar programs lets
+            you export to a format that isn’t special to. As far as I can tell,
+            Outlook, iCal and Google Calendar can import and export iCal files (<code>.ics</code>).
+            This lets you move your data among calendar programs, but it’s
+            harder to connect them to non-calendar datasets.</p>
+            
+            <!--
+            http://www.zimbra.com/desktop/help/en_US/Calendar/Exporting_your_iCal_calendar.htm
+            http://office.microsoft.com/en-us/outlook-help/transfer-calendars-between-outlook-and-google-calendar-HA010167495.aspx
+            -->
+            
+            <h3 id="the-calendar-is-just-one-possible-visualization-of-the-same-data">The calendar is just one possible visualization of the same data</h3>
+            <p>Because calendar data is data just like any other data, you can visualize
+            it in any number of ways. For a very rough example, we search Socrata for
+            Oregon’s calendars,</p>
+            
+            <pre><code>oregon.calendars &lt;- subset(socrata, portal == "data.oregon.gov" &amp; displayType == "calendar")&#x000A;</code></pre>
+            
+            <p>we find out what datasets they visualize,</p>
+            
+            <p><img src="figure/search-2.png" alt="plot of chunk search-2" class="wide" /></p>
+            
+            <p>we look up one of the tables,</p>
+            
+            <pre><code>table.429573 &lt;- subset(socrata, tableId == 429573)[c("id", "name", "displayType")]&#x000A;</code></pre>
+            
+            <p>and we find the associated views.</p>
+            
+            <ul>
+              <li><a href="https://data.oregon.gov/-/-/b574-ggwh">Domoic acid results calendar</a></li>
+              <li><a href="https://data.oregon.gov/-/-/3eya-wjrj">Domoic acid results list</a></li>
+              <li><a href="https://data.oregon.gov/-/-/225z-wxd7">Domoic acid sample map</a></li>
+              <li><a href="https://data.oregon.gov/-/-/mjdt-ztkh">Domoic acid sample chart</a></li>
+            </ul>
+            
+            <p>Here we have an example of how the calendar is just one of many possible
+            visualizations of the same dataset.</p>
+            
+            <h2 id="analysis-of-a-socrata-calendar">Analysis of a Socrata calendar</h2>
+            <p>Socrata’s representation of a calendar as a table with easy importing and
+            exporting is really cool. But Socrata’s data analysis tools are leave much
+            to be desired. So I downloaded the calendars and played with them in R.</p>
+            
+            <h3 id="combining-calendars">Combining calendars</h3>
+            <p>I downloaded Oregon’s and Missouri’s public meetings calendars and combined
+            them into one R data frame. Now I can have fun.</p>
+            
+            <h3 id="who-has-more-meetings">Who has more meetings?</h3>
+            <p>Oregon has 3436 meetings.
+            Oregon even has one meeting in Washington!</p>
+            
+            <p><img src="figure/more-meetings.png" alt="plot of chunk more-meetings" class="wide" /></p>
+            
+            <h3 id="day-of-week">Day of week</h3>
+            <p>Meetings are usually in the middle of the week.</p>
+            
+            <p><img src="figure/day-of-week.png" alt="plot of chunk day-of-week" class="wide" /></p>
+            
+            <p>More precisely, most meetings start in the middle of the week, and
+            you’ll see later that most meetings last less than a day.</p>
+            
+            <h3 id="date-cleaning">Date cleaning</h3>
+            <p>Let’s clean up the dates so we can look at when meetings happen and how long they are.</p>
+            
+            <p>A bunch of the meetings have end times before their start times. Also, about a third of
+            the meetings don’t have end times, but I’m not going to worry about that for now.</p>
+            
+            <p><img src="figure/meeting-length-1.png" alt="" class="wide" /></p>
+            
+            <p>We could take a look at them like so.</p>
+            
+            <pre><code>subset(public.meetings, Duration &lt; 0)&#x000A;</code></pre>
+            
+            <p>But rather than figuring out what’s wrong, let’s live life on the edge and just ignore them.</p>
+            
+            <p><img src="figure/meeting-length-2.png" alt="" class="wide" /></p>
+            
+            <p>A meeting has already been planned for 2020!</p>
+            
+            <pre><code>subset(public.meetings, Start &gt; as.POSIXlt(as.Date("2015-01-01")))&#x000A;</code></pre>
+            
+            <p>It’s for the Health Care Acquired Infections Advisory Committee, in the
+            Portland State Office Building room 1D on April 11, 2020 at 1 pm.
+            (I think that’s an accident.)</p>
+            
+            <h3 id="meeting-durations">Meeting durations</h3>
+            <p>Some of these meetings are pretty long. The three longest are each a month long.</p>
+            
+            <pre><code>subset(public.meetings, Duration &gt; 400)[c("Group", "Meeting", "Start", "End")]&#x000A;</code></pre>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Group</th>
+                  <th>Start</th>
+                  <th>End</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Health Authority, Oregon</td>
+                  <td>2013-02-04 13:00</td>
+                  <td>2013-03-04 13:00</td>
+                </tr>
+                <tr>
+                  <td>Health Authority, Oregon</td>
+                  <td>2013-04-30 00:00</td>
+                  <td>2013-05-31 00:00</td>
+                </tr>
+                <tr>
+                  <td>Housing/Community Services Department</td>
+                  <td>2012-04-04 08:00</td>
+                  <td>2012-05-04 17:00</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>Those three longest meetings got me thinking:
+            Maybe there are clusters of durations. Like maybe they’re either an hour or two,
+            a day, a week or a month. I didn’t look very hard, but seven clusters seems okay.</p>
+            
+            <pre><code>public.meetings.clean &lt;- subset(public.meetings, !is.na(Duration) &amp; Duration &gt; 0)&#x000A;clusterings &lt;- list()&#x000A;for (n in 1:10) {&#x000A;  clustering &lt;- kmeans(log10(public.meetings.clean$Duration), n)&#x000A;  clusterings[[n]] &lt;- clustering&#x000A;  public.meetings.clean[paste0("cluster", n)] &lt;- factor(clustering$cluster)&#x000A;}&#x000A;&#x000A;ggplot(public.meetings.clean) + aes(color = cluster7, x = 1, y = Duration) + &#x000A;  geom_jitter(alpha = 0.2) + scale_y_log10("Duration (hours)", breaks = 10^(0:3)) + &#x000A;  scale_x_continuous("", breaks = c()) + scale_color_discrete("Cluster") + &#x000A;  labs(title = "Clusters of public meeting durations")&#x000A;</code></pre>
+            
+            <p><img src="figure/clusters.png" alt="plot of chunk clusters" class="wide" /></p>
+            
+            <p>So the meeting durations seem clustered around these durations.
+            (The paranthetical durations are the mean durations for the corresponding clusters.)
+            <!-- sort(10^clusterings[[7]]$centers) --></p>
+            
+            <ol>
+              <li>An hour (1.03 hours)</li>
+              <li>Half a workday (2.41 hours)</li>
+              <li>A workday (5.89 hours)</li>
+              <li>Two workdays (32.44 hours)</li>
+              <li>A work week (119.92 hours)</li>
+              <li>Two weeks (322.59 hours)</li>
+              <li>A month (714.32 hours)</li>
+            </ol>
+            
+            <h2 id="thoughts">Thoughts</h2>
+            <p>My aimless exploration of Oregon’s and Missouri’s public meetings isn’t
+            outrageously interesting, but it demonstrates what is possible when a
+            calendar’s data is fundamentally open. Along these lines, I have two thoughts.</p>
+            
+            <ol>
+              <li>Prevent data from becoming closed by opening them at their sources.</li>
+              <li>Anything could be data, and data could be anything.</li>
+            </ol>
+            
+            <h3 id="opening-data-at-their-sources">Opening data at their sources</h3>
+            <p>Typical calendar software can import and export only from other calendar
+            software. I wouldn’t say that Socrata’s calendar visualization is anywhere
+            near calendar software, we can see it as an attempt at creating calendar
+            software whose data are fundamentally open.</p>
+            
+            <p>Take a look at the World Bank Open Finances
+            <a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar/g4sx-dwxc">open data events calendar</a>,
+            which is populated by this
+            <a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar-Entry-Form/qdbh-rfd3?">form</a>
+            that populates an.
+            Any data that is sent into the calendar immediately made available
+            to the public in various formats that can be used a wide variety of programs.</p>
+            
+            <p>There’s lots of siloed data in government, and we need better software and
+            methods for opening that up. But let’s also make tools that prevent data from
+            becoming siloed in the first place. Imagine if Outlook, Google Calendar,
+            or whatever calendar software you use had a CSV export option.</p>
+            
+            <h3 id="anything-could-be-data-and-data-could-be-anything">Anything could be data, and data could be anything</h3>
+            <p>For someone like me, it’s not a big deal if standard calendar software
+            does not allow CSV export; I could easily have done the same analysis I did
+            above from iCal files, though it would have taken a bit longer. My larger
+            concern is that people don’t think of calendars and other “apps” as data.</p>
+            
+            <p>To me, anything could be turned into data, and data could be turned into
+            anything. For example, treasury cash flows that start
+            out as <a href="https://www.fms.treas.gov/dts">nonstandard text files</a> can be
+            turned into <a href="http://treasury.io">tabular data</a> and then
+            <a href="http://fms.csvsoundsystem.com">music</a>.
+            Turns of a turnstile can recorded, stored in a
+            <a href="http://www.mta.info/developers/turnstile.html">really strange format</a>,
+            <a href="https://github.com/ajschumacher/datathon">parsed into a nicer format</a>
+            and turned into <a href="/!/ridership-rachenitsa">music</a>.
+            And we could collect some information about a bunch of parking lots,
+            put it in a <a href="https://data.sfgov.org/Transportation/Off-Street-parking-lots-and-parking-garages/uupn-yfaw?">data table</a>
+            and turn that into <a href="https://twitter.com/internetrebecca/status/352955293291913217">cookies</a>.</p>
+            
+            <p>Much of our statistical
+            knowledge is based around a concept of a table, with columns as
+            variables (like “eye color”) and rows as observations. (So each row might
+            be a different person.) This tabular representation is what
+            I think of as “data”.</p>
+            
+            <p>If we can represent the world as data, we can apply many quantitative
+            analytical methods to the data. First, we can convert data into other
+            data by combining datasets, building models, &amp;c. And then we can convert
+            data back into real-world representations, like charts, apps, music and food.</p>
+            
+            <p>But a lot of people don’t realize this. I see this concept is a major part of
+            what I’ll call “data literacy”. I propose that a lack of understanding of this
+            concept contributes to the siloing of data and that teaching this concept is
+            an important part of the advance of open data.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-calendars/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
