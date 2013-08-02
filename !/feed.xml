@@ -2,13 +2,393 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-07-29T07:00:00Z</updated>
+  <updated>2013-08-02T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-02:/!/r-curses-for-data-witches/index.html</id>
+    <title type="html">R graphics tricks that you probably shouldn't use</title>
+    <published>2013-08-02T07:00:00Z</published>
+    <updated>2013-08-02T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/r-curses-for-data-witches/index.html"/>
+    <content type="html">&lt;style&gt;pre { font-size: 0.8em; }&lt;/style&gt;
+
+&lt;p&gt;I’ve spent/wasted years of my life trying to make nice plots with
+base R graphics, so I’ve learned a bunch of base R graphics tricks.
+One annoying part of base R graphics is that the defaults look ugly,
+so I’m going to show you how to make some bar plots, strip charts,
+and line plots that don’t look so ugly.&lt;/p&gt;
+
+&lt;p&gt;You might pick up some useful tricks from this post, but I really
+hope that the insanity of it encourages you to use ggplot instead.&lt;/p&gt;
+
+&lt;h2 id="data"&gt;Data&lt;/h2&gt;
+&lt;p&gt;I’m going to use data came from an earlier version of
+&lt;a href="http://peregrinossantiago.es/eng/pilgrims-office/statistics/"&gt;this website&lt;/a&gt;.
+They’re “statistics about pilgrims who have arrived in Santiago”.
+The observations are monthly, but I’m missing the Novembers and Decembers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pilgrams &amp;lt;- sqldf("select * from pilgram", dbname = "pilgrams-db.sqlite")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I’m also going to use data from a
+&lt;a href="https://data.somervillema.gov/dataset/Results-of-2011-Wellbeing-Study/pjhx-dusc"&gt;wellbeing study&lt;/a&gt;
+about Somerville, Massachusetts. There are a lot of missing values in this dataset, and I’m only
+trying to show you how to make plots, so I’m just going to remove the missing values.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wellbeing &amp;lt;- na.omit(read.csv("http://data.somervillema.gov/api/views/pjhx-dusc/rows.csv?accessType=DOWNLOAD"))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="bar-plots"&gt;Bar plots&lt;/h2&gt;
+&lt;p&gt;Maybe we want count the marital statuses of Somerville residents.
+This won’t work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(wellbeing$X24..What.is.your.marital.status.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead, you need to give barplot a vector of heights. We can make one with &lt;code&gt;table&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-1.png" alt="plot of chunk barplot-1" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I can’t read the bar labels, so let’s make the bars horizontal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-2.png" alt="plot of chunk barplot-2" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Oops. Now the labels are rotated the wrong way. The &lt;code&gt;las&lt;/code&gt; parameter to &lt;code&gt;par&lt;/code&gt; handles that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE, las = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-3.png" alt="plot of chunk barplot-3" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And let’s adjust the margin and bar labels so the text doesn’t fall off.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;levels(wellbeing$X24..What.is.your.marital.status.)[3] &amp;lt;- "Living with a partner\nbut not married"
+par(mar = c(5, 12, 4, 2))
+barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE, las = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-4.png" alt="plot of chunk barplot-4" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also want to sort the bars so they’re easier to read.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE), horiz = TRUE, las = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-5.png" alt="plot of chunk barplot-5" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The black border around the bars is noisy; let’s remove it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(
+  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
+  horiz = TRUE, las = 1, border = NA)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-6.png" alt="plot of chunk barplot-6" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the colors don’t match. We could just make the bars black,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(
+  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
+  horiz = TRUE, las = 1, border = NA, col = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-7.png" alt="plot of chunk barplot-7" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;but that’s a bit harsh. Instead, let’s make everything grey.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(
+  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
+  horiz = TRUE, las = 1, border = NA,
+  col = "#666666", fg = "#333333", col.axis = "#333333")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-8.png" alt="plot of chunk barplot-8" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And add a title, of course&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(
+  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
+  horiz = TRUE, las = 1, border = NA, col = "#666666", fg = "#333333", col.axis = "#333333", 
+  xlab = "Number of residents", main = "Marital statuses of Somerville residents")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/barplot-9.png" alt="plot of chunk barplot-9" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Summing that up, this is approximately what I think the default barplot function should be.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tom.barplot &amp;lt;- function(height, col = 'grey', border = NA, ...) {
+  barplot(
+    sort(table(height)), col = col, border = border,
+    col = '#666666', fg = '#333333', col.axis = '#333333',
+    ...
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="strip-charts"&gt;Strip charts&lt;/h2&gt;
+&lt;p&gt;Here is a strip chart about how people in Somerville are feeling, on a range of 1 to 10.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "jitter")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-1.png" alt="plot of chunk stripchart-1" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The observations are randomly jittered above, but we can also stack the observations.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "stack")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-2.png" alt="plot of chunk stripchart-2" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s change the scale to emphasize its limits.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "stack", xlim = c(1, 10))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-3.png" alt="plot of chunk stripchart-3" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The white boxes with borders are noisy; let’s change them to filled boxes.
+The default point type (&lt;code&gt;pch = 1&lt;/code&gt;) doesn’t support a fill color (&lt;code&gt;bg&lt;/code&gt;),
+so we have to switch to a different point type;
+here are the different point types, from &lt;code&gt;example(points)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-pch.png" alt="pchShow" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s use &lt;code&gt;pch = 22&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(
+  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
+  method = "stack", xlim = c(1, 10), col = NA, pch = 22, bg = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-4.png" alt="plot of chunk stripchart-4" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s just a bar plot. Let’s switch back to jittering and make the
+points translucent.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(
+  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
+  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-5.png" alt="plot of chunk stripchart-5" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s make a nicer axis.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(
+  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
+  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, 
+  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
+  main = "How happy Somerville residents feel")
+axis(1, at = 1:10)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-6.png" alt="plot of chunk stripchart-6" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And let’s not waste half of the canvas.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stripchart(
+  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
+  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, 
+  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
+  main = "How happy Somerville residents feel", jitter = 0.5, ylim = c(0, 2))
+axis(1, at = 1:10)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stripchart-7.png" alt="plot of chunk stripchart-7" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h2 id="stacked-bar-plots"&gt;Stacked bar plots&lt;/h2&gt;
+&lt;p&gt;Now we could also color the points by a different color depending on the
+gender.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;barplot(
+  table(
+    wellbeing$X15..Gender..1..female..2..male.,
+    wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..),
+  border = NA, col = c("#333333", "#999999"), 
+  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
+  main = "How happy Somerville residents feel, by gender")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stacked-barplot-1.png" alt="plot of chunk stacked-barplot-1" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We make the legend in a separate command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wellbeing$X15..Gender..1..female..2..male. &amp;lt;- factor(wellbeing$X15..Gender..1..female..2..male., levels = 1:2)
+levels(wellbeing$X15..Gender..1..female..2..male.) &amp;lt;- c("Female", "Male")
+col &amp;lt;- c("#333333", "#999999")
+barplot(
+  table(wellbeing$X15..Gender..1..female..2..male.,
+    wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..),
+  border = NA, col = col, xlab = "How happy do you feel right now, on a scale of 1 to 10?", 
+  ylab = "Number of residents", main = "How happy Somerville residents feel, by gender")
+legend("topleft", legend = levels(wellbeing$X15..Gender..1..female..2..male.), col = NA, pch = 22, pt.bg = col)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/stacked-barplot-2.png" alt="plot of chunk stacked-barplot-2" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h2 id="par"&gt;par&lt;/h2&gt;
+&lt;p&gt;All of these &lt;code&gt;col&lt;/code&gt;, &lt;code&gt;pch&lt;/code&gt;, &lt;code&gt;bg&lt;/code&gt;, &lt;code&gt;fg&lt;/code&gt;, &lt;code&gt;border&lt;/code&gt;, &amp;amp;c. commands are graphical
+parameters passed to &lt;code&gt;par&lt;/code&gt;. You can set their global defaults with &lt;code&gt;par&lt;/code&gt;,
+but they won’t necessarily apply to the same scope as when you pass them
+within a function. For example, &lt;code&gt;bg&lt;/code&gt; applies to the outer canvas’s background.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;par(bg = "yellow")
+plot(Total ~ id, data = pilgrams, type = "l")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/par-1.png" alt="plot of chunk par-1" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;You might use this to set fonts across all of your plots.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;par(family = "serif", font = 3, font.lab = 3, font.main = 2, font.sub = 3)
+plot(Total ~ id, data = pilgrams, type = "l", main = "Pilgrams")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/par-2.png" alt="plot of chunk par-2" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I tend to find the global namespace unpleasant, so I like to wrap that
+in a function that closes the device afterwards, with &lt;code&gt;dev.off&lt;/code&gt;.
+(The settings only apply to the current device.)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;plot.something &amp;lt;- function(a, b, c, e, f) {
+  par(family = 'serif', font = 3, font.lab = 3, font.main = 2, font.sub = 3)
+  plot(a ~ b, col = c)
+  lines(d, e)
+  # ...
+  dev.off()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;mfrow&lt;/code&gt; and &lt;code&gt;mfcol&lt;/code&gt; allow you to make multiple plots in one device&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;par(mfrow = c(2, 2))
+plot(lm(Men ~ Women, data = pilgrams), mfrow = c(2, 2))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/par-3.png" alt="plot of chunk par-3" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bty&lt;/code&gt; lets you change the outer border of the plot.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;plot(Total ~ id, data = pilgrams, type = "l", bty = "l")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/par-4.png" alt="plot of chunk par-4" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Its options are quite hilarious; here is its entry in &lt;code&gt;?par&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;‘bty’ A character string which determined the type of ‘box’ which
+     is drawn about plots.  If ‘bty’ is one of ‘"o"’ (the
+     default), ‘"l"’, ‘"7"’, ‘"c"’, ‘"u"’, or ‘"]"’ the resulting
+     box resembles the corresponding upper case letter.  A value
+     of ‘"n"’ suppresses the box.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most plotting commands call &lt;code&gt;plot.new&lt;/code&gt;, which clears the plot by
+default. Setting &lt;code&gt;new&lt;/code&gt; to &lt;code&gt;TRUE&lt;/code&gt; makes it not clear the plot, which
+can help you build up more complicated plots.&lt;/p&gt;
+
+&lt;h2 id="line-plots"&gt;Line plots&lt;/h2&gt;
+&lt;p&gt;Displaying multiple sets of lines and points on a graph gets more messy.
+For example, let’s say we want to make two lines to represent pilgram
+counts. One is for people on horseback, and the other is for people on
+foot. I like to start with an empty plot of the full range so we don’t
+cut anything off. Let’s also put the labels and remove the axes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;plot.pilgram.base &amp;lt;- function() {
+  plot(0, 0,
+    xlim = range(pilgrams$id),
+    ylim = c(0, max(c(pilgrams$Foot, pilgrams$Bicicle))),
+    xlab = "Month", ylab = "Number of pilgrams",
+    main = "Pilgrams by month and transportation medium", 
+    axes = FALSE, type = "n")
+}
+plot.pilgram.base()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/complicated-1.png" alt="plot of chunk complicated-1" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The key there is &lt;code&gt;type = 'n'&lt;/code&gt;, which makes no data be plotted.
+Now we can add the lines one at a time.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;plot.pilgram.lines &amp;lt;- function() {
+  lines(Foot ~ id, data = pilgrams, lty = 1)
+  lines(Bicicle ~ id, data = pilgrams, lty = 2)
+  legend("topleft", c("Foot", "Bicycle"), title = "Transportation media", lty = 1:2)
+}
+plot.pilgram.base()
+plot.pilgram.lines()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/complicated-2.png" alt="plot of chunk complicated-2" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I removed the axes because the default axes are usually quite
+ugly. Now let’s add prettier axes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;plot.pilgram.axes &amp;lt;- function() {
+  axis(1, at = seq(1, 80, 10), labels = paste("January", unique(pilgrams$year)))
+  par(las = 1)
+  axis(2, at = seq(0, 60000, 10000), labels = c(0, paste0(1:6, "0,000")))
+}
+plot.pilgram.base()
+plot.pilgram.lines()
+plot.pilgram.axes()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/complicated-3.png" alt="plot of chunk complicated-3" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The tick marks go at &lt;code&gt;at&lt;/code&gt;, and they are labeled with &lt;code&gt;labels&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id="use-ggplot"&gt;Use ggplot&lt;/h2&gt;
+&lt;p&gt;I just showed you some simple bar plots, strip chart and
+line plots in base R graphics. Each one only took a few lines,
+but they were sort of complicated. Moreover, each plot type
+took slightly different inputs, so I needed to transform the
+data a bit differently for each one and to send different
+parameters for each one. This is what makes base R graphics.&lt;/p&gt;
+
+&lt;p&gt;ggplot, on the other hand, has a much more reasonable and standardized
+plot-configuration interface (through the grammar of graphics). The
+equivalent ggplot commands for all of these plots would have been about
+as complicated but much more predictable and consistent across plot types.&lt;/p&gt;
+
+&lt;p&gt;I still use base R graphics for &lt;a href="/music"&gt;music videos&lt;/a&gt;, but
+I try to use ggplot for everything else.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-07-31:/!/fms-symphony/index.html</id>
+    <title type="html">FMS Symphony</title>
+    <published>2013-07-31T07:00:00Z</published>
+    <updated>2013-07-31T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/fms-symphony/index.html"/>
+    <content type="html">&lt;p&gt;My band &lt;a href="http://csvsoundsystem.com"&gt;CSV Soundsystem&lt;/a&gt; made a music video
+about the financial crisis.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://fms.csvsoundsystem.com"&gt;&lt;img src="/!/fms-symphony/fms-symphony.png" alt="FMS Symphony" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Read more here.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://harmony-institute.org/therippleeffect/2013/02/13/hi-data-analysts-make-music-at-bicoastal-datafest/"&gt;Harmony Institute&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://sunlightfoundation.com/blog/2013/02/04/datafest-amazing-things-can-happen-in-a-very-short-time/"&gt;Sunlight Foundation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.kuechenstud.io/datenschau/podcast/ds008/"&gt;Küchenstud.io&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.dnainfo.com/new-york/20130429/greenpoint/data-driven-band-csv-soundsystem-makes-music-from-spreadsheets"&gt;DNAinfo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.stanforddaily.com/2013/02/03/stanford-and-columbia-host-bicoastal-datafest/"&gt;The Stanford Daily&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-07-29:/!/socrata-calendars/index.html</id>
     <title type="html">Open Calendars</title>
@@ -1259,257 +1639,6 @@ sort by “Created” date, the first one should be the source dataset.&lt;/p&gt
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-07-14:/!/ridership-rachenitsa/index.html</id>
-    <title type="html">The Ridership Rachenitsa</title>
-    <published>2013-07-14T07:00:00Z</published>
-    <updated>2013-07-14T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/ridership-rachenitsa/index.html"/>
-    <content type="html">&lt;p&gt;This is a music video about the ridership of Chicago buses and New York subways
-for the past few years.&lt;/p&gt;
-
-&lt;video src="/!/ridership-rachenitsa/transit.webm" controls="" width="100%"&gt;&lt;/video&gt;
-
-&lt;h2 id="music"&gt;Music&lt;/h2&gt;
-&lt;p&gt;Each musical beat is a day, as is each vertical line. One musical instrument
-represents the daily ridership of Chicago buses, and the other represens the daily
-ridership of New York subways. (Both are measured at fare collection points.)&lt;/p&gt;
-
-&lt;h2 id="video"&gt;Video&lt;/h2&gt;
-&lt;p&gt;The vertical line on the graph also represents the daily ridership. It is colored
-according to the city whose ridership was proportionately higher for that day.
-The top of the line is the rate for the city with proportionately higher ridership,
-and the bottom of the line is for the one with proportionately lower ridership.&lt;/p&gt;
-
-&lt;p&gt;Daily ridership is also represented by the white/grey ticks at the left and right
-of the video. The brightest tick is for the present day, and the duller ticks are
-for progressively earlier days going back seven days.&lt;/p&gt;
-
-&lt;h2 id="related"&gt;Related&lt;/h2&gt;
-&lt;p&gt;More music&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://csvsoundsystem.com"&gt;CSV Soundsystem&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://fms.csvsoundsystem.com"&gt;FMS Symphony&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Why&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://www.livestream.com/knerd/video?clipId=pla_a5d59285-9399-47dc-aaef-2b9a77142d5e"&gt;Music videos in R&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="/!/sensory-data-experiences"&gt;Sensory data experiences&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Software&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://github.com/csv/transit-ridership"&gt;Source code for the Ridership Rachenitsa&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/csv/ddr"&gt;Data-driven rhythms&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-07-10:/!/r-spells-for-data-wizards/index.html</id>
-    <title type="html">R spells for data wizards</title>
-    <published>2013-07-10T07:00:00Z</published>
-    <updated>2013-07-10T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/r-spells-for-data-wizards/index.html"/>
-    <content type="html">&lt;p&gt;I’ve never come up with a good way for learning/teaching the cool parts of R.
-I feel like that’s sort of how R is; there’s an awesome way to do everything,
-but it’s all very specific and kind of hacky.&lt;/p&gt;
-
-&lt;p&gt;I thought of some magic incantations that you might not find in
-introductory R books/documentation/classes and wrote about them below.&lt;/p&gt;
-
-&lt;h2 id="csv"&gt;CSV&lt;/h2&gt;
-&lt;p&gt;When loading a CSV, don’t convert strings to factors.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;read.csv('csvsoundsystem.com/soundsystem.csv', stringsAsFactors = F)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When writing a CSV, don’t add the rownames.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;write.csv(iris, file = 'iris.csv', row.names = F)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="indexing"&gt;Indexing&lt;/h2&gt;
-&lt;p&gt;It’s easy to miss a level of indexing, especially with lists.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;str(list(a = 3)[1][[1]])
-# num 3
-
-str(list(a = 3)[1])
-# List of 1
-# $ a: num 3
-
-str(list(a = 3))
-# List of 1
-# $ a: num 3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can use character vectors indices.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;row.names(HairEyeColor)
-# [1] "Black" "Brown" "Red"   "Blond"
-
-row.names(HairEyeColor) &amp;lt;- c('Pink', 'Blue', 'Green', 'Clear')
-HairEyeColor['Pink',,]
-#        Sex
-# Eye     Male Female
-#   Brown   32     36
-#   Blue    11      9
-#   Hazel   10      5
-#   Green    3      2
-
-HairEyeColor[,,'Male']
-#        Eye
-# Hair    Brown Blue Hazel Green
-#   Pink     32   11    10     3
-#   Blue     53   50    25    15
-#   Green    10   10     7     7
-#   Clear     3   30     5     8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="factors"&gt;Factors&lt;/h2&gt;
-&lt;p&gt;Factor levels are sorted alphabetically by default&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;levels(factor(10:1))
-# [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you want to change that, just create a new factor,
-specifying the level order manually.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;factor(parking$GarOrLot, levels = c('G', 'L'))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And you rename a level or levels like so.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;levels(OrchardSprays&amp;lt;reatment)[3:5] &amp;lt;- c('X', 'Y', 'Z')
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="concatenating-text"&gt;Concatenating text&lt;/h2&gt;
-&lt;p&gt;This is how you concatenate text.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;paste('abc', 'def', sep = '')
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In JavaScript, this would be &lt;code&gt;'abc' + 'def'&lt;/code&gt;. Sort of.
-R’s &lt;code&gt;paste&lt;/code&gt; is more powerful because supports vectors!
-If you pass it vectors, &lt;code&gt;paste&lt;/code&gt; will ordinarily concatenate corresponding elements
-across vector.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;paste(c('a','b','c'), 1:3)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you want to concatenate the elements within a vector,
-use &lt;code&gt;collapse&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;paste(c('Pack', 'my', 'box', 'with', 'five', 'dozen', 'liquor', 'jugs.'), collapse = ' ')
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In case that isn’t clear, it would look like this in JavaScript:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;['Pack', 'my', 'box', 'with', 'five', 'dozen', 'liquor', 'jugs.'].join(' ')
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="plotting"&gt;Plotting&lt;/h2&gt;
-&lt;p&gt;Show all factor levels in a ggplot.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ggplot(iris[1:50,]) + aes(x = Species, y = Sepal.Length) +
-  scale_x_discrete('Species', drop = F) + geom_jitter()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Also, in general, &lt;strong&gt;use ggplot&lt;/strong&gt;. Base R graphics are
-&lt;a href="http://www.livestream.com/knerd/video?clipId=pla_a5d59285-9399-47dc-aaef-2b9a77142d5e"&gt;more work than they’re worth&lt;/a&gt;,
-except maybe if you’re
-&lt;a href="http://www.youtube.com/watch?v=rLZDvXPIDa0"&gt;making&lt;/a&gt;
-&lt;a href="http://fms.csvsoundsystem.com"&gt;music&lt;/a&gt;
-&lt;a href="http://www.youtube.com/watch?v=tcnoBL0tvpc"&gt;videos&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;That said, if you do use base R graphics, try using &lt;code&gt;locator&lt;/code&gt;
-when you’re perfecting the layout of base R graphics.&lt;/p&gt;
-
-&lt;h2 id="maintenance"&gt;Maintenance&lt;/h2&gt;
-&lt;p&gt;Update your packages.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;update.packages()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="rprofile"&gt;.Rprofile&lt;/h2&gt;
-&lt;p&gt;Set your preferred mirror&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;r &amp;lt;- getOption("repos")
-r["CRAN"] &amp;lt;- "http://cran.mirrors.hoobly.com"
-options(repos = r)
-rm(r)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Remove the carrots from the beginnings of the lines so that you can run code
-that you’ve copied from the shell.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;options(prompt="  ")
-options(continue="+ ") 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Make the screen wide&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;options(width=160)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Save your command history and output&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Sys.setenv(R_HISTSIZE='100000')
-sink(file = paste('~/.history/r-log-', strftime(Sys.time(), '%F %H:%M:%OS9'), '-', sep = ''), split=T)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="higher-order-functions"&gt;Higher-order functions&lt;/h2&gt;
-&lt;p&gt;R’s “apply” functions would be called “maps” in other languages.
-If you’re applying along a list or vector, &lt;code&gt;lapply&lt;/code&gt; or &lt;code&gt;sapply&lt;/code&gt;, respectively, are convenient.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;apply&lt;/code&gt; maps along any dimension of an array; you specify the dimension as an argument.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;mapply&lt;/code&gt; maps along a matrix, passing multiple arguments to the function&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;rollapply&lt;/code&gt; is really cool. It applies a function with a rolling window.
-For example, here’s a rolling z-score that &lt;a href="http://brianabelson.com"&gt;Brian&lt;/a&gt; wrote.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;library(zoo)
-
-roll_z &amp;lt;- function(x){
-    scores &amp;lt;- z(x)
-    scores[length(x)]
-}
-
-z_change &amp;lt;- rollapply(rnorm(1000), 40, roll_z)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="other-stuff"&gt;Other stuff&lt;/h2&gt;
-&lt;p&gt;Use ProjectTemplate.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;library(ProjectTemplate)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Use &lt;code&gt;str&lt;/code&gt; to find out something’s type.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;str(ChickWeight)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;sqldf&lt;/code&gt; works both on R data.frames and on other databases&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sqldf('SELECT foo FROM bar') # Use the bar data.frame
-sqldf('SELECT foo FROM bar', dbname = 'baz.db') # Use the baz.db SQLite database
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Use &lt;code&gt;download.file&lt;/code&gt; to download files.&lt;/p&gt;
-
-&lt;p&gt;Sort one thing by another thing.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;iris[order(iris$Sepal.Length),]
-cars$speed[order(cars$dist)]
-&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>
