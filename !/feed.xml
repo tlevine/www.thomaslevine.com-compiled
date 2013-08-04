@@ -2,13 +2,258 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-02T07:00:00Z</updated>
+  <updated>2013-08-05T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-05:/!/higher-power-distance-measures/index.html</id>
+    <title type="html">Higher-power distance measures</title>
+    <published>2013-08-05T07:00:00Z</published>
+    <updated>2013-08-05T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/higher-power-distance-measures/index.html"/>
+    <content type="html">&lt;h2 id="sums-of-shapes"&gt;Sums of shapes&lt;/h2&gt;
+&lt;p&gt;Let’s say we have a bunch of numbers, represented by the tick marks towards
+the bottom the fancy interactive plot drawing thingy below. Next, we chose
+some other number, represented by the big pink bar that you can drag.&lt;/p&gt;
+
+&lt;p&gt;For each number in our bunch (each tick mark), we could draw a line from the
+number to the other number we chose (the pink bar). Then we could draw a square
+for each of these numbers with a side as long as the this line. (These squares
+are represented by the squares in the plot thingy.) We could add up the areas
+of all of these squares. People call that the &lt;strong&gt;sum of squared error&lt;/strong&gt; or the
+&lt;strong&gt;sum of squares&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Instead of adding up the squares, we could just add up the lines. People call
+that the &lt;strong&gt;sum of absolute errors&lt;/strong&gt;, but I like calling it the &lt;strong&gt;sum of lines&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sometimes, these lines will have no length because the two numbers that form
+the line (the tick mark and the pink bar) are the same number. We could draw
+a point for each tick mark whose value is not exactly the same as the pink bar.
+Then we could count how many points we have and call that the &lt;strong&gt;sum of points&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;style&gt;
+#viz &gt; .screen-size-warning { display: none; }
+@media screen and (max-width: 640px) {
+  #viz &gt; * { display: none; }
+  #viz &gt; .screen-size-warning {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid;
+    padding: 0.5em;
+  }
+}
+&lt;/style&gt;
+
+&lt;div id="viz" style="width: 640px; margin-left: auto; margin-right: auto;"&gt;
+  &lt;div class="screen-size-warning"&gt;Make this window wider (to 640 pixels)&lt;br /&gt;to see the table.&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;small&gt;
+  Nota bene: The line and square at the bottom right are &lt;strong&gt;proportional&lt;/strong&gt; to but
+  &lt;strong&gt;not equal&lt;/strong&gt; to the sums of lines and squares, respectively.
+&lt;/small&gt;
+&lt;script src="/!/higher-power-distance-measures/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;script src="/!/higher-power-distance-measures/script.js"&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id="values-of-the-other-number-that-minimize-the-sums-of-shapes"&gt;Values of the other number that minimize the sums of shapes&lt;/h2&gt;
+&lt;p&gt;If you play around with the plot above, you’ll find one location of the pink bar
+that yields the smallest sum of squares. (The “Sum of squares” square at the
+bottom-right will be smallest for this situation.) We call this location the &lt;strong&gt;mean&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;You’ll also find one spot or two adjacent spots that yield the smallest sum of
+lines. We call this location the &lt;strong&gt;median&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;And you’ll find at least one spot with the smallest sum of points. (This spot
+will have particularly few points in the “Sum of points” section at the
+bottom-left.) We call this spot the &lt;strong&gt;mode&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="extrapolating-the-distance-measure"&gt;Extrapolating the distance measure&lt;/h2&gt;
+&lt;p&gt;I see the sum of points as the zero-order distance measure, the sum of lines
+as the one-order distance measure and sum of squares as the two-order distance
+measure. A general distance measure that includes all of these is the
+sum of n-dimensional volumes (Is there a better word for that?) of the
+n-dimensional hypercubes. Said more concisely,&lt;/p&gt;
+
+&lt;script type="math/tex; mode=display"&gt;Distance_n=\sum_i \lvert x_i - c\rvert^n&lt;/script&gt;
+
+&lt;p&gt;where each &lt;script type="math/tex"&gt;i&lt;/script&gt; corresponds to an observation (represented above by tick marks),
+&lt;script type="math/tex"&gt;n&lt;/script&gt; is the number of dimensions, and &lt;script type="math/tex"&gt;c&lt;/script&gt; represents that other number
+(represented above by the pink bar).&lt;/p&gt;
+
+&lt;h3 id="sum-of-squares"&gt;Sum of squares&lt;/h3&gt;
+&lt;p&gt;The sum of squares is thus this.&lt;/p&gt;
+
+&lt;script type="math/tex; mode=display"&gt;Distance_2=\sum_i \lvert x_i - c\rvert^2&lt;/script&gt;
+
+&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_2&lt;/script&gt; is the &lt;strong&gt;mean&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id="sum-of-lines"&gt;Sum of lines&lt;/h3&gt;
+&lt;p&gt;The sum of lines is this.&lt;/p&gt;
+
+&lt;script type="math/tex; mode=display"&gt;Distance_1=\sum_i \lvert x_i - c\rvert^1&lt;/script&gt;
+
+&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_1&lt;/script&gt; is the &lt;strong&gt;median&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id="sum-of-points"&gt;Sum of points&lt;/h3&gt;
+&lt;p&gt;To make this work with the zero-order distance, I proclaim that &lt;script type="math/tex"&gt;0^0&lt;/script&gt; equals 0.
+The sum of points is this.&lt;/p&gt;
+
+&lt;script type="math/tex; mode=display"&gt;Distance_0=\sum_i \lvert x_i - c \rvert ^0&lt;/script&gt;
+
+&lt;p&gt;The quantity within the summation is zero if &lt;script type="math/tex"&gt;x_i&lt;/script&gt; equals &lt;script type="math/tex"&gt;c&lt;/script&gt; and one otherwise.&lt;/p&gt;
+
+&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_1&lt;/script&gt; is the &lt;strong&gt;mode&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="higher-power-distance-measures-emphasize-more-extreme-values"&gt;Higher-power distance measures emphasize more extreme values&lt;/h2&gt;
+&lt;p&gt;I see the mode, median and mean as different measures of the center of a
+distribution. (I labeled them &lt;script type="math/tex"&gt;c&lt;/script&gt; for “center”.)&lt;/p&gt;
+
+&lt;p&gt;As we increase the power of the distance measure, we use more information from
+the tails to produce the measure of the center of the distribution.&lt;/p&gt;
+
+&lt;p&gt;The mode only looks for the most common values; all the information that it conveys
+about the other values is that they are less common.&lt;/p&gt;
+
+&lt;p&gt;The median turns out to be the value of middle rank. For example, if there are
+9 numbers, the fifth-highest/fifth-lowest is the median. The median doesn’t
+distinguish between an observation that is slightly greater than most and an
+observation that is exceptionally greater than most.&lt;/p&gt;
+
+&lt;p&gt;Compared to the median, the mean takes more information from extreme values.
+It might not be particularly obvious why, so I present a simple example.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/two-observations.jpg" alt="Drawing in marker of the situation explained in the next paragraph" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we have only two observations (represented above by the black dots),
+the sum of lines will be the same as long
+as we choose a center point that is between the two points; the sum of lines
+will be the distance between the two points. The sum of squares, on the other
+hand, is smallest in the center because we’ll have two smallish squares
+(orange) rather than one huge square (teal).&lt;/p&gt;
+
+&lt;h2 id="center-points-for-higher-power-distance-measures"&gt;Center points for higher-power distance measures&lt;/h2&gt;
+&lt;p&gt;What center points minimize these higher-power distance measures? I calculated
+the distance measures for dimensions up to 100 on the following skewed
+distribution, using many different center values for each dimension.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/distribution.png" alt="Histogram of a sample of a Poisson distribution with lambda of 4" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I chose the center value with the lowest distance measure and
+called that the n-dimensional measure of the distribution’s center.
+(Mode is the 0-dimensional measure, median is the
+1-dimensional measure, and mean is the 2-dimensional measure.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/error-plot.png" alt="Line plot of the center values that minimize the n-dimensional distance measure, as a function of n" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;As the number of dimensions goes up, the measure of the center moves in the
+direction of the long tail of the distribution.&lt;/p&gt;
+
+&lt;h2 id="questions"&gt;Questions&lt;/h2&gt;
+&lt;p&gt;It seems odd to me that I haven’t heard of a sum of cubes.
+Is there standard a name for the stuff I just explained?
+Does anyone use higher-power distance or centrality measures for real things?&lt;/p&gt;
+
+&lt;p&gt;I’m really quite curious about all of this.
+Please tweet, email, phone, &amp;amp;c. me if you know anything.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-04:/!/moments-of-a-function/index.html</id>
+    <title type="html">Moments of a function</title>
+    <published>2013-08-04T07:00:00Z</published>
+    <updated>2013-08-04T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/moments-of-a-function/index.html"/>
+    <content type="html">&lt;p&gt;I made this table years ago to help me understand what the moments of a function were.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Formula&lt;/th&gt;
+      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{0}&lt;/script&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{1}&lt;/script&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{2}&lt;/script&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{3}&lt;/script&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{4}&lt;/script&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Crude moment&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\mu_{n}=E \left( X^n \right) &lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\mu&lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Central moment&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)&lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Standardized moment&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}&lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\gamma_1&lt;/script&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;script type="math/tex"&gt;\gamma_2&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- I found this in some old notes that I'd written in LaTeX.
+
+\begin{table*}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l l r r r r r}
+\toprule
+Name                &amp; Formula &amp;
+$\mu_{0}$ &amp; $\mu_{1}$ &amp; $\mu_{2}$ &amp; $\mu_{3}$ &amp; $\mu_{4}$ \\
+\midrule 
+Crude moment        &amp; $\mu_{n}=E \left( X^n \right) $ &amp;
+  &amp; $\mu$ &amp; &amp; &amp; \\
+Central moment      &amp; $\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)$ &amp;
+1 &amp; 0     &amp; $\sigma^2$ &amp; &amp; \\
+Standardized moment &amp; $\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}$ &amp;
+  &amp; 0     &amp; 1          &amp; $\gamma_1$ &amp; $\gamma_2$ \\
+\bottomrule
+\end{tabular*}
+\caption{\label{moments.tab} Moments of a function, where $\mu=mean$, $\sigma^2=variance$, $\gamma_1=skewness$ and $\gamma_2=kurtosis$.}
+\end{table*}
+
+--&gt;
+
+&lt;p&gt;Read it like this: The second (&lt;script type="math/tex"&gt;\mu_2&lt;/script&gt;) central moment is &lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some moments always have a particular value. For example,
+the zeroth central moment is always one; we plug zero into
+the central moment formula for &lt;script type="math/tex"&gt;n&lt;/script&gt;, and we wind up taking
+the expected value of a bunch of ones.
+Some of the moments have special names; &lt;script type="math/tex"&gt;\mu&lt;/script&gt; is the mean,
+&lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;is the variance, &lt;script type="math/tex"&gt;\gamma_1&lt;/script&gt;is the skewness,
+and &lt;script type="math/tex"&gt;\gamma_2&lt;/script&gt;is the kurtosis.&lt;/p&gt;
+
+&lt;p&gt;I don’t exactly know what drove me to learn about the moments
+of a function. It couldn’t have had anything to do with any sort
+of class or work, so I probably just read about them in a book.
+And I have yet to find any practical reason to know about them.&lt;/p&gt;
+
+&lt;p&gt;But it was all worth it because now I understand
+&lt;a href="http://biostatisticsryangoslingreturns.tumblr.com/post/55797271777"&gt;Biostatistics Ryan Gosling&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="biostatistics-ryan-gosling.jpg" alt="Hey girl, I loved you from the E(X) I saw you." /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-02:/!/r-curses-for-data-witches/index.html</id>
     <title type="html">R graphics tricks that you probably shouldn't use</title>
@@ -395,7 +640,11 @@ about the financial crisis.&lt;/p&gt;
     <published>2013-07-29T07:00:00Z</published>
     <updated>2013-07-29T07:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-calendars/index.html"/>
-    <content type="html">&lt;p&gt;My new favorite Socrata visualization is the calendar.&lt;/p&gt;
+    <content type="html">&lt;p&gt;To a lot of people, we can get “data” out of an SQL database but not out
+of a water bottle. I like to break this distinction; we can extract numbers
+from of anything, and we can turn numbers into anything.&lt;/p&gt;
+
+&lt;p&gt;On that note, my new favorite Socrata data visualization is the calendar.&lt;/p&gt;
 
 &lt;h2 id="socrata-visualization-types"&gt;Socrata visualization types&lt;/h2&gt;
 &lt;p&gt;Socrata is more than a place to dump raw tables, or at least
@@ -669,976 +918,6 @@ data back into real-world representations, like charts, apps, music and food.&lt
 what I’ll call “data literacy”. I propose that a lack of understanding of this
 concept contributes to the siloing of data and that teaching this concept is
 an important part of the advance of open data.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-07-25:/!/socrata-users/index.html</id>
-    <title type="html">Who uses Socrata's analysis tools?</title>
-    <published>2013-07-25T07:00:00Z</published>
-    <updated>2013-07-25T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-users/index.html"/>
-    <content type="html">&lt;p&gt;I recently downloaded the metadata files for all
-of the datasets on all of the Socrata portals (for a particular definition
-of “all”). And then I remembered that these datasets don’t just float in
-space; &lt;strong&gt;people use them&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Through this study of Socrata data portals,
-I’ve learned that Socrata is much more than a website
-for converting datasets into different formats and serving them on the web.
-Socrata “&lt;a href="http://www.socrata.com/open-innovation/"&gt;consumerizes the data experience&lt;/a&gt;”
-with web-based mapping and charting tools. Here’s a sexy video they made.&lt;/p&gt;
-
-&lt;video controls="" id="wistia_1" preload="none" poster="http://embed.wistia.com/deliveries/d86ff91b0a3b280ee4fd5fea9b65993d1b250340.jpg?image_crop_resized=640x360" style="width: 100%; height: 100%; position: relative; display: block;"&gt;&lt;source src="http://embed.wistia.com/deliveries/37d0ddf8aeb21db020b1059c10c62373c9140734/file.mp4" type="video/mp4" /&gt;&lt;/video&gt;
-
-&lt;p&gt;I live in this bubble of people who know how to use computers, so Socrata’s
-charting tools seem really clunky and stupid to me, but it turns out that
-these clunky tools can be outrageously useful people who aren’t strange like me.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/nneditch"&gt;Nicole Neditch&lt;/a&gt; told me of one instance where someone
-in the Oakland government made a pie chart in
-the Socrata data portal and embedded that in a blog. If Oakland hadn’t been using Socrata,
-the result probably would have been less exciting; Nicole said that the person probably
-would have made a chart in Excel, exported that to a PDF and added a download link.&lt;/p&gt;
-
-&lt;p&gt;I wanted to find more people like this. That is, I want to see how people’s approach to analysis
-changes because of these web-based analysis tools that are strongly integrated
-with both the data being analyzed and with web-based presentation formats.&lt;/p&gt;
-
-&lt;p&gt;My &lt;a href="/!/socrata-summary"&gt;first post&lt;/a&gt; looked at popular datasets, and
-my &lt;a href="/!/socrata-genealogies"&gt;second post&lt;/a&gt; looked at big dataset families.
-In this third post, I look at people who use Socrata as an analysis tool.&lt;/p&gt;
-
-&lt;h2 id="the-user-data-format"&gt;The user data format&lt;/h2&gt;
-&lt;p&gt;In order to do this analysis, I’m going to take user data from Socrata, and this
-involves learning more about Socrata’s API.&lt;/p&gt;
-
-&lt;p&gt;I’m still using the same 80,000 JSON files that I &lt;a href="/!/socrata-summary"&gt;downloaded&lt;/a&gt; last month.
-Each of these metadata files describes a Socrata &lt;a href="/!/socrata-genealogies#term-view"&gt;view&lt;/a&gt;.
-Some of these JSON files are duplicates (because of
-&lt;a href="/!/socrata-genealogies#term-federation"&gt;federation&lt;/a&gt;),
-so there are only about 50,000 unique views.
-(And the other 30,000 are exact duplicates, so deduplicating was easy.)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-users/user-model.jpg" alt="Diagram indicating that each view has one owner and one table author" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Among the many fields in each JSON file are
-fields are two fields related to the people who interacted with that view.
-These fields are the &lt;code&gt;owner&lt;/code&gt; and  &lt;code&gt;tableAuthor&lt;/code&gt; fields. These fields are
-both hashes/dictionaries/arrays with user information. For example, here’s
-mine.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  "id" : "x73b-9d8f",
-  "displayName" : "Thomas Levine",
-  "emailUnsubscribed" : false,
-  "privacyControl" : "login",
-  "profileImageUrlLarge" :
-    "/images/profile/0252/1851/govlab-experiment_large.jpg",
-  "profileImageUrlMedium" :
-    "/images/profile/0252/1851/govlab-experiment_thumb.jpg",
-  "profileImageUrlSmall" :
-    "/images/profile/0252/1851/govlab-experiment_tiny.jpg",
-  "profileLastModified" : 1374508383,
-  "screenName" : "Thomas Levine"
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="owner"&gt;Owner&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;owner&lt;/code&gt; field is quite straightforward; it’s simply the person who
-created the view, be it a
-&lt;a href="/!/socrata-genealogies#term-dataset"&gt;dataset&lt;/a&gt;,
-&lt;a href="/!/socrata-genealogies#term-filtered-view"&gt;filtered view&lt;/a&gt;,
-&lt;a href="/!/socrata-genealogies#term-chart-and-map"&gt;chart&lt;/a&gt; or
-&lt;a href="/!/socrata-genealogies#term-other-view-types"&gt;whatever&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="table-author"&gt;Table Author&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;tableAuthor&lt;/code&gt; field is the person who uploaded the
-&lt;a href="/!/socrata-genealogies#term-table"&gt;table&lt;/a&gt; (source data) associated
-with the view. For datasets, this is the same as the owner, but for charts,
-maps and filtered views, it might be different; one person may have uploaded
-the data, and another person might have made the chart. “view”, “dataset”,
-“map”, “chart”, “filtered view” and “table” all have rather special meanings
-inside Socrata, so you should read my &lt;a href="/!/socrata-genealogies"&gt;post on that&lt;/a&gt;
-if the previous sentence didn’t make sense.&lt;/p&gt;
-
-&lt;h2 id="extracting-the-user-data"&gt;Extracting the user data&lt;/h2&gt;
-&lt;p&gt;I already had a system for storing all of the Socrata metadata, so I just needed to write a
-&lt;a href="https://github.com/tlevine/socrata-analysis/blob/e3d12254e928f986f1a83ed2099577e289048b94/numbers/run.py#L207"&gt;sloppy function&lt;/a&gt;
-to query it. This resulted in an SQLite3 database, which I converted to a
-&lt;a href="https://raw.github.com/tlevine/socrata-analysis/e3d12254e928f986f1a83ed2099577e289048b94/users.csv"&gt;CSV file&lt;/a&gt;
-and read into R.&lt;/p&gt;
-
-&lt;h2 id="data-summary"&gt;Data summary&lt;/h2&gt;
-&lt;p&gt;The user data frame schema looks like this.
-(Ignore this block of gibberish if it scares you.)&lt;/p&gt;
-
-&lt;pre style="font-size: 0.7em;"&gt;&lt;code&gt;str(users)
-## 'data.frame':	11833 obs. of  18 variables:
-##  $ id                   : chr  "wivw-ajwk" "6b59-fhhh" "vigz-pjyi" "abb4-qtmc" ...
-##  $ emailUnsubscribed    : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ displayName          : chr  "Rory Martin" "Roman Russia" "svelz" "Tobit Sibol" ...
-##  $ privacyControl       : chr  "login" "login" "login" "login" ...
-##  $ n_tables             : int  1 1 0 1 1 2 2 1 1 0 ...
-##  $ n_views              : int  1 1 2 1 1 221 2 1 1 1 ...
-##  $ screenName           : chr  "Rory Martin" "Roman Russia" "svelz" "Tobit Sibol" ...
-##  $ profileLastModified  : Date, format: NA NA ...
-##  $ profileImageUrlMedium: chr  NA NA NA NA ...
-##  $ profileImageUrlSmall : chr  NA NA NA NA ...
-##  $ profileImageUrlLarge : chr  NA NA NA NA ...
-##  $ n_rights             : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ roleName             : chr  NA NA NA NA ...
-##  $ flags                : chr  NA NA NA NA ...
-##  $ privilegesDisabled   : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ has.flag             : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-##  $ has.role             : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-##  $ more.tables          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="missing-data"&gt;Missing data&lt;/h3&gt;
-&lt;p&gt;Not everyone had all of the fields.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/missingness.png" alt="plot of chunk missingness" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;In particular, hardly anyone had flags, a profile image, rights or disabled privileges.&lt;/p&gt;
-
-&lt;h3 id="how-many-views-do-people-have"&gt;How many views do people have?&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src="figure/n.views.png" alt="plot of chunk n.views" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Most users (7790 to be exact) have exactly one view.
-Actually, there are probably even more with no views, but I don’t have the
-data on them.&lt;/p&gt;
-
-&lt;p&gt;That red one way off to the right is the Data.gov Program Management Office,
-with 7618. &lt;/p&gt;
-
-&lt;h3 id="how-many-tables"&gt;How many tables?&lt;/h3&gt;
-
-&lt;p&gt;Let’s make that same plot but for the number of tables. (A table is a raw
-uploaded dataset, before any view filtering. A table can have many views,
-and a view has only one table.) In this plot, I colored administrators and
-publishers red.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/n_tables.png" alt="plot of chunk n_tables" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;That point off to the right is again the Data.gov Program Management Office.&lt;/p&gt;
-
-&lt;h3 id="how-many-derived-views"&gt;How many derived views?&lt;/h3&gt;
-&lt;p&gt;When you upload a tabular data file to Socrata, Socrata creates a “table” and
-a “dataset” view on that table. When you filter a view inside Socrata, Socrata
-creates a new view but no new table. Thus, the difference between number of
-tables and number of views tells us how many derived views people have made.
-I think.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/n_derived.png" alt="plot of chunk n_derived" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;It also turns out that 65 users have more tables than views. This appears to be
-mostly publishers. Maybe this is something about how the import API works that I
-don’t understand.&lt;/p&gt;
-
-&lt;h2 id="aside-from-data-publishers-and-socrata-employees-who-uses-socrata-a-lot"&gt;Aside from data publishers and Socrata employees, who uses Socrata a lot?&lt;/h2&gt;
-&lt;p&gt;I wanted to find people who have used Socrata a lot without being employed by
-Socrata or data-publishing governments. I started out by trying to separate
-employees of Socrata and data-publishers from everyone else. That was a bit
-harder than you might expect.&lt;/p&gt;
-
-&lt;h3 id="more-tables-than-views"&gt;More tables than views&lt;/h3&gt;
-&lt;p&gt;As I mentioned earlier, I didn’t realize that it was possible to have more
-tables than views. How does that happen?&lt;/p&gt;
-
-&lt;h4 id="an-example"&gt;An example&lt;/h4&gt;
-&lt;p&gt;One case is &lt;a href="https://data.oregon.gov/profile/rseel/izyb-s78c?"&gt;rseel&lt;/a&gt;.
-He is the author behind a private table, and 
-&lt;a href="http://www.socrata.com/company-info/leadership/"&gt;Cam Caldwell&lt;/a&gt;, who works for Socrata, made 
-&lt;a href="https://data.oregon.gov/Health-Human-Services/WIC-Authorized-Vendors/5ew8-h6d9?"&gt;this view&lt;/a&gt;
-based on that table. So some of the situations where people have tables but no views might
-occur because of private views; the original dataset is private, and some views on that
-dataset are public.&lt;/p&gt;
-
-&lt;p&gt;We care about this because this might be a way of identifying people who work
-for data publishers. Considering that this private dataset is posted on Oregon’s
-portal and that a Socrata employee made a view based on it, I suspect that rseel
-works for Oregon, or maybe Socrata.&lt;/p&gt;
-
-&lt;h4 id="more-users-like-this"&gt;More users like this&lt;/h4&gt;
-&lt;p&gt;I looked at more of the users who had more tables than views.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;subset(users, n_tables &amp;gt; n_views)[c('displayName', 'roleName', 'flags', 'n_tables', 'n_views')]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I looked up a few of them with a search engine, and they mostly
-&lt;a href="http://www.linkedin.com/in/jkray"&gt;seem&lt;/a&gt;
-&lt;a href="http://www.imaginaryrobots.net/resumes/Jesse_van_Herk_resume.pdf"&gt;to&lt;/a&gt;
-&lt;a href="http://www.linkedin.com/in/debraagagne"&gt;be&lt;/a&gt;
-&lt;a href="http://www.whitehouse.gov/champions/technology-and-innovation/waldo-jaquith"&gt;government&lt;/a&gt;
-&lt;a href="http://waldo.jaquith.org/"&gt;employees&lt;/a&gt;.
-So I think I can count people as employees of data publishers or Socrata
-if they have more tables than views.&lt;/p&gt;
-
-&lt;h3 id="role-names"&gt;Role names&lt;/h3&gt;
-&lt;p&gt;I noticed that most of the people in the above list have
-&lt;code&gt;roleName&lt;/code&gt; fields. Very few people have &lt;code&gt;roleName&lt;/code&gt; fields, so
-I think that people tend to have a &lt;code&gt;roleName&lt;/code&gt; field
-if and only if they work for data publishers. To investigate that,
-let’s look at the number of views that each person owns by the different
-roles of user.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/views_by_role.png" alt="plot of chunk views_by_role" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;It looks like publishers and administrators make more views. Big surprise.
-Moreover, few people have roles, and people with roles tend to have more data
-than people without roles. This supports my suspicion that people with roles
-are data publishers. To test that a bit more precisely, let’s compare that to
-my other suspected indicator of data-publisher-ness: Whether people have more
-tables than views. Here’s a plot of that.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/roleName_plot.png" alt="plot of chunk roleName_plot" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;If we want to get all statistical about it, we can run
-Fisher’s Exact test.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;fisher.test(table(users$n_tables &amp;gt; users$n_views, users$has.role))
-## 
-## 	Fisher's Exact Test for Count Data
-## 
-## data:  table(users$n_tables &amp;gt; users$n_views, users$has.role)
-## p-value &amp;lt; 2.2e-16
-## alternative hypothesis: true odds ratio is not equal to 1
-## 95 percent confidence interval:
-##   35.69 118.94
-## sample estimates:
-## odds ratio 
-##      63.77
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and find that these counts are indeed disproportionate. &lt;/p&gt;
-
-&lt;p&gt;This is all to say that &lt;code&gt;roleName&lt;/code&gt; appears to be a decent &lt;strong&gt;indicator for “data publisher”&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id="flags"&gt;Flags&lt;/h3&gt;
-&lt;p&gt;In a similar vein, I looked at Socrata users with a &lt;code&gt;flags&lt;/code&gt; field.
-35 users have a non-empty &lt;code&gt;flags&lt;/code&gt; field, and
-the value of that field is &lt;code&gt;["admin"]&lt;/code&gt; for all of these users.
-Here are those users.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;users$has.flag &amp;lt;- !is.na(users$flags)
-subset(users, has.flag)["displayName"]
-##               displayName
-## rgff-7jh6     Doug McLeod
-## g4md-3inp         chitang
-## rqdg-xj2v           Clare
-## p2g6-hzkg  Anthony Nowell
-## 2bbf-kmrb  Marc Millstone
-## 83hr-92mi   Kevin Merritt
-## xpic-k57b     Chris Whong
-## b5e4-d7x8          Jordan
-## hmzy-ctip     Clint Tseng
-## xtsj-wzxh   Roopa Prakash
-## 4xtm-veev    MIchael Chui
-## i7d8-sc4w   Chris Metcalf
-## 86uf-6gqx     beth.blauer
-## tm4c-rqum    Lilia Gutnik
-## 2fra-n3vu        John Kew
-## rj6s-jsfr       Will Pugh
-## e9wa-d5y6 Giacomo Ferrari
-## ipyd-bu8g          Adrian
-## x5jh-tg6w      Hiko Naito
-## 4tjb-bgqg      Anna Veldt
-## 4qwc-qq8v         kfontes
-## mvvk-izrz  Jeff Scherpelz
-## iwnv-rtc2   Karin Hellman
-## 8est-2umm           Sells
-## 54cf-cqm2     Joe Pringle
-## 7ef3-v99y   Paul Paradise
-## nux4-azwn       bryantlau
-## gyd7-94dj          mlouie
-## 8vin-pcrv      amy winner
-## eudm-snef             Saf
-## bxv9-y9sr             rjm
-## r5m2-5pds    Cam Caldwell
-## tjtx-bges             anu
-## zs8p-j3v5 Darrell Cabales
-## vcvp-yass           Dylan
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;These appear to all be Socrata employees.&lt;/p&gt;
-
-&lt;p&gt;Hmm. Does anyone have both a &lt;code&gt;roleName&lt;/code&gt; and a flag?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;subset(users, has.flag &amp;amp; has.role)[c("displayName", "roleName")]
-##           displayName      roleName
-## 86uf-6gqx beth.blauer administrator
-## nux4-azwn   bryantlau administrator
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href="http://www.socrata.com/newsroom-article/government-innovator-beth-blauer-joins-socrata/"&gt;Beth&lt;/a&gt;
-and &lt;a href="www.linkedin.com/in/bryantlau"&gt;Bryant&lt;/a&gt; are both
-Socrata employees. I don’t know why they have &lt;code&gt;roleName&lt;/code&gt; fields.&lt;/p&gt;
-
-&lt;p&gt;Anyway, it looks like the &lt;code&gt;flags&lt;/code&gt; field is a decent &lt;strong&gt;indicator for “Socrata employee”&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id="ordinary-citizens"&gt;Ordinary citizens&lt;/h3&gt;
-&lt;p&gt;If having a &lt;code&gt;flags&lt;/code&gt; field means you work for Socrata and
-having a &lt;code&gt;roleName&lt;/code&gt; means you work for a data publisher (a government, usually),
-then maybe people with neither &lt;code&gt;flags&lt;/code&gt; nor a &lt;code&gt;roleName&lt;/code&gt; are the
-citizens that Socrata is trying to empower.&lt;/p&gt;
-
-&lt;h4 id="no-flags-no-roles"&gt;No flags, no roles&lt;/h4&gt;
-&lt;p&gt;Here are some users with neither flags nor roles.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;citizens &amp;lt;- subset(users, !has.flag &amp;amp; !has.role)
-columns &amp;lt;- c("displayName", "n_tables", "n_views")
-head(citizens[order(citizens$n_views, decreasing = T), columns])
-##                                    displayName n_tables n_views
-## vc35-nh3p                      Public Datasets      496     605
-## v4c9-bc9b                              cpbride      242     498
-## ugen-sv2k                                Scott        3     372
-## w3yb-tyrd                                admin      296     340
-## yahm-crqu U.S. Environmental Protection Agency       14     280
-## rek6-gcru                           Sam S. Lee        2     221
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Hmm okay they’re not all ordinary citizens. For example,
-“&lt;a href="https://opendata.socrata.com/profile/Public-Datasets/vc35-nh3p"&gt;Public Datasets&lt;/a&gt;”
-appears to be &lt;a href="http://www.recovery.gov"&gt;recovery.gov&lt;/a&gt;’s open data initiative,
-which is running on &lt;a href="https://opendata.socrata.com"&gt;opendata.socrata.com&lt;/a&gt;
-rather than on a separate portal.&lt;/p&gt;
-
-&lt;h4 id="also-no-tables"&gt;Also no tables&lt;/h4&gt;
-&lt;p&gt;Maybe we should also expect citizens not to have uploaded any tables.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;citizens &amp;lt;- subset(users, !has.flag &amp;amp; !has.role &amp;amp; n_tables == 0)
-head(citizens[order(citizens$n_views, decreasing = T), columns])
-##                   displayName n_tables n_views
-## jyr3-c2kp              Njbate        0     153
-## cif6-aywu                CPHA        0     150
-## teh5-ns3w Kenya Open Data Bot        0     144
-## 4p9m-76ij               Tracy        0     100
-## edap-jnwh     warren.kagarise        0      93
-## aeze-ppu4                  NL        0      89
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we’re getting somewhere.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://explore.data.gov/profile/Njbate/jyr3-c2kp?"&gt;Njbate&lt;/a&gt;
-made a bunch of filtered views on the
-&lt;a href="https://explore.data.gov/Contributors/FEC-Contributions/4dkz-64bn"&gt;FEC Contributions dataset&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://data.baltimorecity.gov/profile/CPHA/cif6-aywu?"&gt;CPHA&lt;/a&gt;
-made a bunch of filtered views on the
-&lt;a href="https://data.baltimorecity.gov/Community/311-Customer-Service-Requests/9agw-sxsr"&gt;Baltimore 311 request dataset&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href="https://opendata.go.ke/profile/Kenya-Open-Data-Bot/teh5-ns3w?"&gt;Kenya Open Data Bot&lt;/a&gt;
-made a bunch of charts on a few different datasets.
-These charts are quite popular, and they account for a quarter of Kenya’s open data portal.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I see a pattern here: Users with the most views
-just made different filters on the same dataset.&lt;/p&gt;
-
-&lt;h4 id="with-a-profile-image"&gt;With a profile image&lt;/h4&gt;
-&lt;p&gt;Let’s try this yet again, but this time, let’s look only at people with profile images.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;citizens &amp;lt;- subset(users, !has.flag &amp;amp; !has.role &amp;amp; n_tables == 0 &amp;amp; !is.na(profileImageUrlLarge))
-columns &amp;lt;- c("displayName", "n_tables", "n_views")
-head(citizens[order(citizens$n_views, decreasing = T), columns], 10)
-##                      displayName n_tables n_views
-## aeze-ppu4                     NL        0      89
-## 732w-crxq    not The White House        0      30
-## 86yi-jydw               VinylFox        0      26
-## ef7y-9vvy Dave Francis Rodrigues        0      25
-## pieh-8cyx    Michael Christopher        0      21
-## v8wk-qcyk           MrDataFerret        0       8
-## fcg6-n5gt       David T. Andrews        0       7
-## dpze-sudn         prasannalaldas        0       6
-## aj2c-kiyh    Mitali Kumar Mathur        0       4
-## e83w-vpb9        nolewalkingshaw        0       4
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I ran queries like this to find what portals and data they used.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;subset(socrata, owner.id == 'aeze-ppu4')[c('portal', 'id', 'tableId', 'name', 'viewCount')]
-table(subset(socrata, owner.id == 'aeze-ppu4')$portal)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;They look more like real people doing real analysis.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-users/profiles/not The White House.jpg" alt="Picture of not The White House" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://explore.data.gov/profile/not-The-White-House/732w-crxq"&gt;not The White House&lt;/a&gt;
-is “[w]ay more open and transparent than the official White House website.”
-It’s another account that’s just making filters on one dataset, but they’re a bit more
-creative, diverse and involved. Here are some of her popular views.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://explore.data.gov/dataset/West-Wing-Tour/e8wt-55cb"&gt;People who went on the West Wing tour&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://explore.data.gov/dataset/People-who-played-basketball-at-the-White-House/a4h3-3v3x"&gt;People who played basketball at the White House&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://explore.data.gov/dataset/Secret-Service-BBQ/tgmj-eaig"&gt;Secret Service BBQ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;not The White House also has its own separate website, 
-&lt;a href="http://whitehouse.gov1.info/"&gt;whitehouse.gov1.info&lt;/a&gt;,
-which is a parody of the &lt;a href="http://www.whitehouse.gov/"&gt;official White House website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-users/profiles/NL.jpg" alt="Picture of NL" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://finances.worldbank.org/profile/NL/aeze-ppu4"&gt;NL&lt;/a&gt;
-used to do a lot with World Bank data, though she hasn’t for a few months.&lt;/p&gt;
-
-&lt;p&gt;She also has some views
-&lt;a href="https://databox.worldbank.org/profile/NL/aeze-ppu4"&gt;on databox.worldbank.org&lt;/a&gt;,
-which didn’t show up in my list of Socrata portals.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-users/profiles/VinylFox.jpg" alt="Picture of VinylFox" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://data.baltimorecity.gov/profile/VinylFox/86yi-jydw?"&gt;VinylFox&lt;/a&gt;
-has also made a bunch of interesting filters on Baltimore data.
-His website discusses this &lt;a href="http://www.vinylfox.com/about/"&gt;a bit more&lt;/a&gt;.
-&lt;!-- Talk to him. --&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-users/profiles/Dave Francis Rodrigues.jpg" alt="Picture of Dave Francis Rodrigues" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://finances.worldbank.org/profile/Dave-Francis-Rodrigues/ef7y-9vvy?"&gt;Dave&lt;/a&gt;
-has made a lot of filters and charts about India.
-He also names his views really well. In particular, I like his hack of prefixing
-all of the titles with “Dave_”; this gets around how Socrata doesn’t make it particularly
-clear who created the view that you are looking at.&lt;/p&gt;
-
-&lt;h4 id="everyone-else"&gt;Everyone else&lt;/h4&gt;
-&lt;p&gt;I looked at a few specific Socrata users who are doing interesting things,
-but let’s look a bit more broadly. The histogram below shows how many views
-users have created. Here, I’m including people without profile pictures.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/citizen_views1.png" alt="plot of chunk citizen_views1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Here it is again, but leaving out the top ten users to make it easier to see.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/citizen_views2.png" alt="plot of chunk citizen_views2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you might expect, most people make only one view.
-In fact, there are probably even more users with no views.&lt;/p&gt;
-
-&lt;p&gt;I’m more concerned with the right side of the graph.
-As we should expect, far fewer people have made 10 views than 1 view.
-But look at the absolute counts. Only 411
-users have made at least 10 views. Keep in mind that this includes
-all of the users who have made a public view on any of the
-60 portals; this number seems quite low.&lt;/p&gt;
-
-&lt;p&gt;Also keep in mind that that’s &lt;em&gt;all&lt;/em&gt; of the users with at least 10 views;
-if we look at only the users whom I’ve identified as citizens, it drops
-to 38, or fewer than one user per portal. Quite low.&lt;/p&gt;
-
-&lt;h2 id="conclusions-lessons-ideas-c"&gt;Conclusions, lessons, ideas, &amp;amp;c.&lt;/h2&gt;
-
-&lt;h3 id="api-documentation"&gt;API documentation&lt;/h3&gt;
-&lt;p&gt;Most of my work on this is still just in figuring out what the API fields mean and documenting them.
-Some of you reading this are probably building developer APIs, so keep this in
-mind: If you don’t document your API fully, some random person might come along
-and document it for you, which might be highly embarrassing and/or highly convenient.&lt;/p&gt;
-
-&lt;p&gt;Now on to some more serious conclusions.&lt;/p&gt;
-
-&lt;h3 id="big-users"&gt;Big users&lt;/h3&gt;
-&lt;p&gt;I looked for users that published a lot of views.&lt;/p&gt;
-
-&lt;p&gt;Unsurprisingly, data publishers create lots of views. And Data.gov is crazy.&lt;/p&gt;
-
-&lt;p&gt;Aside from data publishers, there are a few accounts that make lots of filters
-on the same dataset. These accounts might be bots; one of them is even called
-the “Kenya Open Data Bot”.&lt;/p&gt;
-
-&lt;p&gt;I found some accounts (not The White House, NL, VinylFox and Dave Francis
-Rodrigues) that are making lots of diverse filters and maps with Socrata
-in study of a particular topic. These are examples of the “consumerized”
-data analysts that Socrata is trying to create.&lt;/p&gt;
-
-&lt;h3 id="one-portal"&gt;One portal&lt;/h3&gt;
-&lt;p&gt;Publishing a lot of views isn’t the only thing that means that you use Socrata a
-lot. Wouldn’t it be cool if people were connecting lots of different datasets from
-all over the place?&lt;/p&gt;
-
-&lt;p&gt;Very few of the big users that I discuss above use more than one Socrata portal.
-This certainly makes sense as Socrata open data portals are presented as if they’re
-separate installations of the software. You can use the same account for all of the
-portals, but there’s no obvious way to search across portals or get a list of all
-of the portals.&lt;/p&gt;
-
-&lt;p&gt;I wonder whether people would use data from multiple portals if it were easier to
-search across portals. I think someone should set up a Socrata portal that
-&lt;a href="/!/socrata-genealogies#term-federation"&gt;federates&lt;/a&gt;
-all of the other portals; maybe people would use Socrata Open Data Portal
-software differently if they could easily collect and analyze data from all of the portals.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, maybe they wouldn’t. A couple of the bigger users I found
-were using World Bank data, and it’s quite possible that the data in the other portals
-aren’t that relevant to them.&lt;/p&gt;
-
-&lt;h3 id="people-dont-use-socrata-that-much"&gt;People don’t use Socrata that much.&lt;/h3&gt;
-&lt;p&gt;If people are using Socrata’s data analysis tools, we should expect lots of
-views to be created. But I didn’t find that many views.&lt;/p&gt;
-
-&lt;p&gt;Searching across all of the portals, I found fewer than 500 users with at
-least 10 views. This is less than ten such users per portal, which doesn’t
-seem like a lot. And almost all of these users are data publishers or Socrata
-employees, so hardly any citizens seem to be analyzing Socrata data.&lt;/p&gt;
-
-&lt;h3 id="or-do-they"&gt;Or do they?&lt;/h3&gt;
-&lt;p&gt;Maybe they’re using the data and just not using Socrata’s analysis tools.&lt;/p&gt;
-
-&lt;h4 id="people-do-what-they-know"&gt;People do what they know.&lt;/h4&gt;
-&lt;p&gt;I think that people get good at one way of using computers and then never learn other ways.
-(I credit this theory to &lt;a href="https://plus.google.com/116070987814199239957/posts"&gt;Alec Story&lt;/a&gt;.)
-This applies for my former neighbor who could check her email just fine with the old
-email software but got confused when she got a new computer with a new version of the email software.
-This also applies for people like me who are stuck using R because they know all sorts of
-&lt;a href="/!/r-spells-for-data-wizards"&gt;magical R incantations&lt;/a&gt; even though they know that
-&lt;a href="https://stat.ethz.ch/pipermail/r-help/2010-September/252618.html"&gt;R is completely insensible&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id="people-already-know-excel"&gt;People already know Excel.&lt;/h4&gt;
-&lt;p&gt;Getting back to Socrata, I suspect that people are using the Socrata data to some
-degree but that they’re downloading the dataset manually analyzing it in Excel.&lt;/p&gt;
-
-&lt;p&gt;If this is what is happening, it would be really cool to have stronger integrations
-between Excel and Socrata. Currently, you just download a view in Excel format and then
-open it. What if there were an Excel macro that would synchronize a table in Excel
-with a view in Socrata? Or a plugin that would let you upload reports from Excel back
-to Socrata?&lt;/p&gt;
-
-&lt;p&gt;Before you get excited, note that I don’t really have any idea of whether this is
-what’s happening. It would be cool to test this suspicion, but I haven’t yet come
-up with a good way of doing that.&lt;/p&gt;
-
-&lt;h3 id="maintaining-the-openness-of-data"&gt;Maintaining the openness of data&lt;/h3&gt;
-&lt;p&gt;If people are analyzing open data in Excel and then disseminating the findings as
-paper documents, then we’re not maintaining the openness of the data.
-There are a lot of situations where the analyst wants the analysis to stay private,
-but there are also a lot of situations where the analyst would love to share the
-analysis publicly if only it were easier.&lt;/p&gt;
-
-&lt;p&gt;Much focus in open data is on opening existing silos on data. Let’s also think about
-how we can &lt;strong&gt;prevent data from becoming siloed&lt;/strong&gt; in the first place.&lt;/p&gt;
-
-&lt;h2 id="a-request-for-data"&gt;A request for data&lt;/h2&gt;
-&lt;p&gt;I managed to find a few interesting users, but I’m somewhat disappointed.
-The available data are quite coarse, and few variables are exposed.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, portal administrators have do have access to these data! If you run a portal,
-you should be studying these usage data in order to understand what data people are using,
-how people are using it and how you can improve your open data offerings.
-Even better, you should just open the usage data
-&lt;a href="https://data.oregon.gov/analytics"&gt;like Oregon did&lt;/a&gt; so I can do this for you.&lt;/p&gt;
-
-&lt;p&gt;If you administrate a portal, I want you to make your analytics page public.
-And if you don’t administrate a portal, I want you convince your local portal
-administrator to. It’s just one box in administrator dashboard that you need to click.&lt;/p&gt;
-
-&lt;p&gt;Open data!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-07-19:/!/socrata-genealogies/index.html</id>
-    <title type="html">Progeny of Ten Socrata Datasets</title>
-    <published>2013-07-19T07:00:00Z</published>
-    <updated>2013-07-19T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-genealogies/index.html"/>
-    <content type="html">&lt;p&gt;Governments and other organizations have recently been trying to open up their
-data. Socrata’s &lt;a href="http://www.socrata.com/open-data-portal/"&gt;Open Data Portal&lt;/a&gt; software
-is one tool that tries to help with this; an organization using Socrata is given a website
-(“portal”) hosted by Socrata where they can upload their datasets and where
-the public can download them.&lt;/p&gt;
-
-&lt;p&gt;I recently downloaded all of the metadata about all of the datasets from all
-of the Socrata portals and then posted this &lt;a href="/!/socrata-summary"&gt;summary&lt;/a&gt; of
-the data. Now on to some deeper analysis.&lt;/p&gt;
-
-&lt;h2 id="what-is-a-dataset"&gt;What is a dataset?&lt;/h2&gt;
-&lt;p&gt;As the Twitters have pointed out,the dataset counts that I presented in my
-initial summary are somewhat deceptive.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/tomschenkjr/status/354010005504147456"&gt;&lt;img src="tomschenkjr.png" alt="@tomschenkjr Tweets about Chicago's filters" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/SR_spatial/status/354088265344749568"&gt;&lt;img src="SR_spatial.png" alt="@SR_spatial Tweets about patterns of derived datasets" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Many of the things that I was calling a dataset can be seen as a
-copy or a derivative of another dataset. In this post, I’ll discuss&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Socrata concepts and terminology&lt;/li&gt;
-  &lt;li&gt;Ways that we can arrive at apparent duplicates in Socrata data&lt;/li&gt;
-  &lt;li&gt;The progeny of ten Socrata datasets&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="socrata-terminology"&gt;Socrata terminology&lt;/h2&gt;
-&lt;p&gt;Most of my work on this for the past week has been figuring out
-Socrata’s terminology and schema. Let’s define some Socrata terms.&lt;/p&gt;
-
-&lt;h3 id="term-view"&gt;Everything is a view&lt;/h3&gt;
-
-&lt;p&gt;When you go to the home page of a Socrata portal, you can
-“Search &amp;amp; Browse Datasets and Views”. This phrasing is sort
-of wrong. “&lt;strong&gt;view&lt;/strong&gt;” is just a generic concept that refers
-to any sort of file or data that is presented to a user.&lt;/p&gt;
-
-&lt;p&gt;Everything in that list on the home page is a view. I haven’t
-yet explained what a dataset is, but a dataset is a type of
-view. For example, the top two views in
-&lt;a href="https://explore.data.gov/"&gt;explore.data.gov&lt;/a&gt; are currently (July 17)
-&lt;a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut"&gt;White House Visitor Records Requests&lt;/a&gt;
-and &lt;a href="https://explore.data.gov/dataset/White-House-Visitor-Records-Requests/644b-gaut"&gt;U.S. Overseas Loans and Grants (Greenbook)&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://explore.data.gov/"&gt;&lt;img src="search-browse.png" alt="Search &amp;amp; Browse Datasets and Views" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;You also get a list of “View Types”. Below, I define some
-of these view types.&lt;/p&gt;
-
-&lt;h3 id="term-dataset"&gt;Datasets&lt;/h3&gt;
-
-&lt;p&gt;Let’s start with the &lt;strong&gt;dataset&lt;/strong&gt;.
-A dataset is when you get when you upload data to Socrata in one of
-its supported tabular formats.&lt;/p&gt;
-
-&lt;h3 id="term-filtered-view"&gt;Filtered views&lt;/h3&gt;
-
-&lt;p&gt;Before I define “filtered views”, I want to explain why they exist.
-Socrata helps people publish their data by providing various APIs
-for importing from different data sources, and Socrata helps people
-consume data by providing a data analysis suite inside the web browser.
-This includes maps and graphs and whatnot that you can embed in
-websites rather than just in PDF documents.&lt;/p&gt;
-
-&lt;p&gt;Socrata also allows you to “Filter”
-datasets. For example, here I filter the list of
-&lt;a href="https://data.oaklandnet.com/Environmental/Public-Works-Volunteer-Opportunities/sduu-bfki"&gt;Public Works Volunteer Opportunities&lt;/a&gt;
-to include only opportunities on July 29.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="filter.png" alt="Filtering on date July 29" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://data.oaklandnet.com/Environmental/Volunteer-Opportunities-on-July-29/vyhb-nqtw"&gt;Here&lt;/a&gt;’s the resulting filtered view.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Filtered views&lt;/strong&gt; are queries on a dataset. The queries are represented internally in the
-&lt;a href="http://dev.socrata.com/deprecated/querying-datasets"&gt;SODA filter query language&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="term-chart-and-map"&gt;Charts and maps&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Charts&lt;/strong&gt; and &lt;strong&gt;maps&lt;/strong&gt; are also queries on a dataset.
-The difference between filtered views, charts and maps is quite subtle.
-They are all queries on datasets; they just display a different
-visualization when you view them on the Socrata website.&lt;/p&gt;
-
-&lt;h3 id="term-other-view-types"&gt;And more&lt;/h3&gt;
-
-&lt;p&gt;There are other types of views, including views of non-tabular information,
-but we don’t need to know about them for now.&lt;/p&gt;
-
-&lt;h3 id="term-table"&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/family.jpg" alt="A table family, containing a dataset and several filtered views, charts and maps" class="wide" /&gt;
-&lt;!-- Icons from https://explore.data.gov/stylesheets/images/icons/type_icons_30.png?1 --&gt;&lt;/p&gt;
-
-&lt;p&gt;There is also a concept of a &lt;strong&gt;table&lt;/strong&gt;, and
-it is somewhat abstract. Here are two ways of thinking of it.&lt;/p&gt;
-
-&lt;p&gt;First, a more conceptual explanation.
-After someone uploads a dataset, a variety of filtered views,
-charts and maps can emerge. I see this as a family of views,
-with the parent being the original dataset and the ancestors
-being all of the filtered views, charts and maps that make
-SODA queries on the original dataset. In Socrata, this family
-is called a table.&lt;/p&gt;
-
-&lt;p&gt;Next, a more technical explanation.
-The data are stored in a table, and this table is not exposed directly to users. 
-The most raw form of the table is exposed through a dataset, which is an empty
-query on the dataset (equivalent to &lt;code&gt;SELECT * FROM table_name;&lt;/code&gt;). Filtered views,
-charts and maps act on the table rather than on the source dataset; they’re just
-like datasets, except that they include a query.&lt;/p&gt;
-
-&lt;h3 id="term-federation"&gt;Federation&lt;/h3&gt;
-
-&lt;p&gt;Socrata doesn’t provide a particularly obvious means for searching multiple
-data portals at once. (This was part of my motivation for downloading all of
-the datasets.) But it is possible for one data portal to include all of
-another portal’s datasets.&lt;/p&gt;
-
-&lt;p&gt;Sometimes, you’ll see a view in the search &amp;amp; browse pane with a gray background,
-instead of white. Hawaii has a bunch of these.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://data.hawaii.gov/"&gt;&lt;img src="hawaii.png" alt="Hawaii data portal" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;These views are “provided” by other portals through a process called
-“federation”. The destination portal (data.hawaii.gov in the above screenshot)
-makes a request to the source portal (data.explore.gov in the above screenshot)
-to federate the source portal’s data.&lt;/p&gt;
-
-&lt;p&gt;This request shows up in the administrator interface for the source portal.
-If the source portal accepts the request, all of the views from the source portal
-are provided to the destination portal as in the screenshot above. Here are
-&lt;a href="http://www.socrata.com/video/socrata-open-data-federation-demonstration/"&gt;two&lt;/a&gt;
-&lt;a href="http://www.socrata.com/datagov/open-data-federation-video/"&gt;videos&lt;/a&gt; about that.&lt;/p&gt;
-
-&lt;p&gt;If you look closely, you’ll notice that the federated views are actually just
-links to the source portal; the views show up in the search, but they aren’t
-otherwise copied to the destination portal.&lt;/p&gt;
-
-&lt;h2 id="types-of-duplicate-datasets"&gt;Types of duplicate datasets&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/richmanmax/status/353956877501087746"&gt;&lt;img src="deduuuuuupe.png" alt="@richmanmax Tweets &amp;quot;deduuuuuupe.&amp;quot;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now that you know a bit more about how Socrata works, I can explain my three
-categories of datasets-that-I-counted-twice.&lt;/p&gt;
-
-&lt;h3 id="soda-queries-filtered-views-charts-maps"&gt;SODA queries: Filtered views, charts, maps&lt;/h3&gt;
-&lt;p&gt;After a dataset is uploaded, people can create many views that derive from it.
-In my previous analysis, I counted filtered views, charts and maps all as separate
-entities. I think it’s worth separating these because they can be derived from the
-source datasets.&lt;/p&gt;
-
-&lt;p&gt;If people are using Socrata as it is intended, there should be tons of filtered
-views, charts and maps, and they’ll give us an interesting picture of how the
-portal is being used.&lt;/p&gt;
-
-&lt;h3 id="federation"&gt;Federation&lt;/h3&gt;
-&lt;p&gt;When datasets are federated, &lt;em&gt;all&lt;/em&gt; of the datasets from the source portal are
-provided to the destination. (You can’t pick and choose.) That is, they show up
-in search as links to the source portal.&lt;/p&gt;
-
-&lt;p&gt;In my previous analysis, I counted federated datasets as belonging to the portal
-to which they’re provided. Also, I downloaded them in a way that made it hard for
-me figure out what the source portal was. It’s easy to fix, so I might download
-them all again and graph the network of federation across Socrata portals.&lt;/p&gt;
-
-&lt;p&gt;(For those who are curious, the issue was that I followed HTTP redirects and
-didn’t record whether I was following a redirect or accessing the page directly.)&lt;/p&gt;
-
-&lt;h3 id="copied-rather-than-elegantly-linked"&gt;Copied rather than elegantly linked&lt;/h3&gt;
-&lt;p&gt;Some datasets have simply been uploaded to two different portals.
-Lombardia’s museums is an example of that.&lt;/p&gt;
-
-&lt;!-- I don't know why the Kramdown table syntax isn't working here. --&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Portal&lt;/th&gt;
-      &lt;th&gt;Identifier&lt;/th&gt;
-      &lt;th&gt;Rows&lt;/th&gt;
-      &lt;th&gt;Columns&lt;/th&gt;
-      &lt;th&gt;Downloads&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;dati.lombardia.it&lt;/td&gt;
-      &lt;td&gt;&lt;a href="https://dati.lombardia.it/Cultura/Musei/3syc-54zf?"&gt;3syc-54zf&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;234&lt;/td&gt;
-      &lt;td&gt;56&lt;/td&gt;
-      &lt;td&gt;1675&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;opendata.socrata.com&lt;/td&gt;
-      &lt;td&gt;&lt;a href="https://opendata.socrata.com/Education/Musei-Lombardi/54y8-wyde?"&gt;54y8-wyde&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;234&lt;/td&gt;
-      &lt;td&gt;56&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;I identified this group by looking for datasets with the same numbers of rows,
-the same number of columns, and similar names.
-I haven’t done it on a larger scale, but that would be fun to do later.&lt;/p&gt;
-
-&lt;h2 id="ten-large-dataset-families"&gt;Ten large dataset families&lt;/h2&gt;
-&lt;p&gt;It took me quite a while to figure out everything that I explained above.
-(That’s a story in itself.) My goal all along was to start looking
-at how families of datasets are related, so now I’ll talk about what I
-did on that front.&lt;/p&gt;
-
-&lt;h3 id="methodology"&gt;Methodology&lt;/h3&gt;
-&lt;p&gt;I grouped all of the views that I had collected by table. (Recall that
-a table in Socrata is a dataset plus the family of views that derives
-from that particular dataset.)&lt;/p&gt;
-
-&lt;p&gt;Once I had grouped them, I found the ten largest families, by number of
-different views. To be clear, this is the number of Socrata entities
-called “views” rather than the number of times people viewed the dataset.
-(Confusingly, Socrata also provides the latter sort of view count, and 
-I’ve included that figure in the present report.)&lt;/p&gt;
-
-&lt;p&gt;Out of these datasets, I took the top ten datasets, and I
-show their families in the fancy table at the end of this page. Select a dataset,
-and then you can see all of that dataset plus all of the filtered views,
-maps and charts of that dataset. You can also see which portals each of
-these datasets is federated to. You can sort by the different columns,
-and you can click on a row to see more detail.&lt;/p&gt;
-
-&lt;p&gt;And In case you’re reading this a year later, the data were collected from
-Socrata portals at the end of May 2013.&lt;/p&gt;
-
-&lt;h3 id="discussion"&gt;Discussion&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;This section might make more sense if you play with the fancy table first.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4 id="why-its-not-a-tree"&gt;Why it’s not a tree&lt;/h4&gt;
-&lt;p&gt;In Socrata, you can create a filtered view, chart or map based on a dataset,
-and the link to the source dataset will be preserved. This is represented
-in the table below.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, the genealogy is not recorded any deeper than this; if you
-create a new filtered view based on an existing filtered view, the SODA query
-is simply combined between the two views, and the new filtered view is
-represented as a child of the original dataset rather than a child of the old
-filtered view.&lt;/p&gt;
-
-&lt;p&gt;Thus, we don’t get the full family tree that you might have expected.&lt;/p&gt;
-
-&lt;h4 id="compare-family-statistics-with-view-statistics"&gt;Compare family statistics with view statistics&lt;/h4&gt;
-&lt;p&gt;In some cases, like with the White House visitor records requests, most of the
-downloads and hits for the whole family are from this source dataset.
-In other cases, like the World Bank major contract awards, only a small
-minority comes from this source dataset. This occurrence is illustrated by the
-plots below.&lt;/p&gt;
-
-&lt;p&gt;The first plot looks at hits, and the second at downloads. Within each plot,
-the left (red) dot is the number of hits/downloads that the source dataset
-received and the right (blue) dot is the total hits/downloads across the whole
-family.&lt;/p&gt;
-
-&lt;p&gt;If these are close to each other (that is, the black line is short),
-most of the hits/downloads came from the source dataset.
-If they are far apart, most
-hits/downloads came from filtered views, charts and maps.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/hits.png" alt="Hits by dataset family" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/downloads.png" alt="Downloads by dataset family" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;This information might tell us something about
-how people like to use the data. Perhaps people working with the World Bank
-contracts are interested in subsets for their particular region and time.
-And maybe people are just playing with the White House data because it’s the
-first one in the list.&lt;/p&gt;
-
-&lt;h4 id="view-size-and-shape"&gt;View size and shape&lt;/h4&gt;
-&lt;p&gt;The view size and shape give us an idea of what sort of queries people are running.
-Are people selecting certain variables, or are they aggregating or subsetting
-the records?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-1.jpg" alt="A rectangle indicating the original dataset" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-2.jpg" alt="The same rectangle, with a shorter one for a record subset" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-genealogies/query-3.jpg" alt="The same rectangles, with a tall, thin one for a selection of variables" /&gt;&lt;/p&gt;
-
-&lt;h4 id="federation-1"&gt;Federation&lt;/h4&gt;
-&lt;p&gt;As I discussed earlier, federation is all-or-nothing; you either include all
-of the source portal’s datasets or none of them. So you would expect that the
-“Federation” column would list the same number of copies for each dataset.
-In at least one instance (FEC contributions), this is not the case.
-I haven’t figured out what’s going on there.&lt;/p&gt;
-
-&lt;h3 id="relevance"&gt;Relevance&lt;/h3&gt;
-&lt;p&gt;Socrata exposes enough of the data analysis process that we can start to see
-what sorts of analyses different people are doing. We can see what sorts of
-datasets are interesting to people. We may even be able to develop new
-guidelines for publishing datasets through analysis of what makes datasets more
-likely to be viewed, downloaded and filtered on Socrata.&lt;/p&gt;
-
-&lt;h3 id="data-family-explorer"&gt;Data family explorer&lt;/h3&gt;
-&lt;p&gt;And now, the aforementioned fancy table. As I said above, this table contains
-the families/tables associated with the ten datasets with the largest families.
-Select a dataset, and then you can see all of that dataset plus all of the
-filtered views, charts and maps, with some information about each. And if you
-sort by “Created” date, the first one should be the source dataset.&lt;/p&gt;
-
-&lt;!-- Scripts after the introduction so you don't notice the table loading --&gt;
-&lt;script src="angular.min.js"&gt;&lt;/script&gt;
-
-&lt;script src="angular-table.js"&gt;&lt;/script&gt;
-
-&lt;script src="angular-strap.js"&gt;&lt;/script&gt;
-
-&lt;script src="script.js"&gt;&lt;/script&gt;
-
-&lt;link rel="stylesheet" href="style.css" /&gt;
-
-&lt;div ng-app="genealogy"&gt;
-  &lt;div ng-controller="GenealogyCtrl"&gt;
-    &lt;select ng-model="table" ng-options="t.source.name for t in tables"&gt;
-      &lt;option value=""&gt;Choose a dataset&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;div ng-show="table"&gt;
-      &lt;h3&gt;The family/table&lt;/h3&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;strong&gt;Original source&lt;/strong&gt;: &lt;a href="https://{{table.source.portal}}/-/-/{{table.source.id}}"&gt;{{table.source.portal}}&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Number of children&lt;/strong&gt;: {{table.datasets.length}}&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Total downloads&lt;/strong&gt;: {{ table.totals.downloadCount }}&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Total views&lt;/strong&gt;: {{ table.totals.viewCount }}&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: {{table.source.description}}&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;h3&gt;Its member views&lt;/h3&gt;
-      &lt;angular-table model="table.datasets" default-sort-column="createdAt"&gt;
-        &lt;header-row&gt;
-
-          &lt;header-column sortable="true" sort-field-name="name"&gt;
-            &lt;div style="display: inline-block;"&gt;Name&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-          &lt;header-column class="skinny" sortable="true" sort-field-name="createdAt"&gt;
-            &lt;div style="display: inline-block;"&gt;Created&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-          &lt;header-column class="skinny" sortable="true" sort-field-name="viewCount"&gt;
-            &lt;div style="display: inline-block;"&gt;Hits&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-          &lt;header-column class="skinny" sortable="true" sort-field-name="downloadCount"&gt;
-            &lt;div style="display: inline-block;"&gt;Down-loads&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-          &lt;header-column class="less-skinny" sortable="true" sort-field-name="ncell"&gt;
-            &lt;div style="display: inline-block;"&gt;Size&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-          &lt;header-column sortable="true" sort-field-name="ncopies"&gt;
-            &lt;div style="display: inline-block;"&gt;Federation&lt;/div&gt;
-            &lt;sort-arrow-ascending&gt;&lt;/sort-arrow-ascending&gt;
-            &lt;sort-arrow-descending&gt;&lt;/sort-arrow-descending&gt;
-          &lt;/header-column&gt;
-
-        &lt;/header-row&gt;
-
-        &lt;row on-selected="emptyFunction" selected-color="#111"&gt;
-          &lt;column&gt;&lt;a href="https://{{row.source_portal_hack}}/-/-/{{row.id}}" title="{{row.name}}"&gt;{{row.shortName}}&lt;/a&gt;&lt;/column&gt;
-          &lt;column class="skinny"&gt;{{row.prettyDate}}&lt;/column&gt;
-          &lt;column class="skinny number"&gt;{{row.viewCountPretty}}&lt;/column&gt;
-          &lt;column class="skinny number"&gt;{{row.downloadCountPretty}}&lt;/column&gt;
-          &lt;column class="less-skinny"&gt;
-            {{row.ncellPretty}} cells
-            &lt;ul style="list-style: none;" class="snug" ng-show="row.rowSelected"&gt;
-              &lt;li class="snug"&gt;&lt;small&gt;{{row.ncolPretty}} variables&lt;/small&gt;&lt;/li&gt;
-              &lt;li class="snug"&gt;&lt;small&gt;{{row.nrowPretty}} records&lt;/small&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/column&gt;
-          &lt;column&gt;
-            &lt;span ng-hide="row.rowSelected"&gt;{{row.ncopiesPretty}}&lt;/span&gt;
-            &lt;ul class="snug" style="list-style: none;" ng-show="row.rowSelected"&gt;
-              &lt;li class="snug" ng-repeat="portal in row.portals"&gt;&lt;small&gt;{{portal}}&lt;/small&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/column&gt;
-        &lt;/row&gt;
-      &lt;/angular-table&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
 </content>
   </entry>
 </feed>

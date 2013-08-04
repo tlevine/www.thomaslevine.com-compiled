@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Moments of a function</title>
+    <meta content='I made a table years ago to help me understand what the moments of a function were.' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Moments of a function' name='twitter:title'>
+    <meta content='I made a table years ago to help me understand what the moments of a function were.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/moments-of-a-function/biostatistics-ryan-gosling.jpg' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/moments-of-a-function/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='I made a table years ago to help me understand what the moments of a function were.' property='og:description'>
+    <meta content='Moments of a function' property='og:title'>
+    <meta content='http://thomaslevine.com/!/moments-of-a-function/biostatistics-ryan-gosling.jpg' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <h1>
+            Moments of a function
+          </h1>
+          <div class='date'>
+            August 04, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>I made this table years ago to help me understand what the moments of a function were.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Formula</th>
+                  <th><script type="math/tex">\mu_{0}</script></th>
+                  <th><script type="math/tex">\mu_{1}</script></th>
+                  <th><script type="math/tex">\mu_{2}</script></th>
+                  <th><script type="math/tex">\mu_{3}</script></th>
+                  <th><script type="math/tex">\mu_{4}</script></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Crude moment</td>
+                  <td><script type="math/tex">\mu_{n}=E \left( X^n \right) </script></td>
+                  <td> </td>
+                  <td><script type="math/tex">\mu</script></td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td>Central moment</td>
+                  <td><script type="math/tex">\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)</script></td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td><script type="math/tex">\sigma^2</script></td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td>Standardized moment</td>
+                  <td><script type="math/tex">\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}</script></td>
+                  <td> </td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td><script type="math/tex">\gamma_1</script></td>
+                  <td><script type="math/tex">\gamma_2</script></td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <!-- I found this in some old notes that I'd written in LaTeX.
+            
+            \begin{table*}
+            \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l l r r r r r}
+            \toprule
+            Name                & Formula &
+            $\mu_{0}$ & $\mu_{1}$ & $\mu_{2}$ & $\mu_{3}$ & $\mu_{4}$ \\
+            \midrule 
+            Crude moment        & $\mu_{n}=E \left( X^n \right) $ &
+              & $\mu$ & & & \\
+            Central moment      & $\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)$ &
+            1 & 0     & $\sigma^2$ & & \\
+            Standardized moment & $\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}$ &
+              & 0     & 1          & $\gamma_1$ & $\gamma_2$ \\
+            \bottomrule
+            \end{tabular*}
+            \caption{\label{moments.tab} Moments of a function, where $\mu=mean$, $\sigma^2=variance$, $\gamma_1=skewness$ and $\gamma_2=kurtosis$.}
+            \end{table*}
+            
+            -->
+            
+            <p>Read it like this: The second (<script type="math/tex">\mu_2</script>) central moment is <script type="math/tex">\sigma^2</script>.</p>
+            
+            <p>Some moments always have a particular value. For example,
+            the zeroth central moment is always one; we plug zero into
+            the central moment formula for <script type="math/tex">n</script>, and we wind up taking
+            the expected value of a bunch of ones.
+            Some of the moments have special names; <script type="math/tex">\mu</script> is the mean,
+            <script type="math/tex">\sigma^2</script>is the variance, <script type="math/tex">\gamma_1</script>is the skewness,
+            and <script type="math/tex">\gamma_2</script>is the kurtosis.</p>
+            
+            <p>I don’t exactly know what drove me to learn about the moments
+            of a function. It couldn’t have had anything to do with any sort
+            of class or work, so I probably just read about them in a book.
+            And I have yet to find any practical reason to know about them.</p>
+            
+            <p>But it was all worth it because now I understand
+            <a href="http://biostatisticsryangoslingreturns.tumblr.com/post/55797271777">Biostatistics Ryan Gosling</a>.</p>
+            
+            <p><img src="biostatistics-ryan-gosling.jpg" alt="Hey girl, I loved you from the E(X) I saw you." /></p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/moments-of-a-function/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
