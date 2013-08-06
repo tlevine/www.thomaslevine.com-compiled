@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-05T07:00:00Z</updated>
+  <updated>2013-08-06T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -10,10 +10,10 @@
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-08-05:/!/higher-power-distance-measures/index.html</id>
+    <id>tag:www.thomaslevine.com,2013-08-06:/!/higher-power-distance-measures/index.html</id>
     <title type="html">Higher-power distance measures</title>
-    <published>2013-08-05T07:00:00Z</published>
-    <updated>2013-08-05T07:00:00Z</updated>
+    <published>2013-08-06T07:00:00Z</published>
+    <updated>2013-08-06T07:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/higher-power-distance-measures/index.html"/>
     <content type="html">&lt;h2 id="sums-of-shapes"&gt;Sums of shapes&lt;/h2&gt;
 &lt;p&gt;Let’s say we have a bunch of numbers, represented by the tick marks towards
