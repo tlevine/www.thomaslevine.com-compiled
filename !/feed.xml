@@ -2,13 +2,332 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-12T07:00:00Z</updated>
+  <updated>2013-08-14T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-14:/!/socrata-metrics-api/index.html</id>
+    <title type="html">How to use Socrata's site metrics API</title>
+    <published>2013-08-14T07:00:00Z</published>
+    <updated>2013-08-14T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-metrics-api/index.html"/>
+    <content type="html">&lt;p&gt;The site metrics API on a Socrata open data portal tells you some
+pretty cool things about how people are using the portal. I’m going
+to show you how to get use the API.&lt;/p&gt;
+
+&lt;h2 id="getting-access-to-the-site-metrics-data"&gt;Getting access to the site metrics data&lt;/h2&gt;
+&lt;p&gt;The site metrics data are private by default, so you first need to get
+access to them.&lt;/p&gt;
+
+&lt;p&gt;One way to get access is to become a
+“&lt;a href="https://data.oaklandnet.com/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;_=1376438538384"&gt;domain member&lt;/a&gt;”. I don’t know
+exactly how you do that, but it surely involves working for organization
+that is publishing the data.&lt;/p&gt;
+
+&lt;p&gt;You can also get access if a portal administrator makes the site metrics
+public. She can do this by talking to a support person from Socrata.&lt;/p&gt;
+
+&lt;p&gt;Out of the 60 portals I know about, 12 currently publish the analytics page openly.
+(I run &lt;a href="https://github.com/tlevine/socrata-nominate/blob/master/has_analytics.sh"&gt;this script&lt;/a&gt; to check.)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://data.austintexas.gov/analytics"&gt;data.austintexas.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.cityofnewyork.us/analytics"&gt;data.cityofnewyork.us&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.hawaii.gov/analytics"&gt;data.hawaii.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://explore.data.gov/analytics"&gt;explore.data.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://bronx.lehman.cuny.edu/analytics"&gt;bronx.lehman.cuny.edu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.sfgov.org/analytics"&gt;data.sfgov.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.baltimorecity.gov/analytics"&gt;data.baltimorecity.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.oregon.gov/analytics"&gt;data.oregon.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.raleighnc.gov/analytics"&gt;data.raleighnc.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.ok.gov/analytics"&gt;data.ok.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.seattle.gov/analytics"&gt;data.seattle.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.montgomerycountymd.gov/analytics"&gt;data.montgomerycountymd.gov&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The site analytics page gets its data from the site metrics API, and
+that API becomes available to the public when the site analytics page is made
+available to the public.&lt;/p&gt;
+
+&lt;h2 id="using-the-api"&gt;Using the API&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The whole API uses the endpoint &lt;code&gt;/api/site_metrics.json&lt;/code&gt;.
+You access this endpoint by making a typical GET request; you don’t need
+any special cookie, header, or API key.&lt;/p&gt;
+
+&lt;p&gt;Two query arguments are required.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;start&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;end&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are both dates, represented as milliseconds since January 1, 1970.
+(It’s something like “&lt;script&gt;document.write((new Date()).getTime())&lt;/script&gt;&lt;noscript&gt;1376439688459&lt;/noscript&gt;”.)
+These arguments define the range within which the metrics will be aggregated.&lt;/p&gt;
+
+&lt;p&gt;This endpoint exposes three methods.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Site-wide statistics (no method)&lt;/li&gt;
+  &lt;li&gt;Site-wide statistics by time interval (&lt;code&gt;series&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;Most popular (&lt;code&gt;top&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each method is discussed below.&lt;/p&gt;
+
+&lt;h3 id="site-wide-statistics-no-method"&gt;Site-wide statistics (no method)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you specify no method argument, you’ll get some statistics
+about the entire portal, such as the total number of datasets
+created since the beginning of time (&lt;code&gt;datasets-created-total&lt;/code&gt;),
+the number of datasets created within the date range specified
+by &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt; (&lt;code&gt;datasets-created&lt;/code&gt;), and the number of
+rows of data that were accessed via the API within the date
+range (&lt;code&gt;rows-accessed-api&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999
+{
+  "datasets-created-total" : 5623,
+  "datasets-deleted-total" : 4801,
+  "datasets-created-blobby-total" : 113,
+  "datasets-deleted-blobby-total" : 4,
+  "datasets-created-href-total" : 13,
+  "datasets-deleted-href-total" : 10,
+  "rows-created-total" : 40757082,
+  "rows-deleted-total" : 25546425,
+  "page-views-total" : 2599228,
+  "embeds-total" : 489504,
+  "embeds" : 12094,
+  "maps-created" : 99,
+  "bytes-out" : 112213178897,
+  "page-views" : 74530,
+  "rows-loaded-api" : 20272,
+  "rows-accessed-website" : 59636,
+  "rows-loaded-download" : 8771634,
+  "rows-accessed-api" : 611,
+  "rows-loaded-website" : 778954,
+  "rows-deleted" : 628998,
+  "rows-accessed-rss" : 610,
+  "maps-deleted" : 99,
+  "filters-created" : 4995,
+  "rows-loaded-widget" : 1347648,
+  "rows-accessed-widget" : 67687,
+  "geocoding-requests" : 10009,
+  "users-created" : 645,
+  "datasets-created" : 147,
+  "js-page-view" : 68095,
+  "datasets-deleted" : 122,
+  "rows-accessed-download" : 379,
+  "view-loaded" : 16599,
+  "app-token-created" : 1,
+  "charts-deleted" : 17,
+  "shares" : 1,
+  "rows-loaded-rss" : 26698,
+  "bytes-in" : 658003507,
+  "filters-deleted" : 4985,
+  "charts-created" : 16,
+  "rows-created" : 1040389,
+  "comments" : 2
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="site-wide-statistics-by-time-interval-series"&gt;Site-wide statistics by time interval (&lt;code&gt;series&lt;/code&gt;)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=series
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to get site-wide statistics by day, you could
+use no method (above) and vary the start and end dates.
+The series method lets you do something equivalent in one
+HTTP request.&lt;/p&gt;
+
+&lt;p&gt;This method requires an additional parameter, &lt;code&gt;slice&lt;/code&gt;.
+Valid values include&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;DAILY&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;WEEKLY&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;MONTHLY&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;YEARLY&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The result is a list of associative arrays, each one
+corresponding to a time interval and containing the same
+metrics that we would see with no method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;method=series&amp;amp;slice=WEEKLY'
+[ {
+  "__start__" : 1374969600000,
+  "metrics" : {
+    ...
+  },
+  "__end__" : 1375574399999
+}, {
+  "__start__" : 1375574400000,
+  "metrics" : {
+    ...
+  },
+  "__end__" : 1376179199999
+}, {
+  ...
+} ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="most-popular-top"&gt;Most popular (&lt;code&gt;top&lt;/code&gt;)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Return the most common entities of a particular type.
+You specify the entity type with the required argument &lt;code&gt;top&lt;/code&gt;;
+it can be any of the following.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;DATASETS&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;REFERRERS&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;SEARCHES&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;EMBEDS&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The output is always an associative array, but the schema
+depends on the type of entity.&lt;/p&gt;
+
+&lt;h4 id="top-datasets"&gt;Top Datasets&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=top&amp;amp;top=DATASETS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This returns a mapping from &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;
+(represented by their &lt;a href="http://dev.socrata.com/docs/endpoints"&gt;4x4 ids&lt;/a&gt;)
+to a view count (that is, the number of times someone opened the webpage for that view).&lt;/p&gt;
+
+&lt;!--
+To check that it's a view count rather than a download count
+or some other count, look at the counts in these two pages.
+
+https://data.oregon.gov/api/views/ffmj-ntaw.json
+https://data.oregon.gov/api/site_metrics.json?start=1175315200000&amp;end=1376438399999&amp;method=top&amp;top=DATASETS
+--&gt;
+
+&lt;pre&gt;&lt;code&gt;curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;method=top&amp;amp;top=DATASETS'
+{
+  "nmjt-yuqx" : 5,
+  "3sqh-pdgv" : 1,
+  "hap2-76p2" : 1,
+  "822n-er69" : 17,
+  "dsje-kuhw" : 1,
+  "8sad-79b5" : 75,
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can query the datasets with 
+&lt;a href="http://dev.socrata.com/deprecated/querying-datasets"&gt;SODA 1&lt;/a&gt; or
+&lt;a href="http://dev.socrata.com/docs/queries"&gt;SODA 2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can get more information about these with the
+&lt;a href="/!/socrata-summary#download-dataset-metadata"&gt;&lt;code&gt;/api/views&lt;/code&gt; endpoint&lt;/a&gt;.
+I’m told that this endpoint is considered part of SODA 1.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;/api/views&lt;/code&gt; endpoint provides information about only one
+&lt;a href="/!/socrata-genealogies#term-view"&gt;view&lt;/a&gt; per 
+The site analytics page uses the batches endpoint (&lt;code&gt;/api/batches&lt;/code&gt;)
+to get metadata about several views at once.
+I haven’t found any documentation on that, but I might document that eventually.&lt;/p&gt;
+
+&lt;h4 id="top-referrers"&gt;Top Referrers&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=top&amp;amp;top=REFERRERS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This also returns counts, presumably view counts. The root associative array
+maps an origin (like &lt;code&gt;http://thomaslevine.com&lt;/code&gt;) to an associative
+array, and that child associative array maps the rest of the URL
+(like &lt;code&gt;/!/socrata-metrics-api/?foo=bar&lt;/code&gt;) to a count.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;method=top&amp;amp;top=REFERRERS&amp;amp;_=1376451966200'
+{
+  "https://govspace.oregon.gov" : {
+    "/community/forall/testdrive/jasonstest?view=overview" : 2,
+    "/index.jspa" : 1,
+    "/community/agencies/das/geo/gpl" : 1,
+    "/index.jspa?showhomepage=true" : 1,
+    "/community/forall/testdrive/jasonstest" : 18
+  },
+  ...,
+  "http://www.state.or.us" : {
+    "/DAS/Pages/mobile_bldgclose.aspx" : 2,
+    "/Pages/do_business_in_oregon.aspx" : 1,
+    "/Pages/sitemap.aspx" : 1,
+    "/docs/pop_box/news_story_template.doc" : 1,
+    "/ODA/FSD/Pages/recalls.aspx" : 1,
+    "/DAS/pages/bldg_close/index.aspx" : 1
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="top-searches"&gt;Top Searches&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=top&amp;amp;top=SEARCHES
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Searches are separated into dataset searches and user searches.
+Within each, a mapping from search terms to counts is returned.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;method=top&amp;amp;top=SEARCHES&amp;amp;_=1376451966200'
+{
+  "top-user-searches" : {
+    "Tiffany.Koss@state.or.us" : 1
+  },
+  "top-dataset-searches" : {
+    "Oregon Public Meetings" : 2,
+    "copy of 501 c3" : 1,
+    ...
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="top-embeds"&gt;Top Embeds&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /api/site_metrics.json?method=top&amp;amp;top=EMBEDS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This returns the same format as the top referrers; the root associative array
+maps an origin (like &lt;code&gt;http://thomaslevine.com&lt;/code&gt;) to an associative
+array, and that child associative array maps the rest of the URL
+(like &lt;code&gt;/!/socrata-metrics-api/?foo=bar&lt;/code&gt;) to a count.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;amp;end=1376438399999&amp;amp;method=top&amp;amp;top=EMBEDS'
+{
+  "http://translate.googleusercontent.com" : {
+    "/translate_c?depth=1&amp;amp;hl=fa&amp;amp;prev=/search%3Fq%3Dmaking%2BElectric%2Bhemlock%2Blaunch%26biw%3D1024%26bih%3D670&amp;amp;rurl=translate.google.com&amp;amp;sl=en&amp;amp;u=http://www.oregon.gov/osmb/pages/access/access.aspx&amp;amp;usg=ALkJrhi2xJIclSRZsqxBQIg-pjV-38Mlbw" : 3
+  },
+  "https://govspace.oregon.gov" : {
+    "/community/forall/testdrive/jasonstest?view=overview" : 2,
+    "/community/forall/testdrive/jasonstest" : 4
+  },
+  "https://t.co" : {
+    "/IXXONPIGWT" : 1
+  },
+  "https://www.google.ca" : {
+    "/" : 2
+  },
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-12:/!/openprism/index.html</id>
     <title type="html">OpenPrism</title>
@@ -444,364 +763,6 @@ And I have yet to find any practical reason to know about them.&lt;/p&gt;
 &lt;a href="http://biostatisticsryangoslingreturns.tumblr.com/post/55797271777"&gt;Biostatistics Ryan Gosling&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="biostatistics-ryan-gosling.jpg" alt="Hey girl, I loved you from the E(X) I saw you." /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-02:/!/r-curses-for-data-witches/index.html</id>
-    <title type="html">R graphics tricks that you probably shouldn't use</title>
-    <published>2013-08-02T07:00:00Z</published>
-    <updated>2013-08-02T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/r-curses-for-data-witches/index.html"/>
-    <content type="html">&lt;style&gt;pre { font-size: 0.8em; }&lt;/style&gt;
-
-&lt;p&gt;I’ve spent/wasted years of my life trying to make nice plots with
-base R graphics, so I’ve learned a bunch of base R graphics tricks.
-One annoying part of base R graphics is that the defaults look ugly,
-so I’m going to show you how to make some bar plots, strip charts,
-and line plots that don’t look so ugly.&lt;/p&gt;
-
-&lt;p&gt;You might pick up some useful tricks from this post, but I really
-hope that the insanity of it encourages you to use ggplot instead.&lt;/p&gt;
-
-&lt;h2 id="data"&gt;Data&lt;/h2&gt;
-&lt;p&gt;I’m going to use data came from an earlier version of
-&lt;a href="http://peregrinossantiago.es/eng/pilgrims-office/statistics/"&gt;this website&lt;/a&gt;.
-They’re “statistics about pilgrims who have arrived in Santiago”.
-The observations are monthly, but I’m missing the Novembers and Decembers.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pilgrams &amp;lt;- sqldf("select * from pilgram", dbname = "pilgrams-db.sqlite")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I’m also going to use data from a
-&lt;a href="https://data.somervillema.gov/dataset/Results-of-2011-Wellbeing-Study/pjhx-dusc"&gt;wellbeing study&lt;/a&gt;
-about Somerville, Massachusetts. There are a lot of missing values in this dataset, and I’m only
-trying to show you how to make plots, so I’m just going to remove the missing values.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;wellbeing &amp;lt;- na.omit(read.csv("http://data.somervillema.gov/api/views/pjhx-dusc/rows.csv?accessType=DOWNLOAD"))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="bar-plots"&gt;Bar plots&lt;/h2&gt;
-&lt;p&gt;Maybe we want count the marital statuses of Somerville residents.
-This won’t work.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(wellbeing$X24..What.is.your.marital.status.)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Instead, you need to give barplot a vector of heights. We can make one with &lt;code&gt;table&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-1.png" alt="plot of chunk barplot-1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I can’t read the bar labels, so let’s make the bars horizontal.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-2.png" alt="plot of chunk barplot-2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Oops. Now the labels are rotated the wrong way. The &lt;code&gt;las&lt;/code&gt; parameter to &lt;code&gt;par&lt;/code&gt; handles that.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE, las = 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-3.png" alt="plot of chunk barplot-3" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And let’s adjust the margin and bar labels so the text doesn’t fall off.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;levels(wellbeing$X24..What.is.your.marital.status.)[3] &amp;lt;- "Living with a partner\nbut not married"
-par(mar = c(5, 12, 4, 2))
-barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE, las = 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-4.png" alt="plot of chunk barplot-4" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I also want to sort the bars so they’re easier to read.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE), horiz = TRUE, las = 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-5.png" alt="plot of chunk barplot-5" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The black border around the bars is noisy; let’s remove it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(
-  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
-  horiz = TRUE, las = 1, border = NA)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-6.png" alt="plot of chunk barplot-6" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the colors don’t match. We could just make the bars black,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(
-  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
-  horiz = TRUE, las = 1, border = NA, col = 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-7.png" alt="plot of chunk barplot-7" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;but that’s a bit harsh. Instead, let’s make everything grey.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(
-  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
-  horiz = TRUE, las = 1, border = NA,
-  col = "#666666", fg = "#333333", col.axis = "#333333")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-8.png" alt="plot of chunk barplot-8" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And add a title, of course&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(
-  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),
-  horiz = TRUE, las = 1, border = NA, col = "#666666", fg = "#333333", col.axis = "#333333", 
-  xlab = "Number of residents", main = "Marital statuses of Somerville residents")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/barplot-9.png" alt="plot of chunk barplot-9" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Summing that up, this is approximately what I think the default barplot function should be.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;tom.barplot &amp;lt;- function(height, col = 'grey', border = NA, ...) {
-  barplot(
-    sort(table(height)), col = col, border = border,
-    col = '#666666', fg = '#333333', col.axis = '#333333',
-    ...
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="strip-charts"&gt;Strip charts&lt;/h2&gt;
-&lt;p&gt;Here is a strip chart about how people in Somerville are feeling, on a range of 1 to 10.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "jitter")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-1.png" alt="plot of chunk stripchart-1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The observations are randomly jittered above, but we can also stack the observations.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "stack")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-2.png" alt="plot of chunk stripchart-2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s change the scale to emphasize its limits.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "stack", xlim = c(1, 10))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-3.png" alt="plot of chunk stripchart-3" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The white boxes with borders are noisy; let’s change them to filled boxes.
-The default point type (&lt;code&gt;pch = 1&lt;/code&gt;) doesn’t support a fill color (&lt;code&gt;bg&lt;/code&gt;),
-so we have to switch to a different point type;
-here are the different point types, from &lt;code&gt;example(points)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-pch.png" alt="pchShow" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s use &lt;code&gt;pch = 22&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(
-  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
-  method = "stack", xlim = c(1, 10), col = NA, pch = 22, bg = 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-4.png" alt="plot of chunk stripchart-4" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s just a bar plot. Let’s switch back to jittering and make the
-points translucent.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(
-  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
-  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-5.png" alt="plot of chunk stripchart-5" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s make a nicer axis.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(
-  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
-  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, 
-  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
-  main = "How happy Somerville residents feel")
-axis(1, at = 1:10)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-6.png" alt="plot of chunk stripchart-6" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And let’s not waste half of the canvas.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;stripchart(
-  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,
-  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, 
-  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
-  main = "How happy Somerville residents feel", jitter = 0.5, ylim = c(0, 2))
-axis(1, at = 1:10)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stripchart-7.png" alt="plot of chunk stripchart-7" class="wide" /&gt;&lt;/p&gt;
-
-&lt;h2 id="stacked-bar-plots"&gt;Stacked bar plots&lt;/h2&gt;
-&lt;p&gt;Now we could also color the points by a different color depending on the
-gender.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;barplot(
-  table(
-    wellbeing$X15..Gender..1..female..2..male.,
-    wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..),
-  border = NA, col = c("#333333", "#999999"), 
-  xlab = "How happy do you feel right now, on a scale of 1 to 10?",
-  main = "How happy Somerville residents feel, by gender")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stacked-barplot-1.png" alt="plot of chunk stacked-barplot-1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;We make the legend in a separate command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;wellbeing$X15..Gender..1..female..2..male. &amp;lt;- factor(wellbeing$X15..Gender..1..female..2..male., levels = 1:2)
-levels(wellbeing$X15..Gender..1..female..2..male.) &amp;lt;- c("Female", "Male")
-col &amp;lt;- c("#333333", "#999999")
-barplot(
-  table(wellbeing$X15..Gender..1..female..2..male.,
-    wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..),
-  border = NA, col = col, xlab = "How happy do you feel right now, on a scale of 1 to 10?", 
-  ylab = "Number of residents", main = "How happy Somerville residents feel, by gender")
-legend("topleft", legend = levels(wellbeing$X15..Gender..1..female..2..male.), col = NA, pch = 22, pt.bg = col)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/stacked-barplot-2.png" alt="plot of chunk stacked-barplot-2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;h2 id="par"&gt;par&lt;/h2&gt;
-&lt;p&gt;All of these &lt;code&gt;col&lt;/code&gt;, &lt;code&gt;pch&lt;/code&gt;, &lt;code&gt;bg&lt;/code&gt;, &lt;code&gt;fg&lt;/code&gt;, &lt;code&gt;border&lt;/code&gt;, &amp;amp;c. commands are graphical
-parameters passed to &lt;code&gt;par&lt;/code&gt;. You can set their global defaults with &lt;code&gt;par&lt;/code&gt;,
-but they won’t necessarily apply to the same scope as when you pass them
-within a function. For example, &lt;code&gt;bg&lt;/code&gt; applies to the outer canvas’s background.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;par(bg = "yellow")
-plot(Total ~ id, data = pilgrams, type = "l")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/par-1.png" alt="plot of chunk par-1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;You might use this to set fonts across all of your plots.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;par(family = "serif", font = 3, font.lab = 3, font.main = 2, font.sub = 3)
-plot(Total ~ id, data = pilgrams, type = "l", main = "Pilgrams")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/par-2.png" alt="plot of chunk par-2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I tend to find the global namespace unpleasant, so I like to wrap that
-in a function that closes the device afterwards, with &lt;code&gt;dev.off&lt;/code&gt;.
-(The settings only apply to the current device.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;plot.something &amp;lt;- function(a, b, c, e, f) {
-  par(family = 'serif', font = 3, font.lab = 3, font.main = 2, font.sub = 3)
-  plot(a ~ b, col = c)
-  lines(d, e)
-  # ...
-  dev.off()
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;mfrow&lt;/code&gt; and &lt;code&gt;mfcol&lt;/code&gt; allow you to make multiple plots in one device&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;par(mfrow = c(2, 2))
-plot(lm(Men ~ Women, data = pilgrams), mfrow = c(2, 2))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/par-3.png" alt="plot of chunk par-3" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;bty&lt;/code&gt; lets you change the outer border of the plot.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;plot(Total ~ id, data = pilgrams, type = "l", bty = "l")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/par-4.png" alt="plot of chunk par-4" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Its options are quite hilarious; here is its entry in &lt;code&gt;?par&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;‘bty’ A character string which determined the type of ‘box’ which
-     is drawn about plots.  If ‘bty’ is one of ‘"o"’ (the
-     default), ‘"l"’, ‘"7"’, ‘"c"’, ‘"u"’, or ‘"]"’ the resulting
-     box resembles the corresponding upper case letter.  A value
-     of ‘"n"’ suppresses the box.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Most plotting commands call &lt;code&gt;plot.new&lt;/code&gt;, which clears the plot by
-default. Setting &lt;code&gt;new&lt;/code&gt; to &lt;code&gt;TRUE&lt;/code&gt; makes it not clear the plot, which
-can help you build up more complicated plots.&lt;/p&gt;
-
-&lt;h2 id="line-plots"&gt;Line plots&lt;/h2&gt;
-&lt;p&gt;Displaying multiple sets of lines and points on a graph gets more messy.
-For example, let’s say we want to make two lines to represent pilgram
-counts. One is for people on horseback, and the other is for people on
-foot. I like to start with an empty plot of the full range so we don’t
-cut anything off. Let’s also put the labels and remove the axes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;plot.pilgram.base &amp;lt;- function() {
-  plot(0, 0,
-    xlim = range(pilgrams$id),
-    ylim = c(0, max(c(pilgrams$Foot, pilgrams$Bicicle))),
-    xlab = "Month", ylab = "Number of pilgrams",
-    main = "Pilgrams by month and transportation medium", 
-    axes = FALSE, type = "n")
-}
-plot.pilgram.base()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/complicated-1.png" alt="plot of chunk complicated-1" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The key there is &lt;code&gt;type = 'n'&lt;/code&gt;, which makes no data be plotted.
-Now we can add the lines one at a time.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;plot.pilgram.lines &amp;lt;- function() {
-  lines(Foot ~ id, data = pilgrams, lty = 1)
-  lines(Bicicle ~ id, data = pilgrams, lty = 2)
-  legend("topleft", c("Foot", "Bicycle"), title = "Transportation media", lty = 1:2)
-}
-plot.pilgram.base()
-plot.pilgram.lines()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/complicated-2.png" alt="plot of chunk complicated-2" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I removed the axes because the default axes are usually quite
-ugly. Now let’s add prettier axes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;plot.pilgram.axes &amp;lt;- function() {
-  axis(1, at = seq(1, 80, 10), labels = paste("January", unique(pilgrams$year)))
-  par(las = 1)
-  axis(2, at = seq(0, 60000, 10000), labels = c(0, paste0(1:6, "0,000")))
-}
-plot.pilgram.base()
-plot.pilgram.lines()
-plot.pilgram.axes()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src="figure/complicated-3.png" alt="plot of chunk complicated-3" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The tick marks go at &lt;code&gt;at&lt;/code&gt;, and they are labeled with &lt;code&gt;labels&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id="use-ggplot"&gt;Use ggplot&lt;/h2&gt;
-&lt;p&gt;I just showed you some simple bar plots, strip chart and
-line plots in base R graphics. Each one only took a few lines,
-but they were sort of complicated. Moreover, each plot type
-took slightly different inputs, so I needed to transform the
-data a bit differently for each one and to send different
-parameters for each one. This is what makes base R graphics.&lt;/p&gt;
-
-&lt;p&gt;ggplot, on the other hand, has a much more reasonable and standardized
-plot-configuration interface (through the grammar of graphics). The
-equivalent ggplot commands for all of these plots would have been about
-as complicated but much more predictable and consistent across plot types.&lt;/p&gt;
-
-&lt;p&gt;I still use base R graphics for &lt;a href="/music"&gt;music videos&lt;/a&gt;, but
-I try to use ggplot for everything else.&lt;/p&gt;
 </content>
   </entry>
 </feed>

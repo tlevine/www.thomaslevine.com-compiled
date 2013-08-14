@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>How to use Socrata's site metrics API</title>
+    <meta content='Unofficial documentation of an unofficial Socrata API' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content="How to use Socrata's site metrics API" name='twitter:title'>
+    <meta content='Unofficial documentation of an unofficial Socrata API' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/socrata-metrics-api/screenshot.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-metrics-api/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='Unofficial documentation of an unofficial Socrata API' property='og:description'>
+    <meta content="How to use Socrata's site metrics API" property='og:title'>
+    <meta content='http://thomaslevine.com/!/socrata-metrics-api/screenshot.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              How to use Socrata's site metrics API
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            August 14, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>The site metrics API on a Socrata open data portal tells you some
+            pretty cool things about how people are using the portal. I’m going
+            to show you how to get use the API.</p>
+            
+            <h2 id="getting-access-to-the-site-metrics-data">Getting access to the site metrics data</h2>
+            <p>The site metrics data are private by default, so you first need to get
+            access to them.</p>
+            
+            <p>One way to get access is to become a
+            “<a href="https://data.oaklandnet.com/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;_=1376438538384">domain member</a>”. I don’t know
+            exactly how you do that, but it surely involves working for organization
+            that is publishing the data.</p>
+            
+            <p>You can also get access if a portal administrator makes the site metrics
+            public. She can do this by talking to a support person from Socrata.</p>
+            
+            <p>Out of the 60 portals I know about, 12 currently publish the analytics page openly.
+            (I run <a href="https://github.com/tlevine/socrata-nominate/blob/master/has_analytics.sh">this script</a> to check.)</p>
+            
+            <ul>
+              <li><a href="https://data.austintexas.gov/analytics">data.austintexas.gov</a></li>
+              <li><a href="https://data.cityofnewyork.us/analytics">data.cityofnewyork.us</a></li>
+              <li><a href="https://data.hawaii.gov/analytics">data.hawaii.gov</a></li>
+              <li><a href="https://explore.data.gov/analytics">explore.data.gov</a></li>
+              <li><a href="https://bronx.lehman.cuny.edu/analytics">bronx.lehman.cuny.edu</a></li>
+              <li><a href="https://data.sfgov.org/analytics">data.sfgov.org</a></li>
+              <li><a href="https://data.baltimorecity.gov/analytics">data.baltimorecity.gov</a></li>
+              <li><a href="https://data.oregon.gov/analytics">data.oregon.gov</a></li>
+              <li><a href="https://data.raleighnc.gov/analytics">data.raleighnc.gov</a></li>
+              <li><a href="https://data.ok.gov/analytics">data.ok.gov</a></li>
+              <li><a href="https://data.seattle.gov/analytics">data.seattle.gov</a></li>
+              <li><a href="https://data.montgomerycountymd.gov/analytics">data.montgomerycountymd.gov</a></li>
+            </ul>
+            
+            <p>The site analytics page gets its data from the site metrics API, and
+            that API becomes available to the public when the site analytics page is made
+            available to the public.</p>
+            
+            <h2 id="using-the-api">Using the API</h2>
+            
+            <pre><code>GET /api/site_metrics.json&#x000A;</code></pre>
+            
+            <p>The whole API uses the endpoint <code>/api/site_metrics.json</code>.
+            You access this endpoint by making a typical GET request; you don’t need
+            any special cookie, header, or API key.</p>
+            
+            <p>Two query arguments are required.</p>
+            
+            <ul>
+              <li><code>start</code></li>
+              <li><code>end</code></li>
+            </ul>
+            
+            <p>These are both dates, represented as milliseconds since January 1, 1970.
+            (It’s something like “<script>document.write((new Date()).getTime())</script><noscript>1376439688459</noscript>”.)
+            These arguments define the range within which the metrics will be aggregated.</p>
+            
+            <p>This endpoint exposes three methods.</p>
+            
+            <ul>
+              <li>Site-wide statistics (no method)</li>
+              <li>Site-wide statistics by time interval (<code>series</code>)</li>
+              <li>Most popular (<code>top</code>)</li>
+            </ul>
+            
+            <p>Each method is discussed below.</p>
+            
+            <h3 id="site-wide-statistics-no-method">Site-wide statistics (no method)</h3>
+            
+            <pre><code>GET /api/site_metrics.json&#x000A;</code></pre>
+            
+            <p>If you specify no method argument, you’ll get some statistics
+            about the entire portal, such as the total number of datasets
+            created since the beginning of time (<code>datasets-created-total</code>),
+            the number of datasets created within the date range specified
+            by <code>start</code> and <code>end</code> (<code>datasets-created</code>), and the number of
+            rows of data that were accessed via the API within the date
+            range (<code>rows-accessed-api</code>).</p>
+            
+            <pre><code>curl https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&#x000A;{&#x000A;  "datasets-created-total" : 5623,&#x000A;  "datasets-deleted-total" : 4801,&#x000A;  "datasets-created-blobby-total" : 113,&#x000A;  "datasets-deleted-blobby-total" : 4,&#x000A;  "datasets-created-href-total" : 13,&#x000A;  "datasets-deleted-href-total" : 10,&#x000A;  "rows-created-total" : 40757082,&#x000A;  "rows-deleted-total" : 25546425,&#x000A;  "page-views-total" : 2599228,&#x000A;  "embeds-total" : 489504,&#x000A;  "embeds" : 12094,&#x000A;  "maps-created" : 99,&#x000A;  "bytes-out" : 112213178897,&#x000A;  "page-views" : 74530,&#x000A;  "rows-loaded-api" : 20272,&#x000A;  "rows-accessed-website" : 59636,&#x000A;  "rows-loaded-download" : 8771634,&#x000A;  "rows-accessed-api" : 611,&#x000A;  "rows-loaded-website" : 778954,&#x000A;  "rows-deleted" : 628998,&#x000A;  "rows-accessed-rss" : 610,&#x000A;  "maps-deleted" : 99,&#x000A;  "filters-created" : 4995,&#x000A;  "rows-loaded-widget" : 1347648,&#x000A;  "rows-accessed-widget" : 67687,&#x000A;  "geocoding-requests" : 10009,&#x000A;  "users-created" : 645,&#x000A;  "datasets-created" : 147,&#x000A;  "js-page-view" : 68095,&#x000A;  "datasets-deleted" : 122,&#x000A;  "rows-accessed-download" : 379,&#x000A;  "view-loaded" : 16599,&#x000A;  "app-token-created" : 1,&#x000A;  "charts-deleted" : 17,&#x000A;  "shares" : 1,&#x000A;  "rows-loaded-rss" : 26698,&#x000A;  "bytes-in" : 658003507,&#x000A;  "filters-deleted" : 4985,&#x000A;  "charts-created" : 16,&#x000A;  "rows-created" : 1040389,&#x000A;  "comments" : 2&#x000A;}&#x000A;</code></pre>
+            
+            <h3 id="site-wide-statistics-by-time-interval-series">Site-wide statistics by time interval (<code>series</code>)</h3>
+            
+            <pre><code>GET /api/site_metrics.json?method=series&#x000A;</code></pre>
+            
+            <p>If you want to get site-wide statistics by day, you could
+            use no method (above) and vary the start and end dates.
+            The series method lets you do something equivalent in one
+            HTTP request.</p>
+            
+            <p>This method requires an additional parameter, <code>slice</code>.
+            Valid values include</p>
+            
+            <ul>
+              <li><code>DAILY</code></li>
+              <li><code>WEEKLY</code></li>
+              <li><code>MONTHLY</code></li>
+              <li><code>YEARLY</code></li>
+            </ul>
+            
+            <p>The result is a list of associative arrays, each one
+            corresponding to a time interval and containing the same
+            metrics that we would see with no method.</p>
+            
+            <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=series&amp;slice=WEEKLY'&#x000A;[ {&#x000A;  "__start__" : 1374969600000,&#x000A;  "metrics" : {&#x000A;    ...&#x000A;  },&#x000A;  "__end__" : 1375574399999&#x000A;}, {&#x000A;  "__start__" : 1375574400000,&#x000A;  "metrics" : {&#x000A;    ...&#x000A;  },&#x000A;  "__end__" : 1376179199999&#x000A;}, {&#x000A;  ...&#x000A;} ]&#x000A;</code></pre>
+            
+            <h3 id="most-popular-top">Most popular (<code>top</code>)</h3>
+            
+            <pre><code>GET /api/site_metrics.json?method=top&#x000A;</code></pre>
+            
+            <p>Return the most common entities of a particular type.
+            You specify the entity type with the required argument <code>top</code>;
+            it can be any of the following.</p>
+            
+            <ul>
+              <li><code>DATASETS</code></li>
+              <li><code>REFERRERS</code></li>
+              <li><code>SEARCHES</code></li>
+              <li><code>EMBEDS</code></li>
+            </ul>
+            
+            <p>The output is always an associative array, but the schema
+            depends on the type of entity.</p>
+            
+            <h4 id="top-datasets">Top Datasets</h4>
+            
+            <pre><code>GET /api/site_metrics.json?method=top&amp;top=DATASETS&#x000A;</code></pre>
+            
+            <p>This returns a mapping from <a href="/!/socrata-genealogies#term-view">views</a>
+            (represented by their <a href="http://dev.socrata.com/docs/endpoints">4x4 ids</a>)
+            to a view count (that is, the number of times someone opened the webpage for that view).</p>
+            
+            <!--
+            To check that it's a view count rather than a download count
+            or some other count, look at the counts in these two pages.
+            
+            https://data.oregon.gov/api/views/ffmj-ntaw.json
+            https://data.oregon.gov/api/site_metrics.json?start=1175315200000&end=1376438399999&method=top&top=DATASETS
+            -->
+            
+            <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=top&amp;top=DATASETS'&#x000A;{&#x000A;  "nmjt-yuqx" : 5,&#x000A;  "3sqh-pdgv" : 1,&#x000A;  "hap2-76p2" : 1,&#x000A;  "822n-er69" : 17,&#x000A;  "dsje-kuhw" : 1,&#x000A;  "8sad-79b5" : 75,&#x000A;  ...&#x000A;}&#x000A;</code></pre>
+            
+            <p>You can query the datasets with 
+            <a href="http://dev.socrata.com/deprecated/querying-datasets">SODA 1</a> or
+            <a href="http://dev.socrata.com/docs/queries">SODA 2</a>.</p>
+            
+            <p>You can get more information about these with the
+            <a href="/!/socrata-summary#download-dataset-metadata"><code>/api/views</code> endpoint</a>.
+            I’m told that this endpoint is considered part of SODA 1.</p>
+            
+            <p>The <code>/api/views</code> endpoint provides information about only one
+            <a href="/!/socrata-genealogies#term-view">view</a> per 
+            The site analytics page uses the batches endpoint (<code>/api/batches</code>)
+            to get metadata about several views at once.
+            I haven’t found any documentation on that, but I might document that eventually.</p>
+            
+            <h4 id="top-referrers">Top Referrers</h4>
+            
+            <pre><code>GET /api/site_metrics.json?method=top&amp;top=REFERRERS&#x000A;</code></pre>
+            
+            <p>This also returns counts, presumably view counts. The root associative array
+            maps an origin (like <code>http://thomaslevine.com</code>) to an associative
+            array, and that child associative array maps the rest of the URL
+            (like <code>/!/socrata-metrics-api/?foo=bar</code>) to a count.</p>
+            
+            <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=top&amp;top=REFERRERS&amp;_=1376451966200'&#x000A;{&#x000A;  "https://govspace.oregon.gov" : {&#x000A;    "/community/forall/testdrive/jasonstest?view=overview" : 2,&#x000A;    "/index.jspa" : 1,&#x000A;    "/community/agencies/das/geo/gpl" : 1,&#x000A;    "/index.jspa?showhomepage=true" : 1,&#x000A;    "/community/forall/testdrive/jasonstest" : 18&#x000A;  },&#x000A;  ...,&#x000A;  "http://www.state.or.us" : {&#x000A;    "/DAS/Pages/mobile_bldgclose.aspx" : 2,&#x000A;    "/Pages/do_business_in_oregon.aspx" : 1,&#x000A;    "/Pages/sitemap.aspx" : 1,&#x000A;    "/docs/pop_box/news_story_template.doc" : 1,&#x000A;    "/ODA/FSD/Pages/recalls.aspx" : 1,&#x000A;    "/DAS/pages/bldg_close/index.aspx" : 1&#x000A;  }&#x000A;}&#x000A;</code></pre>
+            
+            <h4 id="top-searches">Top Searches</h4>
+            
+            <pre><code>GET /api/site_metrics.json?method=top&amp;top=SEARCHES&#x000A;</code></pre>
+            
+            <p>Searches are separated into dataset searches and user searches.
+            Within each, a mapping from search terms to counts is returned.</p>
+            
+            <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=top&amp;top=SEARCHES&amp;_=1376451966200'&#x000A;{&#x000A;  "top-user-searches" : {&#x000A;    "Tiffany.Koss@state.or.us" : 1&#x000A;  },&#x000A;  "top-dataset-searches" : {&#x000A;    "Oregon Public Meetings" : 2,&#x000A;    "copy of 501 c3" : 1,&#x000A;    ...&#x000A;  }&#x000A;}&#x000A;</code></pre>
+            
+            <h4 id="top-embeds">Top Embeds</h4>
+            
+            <pre><code>GET /api/site_metrics.json?method=top&amp;top=EMBEDS&#x000A;</code></pre>
+            
+            <p>This returns the same format as the top referrers; the root associative array
+            maps an origin (like <code>http://thomaslevine.com</code>) to an associative
+            array, and that child associative array maps the rest of the URL
+            (like <code>/!/socrata-metrics-api/?foo=bar</code>) to a count.</p>
+            
+            <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=top&amp;top=EMBEDS'&#x000A;{&#x000A;  "http://translate.googleusercontent.com" : {&#x000A;    "/translate_c?depth=1&amp;hl=fa&amp;prev=/search%3Fq%3Dmaking%2BElectric%2Bhemlock%2Blaunch%26biw%3D1024%26bih%3D670&amp;rurl=translate.google.com&amp;sl=en&amp;u=http://www.oregon.gov/osmb/pages/access/access.aspx&amp;usg=ALkJrhi2xJIclSRZsqxBQIg-pjV-38Mlbw" : 3&#x000A;  },&#x000A;  "https://govspace.oregon.gov" : {&#x000A;    "/community/forall/testdrive/jasonstest?view=overview" : 2,&#x000A;    "/community/forall/testdrive/jasonstest" : 4&#x000A;  },&#x000A;  "https://t.co" : {&#x000A;    "/IXXONPIGWT" : 1&#x000A;  },&#x000A;  "https://www.google.ca" : {&#x000A;    "/" : 2&#x000A;  },&#x000A;  ...&#x000A;}&#x000A;</code></pre>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-metrics-api/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
