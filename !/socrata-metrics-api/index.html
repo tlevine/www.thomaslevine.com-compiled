@@ -237,7 +237,7 @@
             I’m told that this endpoint is considered part of SODA 1.</p>
             
             <p>The <code>/api/views</code> endpoint provides information about only one
-            <a href="/!/socrata-genealogies#term-view">view</a> per 
+            <a href="/!/socrata-genealogies#term-view">view</a> per HTTP request.
             The site analytics page uses the batches endpoint (<code>/api/batches</code>)
             to get metadata about several views at once.
             I haven’t found any documentation on that, but I might document that eventually.</p>
@@ -272,6 +272,9 @@
             (like <code>/!/socrata-metrics-api/?foo=bar</code>) to a count.</p>
             
             <pre><code>curl 'https://data.oregon.gov/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;method=top&amp;top=EMBEDS'&#x000A;{&#x000A;  "http://translate.googleusercontent.com" : {&#x000A;    "/translate_c?depth=1&amp;hl=fa&amp;prev=/search%3Fq%3Dmaking%2BElectric%2Bhemlock%2Blaunch%26biw%3D1024%26bih%3D670&amp;rurl=translate.google.com&amp;sl=en&amp;u=http://www.oregon.gov/osmb/pages/access/access.aspx&amp;usg=ALkJrhi2xJIclSRZsqxBQIg-pjV-38Mlbw" : 3&#x000A;  },&#x000A;  "https://govspace.oregon.gov" : {&#x000A;    "/community/forall/testdrive/jasonstest?view=overview" : 2,&#x000A;    "/community/forall/testdrive/jasonstest" : 4&#x000A;  },&#x000A;  "https://t.co" : {&#x000A;    "/IXXONPIGWT" : 1&#x000A;  },&#x000A;  "https://www.google.ca" : {&#x000A;    "/" : 2&#x000A;  },&#x000A;  ...&#x000A;}&#x000A;</code></pre>
+            
+            <h2 id="related">Related</h2>
+            <p>Socrata has a <a href="http://support.socrata.com/entries/20494886-What-do-the-different-metrics-in-the-Socrata-Analytics-Pages-mean-">support page</a> about the analytics page.</p>
           </article>
         </div>
         <div id='pagination'>

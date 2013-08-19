@@ -2,13 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-14T07:00:00Z</updated>
+  <updated>2013-08-19T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-19:/!/reciprocity/index.html</id>
+    <title type="html">Reciprocity</title>
+    <published>2013-08-19T07:00:00Z</published>
+    <updated>2013-08-19T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/reciprocity/index.html"/>
+    <content type="html">&lt;p&gt;Last year, while on my way to the &lt;a href="http://www.ire.org/nicar/"&gt;NICAR&lt;/a&gt;
+conference, I found myself in Chicago for a couple hours waiting for
+a train. This was enough time for me to lunch with a friend who was
+working at the University of Chicago.&lt;/p&gt;
+
+&lt;p&gt;I was about to catch a bus towards the university when I realized
+that my smallest denomination of currency was a $5 bill. Since the buses
+only take exact change, I looked around for a way to break it. I asked a
+person who was waiting for the bus with me if she could break it, and she
+said she didn’t have change.&lt;/p&gt;
+
+&lt;p&gt;We both wound up getting on the same bus, and I got on first.
+I told the bus driver that the $5 was for both of us, and then I promptly
+walked to the back of the bus, still a few yards ahead of the other person.&lt;/p&gt;
+
+&lt;p&gt;Shortly after I sat down, this person made her way to the back of the bus,
+gave me two dollars and then found an empty seat towards the middle of the bus.&lt;/p&gt;
+
+&lt;p&gt;This person went slightly out of her way to pay me for the bus ride that
+I gave her. Reciprocity is cool.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-14:/!/socrata-metrics-api/index.html</id>
     <title type="html">How to use Socrata's site metrics API</title>
@@ -241,7 +269,7 @@ https://data.oregon.gov/api/site_metrics.json?start=1175315200000&amp;end=137643
 I’m told that this endpoint is considered part of SODA 1.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;/api/views&lt;/code&gt; endpoint provides information about only one
-&lt;a href="/!/socrata-genealogies#term-view"&gt;view&lt;/a&gt; per 
+&lt;a href="/!/socrata-genealogies#term-view"&gt;view&lt;/a&gt; per HTTP request.
 The site analytics page uses the batches endpoint (&lt;code&gt;/api/batches&lt;/code&gt;)
 to get metadata about several views at once.
 I haven’t found any documentation on that, but I might document that eventually.&lt;/p&gt;
@@ -326,6 +354,9 @@ array, and that child associative array maps the rest of the URL
   ...
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="related"&gt;Related&lt;/h2&gt;
+&lt;p&gt;Socrata has a &lt;a href="http://support.socrata.com/entries/20494886-What-do-the-different-metrics-in-the-Socrata-Analytics-Pages-mean-"&gt;support page&lt;/a&gt; about the analytics page.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -670,99 +701,6 @@ Does anyone use higher-power distance or centrality measures for real things?&lt
 
 &lt;p&gt;I’m really quite curious about all of this.
 Please tweet, email, phone, &amp;amp;c. me if you know anything.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-04:/!/moments-of-a-function/index.html</id>
-    <title type="html">Moments of a function</title>
-    <published>2013-08-04T07:00:00Z</published>
-    <updated>2013-08-04T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/moments-of-a-function/index.html"/>
-    <content type="html">&lt;p&gt;I made this table years ago to help me understand what the moments of a function were.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Formula&lt;/th&gt;
-      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{0}&lt;/script&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{1}&lt;/script&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{2}&lt;/script&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{3}&lt;/script&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;script type="math/tex"&gt;\mu_{4}&lt;/script&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Crude moment&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\mu_{n}=E \left( X^n \right) &lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\mu&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Central moment&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Standardized moment&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\gamma_1&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type="math/tex"&gt;\gamma_2&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;!-- I found this in some old notes that I'd written in LaTeX.
-
-\begin{table*}
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l l r r r r r}
-\toprule
-Name                &amp; Formula &amp;
-$\mu_{0}$ &amp; $\mu_{1}$ &amp; $\mu_{2}$ &amp; $\mu_{3}$ &amp; $\mu_{4}$ \\
-\midrule 
-Crude moment        &amp; $\mu_{n}=E \left( X^n \right) $ &amp;
-  &amp; $\mu$ &amp; &amp; &amp; \\
-Central moment      &amp; $\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)$ &amp;
-1 &amp; 0     &amp; $\sigma^2$ &amp; &amp; \\
-Standardized moment &amp; $\frac{\mu_{n}=E \left( \left[ X - E \left( X \right) \right]^n \right)}{\sigma^n}$ &amp;
-  &amp; 0     &amp; 1          &amp; $\gamma_1$ &amp; $\gamma_2$ \\
-\bottomrule
-\end{tabular*}
-\caption{\label{moments.tab} Moments of a function, where $\mu=mean$, $\sigma^2=variance$, $\gamma_1=skewness$ and $\gamma_2=kurtosis$.}
-\end{table*}
-
---&gt;
-
-&lt;p&gt;Read it like this: The second (&lt;script type="math/tex"&gt;\mu_2&lt;/script&gt;) central moment is &lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;Some moments always have a particular value. For example,
-the zeroth central moment is always one; we plug zero into
-the central moment formula for &lt;script type="math/tex"&gt;n&lt;/script&gt;, and we wind up taking
-the expected value of a bunch of ones.
-Some of the moments have special names; &lt;script type="math/tex"&gt;\mu&lt;/script&gt; is the mean,
-&lt;script type="math/tex"&gt;\sigma^2&lt;/script&gt;is the variance, &lt;script type="math/tex"&gt;\gamma_1&lt;/script&gt;is the skewness,
-and &lt;script type="math/tex"&gt;\gamma_2&lt;/script&gt;is the kurtosis.&lt;/p&gt;
-
-&lt;p&gt;I don’t exactly know what drove me to learn about the moments
-of a function. It couldn’t have had anything to do with any sort
-of class or work, so I probably just read about them in a book.
-And I have yet to find any practical reason to know about them.&lt;/p&gt;
-
-&lt;p&gt;But it was all worth it because now I understand
-&lt;a href="http://biostatisticsryangoslingreturns.tumblr.com/post/55797271777"&gt;Biostatistics Ryan Gosling&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="biostatistics-ryan-gosling.jpg" alt="Hey girl, I loved you from the E(X) I saw you." /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
