@@ -2,13 +2,158 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-19T07:00:00Z</updated>
+  <updated>2013-08-21T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-08-21:/!/open-by-default/index.html</id>
+    <title type="html">Open by default</title>
+    <published>2013-08-21T07:00:00Z</published>
+    <updated>2013-08-21T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/open-by-default/index.html"/>
+    <content type="html">&lt;p&gt;The first of Sunlight Foundation’s 32
+&lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Open Data Policy Guidelines&lt;/a&gt;
+is to “Set The Default To Open”.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Most public records systems, including the Freedom of Information Act itself, are systems of reactive disclosure – meaning that a question has to be asked before an answer given; public information requested, before it is disclosed.&lt;/p&gt;
+
+  &lt;p&gt;Proactive disclosure is the opposite. Proactive disclosure is the release of public information – online and in open formats (see Provisions 8 and 9) – before it is asked for. This is no simple task, but, in a way, it’s what all “open data” is aiming to accomplish. Setting the default to open means that the government and parties acting on its behalf will make public information available proactively and that they’ll put that information within reach of the public (online), with low to no barriers for its reuse and consumption. Open formats may help us maximize on the value we can extract from certain kinds of public data today, but to ensure that data publishing is sustained and, in fact, made easier over time, we need to reset the default for how data is released and disclosed.&lt;/p&gt;
+
+  &lt;p&gt;Setting the default to open is about living up to the potential of our information, about looking at comprehensive information management, and making determinations that fall in the public interest. It’s about purely practical government improvements, too, and taking steps that not only keep government systems up to date, but ensure that we have the foresight to survive changes in technology that we can’t predict.&lt;/p&gt;
+
+  &lt;p&gt;Usually, for information to be defined as public, important restrictions have already been applied. Therefore, policy language can be used to outline that “all public data and information must be considered open and accessible.” Whether listed as part of a statement of intent (as Austin, Texas does; a concept explored more in Provision 21), as direction to a new oversight authority (Provision 22), or as the underlying aim of new data guidance (Provision 20), openness by default is a critical tool in crafting open data policies that are both ambitious and sustainable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After discovering something on Socrata data portals, I remarked that
+software can encourage this practice of making data open by default.&lt;/p&gt;
+
+&lt;h2 id="types-of-visualizations-on-socrata-portals"&gt;Types of visualizations on Socrata portals&lt;/h2&gt;
+&lt;p&gt;I previously &lt;a href="/!/socrata-summary"&gt;downloaded&lt;/a&gt; metadata about all of
+the datasets on all of the Socrata portals, and I continue to find
+interesting things in these data. Let’s look at the different types
+of visualizations (“&lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;”) on the portals.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/not_boring.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;(I excluded tables and external links from the above plot.)&lt;/p&gt;
+
+&lt;p&gt;I was somewhat surprised to see forms and calendars in the portals.
+I’ve &lt;a href="/!/open-calendars"&gt;previously&lt;/a&gt; written about why I think Socrata calendars are cool,
+so now I’m just going to talk about forms.&lt;/p&gt;
+
+&lt;h3 id="popularity-of-forms"&gt;Popularity of forms&lt;/h3&gt;
+&lt;p&gt;Much of the goal of these portals is to open up existing government data, but
+&lt;a href="https://data.wa.gov/Economics/Broadband-Project-Data-Entry/38rz-krmg?"&gt;forms&lt;/a&gt; provide a way for citizens to create data.
+lets you enter data. A bunch of people have implemented them, but none seems to get accessed much.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/form_use_3.png" alt="Form use by portal" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m gonna remove opendata.socrata.com to make that easier to read.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/form_use_4.png" alt="Form use by portal, excluding opendata.socrata.com" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h3 id="cool-forms"&gt;Cool Forms&lt;/h3&gt;
+&lt;p&gt;I hadn’t seen &lt;a href="https://nmfs.socrata.com"&gt;nmfs.socrata.com&lt;/a&gt; before.
+It belongs to the &lt;a href="http://www.nmfs.noaa.gov"&gt;National Oceanic and Atmospheric Administration Fisheries Service&lt;/a&gt;,
+which apparently used &lt;a href="https://nmfs.socrata.com/Government/2011-Aquaculture-Public-Comments-Form/u5id-8nqp"&gt;a Socrata form&lt;/a&gt; to power a
+&lt;a href="http://www.nmfs.noaa.gov/aquaculture/policy2/"&gt;policy comments website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;New York made a form for &lt;a href="https://data.ny.gov/dataset/Give-Feedback/fq3e-q75i?"&gt;feedback on the portal&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;World Bank Open Finances made a
+&lt;a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar-Entry-Form/qdbh-rfd3?"&gt;form&lt;/a&gt;
+that populates an
+&lt;a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar/g4sx-dwxc"&gt;open data events calendar&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="relevance-to-software"&gt;Relevance to software&lt;/h2&gt;
+&lt;p&gt;The three examples of Socrata forms show us how we can turn user input on a website into
+open data automatically. Using a Socrata form to compose a dataset is quite inconvenient,
+unreliable, limited, and other bad things, but I see this as a nice example of how software
+can encourage that data be open by default. I previously
+&lt;a href="http://thomaslevine.com/!/socrata-calendars#opening-data-at-their-sources"&gt;hinted&lt;/a&gt; at this,
+but now I have two specific ideas as to how software can encourage that data be open by default.&lt;/p&gt;
+
+&lt;h3 id="standard-formats"&gt;1. Standard formats&lt;/h3&gt;
+&lt;p&gt;If you run any sort of involved website, you are probably already storing data in some
+reasonably standard way, and you probably could send it to a data portal somewhat easily.&lt;/p&gt;
+
+&lt;h4 id="opening-user-entered-application-data-on-your-websites-database"&gt;Opening user-entered application data on your website’s database&lt;/h4&gt;
+&lt;p&gt;One advantage of the Socrata form approach is that the data go automatically into a
+reasonably standard format (a Socrata dataset). It happens that most websites work this
+way, except that the standard format is something like MySQL.&lt;/p&gt;
+
+&lt;p&gt;A notable difference is that database software generally doesn’t concern itself as
+strongly with opening the data. Many websites have HTTP APIs, but few will give out
+direct access to their databases. And even if they did this, it wouldn’t provide the
+various cataloging and format conversion features that people expect of data portals.
+This is why we make data portals that import from these databases and provide all the
+fancy features.&lt;/p&gt;
+
+&lt;p&gt;If you have a website that stores information in a standard database (like MySQL) and
+you separate the private information from the public information, you already can quite
+safely and easily have it sent to a data portal.&lt;/p&gt;
+
+&lt;p&gt;If you are making a new website and care about open data, try to choose a common
+database for which integrations will already exist.&lt;/p&gt;
+
+&lt;h4 id="storing-user-entered-application-data-directly-in-a-data-portal"&gt;Storing user-entered application data directly in a data portal&lt;/h4&gt;
+&lt;p&gt;If you have a simple website, maybe you don’t have to run your own database
+and write your own web APIs. You could store the data directly in the data portal
+and query it from the data portal. If this is powerful enough for you, it
+simplifies your database management, and it naturally makes your data open by default.&lt;/p&gt;
+
+&lt;h4 id="opening-data-from-some-other-software"&gt;Opening data from some other software&lt;/h4&gt;
+&lt;p&gt;Every time you save something in a computer program, you are creating some sort
+of data, just like when you fill out a form on an open data portal.
+If you have purchased a software service, you might not have access to the
+underlying database, but you can still send it to a data portal.&lt;/p&gt;
+
+&lt;p&gt;When a lot of people use services like these, the services’ protocols naturally
+become standard, so it becomes worthwhile to write tools that pull data from these
+services into some standard place like a data portal. Using a standard service
+with lots of users and integrations should make it easier for you to get the data
+into a data portal.&lt;/p&gt;
+
+&lt;h3 id="explicit-separation-between-public-and-private-data"&gt;2. Explicit separation between public and private data&lt;/h3&gt;
+&lt;p&gt;With a questionnaire, you might be able to just say that all of the responses are
+private or that all are public. With other datasets, you might be able to say that
+certain fields are private and others are public; in a database of employees, name
+and salary can be public, but Social Security number can’t.&lt;/p&gt;
+
+&lt;p&gt;Things aren’t always this simple. With something like project management software,
+some records/documents should be private and others should be public. Many of the
+entries in project management software are probably safe for public disclosure,
+but there might be some private information; for example, I’ve put passwords inside
+calendar entries and issue tracker tickets.&lt;/p&gt;
+
+&lt;p&gt;Project management software, email clients, calendars, web browsers and image
+editors all contain rich data that can help people understand how government
+and other organizations work, so we should find ways of separating the public
+information and opening that. Software can help with this.&lt;/p&gt;
+
+&lt;p&gt;Separate public information and private information from the beginning, and it
+should be easier to open the data that is behind all of these applications.
+The user interface can expose the separation between public and private and
+encourage that information public by default.&lt;/p&gt;
+
+&lt;h2 id="things-to-think-about"&gt;Things to think about&lt;/h2&gt;
+&lt;p&gt;Think about what programs you and others are already using, especially if you
+don’t think of them as data programs, and think about how you can open the data in these programs.
+A program’s data will be easy to open if the program already stores its data in
+a standard format on the internet and it clearly separates public data from
+private data.&lt;/p&gt;
+
+&lt;p&gt;Also think about how we can make software that follows the policy guideline of
+open data by default. I’ve proposed that clear separations between public and
+private data is part of this and that standard storage methods is another, but
+there are surely other relevant features.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-19:/!/reciprocity/index.html</id>
     <title type="html">Reciprocity</title>
@@ -549,158 +694,6 @@ It is agreed that public demonstration of affection is always in bad taste and t
 &lt;img src="pictures/IMG_4354.JPG" alt="Care of the hair" class="wide" /&gt;
 &lt;img src="pictures/IMG_4356.JPG" alt="When packing a lunch" class="wide" /&gt;
 &lt;img src="pictures/IMG_4357.JPG" alt="High school boys and girls may prefer to buy their milk at school." class="wide" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-06:/!/higher-power-distance-measures/index.html</id>
-    <title type="html">Higher-power distance measures</title>
-    <published>2013-08-06T07:00:00Z</published>
-    <updated>2013-08-06T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/higher-power-distance-measures/index.html"/>
-    <content type="html">&lt;h2 id="sums-of-shapes"&gt;Sums of shapes&lt;/h2&gt;
-&lt;p&gt;Let’s say we have a bunch of numbers, represented by the tick marks towards
-the bottom the fancy interactive plot drawing thingy below. Next, we chose
-some other number, represented by the big pink bar that you can drag.&lt;/p&gt;
-
-&lt;p&gt;For each number in our bunch (each tick mark), we could draw a line from the
-number to the other number we chose (the pink bar). Then we could draw a square
-for each of these numbers with a side as long as the this line. (These squares
-are represented by the squares in the plot thingy.) We could add up the areas
-of all of these squares. People call that the &lt;strong&gt;sum of squared error&lt;/strong&gt; or the
-&lt;strong&gt;sum of squares&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Instead of adding up the squares, we could just add up the lines. People call
-that the &lt;strong&gt;sum of absolute errors&lt;/strong&gt;, but I like calling it the &lt;strong&gt;sum of lines&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Sometimes, these lines will have no length because the two numbers that form
-the line (the tick mark and the pink bar) are the same number. We could draw
-a point for each tick mark whose value is not exactly the same as the pink bar.
-Then we could count how many points we have and call that the &lt;strong&gt;sum of points&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;style&gt;
-#viz &gt; .screen-size-warning { display: none; }
-@media screen and (max-width: 640px) {
-  #viz &gt; * { display: none; }
-  #viz &gt; .screen-size-warning {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    border: 2px solid;
-    padding: 0.5em;
-  }
-}
-&lt;/style&gt;
-
-&lt;div id="viz" style="width: 640px; margin-left: auto; margin-right: auto;"&gt;
-  &lt;div class="screen-size-warning"&gt;Make this window wider (to 640 pixels)&lt;br /&gt;to see the table.&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;small&gt;
-  Nota bene: The line and square at the bottom right are &lt;strong&gt;proportional&lt;/strong&gt; to but
-  &lt;strong&gt;not equal&lt;/strong&gt; to the sums of lines and squares, respectively.
-&lt;/small&gt;
-&lt;script src="/!/higher-power-distance-measures/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;script src="/!/higher-power-distance-measures/script.js"&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;h2 id="values-of-the-other-number-that-minimize-the-sums-of-shapes"&gt;Values of the other number that minimize the sums of shapes&lt;/h2&gt;
-&lt;p&gt;If you play around with the plot above, you’ll find one location of the pink bar
-that yields the smallest sum of squares. (The “Sum of squares” square at the
-bottom-right will be smallest for this situation.) We call this location the &lt;strong&gt;mean&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;You’ll also find one spot or two adjacent spots that yield the smallest sum of
-lines. We call this location the &lt;strong&gt;median&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;And you’ll find at least one spot with the smallest sum of points. (This spot
-will have particularly few points in the “Sum of points” section at the
-bottom-left.) We call this spot the &lt;strong&gt;mode&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id="extrapolating-the-distance-measure"&gt;Extrapolating the distance measure&lt;/h2&gt;
-&lt;p&gt;I see the sum of points as the zero-order distance measure, the sum of lines
-as the one-order distance measure and sum of squares as the two-order distance
-measure. A general distance measure that includes all of these is the
-sum of n-dimensional volumes (Is there a better word for that?) of the
-n-dimensional hypercubes. Said more concisely,&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;Distance_n=\sum_i \lvert x_i - c\rvert^n&lt;/script&gt;
-
-&lt;p&gt;where each &lt;script type="math/tex"&gt;i&lt;/script&gt; corresponds to an observation (represented above by tick marks),
-&lt;script type="math/tex"&gt;n&lt;/script&gt; is the number of dimensions, and &lt;script type="math/tex"&gt;c&lt;/script&gt; represents that other number
-(represented above by the pink bar).&lt;/p&gt;
-
-&lt;h3 id="sum-of-squares"&gt;Sum of squares&lt;/h3&gt;
-&lt;p&gt;The sum of squares is thus this.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;Distance_2=\sum_i \lvert x_i - c\rvert^2&lt;/script&gt;
-
-&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_2&lt;/script&gt; is the &lt;strong&gt;mean&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id="sum-of-lines"&gt;Sum of lines&lt;/h3&gt;
-&lt;p&gt;The sum of lines is this.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;Distance_1=\sum_i \lvert x_i - c\rvert^1&lt;/script&gt;
-
-&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_1&lt;/script&gt; is the &lt;strong&gt;median&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id="sum-of-points"&gt;Sum of points&lt;/h3&gt;
-&lt;p&gt;To make this work with the zero-order distance, I proclaim that &lt;script type="math/tex"&gt;0^0&lt;/script&gt; equals 0.
-The sum of points is this.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;Distance_0=\sum_i \lvert x_i - c \rvert ^0&lt;/script&gt;
-
-&lt;p&gt;The quantity within the summation is zero if &lt;script type="math/tex"&gt;x_i&lt;/script&gt; equals &lt;script type="math/tex"&gt;c&lt;/script&gt; and one otherwise.&lt;/p&gt;
-
-&lt;p&gt;The value of &lt;script type="math/tex"&gt;c&lt;/script&gt; that minimizes &lt;script type="math/tex"&gt;Distance_1&lt;/script&gt; is the &lt;strong&gt;mode&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id="higher-power-distance-measures-emphasize-more-extreme-values"&gt;Higher-power distance measures emphasize more extreme values&lt;/h2&gt;
-&lt;p&gt;I see the mode, median and mean as different measures of the center of a
-distribution. (I labeled them &lt;script type="math/tex"&gt;c&lt;/script&gt; for “center”.)&lt;/p&gt;
-
-&lt;p&gt;As we increase the power of the distance measure, we use more information from
-the tails to produce the measure of the center of the distribution.&lt;/p&gt;
-
-&lt;p&gt;The mode only looks for the most common values; all the information that it conveys
-about the other values is that they are less common.&lt;/p&gt;
-
-&lt;p&gt;The median turns out to be the value of middle rank. For example, if there are
-9 numbers, the fifth-highest/fifth-lowest is the median. The median doesn’t
-distinguish between an observation that is slightly greater than most and an
-observation that is exceptionally greater than most.&lt;/p&gt;
-
-&lt;p&gt;Compared to the median, the mean takes more information from extreme values.
-It might not be particularly obvious why, so I present a simple example.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/two-observations.jpg" alt="Drawing in marker of the situation explained in the next paragraph" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;If we have only two observations (represented above by the black dots),
-the sum of lines will be the same as long
-as we choose a center point that is between the two points; the sum of lines
-will be the distance between the two points. The sum of squares, on the other
-hand, is smallest in the center because we’ll have two smallish squares
-(orange) rather than one huge square (teal).&lt;/p&gt;
-
-&lt;h2 id="center-points-for-higher-power-distance-measures"&gt;Center points for higher-power distance measures&lt;/h2&gt;
-&lt;p&gt;What center points minimize these higher-power distance measures? I calculated
-the distance measures for dimensions up to 100 on the following skewed
-distribution, using many different center values for each dimension.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/distribution.png" alt="Histogram of a sample of a Poisson distribution with lambda of 4" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then I chose the center value with the lowest distance measure and
-called that the n-dimensional measure of the distribution’s center.
-(Mode is the 0-dimensional measure, median is the
-1-dimensional measure, and mean is the 2-dimensional measure.)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/higher-power-distance-measures/error-plot.png" alt="Line plot of the center values that minimize the n-dimensional distance measure, as a function of n" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;As the number of dimensions goes up, the measure of the center moves in the
-direction of the long tail of the distribution.&lt;/p&gt;
-
-&lt;h2 id="questions"&gt;Questions&lt;/h2&gt;
-&lt;p&gt;It seems odd to me that I haven’t heard of a sum of cubes.
-Is there standard a name for the stuff I just explained?
-Does anyone use higher-power distance or centrality measures for real things?&lt;/p&gt;
-
-&lt;p&gt;I’m really quite curious about all of this.
-Please tweet, email, phone, &amp;amp;c. me if you know anything.&lt;/p&gt;
 </content>
   </entry>
 </feed>
