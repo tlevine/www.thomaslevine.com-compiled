@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Films I like</title>
+    <title>My visit to Socrata, and data analysis about data analysis</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Films I like' name='twitter:title'>
+    <meta content='My visit to Socrata, and data analysis about data analysis' name='twitter:title'>
     <meta content='' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
@@ -29,10 +29,10 @@
     <meta content='' name='twitter:app:id:iphone'>
     <meta content='' name='twitter:app:id:ipad'>
     <meta content='' name='twitter:app:id:googleplay'>
-    <meta content='http://thomaslevine.com/!/films/' property='og:url'>
+    <meta content='http://thomaslevine.com/!/visiting-socrata/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='' property='og:description'>
-    <meta content='Films I like' property='og:title'>
+    <meta content='My visit to Socrata, and data analysis about data analysis' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,7 +74,7 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Films I like
+              My visit to Socrata, and data analysis about data analysis
             </h1>
             <p>
               
@@ -86,65 +86,74 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>I find that I fall asleep during movies,
-            so I tend to prefer movies that are enhanced
-            by falling asleep. Here are some.</p>
+            <p>A couple months ago, I downloaded the metadata files for all of the
+            datasets on 60 Socrata open data portals. Interesting things
+            <a href="http://thomaslevine.com/socrata">happen</a> when you do craziness like this.</p>
             
-            <h2 id="donnie-darko">Donnie Darko</h2>
-            <p>Periodically falling asleep made
-            <em>Donnie Darko</em> way more creepy; I’d wake
-            up and that rabbit thing would suddenly be there.</p>
+            <p>Last Friday, I visited Socrata in Seattle. The most important part of my
+            visit was of course the teriyaki lunch; it was so important
+            that Developer Evangelist Chris Metcalf sent me a Google Calendar invitation for it. They’ve
+            been doing this for about 19 months and have only missed two weeks!</p>
             
-            <h2 id="serial-experiments-lain">Serial Experiments Lain</h2>
-            <p>I watched the whole <em>Serial Experiments Lain</em>
-            series in one session. I was using workstation
-            that let me lie down on the floor and look up
-            at a monitor mounted above my head, so I quite
-            comfortably drifted in and out of sleep.</p>
+            <p>During my visit, I also talked about my findings, met everyone and
+            learned a lot about the implemented of open data portals.</p>
             
-            <p>Each episode starts with the same image and
-            sound clip, but sometimes they play that image
-            and sound in the middle of episodes. I would
-            often arrive at that clip and wonder whether
-            I’d fallen asleep.</p>
+            <h2 id="why">Why</h2>
+            <p>After my talk, VP of marketing Saf Rabah asked me why I had done all of
+            this study of open data. That was a good question; I regularly forget
+            that I tend to do strange things.</p>
             
-            <p>My workstation probably added to the trippiness.
-            The series challenges the distinction between
-            virtual and reality and has situations where
-            people exist in the wired (sort of like the
-            internet) but not in the normal world, and my
-            entry into this cockpit-like computer station
-            and subsequent unconsciousness sounds a lot like
-            entering the wired.</p>
+            <p>I think most things do better when knowledge is shared. I run and write
+            free software, I post most of my work quite publicly, I pay attention to
+            media licensing, I read copyright law
+            when I was in high school, and I started a
+            <a href="http://freeculture.org">Free Culture Foundation</a> chapter in college.
+            Naturally, I also care about open data. But that still doesn’t quite explain it.</p>
             
-            <h2 id="snakes-on-a-plane">Snakes on a Plane</h2>
-            <p>I saw the person get murdered, and I fell asleep
-            after the snakes got into the plane cabin. When
-            I woke up, the one guy thanked the other guy for
-            his help with the snakes. But what about the murder????</p>
+            <h3 id="hackathon-apps">Hackathon apps</h3>
+            <p>At the first hackathon for the <a href="http://nycbigapps.com/">NYC Big Apps</a>
+            competition, <a href="http://heyashleyashley.com">Ashley Williams</a> and
+            <a href="http://thomaslevine.com">I</a> started talking about the sort of apps that
+            come out of contemporary hackathons. We quickly decided to
+            algorithmically generate random hackathon apps.</p>
             
-            <p>I’m told that the film was pretty bad and that
-            I didn’t miss anything.</p>
+            <p>We noticed that many apps follow a search-for-things-on-a-map paradigm;
+            that is, you fill out a search form and get results on a map. We
+            automated the creation of the cliche hackathon apps in
+            <a href="http://appgen.me">AppGen</a>. (Being cliche hackathon apps,
+            AppGen-generated apps also broke a month after being created.)</p>
             
-            <h2 id="inception">Inception</h2>
+            <h3 id="dataset-dataset">Dataset dataset</h3>
+            <p>In building AppGen, I wound up downloading all of the datasets on the
+            New York City data portal. I generalized it to run on any Socrata Open Data
+            Portal, and then I downloaded all of the metadata about all of the datasets
+            on 60 Socrata portals.</p>
             
-            <h2 id="la-science-des-rves">La science des Rêves</h2>
+            <p>I started treating datasets as data points and doing analysis across
+            datasets, and I think this is the main novelty of all my open data
+            studies; I’ve just been quantifying things that other people hadn’t
+            thought to quantify.</p>
             
-            <h2 id="clerks-c">Clerks, &amp;c.</h2>
-            <p>I fell asleep while watching <em>Clerks</em> with some friends.
-            I periodically woke up and had trouble following the plot.
-            By the end, I was sightly confused because there weren’t
-            anymore clerks; instead, there were jewel thieves.
-            Oh and the film was suddenly in color.</p>
+            <h3 id="communication">Communication</h3>
+            <p>Someone recently suggested that I’m generally interested in understanding
+            how information gets created and shared.</p>
             
-            <p>It turns out that we had finished <em>Clerks</em>. After <em>Clerks</em>,
-            my friends put on <em>Clerks II</em>. And after that finished, they
-            put on <em>Jay and Silent Bob Strike Back</em>.</p>
+            <p>Fun related story: This one time, I posted
+            “EMERGENCY EXIT ONLY ALARM WILL SOUND” signs on doors that weren’t
+            emergency exits only. Those emergency signs are scary! Even I was afraid
+            of opening the doors afterwards! I continue to be intrigued by how
+            signs are seen as authoritative sources of information even though anyone
+            can put up a sign. </p>
+            
+            <p>When so much information passes through a central and open resource like
+            a data portal, we acquire rich data about how different people produce and
+            interpret information. This ecosystem of open data doesn’t just give us
+            more data to analyze; it also allows us to analyze data analysis.</p>
           </article>
         </div>
         <div id='pagination'>
           <div class='base-little-card'>
-            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/films/index.md">View source</a>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/visiting-socrata/index.md">View source</a>
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
         </div>
