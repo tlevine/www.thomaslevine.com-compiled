@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Thomas Levine</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/street-sign-protocol/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            
+            <p>Someone recently asked me to explain what a computer “protocol” is.
+            This is one of those words that sounds more special than it is; you
+            could just-as-accurately call it a language or an expectation.</p>
+            
+            <h2 id="the-street-sign-protocol">The street sign protocol</h2>
+            <p>To make that more clear, I’ll document a protocol that we might not
+            usually think of a protocol. Let’s call it the Street Sign Protocol
+            (SSP).</p>
+            
+            <p>To keep things simple, I’ll actually document a simple version of the
+            Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).</p>
+            
+            <h3 id="specification">Specification</h3>
+            <p>SSSP is a way of exchanging the names of <em>streets</em>. It involves
+            <em>street signs</em> mounted on <em>poles</em> near the <em>corners</em> of
+            <em>four-way intersections</em>. Let’s define these terms.</p>
+            
+            <ul>
+              <li>A <em>street</em> is a paved public thoroughfare in a built environment.
+              (This definition is taken from <a href="http://en.wikipedia.org/wiki/Street">Wikipedia</a>.)</li>
+              <li>A <em>four-way intersection</em> is a place where two streets cross.
+              Its shape is approximately a rectangle, with one side having the
+              width of one street and the other side having the width of the
+              other street.</li>
+              <li>Being rectangular, a four-way intersection has four <em>corners</em> at the
+              usual places.</li>
+              <li>A <em>pole</em> is a long cylinder sticking out of the ground.</li>
+              <li>A <em>street sign</em> is a flat rectangular thing that has text on both faces.
+              The sign is oriented such that the text reads left-to-right.</li>
+            </ul>
+            
+            <p>Next, let’s discuss what is expected of all of the.</p>
+            
+            <p>Each four-way intersection has four corners, and each pole is associated with
+            a corner of an intersection. Each corner must have zero or one poles, and at least
+            one of the corners of a four-way intersection must have a pole; thus, an
+            intersection must have between one and four poles.</p>
+            
+            <p>Poles must be mounted within about ten feet of a corner of the intersection
+            but not on the paved area of the street or the intersection. (It is okay for them
+            to be mounted on the sidewalk.) It must stick straight out of the ground; the long
+            axis of the cylinder must be approximately in line with the direction of gravity.</p>
+            
+            <p>Each street sign displays the name of one street. The street sign must include the
+            name of the street in very large text. This name must be written on both faces of
+            the sign and must be especially easy to see, even at night.</p>
+            
+            <p>Street signs are mounted on poles, each pole having exactly two street signs.
+            The street signs must be aligned in a particular way. One of the faces must be
+            just-barely-touching (tangent) the pole. The sign must also line up with its
+            corresponding street; that is, the wide axis of the rectangular sign must run
+            parallel the corresponding street.</p>
+            
+            <p>Each pole must contain two street signs, each one corresponding to a different
+            one of the two streets at the four-way intersection.</p>
+            
+            <h3 id="implementing-a-sssp-writer">Implementing a SSSP writer</h3>
+            <p>Here is one possible procedure for encoding street names in SSSP. This procedure
+            expects a four-way intersection and the names of the two streets as input. It
+            outputs SSSP (two street signs mounted to a pole near the intersection).</p>
+            
+            <ol>
+              <li>Determine which corner(s) of the intersections the street signs should be
+             mounted on. You might consider the locations of buildings, the presence
+             of sidewalks, the traffic patterns and the presence of visual obstacles
+             like trees.</li>
+              <li>Print the signs with the street names.</li>
+              <li>Cast a pole.</li>
+              <li>Put a pole and street signs on a truck.</li>
+              <li>Drive the truck to the intersection, and park nearby.</li>
+              <li>Carry the materials and some tools to the intersection.</li>
+              <li>Stick the pole in the ground near the chosen corner. I imagine that this
+             involves putting up caution tape, digging a hole, securing the pole, pouring
+             some concrete and covering it back up, but I don’t really know. If this were
+             software, I’d try to use separate pole-installation library so I don’t have
+             to implement the pole-installation procedure myself.</li>
+              <li>Mount the street signs to the pole. Position them about ten feet above the ground,
+             with one on top of the other and with the centers of the signs touching the pole,
+             and otherwise in the appropriate orientations specified by the protocol. Secure
+             them with a sign bracket.</li>
+              <li>Drive the truck back to wherever you got it from.</li>
+            </ol>
+            
+            <h3 id="implementing-a-sssp-reader">Implementing a SSSP reader</h3>
+            <p>Here is a procedure for decoding SSSP. It has the opposite inputs and outputs as
+            the SSSP writer.</p>
+            
+            <ol>
+              <li>Look for poles with street signs at the four corners of the four-way intersection.</li>
+              <li>Focus on the first valid pole that you see; ignore any others.</li>
+              <li>Do the following for each of the two street signs.</li>
+              <li>Read the large text on the sign.</li>
+              <li>Associate this large text with the street that the sign lines up with.</li>
+            </ol>
+            
+            <h2 id="hypertext-transfer-protocol">Hypertext Transfer Protocol</h2>
+            <p>Now let’s talk about something that people actually call a protocol.
+            Here’s a simplified version of the Hypertext Transfer Protocol (HTTP)</p>
+            
+            <h3 id="highly-simplified-specification">Highly simplified specification</h3>
+            <p>HTTP is a way of exchanging commands between a web browser and a web server.
+            It is represented as a very long series of words, punctuation and spaces.</p>
+            
+            <p>Some messages have a <em>body</em>. This is an embedded series of words, punctuation
+            and spaces that can be written in any format you want. (You could use this to
+            write another protocal on top of HTTP.)</p>
+            
+            <p>Each message may have a bunch of <em>headers</em>. Each header has a name and a value.
+            There are a bunch of headers that provide some information about the body
+            (like its size or format), and there are a bunch of headers that provide
+            information about the system that is sending the message. And there are others,
+            like the date of the message.</p>
+            
+            <p>Each message is either a request or a response. By being a request, a message
+            indicates that it came from a web browser and is being sent to a web server.
+            By being a response, a message indicates that it came from a web server and
+            is being sent to a web browser. Each response sent from a particular server
+            to a particular browser must be initiated by a request sent from the
+            particular browser to particular server.</p>
+            
+            <p>Every response has a body (explained above) and a status code. The status code
+            is a number that explains whether the request succeeded and any quirks about its
+            success or failure. For example, status code <code>200</code> means that the request worked
+            as expected, and status code <code>403</code> means that the web browser is not allowed to
+            run the command that it requested.</p>
+            
+            <p>Each request must have a method. There are a bunch of methods, and you can think
+            of them as different commands. Here are a few of them.</p>
+            
+            <ul>
+              <li><code>POST</code> is the method that asks the server to save a new document.
+              It contains a body.</li>
+              <li><code>PUT</code> is the method that asks the server to edit an existing document.
+              It contains a body.</li>
+              <li><code>GET</code> is the method that asks the server to send an existing document in the
+              body of the response (and not to alter it). The request does not contain a body.</li>
+              <li><code>HEAD</code> is the method that asks the server to do everything that it would do in
+              for an equivalent <code>GET</code> request except for sending the body. Like the <code>GET</code>
+              request, the <code>HEAD</code> request contains no body.</li>
+            </ul>
+            
+            <h3 id="reading-and-writing">Reading and writing</h3>
+            <p>A bunch of things in your web browser might initate a request. For example, opening
+            a web page makes one request, and loading an image on the web page makes another request.</p>
+            
+            <p>The web server receives the request, checks that it is valid, and breaks it into the
+            component method, headers, and body. Then the web server asks something else to decide
+            what to do. After doing everything, this other thing decides what the outcome of the
+            command was and tells the web server. The web server composes an HTTP response and
+            sends that back to the browser.</p>
+            
+            <p>The browser breaks that into its various parts and accordingly displays a web page,
+            shows an image or does whatever else was specified.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/street-sign-protocol/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

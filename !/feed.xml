@@ -2,13 +2,428 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-08-21T07:00:00Z</updated>
+  <updated>2013-09-03T07:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-09-03:/!/socrata-formats/index.html</id>
+    <title type="html">What file formats are on the data portals?</title>
+    <published>2013-09-03T07:00:00Z</published>
+    <updated>2013-09-03T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-formats/index.html"/>
+    <content type="html">&lt;style&gt;
+table {
+  font-size: 0.7em;
+}
+&lt;/style&gt;
+
+&lt;p&gt;I found some more open data about open data to &lt;a href="/socrata"&gt;study&lt;/a&gt;!
+While &lt;a href="http://www.socrata.com/blog/my-visit-to-socrata-and-data-analysis-about-data-analysis/"&gt;at Socrata’s office&lt;/a&gt; on Friday,
+I learned of the &lt;a href="https://data.oregon.gov/data.json"&gt;&lt;code&gt;/data.json&lt;/code&gt;&lt;/a&gt; endpoint.
+It contains an entry for each &lt;a href="/!/socrata-genealogies/#term-dataset"&gt;dataset&lt;/a&gt;,
+uploaded by the data publisher; it doesn’t contain all of the other
+views that are based on these source datasets.
+And it has &lt;a href="http://project-open-data.github.io/schema/"&gt;this format&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="how-many-datasets"&gt;How many datasets?&lt;/h2&gt;
+&lt;p&gt;Socrata portals have &lt;a href="/!/socrata-users/#the-user-data-format"&gt;50,000 different views&lt;/a&gt;, but only
+8922 are original datasets.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;/data.json&lt;/code&gt; files include federated datasets, so some of these
+datasets are duplicated. I did not remove duplicates, so I’m working
+with 15699 datasets, with a median of
+96 datasets per portal.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/portal-counts.png"&gt;&lt;img src="figure/portal-counts.png" alt="Datasets per portal, based on the /data.json file" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="no-derived-datasets"&gt;No derived datasets&lt;/h3&gt;
+&lt;p&gt;This is much lower than my &lt;a href="/!/socrata-summary"&gt;earlier figure&lt;/a&gt;
+because the present figure does not include &lt;a href="/!/socrata-genealogies#soda-queries-filtered-views-charts-maps"&gt;derived views&lt;/a&gt; (map, charts, &amp;amp;c.).&lt;/p&gt;
+
+&lt;p&gt;Some time, I’ll compare the within-portal counts of original datasets
+and derived datasets. But not right now.&lt;/p&gt;
+
+&lt;h3 id="federated-data"&gt;Federated data&lt;/h3&gt;
+&lt;p&gt;It still includes &lt;a href="/!/socrata-genealogies/#term-federation"&gt;federated data&lt;/a&gt; (duplicates),
+however, and this file doesn’t make it easy to determine which direction
+the federation is in. The following plot gives us an idea of how many of
+these datasets are duplicates.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/federation.png"&gt;&lt;img src="figure/federation.png" alt="The scale of data federation within this subset of Socrata datasets" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of the datasets are not duplicates, but some are duplicated many times.&lt;/p&gt;
+
+&lt;p&gt;Some day, I’ll look more at federation, probably by 
+reading the federation information from home pages of the portals
+or by following the links in the &lt;code&gt;/data.json&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h3 id="cutoff-at-1000"&gt;Cutoff at 1000?&lt;/h3&gt;
+&lt;p&gt;I find it highly suspicious the following nine portals have exactly 1000
+datasets and no portals have more than 1000 datasets.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;paste(names(sort(table(datasets$portal), decreasing = T)[1:9]), collapse = "\n")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://bronx.lehman.cuny.edu"&gt;bronx.lehman.cuny.edu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.cityofnewyork.us"&gt;data.cityofnewyork.us&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.hawaii.gov"&gt;data.hawaii.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.illinois.gov"&gt;data.illinois.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.ny.gov"&gt;data.ny.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.ok.gov"&gt;data.ok.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.oregon.gov"&gt;data.oregon.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://explore.data.gov"&gt;explore.data.gov&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.metrochicagodata.org"&gt;www.metrochicagodata.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Half of these portals federate &lt;code&gt;explore.data.gov&lt;/code&gt;, which has quite a few datasets, and the JSON
+files seem to just include some of the &lt;code&gt;explore.data.gov&lt;/code&gt; data. I think these
+files have only the first 1000 datasets, and I haven’t figured out how to look
+at the next pages, so I’ll focus the present analysis on portals with fewer
+than 1000 datasets.&lt;/p&gt;
+
+&lt;h2 id="my-curiousity-about-file-formats"&gt;My curiousity about file formats&lt;/h2&gt;
+&lt;p&gt;I’ve recently become curious about what formats the datasets come from. When
+tabular data get loaded into a Socrata data portal, they get converted to a
+tabular representation within the portal software. From that, they get converted
+to a range of different tabular formats.&lt;/p&gt;
+
+&lt;p&gt;The Socrata data portal doesn’t explicitly store the source format because of
+how the import process works. Most of the data &lt;a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/"&gt;probably come from Excel&lt;/a&gt;,
+and the data that aren’t from Excel typically come from inside of a government
+network where policies would make it inconvenient to expose the database to the
+world. Because of this, Socrata doesn’t query database servers. Instead, data
+publishers write middlemen that act as both database clients and Socrata clients.
+They query the database and then make &lt;a href="http://dev.socrata.com/publishers/getting-started"&gt;web requests&lt;/a&gt;
+to the Socrata portal.&lt;/p&gt;
+
+&lt;h2 id="datajson-contains-file-format-information"&gt;&lt;code&gt;/data.json&lt;/code&gt; contains file format information&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;/data.json&lt;/code&gt; endpoint contains a file format field per the Project Open Data
+schema. This refers to the format of the data as served from the Socrata portal,
+not the format it was stored in before it got to the Socrata portal. But this
+still tells us something about the source file formats.&lt;/p&gt;
+
+&lt;p&gt;People sometimes upload things that Socrata doesn’t interpret as tables. PDFs are
+a major example. Other times, people upload or link to
+files that could be tables but don’t specify that they are tables; those are called
+“external links”. Read more on dataset types &lt;a href="/!/open-by-default#types-of-visualizations-on-socrata-portals"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Data formats are represented in two fields, &lt;code&gt;format&lt;/code&gt; and &lt;code&gt;distribution&lt;/code&gt;. &lt;code&gt;distribution&lt;/code&gt;{#distribution}
+seems to contain all of the different available formats. If the data are imported as
+tabular data, it contains CSV, JSON, XML, &amp;amp;c., all served from the Socrata site.
+And if the data are external links, it will contain a few external links, still
+specifying the file types. The &lt;code&gt;format&lt;/code&gt; field contains one of the formats that are
+specified in the &lt;code&gt;distribution&lt;/code&gt; field. I think it’s just the first of the formats.
+For the present analysis, I’m using the &lt;code&gt;format&lt;/code&gt; field.&lt;/p&gt;
+
+&lt;p&gt;Recall that the present dataset of datasets counts federated datasets multiple times.
+The following plot shows the file types of the deduplicated dataset dataset, across
+all portals.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/deduplicated.png"&gt;&lt;img src="figure/deduplicated.png" alt="Formats of datasets across all portals" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And here are some of the main types by portal, counting federated datasets in all of their portals.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/all-formats.png"&gt;&lt;img src="figure/all-formats.png" alt="Data formats on all the portals" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;csv&lt;/code&gt; mostly refers
+to data that Socrata represents as a table; this is the sort of data that Socrata
+can convert to a range of different tabular data formats.
+It is also my &lt;a href="http://csvsoundsystem.com"&gt;preferred file format&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Everything that is not CSV appears to be an external link.&lt;/p&gt;
+
+&lt;h2 id="csv"&gt;CSV&lt;/h2&gt;
+&lt;p&gt;Most datasets are CSV (8143 of 15699).
+I was curious as to how this varies by portal and over time, and the following image
+addresses that.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/csv-cum-facet.png"&gt;&lt;img src="figure/csv-cum-facet.png" alt="Dataset formats by portal over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above contains one plot per data portal. The x-axis of each plot is the date,
+the y-axis is the proportion&lt;sup id="fnref:proportion"&gt;&lt;a href="#fn:proportion" class="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; of datasets that are tabular (CSV), and the
+width of the line is the number of datasets on the portal.
+For example, if there were 100 datasets on a portal in June 2011 and 80 were CSV, the
+line would be near the top of the graph and quite skinny at June 2011.&lt;/p&gt;
+
+&lt;p&gt;We can thus see how many datasets each portal has and what the different formats are.&lt;/p&gt;
+
+&lt;h2 id="some-interesting-portals"&gt;Some interesting portals&lt;/h2&gt;
+&lt;p&gt;Some portals have only CSV data (like &lt;code&gt;data.medicare.gov&lt;/code&gt;), but most contain
+other data. I am curious both as to what other data formats they have and what
+prompted the shifts in dataset format.&lt;/p&gt;
+
+&lt;p&gt;Missouri mostly has PDFs.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/mo.png"&gt;&lt;img src="figure/mo.png" alt="Data formats on data.mo.gov" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also interesting about Missouri is that it federates &lt;a href="https://data.kcmo.org/"&gt;Kansas City&lt;/a&gt;,
+which didn’t appear in my list of portals.&lt;/p&gt;
+
+&lt;p&gt;I know I said I’d focus on portals with fewer than 1000 datasets, but Lehman College is
+interesting because it has lots of zipped files.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/lehman.png"&gt;&lt;img src="figure/lehman.png" alt="Data formats on bronx.lehman.cuny.edu" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;San Francisco has a lot of CSVs, a lot of externally linked zip files,
+and a lot of externally linked files of unknown format.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/sf.png"&gt;&lt;img src="figure/sf.png" alt="Data formats on data.sfgov.org" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="determination-of-external-link-file-formats"&gt;Determination of external link file formats&lt;/h2&gt;
+&lt;p&gt;It looks like the format of external links is determined by the file name.
+For example, Edmonton’s
+&lt;a href="https://data.edmonton.ca/Transportation/Road-and-Traffic-Updates/5ggc-prfp?"&gt;Road and Traffic Updates&lt;/a&gt;
+are marked as &lt;code&gt;application/rss+xml&lt;/code&gt; because the external link,
+&lt;a href="http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss"&gt;http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss&lt;/a&gt;,
+ends in &lt;code&gt;.rss&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In contrast, the &lt;a href="https://data.maryland.gov/d/ywbg-ptfh"&gt;Maryland Land Use/ Land Cover: 1973, 2002, 2010&lt;/a&gt;
+dataset is marked as having the format &lt;code&gt;application/octet-stream&lt;/code&gt; because the
+external link, &lt;a href="http://planning.maryland.gov/OurWork/landUseDownload.shtml"&gt;http://planning.maryland.gov/OurWork/landUseDownload.shtml&lt;/a&gt;,
+ends in &lt;code&gt;.shtml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;!-- sqldf("select title, 'https://' || portal || '/d/' || identifier AS portalURL, accessURL from catalog where identifier = 'ywbg-ptfh'", dbname = '/tmp/catalog.db') --&gt;
+
+&lt;h2 id="dates-of-significant-changes"&gt;Dates of significant changes&lt;/h2&gt;
+&lt;p&gt;A few portals have only CSV data since the beginning, but most have had other formats.
+Looking at the plots, we can see dates where there was a sudden change in the proportion
+of datasets that were CSV.&lt;/p&gt;
+
+&lt;h3 id="sudden-changes-at-the-beginning"&gt;Sudden changes at the beginning&lt;/h3&gt;
+&lt;p&gt;When the first dataset gets uploaded, the proportion of datasets that are CSV is either
+zero or one. Thus, the line for all of these datasets starts either at zero or one.
+Most datasets sharply change after that; &lt;code&gt;data.austintexas.gov&lt;/code&gt; and &lt;code&gt;data.mo.gov&lt;/code&gt; are
+examples.&lt;/p&gt;
+
+&lt;p&gt;Others stay at this level for quite a while because no datasets were uploaded for a
+while. &lt;code&gt;data.raleighnc.gov&lt;/code&gt; is an example of this. Here are its first ten datasets.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;title&lt;/th&gt;
+      &lt;th&gt;created&lt;/th&gt;
+      &lt;th&gt;format&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/s68n-gffw"&gt;Building Permit Data&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-03-14&lt;/td&gt;
+      &lt;td&gt;text/csv&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/pep8-sb8v"&gt;Building Permit Data&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-03-14&lt;/td&gt;
+      &lt;td&gt;text/csv&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/fuys-kh3c"&gt;City of Raleigh Quickfacts&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-19&lt;/td&gt;
+      &lt;td&gt;text/csv&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/g3uq-k7zm"&gt;Raleigh Parking&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/jrpi-4amz"&gt;Raleigh Electric Utilities 2011&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/fcx2-d4t3"&gt;Raleigh Communications 2011&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/46tk-23jt"&gt;Raleigh Buildings 2011&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/3fmi-wyx6"&gt;Raleigh Parks and Trails&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/pwv5-a5ca"&gt;Raleigh Trail Areas&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.raleighnc.gov/d/apbx-xr7f"&gt;Family Income In The Past 12 Months&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2013-02-28&lt;/td&gt;
+      &lt;td&gt;text/csv&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The first two datasets were uploaded in the middle of March 2012 and were CSV format,
+making the datasets 100% CSV. The next was uploaded in the middle of February 2013 and
+was also CSV, so the proportion was still 100% CSV. At the end of the month, six
+zip files were uploaded, reducing the proportion to 33% CSV.&lt;/p&gt;
+
+&lt;h3 id="sudden-changes-after-the-beginning"&gt;Sudden changes after the beginning&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;data.sfgov.org&lt;/code&gt; had a sudden change in the proportion of datasets that were CSV, but
+it was after a long while, so a lot of related datasets might have been uploaded all
+at once. Let’s look at when datasets were uploaded.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/sf-changes.png"&gt;&lt;img src="figure/sf-changes.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This has the quite similar information to the earlier plots, but it’s a bit more precise.
+San Francisco added lots of datasets in January 2012, November 2012, and December 2012, and proportionately
+few of these datasets were CSV. What were they?&lt;/p&gt;
+
+&lt;p&gt;Here are ten of the January datasets.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;title&lt;/th&gt;
+      &lt;th&gt;created&lt;/th&gt;
+      &lt;th&gt;format&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/2ivi-ywmk"&gt;Arterial Streets of San Francisco (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/2xc9-is4u"&gt;Orthophoto 1ft resolution (1993) - (Zipped MrSID Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/3vyz-qy9p"&gt;City Lots (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/4aaa-ycik"&gt;Census 2000 Block Group (No Water) (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/4drs-6tjy"&gt;Orthophoto 1ft (1993) - Treasure Island (Zipped MrSID Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/4mzs-yjt7"&gt;SFPD Sectors&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/5aii-qc4e"&gt;SFPD Crime Reporting Plots (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/5fxg-wene"&gt;Neighborhood Marketplace Initiative Corridors (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/5rn4-fswj"&gt;San Francisco Basemap Street Centerlines (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://data.sfgov.org/d/5sny-6aph"&gt;The Presidio of San Francisco (Zipped Shapefile Format)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;2012-01-01&lt;/td&gt;
+      &lt;td&gt;application/zip&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;It looks like January is mostly externally linked, zipped shapefiles. Most of the
+datasets say “shapefile” in their &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt; or &lt;a href="#distribution"&gt;&lt;code&gt;distribution&lt;/code&gt;&lt;/a&gt; fields.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/sf-shapefile.png"&gt;&lt;img src="figure/sf-shapefile.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And a lot of the rest of the January files look like zipped shapefiles, even though the
+titles and descriptions don’t say so.&lt;/p&gt;
+
+&lt;p&gt;So San Francisco suddenly uploaded a bunch of shapefiles in January and November/December.&lt;/p&gt;
+
+&lt;h3 id="plateaus-of-dataset-counts"&gt;Plateaus of dataset counts&lt;/h3&gt;
+&lt;p&gt;Some of the plots make it look like lots of datasets were suddenly uploaded one time
+and no datasets were uploaded again. This is mainly for the
+&lt;a href="#cutoff-at-1000"&gt;portals with more than 1000 datasets&lt;/a&gt;,
+so I think this is because we’re seeing only the first 1000 datasets.&lt;/p&gt;
+
+&lt;h2 id="csv-pdf-zip-and-octet-stream"&gt;CSV, pdf, zip and octet-stream&lt;/h2&gt;
+&lt;p&gt;Based on the examples above, it seems like a lot of datasets are PDF, zip or unknown
+external links. I made the following series of plots to check it. It is just like the
+&lt;a href="#csv"&gt;similar image above&lt;/a&gt; except for the y-axes; instead of representing the
+proportion of datasets that are CSV, each y-axis represents the proportion of datasets
+that are CSV, PDF, zip or unknown external links.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="figure/csv-pdf-zip-octet-cum-facet.png"&gt;&lt;img src="figure/csv-pdf-zip-octet-cum-facet.png" alt="Dataset formats by portal over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of the curves are pretty straight and stay near 1, meaning that the proportion doesn’t
+change much and that the proportion is quite high. Thus, it looks like most datasets are
+either CSV, pdf, zip or external links of unknown format.&lt;/p&gt;
+
+&lt;h2 id="conclusions"&gt;Conclusions&lt;/h2&gt;
+
+&lt;h3 id="formats"&gt;Formats&lt;/h3&gt;
+&lt;p&gt;I was mainly wondering about the source formats of the data. It turns out that most datasets
+are tables. Aside from tables, there are lots of externally linked files, mostly PDFs and zip archives.&lt;/p&gt;
+
+&lt;h3 id="shapefiles"&gt;Shapefiles&lt;/h3&gt;
+&lt;p&gt;I’ve been thinking recently about how to infer the organizational structure of a municipality
+based on the open data that they release, and the finding with the San Francisco shapefiles
+alludes to this. It might be that one department within the San Francisco government manages
+and uses most of the geospatial data and that the open data team happened to work with them
+in January, November and December of 2012.&lt;/p&gt;
+
+&lt;h2 id="future-study"&gt;Future study&lt;/h2&gt;
+&lt;p&gt;This got me thinking about other ways of studying file formats.&lt;/p&gt;
+
+&lt;h3 id="the-attribution-field"&gt;The attribution field&lt;/h3&gt;
+&lt;p&gt;Socrata’s SODA 1 API, which I’ve &lt;a href="/!/socrata-summary/#download-dataset-metadata"&gt;used before&lt;/a&gt;,
+contains an &lt;code&gt;attribution&lt;/code&gt; field, which references the URL from
+which the dataset was taken.&lt;sup id="fnref:attribution"&gt;&lt;a href="#fn:attribution" class="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; This would be one
+way of figuring out the source format, or at least some related information about the source.&lt;/p&gt;
+
+&lt;h3 id="externally-linked-csvs"&gt;Externally linked CSVs&lt;/h3&gt;
+&lt;p&gt;Not all of the CSV-formatted datasets necessarily come from Socrata; some might be links
+to external CSV files. There is enough information in &lt;code&gt;/data.json&lt;/code&gt; to determine which of
+these categories a CSV dataset falls into.&lt;/p&gt;
+
+&lt;h3 id="determining-the-formats-of-external-links"&gt;Determining the formats of external links&lt;/h3&gt;
+&lt;p&gt;It looks to me like the format type of external links is determined based on the file
+extension of the URL; &lt;code&gt;octet-stream&lt;/code&gt; datasets seem to correspond to URLs without file
+extensions or with file extensions like &lt;code&gt;aspx&lt;/code&gt; that don’t clearly correspond to a
+particular file types. One could determine the formats of these datasets by
+downloading the files.&lt;/p&gt;
+
+&lt;h2 id="footnotes"&gt;Footnotes&lt;/h2&gt;
+
+&lt;div class="footnotes"&gt;
+  &lt;ol&gt;
+    &lt;li id="fn:proportion"&gt;
+      &lt;p&gt;It’s actually a tad bit more complicated than that. These dates are the
+creation dates of the datasets that are available today; I do not know about datasets
+that were historically on the portal and have since been deleted.&lt;a href="#fnref:proportion" class="reversefootnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id="fn:attribution"&gt;
+      &lt;p&gt;I presume that this is entered manually.&lt;a href="#fnref:attribution" class="reversefootnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-21:/!/open-by-default/index.html</id>
     <title type="html">Open by default</title>
@@ -558,142 +973,6 @@ at making it easier to search. Rather than going to all of the different
 portals and making a separate search for each portal, you type your
 search in one search bar, and you get results from a bunch of different
 Socrata, CKAN and Junar portals.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-08:/!/everyday-living-for-girls/index.html</id>
-    <title type="html">Everyday Living for Girls</title>
-    <published>2013-08-08T07:00:00Z</published>
-    <updated>2013-08-08T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/everyday-living-for-girls/index.html"/>
-    <content type="html">&lt;blockquote&gt;
-  &lt;p&gt;The purpose of this book is to develop standards of living and appreciations of the value of personal and social development in the high school girl &lt;em&gt;(page v)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;Everyday Living for Girls&lt;/em&gt;, by is a gem that I found in the library at university.&lt;/p&gt;
-
-&lt;p&gt;It has 14 units, which include “Planning Clothes Artistically”, “Selecting Clothes Practically”, “Supervising One’s Wardrobe”, “Food Facts for the Individual” and “Making the Most of Oneself: Manners and Conventions”.
-And the table of contents is in small caps! (I find small caps quite interesting.)&lt;/p&gt;
-
-&lt;p&gt;Here are some of my favorite excepts, divided by section of the book.&lt;/p&gt;
-
-&lt;h2 id="health-an-asset"&gt;Health an Asset&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;We usually form a high estimate of the person who stands and walks erect. Mental characteristics of alertness, decision, and courage are indications of good health and reflect themselves in good posture. &lt;em&gt;(page 153)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;[I]n most cases the deformity is brought about by lack of thought of our posture when engaged in daily activities. Continued poor occupational posture will eventually take a permanent toll in a warped body whose general health will be impaired by the improper functioning of the body organs thus thrown into a cramped position’’ &lt;em&gt;(page 154)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id="food-facts-for-the-individual"&gt;Food Facts for the Individual&lt;/h2&gt;
-
-&lt;h3 id="eating-downtown"&gt;Eating downtown&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A girl with a minimum wage should never select a tearoom where a tea-leaf reader tells fortunes.
-In the first place, the food may be expensive and inferior.
-One must pay for “fortunes” that are silly nonsense and sacrifice food values essential for health &lt;em&gt;(page 182)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Ordering a balanced meal from a menu card is much different from selecting a meal in your school lunchroom or planning a  meal for the family.
-Frequently, odd terms or French words are used. To be able to order a meal without embarrassment one should know the meaning of these terms.
-A menu card may seem very formidable to an inexperienced person &lt;em&gt;(page 183)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The authors then go on to discuss the difference between “table d’hôte” and “à la carte” and to include example menus (&lt;a href="pictures/IMG_4346.JPG"&gt;pages 184–5&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;An “Explanation of Unusual Terms Used on Meal Cards” is presented on &lt;a href="pictures/IMG_4345.JPG"&gt;pages 186–7&lt;/a&gt;.
-They like talking about “fat” in this explanation. For example, “[c]roquette” is described as
-“Potatoes, fish, or vegetables formed into cones or patties and fried in deep fat.” &lt;em&gt;(page 186)&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id="dining-in-public-places"&gt;Dining in public places&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Bad table manners indicate lack of background. Eating is not at any time an attractive process. Each individual should have too much personal pride to risk offending others by boorish manners. &lt;em&gt;(page 187)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;When dining in a restaurant or a hotel, wait at the entrance for the head waiter to escort you to a seat.
-If a boy and a girl are together, the girl follows the waiter to a table.
-If there is no waiter, then the boy should lead the way, find a table, and assist the girl to her seat.
-He should also help her remove her wrap after he is seated and arrange it over the back of the chair.
-The girl should place her gloves and purse in her lap or on a vacant chair, if there is one.
-Never place purse or gloves on the tablecloth.
-If the hat is to be removed, this should be done outside the dining-room.
-No attention should be given to the hair at the table.
-Removing the hat, arranging the hair, and applying lipstick and other make-up should take place in the dressing room.
-To do any of them at the table is a mark of poor breeding &lt;em&gt;(page 187)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Page 188 has a picture of “An attractive tea room.”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="pictures/IMG_4344.JPG" alt="An attractive tea room." /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="pictures/IMG_4355.JPG"&gt;Page 189&lt;/a&gt; is hilarious.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If silver should be dropped on the floor, do not pick it up. The waiter will bring you another piece.’’ &lt;em&gt;(page 189)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If anyone stops at the table to speak with you, the boy should rise and remain standing while the person is present. &lt;em&gt;(page 189)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;During the meal, conversation should be quiet and dignified.
-Boisterous laughter, lounging over the table, beckoning to friends or acquaintances are all signs of poor breeding. &lt;em&gt;(page 189)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;When two girls are dining together, each may order her own meal.
-When paying for the meal, they may ask for separate checks;
-if one check is given, they may settle between themselves.
-At no time should an argument arise as to who shall pay the bill.
-This attracts attention and is in poor taste.
-Each girl may leave a tip, or one may pay the entire bill and the tip,
-allowing the other person to pay her later. &lt;em&gt;(page 190)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id="entering-the-business-world"&gt;Entering the Business World&lt;/h2&gt;
-&lt;p&gt;This section discusses, among other things, the merits a college education for a girl.
-It encourages such an education from a financial perspective.&lt;/p&gt;
-
-&lt;h2 id="personal-and-social-development"&gt;Personal and Social Development&lt;/h2&gt;
-
-&lt;h3 id="petting"&gt;Petting&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;One of the questions that arises between boys and girls is that of petting.
-It is agreed that public demonstration of affection is always in bad taste and the wisdom of that done in secret is always to be questioned. &lt;em&gt;(page 386)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id="reference"&gt;Reference&lt;/h2&gt;
-&lt;p&gt;Here’s the reference, in &lt;script type="math/tex"&gt;Bib\TeX&lt;/script&gt;, so you can find the book.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@book{vanduzer,
-	title={Everyday Living for Girls: A Textbook in Personal Regimen},
-	author={Adelaide Laura van Duzer and Edna M. Andrix and Ethelwyn L. Bobenmyer and E. Maude Hawkins and Mary E. Hemmersbaugh and Elsa P. Page},
-	editor={Benjamin R. Andrews},
-	publisher={J. B. Lippincott Company},
-	address={Chicago},
-	year=1936
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="yet-to-be-transcribed"&gt;Yet-to-be-transcribed&lt;/h2&gt;
-&lt;p&gt;Here are some other awesome pages for which I have pictures but no transcription.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="pictures/IMG_4342.JPG" alt="What I cost per year" class="wide" /&gt;
-&lt;img src="pictures/IMG_4343.JPG" alt="What I cost per year, unfolded" class="wide" /&gt;
-&lt;img src="pictures/IMG_4347.JPG" alt="Adequate dinners" class="wide" /&gt;
-&lt;img src="pictures/IMG_4348.JPG" alt="Employment" class="wide" /&gt;
-&lt;img src="pictures/IMG_4351.JPG" alt="Wise use of leisure" class="wide" /&gt;
-&lt;img src="pictures/IMG_4352.JPG" alt="Good citizens provide parks where the natural beauty of the out-of-doors is preserved for permanent enjoyment." class="wide" /&gt;
-&lt;img src="pictures/IMG_4353.JPG" alt="Body odors and cleanliness" class="wide" /&gt;
-&lt;img src="pictures/IMG_4354.JPG" alt="Care of the hair" class="wide" /&gt;
-&lt;img src="pictures/IMG_4356.JPG" alt="When packing a lunch" class="wide" /&gt;
-&lt;img src="pictures/IMG_4357.JPG" alt="High school boys and girls may prefer to buy their milk at school." class="wide" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
