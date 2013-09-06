@@ -102,8 +102,23 @@
             
             <p>Set that up as a daemon if you wish.</p>
             
-            <p>I always have problems with the Chrome driver, but
-            the Firefox driver has always been fine for me.</p>
+            <h2 id="chrome">Chrome</h2>
+            <p>You need the Chrome driver in order to use Selenium with Chrome.
+            Download it <a href="http://code.google.com/p/chromedriver/downloads/list">here</a>,
+            unzip it, and put the contained <code>chromedriver</code> file in your path.
+            If you have my computer, you might run something like this.</p>
+            
+            <pre><code>wget http://chromedriver.googlecode.com/files/chromedriver_linux64_2.3.zip&#x000A;unzip chromedriver_linux64_2.3.zip&#x000A;export PATH="$PATH:$PWD"&#x000A;</code></pre>
+            
+            <p>The Chrome driver expects Chrome, not Chromium. If you want to use Chromium,
+            make Chromium look like Chrome; run this as your user.</p>
+            
+            <pre><code>alias chrome=chromium&#x000A;</code></pre>
+            
+            <p>(Those directions came from <a href="https://bitbucket.org/ScraperWiki/scraperwiki-classic/wiki/RunningTests#!installing-chrome">here</a>.)</p>
+            
+            <p>The previous two code blocks must be run in the same shell session as the one
+            where you are going to run <code>java -jar selenium-server-standalone-2.21.0.jar -port 4443</code>.</p>
           </article>
         </div>
         <div id='pagination'>
