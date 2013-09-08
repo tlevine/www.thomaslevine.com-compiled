@@ -196,7 +196,7 @@
             Here’s a simplified version of the Hypertext Transfer Protocol (HTTP)</p>
             
             <h3 id="highly-simplified-specification">Highly simplified specification</h3>
-            <p>HTTP is a way of exchanging commands between a web browser and a web server.
+            <p>HTTP is a way of exchanging information between a web browser and a web server.
             It is represented as a very long series of words, punctuation and spaces.</p>
             
             <p>Some messages have a <em>body</em>. This is an embedded series of words, punctuation
@@ -240,10 +240,16 @@
             <p>A bunch of things in your web browser might initate a request. For example, opening
             a web page makes one request, and loading an image on the web page makes another request.</p>
             
-            <p>A particular piece of software (the HTTP server) receives the request, checks that it is valid, and breaks it into the
-            component method, headers, and body. Then the HTTP server asks something else to decide
+            <p>A computer somewhere (Call it the “web server”.) is running a particular piece of software
+            (Call it the “HTTP server”.) that is able to receive this request.
+            The HTTP server receives the request, checks that it is valid, and breaks it into the
+            component method, headers, and body.</p>
+            
+            <p>Then the HTTP server asks something else to decide
             what to do. After doing everything, this other thing decides what the outcome of the
-            command was and tells the HTTP server. The HTTP server composes an HTTP response and
+            command was and tells the HTTP server.</p>
+            
+            <p>The HTTP server composes an HTTP response and
             sends that back to the browser.</p>
             
             <p>The browser breaks that into its various parts and accordingly displays a web page,

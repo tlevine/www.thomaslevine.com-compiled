@@ -25,12 +25,12 @@ I just want to explain the generic concept of a protocol. I’ll explain
 this through two example protocols.&lt;/p&gt;
 
 &lt;h2 id="the-street-sign-protocol"&gt;The street sign protocol&lt;/h2&gt;
+&lt;p&gt;First, I’ll document a protocol that we might not usually think of a
+protocol. Let’s call it the Street Sign Protocol (SSP).&lt;/p&gt;
+
 &lt;p&gt;&lt;img src="street-signs.jpg" alt="Street signs" /&gt;
 &lt;!-- http://farm3.staticflickr.com/2132/2302062601_dd0f89779d.jpg
      http://oaklandwiki.org/Street_Signs --&gt;&lt;/p&gt;
-
-&lt;p&gt;First, I’ll document a protocol that we might not usually think of a
-protocol. Let’s call it the Street Sign Protocol (SSP).&lt;/p&gt;
 
 &lt;p&gt;To keep things simple, I’ll actually document a simple version of the
 Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).&lt;/p&gt;
@@ -54,7 +54,9 @@ Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).&lt
   The sign is oriented such that the text reads left-to-right.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Next, let’s discuss what is expected of all of the.&lt;/p&gt;
+&lt;p&gt;Now we can define the SSSP in outrageous precision and verbosity! &lt;em&gt;You’ll probably
+get confused as you read the paragraphs below, so keep in mind that this is just
+a very precise and verbose explanation of what we usually consider to be street signs&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;Each four-way intersection has four corners, and each pole is associated with
 a corner of an intersection. Each corner must have zero or one poles, and at least
@@ -127,8 +129,7 @@ Here’s a simplified version of the Hypertext Transfer Protocol (HTTP)&lt;/p&gt
 It is represented as a very long series of words, punctuation and spaces.&lt;/p&gt;
 
 &lt;p&gt;Some messages have a &lt;em&gt;body&lt;/em&gt;. This is an embedded series of words, punctuation
-and spaces that can be written in any format you want. (You could use this to
-write another protocol on top of HTTP.)&lt;/p&gt;
+and spaces that can be written in any format you want.&lt;/p&gt;
 
 &lt;p&gt;Each message may have a bunch of &lt;em&gt;headers&lt;/em&gt;. Each header has a name and a value.
 There are a bunch of headers that provide some information about the body
@@ -146,8 +147,8 @@ particular browser to particular server.&lt;/p&gt;
 &lt;p&gt;Every response has a body (explained above) and a status code. The status code
 is a number that explains whether the request succeeded and any quirks about its
 success or failure. For example, status code &lt;code&gt;200&lt;/code&gt; means that the request worked
-as expected, and status code &lt;code&gt;403&lt;/code&gt; means that the web browser is not allowed to
-run the command that it requested.&lt;/p&gt;
+as expected, and status code &lt;code&gt;403&lt;/code&gt; means that you don’t have permission to do
+whatever you tried to do.&lt;/p&gt;
 
 &lt;p&gt;Each request must have a method. There are a bunch of methods, and you can think
 of them as different commands. Here are a few of them.&lt;/p&gt;
@@ -168,10 +169,10 @@ of them as different commands. Here are a few of them.&lt;/p&gt;
 &lt;p&gt;A bunch of things in your web browser might initate a request. For example, opening
 a web page makes one request, and loading an image on the web page makes another request.&lt;/p&gt;
 
-&lt;p&gt;The web server receives the request, checks that it is valid, and breaks it into the
-component method, headers, and body. Then the web server asks something else to decide
+&lt;p&gt;A particular piece of software (the HTTP server) receives the request, checks that it is valid, and breaks it into the
+component method, headers, and body. Then the HTTP server asks something else to decide
 what to do. After doing everything, this other thing decides what the outcome of the
-command was and tells the web server. The web server composes an HTTP response and
+command was and tells the HTTP server. The HTTP server composes an HTTP response and
 sends that back to the browser.&lt;/p&gt;
 
 &lt;p&gt;The browser breaks that into its various parts and accordingly displays a web page,
