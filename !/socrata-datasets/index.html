@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Thomas Levine</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-datasets/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>In my various studies of open data, I’ve been focusing on the
+            data in the Socrata portals and have had to deal with some
+            annoying quirks in the way the data are modeled. I haven’t
+            properly dealt with it yet, but I finally came up with a good
+            way of doing this.</p>
+            
+            <h2 id="how-data-are-stored">How data are stored</h2>
+            <p>Data on Socrata is displayed in <a href="">views</a>,
+            which are queries on <a href="">tables</a>.
+            When you put a new data source on a Socrata portal, you get both
+            a new table and a <a href="">dataset</a>
+            view that is a query of the full table.
+            (So it would be <code>SELECT * FROM [table]</code> in SQL.)</p>
+            
+            <h3 id="derivatives">Derivatives</h3>
+            <p>In the Socrata web interface, you can create lots of different views
+            on the same source data. You can make different queries on the same
+            table, and you can visualize them as charts, maps, and a
+            <a href="">bunch of other things</a>.
+            When you save your new view, it gets added to the data portal, and
+            it will show up in searches.</p>
+            
+            <h3 id="duplicates">Duplicates</h3>
+            <p>Data are uploaded to one Socrata portal, but they can be
+            <a href="">federated</a>
+            to other Socrata portals. Thus, if you get all of the datasets from
+            all of the portals, you can easily have duplicates and not know which
+            portal they came from.</p>
+            
+            <h3 id="privacy">Privacy</h3>
+            <p>Some data on Socrata are private. In many cases, the source data are
+            private and a query on the data (a <a href="">filtered view</a>)
+            is public. Thus, it is possible that the most complete form of the data
+            that a data publisher is releasing would be in a different type of view
+            than dataset.</p>
+            
+            <h2 id="getting-just-the-source-data">Getting just the source data</h2>
+            <p>If we want just the source data, we have to remove these derivatives and
+            these duplicates.</p>
+            
+            <h3 id="with-a-search">With a search</h3>
+            <p>If you run an ordinary search on a portal, filtering for only dataset
+            views, you’ll get none of the derivatives. It’s possible that you’ll miss
+            some data where the original dataset is private and only a filter on the
+            dataset is public.</p>
+            
+            <p>(Search API?)</p>
+            
+            <p>Dealing with federation is quite easy. In the HTML search interface that
+            is intended for humans, federated datasets are shaded blue and shown as
+            links to other data portals, rather than being shaded white and linking
+            within the same portal. When searching the site, simply ignore these
+            federated datasets, and you’re good.</p>
+            
+            <h3 id="with-datajson">With <code>/data.json</code></h3>
+            <p>I was told that the <code>/data.json</code> endpoint shows only the source data.
+            I haven’t checked this myself, and I don’t know how it handles datasets
+            where the original upload is private but a filter on it is public.
+            Anyway, let’s just hope that the <code>/data.json</code> endpoint lets deals with
+            the derivatives properly for us.</p>
+            
+            <p>In that case, we just have to deal with federation. Unfortunately, the
+            <code>/data.json</code> endpoint doesn’t give you any indication as to whether a
+            dataset is federated. Federated datasets share the same exact identifier
+            across portals, so it is easy to separate distinct datasets, but it is
+            less obvious how to tell which portals they came from.</p>
+            
+            <p>We can deal with that by looking at the network of federation from the
+            portal hope pages. Each portal’s homepage has a box like this that says
+            which portals it federates.</p>
+            
+            <p>()</p>
+            
+            <p>The particular portal contains all of the datasets that all of these
+            federated portals contain. If you construct the network of federation
+            from these portal homepages, you can resolve duplicates properly. If
+            the same dataset is on a few different portals, it’s because the
+            different portals all federate the same portal. Since you know what
+            the network of federation is from the homepages, you can figure out
+            which portal was the original portal.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-datasets/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

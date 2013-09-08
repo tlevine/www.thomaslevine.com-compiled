@@ -7,18 +7,18 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Thomas Levine</title>
-    <meta content='' name='description'>
+    <title>The Street Sign Protocol</title>
+    <meta content='What is a computer protocol anyway?' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Thomas Levine' name='twitter:title'>
-    <meta content='' name='twitter:description'>
+    <meta content='The Street Sign Protocol' name='twitter:title'>
+    <meta content='What is a computer protocol anyway?' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
-    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='http://thomaslevine.com/!/street-sign-protocol/street-signs.jpg' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
     <meta content='' name='twitter:app:name:iphone'>
     <meta content='' name='twitter:app:name:ipad'>
@@ -31,8 +31,8 @@
     <meta content='' name='twitter:app:id:googleplay'>
     <meta content='http://thomaslevine.com/!/street-sign-protocol/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content='' property='og:description'>
-    <meta content='' property='og:title'>
+    <meta content='What is a computer protocol anyway?' property='og:description'>
+    <meta content='The Street Sign Protocol' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,27 +74,34 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              
+              The Street Sign Protocol
             </h1>
             <p>
               
             </p>
           </hgroup>
           <div class='date'>
-            
+            September 08, 2013
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
+            <p>“Protocol” is one of those words that sounds more special than it is.
+            The concept of a computer protocol might sound quite complex, but
+            it’s a rather generic concept that is something like a language,
+            an expectation, and a social norm.</p>
             
-            <p>Someone recently asked me to explain what a computer “protocol” is.
-            This is one of those words that sounds more special than it is; you
-            could just-as-accurately call it a language or an expectation.</p>
+            <p>The way a particular protocol works might be quite complicated, but
+            I just want to explain the generic concept of a protocol. I’ll explain
+            this through two example protocols.</p>
             
             <h2 id="the-street-sign-protocol">The street sign protocol</h2>
-            <p>To make that more clear, I’ll document a protocol that we might not
-            usually think of a protocol. Let’s call it the Street Sign Protocol
-            (SSP).</p>
+            <p><img src="street-signs.jpg" alt="Street signs" />
+            <!-- http://farm3.staticflickr.com/2132/2302062601_dd0f89779d.jpg
+                 http://oaklandwiki.org/Street_Signs --></p>
+            
+            <p>First, I’ll document a protocol that we might not usually think of a
+            protocol. Let’s call it the Street Sign Protocol (SSP).</p>
             
             <p>To keep things simple, I’ll actually document a simple version of the
             Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).</p>
@@ -192,7 +199,7 @@
             
             <p>Some messages have a <em>body</em>. This is an embedded series of words, punctuation
             and spaces that can be written in any format you want. (You could use this to
-            write another protocal on top of HTTP.)</p>
+            write another protocol on top of HTTP.)</p>
             
             <p>Each message may have a bunch of <em>headers</em>. Each header has a name and a value.
             There are a bunch of headers that provide some information about the body
@@ -228,7 +235,7 @@
               request, the <code>HEAD</code> request contains no body.</li>
             </ul>
             
-            <h3 id="reading-and-writing">Reading and writing</h3>
+            <h3 id="receiving-and-reading-and-writing-and-sending">Receiving and reading and writing and sending</h3>
             <p>A bunch of things in your web browser might initate a request. For example, opening
             a web page makes one request, and loading an image on the web page makes another request.</p>
             
@@ -240,6 +247,13 @@
             
             <p>The browser breaks that into its various parts and accordingly displays a web page,
             shows an image or does whatever else was specified.</p>
+            
+            <h2 id="review">Review</h2>
+            <p>A particular protocol might get quite complicated, but the concept of a protocol
+            is quite general.
+            A computer protocol is just a way that we expect things to work, and we agree on a
+            computer protocol because that makes it easier for us to make computers communicate.
+            “Protocol” means the same thing for computers as it does for people.</p>
           </article>
         </div>
         <div id='pagination'>
