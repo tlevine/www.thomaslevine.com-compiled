@@ -7,18 +7,18 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Statistics with Doodles</title>
-    <meta content='' name='description'>
+    <title>Today I learned about statistics through doodles</title>
+    <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Statistics with Doodles' name='twitter:title'>
-    <meta content='' name='twitter:description'>
+    <meta content='Today I learned about statistics through doodles' name='twitter:title'>
+    <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
-    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/doodle.jpg' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
     <meta content='' name='twitter:app:name:iphone'>
     <meta content='' name='twitter:app:name:ipad'>
@@ -31,9 +31,9 @@
     <meta content='' name='twitter:app:id:googleplay'>
     <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content='' property='og:description'>
-    <meta content='Statistics with Doodles' property='og:title'>
-    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' property='og:description'>
+    <meta content='Today I learned about statistics through doodles' property='og:title'>
+    <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/doodle.jpg' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
@@ -74,20 +74,187 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Statistics with Doodles
+              Today I learned about statistics through doodles
             </h1>
             <p>
               
             </p>
           </hgroup>
           <div class='date'>
-            
+            September 14, 2013
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>http://tlevine.inter.numm.org/data/webm/00/806d63479fcdb4378b22c6429a839f.webm
-            http://tlevine.inter.numm.org/data/webm/01/59726f0571c80c5f943b1157a789cf.webm</p>
+            <style>
+              .control {
+                height: auto;
+                border: none;
+              }
+              img.control {
+                width: 9%;
+                max-width: 50px;
+                margin: 0;
+                margin-right: 1%;
+                padding: 0;
+              }
+              input[type=range].control {
+                width: 75%;
+                margin: 0;
+                height: 40px;
+              }
+              video {
+                margin: 0;
+                border: 0;
+                padding: 0;
+              }
+            </style>
+            
+            <p><img src="doodle.jpg" alt="Doodles in marker" class="wide" /></p>
+            
+            <p>A statistic is a number that describes a lot of other numbers.
+            By reducing many numbers into one number, we make it easier to
+            figure out what the numbers mean; we wouldn’t be able to fit all
+            of the original in our brain.</p>
+            
+            <p>People usually explain statistics with symbols, but I like explaining
+            statistics with drawings, 
+            <a href="https://sudoroom.org/wiki/Today_I_Learned#July_20:_Statistics_through_doodles:_Geometric_computations_of_fundamental_statistical_concepts">I doodled about statistics</a>
+            one time in <a href="http://sudoroom.org/">Sudoroom</a>,
+            and we took videos of it. Watch them here!</p>
+            
+            <div id="videos">
+              <video width="49%" class="back" src="http://bigdada.thomaslevine.com/til-statistics-back.webm"></video>
+              <video width="49%" class="above" src="http://bigdada.thomaslevine.com/til-statistics-above.webm"></video>
+            </div>
+            
+            <div id="controls">
+              <a id="play" href="javascript:play()"><img class="control" alt="Play" src="play.jpg" /></a>
+              <a id="pause" href="javascript:pause()"><img class="control" alt="Pause" src="pause.jpg" /></a>
+              <input class="control" id="seek" type="range" min="0" max="1" value="0" step="0.01" />
+            </div>
+            <p style="text-align: right;">
+              <a href="javascript:big()">Big videos</a> | 
+              <a href="javascript:small()">Small videos</a>
+            </p>
+            
+            <script>document.write('<script src="script.js?date=' + (new Date()).getTime() + '"><' + '/script>')</script>
+            
+            <p>The videos gloss over the reasons why we have these statistics,
+            so I discuss those reasons below.</p>
+            
+            <h2 id="geometric-computations">Geometric computations</h2>
+            <p>In the video, I geometrically computed four statistics
+            about the relationships between different variables.</p>
+            
+            <ol>
+              <li>Covariance</li>
+              <li>Variance</li>
+              <li>Correlation</li>
+              <li>Least-squares regression coefficients</li>
+            </ol>
+            
+            <p>Each computation is for the simplest version of the statistic,
+            that is the univariate or bivariate version, and the population
+            statistic rather than the sample statistic.</p>
+            
+            <h2 id="why-we-care-about-these-statistics">Why we care about these statistics</h2>
+            <p>The videos show the computations of these statistics, but they
+            don’t really explain why we use these statistics. So I’ll explain
+            that here.</p>
+            
+            <h3 id="linear-relationships">Linear relationships</h3>
+            <p>A lot of relationships can be seen as linear relationships.
+            One such relationship is that between a person’s height and weight;
+            taller people are heavier, and shorter people are lighter.</p>
+            
+            <p>A relationship that isn’t very linear might be 
+            <a href="/!/ridership-rachenitsa">public transit ridership and time</a>.
+            As time progresses, weekly public transit ridership stays the same.
+            However, it does change a lot within the week, with high ridership
+            on the weekdays, low ridership on Saturdays and lower ridership on Sundays.</p>
+            
+            <p>These four statistics are ways of describing the strength of a
+            relationship, and they only make sense to use with linear relationships.</p>
+            
+            <h3 id="covariance">Covariance</h3>
+            <p>Covariance is a basic measure of how strong the relationship.
+            Is just a number that is zero if there is no relationship, really
+            big if the two variables tend to move in the same direction,
+            and really negative if the two variables tend to move in opposite
+            directions.</p>
+            
+            <p>For example, the covariance between weight and height is a very positive
+            number, like maybe 9001, because taller people are heavier.</p>
+            
+            <p>The covariance between number of times a person has eaten popcorn and her
+            shoe size is probably around zero, because I doubt that these are very
+            strongly related.</p>
+            
+            <p>And the covariance between cholesterol level and lifespan is probably
+            a very negative number, like maybe -1337, because people with more
+            cholesterol tend to live less long.</p>
+            
+            <p>We tend not to use the covariance very directly in practice because
+            it’s hard to compare covariances directly to each other. The reasons
+            are explained in the video.</p>
+            
+            <h3 id="variance">Variance</h3>
+            <p>Variance is a measure of how spread out one variable is. It is a
+            positive number that gets big when the variables are more spread out.</p>
+            
+            <p>Let’s say that two people are cutting wood to build a house. They cut
+            10 pieces of wood each, and each piece of wood is supposed to be exactly
+            10 feet long.</p>
+            
+            <p>One person is very careful when he measures the wood, so his pieces come
+            out perfectly. They’re not exactly 10 feet long because that’s impossible,
+            but they’re not off by more than a hair. The variance of the lengths of
+            his pieces of wood is very close to zero, like maybe 3.</p>
+            
+            <p>The other person is drunk and stoned and thus not very careful, so the
+            lengths of his pieces are all over the place. They’re still around 10
+            feet long on average, but some of them are 8 feet long, and others are
+            11 feet long. The variance of the lengths of this person’s pieces is
+            very high; maybe it’s 200.</p>
+            
+            <p>We talk about variances a lot when we are estimating the average of a
+            variable. When we estimate an average, we want to know how precise our
+            estimate is, and the variance tells us that.</p>
+            
+            <h3 id="correlation">Correlation</h3>
+            <p>Think of the correlation as a standardized version of the covariance.
+            The correlation is a number between -1 and 1. Like for the covariance,
+            positive correlations mean that the variables move together, and negative
+            correlations mean that the variables move oppositely.</p>
+            
+            <p>Like the covariance, the correlation tells us how strongly two variables
+            are related. The practical difference is that we can compare different
+            covariances to each other.</p>
+            
+            <p>We can compute the correlation between two variables based on the covariance
+            between the two variables and the respective variances of the two variables.</p>
+            
+            <h3 id="least-squares-regression">Least-squares regression</h3>
+            <p>Maybe you want to be able to predict someone’s height based on her weight.
+            Regression is one way of doing this.</p>
+            
+            <p>To predict height from weight, we can use a simple regression that would
+            tell us two statistics (numbers). In order to calculate these numbers, we
+            first need to measure the heights and weights of a bunch of people.</p>
+            
+            <p>Once we calculate these two numbers, we have a formula for predicting height;
+            you give the formula a weight, and it will give you back a predicted height.</p>
+            
+            <h2 id="why-statistics-and-math-and-doodles">Why statistics and math and doodles</h2>
+            <p>Statistics lets us distill our complex observations of the world into simple
+            numbers that are easier to understand. Covariance, variance, correlation
+            and least-squares regression are some statistics that are commonly used. The
+            text explains why we use them, and the video explains how we calculate them.</p>
+            
+            <p>The formulae for these statistics get a bit confusing when you write them
+            out as symbols, but math can always be drawn, and it usually makes more sense
+            that way.</p>
           </article>
         </div>
         <div id='pagination'>

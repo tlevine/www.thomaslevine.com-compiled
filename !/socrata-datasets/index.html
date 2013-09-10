@@ -89,8 +89,7 @@
             <p>In my various studies of open data, I’ve been focusing on the
             data in the Socrata portals and have had to deal with some
             annoying quirks in the way the data are modeled. I haven’t
-            properly dealt with it yet, but I finally came up with a good
-            way of doing this.</p>
+            properly dealt with it yet. Until now!</p>
             
             <h2 id="how-data-are-stored">How data are stored</h2>
             <p>Data on Socrata is displayed in <a href="">views</a>,
@@ -140,15 +139,18 @@
             within the same portal. When searching the site, simply ignore these
             federated datasets, and you’re good.</p>
             
-            <h3 id="with-datajson">With <code>/data.json</code></h3>
-            <p>I was told that the <code>/data.json</code> endpoint shows only the source data.
+            <h3 id="with-apidcatjson">With <code>/api/dcat.json</code></h3>
+            <!-- https://twitter.com/chrismetcalf/status/376079563240898560 -->
+            <p>Go the <a href="https://data.oaklandnet.com/api/dcat.json"><code>/api/dcat.json</code></a> page</p>
+            
+            <p>I was told that the <code>/api/dcat.json</code> endpoint shows only the source data.
             I haven’t checked this myself, and I don’t know how it handles datasets
             where the original upload is private but a filter on it is public.
-            Anyway, let’s just hope that the <code>/data.json</code> endpoint lets deals with
+            Anyway, let’s just hope that the <code>/api/dcat.json</code> endpoint lets deals with
             the derivatives properly for us.</p>
             
             <p>In that case, we just have to deal with federation. Unfortunately, the
-            <code>/data.json</code> endpoint doesn’t give you any indication as to whether a
+            <code>/api/dcat.json</code> endpoint doesn’t give you any indication as to whether a
             dataset is federated. Federated datasets share the same exact identifier
             across portals, so it is easy to separate distinct datasets, but it is
             less obvious how to tell which portals they came from.</p>

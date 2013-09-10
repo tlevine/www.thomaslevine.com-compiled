@@ -81,22 +81,27 @@
             </p>
           </hgroup>
           <div class='date'>
-            September 08, 2013
+            September 10, 2013
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>“Protocol” is one of those words that sounds more special than it is.
+            <p>There are a lot of acronyms on the internet that end in “P”,
+            like TCP, IP, and HTTP. This “P” stands for “protocol”.
+            Perhaps you are wondering what a protocol is.</p>
+            
+            <p>“Protocol” is one of those words that sounds more special than it really is.
             The concept of a computer protocol might sound quite complex, but
             it’s a rather generic concept that is something like a language,
             an expectation, and a social norm.</p>
             
             <p>The way a particular protocol works might be quite complicated, but
-            I just want to explain the generic concept of a protocol. I’ll explain
-            this through two example protocols.</p>
+            I just want to explain the generic concept of a protocol. I’m going
+            to do this by writing about a protocol that you might not think of
+            as a protocol.</p>
             
             <h2 id="the-street-sign-protocol">The street sign protocol</h2>
-            <p>First, I’ll document a protocol that we might not usually think of a
+            <p>I’m going to document a protocol that we might not usually think of a
             protocol. Let’s call it the Street Sign Protocol (SSP).</p>
             
             <p><img src="street-signs.jpg" alt="Street signs" />
@@ -105,6 +110,15 @@
             
             <p>To keep things simple, I’ll actually document a simple version of the
             Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).</p>
+            
+            <h3 id="why-we-might-want-sssp">Why we might want SSSP</h3>
+            <p>You might already be familiar with how street signs work, but it took you a while
+            to figure it out. Also, you are probably so familiar with street signs that you
+            don’t really think about all of the small details that are involved in communication
+            through street signs.</p>
+            
+            <p>If we wanted to tell a robot how to communicate through street signs, it would be
+            helpful to be very explicit and precise about all of the aspects of street signs.</p>
             
             <h3 id="specification">Specification</h3>
             <p>SSSP is a way of exchanging the names of <em>streets</em>. It involves
@@ -193,7 +207,25 @@
             
             <h2 id="hypertext-transfer-protocol">Hypertext Transfer Protocol</h2>
             <p>Now let’s talk about something that people actually call a protocol.
-            Here’s a simplified version of the Hypertext Transfer Protocol (HTTP)</p>
+            Here’s a simplified version of the Hypertext Transfer Protocol (HTTP).</p>
+            
+            <h3 id="why-we-use-http">Why we use HTTP</h3>
+            <p>When you look at stuff on the internet with a web browser, your web browser and
+            various web servers are sending messages between each other. HTTP is a common
+            language that all of these computers use.</p>
+            
+            <p>While all of these web servers are expecting HTTP, you can actually send them
+            anything you want. If it is sort of like HTTP but with a few typos, the web
+            server might figure out what you meant. But if you sent random garbage, the
+            web server would not have any idea of what you wanted.</p>
+            
+            <p>We have common internet languages for the same reasons that we have common
+            human languages. If you talk to me in English, I’ll understand you quite well.
+            I’ll make sense of it even you you are not using Queen’s English. But I won’t
+            really have any idea what you mean if you use sign language.</p>
+            
+            <p>We agree to use HTTP on all of these different computers because it makes it
+            easier for the computers to understand each other.</p>
             
             <h3 id="highly-simplified-specification">Highly simplified specification</h3>
             <p>HTTP is a way of exchanging information between a web browser and a web server.
@@ -239,7 +271,7 @@
             </ul>
             
             <h3 id="receiving-and-reading-and-writing-and-sending">Receiving and reading and writing and sending</h3>
-            <p>A bunch of things in your web browser might initate a request. For example, opening
+            <p>A bunch of things in your web browser might initiate a request. For example, opening
             a web page makes one request, and loading an image on the web page makes another request.</p>
             
             <p>A computer somewhere (Call it the “web server”.) is running a particular piece of software
@@ -256,12 +288,16 @@
             <p>The browser breaks that into its various parts and accordingly displays a web page,
             shows an image or does whatever else was specified.</p>
             
-            <h2 id="review">Review</h2>
-            <p>A particular protocol might get quite complicated, but the concept of a protocol
-            is quite general.
-            A computer protocol is just a way that we expect things to work, and we agree on a
-            computer protocol because that makes it easier for us to make computers communicate.
-            “Protocol” means the same thing for computers as it does for people.</p>
+            <h2 id="a-protocol-is-an-expectation">A protocol is an expectation</h2>
+            <p>“Protocol” means the same thing for computers as it does for people.
+            There are lots of different protocols, and some of them are very complicated,
+            but the word “protocol” itself has a rather simple meaning; it’s just
+            a way that we expect things to work.</p>
+            
+            <p>Like how we agree to speak the same language (probably English if you’re reading this)
+            or to drive on the same side of the street, we agree on a computer protocol because that
+            makes it easier for us to make computers communicate. We can choose to build computers
+            that don’t follow standard protocols, but that would make them hard to understand.</p>
           </article>
         </div>
         <div id='pagination'>
