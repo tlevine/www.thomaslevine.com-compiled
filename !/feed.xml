@@ -42,7 +42,7 @@
 &lt;p&gt;A &lt;em&gt;statistic&lt;/em&gt; is a number that describes a lot of other numbers.
 By reducing many numbers into one number, we make it easier to
 figure out what the numbers mean; we wouldn’t be able to fit all
-of the original in our brain.&lt;/p&gt;
+of the original numbers in our brain.&lt;/p&gt;
 
 &lt;p&gt;People usually explain statistics with symbols, but I like explaining
 statistics with drawings, 
@@ -81,9 +81,9 @@ about the relationships between different variables.&lt;/p&gt;
   &lt;li&gt;Least-squares regression coefficients&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Each computation is for the simplest version of the statistic,
-that is the univariate or bivariate version, and the population
-statistic rather than the sample statistic.&lt;/p&gt;
+&lt;p&gt;Each computation is for the simplest version of the statistic.
+For those who like big words, that’s the univariate or bivariate
+version, and the population statistic rather than the sample statistic.&lt;/p&gt;
 
 &lt;h2 id="why-we-care-about-these-statistics"&gt;Why we care about these statistics&lt;/h2&gt;
 &lt;p&gt;The videos show the computations of these statistics, but they
