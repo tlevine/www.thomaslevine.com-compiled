@@ -110,10 +110,13 @@ relationships.&lt;/p&gt;
 
 &lt;h3 id="covariance"&gt;Covariance&lt;/h3&gt;
 &lt;p&gt;Covariance is a basic measure of how strong the relationship is.
-It is just a number that is
-* zero if there is no relationship,
-* really big if the two variables tend to move in the same direction, and
-* really negative if the two variables tend to move in opposite directions.&lt;/p&gt;
+It is just a number that is&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;zero if there is no relationship,&lt;/li&gt;
+  &lt;li&gt;really big if the two variables tend to move in the same direction, and&lt;/li&gt;
+  &lt;li&gt;really negative if the two variables tend to move in opposite directions.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;For example, the covariance between weight and height is a very positive
 number, like maybe 9001, because taller people are heavier. This postive
