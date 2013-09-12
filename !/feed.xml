@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-09-14T00:00:00Z</updated>
+  <updated>2013-09-12T04:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -10,10 +10,10 @@
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
-    <id>tag:www.thomaslevine.com,2013-09-14:/!/statistics-with-doodles-sudoroom/index.html</id>
-    <title type="html">Today I learned about statistics through doodles</title>
-    <published>2013-09-14T00:00:00Z</published>
-    <updated>2013-09-14T00:00:00Z</updated>
+    <id>tag:www.thomaslevine.com,2013-09-12:/!/statistics-with-doodles-sudoroom/index.html</id>
+    <title type="html">Statistics through doodles</title>
+    <published>2013-09-12T04:00:00Z</published>
+    <updated>2013-09-12T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/statistics-with-doodles-sudoroom/index.html"/>
     <content type="html">&lt;style&gt;
   .control {
@@ -39,9 +39,7 @@
   }
 &lt;/style&gt;
 
-&lt;p&gt;&lt;img src="doodle.jpg" alt="Doodles in marker" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;A statistic is a number that describes a lot of other numbers.
+&lt;p&gt;A &lt;em&gt;statistic&lt;/em&gt; is a number that describes a lot of other numbers.
 By reducing many numbers into one number, we make it easier to
 figure out what the numbers mean; we wouldn’t be able to fit all
 of the original in our brain.&lt;/p&gt;
@@ -103,30 +101,44 @@ As time progresses, weekly public transit ridership stays the same.
 However, it does change a lot within the week, with high ridership
 on the weekdays, low ridership on Saturdays and lower ridership on Sundays.&lt;/p&gt;
 
-&lt;p&gt;These four statistics are ways of describing the strength of a
-relationship, and they only make sense to use with linear relationships.&lt;/p&gt;
+&lt;p&gt;The example I used in the video is locations where your friends live,
+which might form clusters rather than lines.&lt;/p&gt;
+
+&lt;p&gt;The four statistics that the videos discuss are ways of describing the
+strength of a relationship, and they only make sense to use with linear
+relationships.&lt;/p&gt;
 
 &lt;h3 id="covariance"&gt;Covariance&lt;/h3&gt;
-&lt;p&gt;Covariance is a basic measure of how strong the relationship.
-Is just a number that is zero if there is no relationship, really
-big if the two variables tend to move in the same direction,
-and really negative if the two variables tend to move in opposite
-directions.&lt;/p&gt;
+&lt;p&gt;Covariance is a basic measure of how strong the relationship is.
+It is just a number that is
+* zero if there is no relationship,
+* really big if the two variables tend to move in the same direction, and
+* really negative if the two variables tend to move in opposite directions.&lt;/p&gt;
 
 &lt;p&gt;For example, the covariance between weight and height is a very positive
-number, like maybe 9001, because taller people are heavier.&lt;/p&gt;
+number, like maybe 9001, because taller people are heavier. This postive
+covariance is represented in the video as lots of orange rectangles in
+the top-right and bottom-left quadrants.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="positive-covariance.jpg" alt="Positive covariance" /&gt;&lt;/p&gt;
 
 &lt;p&gt;The covariance between number of times a person has eaten popcorn and her
 shoe size is probably around zero, because I doubt that these are very
-strongly related.&lt;/p&gt;
+strongly related. In the video, we see this as orange and blue rectangles
+balancing out.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="zero-covariance.jpg" alt="Zero covariance" /&gt;&lt;/p&gt;
 
 &lt;p&gt;And the covariance between cholesterol level and lifespan is probably
 a very negative number, like maybe -1337, because people with more
-cholesterol tend to live less long.&lt;/p&gt;
+cholesterol tend to live less long. That’s blue rectangles, with my
+doodles’ conventions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="negative-covariance.jpg" alt="Negative covariance" /&gt;&lt;/p&gt;
 
 &lt;p&gt;We tend not to use the covariance very directly in practice because
 it’s hard to compare covariances directly to each other. The reasons
-are explained in the video.&lt;/p&gt;
+for this are explained in the video.&lt;/p&gt;
 
 &lt;h3 id="variance"&gt;Variance&lt;/h3&gt;
 &lt;p&gt;Variance is a measure of how spread out one variable is. It is a
@@ -134,18 +146,18 @@ positive number that gets big when the variables are more spread out.&lt;/p&gt;
 
 &lt;p&gt;Let’s say that two people are cutting wood to build a house. They cut
 10 pieces of wood each, and each piece of wood is supposed to be exactly
-10 feet long.&lt;/p&gt;
+120 inches long.&lt;/p&gt;
 
 &lt;p&gt;One person is very careful when he measures the wood, so his pieces come
-out perfectly. They’re not exactly 10 feet long because that’s impossible,
-but they’re not off by more than a hair. The variance of the lengths of
-his pieces of wood is very close to zero, like maybe 3.&lt;/p&gt;
+out perfectly. They’re not exactly 120 inches long because that’s impossible,
+but they’re not spot-on for the purposes of construction. The variance of the
+lengths of his pieces of wood is very close to zero, like maybe 3.&lt;/p&gt;
 
 &lt;p&gt;The other person is drunk and stoned and thus not very careful, so the
 lengths of his pieces are all over the place. They’re still around 10
 feet long on average, but some of them are 8 feet long, and others are
 11 feet long. The variance of the lengths of this person’s pieces is
-very high; maybe it’s 200.&lt;/p&gt;
+very high; maybe it’s 300.&lt;/p&gt;
 
 &lt;p&gt;We talk about variances a lot when we are estimating the average of a
 variable. When we estimate an average, we want to know how precise our
@@ -165,7 +177,7 @@ covariances to each other.&lt;/p&gt;
 between the two variables and the respective variances of the two variables.&lt;/p&gt;
 
 &lt;h3 id="least-squares-regression"&gt;Least-squares regression&lt;/h3&gt;
-&lt;p&gt;Maybe you want to be able to predict someone’s height based on her weight.
+&lt;p&gt;Maybe you want to be able to guess someone’s height based on her weight.
 Regression is one way of doing this.&lt;/p&gt;
 
 &lt;p&gt;To predict height from weight, we can use a simple regression that would
@@ -174,6 +186,25 @@ first need to measure the heights and weights of a bunch of people.&lt;/p&gt;
 
 &lt;p&gt;Once we calculate these two numbers, we have a formula for predicting height;
 you give the formula a weight, and it will give you back a predicted height.&lt;/p&gt;
+
+&lt;p&gt;The formula is a best-fit line, as shown in this image &lt;a href="http://en.wikipedia.org/wiki/File:Linear_regression.svg"&gt;from Wikipedia&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="regression.png" alt="Regression" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s say we want to know
+&lt;a href="http://en.wikipedia.org/wiki/Gas_laws#Charles.27s_law"&gt;how big a balloon gets depending on the temperature of the air&lt;/a&gt;.
+We fill a bunch of balloons with air and put them in different places,
+each with a different air temperature. In the plot above, each dot would
+be a balloon, the numbers along the x-axis (the bottom) would be the
+temperature, and the numbers along the y-axis would be the volume of the
+balloon. That is the data we started with.&lt;/p&gt;
+
+&lt;p&gt;Using these data, we calculate those two regression statistics I mentioned
+above. With these, we can draw the red regression line.&lt;/p&gt;
+
+&lt;p&gt;When we want to predict what the volume of a balloon will be at a particular temperature,
+we find the temperature on the x-axis, follow it vertically up to the red line,
+then follow it horizontally to the y-axis. This is our predicted volume.&lt;/p&gt;
 
 &lt;h2 id="why-statistics-and-math-and-doodles"&gt;Why statistics and math and doodles&lt;/h2&gt;
 &lt;p&gt;Statistics lets us distill our complex observations of the world into simple
@@ -189,8 +220,8 @@ that way.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-10:/!/street-sign-protocol/index.html</id>
     <title type="html">The Street Sign Protocol</title>
-    <published>2013-09-10T00:00:00Z</published>
-    <updated>2013-09-10T00:00:00Z</updated>
+    <published>2013-09-10T04:00:00Z</published>
+    <updated>2013-09-10T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/street-sign-protocol/index.html"/>
     <content type="html">&lt;p&gt;There are a lot of acronyms on the internet that end in “P”,
 like TCP, IP, and HTTP. This “P” stands for “protocol”.
@@ -409,8 +440,8 @@ that don’t follow standard protocols, but that would make them hard to underst
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-03:/!/socrata-formats/index.html</id>
     <title type="html">What file formats are on the data portals?</title>
-    <published>2013-09-03T00:00:00Z</published>
-    <updated>2013-09-03T00:00:00Z</updated>
+    <published>2013-09-03T04:00:00Z</published>
+    <updated>2013-09-03T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-formats/index.html"/>
     <content type="html">&lt;style&gt;
 table {
@@ -824,8 +855,8 @@ that were historically on the portal and have since been deleted.&lt;a href="#fn
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-21:/!/open-by-default/index.html</id>
     <title type="html">Open by default</title>
-    <published>2013-08-21T00:00:00Z</published>
-    <updated>2013-08-21T00:00:00Z</updated>
+    <published>2013-08-21T04:00:00Z</published>
+    <updated>2013-08-21T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/open-by-default/index.html"/>
     <content type="html">&lt;p&gt;The first of Sunlight Foundation’s 32
 &lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Open Data Policy Guidelines&lt;/a&gt;
@@ -969,8 +1000,8 @@ there are surely other relevant features.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-08-19:/!/reciprocity/index.html</id>
     <title type="html">Reciprocity</title>
-    <published>2013-08-19T00:00:00Z</published>
-    <updated>2013-08-19T00:00:00Z</updated>
+    <published>2013-08-19T04:00:00Z</published>
+    <updated>2013-08-19T04:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/reciprocity/index.html"/>
     <content type="html">&lt;p&gt;Last year, while on my way to the &lt;a href="http://www.ire.org/nicar/"&gt;NICAR&lt;/a&gt;
 conference, I found myself in Chicago for a couple hours waiting for

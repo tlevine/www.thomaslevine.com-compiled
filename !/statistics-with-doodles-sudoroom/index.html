@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Today I learned about statistics through doodles</title>
+    <title>Statistics through doodles</title>
     <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Today I learned about statistics through doodles' name='twitter:title'>
+    <meta content='Statistics through doodles' name='twitter:title'>
     <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/doodle.jpg' name='twitter:image:src'>
@@ -32,7 +32,7 @@
     <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='Tom uses doodles to compute covariance, variance, correlation and least-squares regression.' property='og:description'>
-    <meta content='Today I learned about statistics through doodles' property='og:title'>
+    <meta content='Statistics through doodles' property='og:title'>
     <meta content='http://thomaslevine.com/!/statistics-with-doodles-sudoroom/doodle.jpg' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,14 +74,14 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Today I learned about statistics through doodles
+              Statistics through doodles
             </h1>
             <p>
               
             </p>
           </hgroup>
           <div class='date'>
-            September 14, 2013
+            September 12, 2013
           </div>
         </header>
         <div id='article-wrapper'>
@@ -110,9 +110,7 @@
               }
             </style>
             
-            <p><img src="doodle.jpg" alt="Doodles in marker" class="wide" /></p>
-            
-            <p>A statistic is a number that describes a lot of other numbers.
+            <p>A <em>statistic</em> is a number that describes a lot of other numbers.
             By reducing many numbers into one number, we make it easier to
             figure out what the numbers mean; we wouldn’t be able to fit all
             of the original in our brain.</p>
@@ -174,30 +172,44 @@
             However, it does change a lot within the week, with high ridership
             on the weekdays, low ridership on Saturdays and lower ridership on Sundays.</p>
             
-            <p>These four statistics are ways of describing the strength of a
-            relationship, and they only make sense to use with linear relationships.</p>
+            <p>The example I used in the video is locations where your friends live,
+            which might form clusters rather than lines.</p>
+            
+            <p>The four statistics that the videos discuss are ways of describing the
+            strength of a relationship, and they only make sense to use with linear
+            relationships.</p>
             
             <h3 id="covariance">Covariance</h3>
-            <p>Covariance is a basic measure of how strong the relationship.
-            Is just a number that is zero if there is no relationship, really
-            big if the two variables tend to move in the same direction,
-            and really negative if the two variables tend to move in opposite
-            directions.</p>
+            <p>Covariance is a basic measure of how strong the relationship is.
+            It is just a number that is
+            * zero if there is no relationship,
+            * really big if the two variables tend to move in the same direction, and
+            * really negative if the two variables tend to move in opposite directions.</p>
             
             <p>For example, the covariance between weight and height is a very positive
-            number, like maybe 9001, because taller people are heavier.</p>
+            number, like maybe 9001, because taller people are heavier. This postive
+            covariance is represented in the video as lots of orange rectangles in
+            the top-right and bottom-left quadrants.</p>
+            
+            <p><img src="positive-covariance.jpg" alt="Positive covariance" /></p>
             
             <p>The covariance between number of times a person has eaten popcorn and her
             shoe size is probably around zero, because I doubt that these are very
-            strongly related.</p>
+            strongly related. In the video, we see this as orange and blue rectangles
+            balancing out.</p>
+            
+            <p><img src="zero-covariance.jpg" alt="Zero covariance" /></p>
             
             <p>And the covariance between cholesterol level and lifespan is probably
             a very negative number, like maybe -1337, because people with more
-            cholesterol tend to live less long.</p>
+            cholesterol tend to live less long. That’s blue rectangles, with my
+            doodles’ conventions.</p>
+            
+            <p><img src="negative-covariance.jpg" alt="Negative covariance" /></p>
             
             <p>We tend not to use the covariance very directly in practice because
             it’s hard to compare covariances directly to each other. The reasons
-            are explained in the video.</p>
+            for this are explained in the video.</p>
             
             <h3 id="variance">Variance</h3>
             <p>Variance is a measure of how spread out one variable is. It is a
@@ -205,18 +217,18 @@
             
             <p>Let’s say that two people are cutting wood to build a house. They cut
             10 pieces of wood each, and each piece of wood is supposed to be exactly
-            10 feet long.</p>
+            120 inches long.</p>
             
             <p>One person is very careful when he measures the wood, so his pieces come
-            out perfectly. They’re not exactly 10 feet long because that’s impossible,
-            but they’re not off by more than a hair. The variance of the lengths of
-            his pieces of wood is very close to zero, like maybe 3.</p>
+            out perfectly. They’re not exactly 120 inches long because that’s impossible,
+            but they’re not spot-on for the purposes of construction. The variance of the
+            lengths of his pieces of wood is very close to zero, like maybe 3.</p>
             
             <p>The other person is drunk and stoned and thus not very careful, so the
             lengths of his pieces are all over the place. They’re still around 10
             feet long on average, but some of them are 8 feet long, and others are
             11 feet long. The variance of the lengths of this person’s pieces is
-            very high; maybe it’s 200.</p>
+            very high; maybe it’s 300.</p>
             
             <p>We talk about variances a lot when we are estimating the average of a
             variable. When we estimate an average, we want to know how precise our
@@ -236,7 +248,7 @@
             between the two variables and the respective variances of the two variables.</p>
             
             <h3 id="least-squares-regression">Least-squares regression</h3>
-            <p>Maybe you want to be able to predict someone’s height based on her weight.
+            <p>Maybe you want to be able to guess someone’s height based on her weight.
             Regression is one way of doing this.</p>
             
             <p>To predict height from weight, we can use a simple regression that would
@@ -245,6 +257,25 @@
             
             <p>Once we calculate these two numbers, we have a formula for predicting height;
             you give the formula a weight, and it will give you back a predicted height.</p>
+            
+            <p>The formula is a best-fit line, as shown in this image <a href="http://en.wikipedia.org/wiki/File:Linear_regression.svg">from Wikipedia</a></p>
+            
+            <p><img src="regression.png" alt="Regression" /></p>
+            
+            <p>Let’s say we want to know
+            <a href="http://en.wikipedia.org/wiki/Gas_laws#Charles.27s_law">how big a balloon gets depending on the temperature of the air</a>.
+            We fill a bunch of balloons with air and put them in different places,
+            each with a different air temperature. In the plot above, each dot would
+            be a balloon, the numbers along the x-axis (the bottom) would be the
+            temperature, and the numbers along the y-axis would be the volume of the
+            balloon. That is the data we started with.</p>
+            
+            <p>Using these data, we calculate those two regression statistics I mentioned
+            above. With these, we can draw the red regression line.</p>
+            
+            <p>When we want to predict what the volume of a balloon will be at a particular temperature,
+            we find the temperature on the x-axis, follow it vertically up to the red line,
+            then follow it horizontally to the y-axis. This is our predicted volume.</p>
             
             <h2 id="why-statistics-and-math-and-doodles">Why statistics and math and doodles</h2>
             <p>Statistics lets us distill our complex observations of the world into simple
