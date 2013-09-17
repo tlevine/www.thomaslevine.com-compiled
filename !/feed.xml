@@ -2,13 +2,134 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-09-12T04:00:00Z</updated>
+  <updated>2013-09-17T04:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-09-17:/!/open-data-plans/index.html</id>
+    <title type="html">Open data possibilities</title>
+    <published>2013-09-17T04:00:00Z</published>
+    <updated>2013-09-17T04:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-plans/index.html"/>
+    <content type="html">&lt;p&gt;I’ve brief suspended my open data studies to prepare
+some things for &lt;a href="http://zipfianacademy"&gt;Zipfian Academy&lt;/a&gt;’s
+first twelve-week course, but I’ve been accumulating
+lots of ideas of things you could do with data about
+open data. I plan on doing a lot of them, but I
+probably can’t do all, so you should take one of these
+ideas and do something awesome.&lt;/p&gt;
+
+&lt;h2 id="whats-in-the-portals"&gt;What’s in the portals?&lt;/h2&gt;
+
+&lt;h3 id="socrata-v-github"&gt;Socrata v GitHub&lt;/h3&gt;
+&lt;p&gt;GitHub has a pretty CSV table visualizer thingy that supports small CSV files.
+What proportion of Socrata tables are small enough to be supported by GitHub?&lt;/p&gt;
+
+&lt;h3 id="compare-official-datasets-to-derived-datasets"&gt;Compare official datasets to derived datasets&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;data.json&lt;/code&gt; file contains only the official datasets and the federated datasets.
+The search of the site contains all of the derived views. Let’s compare these two to
+see what sort of data gets studied within the data portal.&lt;/p&gt;
+
+&lt;h3 id="openness-by-department-and-city"&gt;Openness by department and city&lt;/h3&gt;
+&lt;p&gt;Some departments are more resistant to opening data. I’m told that the departments
+that are more political tend to be more resistant to opening data. I want to use
+open data release as an indicator of politicalness of a department, and I want to
+see how open data release (politicalness) of equivalent departments (like education)
+vary by city.&lt;/p&gt;
+
+&lt;h2 id="better-search-and-linked-data"&gt;Better search and linked data&lt;/h2&gt;
+
+&lt;p&gt;Let’s find links between datasets. Ideally, let’s get a bunch of datasets with rich
+linked data about them and try to predict the linkages. Specific things I want to try&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Find datasets that can be joined on common variables (columns).&lt;/li&gt;
+  &lt;li&gt;Determine the statistical unit (meaning of a row) of a dataset.&lt;/li&gt;
+  &lt;li&gt;Aggregate datasets so that they can be joined.&lt;/li&gt;
+  &lt;li&gt;Automatically union datasets by selecting datasets with the same variables (columns)
+  and statistical units (rows)&lt;/li&gt;
+  &lt;li&gt;Fill in the codebook (data dictionary). For datasets missing codebooks, we might be
+  able to pick some of the information out of codebooks with other dictionaries.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="data-quality"&gt;Data quality&lt;/h2&gt;
+
+&lt;h3 id="dataset-and-data-portal-scorecard"&gt;Dataset and data portal scorecard&lt;/h3&gt;
+&lt;p&gt;The current obvious metrics of dataset and data portal quality are
+size, like number of records and number of datasets. There are other
+things that we might want to worry about.&lt;/p&gt;
+
+&lt;p&gt;There are a few guidelines as to how to do open data.
+There’s one from &lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Sunlight&lt;/a&gt;,
+there’s one from the &lt;a href="http://www.appgen.me/audit/"&gt;AppGen audit&lt;/a&gt;,
+I have a list from a conversation from &lt;a href="http://noneck.org/"&gt;Noel&lt;/a&gt;,
+there’s Tim Berners-Lee’s &lt;a href="http://5stardata.info/"&gt;five stars&lt;/a&gt;,
+and there are a bunch of open data laws and policies.&lt;/p&gt;
+
+&lt;p&gt;People like the Sunlight Foundation
+have rated the openness of various places. I would like to make
+such a rating in a more automated way.&lt;/p&gt;
+
+&lt;h3 id="completeness-of-portals"&gt;Completeness of portals&lt;/h3&gt;
+&lt;p&gt;By looking at data from FOIA and other portals, we can guess whether
+a city has a particular dataset internally and check whether it has
+been released publicly. Let’s do this across all cities and see whether
+a particular sort of data is available in particular cities.&lt;/p&gt;
+
+&lt;h3 id="dependencies"&gt;Dependencies&lt;/h3&gt;
+&lt;p&gt;Maybe one dataset is only useful if we also have another dataset.
+For example, maybe we need the mapping from school identifier to
+school location before a school dataset is interesting. If we look
+at historical release and usage of datasets, we might get an idea
+of these dependencies and interactions.&lt;/p&gt;
+
+&lt;h2 id="collect-more-data"&gt;Collect more data&lt;/h2&gt;
+&lt;p&gt;There are lots of data portals, and not all
+aspects of the various data portals software
+are documented. Here are some things that will
+help with further studies in the areas discussed
+above.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Who federates whom on Socrata? Figure this out by checking the
+  home pages.&lt;/li&gt;
+  &lt;li&gt;Download data from other data portal software. I currently just
+  have all of the Socrata portals, but it won’t be hard to get all
+  of the CKAN, Junar and OpenDataSoft portals as well.&lt;/li&gt;
+  &lt;li&gt;Collect data about FOIA from places like MuckRock and FOIA Machine.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="studies-with-open-data"&gt;Studies with open data&lt;/h2&gt;
+&lt;p&gt;I’ve been studying the use of open data, but we could also do some studies
+that use open data. Here are two particular things that I want to do.&lt;/p&gt;
+
+&lt;h3 id="gentrification"&gt;Gentrification&lt;/h3&gt;
+&lt;p&gt;Where is gentrification gonna happen next, or where should a hipster move?
+Look at hipster places in open data, and model historical data about gentrification
+to find places that will become hipster soon. My current thought is that these
+places are the ones where it is easy to move and start something new; they might
+have efficient housing markets, decent public transit, and open social circles.
+Note well: I suspect that my thinking is quite naive and that there are probably
+loads of doctoral students working on this already&lt;/p&gt;
+
+&lt;h3 id="tutorial-on-using-open-data"&gt;Tutorial on using open data&lt;/h3&gt;
+&lt;p&gt;I want to do all this aforementioned stuff to make it easier to find and connect
+open data. But people might not want to wait until all of that stuff exists.
+So I want to make a tutorial about finding and connecting open data from different
+governments in order to learn cool things.&lt;/p&gt;
+
+&lt;h2 id="bug-me"&gt;Bug me&lt;/h2&gt;
+&lt;p&gt;I have a pretty clear list of things to do, but I’ve only planned out the next
+couple blog posts. If you would like to influence the order in which I do things,
+please take Jason’s lead and bug me.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/jasonmhare/status/379739193230233600"&gt;&lt;img src="jason.png" alt="@thomaslevine tell me about my #socrata site ;)" /&gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-12:/!/statistics-with-doodles-sudoroom/index.html</id>
     <title type="html">Statistics through doodles</title>
@@ -998,34 +1119,6 @@ private data.&lt;/p&gt;
 open data by default. I’ve proposed that clear separations between public and
 private data is part of this and that standard storage methods is another, but
 there are surely other relevant features.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-19:/!/reciprocity/index.html</id>
-    <title type="html">Reciprocity</title>
-    <published>2013-08-19T04:00:00Z</published>
-    <updated>2013-08-19T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/reciprocity/index.html"/>
-    <content type="html">&lt;p&gt;Last year, while on my way to the &lt;a href="http://www.ire.org/nicar/"&gt;NICAR&lt;/a&gt;
-conference, I found myself in Chicago for a couple hours waiting for
-a train. This was enough time for me to lunch with a friend who was
-working at the University of Chicago.&lt;/p&gt;
-
-&lt;p&gt;I was about to catch a bus towards the university when I realized
-that my smallest denomination of currency was a $5 bill. Since the buses
-only take exact change, I looked around for a way to break it. I asked a
-person who was waiting for the bus with me if she could break it, and she
-said she didn’t have change.&lt;/p&gt;
-
-&lt;p&gt;We both wound up getting on the same bus, and I got on first.
-I told the bus driver that the $5 was for both of us, and then I promptly
-walked to the back of the bus, still a few yards ahead of the other person.&lt;/p&gt;
-
-&lt;p&gt;Shortly after I sat down, this person made her way to the back of the bus,
-gave me two dollars and then found an empty seat towards the middle of the bus.&lt;/p&gt;
-
-&lt;p&gt;This person went slightly out of her way to pay me for the bus ride that
-I gave her. Reciprocity is cool.&lt;/p&gt;
 </content>
   </entry>
 </feed>
