@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-09-17T04:00:00Z</updated>
+  <updated>2013-09-23T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
@@ -10,10 +10,134 @@
     <uri>http://www.thomaslevine.com</uri>
   </author>
   <entry>
+    <id>tag:www.thomaslevine.com,2013-09-23:/!/socrata-deduplicate/index.html</id>
+    <title type="html">What's in a count?</title>
+    <published>2013-09-23T00:00:00Z</published>
+    <updated>2013-09-23T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-deduplicate/index.html"/>
+    <content type="html">&lt;p&gt;Lots of governments use Socrata data portals to release their open data.
+This results in a super-dataset of datasets that tells us something about
+the ecosystem surrounding open data.&lt;/p&gt;
+
+&lt;p&gt;For a &lt;a href="/!/socrata-summary"&gt;couple months&lt;/a&gt;, I’ve been studying the data
+about these data and have continuously been dealing with duplicated data.
+I finally fixed that, so now I have more accurate statistics on portals.&lt;/p&gt;
+
+&lt;p&gt;Quick preview:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;(I’ll explain later.)&lt;/p&gt;
+
+&lt;h2 id="types-of-duplication"&gt;Types of duplication&lt;/h2&gt;
+&lt;p&gt;I’m concerned with
+&lt;a href="/!/socrata-genealogies/#types-of-duplicate-datasets"&gt;two forms of duplication&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href="/!/socrata-genealogies/#term-view"&gt;Views&lt;/a&gt; derived from original
+ &lt;a href="/!/socrata-genealogies/#term-dataset"&gt;datasets&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Federated datasets, which are just links to datasets on another portal&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id="dealing-with-derived-views"&gt;Dealing with derived views&lt;/h2&gt;
+&lt;p&gt;It’s easy enough to deal with the former type of duplication.
+One way is to use the &lt;code&gt;/data.json&lt;/code&gt; (or &lt;code&gt;/api/dcat&lt;/code&gt;) endpoint.
+Unfortunately, this endpoint only provides the first 1000 entries.
+I have been told that this has been fixed, but I had trouble getting
+it working this morning.&lt;/p&gt;
+
+&lt;p&gt;That’s not a big deal because there’s another easy way. I produced a
+&lt;a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv"&gt;CSV file of Socrata data&lt;/a&gt;
+a couple months ago. Each row in the file corresponds to a view on Socrata,
+and the views that are original datasets have a displayType of &lt;code&gt;table&lt;/code&gt;, I think.
+(There’s a notable exception: Sometimes, the original table is private and
+a derived view is made available to the public.)&lt;/p&gt;
+
+&lt;h2 id="dealing-with-federation"&gt;Dealing with federation&lt;/h2&gt;
+&lt;p&gt;Dealing with federation is less straightforward. The &lt;code&gt;/data.json&lt;/code&gt; endpoint
+doesn’t clearly indicate whether a dataset is federated, and neither does
+my CSV file. If I had been more careful when producing the CSV file, it could
+have such a field, but I don’t want to make another one because that took a
+long time. So I took the federation links from somewhere else.&lt;/p&gt;
+
+&lt;p&gt;Scroll down on the homepage of a portal (like &lt;a href="https://explore.data.gov/"&gt;data.gov&lt;/a&gt;),
+and you might see something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="federated-domains.png" alt="Federated Domains" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This shows up if the portal is federating any other portals. It’s part of the
+search menu, so it lets you filter your search by portal.&lt;/p&gt;
+
+&lt;p&gt;I &lt;a href="https://github.com/tlevine/socrata-defederate"&gt;downloaded all of the homepages and pulled out the federation links&lt;/a&gt;.
+Here they are, in a rather plain diagram. (Hover over a node to see the portal name.)&lt;/p&gt;
+
+&lt;style&gt;
+  line { stroke: white; }
+  circle { fill: rgb(254, 87, 161); }
+&lt;/style&gt;
+
+&lt;div id="graph-diagram"&gt;&lt;/div&gt;
+
+&lt;p&gt;Yay! Now we can deduplicate based on federation. I looked through the CSV file
+that I produced a couple months ago and removed records that were federated.
+That is, if two datasets had the same 4x4 identifier, I kept the one belonging
+to the portal that was being federated.&lt;/p&gt;
+
+&lt;h2 id="better-statistics"&gt;Better statistics&lt;/h2&gt;
+&lt;p&gt;I plotted two graphs again to get a feel for how this changes things.&lt;/p&gt;
+
+&lt;h3 id="dataset-counts-by-portal"&gt;Dataset counts by portal&lt;/h3&gt;
+&lt;p&gt;First, here’s the graph of dataset counts from the new data.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;My &lt;a href="/!/socrata-summary/#sizes"&gt;first version&lt;/a&gt;, also below, includes both types of deplication.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-summary/figure/big_portals_datasets.png" alt="Old histogram" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="/!/socrata-formats/#how-many-datasets"&gt;version that uses &lt;code&gt;data.json&lt;/code&gt;&lt;/a&gt;, also below,
+doesn’t have the derived-view duplication, but it does have the federation duplication.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:3000/!/socrata-formats/figure/portal-counts.png" alt="data.json version" /&gt;&lt;/p&gt;
+
+&lt;h3 id="dataset-creation-dates"&gt;Dataset creation dates&lt;/h3&gt;
+&lt;p&gt;I also plotted dataset creation dates over time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="dates.png" alt="Dataset creation over time" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I hadn’t made a plot quite like this before, but the issue of duplication
+has turned up in other plots about dataset creation dates, like in the
+&lt;a href="/!/socrata-summary/#time"&gt;original summary&lt;/a&gt; and in the study of
+&lt;a href="/!/socrata-formats/#csv"&gt;dataset formats&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="arbitrary-metrics-are-arbitrary"&gt;Arbitrary metrics are arbitrary&lt;/h2&gt;
+&lt;p&gt;Dataset count might sound like a decent metric, but it’s quite hard to say
+what a dataset is. If you &lt;a href="http://appgen.me/audit/report"&gt;split up a dataset by year&lt;/a&gt;,
+do you have multiple datasets? Similarly, if you create
+&lt;a href="/!/socrata-genealogies"&gt;lots of different queries&lt;/a&gt; on the same dataset,
+have you created new datasets? And do you have more datasets if you just copy
+them from another data portal?&lt;/p&gt;
+
+&lt;p&gt;I’m told that there is perennial competition between Chicago and New York
+and between &lt;code&gt;data.gov&lt;/code&gt; and &lt;code&gt;data.gov.uk&lt;/code&gt; over the dataset count on their portals.
+Given the ambiguity of this measure, it is quite hilarious that such competition
+exists.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, that’s the only obvious metric that we see in data portals.
+Maybe we need to make &lt;a href="/!/open-data-plans/#data-quality"&gt;new metrics&lt;/a&gt;
+before people can stop caring about counts.&lt;/p&gt;
+
+&lt;script src="d3.v3.min.js"&gt;&lt;/script&gt;
+
+&lt;script src="graph-diagram.js"&gt;&lt;/script&gt;
+
+</content>
+  </entry>
+  <entry>
     <id>tag:www.thomaslevine.com,2013-09-17:/!/open-data-plans/index.html</id>
     <title type="html">Open data possibilities</title>
-    <published>2013-09-17T04:00:00Z</published>
-    <updated>2013-09-17T04:00:00Z</updated>
+    <published>2013-09-17T00:00:00Z</published>
+    <updated>2013-09-17T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-plans/index.html"/>
     <content type="html">&lt;p&gt;I’ve brief suspended my open data studies to prepare
 some things for &lt;a href="http://zipfianacademy"&gt;Zipfian Academy&lt;/a&gt;’s
@@ -87,6 +211,14 @@ school location before a school dataset is interesting. If we look
 at historical release and usage of datasets, we might get an idea
 of these dependencies and interactions.&lt;/p&gt;
 
+&lt;h3 id="real-outcomes"&gt;Real outcomes&lt;/h3&gt;
+&lt;p&gt;Open data isn’t useful in itself; it’s useful because good things
+will happen if we do. Or at least that’s the idea. As
+&lt;a href="https://twitter.com/IanJKalin"&gt;Ian Kalin&lt;/a&gt; says, the data portal
+metrics should really tell us how many tax dollars the open data
+saved and how many jobs the data portal created. If we’re creative,
+we can come up with something like this.&lt;/p&gt;
+
 &lt;h2 id="collect-more-data"&gt;Collect more data&lt;/h2&gt;
 &lt;p&gt;There are lots of data portals, and not all
 aspects of the various data portals software
@@ -133,8 +265,8 @@ please take Jason’s lead and bug me.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-12:/!/statistics-with-doodles-sudoroom/index.html</id>
     <title type="html">Statistics through doodles</title>
-    <published>2013-09-12T04:00:00Z</published>
-    <updated>2013-09-12T04:00:00Z</updated>
+    <published>2013-09-12T00:00:00Z</published>
+    <updated>2013-09-12T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/statistics-with-doodles-sudoroom/index.html"/>
     <content type="html">&lt;style&gt;
   .control {
@@ -344,8 +476,8 @@ that way.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-10:/!/street-sign-protocol/index.html</id>
     <title type="html">The Street Sign Protocol</title>
-    <published>2013-09-10T04:00:00Z</published>
-    <updated>2013-09-10T04:00:00Z</updated>
+    <published>2013-09-10T00:00:00Z</published>
+    <updated>2013-09-10T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/street-sign-protocol/index.html"/>
     <content type="html">&lt;p&gt;There are a lot of acronyms on the internet that end in “P”,
 like TCP, IP, and HTTP. This “P” stands for “protocol”.
@@ -564,8 +696,8 @@ that don’t follow standard protocols, but that would make them hard to underst
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-03:/!/socrata-formats/index.html</id>
     <title type="html">What file formats are on the data portals?</title>
-    <published>2013-09-03T04:00:00Z</published>
-    <updated>2013-09-03T04:00:00Z</updated>
+    <published>2013-09-03T00:00:00Z</published>
+    <updated>2013-09-03T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-formats/index.html"/>
     <content type="html">&lt;style&gt;
 table {
@@ -974,151 +1106,6 @@ that were historically on the portal and have since been deleted.&lt;a href="#fn
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-08-21:/!/open-by-default/index.html</id>
-    <title type="html">Open by default</title>
-    <published>2013-08-21T04:00:00Z</published>
-    <updated>2013-08-21T04:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/open-by-default/index.html"/>
-    <content type="html">&lt;p&gt;The first of Sunlight Foundation’s 32
-&lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Open Data Policy Guidelines&lt;/a&gt;
-is to “Set The Default To Open”.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Most public records systems, including the Freedom of Information Act itself, are systems of reactive disclosure – meaning that a question has to be asked before an answer given; public information requested, before it is disclosed.&lt;/p&gt;
-
-  &lt;p&gt;Proactive disclosure is the opposite. Proactive disclosure is the release of public information – online and in open formats (see Provisions 8 and 9) – before it is asked for. This is no simple task, but, in a way, it’s what all “open data” is aiming to accomplish. Setting the default to open means that the government and parties acting on its behalf will make public information available proactively and that they’ll put that information within reach of the public (online), with low to no barriers for its reuse and consumption. Open formats may help us maximize on the value we can extract from certain kinds of public data today, but to ensure that data publishing is sustained and, in fact, made easier over time, we need to reset the default for how data is released and disclosed.&lt;/p&gt;
-
-  &lt;p&gt;Setting the default to open is about living up to the potential of our information, about looking at comprehensive information management, and making determinations that fall in the public interest. It’s about purely practical government improvements, too, and taking steps that not only keep government systems up to date, but ensure that we have the foresight to survive changes in technology that we can’t predict.&lt;/p&gt;
-
-  &lt;p&gt;Usually, for information to be defined as public, important restrictions have already been applied. Therefore, policy language can be used to outline that “all public data and information must be considered open and accessible.” Whether listed as part of a statement of intent (as Austin, Texas does; a concept explored more in Provision 21), as direction to a new oversight authority (Provision 22), or as the underlying aim of new data guidance (Provision 20), openness by default is a critical tool in crafting open data policies that are both ambitious and sustainable.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;After discovering something on Socrata data portals, I remarked that
-software can encourage this practice of making data open by default.&lt;/p&gt;
-
-&lt;h2 id="types-of-visualizations-on-socrata-portals"&gt;Types of visualizations on Socrata portals&lt;/h2&gt;
-&lt;p&gt;I previously &lt;a href="/!/socrata-summary"&gt;downloaded&lt;/a&gt; metadata about all of
-the datasets on all of the Socrata portals, and I continue to find
-interesting things in these data. Let’s look at the different types
-of visualizations (“&lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;”) on the portals.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/not_boring.png" alt="" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;(I excluded tables and external links from the above plot.)&lt;/p&gt;
-
-&lt;p&gt;I was somewhat surprised to see forms and calendars in the portals.
-I’ve &lt;a href="/!/open-calendars"&gt;previously&lt;/a&gt; written about why I think Socrata calendars are cool,
-so now I’m just going to talk about forms.&lt;/p&gt;
-
-&lt;h3 id="popularity-of-forms"&gt;Popularity of forms&lt;/h3&gt;
-&lt;p&gt;Much of the goal of these portals is to open up existing government data, but
-&lt;a href="https://data.wa.gov/Economics/Broadband-Project-Data-Entry/38rz-krmg?"&gt;forms&lt;/a&gt; provide a way for citizens to create data.
-lets you enter data. A bunch of people have implemented them, but none seems to get accessed much.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/form_use_3.png" alt="Form use by portal" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’m gonna remove opendata.socrata.com to make that easier to read.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/form_use_4.png" alt="Form use by portal, excluding opendata.socrata.com" class="wide" /&gt;&lt;/p&gt;
-
-&lt;h3 id="cool-forms"&gt;Cool Forms&lt;/h3&gt;
-&lt;p&gt;I hadn’t seen &lt;a href="https://nmfs.socrata.com"&gt;nmfs.socrata.com&lt;/a&gt; before.
-It belongs to the &lt;a href="http://www.nmfs.noaa.gov"&gt;National Oceanic and Atmospheric Administration Fisheries Service&lt;/a&gt;,
-which apparently used &lt;a href="https://nmfs.socrata.com/Government/2011-Aquaculture-Public-Comments-Form/u5id-8nqp"&gt;a Socrata form&lt;/a&gt; to power a
-&lt;a href="http://www.nmfs.noaa.gov/aquaculture/policy2/"&gt;policy comments website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;New York made a form for &lt;a href="https://data.ny.gov/dataset/Give-Feedback/fq3e-q75i?"&gt;feedback on the portal&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;World Bank Open Finances made a
-&lt;a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar-Entry-Form/qdbh-rfd3?"&gt;form&lt;/a&gt;
-that populates an
-&lt;a href="https://finances.worldbank.org/dataset/Global-Open-Data-Calendar/g4sx-dwxc"&gt;open data events calendar&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id="relevance-to-software"&gt;Relevance to software&lt;/h2&gt;
-&lt;p&gt;The three examples of Socrata forms show us how we can turn user input on a website into
-open data automatically. Using a Socrata form to compose a dataset is quite inconvenient,
-unreliable, limited, and other bad things, but I see this as a nice example of how software
-can encourage that data be open by default. I previously
-&lt;a href="http://thomaslevine.com/!/socrata-calendars#opening-data-at-their-sources"&gt;hinted&lt;/a&gt; at this,
-but now I have two specific ideas as to how software can encourage that data be open by default.&lt;/p&gt;
-
-&lt;h3 id="standard-formats"&gt;1. Standard formats&lt;/h3&gt;
-&lt;p&gt;If you run any sort of involved website, you are probably already storing data in some
-reasonably standard way, and you probably could send it to a data portal somewhat easily.&lt;/p&gt;
-
-&lt;h4 id="opening-user-entered-application-data-on-your-websites-database"&gt;Opening user-entered application data on your website’s database&lt;/h4&gt;
-&lt;p&gt;One advantage of the Socrata form approach is that the data go automatically into a
-reasonably standard format (a Socrata dataset). It happens that most websites work this
-way, except that the standard format is something like MySQL.&lt;/p&gt;
-
-&lt;p&gt;A notable difference is that database software generally doesn’t concern itself as
-strongly with opening the data. Many websites have HTTP APIs, but few will give out
-direct access to their databases. And even if they did this, it wouldn’t provide the
-various cataloging and format conversion features that people expect of data portals.
-This is why we make data portals that import from these databases and provide all the
-fancy features.&lt;/p&gt;
-
-&lt;p&gt;If you have a website that stores information in a standard database (like MySQL) and
-you separate the private information from the public information, you already can quite
-safely and easily have it sent to a data portal.&lt;/p&gt;
-
-&lt;p&gt;If you are making a new website and care about open data, try to choose a common
-database for which integrations will already exist.&lt;/p&gt;
-
-&lt;h4 id="storing-user-entered-application-data-directly-in-a-data-portal"&gt;Storing user-entered application data directly in a data portal&lt;/h4&gt;
-&lt;p&gt;If you have a simple website, maybe you don’t have to run your own database
-and write your own web APIs. You could store the data directly in the data portal
-and query it from the data portal. If this is powerful enough for you, it
-simplifies your database management, and it naturally makes your data open by default.&lt;/p&gt;
-
-&lt;h4 id="opening-data-from-some-other-software"&gt;Opening data from some other software&lt;/h4&gt;
-&lt;p&gt;Every time you save something in a computer program, you are creating some sort
-of data, just like when you fill out a form on an open data portal.
-If you have purchased a software service, you might not have access to the
-underlying database, but you can still send it to a data portal.&lt;/p&gt;
-
-&lt;p&gt;When a lot of people use services like these, the services’ protocols naturally
-become standard, so it becomes worthwhile to write tools that pull data from these
-services into some standard place like a data portal. Using a standard service
-with lots of users and integrations should make it easier for you to get the data
-into a data portal.&lt;/p&gt;
-
-&lt;h3 id="explicit-separation-between-public-and-private-data"&gt;2. Explicit separation between public and private data&lt;/h3&gt;
-&lt;p&gt;With a questionnaire, you might be able to just say that all of the responses are
-private or that all are public. With other datasets, you might be able to say that
-certain fields are private and others are public; in a database of employees, name
-and salary can be public, but Social Security number can’t.&lt;/p&gt;
-
-&lt;p&gt;Things aren’t always this simple. With something like project management software,
-some records/documents should be private and others should be public. Many of the
-entries in project management software are probably safe for public disclosure,
-but there might be some private information; for example, I’ve put passwords inside
-calendar entries and issue tracker tickets.&lt;/p&gt;
-
-&lt;p&gt;Project management software, email clients, calendars, web browsers and image
-editors all contain rich data that can help people understand how government
-and other organizations work, so we should find ways of separating the public
-information and opening that. Software can help with this.&lt;/p&gt;
-
-&lt;p&gt;Separate public information and private information from the beginning, and it
-should be easier to open the data that is behind all of these applications.
-The user interface can expose the separation between public and private and
-encourage that information public by default.&lt;/p&gt;
-
-&lt;h2 id="things-to-think-about"&gt;Things to think about&lt;/h2&gt;
-&lt;p&gt;Think about what programs you and others are already using, especially if you
-don’t think of them as data programs, and think about how you can open the data in these programs.
-A program’s data will be easy to open if the program already stores its data in
-a standard format on the internet and it clearly separates public data from
-private data.&lt;/p&gt;
-
-&lt;p&gt;Also think about how we can make software that follows the policy guideline of
-open data by default. I’ve proposed that clear separations between public and
-private data is part of this and that standard storage methods is another, but
-there are surely other relevant features.&lt;/p&gt;
 </content>
   </entry>
 </feed>

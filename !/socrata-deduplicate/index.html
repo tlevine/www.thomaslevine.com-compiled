@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>What's in a count?</title>
+    <meta content='I finally deduplicated the Socrata dataset data.' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Well this changes our @socrata data portal statistics....' name='twitter:title'>
+    <meta content='I finally deduplicated the Socrata dataset data.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/socrata-deduplicate/figure/network.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/socrata-deduplicate/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='I finally deduplicated the Socrata dataset data.' property='og:description'>
+    <meta content="What's in a count?" property='og:title'>
+    <meta content='http://thomaslevine.com/!/socrata-deduplicate/figure/network.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              What's in a count?
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            September 23, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>Lots of governments use Socrata data portals to release their open data.
+            This results in a super-dataset of datasets that tells us something about
+            the ecosystem surrounding open data.</p>
+            
+            <p>For a <a href="/!/socrata-summary">couple months</a>, I’ve been studying the data
+            about these data and have continuously been dealing with duplicated data.
+            I finally fixed that, so now I have more accurate statistics on portals.</p>
+            
+            <p>Quick preview:</p>
+            
+            <p><img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /></p>
+            
+            <p>(I’ll explain later.)</p>
+            
+            <h2 id="types-of-duplication">Types of duplication</h2>
+            <p>I’m concerned with
+            <a href="/!/socrata-genealogies/#types-of-duplicate-datasets">two forms of duplication</a>.</p>
+            
+            <ol>
+              <li><a href="/!/socrata-genealogies/#term-view">Views</a> derived from original
+             <a href="/!/socrata-genealogies/#term-dataset">datasets</a></li>
+              <li>Federated datasets, which are just links to datasets on another portal</li>
+            </ol>
+            
+            <h2 id="dealing-with-derived-views">Dealing with derived views</h2>
+            <p>It’s easy enough to deal with the former type of duplication.
+            One way is to use the <code>/data.json</code> (or <code>/api/dcat</code>) endpoint.
+            Unfortunately, this endpoint only provides the first 1000 entries.
+            I have been told that this has been fixed, but I had trouble getting
+            it working this morning.</p>
+            
+            <p>That’s not a big deal because there’s another easy way. I produced a
+            <a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv">CSV file of Socrata data</a>
+            a couple months ago. Each row in the file corresponds to a view on Socrata,
+            and the views that are original datasets have a displayType of <code>table</code>, I think.
+            (There’s a notable exception: Sometimes, the original table is private and
+            a derived view is made available to the public.)</p>
+            
+            <h2 id="dealing-with-federation">Dealing with federation</h2>
+            <p>Dealing with federation is less straightforward. The <code>/data.json</code> endpoint
+            doesn’t clearly indicate whether a dataset is federated, and neither does
+            my CSV file. If I had been more careful when producing the CSV file, it could
+            have such a field, but I don’t want to make another one because that took a
+            long time. So I took the federation links from somewhere else.</p>
+            
+            <p>Scroll down on the homepage of a portal (like <a href="https://explore.data.gov/">data.gov</a>),
+            and you might see something like this.</p>
+            
+            <p><img src="federated-domains.png" alt="Federated Domains" /></p>
+            
+            <p>This shows up if the portal is federating any other portals. It’s part of the
+            search menu, so it lets you filter your search by portal.</p>
+            
+            <p>I <a href="https://github.com/tlevine/socrata-defederate">downloaded all of the homepages and pulled out the federation links</a>.
+            Here they are, in a rather plain diagram. (Hover over a node to see the portal name.)</p>
+            
+            <style>
+              line { stroke: white; }
+              circle { fill: rgb(254, 87, 161); }
+            </style>
+            
+            <div id="graph-diagram"></div>
+            
+            <p>Yay! Now we can deduplicate based on federation. I looked through the CSV file
+            that I produced a couple months ago and removed records that were federated.
+            That is, if two datasets had the same 4x4 identifier, I kept the one belonging
+            to the portal that was being federated.</p>
+            
+            <h2 id="better-statistics">Better statistics</h2>
+            <p>I plotted two graphs again to get a feel for how this changes things.</p>
+            
+            <h3 id="dataset-counts-by-portal">Dataset counts by portal</h3>
+            <p>First, here’s the graph of dataset counts from the new data.</p>
+            
+            <p><img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /></p>
+            
+            <p>My <a href="/!/socrata-summary/#sizes">first version</a>, also below, includes both types of deplication.</p>
+            
+            <p><img src="/!/socrata-summary/figure/big_portals_datasets.png" alt="Old histogram" class="wide" /></p>
+            
+            <p>The <a href="/!/socrata-formats/#how-many-datasets">version that uses <code>data.json</code></a>, also below,
+            doesn’t have the derived-view duplication, but it does have the federation duplication.</p>
+            
+            <p><img src="http://localhost:3000/!/socrata-formats/figure/portal-counts.png" alt="data.json version" /></p>
+            
+            <h3 id="dataset-creation-dates">Dataset creation dates</h3>
+            <p>I also plotted dataset creation dates over time.</p>
+            
+            <p><img src="dates.png" alt="Dataset creation over time" class="wide" /></p>
+            
+            <p>I hadn’t made a plot quite like this before, but the issue of duplication
+            has turned up in other plots about dataset creation dates, like in the
+            <a href="/!/socrata-summary/#time">original summary</a> and in the study of
+            <a href="/!/socrata-formats/#csv">dataset formats</a>.</p>
+            
+            <h2 id="arbitrary-metrics-are-arbitrary">Arbitrary metrics are arbitrary</h2>
+            <p>Dataset count might sound like a decent metric, but it’s quite hard to say
+            what a dataset is. If you <a href="http://appgen.me/audit/report">split up a dataset by year</a>,
+            do you have multiple datasets? Similarly, if you create
+            <a href="/!/socrata-genealogies">lots of different queries</a> on the same dataset,
+            have you created new datasets? And do you have more datasets if you just copy
+            them from another data portal?</p>
+            
+            <p>I’m told that there is perennial competition between Chicago and New York
+            and between <code>data.gov</code> and <code>data.gov.uk</code> over the dataset count on their portals.
+            Given the ambiguity of this measure, it is quite hilarious that such competition
+            exists.</p>
+            
+            <p>On the other hand, that’s the only obvious metric that we see in data portals.
+            Maybe we need to make <a href="/!/open-data-plans/#data-quality">new metrics</a>
+            before people can stop caring about counts.</p>
+            
+            <script src="d3.v3.min.js"></script>
+            
+            <script src="graph-diagram.js"></script>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-deduplicate/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

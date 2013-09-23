@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Things to think about when you're building products on open data</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content="Things to think about when you're building products on open data" name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/things-to-know-when-building-products-on-open-data/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content="Things to think about when you're building products on open data" property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              Things to think about when you're building products on open data
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <h2 id="storing-all-these-datasets">Storing all these datasets</h2>
+            <p>With open data, you have lots of tiny datasets. The individual open datasets are
+            usually small enough that any storage approach will be fine if you’re only using
+            a few of them, but you’ll need to think a bit if you’re storing lots of datasets.</p>
+            
+            <h3 id="centralized">Centralized</h3>
+            <p>As far as I know, ScraperWiki, Exversion and Socrata all started with storing
+            everything in one relational database, with one database row per dataset row
+            (possibly across tables or in one table).</p>
+            
+            <h3 id="less-centralized">Less centralized</h3>
+            <p>You probably don’t need your data to be this centralized. Well, at least that’s
+            what ScraperWiki thinks; ScraperWiki eventually switched to storing each dataset
+            as a separate SQLite3 database.</p>
+            
+            <p>I haven’t been particulary concerned with performance in my
+            <a href="/socrata">recent studies</a>, so I’ve just been storing data as ordinary files on
+            an ordinary filesystem.</p>
+            
+            <h2 id="conflation-of-publishing-with-consumption">Conflation of publishing with consumption</h2>
+            <p>I think this is the interesting data-preparation issue with open data:
+            Data are released by government/organization, but you might not be interested
+            in data by government.</p>
+            
+            <h3 id="search-within-a-portal">Search within a portal</h3>
+            <p>For example, you can go to the Paris data portal and get data about
+            <a href="">coffee</a> and
+            <a href="">wifi</a>.
+            Maybe you’re not interested in data specifically about Paris; maybe you’re
+            actually interested in coffee and wifi in general. Or maybe you’re interested
+            in a different subset, like wifi access in places other than cafes. Either way,
+            you can use data from places other than Paris.</p>
+            
+            <h3 id="publishing-versus-consumption">Publishing versus consumption</h3>
+            <p>Paris publishes its data to the Paris data portal. This makes a lot of sense;
+            Paris’s government has lots of data, and they’re just trying to get it out there
+            in a place where people can find it.</p>
+            
+            <p>People like me consume Paris’s data by going to Paris’s data portal.
+            As we saw above, this doesn’t necessarily match the consumers’ needs;
+            I’m not necessarily interested in data specifically about Paris.</p>
+            
+            <h3 id="combine-across-portals">Combine across portals</h3>
+            <p>Different cities are all still cities, so they collect similar data. But they
+            have different policies and different bookkeeping practices, so not all of their
+            data are out, and the data have different schemas.</p>
+            
+            <p>Your product can fix this by connecting all of these datasets.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/things-to-know-when-building-products-on-open-data/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

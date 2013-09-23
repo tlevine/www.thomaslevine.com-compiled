@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Bits</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Bits' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/bits/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Bits' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              Bits
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <p>What are bits and bytes and memory and 32-bit integers?
+            Here are instructions for games with people that introduce these concepts.</p>
+            
+            <h2 id="one-bit">One bit</h2>
+            <p>Let’s represent one person as a bit. The person is always
+            “on” or “off”, and this is the only thing she can remember.
+            We can use this person in a program to remember something.</p>
+            
+            <p>We have two functions in our program that are exchanging
+            information. One of them checks whether the weather will
+            be rainy tomorrow. It sets the value of the bit. The other
+            function tells us <a href="http://umbrellatoday.com/">whether to bring an umbrella</a>.</p>
+            
+            <p>In Python, they might look like this.</p>
+            
+            <pre><code>def function_one():&#x000A;    # Pretend that tomorrows_weather is defined elsewhere.&#x000A;    return tomorrows_weather() == 'rainy'&#x000A;&#x000A;def function_two(bit):&#x000A;    if bit:&#x000A;        print 'Bring an umbrella.'&#x000A;    else:&#x000A;        print "Don't bring an umbrella."&#x000A;&#x000A;bit = function_one()&#x000A;function_two(bit)&#x000A;</code></pre>
+            
+            <h2 id="a-few-bits">A few bits</h2>
+            <p>How do we represent something more complicated than yes/no?
+            Let’s not worry about functions for now. If the only numbers
+            in the universe are zero and one, how could we represent the
+            bit as being one of these?</p>
+            
+            <p>Let’s stop pretending that the only numbers are zero and one.
+            If we have two people/bits, can we represent the number two?
+            What about the number three? What about four? And five, and so on?</p>
+            
+            <h2 id="just-whole-numbers">Just whole numbers</h2>
+            <p>Let’s limit the numbers that we’ll try representing to whole
+            numbers, which are integers from zero up. Add more people to
+            the line of bits, have them remember being on or off.</p>
+            
+            <p>One person plays the number-reader. This person reads the number
+            from right to left like so.</p>
+            
+            <ol>
+              <li>Start the number at zero.</li>
+              <li>If the right-most person is on, add one to the number.</li>
+              <li>If the next person is on, add two to the number.</li>
+              <li>If the next person is on, add four to the number.</li>
+              <li>And so on</li>
+            </ol>
+            
+            <p>Write the number from left to write, reversing the above
+            algorithm and accounting for powers of two.</p>
+            
+            <p>Play with reading and writing from the line of bits, varying
+            the length of the line of bits.</p>
+            
+            <h3 id="unsigned-and-signed-numbers">Unsigned and signed numbers</h3>
+            <p>The act of representing numbers in the above way is called an
+            “unsigned” number.</p>
+            
+            <p>You’ve noticed that there are only so many numbers you can
+            represent with so many bits. For example, the highest number
+            in an five-bit unsigned integer is 31, and the lowest
+            integer is zero.</p>
+            
+            <p>What if we wanted to be able to represent the corresponding
+            negative numbers too? That is, what if we want to 
+            This involves representing twice as many (minus one) possible
+            numbers. How can we do that?</p>
+            
+            <p>Let’s add another person at the left. This person tells us
+            whether the number is positive or negative. Now let’s
+            represent a very positive integer, like 200, and a very
+            negative integer, like -200.</p>
+            
+            <p>This method is inefficient because it makes our algorithm more
+            complicated. Also, it gives us one fewer number because there
+            are two representations of zero.</p>
+            
+            <p>Instead, let’s just reader algorithm so the number starts from
+            the most negative value instead of from zero. And switch our
+            writer algorithm accordingly.</p>
+            
+            <h3 id="number-lengths">Number lengths</h3>
+            <p>We group bits into bytes. A byte just means “eight bits”.
+            We still represent integers the same way as above; we just use
+            multiples of eight for the number of bits.</p>
+            
+            <p>We can represent the whole numbers zero to 255 in a single byte.
+            In practice, we rarely use single-byte numbers. There are special
+            names for numbers based on their length.</p>
+            
+            <ul>
+              <li>An <code>int16</code> is a two-byte (16-bit) integer.</li>
+              <li>An <code>int32</code> is a four-byte (32-bit) integer.</li>
+              <li>An <code>int64</code> is an eight-byte (64-bit) integer.</li>
+            </ul>
+            
+            <p>Each of these can be signed or unsigned. Let’s perform these!
+            If you don’t have enough people to play all of the bits, swap
+            people for pieces of paper that are dark on one side and light
+            on the other.</p>
+            
+            <p>Some languages (including Python) abstract all of this away and
+            let you represent arbitrarily large numbers without worrying about
+            how to represent them as bits.</p>
+            
+            <h2 id="memory">Memory</h2>
+            <p>The stick of memory in your computer contains lots and lots of bits.
+            Each bit has an address. To store a value, we indicate which bits it
+            is stored in, and then we set the bits.</p>
+            
+            <p>Perform these! Arrange a bunch of cards into groups so that you can
+            easily address them, then flip them around and store things.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/bits/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
