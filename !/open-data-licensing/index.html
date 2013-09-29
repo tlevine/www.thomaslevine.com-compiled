@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Where does the "market value" on your tax bill come from?</title>
+    <title>Open data licenses</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Where does the "market value" on your tax bill come from?' name='twitter:title'>
+    <meta content='Open data licenses' name='twitter:title'>
     <meta content='' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
@@ -29,10 +29,10 @@
     <meta content='' name='twitter:app:id:iphone'>
     <meta content='' name='twitter:app:id:ipad'>
     <meta content='' name='twitter:app:id:googleplay'>
-    <meta content='http://thomaslevine.com/!/scarsdale-estimated-market-values/' property='og:url'>
+    <meta content='http://thomaslevine.com/!/open-data-licensing/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='' property='og:description'>
-    <meta content='Where does the "market value" on your tax bill come from?' property='og:title'>
+    <meta content='Open data licenses' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,64 +74,58 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Where does the "market value" on your tax bill come from?
+              Open data licenses
             </h1>
             <p>
               
             </p>
           </hgroup>
           <div class='date'>
-            January 14, 2013
+            
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>Scarsdale&#8217;s tax bills look like this.</p>
+            <p>Open data are &#8220;open&#8221;, but do their licenses reflect that?
+            I downloaded all of the metadata files from 102 open data
+            portals hosted on CKAN, Socrata and OpenDataSoft. Each of
+            these data portal softwares has a metadata field for the
+            license of each particular dataset. I looked at whether
+            those were used and at what the licenses were.</p>
             
-            <p><a href="/!/scarsdale-estimated-market-values/village.jpg"><img src="/!/scarsdale-estimated-market-values/village.jpg" alt="Picture of a village tax bill" /></a></p>
+            <p>I looked first at whether people used the metadata field at
+            all.</p>
             
-            <p>At the end, they use a &#8220;uniform percent&#8221; to calculate a &#8220;full market value&#8221;.</p>
+            <p><img src="p1.png" alt="" /></p>
             
-            <p><a href="/!/scarsdale-estimated-market-values/additional.jpg"><img alt="Picture of the &quot;ADDITIONAL INFORMATION&quot; section of the bill" src="/!/scarsdale-estimated-market-values/additional.jpg" class="wide" />
-            </a></p>
+            <p>Surprisingly to me, all datasets in most portals have a
+            license field set.</p>
             
-            <h2 id="what-does-that-percentage-mean">What does that percentage mean?</h2>
+            <p>I then made a rough mapping between the free-form names of the
+            licenses and some standard licenses. I didn&#8217;t test this
+            very well, so there are probably some errors, but I think
+            these results are informative regardless. Here are the
+            standardized licenses for all of the data.</p>
             
-            <p>You can divide the assessed value of your house by the percentage to arrive at
-            the &#8220;market value&#8221; that is listed on the bill. For example, a house assessed at
-            $10,000 could be divided by 2% to yield an estimated market value of $500,000.</p>
+            <p><img src="p2.png" alt="" /></p>
             
-            <h2 id="how-is-it-chosen">How is it chosen?</h2>
+            <p>While many datasets have standard open licenses, the licenses
+            for most datasets are marked as something like &#8220;not specified&#8221;
+            in this field. (They are probably specified elsewhere.)
+            I looked at the variation within a few portals.</p>
             
-            <p>Now that I&#8217;ve explained that, where does the figure come from? As you&#8217;ll see,
-            it&#8217;s not particularly obvious, so I suspect that it comes from some reasonably
-            informed calculation. But what is the calculation?</p>
+            <p><img src="p3.png" alt="" /></p>
             
-            <p>In an attempt to find out, I plotted the estimated value of a house assessed at
-            $10,000 for each year. The x-axis is the value of a dollar in 2012 dollars
-            during the year of the tax bill, based on the Consumer Price Index. (This is an
-            attempt at adjusting for inflation.) The percentages are just the percentages
-            listed on the tax bills, which are equivalent to the y-axis estimated house
-            market value.</p>
-            
-            <p><a href="/!/scarsdale-estimated-market-values/plot.png"><img alt="Plot of nominal market value as a function of the value of a dollar over time" src="/!/scarsdale-estimated-market-values/plot.png" class="wide" />
-            </a></p>
-            
-            <p>If the percentage were simply a crude adjustment for inflation, the line would
-            be straight and increasing. It looks sort of like that until 2008, but it went
-            back down after that. Since the line isn&#8217;t straight and increasing, it seems
-            that the percentage is derived some other way. How anti-climatic.</p>
-            
-            <h2 id="thank-you-grandma">Thank you, Grandma</h2>
-            <p>The budgets <a href="http://www.scarsdale.com/Home/Departments/VillageTreasurer.aspx">posted online</a>
-            only go back to 2006, so I collected
-            <a href="https://github.com/tlevine/scarsdale-data/tree/master/grandma">these data</a>
-            from my grandmother&#8217;s tax bills.</p>
+            <p>As you see, it seems like each portal chooses one or two of the
+            standard licenses for the bulk of its datasets. But a substantial
+            portion of datasets have no license field or have no specified
+            license. What&#8217;s going on here? Let&#8217;s hope that an open license is
+            specified elsewhere.</p>
           </article>
         </div>
         <div id='pagination'>
           <div class='base-little-card'>
-            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/scarsdale-estimated-market-values/index.md">View source</a>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/open-data-licensing/index.md">View source</a>
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
         </div>

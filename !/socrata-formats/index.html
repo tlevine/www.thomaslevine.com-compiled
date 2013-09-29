@@ -93,10 +93,10 @@
             </style>
             
             <p>I found some more open data about open data to <a href="/socrata">study</a>!
-            While <a href="http://www.socrata.com/blog/my-visit-to-socrata-and-data-analysis-about-data-analysis/">at Socrata’s office</a> on Friday,
+            While <a href="http://www.socrata.com/blog/my-visit-to-socrata-and-data-analysis-about-data-analysis/">at Socrata&#8217;s office</a> on Friday,
             I learned of the <a href="https://data.oregon.gov/data.json"><code>/data.json</code></a> endpoint.
             It contains an entry for each <a href="/!/socrata-genealogies/#term-dataset">dataset</a>,
-            uploaded by the data publisher; it doesn’t contain all of the other
+            uploaded by the data publisher; it doesn&#8217;t contain all of the other
             views that are based on these source datasets.
             And it has <a href="http://project-open-data.github.io/schema/">this format</a>.</p>
             
@@ -105,7 +105,7 @@
             8922 are original datasets.</p>
             
             <p>The <code>/data.json</code> files include federated datasets, so some of these
-            datasets are duplicated. I did not remove duplicates, so I’m working
+            datasets are duplicated. I did not remove duplicates, so I&#8217;m working
             with 15699 datasets, with a median of
             96 datasets per portal.</p>
             
@@ -115,12 +115,12 @@
             <p>This is much lower than my <a href="/!/socrata-summary">earlier figure</a>
             because the present figure does not include <a href="/!/socrata-genealogies#soda-queries-filtered-views-charts-maps">derived views</a> (map, charts, &amp;c.).</p>
             
-            <p>Some time, I’ll compare the within-portal counts of original datasets
+            <p>Some time, I&#8217;ll compare the within-portal counts of original datasets
             and derived datasets. But not right now.</p>
             
             <h3 id="federated-data">Federated data</h3>
             <p>It still includes <a href="/!/socrata-genealogies/#term-federation">federated data</a> (duplicates),
-            however, and this file doesn’t make it easy to determine which direction
+            however, and this file doesn&#8217;t make it easy to determine which direction
             the federation is in. The following plot gives us an idea of how many of
             these datasets are duplicates.</p>
             
@@ -128,7 +128,7 @@
             
             <p>Most of the datasets are not duplicates, but some are duplicated many times.</p>
             
-            <p>Some day, I’ll look more at federation, probably by 
+            <p>Some day, I&#8217;ll look more at federation, probably by 
             reading the federation information from home pages of the portals
             or by following the links in the <code>/data.json</code> file.</p>
             
@@ -152,21 +152,21 @@
             
             <p>Half of these portals federate <code>explore.data.gov</code>, which has quite a few datasets, and the JSON
             files seem to just include some of the <code>explore.data.gov</code> data. I think these
-            files have only the first 1000 datasets, and I haven’t figured out how to look
-            at the next pages, so I’ll focus the present analysis on portals with fewer
+            files have only the first 1000 datasets, and I haven&#8217;t figured out how to look
+            at the next pages, so I&#8217;ll focus the present analysis on portals with fewer
             than 1000 datasets.</p>
             
             <h2 id="my-curiousity-about-file-formats">My curiousity about file formats</h2>
-            <p>I’ve recently become curious about what formats the datasets come from. When
+            <p>I&#8217;ve recently become curious about what formats the datasets come from. When
             tabular data get loaded into a Socrata data portal, they get converted to a
             tabular representation within the portal software. From that, they get converted
             to a range of different tabular formats.</p>
             
-            <p>The Socrata data portal doesn’t explicitly store the source format because of
+            <p>The Socrata data portal doesn&#8217;t explicitly store the source format because of
             how the import process works. Most of the data <a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/">probably come from Excel</a>,
-            and the data that aren’t from Excel typically come from inside of a government
+            and the data that aren&#8217;t from Excel typically come from inside of a government
             network where policies would make it inconvenient to expose the database to the
-            world. Because of this, Socrata doesn’t query database servers. Instead, data
+            world. Because of this, Socrata doesn&#8217;t query database servers. Instead, data
             publishers write middlemen that act as both database clients and Socrata clients.
             They query the database and then make <a href="http://dev.socrata.com/publishers/getting-started">web requests</a>
             to the Socrata portal.</p>
@@ -177,18 +177,18 @@
             not the format it was stored in before it got to the Socrata portal. But this
             still tells us something about the source file formats.</p>
             
-            <p>People sometimes upload things that Socrata doesn’t interpret as tables. PDFs are
+            <p>People sometimes upload things that Socrata doesn&#8217;t interpret as tables. PDFs are
             a major example. Other times, people upload or link to
-            files that could be tables but don’t specify that they are tables; those are called
-            “external links”. Read more on dataset types <a href="/!/open-by-default#types-of-visualizations-on-socrata-portals">here</a>.</p>
+            files that could be tables but don&#8217;t specify that they are tables; those are called
+            &#8220;external links&#8221;. Read more on dataset types <a href="/!/open-by-default#types-of-visualizations-on-socrata-portals">here</a>.</p>
             
             <p>Data formats are represented in two fields, <code>format</code> and <code>distribution</code>. <code>distribution</code>{#distribution}
             seems to contain all of the different available formats. If the data are imported as
             tabular data, it contains CSV, JSON, XML, &amp;c., all served from the Socrata site.
             And if the data are external links, it will contain a few external links, still
             specifying the file types. The <code>format</code> field contains one of the formats that are
-            specified in the <code>distribution</code> field. I think it’s just the first of the formats.
-            For the present analysis, I’m using the <code>format</code> field.</p>
+            specified in the <code>distribution</code> field. I think it&#8217;s just the first of the formats.
+            For the present analysis, I&#8217;m using the <code>format</code> field.</p>
             
             <p>Recall that the present dataset of datasets counts federated datasets multiple times.
             The following plot shows the file types of the deduplicated dataset dataset, across
@@ -232,9 +232,9 @@
             <p><a href="figure/mo.png"><img src="figure/mo.png" alt="Data formats on data.mo.gov" class="wide" /></a></p>
             
             <p>Also interesting about Missouri is that it federates <a href="https://data.kcmo.org/">Kansas City</a>,
-            which didn’t appear in my list of portals.</p>
+            which didn&#8217;t appear in my list of portals.</p>
             
-            <p>I know I said I’d focus on portals with fewer than 1000 datasets, but Lehman College is
+            <p>I know I said I&#8217;d focus on portals with fewer than 1000 datasets, but Lehman College is
             interesting because it has lots of zipped files.</p>
             
             <p><a href="figure/lehman.png"><img src="figure/lehman.png" alt="Data formats on bronx.lehman.cuny.edu" class="wide" /></a></p>
@@ -246,7 +246,7 @@
             
             <h2 id="determination-of-external-link-file-formats">Determination of external link file formats</h2>
             <p>It looks like the format of external links is determined by the file name.
-            For example, Edmonton’s
+            For example, Edmonton&#8217;s
             <a href="https://data.edmonton.ca/Transportation/Road-and-Traffic-Updates/5ggc-prfp?">Road and Traffic Updates</a>
             are marked as <code>application/rss+xml</code> because the external link,
             <a href="http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss">http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss</a>,
@@ -343,11 +343,11 @@
             <h3 id="sudden-changes-after-the-beginning">Sudden changes after the beginning</h3>
             <p><code>data.sfgov.org</code> had a sudden change in the proportion of datasets that were CSV, but
             it was after a long while, so a lot of related datasets might have been uploaded all
-            at once. Let’s look at when datasets were uploaded.</p>
+            at once. Let&#8217;s look at when datasets were uploaded.</p>
             
             <p><a href="figure/sf-changes.png"><img src="figure/sf-changes.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /></a></p>
             
-            <p>This has the quite similar information to the earlier plots, but it’s a bit more precise.
+            <p>This has the quite similar information to the earlier plots, but it&#8217;s a bit more precise.
             San Francisco added lots of datasets in January 2012, November 2012, and December 2012, and proportionately
             few of these datasets were CSV. What were they?</p>
             
@@ -416,12 +416,12 @@
             </table>
             
             <p>It looks like January is mostly externally linked, zipped shapefiles. Most of the
-            datasets say “shapefile” in their <code>title</code>, <code>description</code> or <a href="#distribution"><code>distribution</code></a> fields.</p>
+            datasets say &#8220;shapefile&#8221; in their <code>title</code>, <code>description</code> or <a href="#distribution"><code>distribution</code></a> fields.</p>
             
             <p><a href="figure/sf-shapefile.png"><img src="figure/sf-shapefile.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /></a></p>
             
             <p>And a lot of the rest of the January files look like zipped shapefiles, even though the
-            titles and descriptions don’t say so.</p>
+            titles and descriptions don&#8217;t say so.</p>
             
             <p>So San Francisco suddenly uploaded a bunch of shapefiles in January and November/December.</p>
             
@@ -429,7 +429,7 @@
             <p>Some of the plots make it look like lots of datasets were suddenly uploaded one time
             and no datasets were uploaded again. This is mainly for the
             <a href="#cutoff-at-1000">portals with more than 1000 datasets</a>,
-            so I think this is because we’re seeing only the first 1000 datasets.</p>
+            so I think this is because we&#8217;re seeing only the first 1000 datasets.</p>
             
             <h2 id="csv-pdf-zip-and-octet-stream">CSV, pdf, zip and octet-stream</h2>
             <p>Based on the examples above, it seems like a lot of datasets are PDF, zip or unknown
@@ -440,7 +440,7 @@
             
             <p><a href="figure/csv-pdf-zip-octet-cum-facet.png"><img src="figure/csv-pdf-zip-octet-cum-facet.png" alt="Dataset formats by portal over time" class="wide" /></a></p>
             
-            <p>Most of the curves are pretty straight and stay near 1, meaning that the proportion doesn’t
+            <p>Most of the curves are pretty straight and stay near 1, meaning that the proportion doesn&#8217;t
             change much and that the proportion is quite high. Thus, it looks like most datasets are
             either CSV, pdf, zip or external links of unknown format.</p>
             
@@ -451,7 +451,7 @@
             are tables. Aside from tables, there are lots of externally linked files, mostly PDFs and zip archives.</p>
             
             <h3 id="shapefiles">Shapefiles</h3>
-            <p>I’ve been thinking recently about how to infer the organizational structure of a municipality
+            <p>I&#8217;ve been thinking recently about how to infer the organizational structure of a municipality
             based on the open data that they release, and the finding with the San Francisco shapefiles
             alludes to this. It might be that one department within the San Francisco government manages
             and uses most of the geospatial data and that the open data team happened to work with them
@@ -461,7 +461,7 @@
             <p>This got me thinking about other ways of studying file formats.</p>
             
             <h3 id="the-attribution-field">The attribution field</h3>
-            <p>Socrata’s SODA 1 API, which I’ve <a href="/!/socrata-summary/#download-dataset-metadata">used before</a>,
+            <p>Socrata&#8217;s SODA 1 API, which I&#8217;ve <a href="/!/socrata-summary/#download-dataset-metadata">used before</a>,
             contains an <code>attribution</code> field, which references the URL from
             which the dataset was taken.<sup id="fnref:attribution"><a href="#fn:attribution" class="footnote">2</a></sup> This would be one
             way of figuring out the source format, or at least some related information about the source.</p>
@@ -474,7 +474,7 @@
             <h3 id="determining-the-formats-of-external-links">Determining the formats of external links</h3>
             <p>It looks to me like the format type of external links is determined based on the file
             extension of the URL; <code>octet-stream</code> datasets seem to correspond to URLs without file
-            extensions or with file extensions like <code>aspx</code> that don’t clearly correspond to a
+            extensions or with file extensions like <code>aspx</code> that don&#8217;t clearly correspond to a
             particular file types. One could determine the formats of these datasets by
             downloading the files.</p>
             
@@ -483,7 +483,7 @@
             <div class="footnotes">
               <ol>
                 <li id="fn:proportion">
-                  <p>It’s actually a tad bit more complicated than that. These dates are the
+                  <p>It&#8217;s actually a tad bit more complicated than that. These dates are the
             creation dates of the datasets that are available today; I do not know about datasets
             that were historically on the portal and have since been deleted.<a href="#fnref:proportion" class="reversefootnote">&#8617;</a></p>
                 </li>

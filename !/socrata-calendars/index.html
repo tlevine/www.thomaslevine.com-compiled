@@ -86,7 +86,7 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>To a lot of people, we can get “data” out of an SQL database but not out
+            <p>To a lot of people, we can get &#8220;data&#8221; out of an SQL database but not out
             of a water bottle. I like to break this distinction; we can extract numbers
             from of anything, and we can turn numbers into anything.</p>
             
@@ -102,8 +102,8 @@
             
             <p><img src="figure/display-types.png" alt="plot of chunk display-types" class="wide" /></p>
             
-            <p>There are a lot of Socrata <a href="/!/socrata-genealogies#term-view">views</a> that don’t
-            have display types listed. I don’t know what’s up with that.</p>
+            <p>There are a lot of Socrata <a href="/!/socrata-genealogies#term-view">views</a> that don&#8217;t
+            have display types listed. I don&#8217;t know what&#8217;s up with that.</p>
             
             <p>Anyway, I looked through the different visualization types and became quite interested
             in calendars.</p>
@@ -115,13 +115,13 @@
             
             <p><img src="figure/calendar-use.png" alt="plot of chunk calendar-use" class="wide" /></p>
             
-            <p>Let’s look at some specific calendars.</p>
+            <p>Let&#8217;s look at some specific calendars.</p>
             
             <pre><code>calendar.use &lt;- subset(socrata, displayType == "calendar")[c("portal", "id", "viewCount")]&#x000A;calendar.use[order(calendar.use$viewCount, decreasing = T), ][1:5, c("portal", "id", "viewCount")]&#x000A;##                    portal        id viewCount&#x000A;## 32659         data.mo.gov mahp-izvx    121455&#x000A;## 43101 data.kingcounty.gov p98f-kyer     11164&#x000A;## 49823     data.oregon.gov 4wcf-m6kg     11080&#x000A;## 49741     data.oregon.gov imfn-d2p5     10559&#x000A;## 52858     data.oregon.gov pw6y-72a2      6167&#x000A;</code></pre>
             
-            <p>The most-viewed is Missouri’s <a href="https://data.mo.gov/Government-Administration/Open-Meetings-Calendar/mahp-izvx?">open meetings calendar</a>.
+            <p>The most-viewed is Missouri&#8217;s <a href="https://data.mo.gov/Government-Administration/Open-Meetings-Calendar/mahp-izvx?">open meetings calendar</a>.
             They also have a different view of the calendar <a href="http://www.mo.gov/meetings/">outside the portal</a>,
-            with an RSS feed from the Socrata portal. But I don’t know how the calendar on Socrata got so many views.</p>
+            with an RSS feed from the Socrata portal. But I don&#8217;t know how the calendar on Socrata got so many views.</p>
             
             <p>It looks like some other portals are using calendars a lot too,
             but usually with several separate calendars instead of one huge one.</p>
@@ -138,9 +138,9 @@
             calendar tools.</p>
             
             <p>But as far as I can tell, none of the main calendar programs lets
-            you export to a format that isn’t special to. As far as I can tell,
+            you export to a format that isn&#8217;t special to. As far as I can tell,
             Outlook, iCal and Google Calendar can import and export iCal files (<code>.ics</code>).
-            This lets you move your data among calendar programs, but it’s
+            This lets you move your data among calendar programs, but it&#8217;s
             harder to connect them to non-calendar datasets.</p>
             
             <!--
@@ -151,7 +151,7 @@
             <h3 id="the-calendar-is-just-one-possible-visualization-of-the-same-data">The calendar is just one possible visualization of the same data</h3>
             <p>Because calendar data is data just like any other data, you can visualize
             it in any number of ways. For a very rough example, we search Socrata for
-            Oregon’s calendars,</p>
+            Oregon&#8217;s calendars,</p>
             
             <pre><code>oregon.calendars &lt;- subset(socrata, portal == "data.oregon.gov" &amp; displayType == "calendar")&#x000A;</code></pre>
             
@@ -176,12 +176,12 @@
             visualizations of the same dataset.</p>
             
             <h2 id="analysis-of-a-socrata-calendar">Analysis of a Socrata calendar</h2>
-            <p>Socrata’s representation of a calendar as a table with easy importing and
-            exporting is really cool. But Socrata’s data analysis tools are leave much
+            <p>Socrata&#8217;s representation of a calendar as a table with easy importing and
+            exporting is really cool. But Socrata&#8217;s data analysis tools are leave much
             to be desired. So I downloaded the calendars and played with them in R.</p>
             
             <h3 id="combining-calendars">Combining calendars</h3>
-            <p>I downloaded Oregon’s and Missouri’s public meetings calendars and combined
+            <p>I downloaded Oregon&#8217;s and Missouri&#8217;s public meetings calendars and combined
             them into one R data frame. Now I can have fun.</p>
             
             <h3 id="who-has-more-meetings">Who has more meetings?</h3>
@@ -196,13 +196,13 @@
             <p><img src="figure/day-of-week.png" alt="plot of chunk day-of-week" class="wide" /></p>
             
             <p>More precisely, most meetings start in the middle of the week, and
-            you’ll see later that most meetings last less than a day.</p>
+            you&#8217;ll see later that most meetings last less than a day.</p>
             
             <h3 id="date-cleaning">Date cleaning</h3>
-            <p>Let’s clean up the dates so we can look at when meetings happen and how long they are.</p>
+            <p>Let&#8217;s clean up the dates so we can look at when meetings happen and how long they are.</p>
             
             <p>A bunch of the meetings have end times before their start times. Also, about a third of
-            the meetings don’t have end times, but I’m not going to worry about that for now.</p>
+            the meetings don&#8217;t have end times, but I&#8217;m not going to worry about that for now.</p>
             
             <p><img src="figure/meeting-length-1.png" alt="" class="wide" /></p>
             
@@ -210,7 +210,7 @@
             
             <pre><code>subset(public.meetings, Duration &lt; 0)&#x000A;</code></pre>
             
-            <p>But rather than figuring out what’s wrong, let’s live life on the edge and just ignore them.</p>
+            <p>But rather than figuring out what&#8217;s wrong, let&#8217;s live life on the edge and just ignore them.</p>
             
             <p><img src="figure/meeting-length-2.png" alt="" class="wide" /></p>
             
@@ -218,9 +218,9 @@
             
             <pre><code>subset(public.meetings, Start &gt; as.POSIXlt(as.Date("2015-01-01")))&#x000A;</code></pre>
             
-            <p>It’s for the Health Care Acquired Infections Advisory Committee, in the
+            <p>It&#8217;s for the Health Care Acquired Infections Advisory Committee, in the
             Portland State Office Building room 1D on April 11, 2020 at 1 pm.
-            (I think that’s an accident.)</p>
+            (I think that&#8217;s an accident.)</p>
             
             <h3 id="meeting-durations">Meeting durations</h3>
             <p>Some of these meetings are pretty long. The three longest are each a month long.</p>
@@ -255,8 +255,8 @@
             </table>
             
             <p>Those three longest meetings got me thinking:
-            Maybe there are clusters of durations. Like maybe they’re either an hour or two,
-            a day, a week or a month. I didn’t look very hard, but seven clusters seems okay.</p>
+            Maybe there are clusters of durations. Like maybe they&#8217;re either an hour or two,
+            a day, a week or a month. I didn&#8217;t look very hard, but seven clusters seems okay.</p>
             
             <pre><code>public.meetings.clean &lt;- subset(public.meetings, !is.na(Duration) &amp; Duration &gt; 0)&#x000A;clusterings &lt;- list()&#x000A;for (n in 1:10) {&#x000A;  clustering &lt;- kmeans(log10(public.meetings.clean$Duration), n)&#x000A;  clusterings[[n]] &lt;- clustering&#x000A;  public.meetings.clean[paste0("cluster", n)] &lt;- factor(clustering$cluster)&#x000A;}&#x000A;&#x000A;ggplot(public.meetings.clean) + aes(color = cluster7, x = 1, y = Duration) + &#x000A;  geom_jitter(alpha = 0.2) + scale_y_log10("Duration (hours)", breaks = 10^(0:3)) + &#x000A;  scale_x_continuous("", breaks = c()) + scale_color_discrete("Cluster") + &#x000A;  labs(title = "Clusters of public meeting durations")&#x000A;</code></pre>
             
@@ -277,9 +277,9 @@
             </ol>
             
             <h2 id="thoughts">Thoughts</h2>
-            <p>My aimless exploration of Oregon’s and Missouri’s public meetings isn’t
+            <p>My aimless exploration of Oregon&#8217;s and Missouri&#8217;s public meetings isn&#8217;t
             outrageously interesting, but it demonstrates what is possible when a
-            calendar’s data is fundamentally open. Along these lines, I have two thoughts.</p>
+            calendar&#8217;s data is fundamentally open. Along these lines, I have two thoughts.</p>
             
             <ol>
               <li>Prevent data from becoming closed by opening them at their sources.</li>
@@ -288,7 +288,7 @@
             
             <h3 id="opening-data-at-their-sources">Opening data at their sources</h3>
             <p>Typical calendar software can import and export only from other calendar
-            software. I wouldn’t say that Socrata’s calendar visualization is anywhere
+            software. I wouldn&#8217;t say that Socrata&#8217;s calendar visualization is anywhere
             near calendar software, we can see it as an attempt at creating calendar
             software whose data are fundamentally open.</p>
             
@@ -300,16 +300,16 @@
             Any data that is sent into the calendar immediately made available
             to the public in various formats that can be used a wide variety of programs.</p>
             
-            <p>There’s lots of siloed data in government, and we need better software and
-            methods for opening that up. But let’s also make tools that prevent data from
+            <p>There&#8217;s lots of siloed data in government, and we need better software and
+            methods for opening that up. But let&#8217;s also make tools that prevent data from
             becoming siloed in the first place. Imagine if Outlook, Google Calendar,
             or whatever calendar software you use had a CSV export option.</p>
             
             <h3 id="anything-could-be-data-and-data-could-be-anything">Anything could be data, and data could be anything</h3>
-            <p>For someone like me, it’s not a big deal if standard calendar software
+            <p>For someone like me, it&#8217;s not a big deal if standard calendar software
             does not allow CSV export; I could easily have done the same analysis I did
             above from iCal files, though it would have taken a bit longer. My larger
-            concern is that people don’t think of calendars and other “apps” as data.</p>
+            concern is that people don&#8217;t think of calendars and other &#8220;apps&#8221; as data.</p>
             
             <p>To me, anything could be turned into data, and data could be turned into
             anything. For example, treasury cash flows that start
@@ -326,17 +326,17 @@
             
             <p>Much of our statistical
             knowledge is based around a concept of a table, with columns as
-            variables (like “eye color”) and rows as observations. (So each row might
+            variables (like &#8220;eye color&#8221;) and rows as observations. (So each row might
             be a different person.) This tabular representation is what
-            I think of as “data”.</p>
+            I think of as &#8220;data&#8221;.</p>
             
             <p>If we can represent the world as data, we can apply many quantitative
             analytical methods to the data. First, we can convert data into other
             data by combining datasets, building models, &amp;c. And then we can convert
             data back into real-world representations, like charts, apps, music and food.</p>
             
-            <p>But a lot of people don’t realize this. I see this concept is a major part of
-            what I’ll call “data literacy”. I propose that a lack of understanding of this
+            <p>But a lot of people don&#8217;t realize this. I see this concept is a major part of
+            what I&#8217;ll call &#8220;data literacy&#8221;. I propose that a lack of understanding of this
             concept contributes to the siloing of data and that teaching this concept is
             an important part of the advance of open data.</p>
           </article>

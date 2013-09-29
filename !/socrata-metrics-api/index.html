@@ -87,7 +87,7 @@
         <div id='article-wrapper'>
           <article>
             <p>The site metrics API on a Socrata open data portal tells you some
-            pretty cool things about how people are using the portal. I’m going
+            pretty cool things about how people are using the portal. I&#8217;m going
             to show you how to get use the API.</p>
             
             <h2 id="getting-access-to-the-site-metrics-data">Getting access to the site metrics data</h2>
@@ -95,7 +95,7 @@
             access to them.</p>
             
             <p>One way to get access is to become a
-            “<a href="https://data.oaklandnet.com/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;_=1376438538384">domain member</a>”. I don’t know
+            &#8220;<a href="https://data.oaklandnet.com/api/site_metrics.json?start=1375315200000&amp;end=1376438399999&amp;_=1376438538384">domain member</a>&#8221;. I don&#8217;t know
             exactly how you do that, but it surely involves working for organization
             that is publishing the data.</p>
             
@@ -129,7 +129,7 @@
             <pre><code>GET /api/site_metrics.json&#x000A;</code></pre>
             
             <p>The whole API uses the endpoint <code>/api/site_metrics.json</code>.
-            You access this endpoint by making a typical GET request; you don’t need
+            You access this endpoint by making a typical GET request; you don&#8217;t need
             any special cookie, header, or API key.</p>
             
             <p>Two query arguments are required.</p>
@@ -140,7 +140,7 @@
             </ul>
             
             <p>These are both dates, represented as milliseconds since January 1, 1970.
-            (It’s something like “<script>document.write((new Date()).getTime())</script><noscript>1376439688459</noscript>”.)
+            (It&#8217;s something like &#8220;<script>document.write((new Date()).getTime())</script><noscript>1376439688459</noscript>&#8221;.)
             These arguments define the range within which the metrics will be aggregated.</p>
             
             <p>This endpoint exposes three methods.</p>
@@ -157,7 +157,7 @@
             
             <pre><code>GET /api/site_metrics.json&#x000A;</code></pre>
             
-            <p>If you specify no method argument, you’ll get some statistics
+            <p>If you specify no method argument, you&#8217;ll get some statistics
             about the entire portal, such as the total number of datasets
             created since the beginning of time (<code>datasets-created-total</code>),
             the number of datasets created within the date range specified
@@ -234,13 +234,13 @@
             
             <p>You can get more information about these with the
             <a href="/!/socrata-summary#download-dataset-metadata"><code>/api/views</code> endpoint</a>.
-            I’m told that this endpoint is considered part of SODA 1.</p>
+            I&#8217;m told that this endpoint is considered part of SODA 1.</p>
             
             <p>The <code>/api/views</code> endpoint provides information about only one
             <a href="/!/socrata-genealogies#term-view">view</a> per HTTP request.
             The site analytics page uses the batches endpoint (<code>/api/batches</code>)
             to get metadata about several views at once.
-            I haven’t found any documentation on that, but I might document that eventually.</p>
+            I haven&#8217;t found any documentation on that, but I might document that eventually.</p>
             
             <h4 id="top-referrers">Top Referrers</h4>
             

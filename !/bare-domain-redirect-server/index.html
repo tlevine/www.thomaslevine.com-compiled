@@ -87,14 +87,14 @@
         <div id='article-wrapper'>
           <article>
             <p>I just switched most of my sites to S3. This has made things so simple and
-            easy. I have a script that mounts my S3 buckets in ~/s3 (I’ll blog about it
+            easy. I have a script that mounts my S3 buckets in ~/s3 (I&#8217;ll blog about it
             and link that here). It uses s3fs, so when I copy my websites, it sets
             appropriate headers. Then I just set bucket policies and CNAME records and
             all is well. And now I have come up with a nice solution for bare domain
             redirects.</p>
             
             <p>I sort of wanted <a href="https://twitter.com/thomaslevine/status/214749416635105281">mod_rewrite as a service</a>,
-            but I couldn’t find that, so I looked for a cheap VPS. I found a bunch of
+            but I couldn&#8217;t find that, so I looked for a cheap VPS. I found a bunch of
             them through <a href="http://www.lowendbox.com">lowendbox</a>. I settled on the cheapest
             plan I could find. Here are the specs.</p>
             
@@ -104,17 +104,17 @@
             
             <p><code>#sh&#x000A;ssh rewrite.thomaslevine.com 'add_rewrite thomaslevine.com'</code></p>
             
-            <p>I just need to point the <code>thomaslevine.com</code> A record to <code>rewrite</code>’s
+            <p>I just need to point the <code>thomaslevine.com</code> A record to <code>rewrite</code>&#8217;s
             IP address, run the above command, and host <code>www.thomaslevine.com</code>
             somewhere else.</p>
             
             <h2 id="low-end-vps-plans">Low-end VPS plans</h2>
             <p>This VPS is absurdly powerful, so I was pondering doing some other things on
-            the same box too. But it’s so cheap (€11.25 per year) that it’s sort of not
+            the same box too. But it&#8217;s so cheap (€11.25 per year) that it&#8217;s sort of not
             worth trying to use it to its full extend.</p>
             
             <p>I might get a couple of these more for git and piwik, respectively.
-            Also, if you find yourself needing bare domain redirects, tell me, and I’ll
+            Also, if you find yourself needing bare domain redirects, tell me, and I&#8217;ll
             be happy to set them up for you.</p>
           </article>
         </div>

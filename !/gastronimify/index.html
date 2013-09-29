@@ -87,13 +87,13 @@
         <div id='article-wrapper'>
           <article>
             <p>I just wrote an R package that lets you turn data into food.
-            It’s called <a href="https://github.com/tlevine/gastronomify"><code>gastronomify</code></a>.
+            It&#8217;s called <a href="https://github.com/tlevine/gastronomify"><code>gastronomify</code></a>.
             Install it like so.</p>
             
             <p><code>&#x000A;install_git('git://github.com/csv/gastronomify.git')</code></p>
             
-            <p>Then generate recipes. <a href="/!/gastronimify/yahoo-finance.r">Here</a>’s
-            an example gastronomification of four stocks’ prices for the past six
+            <p>Then generate recipes. <a href="/!/gastronimify/yahoo-finance.r">Here</a>&#8217;s
+            an example gastronomification of four stocks&#8217; prices for the past six
             years; it creates one recipe for each day.</p>
             
             <p>```
@@ -103,38 +103,38 @@
             library(plyr)</p>
             
             <p>dow &lt;- c(
-              ‘MMM’,
-              ‘AA’,
-              ‘T’,
-              ‘AXP’,
-              ‘BAC’,
-              ‘BA’,
-              ‘CAT’,
-              ‘CSCO’,
-              ‘CVX’,
-              ‘KO’,
-              ‘DD’,
-              ‘XOM’,
-              ‘GE’,
-              ‘HPQ’,
-              ‘HD’,
-              ‘INTC’,
-              ‘IBM’,
-              ‘JPM’,
-              ‘JNJ’,
-              ‘KFT’,
-              ‘MCD’,
-              ‘MRK’,
-              ‘MSFT’,
-              ‘PFE’,
-              ‘PG’,
-              ‘TRV’,
-              ‘UTX’,
-              ‘VZ’,
-              ‘WMT’,
-              ‘DIS’
+              &#8216;MMM&#8217;,
+              &#8216;AA&#8217;,
+              &#8216;T&#8217;,
+              &#8216;AXP&#8217;,
+              &#8216;BAC&#8217;,
+              &#8216;BA&#8217;,
+              &#8216;CAT&#8217;,
+              &#8216;CSCO&#8217;,
+              &#8216;CVX&#8217;,
+              &#8216;KO&#8217;,
+              &#8216;DD&#8217;,
+              &#8216;XOM&#8217;,
+              &#8216;GE&#8217;,
+              &#8216;HPQ&#8217;,
+              &#8216;HD&#8217;,
+              &#8216;INTC&#8217;,
+              &#8216;IBM&#8217;,
+              &#8216;JPM&#8217;,
+              &#8216;JNJ&#8217;,
+              &#8216;KFT&#8217;,
+              &#8216;MCD&#8217;,
+              &#8216;MRK&#8217;,
+              &#8216;MSFT&#8217;,
+              &#8216;PFE&#8217;,
+              &#8216;PG&#8217;,
+              &#8216;TRV&#8217;,
+              &#8216;UTX&#8217;,
+              &#8216;VZ&#8217;,
+              &#8216;WMT&#8217;,
+              &#8216;DIS&#8217;
             )
-            # getSymbols(paste(dow[1:5], collapse=’;’), src=’yahoo’)
+            # getSymbols(paste(dow[1:5], collapse=&#8217;;&#8217;), src=&#8217;yahoo&#8217;)
             recent.prices &lt;- alply(dow[1:5], 1, get)
             names(recent.prices) &lt;- dow[1:5]</p>
             
@@ -145,7 +145,7 @@
                 recent.prices$AXP$AXP.Close,
                 recent.prices$BAC$BAC.Close
               ),
-              stock = rep(c(‘MMM’, ‘AA’, ‘AXP’, ‘BAC’), each = nrow(recent.prices$MMM)),
+              stock = rep(c(&#8216;MMM&#8217;, &#8216;AA&#8217;, &#8216;AXP&#8217;, &#8216;BAC&#8217;), each = nrow(recent.prices$MMM)),
               date = c(
                 rownames(as.data.frame(recent.prices$MMM)),
                 rownames(as.data.frame(recent.prices$AA)),
@@ -153,17 +153,17 @@
                 rownames(as.data.frame(recent.prices$BAC))
               ) 
             )
-            names(data)[1] &lt;- ‘close’</p>
+            names(data)[1] &lt;- &#8216;close&#8217;</p>
             
             <p>recipes &lt;- gastronomify(
-              x = ‘date’, y = ‘close’, group = ‘stock’,
+              x = &#8216;date&#8217;, y = &#8216;close&#8217;, group = &#8216;stock&#8217;,
               data = data, recipe = guacamole
             )</p>
             
             <p>print(recipes[1:30,])
             ```</p>
             
-            <p>And <a href="/!/gastronimify/math-tests.r">here</a>’s one of math test scores.
+            <p>And <a href="/!/gastronimify/math-tests.r">here</a>&#8217;s one of math test scores.
             ```
             #!/usr/bin/env Rscript
             library(plyr)
@@ -171,18 +171,18 @@
             library(gastronomify)</p>
             
             <h1 id="httpsdatacityofnewyorkuseducationmath-test-results-2006-2012-district-all-students7yig-nj52">https://data.cityofnewyork.us/Education/Math-Test-Results-2006-2012-District-All-Students/7yig-nj52?</h1>
-            <p>if (!(‘math.tests’ %in% ls())) {
-              math.tests &lt;- read.csv(‘http://data.cityofnewyork.us/api/views/7yig-nj52/rows.csv?accessType=DOWNLOAD’)
-              math.tests &lt;- math.tests[c(‘District’, ‘Grade’, ‘Year’, ‘Number.Tested’, ‘Mean.Scale.Score’, ‘Num.Level.1’, ‘Num.Level.2’, ‘Num.Level.3’, ‘Num.Level.4’)]
-              math.tests &lt;- subset(math.tests, Grade != ‘All Grades’)
-              math.tests &lt;- math.tests[c(‘District’, ‘Grade’, ‘Year’, ‘Mean.Scale.Score’)]
+            <p>if (!(&#8216;math.tests&#8217; %in% ls())) {
+              math.tests &lt;- read.csv(&#8216;http://data.cityofnewyork.us/api/views/7yig-nj52/rows.csv?accessType=DOWNLOAD&#8217;)
+              math.tests &lt;- math.tests[c(&#8216;District&#8217;, &#8216;Grade&#8217;, &#8216;Year&#8217;, &#8216;Number.Tested&#8217;, &#8216;Mean.Scale.Score&#8217;, &#8216;Num.Level.1&#8217;, &#8216;Num.Level.2&#8217;, &#8216;Num.Level.3&#8217;, &#8216;Num.Level.4&#8217;)]
+              math.tests &lt;- subset(math.tests, Grade != &#8216;All Grades&#8217;)
+              math.tests &lt;- math.tests[c(&#8216;District&#8217;, &#8216;Grade&#8217;, &#8216;Year&#8217;, &#8216;Mean.Scale.Score&#8217;)]
             }</p>
             
-            <p>data &lt;- ddply(math.tests, c(‘Year’, ‘Grade’), function(df) {
+            <p>data &lt;- ddply(math.tests, c(&#8216;Year&#8217;, &#8216;Grade&#8217;), function(df) {
               c(Mean.score=mean(df$Mean.Scale.Score))
             })</p>
             
-            <p>print(‘Each recipe represents the average tests scores by grade for a particular year.’)
+            <p>print(&#8216;Each recipe represents the average tests scores by grade for a particular year.&#8217;)
             data.guacamole &lt;- gastronomify(data$Year, data$Mean.score, data$Grade, recipe = guacamole, inflation = 50)
             print(round(data.guacamole, 2))
             ```</p>
@@ -190,17 +190,17 @@
             <h2 id="the-future">The future</h2>
             <p>I plan on extending this package in two main ways.</p>
             
-            <p>First, I’d like to add more recipes, including recipes
+            <p>First, I&#8217;d like to add more recipes, including recipes
             that can go horribly wrong when you mess up the
             proportions; these will make it easy to detect outliers.</p>
             
-            <p>Second, I’d like to integrate taskrabbit so that you can
+            <p>Second, I&#8217;d like to integrate taskrabbit so that you can
             convert your data directly to food, without leaving R.
             This will involve improving the metadata around recipes
             so that the taskrabbits know what to do.</p>
             
-            <p>I’m also going to explore other ways of representing data
-            through food, and I don’t know where that will take me.</p>
+            <p>I&#8217;m also going to explore other ways of representing data
+            through food, and I don&#8217;t know where that will take me.</p>
           </article>
         </div>
         <div id='pagination'>

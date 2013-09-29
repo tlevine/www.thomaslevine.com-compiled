@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-09-23T00:00:00Z</updated>
-  <link rel="alternate" href="http://www.thomaslevine.com/"/>
-  <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
+  <updated>2013-09-23T04:00:00Z</updated>
+  <link href="http://www.thomaslevine.com/" rel="alternate"/>
+  <link href="http://www.thomaslevine.com/!/feed.xml" rel="self"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
@@ -12,14 +12,14 @@
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-23:/!/socrata-deduplicate/index.html</id>
     <title type="html">What's in a count?</title>
-    <published>2013-09-23T00:00:00Z</published>
-    <updated>2013-09-23T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-deduplicate/index.html"/>
+    <published>2013-09-23T04:00:00Z</published>
+    <updated>2013-09-23T04:00:00Z</updated>
+    <link href="http://www.thomaslevine.com/!/socrata-deduplicate/index.html" rel="alternate"/>
     <content type="html">&lt;p&gt;Lots of governments use Socrata data portals to release their open data.
 This results in a super-dataset of datasets that tells us something about
 the ecosystem surrounding open data.&lt;/p&gt;
 
-&lt;p&gt;For a &lt;a href="/!/socrata-summary"&gt;couple months&lt;/a&gt;, I’ve been studying the data
+&lt;p&gt;For a &lt;a href="/!/socrata-summary"&gt;couple months&lt;/a&gt;, I&amp;#8217;ve been studying the data
 about these data and have continuously been dealing with duplicated data.
 I finally fixed that, so now I have more accurate statistics on portals.&lt;/p&gt;
 
@@ -27,10 +27,10 @@ I finally fixed that, so now I have more accurate statistics on portals.&lt;/p&g
 
 &lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
 
-&lt;p&gt;(I’ll explain later.)&lt;/p&gt;
+&lt;p&gt;(I&amp;#8217;ll explain later.)&lt;/p&gt;
 
 &lt;h2 id="types-of-duplication"&gt;Types of duplication&lt;/h2&gt;
-&lt;p&gt;I’m concerned with
+&lt;p&gt;I&amp;#8217;m concerned with
 &lt;a href="/!/socrata-genealogies/#types-of-duplicate-datasets"&gt;two forms of duplication&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
@@ -40,24 +40,24 @@ I finally fixed that, so now I have more accurate statistics on portals.&lt;/p&g
 &lt;/ol&gt;
 
 &lt;h2 id="dealing-with-derived-views"&gt;Dealing with derived views&lt;/h2&gt;
-&lt;p&gt;It’s easy enough to deal with the former type of duplication.
+&lt;p&gt;It&amp;#8217;s easy enough to deal with the former type of duplication.
 One way is to use the &lt;code&gt;/data.json&lt;/code&gt; (or &lt;code&gt;/api/dcat&lt;/code&gt;) endpoint.
 Unfortunately, this endpoint only provides the first 1000 entries.
 I have been told that this has been fixed, but I had trouble getting
 it working this morning.&lt;/p&gt;
 
-&lt;p&gt;That’s not a big deal because there’s another easy way. I produced a
+&lt;p&gt;That&amp;#8217;s not a big deal because there&amp;#8217;s another easy way. I produced a
 &lt;a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv"&gt;CSV file of Socrata data&lt;/a&gt;
 a couple months ago. Each row in the file corresponds to a view on Socrata,
 and the views that are original datasets have a displayType of &lt;code&gt;table&lt;/code&gt;, I think.
-(There’s a notable exception: Sometimes, the original table is private and
+(There&amp;#8217;s a notable exception: Sometimes, the original table is private and
 a derived view is made available to the public.)&lt;/p&gt;
 
 &lt;h2 id="dealing-with-federation"&gt;Dealing with federation&lt;/h2&gt;
 &lt;p&gt;Dealing with federation is less straightforward. The &lt;code&gt;/data.json&lt;/code&gt; endpoint
-doesn’t clearly indicate whether a dataset is federated, and neither does
+doesn&amp;#8217;t clearly indicate whether a dataset is federated, and neither does
 my CSV file. If I had been more careful when producing the CSV file, it could
-have such a field, but I don’t want to make another one because that took a
+have such a field, but I don&amp;#8217;t want to make another one because that took a
 long time. So I took the federation links from somewhere else.&lt;/p&gt;
 
 &lt;p&gt;Scroll down on the homepage of a portal (like &lt;a href="https://explore.data.gov/"&gt;data.gov&lt;/a&gt;),
@@ -65,7 +65,7 @@ and you might see something like this.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="federated-domains.png" alt="Federated Domains" /&gt;&lt;/p&gt;
 
-&lt;p&gt;This shows up if the portal is federating any other portals. It’s part of the
+&lt;p&gt;This shows up if the portal is federating any other portals. It&amp;#8217;s part of the
 search menu, so it lets you filter your search by portal.&lt;/p&gt;
 
 &lt;p&gt;I &lt;a href="https://github.com/tlevine/socrata-defederate"&gt;downloaded all of the homepages and pulled out the federation links&lt;/a&gt;.
@@ -87,7 +87,7 @@ to the portal that was being federated.&lt;/p&gt;
 &lt;p&gt;I plotted two graphs again to get a feel for how this changes things.&lt;/p&gt;
 
 &lt;h3 id="dataset-counts-by-portal"&gt;Dataset counts by portal&lt;/h3&gt;
-&lt;p&gt;First, here’s the graph of dataset counts from the new data.&lt;/p&gt;
+&lt;p&gt;First, here&amp;#8217;s the graph of dataset counts from the new data.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
 
@@ -96,7 +96,7 @@ to the portal that was being federated.&lt;/p&gt;
 &lt;p&gt;&lt;img src="/!/socrata-summary/figure/big_portals_datasets.png" alt="Old histogram" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href="/!/socrata-formats/#how-many-datasets"&gt;version that uses &lt;code&gt;data.json&lt;/code&gt;&lt;/a&gt;, also below,
-doesn’t have the derived-view duplication, but it does have the federation duplication.&lt;/p&gt;
+doesn&amp;#8217;t have the derived-view duplication, but it does have the federation duplication.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="http://localhost:3000/!/socrata-formats/figure/portal-counts.png" alt="data.json version" /&gt;&lt;/p&gt;
 
@@ -105,25 +105,25 @@ doesn’t have the derived-view duplication, but it does have the federation dup
 
 &lt;p&gt;&lt;img src="dates.png" alt="Dataset creation over time" class="wide" /&gt;&lt;/p&gt;
 
-&lt;p&gt;I hadn’t made a plot quite like this before, but the issue of duplication
+&lt;p&gt;I hadn&amp;#8217;t made a plot quite like this before, but the issue of duplication
 has turned up in other plots about dataset creation dates, like in the
 &lt;a href="/!/socrata-summary/#time"&gt;original summary&lt;/a&gt; and in the study of
 &lt;a href="/!/socrata-formats/#csv"&gt;dataset formats&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id="arbitrary-metrics-are-arbitrary"&gt;Arbitrary metrics are arbitrary&lt;/h2&gt;
-&lt;p&gt;Dataset count might sound like a decent metric, but it’s quite hard to say
+&lt;p&gt;Dataset count might sound like a decent metric, but it&amp;#8217;s quite hard to say
 what a dataset is. If you &lt;a href="http://appgen.me/audit/report"&gt;split up a dataset by year&lt;/a&gt;,
 do you have multiple datasets? Similarly, if you create
 &lt;a href="/!/socrata-genealogies"&gt;lots of different queries&lt;/a&gt; on the same dataset,
 have you created new datasets? And do you have more datasets if you just copy
 them from another data portal?&lt;/p&gt;
 
-&lt;p&gt;I’m told that there is perennial competition between Chicago and New York
+&lt;p&gt;I&amp;#8217;m told that there is perennial competition between Chicago and New York
 and between &lt;code&gt;data.gov&lt;/code&gt; and &lt;code&gt;data.gov.uk&lt;/code&gt; over the dataset count on their portals.
 Given the ambiguity of this measure, it is quite hilarious that such competition
 exists.&lt;/p&gt;
 
-&lt;p&gt;On the other hand, that’s the only obvious metric that we see in data portals.
+&lt;p&gt;On the other hand, that&amp;#8217;s the only obvious metric that we see in data portals.
 Maybe we need to make &lt;a href="/!/open-data-plans/#data-quality"&gt;new metrics&lt;/a&gt;
 before people can stop caring about counts.&lt;/p&gt;
 
@@ -136,18 +136,18 @@ before people can stop caring about counts.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-17:/!/open-data-plans/index.html</id>
     <title type="html">Open data possibilities</title>
-    <published>2013-09-17T00:00:00Z</published>
-    <updated>2013-09-17T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-plans/index.html"/>
-    <content type="html">&lt;p&gt;I’ve brief suspended my open data studies to prepare
-some things for &lt;a href="http://zipfianacademy"&gt;Zipfian Academy&lt;/a&gt;’s
-first twelve-week course, but I’ve been accumulating
+    <published>2013-09-17T04:00:00Z</published>
+    <updated>2013-09-17T04:00:00Z</updated>
+    <link href="http://www.thomaslevine.com/!/open-data-plans/index.html" rel="alternate"/>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve brief suspended my open data studies to prepare
+some things for &lt;a href="http://zipfianacademy"&gt;Zipfian Academy&lt;/a&gt;&amp;#8217;s
+first twelve-week course, but I&amp;#8217;ve been accumulating
 lots of ideas of things you could do with data about
 open data. I plan on doing a lot of them, but I
-probably can’t do all, so you should take one of these
+probably can&amp;#8217;t do all, so you should take one of these
 ideas and do something awesome.&lt;/p&gt;
 
-&lt;h2 id="whats-in-the-portals"&gt;What’s in the portals?&lt;/h2&gt;
+&lt;h2 id="whats-in-the-portals"&gt;What&amp;#8217;s in the portals?&lt;/h2&gt;
 
 &lt;h3 id="socrata-v-github"&gt;Socrata v GitHub&lt;/h3&gt;
 &lt;p&gt;GitHub has a pretty CSV table visualizer thingy that supports small CSV files.
@@ -155,11 +155,11 @@ What proportion of Socrata tables are small enough to be supported by GitHub?&lt
 
 &lt;h3 id="compare-official-datasets-to-derived-datasets"&gt;Compare official datasets to derived datasets&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;data.json&lt;/code&gt; file contains only the official datasets and the federated datasets.
-The search of the site contains all of the derived views. Let’s compare these two to
+The search of the site contains all of the derived views. Let&amp;#8217;s compare these two to
 see what sort of data gets studied within the data portal.&lt;/p&gt;
 
 &lt;h3 id="openness-by-department-and-city"&gt;Openness by department and city&lt;/h3&gt;
-&lt;p&gt;Some departments are more resistant to opening data. I’m told that the departments
+&lt;p&gt;Some departments are more resistant to opening data. I&amp;#8217;m told that the departments
 that are more political tend to be more resistant to opening data. I want to use
 open data release as an indicator of politicalness of a department, and I want to
 see how open data release (politicalness) of equivalent departments (like education)
@@ -167,7 +167,7 @@ vary by city.&lt;/p&gt;
 
 &lt;h2 id="better-search-and-linked-data"&gt;Better search and linked data&lt;/h2&gt;
 
-&lt;p&gt;Let’s find links between datasets. Ideally, let’s get a bunch of datasets with rich
+&lt;p&gt;Let&amp;#8217;s find links between datasets. Ideally, let&amp;#8217;s get a bunch of datasets with rich
 linked data about them and try to predict the linkages. Specific things I want to try&lt;/p&gt;
 
 &lt;ul&gt;
@@ -188,10 +188,10 @@ size, like number of records and number of datasets. There are other
 things that we might want to worry about.&lt;/p&gt;
 
 &lt;p&gt;There are a few guidelines as to how to do open data.
-There’s one from &lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Sunlight&lt;/a&gt;,
-there’s one from the &lt;a href="http://www.appgen.me/audit/"&gt;AppGen audit&lt;/a&gt;,
+There&amp;#8217;s one from &lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Sunlight&lt;/a&gt;,
+there&amp;#8217;s one from the &lt;a href="http://www.appgen.me/audit/"&gt;AppGen audit&lt;/a&gt;,
 I have a list from a conversation from &lt;a href="http://noneck.org/"&gt;Noel&lt;/a&gt;,
-there’s Tim Berners-Lee’s &lt;a href="http://5stardata.info/"&gt;five stars&lt;/a&gt;,
+there&amp;#8217;s Tim Berners-Lee&amp;#8217;s &lt;a href="http://5stardata.info/"&gt;five stars&lt;/a&gt;,
 and there are a bunch of open data laws and policies.&lt;/p&gt;
 
 &lt;p&gt;People like the Sunlight Foundation
@@ -201,7 +201,7 @@ such a rating in a more automated way.&lt;/p&gt;
 &lt;h3 id="completeness-of-portals"&gt;Completeness of portals&lt;/h3&gt;
 &lt;p&gt;By looking at data from FOIA and other portals, we can guess whether
 a city has a particular dataset internally and check whether it has
-been released publicly. Let’s do this across all cities and see whether
+been released publicly. Let&amp;#8217;s do this across all cities and see whether
 a particular sort of data is available in particular cities.&lt;/p&gt;
 
 &lt;h3 id="dependencies"&gt;Dependencies&lt;/h3&gt;
@@ -212,11 +212,11 @@ at historical release and usage of datasets, we might get an idea
 of these dependencies and interactions.&lt;/p&gt;
 
 &lt;h3 id="real-outcomes"&gt;Real outcomes&lt;/h3&gt;
-&lt;p&gt;Open data isn’t useful in itself; it’s useful because good things
-will happen if we do. Or at least that’s the idea. As
+&lt;p&gt;Open data isn&amp;#8217;t useful in itself; it&amp;#8217;s useful because good things
+will happen if we do. Or at least that&amp;#8217;s the idea. As
 &lt;a href="https://twitter.com/IanJKalin"&gt;Ian Kalin&lt;/a&gt; says, the data portal
 metrics should really tell us how many tax dollars the open data
-saved and how many jobs the data portal created. If we’re creative,
+saved and how many jobs the data portal created. If we&amp;#8217;re creative,
 we can come up with something like this.&lt;/p&gt;
 
 &lt;h2 id="collect-more-data"&gt;Collect more data&lt;/h2&gt;
@@ -230,13 +230,13 @@ above.&lt;/p&gt;
   &lt;li&gt;Who federates whom on Socrata? Figure this out by checking the
   home pages.&lt;/li&gt;
   &lt;li&gt;Download data from other data portal software. I currently just
-  have all of the Socrata portals, but it won’t be hard to get all
+  have all of the Socrata portals, but it won&amp;#8217;t be hard to get all
   of the CKAN, Junar and OpenDataSoft portals as well.&lt;/li&gt;
   &lt;li&gt;Collect data about FOIA from places like MuckRock and FOIA Machine.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id="studies-with-open-data"&gt;Studies with open data&lt;/h2&gt;
-&lt;p&gt;I’ve been studying the use of open data, but we could also do some studies
+&lt;p&gt;I&amp;#8217;ve been studying the use of open data, but we could also do some studies
 that use open data. Here are two particular things that I want to do.&lt;/p&gt;
 
 &lt;h3 id="gentrification"&gt;Gentrification&lt;/h3&gt;
@@ -255,9 +255,9 @@ So I want to make a tutorial about finding and connecting open data from differe
 governments in order to learn cool things.&lt;/p&gt;
 
 &lt;h2 id="bug-me"&gt;Bug me&lt;/h2&gt;
-&lt;p&gt;I have a pretty clear list of things to do, but I’ve only planned out the next
+&lt;p&gt;I have a pretty clear list of things to do, but I&amp;#8217;ve only planned out the next
 couple blog posts. If you would like to influence the order in which I do things,
-please take Jason’s lead and bug me.&lt;/p&gt;
+please take Jason&amp;#8217;s lead and bug me.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://twitter.com/jasonmhare/status/379739193230233600"&gt;&lt;img src="jason.png" alt="@thomaslevine tell me about my #socrata site ;)" /&gt;&lt;/a&gt;&lt;/p&gt;
 </content>
@@ -265,9 +265,9 @@ please take Jason’s lead and bug me.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-12:/!/statistics-with-doodles-sudoroom/index.html</id>
     <title type="html">Statistics through doodles</title>
-    <published>2013-09-12T00:00:00Z</published>
-    <updated>2013-09-12T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/statistics-with-doodles-sudoroom/index.html"/>
+    <published>2013-09-12T04:00:00Z</published>
+    <updated>2013-09-12T04:00:00Z</updated>
+    <link href="http://www.thomaslevine.com/!/statistics-with-doodles-sudoroom/index.html" rel="alternate"/>
     <content type="html">&lt;style&gt;
   .control {
     height: auto;
@@ -294,7 +294,7 @@ please take Jason’s lead and bug me.&lt;/p&gt;
 
 &lt;p&gt;A &lt;em&gt;statistic&lt;/em&gt; is a number that describes a lot of other numbers.
 By reducing many numbers into one number, we make it easier to
-figure out what the numbers mean; we wouldn’t be able to fit all
+figure out what the numbers mean; we wouldn&amp;#8217;t be able to fit all
 of the original numbers in our brain.&lt;/p&gt;
 
 &lt;p&gt;People usually explain statistics with symbols, but I like explaining
@@ -335,20 +335,20 @@ about the relationships between different variables.&lt;/p&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Each computation is for the simplest version of the statistic.
-For those who like big words, that’s the univariate or bivariate
+For those who like big words, that&amp;#8217;s the univariate or bivariate
 version, and the population statistic rather than the sample statistic.&lt;/p&gt;
 
 &lt;h2 id="why-we-care-about-these-statistics"&gt;Why we care about these statistics&lt;/h2&gt;
 &lt;p&gt;The videos show the computations of these statistics, but they
-don’t really explain why we use these statistics. So I’ll explain
+don&amp;#8217;t really explain why we use these statistics. So I&amp;#8217;ll explain
 that here.&lt;/p&gt;
 
 &lt;h3 id="linear-relationships"&gt;Linear relationships&lt;/h3&gt;
 &lt;p&gt;A lot of relationships can be seen as linear relationships.
-One such relationship is that between a person’s height and weight;
+One such relationship is that between a person&amp;#8217;s height and weight;
 taller people are heavier, and shorter people are lighter.&lt;/p&gt;
 
-&lt;p&gt;A relationship that isn’t very linear might be 
+&lt;p&gt;A relationship that isn&amp;#8217;t very linear might be 
 &lt;a href="/!/ridership-rachenitsa"&gt;public transit ridership and time&lt;/a&gt;.
 As time progresses, weekly public transit ridership stays the same.
 However, it does change a lot within the week, with high ridership
@@ -387,33 +387,33 @@ balancing out.&lt;/p&gt;
 
 &lt;p&gt;And the covariance between cholesterol level and lifespan is probably
 a very negative number, like maybe -1337, because people with more
-cholesterol tend to live less long. That’s blue rectangles, with my
-doodles’ conventions.&lt;/p&gt;
+cholesterol tend to live less long. That&amp;#8217;s blue rectangles, with my
+doodles&amp;#8217; conventions.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="negative-covariance.jpg" alt="Negative covariance" /&gt;&lt;/p&gt;
 
 &lt;p&gt;We tend not to use the covariance very directly in practice because
-it’s hard to compare covariances directly to each other. The reasons
+it&amp;#8217;s hard to compare covariances directly to each other. The reasons
 for this are explained in the video.&lt;/p&gt;
 
 &lt;h3 id="variance"&gt;Variance&lt;/h3&gt;
 &lt;p&gt;Variance is a measure of how spread out one variable is. It is a
 positive number that gets big when the variables are more spread out.&lt;/p&gt;
 
-&lt;p&gt;Let’s say that two people are cutting wood to build a house. They cut
+&lt;p&gt;Let&amp;#8217;s say that two people are cutting wood to build a house. They cut
 10 pieces of wood each, and each piece of wood is supposed to be exactly
 120 inches long.&lt;/p&gt;
 
 &lt;p&gt;One person is very careful when he measures the wood, so his pieces come
-out perfectly. They’re not exactly 120 inches long because that’s impossible,
-but they’re not spot-on for the purposes of construction. The variance of the
+out perfectly. They&amp;#8217;re not exactly 120 inches long because that&amp;#8217;s impossible,
+but they&amp;#8217;re not spot-on for the purposes of construction. The variance of the
 lengths of his pieces of wood is very close to zero, like maybe 3.&lt;/p&gt;
 
 &lt;p&gt;The other person is drunk and stoned and thus not very careful, so the
-lengths of his pieces are all over the place. They’re still around 10
+lengths of his pieces are all over the place. They&amp;#8217;re still around 10
 feet long on average, but some of them are 8 feet long, and others are
-11 feet long. The variance of the lengths of this person’s pieces is
-very high; maybe it’s 300.&lt;/p&gt;
+11 feet long. The variance of the lengths of this person&amp;#8217;s pieces is
+very high; maybe it&amp;#8217;s 300.&lt;/p&gt;
 
 &lt;p&gt;We talk about variances a lot when we are estimating the average of a
 variable. When we estimate an average, we want to know how precise our
@@ -433,7 +433,7 @@ covariances to each other.&lt;/p&gt;
 between the two variables and the respective variances of the two variables.&lt;/p&gt;
 
 &lt;h3 id="least-squares-regression"&gt;Least-squares regression&lt;/h3&gt;
-&lt;p&gt;Maybe you want to be able to guess someone’s height based on her weight.
+&lt;p&gt;Maybe you want to be able to guess someone&amp;#8217;s height based on her weight.
 Regression is one way of doing this.&lt;/p&gt;
 
 &lt;p&gt;To predict height from weight, we can use a simple regression that would
@@ -447,7 +447,7 @@ you give the formula a weight, and it will give you back a predicted height.&lt;
 
 &lt;p&gt;&lt;img src="regression.png" alt="Regression" /&gt;&lt;/p&gt;
 
-&lt;p&gt;Let’s say we want to know
+&lt;p&gt;Let&amp;#8217;s say we want to know
 &lt;a href="http://en.wikipedia.org/wiki/Gas_laws#Charles.27s_law"&gt;how big a balloon gets depending on the temperature of the air&lt;/a&gt;.
 We fill a bunch of balloons with air and put them in different places,
 each with a different air temperature. In the plot above, each dot would
@@ -476,38 +476,38 @@ that way.&lt;/p&gt;
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-10:/!/street-sign-protocol/index.html</id>
     <title type="html">The Street Sign Protocol</title>
-    <published>2013-09-10T00:00:00Z</published>
-    <updated>2013-09-10T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/street-sign-protocol/index.html"/>
-    <content type="html">&lt;p&gt;There are a lot of acronyms on the internet that end in “P”,
-like TCP, IP, and HTTP. This “P” stands for “protocol”.
+    <published>2013-09-10T04:00:00Z</published>
+    <updated>2013-09-10T04:00:00Z</updated>
+    <link href="http://www.thomaslevine.com/!/street-sign-protocol/index.html" rel="alternate"/>
+    <content type="html">&lt;p&gt;There are a lot of acronyms on the internet that end in &amp;#8220;P&amp;#8221;,
+like TCP, IP, and HTTP. This &amp;#8220;P&amp;#8221; stands for &amp;#8220;protocol&amp;#8221;.
 Perhaps you are wondering what a protocol is.&lt;/p&gt;
 
-&lt;p&gt;“Protocol” is one of those words that sounds more special than it really is.
+&lt;p&gt;&amp;#8220;Protocol&amp;#8221; is one of those words that sounds more special than it really is.
 The concept of a computer protocol might sound quite complex, but
-it’s a rather generic concept that is something like a language,
+it&amp;#8217;s a rather generic concept that is something like a language,
 an expectation, and a social norm.&lt;/p&gt;
 
 &lt;p&gt;The way a particular protocol works might be quite complicated, but
-I just want to explain the generic concept of a protocol. I’m going
+I just want to explain the generic concept of a protocol. I&amp;#8217;m going
 to do this by writing about a protocol that you might not think of
 as a protocol.&lt;/p&gt;
 
 &lt;h2 id="the-street-sign-protocol"&gt;The street sign protocol&lt;/h2&gt;
-&lt;p&gt;I’m going to document a protocol that we might not usually think of a
-protocol. Let’s call it the Street Sign Protocol (SSP).&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m going to document a protocol that we might not usually think of a
+protocol. Let&amp;#8217;s call it the Street Sign Protocol (SSP).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="street-signs.jpg" alt="Street signs" /&gt;
 &lt;!-- http://farm3.staticflickr.com/2132/2302062601_dd0f89779d.jpg
      http://oaklandwiki.org/Street_Signs --&gt;&lt;/p&gt;
 
-&lt;p&gt;To keep things simple, I’ll actually document a simple version of the
-Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).&lt;/p&gt;
+&lt;p&gt;To keep things simple, I&amp;#8217;ll actually document a simple version of the
+Street Sign Protocol. Let&amp;#8217;s call it the Simple Street Sign Protocol (SSSP).&lt;/p&gt;
 
 &lt;h3 id="why-we-might-want-sssp"&gt;Why we might want SSSP&lt;/h3&gt;
 &lt;p&gt;You might already be familiar with how street signs work, but it took you a while
 to figure it out. Also, you are probably so familiar with street signs that you
-don’t really think about all of the small details that are involved in communication
+don&amp;#8217;t really think about all of the small details that are involved in communication
 through street signs.&lt;/p&gt;
 
 &lt;p&gt;If we wanted to tell a robot how to communicate through street signs, it would be
@@ -516,7 +516,7 @@ helpful to be very explicit and precise about all of the aspects of street signs
 &lt;h3 id="specification"&gt;Specification&lt;/h3&gt;
 &lt;p&gt;SSSP is a way of exchanging the names of &lt;em&gt;streets&lt;/em&gt;. It involves
 &lt;em&gt;street signs&lt;/em&gt; mounted on &lt;em&gt;poles&lt;/em&gt; near the &lt;em&gt;corners&lt;/em&gt; of
-&lt;em&gt;four-way intersections&lt;/em&gt;. Let’s define these terms.&lt;/p&gt;
+&lt;em&gt;four-way intersections&lt;/em&gt;. Let&amp;#8217;s define these terms.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;A &lt;em&gt;street&lt;/em&gt; is a paved public thoroughfare in a built environment.
@@ -532,7 +532,7 @@ helpful to be very explicit and precise about all of the aspects of street signs
   The sign is oriented such that the text reads left-to-right.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Now we can define the SSSP in outrageous precision and verbosity! &lt;em&gt;You’ll probably
+&lt;p&gt;Now we can define the SSSP in outrageous precision and verbosity! &lt;em&gt;You&amp;#8217;ll probably
 get confused as you read the paragraphs below, so keep in mind that this is just
 a very precise and verbose explanation of what we usually consider to be street signs&lt;/em&gt;.&lt;/p&gt;
 
@@ -576,8 +576,8 @@ outputs SSSP (two street signs mounted to a pole near the intersection).&lt;/p&g
   &lt;li&gt;Carry the materials and some tools to the intersection.&lt;/li&gt;
   &lt;li&gt;Stick the pole in the ground near the chosen corner. I imagine that this
  involves putting up caution tape, digging a hole, securing the pole, pouring
- some concrete and covering it back up, but I don’t really know. If this were
- software, I’d try to use separate pole-installation library so I don’t have
+ some concrete and covering it back up, but I don&amp;#8217;t really know. If this were
+ software, I&amp;#8217;d try to use separate pole-installation library so I don&amp;#8217;t have
  to implement the pole-installation procedure myself.&lt;/li&gt;
   &lt;li&gt;Mount the street signs to the pole. Position them about ten feet above the ground,
  with one on top of the other and with the centers of the signs touching the pole,
@@ -599,8 +599,8 @@ the SSSP writer.&lt;/p&gt;
 &lt;/ol&gt;
 
 &lt;h2 id="hypertext-transfer-protocol"&gt;Hypertext Transfer Protocol&lt;/h2&gt;
-&lt;p&gt;Now let’s talk about something that people actually call a protocol.
-Here’s a simplified version of the Hypertext Transfer Protocol (HTTP).&lt;/p&gt;
+&lt;p&gt;Now let&amp;#8217;s talk about something that people actually call a protocol.
+Here&amp;#8217;s a simplified version of the Hypertext Transfer Protocol (HTTP).&lt;/p&gt;
 
 &lt;h3 id="why-we-use-http"&gt;Why we use HTTP&lt;/h3&gt;
 &lt;p&gt;When you look at stuff on the internet with a web browser, your web browser and
@@ -613,8 +613,8 @@ server might figure out what you meant. But if you sent random garbage, the
 web server would not have any idea of what you wanted.&lt;/p&gt;
 
 &lt;p&gt;We have common internet languages for the same reasons that we have common
-human languages. If you talk to me in English, I’ll understand you quite well.
-I’ll make sense of it even you you are not using Queen’s English. But I won’t
+human languages. If you talk to me in English, I&amp;#8217;ll understand you quite well.
+I&amp;#8217;ll make sense of it even you you are not using Queen&amp;#8217;s English. But I won&amp;#8217;t
 really have any idea what you mean if you use sign language.&lt;/p&gt;
 
 &lt;p&gt;We agree to use HTTP on all of these different computers because it makes it
@@ -645,7 +645,7 @@ particular browser to particular server.&lt;/p&gt;
 &lt;p&gt;Every response has a body (explained above) and a status code. The status code
 is a number that explains whether the request succeeded and any quirks about its
 success or failure. For example, status code &lt;code&gt;200&lt;/code&gt; means that the request worked
-as expected, and status code &lt;code&gt;403&lt;/code&gt; means that you don’t have permission to do
+as expected, and status code &lt;code&gt;403&lt;/code&gt; means that you don&amp;#8217;t have permission to do
 whatever you tried to do.&lt;/p&gt;
 
 &lt;p&gt;Each request must have a method. There are a bunch of methods, and you can think
@@ -667,8 +667,8 @@ of them as different commands. Here are a few of them.&lt;/p&gt;
 &lt;p&gt;A bunch of things in your web browser might initiate a request. For example, opening
 a web page makes one request, and loading an image on the web page makes another request.&lt;/p&gt;
 
-&lt;p&gt;A computer somewhere (Call it the “web server”.) is running a particular piece of software
-(Call it the “HTTP server”.) that is able to receive this request.
+&lt;p&gt;A computer somewhere (Call it the &amp;#8220;web server&amp;#8221;.) is running a particular piece of software
+(Call it the &amp;#8220;HTTP server&amp;#8221;.) that is able to receive this request.
 The HTTP server receives the request, checks that it is valid, and breaks it into the
 method, headers, and body.&lt;/p&gt;
 
@@ -682,23 +682,23 @@ sends that back to the browser.&lt;/p&gt;
 shows an image or does whatever else was specified.&lt;/p&gt;
 
 &lt;h2 id="a-protocol-is-an-expectation"&gt;A protocol is an expectation&lt;/h2&gt;
-&lt;p&gt;“Protocol” means the same thing for computers as it does for people.
+&lt;p&gt;&amp;#8220;Protocol&amp;#8221; means the same thing for computers as it does for people.
 There are lots of different protocols, and some of them are very complicated,
-but the word “protocol” itself has a rather simple meaning; it’s just
+but the word &amp;#8220;protocol&amp;#8221; itself has a rather simple meaning; it&amp;#8217;s just
 a way that we expect things to work.&lt;/p&gt;
 
-&lt;p&gt;Like how we agree to speak the same language (probably English if you’re reading this)
+&lt;p&gt;Like how we agree to speak the same language (probably English if you&amp;#8217;re reading this)
 or to drive on the same side of the street, we agree on a computer protocol because that
 makes it easier for us to make computers communicate. We can choose to build computers
-that don’t follow standard protocols, but that would make them hard to understand.&lt;/p&gt;
+that don&amp;#8217;t follow standard protocols, but that would make them hard to understand.&lt;/p&gt;
 </content>
   </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-09-03:/!/socrata-formats/index.html</id>
     <title type="html">What file formats are on the data portals?</title>
-    <published>2013-09-03T00:00:00Z</published>
-    <updated>2013-09-03T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-formats/index.html"/>
+    <published>2013-09-03T04:00:00Z</published>
+    <updated>2013-09-03T04:00:00Z</updated>
+    <link href="http://www.thomaslevine.com/!/socrata-formats/index.html" rel="alternate"/>
     <content type="html">&lt;style&gt;
 table {
   font-size: 0.7em;
@@ -706,10 +706,10 @@ table {
 &lt;/style&gt;
 
 &lt;p&gt;I found some more open data about open data to &lt;a href="/socrata"&gt;study&lt;/a&gt;!
-While &lt;a href="http://www.socrata.com/blog/my-visit-to-socrata-and-data-analysis-about-data-analysis/"&gt;at Socrata’s office&lt;/a&gt; on Friday,
+While &lt;a href="http://www.socrata.com/blog/my-visit-to-socrata-and-data-analysis-about-data-analysis/"&gt;at Socrata&amp;#8217;s office&lt;/a&gt; on Friday,
 I learned of the &lt;a href="https://data.oregon.gov/data.json"&gt;&lt;code&gt;/data.json&lt;/code&gt;&lt;/a&gt; endpoint.
 It contains an entry for each &lt;a href="/!/socrata-genealogies/#term-dataset"&gt;dataset&lt;/a&gt;,
-uploaded by the data publisher; it doesn’t contain all of the other
+uploaded by the data publisher; it doesn&amp;#8217;t contain all of the other
 views that are based on these source datasets.
 And it has &lt;a href="http://project-open-data.github.io/schema/"&gt;this format&lt;/a&gt;.&lt;/p&gt;
 
@@ -718,7 +718,7 @@ And it has &lt;a href="http://project-open-data.github.io/schema/"&gt;this forma
 8922 are original datasets.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;/data.json&lt;/code&gt; files include federated datasets, so some of these
-datasets are duplicated. I did not remove duplicates, so I’m working
+datasets are duplicated. I did not remove duplicates, so I&amp;#8217;m working
 with 15699 datasets, with a median of
 96 datasets per portal.&lt;/p&gt;
 
@@ -728,12 +728,12 @@ with 15699 datasets, with a median of
 &lt;p&gt;This is much lower than my &lt;a href="/!/socrata-summary"&gt;earlier figure&lt;/a&gt;
 because the present figure does not include &lt;a href="/!/socrata-genealogies#soda-queries-filtered-views-charts-maps"&gt;derived views&lt;/a&gt; (map, charts, &amp;amp;c.).&lt;/p&gt;
 
-&lt;p&gt;Some time, I’ll compare the within-portal counts of original datasets
+&lt;p&gt;Some time, I&amp;#8217;ll compare the within-portal counts of original datasets
 and derived datasets. But not right now.&lt;/p&gt;
 
 &lt;h3 id="federated-data"&gt;Federated data&lt;/h3&gt;
 &lt;p&gt;It still includes &lt;a href="/!/socrata-genealogies/#term-federation"&gt;federated data&lt;/a&gt; (duplicates),
-however, and this file doesn’t make it easy to determine which direction
+however, and this file doesn&amp;#8217;t make it easy to determine which direction
 the federation is in. The following plot gives us an idea of how many of
 these datasets are duplicates.&lt;/p&gt;
 
@@ -741,7 +741,7 @@ these datasets are duplicates.&lt;/p&gt;
 
 &lt;p&gt;Most of the datasets are not duplicates, but some are duplicated many times.&lt;/p&gt;
 
-&lt;p&gt;Some day, I’ll look more at federation, probably by 
+&lt;p&gt;Some day, I&amp;#8217;ll look more at federation, probably by 
 reading the federation information from home pages of the portals
 or by following the links in the &lt;code&gt;/data.json&lt;/code&gt; file.&lt;/p&gt;
 
@@ -766,21 +766,21 @@ datasets and no portals have more than 1000 datasets.&lt;/p&gt;
 
 &lt;p&gt;Half of these portals federate &lt;code&gt;explore.data.gov&lt;/code&gt;, which has quite a few datasets, and the JSON
 files seem to just include some of the &lt;code&gt;explore.data.gov&lt;/code&gt; data. I think these
-files have only the first 1000 datasets, and I haven’t figured out how to look
-at the next pages, so I’ll focus the present analysis on portals with fewer
+files have only the first 1000 datasets, and I haven&amp;#8217;t figured out how to look
+at the next pages, so I&amp;#8217;ll focus the present analysis on portals with fewer
 than 1000 datasets.&lt;/p&gt;
 
 &lt;h2 id="my-curiousity-about-file-formats"&gt;My curiousity about file formats&lt;/h2&gt;
-&lt;p&gt;I’ve recently become curious about what formats the datasets come from. When
+&lt;p&gt;I&amp;#8217;ve recently become curious about what formats the datasets come from. When
 tabular data get loaded into a Socrata data portal, they get converted to a
 tabular representation within the portal software. From that, they get converted
 to a range of different tabular formats.&lt;/p&gt;
 
-&lt;p&gt;The Socrata data portal doesn’t explicitly store the source format because of
+&lt;p&gt;The Socrata data portal doesn&amp;#8217;t explicitly store the source format because of
 how the import process works. Most of the data &lt;a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/"&gt;probably come from Excel&lt;/a&gt;,
-and the data that aren’t from Excel typically come from inside of a government
+and the data that aren&amp;#8217;t from Excel typically come from inside of a government
 network where policies would make it inconvenient to expose the database to the
-world. Because of this, Socrata doesn’t query database servers. Instead, data
+world. Because of this, Socrata doesn&amp;#8217;t query database servers. Instead, data
 publishers write middlemen that act as both database clients and Socrata clients.
 They query the database and then make &lt;a href="http://dev.socrata.com/publishers/getting-started"&gt;web requests&lt;/a&gt;
 to the Socrata portal.&lt;/p&gt;
@@ -791,18 +791,18 @@ schema. This refers to the format of the data as served from the Socrata portal,
 not the format it was stored in before it got to the Socrata portal. But this
 still tells us something about the source file formats.&lt;/p&gt;
 
-&lt;p&gt;People sometimes upload things that Socrata doesn’t interpret as tables. PDFs are
+&lt;p&gt;People sometimes upload things that Socrata doesn&amp;#8217;t interpret as tables. PDFs are
 a major example. Other times, people upload or link to
-files that could be tables but don’t specify that they are tables; those are called
-“external links”. Read more on dataset types &lt;a href="/!/open-by-default#types-of-visualizations-on-socrata-portals"&gt;here&lt;/a&gt;.&lt;/p&gt;
+files that could be tables but don&amp;#8217;t specify that they are tables; those are called
+&amp;#8220;external links&amp;#8221;. Read more on dataset types &lt;a href="/!/open-by-default#types-of-visualizations-on-socrata-portals"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Data formats are represented in two fields, &lt;code&gt;format&lt;/code&gt; and &lt;code&gt;distribution&lt;/code&gt;. &lt;code&gt;distribution&lt;/code&gt;{#distribution}
 seems to contain all of the different available formats. If the data are imported as
 tabular data, it contains CSV, JSON, XML, &amp;amp;c., all served from the Socrata site.
 And if the data are external links, it will contain a few external links, still
 specifying the file types. The &lt;code&gt;format&lt;/code&gt; field contains one of the formats that are
-specified in the &lt;code&gt;distribution&lt;/code&gt; field. I think it’s just the first of the formats.
-For the present analysis, I’m using the &lt;code&gt;format&lt;/code&gt; field.&lt;/p&gt;
+specified in the &lt;code&gt;distribution&lt;/code&gt; field. I think it&amp;#8217;s just the first of the formats.
+For the present analysis, I&amp;#8217;m using the &lt;code&gt;format&lt;/code&gt; field.&lt;/p&gt;
 
 &lt;p&gt;Recall that the present dataset of datasets counts federated datasets multiple times.
 The following plot shows the file types of the deduplicated dataset dataset, across
@@ -846,9 +846,9 @@ prompted the shifts in dataset format.&lt;/p&gt;
 &lt;p&gt;&lt;a href="figure/mo.png"&gt;&lt;img src="figure/mo.png" alt="Data formats on data.mo.gov" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Also interesting about Missouri is that it federates &lt;a href="https://data.kcmo.org/"&gt;Kansas City&lt;/a&gt;,
-which didn’t appear in my list of portals.&lt;/p&gt;
+which didn&amp;#8217;t appear in my list of portals.&lt;/p&gt;
 
-&lt;p&gt;I know I said I’d focus on portals with fewer than 1000 datasets, but Lehman College is
+&lt;p&gt;I know I said I&amp;#8217;d focus on portals with fewer than 1000 datasets, but Lehman College is
 interesting because it has lots of zipped files.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="figure/lehman.png"&gt;&lt;img src="figure/lehman.png" alt="Data formats on bronx.lehman.cuny.edu" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -860,7 +860,7 @@ and a lot of externally linked files of unknown format.&lt;/p&gt;
 
 &lt;h2 id="determination-of-external-link-file-formats"&gt;Determination of external link file formats&lt;/h2&gt;
 &lt;p&gt;It looks like the format of external links is determined by the file name.
-For example, Edmonton’s
+For example, Edmonton&amp;#8217;s
 &lt;a href="https://data.edmonton.ca/Transportation/Road-and-Traffic-Updates/5ggc-prfp?"&gt;Road and Traffic Updates&lt;/a&gt;
 are marked as &lt;code&gt;application/rss+xml&lt;/code&gt; because the external link,
 &lt;a href="http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss"&gt;http://www.trumba.com/calendars/construction-and-special-events-road-closures.rss&lt;/a&gt;,
@@ -957,11 +957,11 @@ zip files were uploaded, reducing the proportion to 33% CSV.&lt;/p&gt;
 &lt;h3 id="sudden-changes-after-the-beginning"&gt;Sudden changes after the beginning&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;data.sfgov.org&lt;/code&gt; had a sudden change in the proportion of datasets that were CSV, but
 it was after a long while, so a lot of related datasets might have been uploaded all
-at once. Let’s look at when datasets were uploaded.&lt;/p&gt;
+at once. Let&amp;#8217;s look at when datasets were uploaded.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="figure/sf-changes.png"&gt;&lt;img src="figure/sf-changes.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;This has the quite similar information to the earlier plots, but it’s a bit more precise.
+&lt;p&gt;This has the quite similar information to the earlier plots, but it&amp;#8217;s a bit more precise.
 San Francisco added lots of datasets in January 2012, November 2012, and December 2012, and proportionately
 few of these datasets were CSV. What were they?&lt;/p&gt;
 
@@ -1030,12 +1030,12 @@ few of these datasets were CSV. What were they?&lt;/p&gt;
 &lt;/table&gt;
 
 &lt;p&gt;It looks like January is mostly externally linked, zipped shapefiles. Most of the
-datasets say “shapefile” in their &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt; or &lt;a href="#distribution"&gt;&lt;code&gt;distribution&lt;/code&gt;&lt;/a&gt; fields.&lt;/p&gt;
+datasets say &amp;#8220;shapefile&amp;#8221; in their &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt; or &lt;a href="#distribution"&gt;&lt;code&gt;distribution&lt;/code&gt;&lt;/a&gt; fields.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="figure/sf-shapefile.png"&gt;&lt;img src="figure/sf-shapefile.png" alt="Formats of newly open San Francisco datasets over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;And a lot of the rest of the January files look like zipped shapefiles, even though the
-titles and descriptions don’t say so.&lt;/p&gt;
+titles and descriptions don&amp;#8217;t say so.&lt;/p&gt;
 
 &lt;p&gt;So San Francisco suddenly uploaded a bunch of shapefiles in January and November/December.&lt;/p&gt;
 
@@ -1043,7 +1043,7 @@ titles and descriptions don’t say so.&lt;/p&gt;
 &lt;p&gt;Some of the plots make it look like lots of datasets were suddenly uploaded one time
 and no datasets were uploaded again. This is mainly for the
 &lt;a href="#cutoff-at-1000"&gt;portals with more than 1000 datasets&lt;/a&gt;,
-so I think this is because we’re seeing only the first 1000 datasets.&lt;/p&gt;
+so I think this is because we&amp;#8217;re seeing only the first 1000 datasets.&lt;/p&gt;
 
 &lt;h2 id="csv-pdf-zip-and-octet-stream"&gt;CSV, pdf, zip and octet-stream&lt;/h2&gt;
 &lt;p&gt;Based on the examples above, it seems like a lot of datasets are PDF, zip or unknown
@@ -1054,7 +1054,7 @@ that are CSV, PDF, zip or unknown external links.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="figure/csv-pdf-zip-octet-cum-facet.png"&gt;&lt;img src="figure/csv-pdf-zip-octet-cum-facet.png" alt="Dataset formats by portal over time" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Most of the curves are pretty straight and stay near 1, meaning that the proportion doesn’t
+&lt;p&gt;Most of the curves are pretty straight and stay near 1, meaning that the proportion doesn&amp;#8217;t
 change much and that the proportion is quite high. Thus, it looks like most datasets are
 either CSV, pdf, zip or external links of unknown format.&lt;/p&gt;
 
@@ -1065,7 +1065,7 @@ either CSV, pdf, zip or external links of unknown format.&lt;/p&gt;
 are tables. Aside from tables, there are lots of externally linked files, mostly PDFs and zip archives.&lt;/p&gt;
 
 &lt;h3 id="shapefiles"&gt;Shapefiles&lt;/h3&gt;
-&lt;p&gt;I’ve been thinking recently about how to infer the organizational structure of a municipality
+&lt;p&gt;I&amp;#8217;ve been thinking recently about how to infer the organizational structure of a municipality
 based on the open data that they release, and the finding with the San Francisco shapefiles
 alludes to this. It might be that one department within the San Francisco government manages
 and uses most of the geospatial data and that the open data team happened to work with them
@@ -1075,7 +1075,7 @@ in January, November and December of 2012.&lt;/p&gt;
 &lt;p&gt;This got me thinking about other ways of studying file formats.&lt;/p&gt;
 
 &lt;h3 id="the-attribution-field"&gt;The attribution field&lt;/h3&gt;
-&lt;p&gt;Socrata’s SODA 1 API, which I’ve &lt;a href="/!/socrata-summary/#download-dataset-metadata"&gt;used before&lt;/a&gt;,
+&lt;p&gt;Socrata&amp;#8217;s SODA 1 API, which I&amp;#8217;ve &lt;a href="/!/socrata-summary/#download-dataset-metadata"&gt;used before&lt;/a&gt;,
 contains an &lt;code&gt;attribution&lt;/code&gt; field, which references the URL from
 which the dataset was taken.&lt;sup id="fnref:attribution"&gt;&lt;a href="#fn:attribution" class="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; This would be one
 way of figuring out the source format, or at least some related information about the source.&lt;/p&gt;
@@ -1088,7 +1088,7 @@ these categories a CSV dataset falls into.&lt;/p&gt;
 &lt;h3 id="determining-the-formats-of-external-links"&gt;Determining the formats of external links&lt;/h3&gt;
 &lt;p&gt;It looks to me like the format type of external links is determined based on the file
 extension of the URL; &lt;code&gt;octet-stream&lt;/code&gt; datasets seem to correspond to URLs without file
-extensions or with file extensions like &lt;code&gt;aspx&lt;/code&gt; that don’t clearly correspond to a
+extensions or with file extensions like &lt;code&gt;aspx&lt;/code&gt; that don&amp;#8217;t clearly correspond to a
 particular file types. One could determine the formats of these datasets by
 downloading the files.&lt;/p&gt;
 
@@ -1097,7 +1097,7 @@ downloading the files.&lt;/p&gt;
 &lt;div class="footnotes"&gt;
   &lt;ol&gt;
     &lt;li id="fn:proportion"&gt;
-      &lt;p&gt;It’s actually a tad bit more complicated than that. These dates are the
+      &lt;p&gt;It&amp;#8217;s actually a tad bit more complicated than that. These dates are the
 creation dates of the datasets that are available today; I do not know about datasets
 that were historically on the portal and have since been deleted.&lt;a href="#fnref:proportion" class="reversefootnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;

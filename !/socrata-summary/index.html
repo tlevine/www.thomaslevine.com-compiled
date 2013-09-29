@@ -101,12 +101,12 @@
             <p>First, I get a list of Socrata portals from the Socrata <a href="http://status.socrata.com">status page</a>.
             This page makes loads the portal names and descriptions from <a href="http://status.socrata.com/sites">this JSON file</a>.
             I download parse that file in <a href="https://github.com/tlevine/socrata-download/tree/master/portals.py" class="code"><code>portals.py</code></a>. Most of the portal URLs
-            are in the <code>description</code> fields, but this isn’t always the case, so I used some heuristics to
+            are in the <code>description</code> fields, but this isn&#8217;t always the case, so I used some heuristics to
             tidy that up.</p>
             
             <pre><code>#&#x000A;# From portals.py&#x000A;# &#x000A;if is_domain(portal['description']):&#x000A;    domain = portal['description']&#x000A;elif is_domain(portal['name']):&#x000A;    domain = portal['name']&#x000A;elif portal['name'] == 'Socrata':&#x000A;    continue&#x000A;else:&#x000A;    warnings.warn('Could not find a valid domain for %s, skipping' % portal['name'])&#x000A;    continue&#x000A;&#x000A;domain = domain.replace('https://', '').replace('http://', '')&#x000A;</code></pre>
             
-            <p>It turns out that the <a href="https://opendata.socrata.com">opendata.socrata.com</a> portal isn’t
+            <p>It turns out that the <a href="https://opendata.socrata.com">opendata.socrata.com</a> portal isn&#8217;t
              listed there, so I add that one manually.</p>
             
             <p>Next, I create a directory for each data portal and start downloading and parsing data
@@ -114,7 +114,7 @@
             <a href="https://github.com/tlevine/socrata-download/tree/master/run_one.sh" class="code"><code>run_one.sh</code></a> script.</p>
             
             <h3 id="search-for-datasets">Search for datasets</h3>
-            <p>As far as I could tell, Socrata doesn’t have a formal API for searching datasets, so I
+            <p>As far as I could tell, Socrata doesn&#8217;t have a formal API for searching datasets, so I
             just searched with the ordinary web interface. In <a href="https://github.com/tlevine/socrata-download/tree/master/search.sh" class="code"><code>search.sh</code></a>,
             I make a search for all datasets of all kinds, and then I keep going to the next page
             as long as there are results. I save all of the results in a <code>searches</code> directory inside
@@ -132,8 +132,8 @@
             <code>dati.lombardia.it</code> and <code>viewid</code> is something like <code>tuar-wxya</code>.
             The script <a href="https://github.com/tlevine/socrata-download/tree/master/views.sh" class="code"><code>views.sh</code></a> downloads the metadata files.</p>
             
-            <p>There are sometimes other attachments that you can read about in the “About” section
-            of a dataset, and those don’t get downloaded automatically.</p>
+            <p>There are sometimes other attachments that you can read about in the &#8220;About&#8221; section
+            of a dataset, and those don&#8217;t get downloaded automatically.</p>
             
             <h3 id="download-the-datasets-themselves">Download the datasets themselves</h3>
             <p>Downloading the datasets is similarly straightforward; you just go to 
@@ -143,7 +143,7 @@
             <a href="https://github.com/tlevine/socrata-download/tree/master/rows.sh" class="code"><code>rows.sh</code></a> does this.</p>
             
             <p>Unfortunately, Socrata is pretty slow enough that this is actually pretty annoying,
-            so I’m not downloading the actual datasets for now, just the metadata.</p>
+            so I&#8217;m not downloading the actual datasets for now, just the metadata.</p>
             
             <h3 id="conversion-to-a-table">Conversion to a table</h3>
             <p>All of the steps so far are encapsulated in the file <a href="https://github.com/tlevine/socrata-download/tree/master/run.sh" class="code"><code>run.sh</code></a>,
@@ -153,7 +153,7 @@
             to separate that into a different file (and repository altogether).</p>
             
             <p>A script in the <a href="https://github.com/tlevine/socrata-analysis">analysis repository</a>
-            opens all of the JSON files and makes a row in a CSV file for each one. It doesn’t take
+            opens all of the JSON files and makes a row in a CSV file for each one. It doesn&#8217;t take
             all of the fields. It handles nested structures by extracting flat features from them;
             for example, I take the number of dataset tags rather than the full list of tags.</p>
             
@@ -183,13 +183,13 @@
             <a href="https://opendata.socrata.com">opendata.socrata.com</a>.</p>
             
             <h3 id="urls">URLs</h3>
-            <p>If you navigate to a dataset in Socrata in your web browser, you’ll wind up with a URL like this.</p>
+            <p>If you navigate to a dataset in Socrata in your web browser, you&#8217;ll wind up with a URL like this.</p>
             
             <blockquote>
               <p><a href="https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf">https://iranhumanrights.socrata.com/dataset/List-of-Prisoners-of-Conscience-in-Iran/uqfx-z9cf</a>.</p>
             </blockquote>
             
-            <p>It turns out that the directories don’t matter; this URL also works.</p>
+            <p>It turns out that the directories don&#8217;t matter; this URL also works.</p>
             
             <blockquote>
               <p><a href="https://iranhumanrights.socrata.com/-/-/uqfx-z9cf">https://iranhumanrights.socrata.com/-/-/uqfx-z9cf</a></p>
@@ -202,7 +202,7 @@
             <h2 id="initial-analysis">Initial analysis</h2>
             <p>Anyway, on to the quantitative analysis.</p>
             
-            <p>For now, I’m just going to give a broader summary of the datasets in Socrata. I’m mainly
+            <p>For now, I&#8217;m just going to give a broader summary of the datasets in Socrata. I&#8217;m mainly
             looking at the following variables, each of which has one observation per dataset.</p>
             
             <ul>
@@ -214,7 +214,7 @@
             </ul>
             
             <h3 id="sizes">Sizes</h3>
-            <p>Let’s first see which portals are biggest. Which has the most datasets?</p>
+            <p>Let&#8217;s first see which portals are biggest. Which has the most datasets?</p>
             
             <pre><code>socrata$portal &lt;- factor(socrata$portal, levels = names(sort(table(socrata$portal), &#x000A;    decreasing = T)))&#x000A;&#x000A;ggplot(socrata) + aes(x = portal) + geom_bar() + coord_flip() + scale_y_log10("Number of datasets", &#x000A;    breaks = 10^(0:4)) + scale_x_discrete("Data portal")&#x000A;</code></pre>
             
@@ -232,14 +232,14 @@
             
             <p><a href="figure/big_portals_density_scatter.png"><img src="figure/big_portals_density_scatter.png" alt="plot of chunk big_portals_density_scatter" /></a> </p>
             
-            <p>Here’s the same plot except with the portal names in the plot.
+            <p>Here&#8217;s the same plot except with the portal names in the plot.
             This might be easier or harder to read.</p>
             
             <pre><code>ggplot(.download) + aes(x = datasets, y = downloads, label = portal) + geom_text() + &#x000A;    scale_x_log10("Number of datasets", breaks = 10^(0:4)) + scale_y_log10("Number of dataset downloads", &#x000A;    labels = comma, breaks = 10^c(2:9))&#x000A;</code></pre>
             
             <p><a href="figure/big_portals_density_text.png"><img src="figure/big_portals_density_text.png" alt="plot of chunk big_portals_density_text" class="wide" /></a></p>
             
-            <p>What are the most popular datasets for each portal? Let’s first do the one with
+            <p>What are the most popular datasets for each portal? Let&#8217;s first do the one with
             the most downloads.</p>
             
             <pre><code>datasets &lt;- ddply(socrata, "portal", function(df) {&#x000A;    df[order(df$downloadCount, decreasing = T)[1], c("id", "name", "createdAt", &#x000A;        "downloadCount")]&#x000A;})&#x000A;(listify(datasets))&#x000A;</code></pre>
@@ -280,7 +280,7 @@
               <li><code>data.cms.gov</code>: <a href="https://data.cms.gov/-/-/97k6-zzx3">Inpatient Prospective Payment System (IPPS) Provider Summary for the Top 100 Diagnosis-Related Groups (DRG)</a> (1321 downloads)</li>
               <li><code>data.wa.gov</code>: <a href="https://data.wa.gov/-/-/hvq3-y2jb">Unemployment Rates for Washington State and Counties, 1990 - 2010</a> (696 downloads)</li>
               <li><code>health.data.ny.gov</code>: <a href="https://health.data.ny.gov/-/-/cw3n-fkji">Cancer Mapping Data: 2005-2009</a> (519 downloads)</li>
-              <li><code>data.colorado.gov</code>: <a href="https://data.colorado.gov/-/-/tedy-p7a5">Colorado Department of Education’s School View</a> (257 downloads)</li>
+              <li><code>data.colorado.gov</code>: <a href="https://data.colorado.gov/-/-/tedy-p7a5">Colorado Department of Education&#8217;s School View</a> (257 downloads)</li>
               <li><code>data.consumerfinance.gov</code>: <a href="https://data.consumerfinance.gov/-/-/25ei-6bcr">Credit Card Complaints</a> (4042 downloads)</li>
               <li><code>data.undp.org</code>: <a href="https://data.undp.org/-/-/jner-twha">UNDP Projects - 2011</a> (400 downloads)</li>
               <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/79hh-qgjg">Approved Public Comments for Aquaculture Listening Sessions (2010)</a> (766 downloads)</li>
@@ -300,14 +300,14 @@
               <li><code>data.oaklandnet.com</code>: <a href="https://data.oaklandnet.com/-/-/ym6k-rx7a">CrimeWatch Maps Past 90-Days</a> (18 downloads)</li>
               <li><code>www.halifaxopendata.ca</code>: <a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi">LIDAR DEM 5M</a> (78 downloads)</li>
               <li><code>data.raleighnc.gov</code>: <a href="https://data.raleighnc.gov/-/-/2ukz-55ex">GoTriangle</a> (27 downloads)</li>
-              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky’s Wish List- USA</a> (14 downloads)</li>
+              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky&#8217;s Wish List- USA</a> (14 downloads)</li>
               <li><code>data.weatherfordtx.gov</code>: <a href="https://data.weatherfordtx.gov/-/-/2ek5-qq7s">Animal Shelter - All Animal Cases</a> (7 downloads)</li>
               <li><code>data.slcgov.com</code>: <a href="https://data.slcgov.com/-/-/myq9-p4zu">Planning Permits</a> (5 downloads)</li>
               <li><code>data.snostat.org</code>: <a href="https://data.snostat.org/-/-/sn24-xxit">Budget Information 2011-2013</a> (4 downloads)</li>
               <li><code>data.redmond.gov</code>: <a href="https://data.redmond.gov/-/-/7v22-4z3a">Check Register</a> (6 downloads)</li>
             </ul>
             
-            <p>Next, let’s do the one with the most downloads per time since published.</p>
+            <p>Next, let&#8217;s do the one with the most downloads per time since published.</p>
             
             <pre><code>datasets &lt;- ddply(socrata, "portal", function(df) {&#x000A;    df[order(df$downloadCount/as.numeric(as.Date("2013-07-01") - df$createdAt), &#x000A;        decreasing = T)[1], c("id", "name", "createdAt", "downloadCount")]&#x000A;})&#x000A;(listify(datasets))&#x000A;</code></pre>
             
@@ -367,7 +367,7 @@
               <li><code>data.oaklandnet.com</code>: <a href="https://data.oaklandnet.com/-/-/b8mb-8tti">City of Oakland Proposed Policy Budget FY2013-15</a> (12 downloads)</li>
               <li><code>www.halifaxopendata.ca</code>: <a href="https://www.halifaxopendata.ca/-/-/eedr-6dvi">LIDAR DEM 5M</a> (78 downloads)</li>
               <li><code>data.raleighnc.gov</code>: <a href="https://data.raleighnc.gov/-/-/ffzc-kk5q">Police Crime Data</a> (3 downloads)</li>
-              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky’s Wish List- USA</a> (14 downloads)</li>
+              <li><code>data.nfpa.org</code>: <a href="https://data.nfpa.org/-/-/xrhe-tp5d">Sparky&#8217;s Wish List- USA</a> (14 downloads)</li>
               <li><code>data.weatherfordtx.gov</code>: <a href="https://data.weatherfordtx.gov/-/-/c4zr-3y7x">Monthly Sales Tax Collections</a> (6 downloads)</li>
               <li><code>data.slcgov.com</code>: <a href="https://data.slcgov.com/-/-/myq9-p4zu">Planning Permits</a> (5 downloads)</li>
               <li><code>data.snostat.org</code>: <a href="https://data.snostat.org/-/-/pdma-n7bb">Snohomish County Buildings</a> (4 downloads)</li>
@@ -384,7 +384,7 @@
             
             <p><a href="figure/shapes_rect.png"><img src="figure/shapes_rect.png" alt="plot of chunk shapes_rect" /></a> </p>
             
-            <p>But that looks bad, so let’s do it as points.</p>
+            <p>But that looks bad, so let&#8217;s do it as points.</p>
             
             <pre><code>ggplot(socrata) + aes(x = ncol, y = nrow, color = portal) + geom_point(alpha = 0.5) + &#x000A;    scale_x_log10("Number of columns", labels = comma) + scale_y_log10("Number of rows", &#x000A;    labels = comma)&#x000A;&#x000A;## Warning: Removed 542 rows containing missing values (geom_point).&#x000A;</code></pre>
             
@@ -409,7 +409,7 @@
             
             <p>These datasets appear to be either deleted or non-tabular.</p>
             
-            <p>Now let’s look at average dataset size by portal, where size is number of columns (<code>ncol</code>),
+            <p>Now let&#8217;s look at average dataset size by portal, where size is number of columns (<code>ncol</code>),
             number of rows (<code>nrow</code>) or number of cells (<code>ncell</code>).</p>
             
             <pre><code>.sizes &lt;- ddply(socrata, "portal", function(df) {&#x000A;    c(ncol = mean(df$ncol), nrow = mean(df$nrow), ncell = mean(df$ncol * df$nrow))&#x000A;})&#x000A;base &lt;- ggplot(.sizes) + aes(y = portal) + geom_point() + scale_x_log10(labels = comma)&#x000A;&#x000A;print(base + aes(x = nrow))&#x000A;&#x000A;## Warning: Removed 17 rows containing missing values (geom_point).&#x000A;</code></pre>
@@ -425,7 +425,7 @@
             <p><a href="figure/dataset_size_by_portal3.png"><img src="figure/dataset_size_by_portal3.png" alt="plot of chunk dataset_size_by_portal" class="wide" /></a> </p>
             
             <h3 id="time">Time</h3>
-            <p>What does the growth of downloads of a dataset look like? We don’t have the data
+            <p>What does the growth of downloads of a dataset look like? We don&#8217;t have the data
             for individual datasets, but we can compare the current download counts old datasets
             to new datasets.</p>
             
@@ -456,10 +456,10 @@
             <p><a href="figure/datasets_day_of_week_uploaded.png"><img src="figure/datasets_day_of_week_uploaded.png" alt="plot of chunk datasets_day_of_week_uploaded" /></a> </p>
             
             <h2 id="future-plans">Future plans</h2>
-            <p>I’m conducting more detailed studies around more pointed data portal considerations;
+            <p>I&#8217;m conducting more detailed studies around more pointed data portal considerations;
             expect those to come out over the next few months. And I could use your help. If you
-            use or publish open data, I’d love to talk and see what you would like to know about
-            how open data get used; there’s probably a lot we can learn from this dataset.</p>
+            use or publish open data, I&#8217;d love to talk and see what you would like to know about
+            how open data get used; there&#8217;s probably a lot we can learn from this dataset.</p>
           </article>
         </div>
         <div id='pagination'>
