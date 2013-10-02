@@ -90,8 +90,8 @@
             Here are instructions for games with people that introduce these concepts.</p>
             
             <h2 id="one-bit">One bit</h2>
-            <p>Let&#8217;s represent one person as a bit. The person is always
-            &#8220;on&#8221; or &#8220;off&#8221;, and this is the only thing she can remember.
+            <p>Let’s represent one person as a bit. The person is always
+            “on” or “off”, and this is the only thing she can remember.
             We can use this person in a program to remember something.</p>
             
             <p>We have two functions in our program that are exchanging
@@ -105,16 +105,16 @@
             
             <h2 id="a-few-bits">A few bits</h2>
             <p>How do we represent something more complicated than yes/no?
-            Let&#8217;s not worry about functions for now. If the only numbers
+            Let’s not worry about functions for now. If the only numbers
             in the universe are zero and one, how could we represent the
             bit as being one of these?</p>
             
-            <p>Let&#8217;s stop pretending that the only numbers are zero and one.
+            <p>Let’s stop pretending that the only numbers are zero and one.
             If we have two people/bits, can we represent the number two?
             What about the number three? What about four? And five, and so on?</p>
             
             <h2 id="just-whole-numbers">Just whole numbers</h2>
-            <p>Let&#8217;s limit the numbers that we&#8217;ll try representing to whole
+            <p>Let’s limit the numbers that we’ll try representing to whole
             numbers, which are integers from zero up. Add more people to
             the line of bits, have them remember being on or off.</p>
             
@@ -137,9 +137,9 @@
             
             <h3 id="unsigned-and-signed-numbers">Unsigned and signed numbers</h3>
             <p>The act of representing numbers in the above way is called an
-            &#8220;unsigned&#8221; number.</p>
+            “unsigned” number.</p>
             
-            <p>You&#8217;ve noticed that there are only so many numbers you can
+            <p>You’ve noticed that there are only so many numbers you can
             represent with so many bits. For example, the highest number
             in an five-bit unsigned integer is 31, and the lowest
             integer is zero.</p>
@@ -149,8 +149,8 @@
             This involves representing twice as many (minus one) possible
             numbers. How can we do that?</p>
             
-            <p>Let&#8217;s add another person at the left. This person tells us
-            whether the number is positive or negative. Now let&#8217;s
+            <p>Let’s add another person at the left. This person tells us
+            whether the number is positive or negative. Now let’s
             represent a very positive integer, like 200, and a very
             negative integer, like -200.</p>
             
@@ -158,12 +158,12 @@
             complicated. Also, it gives us one fewer number because there
             are two representations of zero.</p>
             
-            <p>Instead, let&#8217;s just reader algorithm so the number starts from
+            <p>Instead, let’s just reader algorithm so the number starts from
             the most negative value instead of from zero. And switch our
             writer algorithm accordingly.</p>
             
             <h3 id="number-lengths">Number lengths</h3>
-            <p>We group bits into bytes. A byte just means &#8220;eight bits&#8221;.
+            <p>We group bits into bytes. A byte just means “eight bits”.
             We still represent integers the same way as above; we just use
             multiples of eight for the number of bits.</p>
             
@@ -177,8 +177,8 @@
               <li>An <code>int64</code> is an eight-byte (64-bit) integer.</li>
             </ul>
             
-            <p>Each of these can be signed or unsigned. Let&#8217;s perform these!
-            If you don&#8217;t have enough people to play all of the bits, swap
+            <p>Each of these can be signed or unsigned. Let’s perform these!
+            If you don’t have enough people to play all of the bits, swap
             people for pieces of paper that are dark on one side and light
             on the other.</p>
             

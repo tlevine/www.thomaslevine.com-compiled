@@ -86,7 +86,7 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>If you use the default shell environment settings, you&#8217;ll probably wind up
+            <p>If you use the default shell environment settings, you’ll probably wind up
             storing very little of your history. Computers are so big, powerful and cheap
             these days that this is stupid; we should store more.</p>
             
@@ -99,7 +99,7 @@
               <li>A new file is created for each shell window.</li>
             </ul>
             
-            <p>Here&#8217;s how I implement that. First, make sure that we never delete history.</p>
+            <p>Here’s how I implement that. First, make sure that we never delete history.</p>
             
             <pre><code># Too many commands of history per session&#x000A;export HISTSIZE=100000000000000000000&#x000A;&#x000A;# Ten gigabytes of maximum history size&#x000A;export HISTFILESIZE=10000000000&#x000A;</code></pre>
             
@@ -120,7 +120,7 @@
             
             <p>When we separate the history files like this, the built-in history command
             becomes near-useless. Override that command; instead of searching the current
-            session&#8217;s history, search the last month&#8217;s history.</p>
+            session’s history, search the last month’s history.</p>
             
             <pre><code>history(){&#x000A;  # Search the current month's history.&#x000A;  if [ "$#" = '0' ]; then&#x000A;    grep -hv '^#[0-9]*$' "$HOME/.history/sh-$(date +%Y-%m)"*&#x000A;  else&#x000A;    builtin history "$@"&#x000A;  fi&#x000A;}&#x000A;</code></pre>
             

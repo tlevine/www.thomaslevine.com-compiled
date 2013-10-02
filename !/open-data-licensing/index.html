@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Open data licenses</title>
+    <title>Open data licensing</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -16,9 +16,9 @@
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
     <meta content='Lots of datasets on open data portals are openly licensed' name='twitter:title'>
-    <meta content="I bet you didn't see that one coming." name='twitter:description'>
+    <meta content="But most aren't." name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
-    <meta content='http://thomaslevine.com/!/open-data-licensing/p2.png' name='twitter:image:src'>
+    <meta content='http://thomaslevine.com/!/open-data-licensing/p1.png' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
     <meta content='' name='twitter:app:name:iphone'>
     <meta content='' name='twitter:app:name:ipad'>
@@ -31,9 +31,9 @@
     <meta content='' name='twitter:app:id:googleplay'>
     <meta content='http://thomaslevine.com/!/open-data-licensing/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content="I bet you didn't see that one coming." property='og:description'>
+    <meta content="But most aren't." property='og:description'>
     <meta content='Lots of datasets on open data portals are openly licensed' property='og:title'>
-    <meta content='http://thomaslevine.com/!/open-data-licensing/p2.png' property='og:image'>
+    <meta content='http://thomaslevine.com/!/open-data-licensing/p1.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
@@ -74,53 +74,192 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Open data licenses
+              Open data licensing
             </h1>
             <p>
               
             </p>
           </hgroup>
           <div class='date'>
-            
+            October 02, 2013
           </div>
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>Open data are &#8220;open&#8221;, but do their licenses reflect that?
-            I downloaded all of the metadata files from 102 open data
+            <h2 id="open-data-are-open-but-do-their-licenses-reflect-that">Open data are “open”, but do their licenses reflect that?</h2>
+            
+            <p>I downloaded all of the metadata files from 102 open data
             portals hosted on CKAN, Socrata and OpenDataSoft. Each of
             these data portal softwares has a metadata field for the
-            license of each particular dataset. I looked at whether
-            those were used and at what the licenses were.</p>
+            license of each particular dataset. In the present article,
+            I look at this metadata field.</p>
             
-            <p>I looked first at whether people used the metadata field at
-            all.</p>
+            <p><strong>tl;dr</strong>: It turns out that most of
+            the datasets don’t have licenses. Or if they do, it’s not
+            specified in this field. I think it would be nice if they did.</p>
             
-            <p><img src="p1.png" alt="" /></p>
+            <h2 id="the-portals">The portals</h2>
+            <p>I looked at <a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/portals.py">these portals</a>,
+            but I ignored the following three because they aren’t associated with specific governments.</p>
             
-            <p>Surprisingly to me, all datasets in most portals have a
-            license field set.</p>
+            <ul>
+              <li>datahub.io</li>
+              <li>datastore.opendatasoft.com</li>
+              <li>opendata.socrata.com</li>
+            </ul>
             
-            <p>I then made a rough mapping between the free-form names of the
-            licenses and some standard licenses. I didn&#8217;t test this
+            <h2 id="reducing-license-names">Reducing license names</h2>
+            <p>I made a <a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/query-license.py#L5">rough mapping</a>
+            between the free-form names of the
+            licenses and some standard licenses.
+            For example, <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 
+            and other public domain licenses got grouped into “Public Domain”.</p>
+            
+            <p>I didn’t test this
             very well, so there are probably some errors, but I think
-            these results are informative regardless. Here are the
-            standardized licenses for all of the data.</p>
+            these results are still informative.</p>
             
-            <p><img src="p2.png" alt="" /></p>
+            <h2 id="do-people-specify-a-license-at-all">Do people specify a license at all?</h2>
+            <p>In doing this, I distinguished between whether a license was
+            specified. Here’s a histogram of the proportion of datasets
+            with licenses, by portal. Portals on the right of the graph
+            specified licenses for most of their datasets, and portals on
+            the left specified licenses for few of their datasets.</p>
             
-            <p>While many datasets have standard open licenses, the licenses
-            for most datasets are marked as something like &#8220;not specified&#8221;
-            in this field. (They are probably specified elsewhere.)
-            I looked at the variation within a few portals.</p>
+            <p><img src="p1.png" alt="Do portals indicate the licenses of their datasets?" class="wide" /></p>
             
-            <p><img src="p3.png" alt="" /></p>
+            <p>I was actually slightly surprised that people had set licenses
+            at all.</p>
             
-            <p>As you see, it seems like each portal chooses one or two of the
-            standard licenses for the bulk of its datasets. But a substantial
-            portion of datasets have no license field or have no specified
-            license. What&#8217;s going on here? Let&#8217;s hope that an open license is
-            specified elsewhere.</p>
+            <h2 id="which-licenses">Which licenses?</h2>
+            <p>Then I looked at what these licenses (after I reduced them to
+            a few standard names) were.</p>
+            
+            <p><img src="p2.png" alt="Data license use across 100 portals" class="wide" /></p>
+            
+            <p>As we saw in the previous plot, most datasets don’t specify a
+            license. They might be specified elsewhere.
+            While many datasets have standard open licenses, the licenses</p>
+            
+            <h2 id="how-do-portals-differ">How do portals differ?</h2>
+            <p>I looked at the variation in this across portal.</p>
+            
+            <p><a href="p4.png"><img src="p4.png" alt="Data licenses by portal" class="wide" /></a></p>
+            
+            <p><code>publicdata.eu</code> is pretty big. Like the three portals that I removed
+            at the beginning, it isn’t associated with a particular government,
+            so I removed it.</p>
+            
+            <p><a href="p5.png"><img src="p5.png" alt="Data licenses by portal, ignoring publicdata.eu" class="wide" /></a></p>
+            
+            <h2 id="do-people-put-licenses-elsewhere">Do people put licenses elsewhere?</h2>
+            <p>I looked around the websites for a few portals to see whether they
+            grant a license somewhere else in the website. Let’s group them into
+            two groups: Portals that specify lots of open licenses and portals
+            that don’t specify very many license</p>
+            
+            <h3 id="lots-of-open-licenses">Lots of open licenses</h3>
+            
+            <h4 id="houston">Houston</h4>
+            <p>Everything’s public domain on the
+            <a href="http://data.codeforhouston.com/dataset/city-of-houston-funds">data.codeforhouston.com</a>,
+            and it says so in the individual datasets, but there’s no site-wide
+            license page that explains this.</p>
+            
+            <h4 id="united-kingdom">United Kingdom</h4>
+            <p><code>data.gov.uk</code> is <a href="http://data.gov.uk/terms-and-conditions">more explicit</a>.</p>
+            
+            <blockquote>
+              <p>The data and information available through www.data.gov.uk are available under terms described in the “licence” or “constraints” field of individual dataset records (meta-data). Except where otherwise noted this is the Open Government Licence.</p>
+            
+              <p>All dataset records (meta-data) published on www.data.gov.uk are licensed under the Open Government Licence.</p>
+            </blockquote>
+            
+            <h3 id="few-licenses">Few licenses</h3>
+            
+            <h4 id="oregon">Oregon</h4>
+            <p>The closest thing I could find to a license on Oregon’s data portal was
+            <a href="http://www.oregon.gov/Pages/datamoderation.aspx">this</a>.</p>
+            
+            <blockquote>
+              <p><strong>Source Data</strong>
+            Applications using data supplied by this site must include the following disclaimers on their sites:</p>
+            
+              <blockquote>
+                <p>“The data made available here has been modified for use from its original source, which is the State of Oregon. THE STATE OF OREGON MAKES NO REPRESENTATIONS OR WARRANTY AS TO THE COMPLETENESS, ACCURACY, TIMELINESS, OR CONTENT OF ANY DATA MADE AVAILABLE THROUGH THIS SITE. THE STATE OF OREGON EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the Web feed is being used at one’s own risk.”</p>
+              </blockquote>
+            </blockquote>
+            
+            <p>I suppose that implies that it is okay to copy the data, modify
+            the data and supply your application with it, but is this enough
+            to give you the right to do that?</p>
+            
+            <h4 id="italy">Italy</h4>
+            <p>Few datasets on <a href="http://it.ckan.net">it.ckan.net</a> specify licenses,
+            but it says in two places
+            that most everything is released under the Open Database License.
+            The <a href="http://it.ckan.net/#credits">“Meta” section</a> of the footer says this.</p>
+            
+            <blockquote>
+              <p>© 2012 Open Knowledge Foundation Disponibile nei termini della Open Database License</p>
+            </blockquote>
+            
+            <p>And the <a href="http://it.ckan.net/about">about/informazioni</a> page says this.</p>
+            
+            <blockquote>
+              <p>Most of the data indexed at CKAN Italia is openly licensed, meaning anyone is free to use or re-use it however they like. Perhaps someone will take that nice dataset of a city’s public art that you found, and add it to a tourist map - or even make a neat app for your phone that’ll help you find artworks when you visit the city. Open data means more enterprise, collaborative science and transparent government. You can read more about open data in the Open Data Handbook.</p>
+            </blockquote>
+            
+            <p>Perhaps this implies that everything is licensed under ODbL unless
+            something specifies otherwise?</p>
+            
+            <h2 id="why-licenses-matter">Why licenses matter</h2>
+            <p>Datasets on data portals often lack licenses, and there sometimes
+            isn’t a site-wide license for data portals. We sort of don’t need
+            licenses on these data portals, but I’d like to see them.</p>
+            
+            <h3 id="why-we-sort-of-dont-need-it">Why we sort of don’t need it</h3>
+            <p>For at least some data portals, it might be kind of safe to assume
+            that everything on it is free for your use.</p>
+            
+            <p>In the United States, this might not be too big of an issue because
+            <a href="http://www.lib.umich.edu/copyright/facts-and-data">you can’t copyright data</a>.</p>
+            
+            <p>Also, products of the United States federal government are public domain,
+            so I’d love to think that everything on at least <code>data.gov</code> is in the public domain.</p>
+            
+            <h3 id="why-we-sort-of-need-it">Why we sort of need it</h3>
+            
+            <blockquote>
+              <p><a href="http://opendatacommons.org/faq/">Licensing is important because it reduces uncertainty.</a></p>
+            </blockquote>
+            
+            <p>In some contexts, the creator of data can’t restrict you from copying them,
+            remixing them and distributing derived works. But it’s hard to know whether
+            you are in such a context. For example, Oregon apparently has the right to
+            require you to add a disclaimer to software that use Oregon data.</p>
+            
+            <p>The White House gets this. Even though products of the federal government
+            are already in the public domain, the White house website makes this
+            <a href="http://www.whitehouse.gov/copyright">explicit</a>.</p>
+            
+            <p>Even if the public already has the right to the data, you should make this
+            clear on the website. This is especially relevant when someone is downloading
+            datasets from 100 different portals run by different governments; it’s nice
+            not to look up the intellectual property laws for all of the different places.</p>
+            
+            <h2 id="add-a-license">Add a license!</h2>
+            <p>If you run a data portal, add a license, even if you don’t really need one.
+            Hmm I suppose I should tell you which license.</p>
+            
+            <p>If your data portal is associated with a government,
+            <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>
+            seems like a good one to me. This effectively allows anyone to do anything with
+            the data as if she had produced them herself.</p>
+            
+            <p>If you want to enforce that datasets derived from your dataset be released
+            openly, consider something like the
+            <a href="http://opendatacommons.org/licenses/odbl/summary/">Open Database License</a>.</p>
           </article>
         </div>
         <div id='pagination'>

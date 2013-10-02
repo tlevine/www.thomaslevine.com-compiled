@@ -86,35 +86,35 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>There are a lot of acronyms on the internet that end in &#8220;P&#8221;,
-            like TCP, IP, and HTTP. This &#8220;P&#8221; stands for &#8220;protocol&#8221;.
+            <p>There are a lot of acronyms on the internet that end in “P”,
+            like TCP, IP, and HTTP. This “P” stands for “protocol”.
             Perhaps you are wondering what a protocol is.</p>
             
-            <p>&#8220;Protocol&#8221; is one of those words that sounds more special than it really is.
+            <p>“Protocol” is one of those words that sounds more special than it really is.
             The concept of a computer protocol might sound quite complex, but
-            it&#8217;s a rather generic concept that is something like a language,
+            it’s a rather generic concept that is something like a language,
             an expectation, and a social norm.</p>
             
             <p>The way a particular protocol works might be quite complicated, but
-            I just want to explain the generic concept of a protocol. I&#8217;m going
+            I just want to explain the generic concept of a protocol. I’m going
             to do this by writing about a protocol that you might not think of
             as a protocol.</p>
             
             <h2 id="the-street-sign-protocol">The street sign protocol</h2>
-            <p>I&#8217;m going to document a protocol that we might not usually think of a
-            protocol. Let&#8217;s call it the Street Sign Protocol (SSP).</p>
+            <p>I’m going to document a protocol that we might not usually think of a
+            protocol. Let’s call it the Street Sign Protocol (SSP).</p>
             
             <p><img src="street-signs.jpg" alt="Street signs" />
             <!-- http://farm3.staticflickr.com/2132/2302062601_dd0f89779d.jpg
                  http://oaklandwiki.org/Street_Signs --></p>
             
-            <p>To keep things simple, I&#8217;ll actually document a simple version of the
-            Street Sign Protocol. Let&#8217;s call it the Simple Street Sign Protocol (SSSP).</p>
+            <p>To keep things simple, I’ll actually document a simple version of the
+            Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).</p>
             
             <h3 id="why-we-might-want-sssp">Why we might want SSSP</h3>
             <p>You might already be familiar with how street signs work, but it took you a while
             to figure it out. Also, you are probably so familiar with street signs that you
-            don&#8217;t really think about all of the small details that are involved in communication
+            don’t really think about all of the small details that are involved in communication
             through street signs.</p>
             
             <p>If we wanted to tell a robot how to communicate through street signs, it would be
@@ -123,7 +123,7 @@
             <h3 id="specification">Specification</h3>
             <p>SSSP is a way of exchanging the names of <em>streets</em>. It involves
             <em>street signs</em> mounted on <em>poles</em> near the <em>corners</em> of
-            <em>four-way intersections</em>. Let&#8217;s define these terms.</p>
+            <em>four-way intersections</em>. Let’s define these terms.</p>
             
             <ul>
               <li>A <em>street</em> is a paved public thoroughfare in a built environment.
@@ -139,7 +139,7 @@
               The sign is oriented such that the text reads left-to-right.</li>
             </ul>
             
-            <p>Now we can define the SSSP in outrageous precision and verbosity! <em>You&#8217;ll probably
+            <p>Now we can define the SSSP in outrageous precision and verbosity! <em>You’ll probably
             get confused as you read the paragraphs below, so keep in mind that this is just
             a very precise and verbose explanation of what we usually consider to be street signs</em>.</p>
             
@@ -183,8 +183,8 @@
               <li>Carry the materials and some tools to the intersection.</li>
               <li>Stick the pole in the ground near the chosen corner. I imagine that this
              involves putting up caution tape, digging a hole, securing the pole, pouring
-             some concrete and covering it back up, but I don&#8217;t really know. If this were
-             software, I&#8217;d try to use separate pole-installation library so I don&#8217;t have
+             some concrete and covering it back up, but I don’t really know. If this were
+             software, I’d try to use separate pole-installation library so I don’t have
              to implement the pole-installation procedure myself.</li>
               <li>Mount the street signs to the pole. Position them about ten feet above the ground,
              with one on top of the other and with the centers of the signs touching the pole,
@@ -206,8 +206,8 @@
             </ol>
             
             <h2 id="hypertext-transfer-protocol">Hypertext Transfer Protocol</h2>
-            <p>Now let&#8217;s talk about something that people actually call a protocol.
-            Here&#8217;s a simplified version of the Hypertext Transfer Protocol (HTTP).</p>
+            <p>Now let’s talk about something that people actually call a protocol.
+            Here’s a simplified version of the Hypertext Transfer Protocol (HTTP).</p>
             
             <h3 id="why-we-use-http">Why we use HTTP</h3>
             <p>When you look at stuff on the internet with a web browser, your web browser and
@@ -220,8 +220,8 @@
             web server would not have any idea of what you wanted.</p>
             
             <p>We have common internet languages for the same reasons that we have common
-            human languages. If you talk to me in English, I&#8217;ll understand you quite well.
-            I&#8217;ll make sense of it even you you are not using Queen&#8217;s English. But I won&#8217;t
+            human languages. If you talk to me in English, I’ll understand you quite well.
+            I’ll make sense of it even you you are not using Queen’s English. But I won’t
             really have any idea what you mean if you use sign language.</p>
             
             <p>We agree to use HTTP on all of these different computers because it makes it
@@ -252,7 +252,7 @@
             <p>Every response has a body (explained above) and a status code. The status code
             is a number that explains whether the request succeeded and any quirks about its
             success or failure. For example, status code <code>200</code> means that the request worked
-            as expected, and status code <code>403</code> means that you don&#8217;t have permission to do
+            as expected, and status code <code>403</code> means that you don’t have permission to do
             whatever you tried to do.</p>
             
             <p>Each request must have a method. There are a bunch of methods, and you can think
@@ -274,8 +274,8 @@
             <p>A bunch of things in your web browser might initiate a request. For example, opening
             a web page makes one request, and loading an image on the web page makes another request.</p>
             
-            <p>A computer somewhere (Call it the &#8220;web server&#8221;.) is running a particular piece of software
-            (Call it the &#8220;HTTP server&#8221;.) that is able to receive this request.
+            <p>A computer somewhere (Call it the “web server”.) is running a particular piece of software
+            (Call it the “HTTP server”.) that is able to receive this request.
             The HTTP server receives the request, checks that it is valid, and breaks it into the
             method, headers, and body.</p>
             
@@ -289,15 +289,15 @@
             shows an image or does whatever else was specified.</p>
             
             <h2 id="a-protocol-is-an-expectation">A protocol is an expectation</h2>
-            <p>&#8220;Protocol&#8221; means the same thing for computers as it does for people.
+            <p>“Protocol” means the same thing for computers as it does for people.
             There are lots of different protocols, and some of them are very complicated,
-            but the word &#8220;protocol&#8221; itself has a rather simple meaning; it&#8217;s just
+            but the word “protocol” itself has a rather simple meaning; it’s just
             a way that we expect things to work.</p>
             
-            <p>Like how we agree to speak the same language (probably English if you&#8217;re reading this)
+            <p>Like how we agree to speak the same language (probably English if you’re reading this)
             or to drive on the same side of the street, we agree on a computer protocol because that
             makes it easier for us to make computers communicate. We can choose to build computers
-            that don&#8217;t follow standard protocols, but that would make them hard to understand.</p>
+            that don’t follow standard protocols, but that would make them hard to understand.</p>
           </article>
         </div>
         <div id='pagination'>

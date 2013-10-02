@@ -102,10 +102,10 @@
             
             <h2 id="sqlite-implementation">SQLite implementation</h2>
             <p>Not everyone likes Couch as much as I do, and ScraperWiki uses SQLite,
-            so I&#8217;ve been making SQLite feel more like Couch. How do we put this
+            so I’ve been making SQLite feel more like Couch. How do we put this
             data version control in couch?</p>
             
-            <p>Let&#8217;s start by trying to version one table that does not reference
+            <p>Let’s start by trying to version one table that does not reference
             other tables.</p>
             
             <p>Create the table, and create a unique index on <code>_id</code> and <code>_rev</code>.</p>
@@ -119,7 +119,7 @@
             
             <p>Rather than updating rows, insert new rows that reference
             old <code>_rev</code>s; for example, this is how you revise the record
-            for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to &#8220;answer&#8221;.</p>
+            for <code>_id</code> 3, setting <code>foo</code> to 42 and <code>baz</code> to “answer”.</p>
             
             <pre><code>INSERT INTO foo (3, 38, 37, 42, "answer");&#x000A;</code></pre>
             
@@ -129,11 +129,11 @@
             
             <h2 id="simplify">Simplify</h2>
             
-            <p>Let&#8217;s write custom SQLite functions to simplify this retrieval.</p>
+            <p>Let’s write custom SQLite functions to simplify this retrieval.</p>
             
             <pre><code>SELECT * FROM foo WHERE version(*) = 12&#x000A;</code></pre>
             
-            <p>And let&#8217;s allow you to specify tags.</p>
+            <p>And let’s allow you to specify tags.</p>
             
             <pre><code>SELECT * FROM foo WHERE version(*) = "master";&#x000A;SELECT * FROM foo WHERE version(*) = "0.2.1";&#x000A;</code></pre>
             

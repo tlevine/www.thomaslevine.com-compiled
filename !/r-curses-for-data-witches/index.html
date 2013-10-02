@@ -88,33 +88,33 @@
           <article>
             <style>pre { font-size: 0.8em; }</style>
             
-            <p>I&#8217;ve spent/wasted years of my life trying to make nice plots with
-            base R graphics, so I&#8217;ve learned a bunch of base R graphics tricks.
+            <p>I’ve spent/wasted years of my life trying to make nice plots with
+            base R graphics, so I’ve learned a bunch of base R graphics tricks.
             One annoying part of base R graphics is that the defaults look ugly,
-            so I&#8217;m going to show you how to make some bar plots, strip charts,
-            and line plots that don&#8217;t look so ugly.</p>
+            so I’m going to show you how to make some bar plots, strip charts,
+            and line plots that don’t look so ugly.</p>
             
             <p>You might pick up some useful tricks from this post, but I really
             hope that the insanity of it encourages you to use ggplot instead.</p>
             
             <h2 id="data">Data</h2>
-            <p>I&#8217;m going to use data came from an earlier version of
+            <p>I’m going to use data came from an earlier version of
             <a href="http://peregrinossantiago.es/eng/pilgrims-office/statistics/">this website</a>.
-            They&#8217;re &#8220;statistics about pilgrims who have arrived in Santiago&#8221;.
-            The observations are monthly, but I&#8217;m missing the Novembers and Decembers.</p>
+            They’re “statistics about pilgrims who have arrived in Santiago”.
+            The observations are monthly, but I’m missing the Novembers and Decembers.</p>
             
             <pre><code>pilgrams &lt;- sqldf("select * from pilgram", dbname = "pilgrams-db.sqlite")&#x000A;</code></pre>
             
-            <p>I&#8217;m also going to use data from a
+            <p>I’m also going to use data from a
             <a href="https://data.somervillema.gov/dataset/Results-of-2011-Wellbeing-Study/pjhx-dusc">wellbeing study</a>
-            about Somerville, Massachusetts. There are a lot of missing values in this dataset, and I&#8217;m only
-            trying to show you how to make plots, so I&#8217;m just going to remove the missing values.</p>
+            about Somerville, Massachusetts. There are a lot of missing values in this dataset, and I’m only
+            trying to show you how to make plots, so I’m just going to remove the missing values.</p>
             
             <pre><code>wellbeing &lt;- na.omit(read.csv("http://data.somervillema.gov/api/views/pjhx-dusc/rows.csv?accessType=DOWNLOAD"))&#x000A;</code></pre>
             
             <h2 id="bar-plots">Bar plots</h2>
             <p>Maybe we want count the marital statuses of Somerville residents.
-            This won&#8217;t work.</p>
+            This won’t work.</p>
             
             <pre><code>barplot(wellbeing$X24..What.is.your.marital.status.)&#x000A;</code></pre>
             
@@ -124,7 +124,7 @@
             
             <p><img src="figure/barplot-1.png" alt="plot of chunk barplot-1" class="wide" /></p>
             
-            <p>I can&#8217;t read the bar labels, so let&#8217;s make the bars horizontal.</p>
+            <p>I can’t read the bar labels, so let’s make the bars horizontal.</p>
             
             <pre><code>barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE)&#x000A;</code></pre>
             
@@ -136,31 +136,31 @@
             
             <p><img src="figure/barplot-3.png" alt="plot of chunk barplot-3" class="wide" /></p>
             
-            <p>And let&#8217;s adjust the margin and bar labels so the text doesn&#8217;t fall off.</p>
+            <p>And let’s adjust the margin and bar labels so the text doesn’t fall off.</p>
             
             <pre><code>levels(wellbeing$X24..What.is.your.marital.status.)[3] &lt;- "Living with a partner\nbut not married"&#x000A;par(mar = c(5, 12, 4, 2))&#x000A;barplot(table(wellbeing$X24..What.is.your.marital.status.), horiz = TRUE, las = 1)&#x000A;</code></pre>
             
             <p><img src="figure/barplot-4.png" alt="plot of chunk barplot-4" class="wide" /></p>
             
-            <p>I also want to sort the bars so they&#8217;re easier to read.</p>
+            <p>I also want to sort the bars so they’re easier to read.</p>
             
             <pre><code>barplot(sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE), horiz = TRUE, las = 1)&#x000A;</code></pre>
             
             <p><img src="figure/barplot-5.png" alt="plot of chunk barplot-5" class="wide" /></p>
             
-            <p>The black border around the bars is noisy; let&#8217;s remove it.</p>
+            <p>The black border around the bars is noisy; let’s remove it.</p>
             
             <pre><code>barplot(&#x000A;  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),&#x000A;  horiz = TRUE, las = 1, border = NA)&#x000A;</code></pre>
             
             <p><img src="figure/barplot-6.png" alt="plot of chunk barplot-6" class="wide" /></p>
             
-            <p>Now the colors don&#8217;t match. We could just make the bars black,</p>
+            <p>Now the colors don’t match. We could just make the bars black,</p>
             
             <pre><code>barplot(&#x000A;  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),&#x000A;  horiz = TRUE, las = 1, border = NA, col = 1)&#x000A;</code></pre>
             
             <p><img src="figure/barplot-7.png" alt="plot of chunk barplot-7" class="wide" /></p>
             
-            <p>but that&#8217;s a bit harsh. Instead, let&#8217;s make everything grey.</p>
+            <p>but that’s a bit harsh. Instead, let’s make everything grey.</p>
             
             <pre><code>barplot(&#x000A;  sort(table(wellbeing$X24..What.is.your.marital.status.), decreasing = TRUE),&#x000A;  horiz = TRUE, las = 1, border = NA,&#x000A;  col = "#666666", fg = "#333333", col.axis = "#333333")&#x000A;</code></pre>
             
@@ -189,39 +189,39 @@
             
             <p><img src="figure/stripchart-2.png" alt="plot of chunk stripchart-2" class="wide" /></p>
             
-            <p>Let&#8217;s change the scale to emphasize its limits.</p>
+            <p>Let’s change the scale to emphasize its limits.</p>
             
             <pre><code>stripchart(wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now.., method = "stack", xlim = c(1, 10))&#x000A;</code></pre>
             
             <p><img src="figure/stripchart-3.png" alt="plot of chunk stripchart-3" class="wide" /></p>
             
-            <p>The white boxes with borders are noisy; let&#8217;s change them to filled boxes.
-            The default point type (<code>pch = 1</code>) doesn&#8217;t support a fill color (<code>bg</code>),
+            <p>The white boxes with borders are noisy; let’s change them to filled boxes.
+            The default point type (<code>pch = 1</code>) doesn’t support a fill color (<code>bg</code>),
             so we have to switch to a different point type;
             here are the different point types, from <code>example(points)</code>.</p>
             
             <p><img src="figure/stripchart-pch.png" alt="pchShow" class="wide" /></p>
             
-            <p>Let&#8217;s use <code>pch = 22</code>.</p>
+            <p>Let’s use <code>pch = 22</code>.</p>
             
             <pre><code>stripchart(&#x000A;  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,&#x000A;  method = "stack", xlim = c(1, 10), col = NA, pch = 22, bg = 1)&#x000A;</code></pre>
             
             <p><img src="figure/stripchart-4.png" alt="plot of chunk stripchart-4" class="wide" /></p>
             
-            <p>That&#8217;s just a bar plot. Let&#8217;s switch back to jittering and make the
+            <p>That’s just a bar plot. Let’s switch back to jittering and make the
             points translucent.</p>
             
             <pre><code>stripchart(&#x000A;  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,&#x000A;  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033")&#x000A;</code></pre>
             
             <p><img src="figure/stripchart-5.png" alt="plot of chunk stripchart-5" class="wide" /></p>
             
-            <p>Let&#8217;s make a nicer axis.</p>
+            <p>Let’s make a nicer axis.</p>
             
             <pre><code>stripchart(&#x000A;  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,&#x000A;  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, &#x000A;  xlab = "How happy do you feel right now, on a scale of 1 to 10?",&#x000A;  main = "How happy Somerville residents feel")&#x000A;axis(1, at = 1:10)&#x000A;</code></pre>
             
             <p><img src="figure/stripchart-6.png" alt="plot of chunk stripchart-6" class="wide" /></p>
             
-            <p>And let&#8217;s not waste half of the canvas.</p>
+            <p>And let’s not waste half of the canvas.</p>
             
             <pre><code>stripchart(&#x000A;  wellbeing$X1...First.of.all..how.happy.do.you.feel.right.now..,&#x000A;  method = "jitter", xlim = c(1, 10), col = NA, pch = 22, bg = "#00000033", axes = FALSE, &#x000A;  xlab = "How happy do you feel right now, on a scale of 1 to 10?",&#x000A;  main = "How happy Somerville residents feel", jitter = 0.5, ylim = c(0, 2))&#x000A;axis(1, at = 1:10)&#x000A;</code></pre>
             
@@ -244,8 +244,8 @@
             <h2 id="par">par</h2>
             <p>All of these <code>col</code>, <code>pch</code>, <code>bg</code>, <code>fg</code>, <code>border</code>, &amp;c. commands are graphical
             parameters passed to <code>par</code>. You can set their global defaults with <code>par</code>,
-            but they won&#8217;t necessarily apply to the same scope as when you pass them
-            within a function. For example, <code>bg</code> applies to the outer canvas&#8217;s background.</p>
+            but they won’t necessarily apply to the same scope as when you pass them
+            within a function. For example, <code>bg</code> applies to the outer canvas’s background.</p>
             
             <pre><code>par(bg = "yellow")&#x000A;plot(Total ~ id, data = pilgrams, type = "l")&#x000A;</code></pre>
             
@@ -285,10 +285,10 @@
             
             <h2 id="line-plots">Line plots</h2>
             <p>Displaying multiple sets of lines and points on a graph gets more messy.
-            For example, let&#8217;s say we want to make two lines to represent pilgram
+            For example, let’s say we want to make two lines to represent pilgram
             counts. One is for people on horseback, and the other is for people on
-            foot. I like to start with an empty plot of the full range so we don&#8217;t
-            cut anything off. Let&#8217;s also put the labels and remove the axes.</p>
+            foot. I like to start with an empty plot of the full range so we don’t
+            cut anything off. Let’s also put the labels and remove the axes.</p>
             
             <pre><code>plot.pilgram.base &lt;- function() {&#x000A;  plot(0, 0,&#x000A;    xlim = range(pilgrams$id),&#x000A;    ylim = c(0, max(c(pilgrams$Foot, pilgrams$Bicicle))),&#x000A;    xlab = "Month", ylab = "Number of pilgrams",&#x000A;    main = "Pilgrams by month and transportation medium", &#x000A;    axes = FALSE, type = "n")&#x000A;}&#x000A;plot.pilgram.base()&#x000A;</code></pre>
             
@@ -302,7 +302,7 @@
             <p><img src="figure/complicated-2.png" alt="plot of chunk complicated-2" class="wide" /></p>
             
             <p>I removed the axes because the default axes are usually quite
-            ugly. Now let&#8217;s add prettier axes.</p>
+            ugly. Now let’s add prettier axes.</p>
             
             <pre><code>plot.pilgram.axes &lt;- function() {&#x000A;  axis(1, at = seq(1, 80, 10), labels = paste("January", unique(pilgrams$year)))&#x000A;  par(las = 1)&#x000A;  axis(2, at = seq(0, 60000, 10000), labels = c(0, paste0(1:6, "0,000")))&#x000A;}&#x000A;plot.pilgram.base()&#x000A;plot.pilgram.lines()&#x000A;plot.pilgram.axes()&#x000A;</code></pre>
             

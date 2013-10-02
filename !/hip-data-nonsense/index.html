@@ -86,22 +86,22 @@
         </header>
         <div id='article-wrapper'>
           <article>
-            <p>I think that &#8216;big data&#8217; and &#8216;data science&#8217; are usually defined such that the
+            <p>I think that ‘big data’ and ‘data science’ are usually defined such that the
             person defining the term is using it.</p>
             
-            <p>But these terms do seem to be somewhat meaningful sometimes. I&#8217;ve been at loads
+            <p>But these terms do seem to be somewhat meaningful sometimes. I’ve been at loads
             of hip and non-hip data talks here and there and have come up with some ideas
             what people mean when they use these terms. In the current post, I seek to
-            describe how the terms &#8216;big data&#8217; and &#8216;data science&#8217; are used these days.</p>
+            describe how the terms ‘big data’ and ‘data science’ are used these days.</p>
             
-            <h2 id="big-data">&#8216;Big data&#8217;</h2>
-            <p>When people describe something as &#8216;big data&#8217;, the thing is usually physically
+            <h2 id="big-data">‘Big data’</h2>
+            <p>When people describe something as ‘big data’, the thing is usually physically
             big (in bytes). So a petabyte of data would might be big data, at least today.</p>
             
-            <p>Other people propose thresholds, like when the data don&#8217;t fit in random-access
-            memory or when the data don&#8217;t fit on one computer. (Some talk at Strata NY 2011
-            used this one.) More generally, we might say that data are &#8216;big&#8217; when they
-            don&#8217;t physically fit the world&#8217;s standard data analysis tool, <a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/">Excel</a>.
+            <p>Other people propose thresholds, like when the data don’t fit in random-access
+            memory or when the data don’t fit on one computer. (Some talk at Strata NY 2011
+            used this one.) More generally, we might say that data are ‘big’ when they
+            don’t physically fit the world’s standard data analysis tool, <a href="http://blog.scraperwiki.com/2012/07/31/do-all-analysts-use-excel/">Excel</a>.
             When this happens, you need to know something more about computers in order to
             store and analyze the data.</p>
             
@@ -112,7 +112,7 @@
             
             <p>Some guy at Strata London 2012 proposed that big data come about when it
             becomes less expensive to store data than it is to decide whether to delete
-            the data. We&#8217;ve recently moved from filing cabinets and libraries all the
+            the data. We’ve recently moved from filing cabinets and libraries all the
             way to Hadoop clusters and
             <a href="http://aws.amazon.com/glacier/">low-power hard drives</a>, so it recently has
             become reasonable to just save anything.</p>
@@ -128,24 +128,24 @@
             formats, so this process is much more automatic. I thus propose that automation
             of data collection is part of the big data thing.</p>
             
-            <h2 id="data-science">&#8216;Data science&#8217;</h2>
-            <p>What is &#8216;data science&#8217;? It broadly seems to be some combination of &#8216;statistics&#8217;
-            and &#8216;computer engineering&#8217;. They&#8217;re in quotes because they&#8217;re all stupidly
-            ambiguous and because I don&#8217;t feel like defining them except in relation to
+            <h2 id="data-science">‘Data science’</h2>
+            <p>What is ‘data science’? It broadly seems to be some combination of ‘statistics’
+            and ‘computer engineering’. They’re in quotes because they’re all stupidly
+            ambiguous and because I don’t feel like defining them except in relation to
             each-other.</p>
             
-            <p>I&#8217;ll define &#8216;data science&#8217; by relating it to &#8216;statistics&#8217; and to &#8216;software
-            engineering&#8217;. Let&#8217;s start with the comparison with &#8216;statistics&#8217;.</p>
+            <p>I’ll define ‘data science’ by relating it to ‘statistics’ and to ‘software
+            engineering’. Let’s start with the comparison with ‘statistics’.</p>
             
-            <h3 id="data-science-and-statistics">&#8216;Data science&#8217; and &#8216;statistics&#8217;</h3>
-            <p>The statistical methods used in &#8216;data science&#8217; and &#8216;big data&#8217; seem quite
-            unsophisticated compared to those used in &#8216;statistics&#8217;.</p>
+            <h3 id="data-science-and-statistics">‘Data science’ and ‘statistics’</h3>
+            <p>The statistical methods used in ‘data science’ and ‘big data’ seem quite
+            unsophisticated compared to those used in ‘statistics’.</p>
             
-            <p>Often, it&#8217;s just search. For example, the data team at <a href="http://www.lanacion.com.ar">La Nación</a>
-            showed me how they&#8217;re acquiring loads of documents and allowing journalists to
-            search them. I&#8217;m sure that they&#8217;ll eventually start doing crude quantitative
+            <p>Often, it’s just search. For example, the data team at <a href="http://www.lanacion.com.ar">La Nación</a>
+            showed me how they’re acquiring loads of documents and allowing journalists to
+            search them. I’m sure that they’ll eventually start doing crude quantitative
             analyses on the overall document sets, but even the search has already been
-            valuable. Their team is, of course &#8216;data journalism&#8217;, </p>
+            valuable. Their team is, of course ‘data journalism’, </p>
             
             <p>The quantitative analyses that do happen are often quite simple. Consider
             the FourSquare checkin analyses that a couple people from FourSquare showed at
@@ -155,57 +155,57 @@
             their talks were the knowledge that we gain by looking at checkin histories,
             and these simple plots were more helpful for conveying this.</p>
             
-            <p>In other cases, &#8216;data science&#8217; simply implies &#8216;machine learning&#8217;. Compared to
-            &#8216;statistics&#8217;, I think &#8216;machine learning&#8217; just implies a focus on prediction
+            <p>In other cases, ‘data science’ simply implies ‘machine learning’. Compared to
+            ‘statistics’, I think ‘machine learning’ just implies a focus on prediction
             rather than inference.</p>
             
-            <p>The &#8216;statistics&#8217; fields seem to do more complex models on simpler datasets,
-            and these &#8216;data&#8217; fields are more concerned with consuming and practically
+            <p>The ‘statistics’ fields seem to do more complex models on simpler datasets,
+            and these ‘data’ fields are more concerned with consuming and practically
             applying gobs of data than they are about modeling the data.</p>
             
-            <h3 id="data-science-and-software-engineering">&#8216;Data science&#8217; and &#8216;software engineering&#8217;</h3>
-            <p>The products of &#8216;software engineering&#8217; tend to be tools, and the products of
-            &#8216;data science&#8217; tend to be knowledge. I&#8217;ve broken that distinction into some
+            <h3 id="data-science-and-software-engineering">‘Data science’ and ‘software engineering’</h3>
+            <p>The products of ‘software engineering’ tend to be tools, and the products of
+            ‘data science’ tend to be knowledge. I’ve broken that distinction into some
             technical components. Nota bene: These components exaggerate the differences.</p>
             
-            <p><strong>Realtime v. batch</strong>: If something is &#8216;realtime&#8217;, it is the result of
-            &#8216;software engineering&#8217;; &#8216;data science&#8217; is always batch. (Let&#8217;s avoid worrying
-            too much about what &#8216;realtime&#8217; means. I happen to take &#8216;realtime&#8217; to mean push
+            <p><strong>Realtime v. batch</strong>: If something is ‘realtime’, it is the result of
+            ‘software engineering’; ‘data science’ is always batch. (Let’s avoid worrying
+            too much about what ‘realtime’ means. I happen to take ‘realtime’ to mean push
             rather than pull, but this claim should work for any reasonable definition of
-            &#8216;realtime&#8217;.)</p>
+            ‘realtime’.)</p>
             
-            <p><strong>Organization</strong>: &#8216;Data scientists&#8217; are embedded within organizations that have
+            <p><strong>Organization</strong>: ‘Data scientists’ are embedded within organizations that have
             questions about data (typically about their own data, though that depends on
             how we think of ownership). Consider any hip web startup with a large database.
-            &#8216;Software engineers&#8217;, on the other hand, make products to be used by other
+            ‘Software engineers’, on the other hand, make products to be used by other
             organizations or by other departments within a large organization. Consider
             any hip web startup ever. Also consider some teams within large companies; I
-            know someone who worked at Google as a &#8216;software engineer&#8217; to write code for
+            know someone who worked at Google as a ‘software engineer’ to write code for
             packaging ChromeBooks.</p>
             
-            <h2 id="what-about-analysts">What about &#8216;analysts&#8217;?</h2>
-            <p>If we simplify the world to a two-dimensional space, &#8216;data scientists&#8217;,
-            &#8216;statisticians&#8217;, &#8216;software engineers&#8217; and &#8216;engineers&#8217; might land here.</p>
+            <h2 id="what-about-analysts">What about ‘analysts’?</h2>
+            <p>If we simplify the world to a two-dimensional space, ‘data scientists’,
+            ‘statisticians’, ‘software engineers’ and ‘engineers’ might land here.</p>
             
             <p><img src="data-people.png" alt="Plot of the four professions' abilities with analysis and abilities with computers" /></p>
             
-            <h2 id="conflating-data-science-and-big-data">Conflating &#8216;data science&#8217; and &#8216;big data&#8217;</h2>
-            <p>Some people conflate &#8216;data science&#8217; and &#8216;big data&#8217;. For some definitions of
-            these two phrases, the conflation makes perfect sense, like when &#8216;big data&#8217;
+            <h2 id="conflating-data-science-and-big-data">Conflating ‘data science’ and ‘big data’</h2>
+            <p>Some people conflate ‘data science’ and ‘big data’. For some definitions of
+            these two phrases, the conflation makes perfect sense, like when ‘big data’
             means that the data are big enough that you need to know something about
             computers.</p>
             
-            <p>Some people are more concerned with &#8216;data science&#8217; than they are with &#8216;big
-            data&#8217;, and vice-versa. For example, &#8216;big data&#8217; is much talked-about at Strata,
-            but &#8216;data science&#8217; isn&#8217;t discussed as much. I sort of think that &#8216;big data&#8217;
+            <p>Some people are more concerned with ‘data science’ than they are with ‘big
+            data’, and vice-versa. For example, ‘big data’ is much talked-about at Strata,
+            but ‘data science’ isn’t discussed as much. I sort of think that ‘big data’
             is buzzier and more popular among the marketing departments.</p>
             
-            <p>On the other hand, &#8216;data science&#8217; is more common among people I hang out with,
-            and we don&#8217;t seem to talk about &#8216;big data&#8217; very much. Part of this is that we
-            can do useful things with small datasets too. But I feel like we don&#8217;t talk
-            about &#8216;big data&#8217; even when a dataset gets large. It might be that we want some
-            word to describe what we do. &#8216;Statistician&#8217; and &#8216;computer stuff&#8217; aren&#8217;t close
-            enough, but &#8216;data scientist&#8217; is decent.</p>
+            <p>On the other hand, ‘data science’ is more common among people I hang out with,
+            and we don’t seem to talk about ‘big data’ very much. Part of this is that we
+            can do useful things with small datasets too. But I feel like we don’t talk
+            about ‘big data’ even when a dataset gets large. It might be that we want some
+            word to describe what we do. ‘Statistician’ and ‘computer stuff’ aren’t close
+            enough, but ‘data scientist’ is decent.</p>
             
             <h2 id="utility-of-these-definitions">Utility of these definitions</h2>
             <p>Consider taking everything I said with a grain of salt. First, most of my
@@ -215,7 +215,7 @@
             
             <p>On the other hand, I intended for these definitions to be descriptive rather
             than prescriptive, so they might be more useful than some other definitions
-            that you&#8217;ve heard.</p>
+            that you’ve heard.</p>
           </article>
         </div>
         <div id='pagination'>

@@ -88,8 +88,8 @@
           <article>
             <h2 id="storing-all-these-datasets">Storing all these datasets</h2>
             <p>With open data, you have lots of tiny datasets. The individual open datasets are
-            usually small enough that any storage approach will be fine if you&#8217;re only using
-            a few of them, but you&#8217;ll need to think a bit if you&#8217;re storing lots of datasets.</p>
+            usually small enough that any storage approach will be fine if you’re only using
+            a few of them, but you’ll need to think a bit if you’re storing lots of datasets.</p>
             
             <h3 id="centralized">Centralized</h3>
             <p>As far as I know, ScraperWiki, Exversion and Socrata all started with storing
@@ -97,12 +97,12 @@
             (possibly across tables or in one table).</p>
             
             <h3 id="less-centralized">Less centralized</h3>
-            <p>You probably don&#8217;t need your data to be this centralized. Well, at least that&#8217;s
+            <p>You probably don’t need your data to be this centralized. Well, at least that’s
             what ScraperWiki thinks; ScraperWiki eventually switched to storing each dataset
             as a separate SQLite3 database.</p>
             
-            <p>I haven&#8217;t been particulary concerned with performance in my
-            <a href="/socrata">recent studies</a>, so I&#8217;ve just been storing data as ordinary files on
+            <p>I haven’t been particulary concerned with performance in my
+            <a href="/socrata">recent studies</a>, so I’ve just been storing data as ordinary files on
             an ordinary filesystem.</p>
             
             <h2 id="conflation-of-publishing-with-consumption">Conflation of publishing with consumption</h2>
@@ -114,25 +114,25 @@
             <p>For example, you can go to the Paris data portal and get data about
             <a href="">coffee</a> and
             <a href="">wifi</a>.
-            Maybe you&#8217;re not interested in data specifically about Paris; maybe you&#8217;re
-            actually interested in coffee and wifi in general. Or maybe you&#8217;re interested
+            Maybe you’re not interested in data specifically about Paris; maybe you’re
+            actually interested in coffee and wifi in general. Or maybe you’re interested
             in a different subset, like wifi access in places other than cafes. Either way,
             you can use data from places other than Paris.</p>
             
             <h3 id="publishing-versus-consumption">Publishing versus consumption</h3>
             <p>Paris publishes its data to the Paris data portal. This makes a lot of sense;
-            Paris&#8217;s government has lots of data, and they&#8217;re just trying to get it out there
+            Paris’s government has lots of data, and they’re just trying to get it out there
             in a place where people can find it.</p>
             
-            <p>People like me consume Paris&#8217;s data by going to Paris&#8217;s data portal.
-            As we saw above, this doesn&#8217;t necessarily match the consumers&#8217; needs;
-            I&#8217;m not necessarily interested in data specifically about Paris.</p>
+            <p>People like me consume Paris’s data by going to Paris’s data portal.
+            As we saw above, this doesn’t necessarily match the consumers’ needs;
+            I’m not necessarily interested in data specifically about Paris.</p>
             
             <h3 id="connect-data-across-portals">Connect data across portals</h3>
             <p>Different cities are all still cities, so they collect similar data. But they
             have different policies and different bookkeeping practices, so not all of their
             data are out, and the data have different schemas. There are so many different
-            people working on this that it&#8217;s not worth getting them to use the same procedures.</p>
+            people working on this that it’s not worth getting them to use the same procedures.</p>
             
             <p>But your product can help to connect all of these datasets. At the least, you can
             help people find out about related datasets. Build a fancier version of search;
@@ -143,10 +143,10 @@
             schema so that you can query across all cities at once.</p>
             
             <p>People have been dealing with this sort of issue inside of large organizations with
-            lots of proprietary data, like investment banks. I&#8217;ve recently arrived at a bunch of
+            lots of proprietary data, like investment banks. I’ve recently arrived at a bunch of
             ideas about how we can make open data better, but Goldman Sachs (for example) figured
             this out years ago when they started having this variety of data internally.
-            And they&#8217;ve already built out many of the things I suggest here.</p>
+            And they’ve already built out many of the things I suggest here.</p>
           </article>
         </div>
         <div id='pagination'>

@@ -90,7 +90,7 @@
             This results in a super-dataset of datasets that tells us something about
             the ecosystem surrounding open data.</p>
             
-            <p>For a <a href="/!/socrata-summary">couple months</a>, I&#8217;ve been studying the data
+            <p>For a <a href="/!/socrata-summary">couple months</a>, I’ve been studying the data
             about these data and have continuously been dealing with duplicated data.
             I finally fixed that, so now I have more accurate statistics on portals.</p>
             
@@ -98,10 +98,10 @@
             
             <p><img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /></p>
             
-            <p>(I&#8217;ll explain later.)</p>
+            <p>(I’ll explain later.)</p>
             
             <h2 id="types-of-duplication">Types of duplication</h2>
-            <p>I&#8217;m concerned with
+            <p>I’m concerned with
             <a href="/!/socrata-genealogies/#types-of-duplicate-datasets">two forms of duplication</a>.</p>
             
             <ol>
@@ -111,24 +111,24 @@
             </ol>
             
             <h2 id="dealing-with-derived-views">Dealing with derived views</h2>
-            <p>It&#8217;s easy enough to deal with the former type of duplication.
+            <p>It’s easy enough to deal with the former type of duplication.
             One way is to use the <code>/data.json</code> (or <code>/api/dcat</code>) endpoint.
             Unfortunately, this endpoint only provides the first 1000 entries.
             I have been told that this has been fixed, but I had trouble getting
             it working this morning.</p>
             
-            <p>That&#8217;s not a big deal because there&#8217;s another easy way. I produced a
+            <p>That’s not a big deal because there’s another easy way. I produced a
             <a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv">CSV file of Socrata data</a>
             a couple months ago. Each row in the file corresponds to a view on Socrata,
             and the views that are original datasets have a displayType of <code>table</code>, I think.
-            (There&#8217;s a notable exception: Sometimes, the original table is private and
+            (There’s a notable exception: Sometimes, the original table is private and
             a derived view is made available to the public.)</p>
             
             <h2 id="dealing-with-federation">Dealing with federation</h2>
             <p>Dealing with federation is less straightforward. The <code>/data.json</code> endpoint
-            doesn&#8217;t clearly indicate whether a dataset is federated, and neither does
+            doesn’t clearly indicate whether a dataset is federated, and neither does
             my CSV file. If I had been more careful when producing the CSV file, it could
-            have such a field, but I don&#8217;t want to make another one because that took a
+            have such a field, but I don’t want to make another one because that took a
             long time. So I took the federation links from somewhere else.</p>
             
             <p>Scroll down on the homepage of a portal (like <a href="https://explore.data.gov/">data.gov</a>),
@@ -136,7 +136,7 @@
             
             <p><img src="federated-domains.png" alt="Federated Domains" /></p>
             
-            <p>This shows up if the portal is federating any other portals. It&#8217;s part of the
+            <p>This shows up if the portal is federating any other portals. It’s part of the
             search menu, so it lets you filter your search by portal.</p>
             
             <p>I <a href="https://github.com/tlevine/socrata-defederate">downloaded all of the homepages and pulled out the federation links</a>.
@@ -158,7 +158,7 @@
             <p>I plotted two graphs again to get a feel for how this changes things.</p>
             
             <h3 id="dataset-counts-by-portal">Dataset counts by portal</h3>
-            <p>First, here&#8217;s the graph of dataset counts from the new data.</p>
+            <p>First, here’s the graph of dataset counts from the new data.</p>
             
             <p><img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /></p>
             
@@ -167,7 +167,7 @@
             <p><img src="/!/socrata-summary/figure/big_portals_datasets.png" alt="Old histogram" class="wide" /></p>
             
             <p>The <a href="/!/socrata-formats/#how-many-datasets">version that uses <code>data.json</code></a>, also below,
-            doesn&#8217;t have the derived-view duplication, but it does have the federation duplication.</p>
+            doesn’t have the derived-view duplication, but it does have the federation duplication.</p>
             
             <p><img src="http://localhost:3000/!/socrata-formats/figure/portal-counts.png" alt="data.json version" /></p>
             
@@ -176,25 +176,25 @@
             
             <p><img src="dates.png" alt="Dataset creation over time" class="wide" /></p>
             
-            <p>I hadn&#8217;t made a plot quite like this before, but the issue of duplication
+            <p>I hadn’t made a plot quite like this before, but the issue of duplication
             has turned up in other plots about dataset creation dates, like in the
             <a href="/!/socrata-summary/#time">original summary</a> and in the study of
             <a href="/!/socrata-formats/#csv">dataset formats</a>.</p>
             
             <h2 id="arbitrary-metrics-are-arbitrary">Arbitrary metrics are arbitrary</h2>
-            <p>Dataset count might sound like a decent metric, but it&#8217;s quite hard to say
+            <p>Dataset count might sound like a decent metric, but it’s quite hard to say
             what a dataset is. If you <a href="http://appgen.me/audit/report">split up a dataset by year</a>,
             do you have multiple datasets? Similarly, if you create
             <a href="/!/socrata-genealogies">lots of different queries</a> on the same dataset,
             have you created new datasets? And do you have more datasets if you just copy
             them from another data portal?</p>
             
-            <p>I&#8217;m told that there is perennial competition between Chicago and New York
+            <p>I’m told that there is perennial competition between Chicago and New York
             and between <code>data.gov</code> and <code>data.gov.uk</code> over the dataset count on their portals.
             Given the ambiguity of this measure, it is quite hilarious that such competition
             exists.</p>
             
-            <p>On the other hand, that&#8217;s the only obvious metric that we see in data portals.
+            <p>On the other hand, that’s the only obvious metric that we see in data portals.
             Maybe we need to make <a href="/!/open-data-plans/#data-quality">new metrics</a>
             before people can stop caring about counts.</p>
             
