@@ -86,49 +86,79 @@
         </header>
         <div id='article-wrapper'>
           <article>
+            <p>People write and talk a lot about
+            <a href="http://opendatahandbook.org/en/why-open-data/">why we need open data</a> and 
+            <a href="http://www.codeforamerica.org/09-24-2013/">how to release open data</a>.
+            Part of the strategy for making open data useful is getting people to
+            make <a href="http://youtu.be/6cRtbA_d4RI?t=12m40s">software</a> that use them.</p>
+            
+            <!--
+            To this end, 
+            "[app](http://nycbigapps.com/)" [competitions](http://opendatachallenge.org/)
+            
+            http://www.youtube.com/watch?v=LijchWVlirc
+            -->
+            
+            <p>I’ve seen writing and talk about how to make software that uses open data,
+            but it’s usually limited to an explanation that data exist on some website
+            and maybe that you can query them with an “API”.</p>
+            
+            <p>I’ve lately been studying <a href="/open-data">data about open data</a>. Among other things,
+            I now have some ideas of things that people should know if they’re making products
+            that use open data. So here they are.</p>
+            
+            <p>In my mind, I have a particular category for software that connects to all the
+            things and lets you make stuff from them. In composing the following thoughts,
+            I was mainly thinking about this sort of software. But the thoughts might apply
+            a bit more broadly.</p>
+            
             <h2 id="storing-all-these-datasets">Storing all these datasets</h2>
             <p>With open data, you have lots of tiny datasets. The individual open datasets are
             usually small enough that any storage approach will be fine if you’re only using
             a few of them, but you’ll need to think a bit if you’re storing lots of datasets.</p>
             
-            <h3 id="centralized">Centralized</h3>
-            <p>As far as I know, ScraperWiki, Exversion and Socrata all started with storing
-            everything in one relational database, with one database row per dataset row
-            (possibly across tables or in one table).</p>
+            <h3 id="more-centralized">More centralized</h3>
+            <p>Most people seem to start with storing everything in one relational database,
+            with one database row per dataset row (possibly across tables or in one table).
+            Examples include <a href="https://scraperwiki.com">ScraperWiki</a>,
+            <a href="https://exversion.com">Exversion</a>, and
+            <a href="https://socrata.com">Socrata</a></p>
             
             <h3 id="less-centralized">Less centralized</h3>
             <p>You probably don’t need your data to be this centralized. Well, at least that’s
-            what ScraperWiki thinks; ScraperWiki eventually switched to storing each dataset
-            as a separate SQLite3 database.</p>
+            what I think, and that’s what ScraperWiki thought; ScraperWiki eventually switched
+            to storing each dataset as a separate SQLite3 database. Actually, other aspects
+            of the infrastructure have become much less centralized. And it makes sense that
+            both ScraperWiki and I like this approach because I used to work there.</p>
             
-            <p>I haven’t been particulary concerned with performance in my
-            <a href="/socrata">recent studies</a>, so I’ve just been storing data as ordinary files on
-            an ordinary filesystem.</p>
+            <p>In my <a href="/open-data">recent studies</a>, I’ve just been storing data as ordinary files on
+            an ordinary filesystem and loading them all into memory. This is partly because I
+            haven’t been particulary concerned with performance, but I think I’d do something
+            quite similar if performance did concern me more; I load data into memory when I’m
+            using them, and store them in a very simple way when I’m not using them.</p>
             
             <h2 id="conflation-of-publishing-with-consumption">Conflation of publishing with consumption</h2>
             <p>I think this is the interesting data-preparation issue with open data:
             Data are released by government/organization, but you might not be interested
             in data by government.</p>
             
-            <h3 id="search-within-a-portal">Search within a portal</h3>
-            <p>For example, you can go to the Paris data portal and get data about
-            <a href="">coffee</a> and
-            <a href="">wifi</a>.
-            Maybe you’re not interested in data specifically about Paris; maybe you’re
-            actually interested in coffee and wifi in general. Or maybe you’re interested
-            in a different subset, like wifi access in places other than cafes. Either way,
-            you can use data from places other than Paris.</p>
-            
-            <h3 id="publishing-versus-consumption">Publishing versus consumption</h3>
+            <h3 id="different-portals">Different portals</h3>
             <p>Paris publishes its data to the Paris data portal. This makes a lot of sense;
             Paris’s government has lots of data, and they’re just trying to get it out there
             in a place where people can find it.</p>
             
-            <p>People like me consume Paris’s data by going to Paris’s data portal.
-            As we saw above, this doesn’t necessarily match the consumers’ needs;
-            I’m not necessarily interested in data specifically about Paris.</p>
+            <p>You can go to the Paris data portal and get data about
+            <a href="">coffee</a> and
+            <a href="">wifi</a>.
+            Maybe you’re not interested in data specifically about Paris; maybe you’re
+            actually interested in coffee and wifi in general. Or maybe you’re interested
+            in a different subset, like wifi access in places other than cafes.</p>
             
-            <h3 id="connect-data-across-portals">Connect data across portals</h3>
+            <p>People can consume Paris’s data by going to Paris’s data portal, but they might
+            not be interested in data about Paris specifically. It would be nice to have one
+            place with all of the relevant data, and your software can help with that.</p>
+            
+            <h3 id="relating-datasets">Relating datasets</h3>
             <p>Different cities are all still cities, so they collect similar data. But they
             have different policies and different bookkeeping practices, so not all of their
             data are out, and the data have different schemas. There are so many different
@@ -142,9 +172,41 @@
             are common for particular sorts of data, and get different datasets into a reasonable
             schema so that you can query across all cities at once.</p>
             
+            <p>This might sound like <a href="http://www.w3.org/standards/semanticweb/data">linked data</a>,
+            and that can scare people. My advice above has similar goals to linked data, but I
+            think we can accomplish some of them with simpler approaches than the Semantic Web
+            technologies.</p>
+            
+            <h2 id="licensing">Licensing</h2>
+            <p>You might be wondering what legal issues you’ll have to deal with if you use open data.
+            Conveniently, the <a href="http://okfn.org/">Open Knowledge Foundation</a> <a href="http://opendefinition.org/">defines</a>
+            open content as content for which you don’t have to deal with legal issues.</p>
+            
+            <blockquote>
+              <p>A piece of data or content is open if anyone is free to use, reuse, and redistribute it — subject only, at most, to the requirement to attribute and/or share-alike.</p>
+            </blockquote>
+            
+            <p>Inconveniently, a lot of open data sites <a href="/!/open-data-licensing">lack</a> open licenses.
+            That said, it might still be fine to use data from these sites. Here are two reasons why.</p>
+            
+            <ol>
+              <li>In the United States, you can’t copyright facts, so it’s likely a lot of datasets
+             can’t be copyrighted. You can still restrict access to things, but you’d need to
+             use a contract to impose such restrictions.</li>
+              <li>The organizations that are releasing lots of data want the data to be used.
+             If they don’t include a license or they include a restrictive license, I suspect
+             that it’s just because they don’t know what to do.</li>
+            </ol>
+            
+            <p>If you’re using data from a site without an obvious license, you might want to talk
+            to a lawyer about it. Actually, you should totally do this and then tell me about it
+            afterwards because I’m curious to hear more thoughts on the matter.</p>
+            
+            <h2 id="related-work">Related work</h2>
             <p>People have been dealing with this sort of issue inside of large organizations with
             lots of proprietary data, like investment banks. I’ve recently arrived at a bunch of
-            ideas about how we can make open data better, but Goldman Sachs (for example) figured
+            ideas about how we can make open data better, but
+            <a href="http://www.goldmansachs.com/">Goldman Sachs</a> (for example) figured
             this out years ago when they started having this variety of data internally.
             And they’ve already built out many of the things I suggest here.</p>
           </article>

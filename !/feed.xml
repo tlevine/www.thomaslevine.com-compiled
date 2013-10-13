@@ -2,13 +2,86 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-10-02T00:00:00Z</updated>
+  <updated>2013-10-13T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-10-13:/!/dot-at-thomaslevine-dot-com/index.html</id>
+    <title type="html">A new email address</title>
+    <published>2013-10-13T00:00:00Z</published>
+    <updated>2013-10-13T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/dot-at-thomaslevine-dot-com/index.html"/>
+    <content type="html">&lt;h2 id="choosing-an-email-address"&gt;Choosing an email address&lt;/h2&gt;
+&lt;p&gt;Since I can have any address at thomaslevine.com,
+I’ve had a hard time choosing one. There’s a fun,
+long story about previous email addresses, and I
+can explain that some other time. Anyway, I’ve
+changed my email address yet again. Here it is.&lt;/p&gt;
+
+&lt;blockquote id="e-post"&gt;
+&lt;noscript&gt;dot at thomaslevine dot com&lt;/noscript&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id="validity"&gt;Validity&lt;/h2&gt;
+&lt;p&gt;Usually, websites are fine with whatever new email address
+I come up with, but this time, they don’t like it.&lt;/p&gt;
+
+&lt;p&gt;When I try to change my email address in
+&lt;a href="https://facebook.com/perluette"&gt;Facebook&lt;/a&gt;,
+it says I “must provide a valid email.”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="facebook.png" alt="&amp;quot;You must provide a valid email.&amp;quot; error message" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;It works on &lt;a href="https://twitter.com/thomaslevine"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="twitter.png" alt="&amp;quot;A confirmation email was sent&amp;quot; success message" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://pinterest.com/perluette"&gt;Pinterest&lt;/a&gt; says it’s “not a valid email format”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="pinterest.png" alt="&amp;quot;not a valid email format&amp;quot; error message" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fix your email validators, people!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-10-08:/!/orpheus-myth/index.html</id>
+    <title type="html">The Orpheus Myth</title>
+    <published>2013-10-08T00:00:00Z</published>
+    <updated>2013-10-08T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/orpheus-myth/index.html"/>
+    <content type="html">&lt;p&gt;This was part of a performance of
+&lt;a href="http://en.wikipedia.org/wiki/Abraham_Burickson"&gt;Abraham Burickson&lt;/a&gt;’s
+play &lt;em&gt;Complicity&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the type being set.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="setting.jpg" alt="Type in a galley" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we lock it up in the press.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="locked.jpg" alt="Type locked up in a galley press" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We roll some ink&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="inking.jpg" alt="Ink on a piece of glass and a roller" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;and ink the type.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="inked.jpg" alt="Type with ink on it" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we print one!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="result.jpg" alt="A long piece of paper with a poem printed on it" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Actually, we printed a bunch.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="results.jpg" alt="A bunch of pieces of paper with the same poem on all of them" class="wide" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-10-02:/!/open-data-licensing/index.html</id>
     <title type="html">Open data licensing</title>
@@ -442,437 +515,6 @@ couple blog posts. If you would like to influence the order in which I do things
 please take Jason’s lead and bug me.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://twitter.com/jasonmhare/status/379739193230233600"&gt;&lt;img src="jason.png" alt="@thomaslevine tell me about my #socrata site ;)" /&gt;&lt;/a&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-09-12:/!/statistics-with-doodles-sudoroom/index.html</id>
-    <title type="html">Statistics through doodles</title>
-    <published>2013-09-12T00:00:00Z</published>
-    <updated>2013-09-12T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/statistics-with-doodles-sudoroom/index.html"/>
-    <content type="html">&lt;style&gt;
-  .control {
-    height: auto;
-    border: none;
-  }
-  img.control {
-    width: 9%;
-    max-width: 50px;
-    margin: 0;
-    margin-right: 1%;
-    padding: 0;
-  }
-  input[type=range].control {
-    width: 75%;
-    margin: 0;
-    height: 40px;
-  }
-  video {
-    margin: 0;
-    border: 0;
-    padding: 0;
-  }
-&lt;/style&gt;
-
-&lt;p&gt;A &lt;em&gt;statistic&lt;/em&gt; is a number that describes a lot of other numbers.
-By reducing many numbers into one number, we make it easier to
-figure out what the numbers mean; we wouldn’t be able to fit all
-of the original numbers in our brain.&lt;/p&gt;
-
-&lt;p&gt;People usually explain statistics with symbols, but I like explaining
-statistics with drawings, 
-&lt;a href="https://sudoroom.org/wiki/Today_I_Learned#July_20:_Statistics_through_doodles:_Geometric_computations_of_fundamental_statistical_concepts"&gt;I doodled about statistics&lt;/a&gt;
-one time in &lt;a href="http://sudoroom.org/"&gt;Sudoroom&lt;/a&gt;,
-and we took videos of it. Watch them here!&lt;/p&gt;
-
-&lt;div id="videos"&gt;
-  &lt;video width="49%" class="back" src="http://bigdada.thomaslevine.com/til-statistics-back.webm"&gt;&lt;/video&gt;
-  &lt;video width="49%" class="above" src="http://bigdada.thomaslevine.com/til-statistics-above.webm"&gt;&lt;/video&gt;
-&lt;/div&gt;
-
-&lt;div id="controls"&gt;
-  &lt;a id="play" href="javascript:play()"&gt;&lt;img class="control" alt="Play" src="play.jpg" /&gt;&lt;/a&gt;
-  &lt;a id="pause" href="javascript:pause()"&gt;&lt;img class="control" alt="Pause" src="pause.jpg" /&gt;&lt;/a&gt;
-  &lt;input class="control" id="seek" type="range" min="0" max="1" value="0" step="0.01" /&gt;
-&lt;/div&gt;
-&lt;p style="text-align: right;"&gt;
-  &lt;a href="javascript:big()"&gt;Big videos&lt;/a&gt; | 
-  &lt;a href="javascript:small()"&gt;Small videos&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;script&gt;document.write('&lt;script src="script.js?date=' + (new Date()).getTime() + '"&gt;&lt;' + '/script&gt;')&lt;/script&gt;
-
-&lt;p&gt;The videos gloss over the reasons why we have these statistics,
-so I discuss those reasons below.&lt;/p&gt;
-
-&lt;h2 id="geometric-computations"&gt;Geometric computations&lt;/h2&gt;
-&lt;p&gt;In the video, I geometrically computed four statistics
-about the relationships between different variables.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Covariance&lt;/li&gt;
-  &lt;li&gt;Variance&lt;/li&gt;
-  &lt;li&gt;Correlation&lt;/li&gt;
-  &lt;li&gt;Least-squares regression coefficients&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Each computation is for the simplest version of the statistic.
-For those who like big words, that’s the univariate or bivariate
-version, and the population statistic rather than the sample statistic.&lt;/p&gt;
-
-&lt;h2 id="why-we-care-about-these-statistics"&gt;Why we care about these statistics&lt;/h2&gt;
-&lt;p&gt;The videos show the computations of these statistics, but they
-don’t really explain why we use these statistics. So I’ll explain
-that here.&lt;/p&gt;
-
-&lt;h3 id="linear-relationships"&gt;Linear relationships&lt;/h3&gt;
-&lt;p&gt;A lot of relationships can be seen as linear relationships.
-One such relationship is that between a person’s height and weight;
-taller people are heavier, and shorter people are lighter.&lt;/p&gt;
-
-&lt;p&gt;A relationship that isn’t very linear might be 
-&lt;a href="/!/ridership-rachenitsa"&gt;public transit ridership and time&lt;/a&gt;.
-As time progresses, weekly public transit ridership stays the same.
-However, it does change a lot within the week, with high ridership
-on the weekdays, low ridership on Saturdays and lower ridership on Sundays.&lt;/p&gt;
-
-&lt;p&gt;The example I used in the video is locations where your friends live,
-which might form clusters rather than lines.&lt;/p&gt;
-
-&lt;p&gt;The four statistics that the videos discuss are ways of describing the
-strength of a relationship, and they only make sense to use with linear
-relationships.&lt;/p&gt;
-
-&lt;h3 id="covariance"&gt;Covariance&lt;/h3&gt;
-&lt;p&gt;Covariance is a basic measure of how strong the relationship is.
-It is just a number that is&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;zero if there is no relationship,&lt;/li&gt;
-  &lt;li&gt;really big if the two variables tend to move in the same direction, and&lt;/li&gt;
-  &lt;li&gt;really negative if the two variables tend to move in opposite directions.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For example, the covariance between weight and height is a very positive
-number, like maybe 9001, because taller people are heavier. This postive
-covariance is represented in the video as lots of orange rectangles in
-the top-right and bottom-left quadrants.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="positive-covariance.jpg" alt="Positive covariance" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The covariance between number of times a person has eaten popcorn and her
-shoe size is probably around zero, because I doubt that these are very
-strongly related. In the video, we see this as orange and blue rectangles
-balancing out.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="zero-covariance.jpg" alt="Zero covariance" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And the covariance between cholesterol level and lifespan is probably
-a very negative number, like maybe -1337, because people with more
-cholesterol tend to live less long. That’s blue rectangles, with my
-doodles’ conventions.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="negative-covariance.jpg" alt="Negative covariance" /&gt;&lt;/p&gt;
-
-&lt;p&gt;We tend not to use the covariance very directly in practice because
-it’s hard to compare covariances directly to each other. The reasons
-for this are explained in the video.&lt;/p&gt;
-
-&lt;h3 id="variance"&gt;Variance&lt;/h3&gt;
-&lt;p&gt;Variance is a measure of how spread out one variable is. It is a
-positive number that gets big when the variables are more spread out.&lt;/p&gt;
-
-&lt;p&gt;Let’s say that two people are cutting wood to build a house. They cut
-10 pieces of wood each, and each piece of wood is supposed to be exactly
-120 inches long.&lt;/p&gt;
-
-&lt;p&gt;One person is very careful when he measures the wood, so his pieces come
-out perfectly. They’re not exactly 120 inches long because that’s impossible,
-but they’re not spot-on for the purposes of construction. The variance of the
-lengths of his pieces of wood is very close to zero, like maybe 3.&lt;/p&gt;
-
-&lt;p&gt;The other person is drunk and stoned and thus not very careful, so the
-lengths of his pieces are all over the place. They’re still around 10
-feet long on average, but some of them are 8 feet long, and others are
-11 feet long. The variance of the lengths of this person’s pieces is
-very high; maybe it’s 300.&lt;/p&gt;
-
-&lt;p&gt;We talk about variances a lot when we are estimating the average of a
-variable. When we estimate an average, we want to know how precise our
-estimate is, and the variance tells us that.&lt;/p&gt;
-
-&lt;h3 id="correlation"&gt;Correlation&lt;/h3&gt;
-&lt;p&gt;Think of the correlation as a standardized version of the covariance.
-The correlation is a number between -1 and 1. Like for the covariance,
-positive correlations mean that the variables move together, and negative
-correlations mean that the variables move oppositely.&lt;/p&gt;
-
-&lt;p&gt;Like the covariance, the correlation tells us how strongly two variables
-are related. The practical difference is that we can compare different
-covariances to each other.&lt;/p&gt;
-
-&lt;p&gt;We can compute the correlation between two variables based on the covariance
-between the two variables and the respective variances of the two variables.&lt;/p&gt;
-
-&lt;h3 id="least-squares-regression"&gt;Least-squares regression&lt;/h3&gt;
-&lt;p&gt;Maybe you want to be able to guess someone’s height based on her weight.
-Regression is one way of doing this.&lt;/p&gt;
-
-&lt;p&gt;To predict height from weight, we can use a simple regression that would
-tell us two statistics (numbers). In order to calculate these numbers, we
-first need to measure the heights and weights of a bunch of people.&lt;/p&gt;
-
-&lt;p&gt;Once we calculate these two numbers, we have a formula for predicting height;
-you give the formula a weight, and it will give you back a predicted height.&lt;/p&gt;
-
-&lt;p&gt;The formula is a best-fit line, as shown in this image &lt;a href="http://en.wikipedia.org/wiki/File:Linear_regression.svg"&gt;from Wikipedia&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="regression.png" alt="Regression" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s say we want to know
-&lt;a href="http://en.wikipedia.org/wiki/Gas_laws#Charles.27s_law"&gt;how big a balloon gets depending on the temperature of the air&lt;/a&gt;.
-We fill a bunch of balloons with air and put them in different places,
-each with a different air temperature. In the plot above, each dot would
-be a balloon, the numbers along the x-axis (the bottom) would be the
-temperature, and the numbers along the y-axis would be the volume of the
-balloon. That is the data we started with.&lt;/p&gt;
-
-&lt;p&gt;Using these data, we calculate those two regression statistics I mentioned
-above. With these, we can draw the red regression line.&lt;/p&gt;
-
-&lt;p&gt;When we want to predict what the volume of a balloon will be at a particular temperature,
-we find the temperature on the x-axis, follow it vertically up to the red line,
-then follow it horizontally to the y-axis. This is our predicted volume.&lt;/p&gt;
-
-&lt;h2 id="why-statistics-and-math-and-doodles"&gt;Why statistics and math and doodles&lt;/h2&gt;
-&lt;p&gt;Statistics lets us distill our complex observations of the world into simple
-numbers that are easier to understand. Covariance, variance, correlation
-and least-squares regression are some statistics that are commonly used. The
-text explains why we use them, and the video explains how we calculate them.&lt;/p&gt;
-
-&lt;p&gt;The formulae for these statistics get a bit confusing when you write them
-out as symbols, but math can always be drawn, and it usually makes more sense
-that way.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-09-10:/!/street-sign-protocol/index.html</id>
-    <title type="html">The Street Sign Protocol</title>
-    <published>2013-09-10T00:00:00Z</published>
-    <updated>2013-09-10T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/street-sign-protocol/index.html"/>
-    <content type="html">&lt;p&gt;There are a lot of acronyms on the internet that end in “P”,
-like TCP, IP, and HTTP. This “P” stands for “protocol”.
-Perhaps you are wondering what a protocol is.&lt;/p&gt;
-
-&lt;p&gt;“Protocol” is one of those words that sounds more special than it really is.
-The concept of a computer protocol might sound quite complex, but
-it’s a rather generic concept that is something like a language,
-an expectation, and a social norm.&lt;/p&gt;
-
-&lt;p&gt;The way a particular protocol works might be quite complicated, but
-I just want to explain the generic concept of a protocol. I’m going
-to do this by writing about a protocol that you might not think of
-as a protocol.&lt;/p&gt;
-
-&lt;h2 id="the-street-sign-protocol"&gt;The street sign protocol&lt;/h2&gt;
-&lt;p&gt;I’m going to document a protocol that we might not usually think of a
-protocol. Let’s call it the Street Sign Protocol (SSP).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="street-signs.jpg" alt="Street signs" /&gt;
-&lt;!-- http://farm3.staticflickr.com/2132/2302062601_dd0f89779d.jpg
-     http://oaklandwiki.org/Street_Signs --&gt;&lt;/p&gt;
-
-&lt;p&gt;To keep things simple, I’ll actually document a simple version of the
-Street Sign Protocol. Let’s call it the Simple Street Sign Protocol (SSSP).&lt;/p&gt;
-
-&lt;h3 id="why-we-might-want-sssp"&gt;Why we might want SSSP&lt;/h3&gt;
-&lt;p&gt;You might already be familiar with how street signs work, but it took you a while
-to figure it out. Also, you are probably so familiar with street signs that you
-don’t really think about all of the small details that are involved in communication
-through street signs.&lt;/p&gt;
-
-&lt;p&gt;If we wanted to tell a robot how to communicate through street signs, it would be
-helpful to be very explicit and precise about all of the aspects of street signs.&lt;/p&gt;
-
-&lt;h3 id="specification"&gt;Specification&lt;/h3&gt;
-&lt;p&gt;SSSP is a way of exchanging the names of &lt;em&gt;streets&lt;/em&gt;. It involves
-&lt;em&gt;street signs&lt;/em&gt; mounted on &lt;em&gt;poles&lt;/em&gt; near the &lt;em&gt;corners&lt;/em&gt; of
-&lt;em&gt;four-way intersections&lt;/em&gt;. Let’s define these terms.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A &lt;em&gt;street&lt;/em&gt; is a paved public thoroughfare in a built environment.
-  (This definition is taken from &lt;a href="http://en.wikipedia.org/wiki/Street"&gt;Wikipedia&lt;/a&gt;.)&lt;/li&gt;
-  &lt;li&gt;A &lt;em&gt;four-way intersection&lt;/em&gt; is a place where two streets cross.
-  Its shape is approximately a rectangle, with one side having the
-  width of one street and the other side having the width of the
-  other street.&lt;/li&gt;
-  &lt;li&gt;Being rectangular, a four-way intersection has four &lt;em&gt;corners&lt;/em&gt; at the
-  usual places.&lt;/li&gt;
-  &lt;li&gt;A &lt;em&gt;pole&lt;/em&gt; is a long cylinder sticking out of the ground.&lt;/li&gt;
-  &lt;li&gt;A &lt;em&gt;street sign&lt;/em&gt; is a flat rectangular thing that has text on both faces.
-  The sign is oriented such that the text reads left-to-right.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now we can define the SSSP in outrageous precision and verbosity! &lt;em&gt;You’ll probably
-get confused as you read the paragraphs below, so keep in mind that this is just
-a very precise and verbose explanation of what we usually consider to be street signs&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Each four-way intersection has four corners, and each pole is associated with
-a corner of an intersection. Each corner must have zero or one poles, and at least
-one of the corners of a four-way intersection must have a pole; thus, an
-intersection must have between one and four poles.&lt;/p&gt;
-
-&lt;p&gt;Poles must be mounted within about ten feet of a corner of the intersection
-but not on the paved area of the street or the intersection. (It is okay for them
-to be mounted on the sidewalk.) It must stick straight out of the ground; the long
-axis of the cylinder must be approximately in line with the direction of gravity.&lt;/p&gt;
-
-&lt;p&gt;Each street sign displays the name of one street. The street sign must include the
-name of the street in very large text. This name must be written on both faces of
-the sign and must be especially easy to see, even at night.&lt;/p&gt;
-
-&lt;p&gt;Street signs are mounted on poles, each pole having exactly two street signs.
-The street signs must be aligned in a particular way. One of the faces must be
-just-barely-touching (tangent) the pole. The sign must also line up with its
-corresponding street; that is, the wide axis of the rectangular sign must run
-parallel the corresponding street.&lt;/p&gt;
-
-&lt;p&gt;Each pole must contain two street signs, each one corresponding to a different
-one of the two streets at the four-way intersection.&lt;/p&gt;
-
-&lt;h3 id="implementing-a-sssp-writer"&gt;Implementing a SSSP writer&lt;/h3&gt;
-&lt;p&gt;Here is one possible procedure for encoding street names in SSSP. This procedure
-expects a four-way intersection and the names of the two streets as input. It
-outputs SSSP (two street signs mounted to a pole near the intersection).&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Determine which corner(s) of the intersections the street signs should be
- mounted on. You might consider the locations of buildings, the presence
- of sidewalks, the traffic patterns and the presence of visual obstacles
- like trees.&lt;/li&gt;
-  &lt;li&gt;Print the signs with the street names.&lt;/li&gt;
-  &lt;li&gt;Cast a pole.&lt;/li&gt;
-  &lt;li&gt;Put a pole and street signs on a truck.&lt;/li&gt;
-  &lt;li&gt;Drive the truck to the intersection, and park nearby.&lt;/li&gt;
-  &lt;li&gt;Carry the materials and some tools to the intersection.&lt;/li&gt;
-  &lt;li&gt;Stick the pole in the ground near the chosen corner. I imagine that this
- involves putting up caution tape, digging a hole, securing the pole, pouring
- some concrete and covering it back up, but I don’t really know. If this were
- software, I’d try to use separate pole-installation library so I don’t have
- to implement the pole-installation procedure myself.&lt;/li&gt;
-  &lt;li&gt;Mount the street signs to the pole. Position them about ten feet above the ground,
- with one on top of the other and with the centers of the signs touching the pole,
- and otherwise in the appropriate orientations specified by the protocol. Secure
- them with a sign bracket.&lt;/li&gt;
-  &lt;li&gt;Drive the truck back to wherever you got it from.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id="implementing-a-sssp-reader"&gt;Implementing a SSSP reader&lt;/h3&gt;
-&lt;p&gt;Here is a procedure for decoding SSSP. It has the opposite inputs and outputs as
-the SSSP writer.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Look for poles with street signs at the four corners of the four-way intersection.&lt;/li&gt;
-  &lt;li&gt;Focus on the first valid pole that you see; ignore any others.&lt;/li&gt;
-  &lt;li&gt;Do the following for each of the two street signs.&lt;/li&gt;
-  &lt;li&gt;Read the large text on the sign.&lt;/li&gt;
-  &lt;li&gt;Associate this large text with the street that the sign lines up with.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="hypertext-transfer-protocol"&gt;Hypertext Transfer Protocol&lt;/h2&gt;
-&lt;p&gt;Now let’s talk about something that people actually call a protocol.
-Here’s a simplified version of the Hypertext Transfer Protocol (HTTP).&lt;/p&gt;
-
-&lt;h3 id="why-we-use-http"&gt;Why we use HTTP&lt;/h3&gt;
-&lt;p&gt;When you look at stuff on the internet with a web browser, your web browser and
-various web servers are sending messages between each other. HTTP is a common
-language that all of these computers use.&lt;/p&gt;
-
-&lt;p&gt;While all of these web servers are expecting HTTP, you can actually send them
-anything you want. If it is sort of like HTTP but with a few typos, the web
-server might figure out what you meant. But if you sent random garbage, the
-web server would not have any idea of what you wanted.&lt;/p&gt;
-
-&lt;p&gt;We have common internet languages for the same reasons that we have common
-human languages. If you talk to me in English, I’ll understand you quite well.
-I’ll make sense of it even you you are not using Queen’s English. But I won’t
-really have any idea what you mean if you use sign language.&lt;/p&gt;
-
-&lt;p&gt;We agree to use HTTP on all of these different computers because it makes it
-easier for the computers to understand each other.&lt;/p&gt;
-
-&lt;h3 id="highly-simplified-specification"&gt;Highly simplified specification&lt;/h3&gt;
-&lt;p&gt;HTTP is a way of exchanging information between a web browser and a web server.
-It involves &lt;em&gt;messages&lt;/em&gt;, which are very long series of words, punctuation and
-spaces. HTTP prescribes who sends and receives these messages and how these
-messages are formatted.&lt;/p&gt;
-
-&lt;p&gt;Some messages have a &lt;em&gt;body&lt;/em&gt;. This is an embedded series of words, punctuation
-and spaces that can be written in any format you want.&lt;/p&gt;
-
-&lt;p&gt;Each message may have a bunch of &lt;em&gt;headers&lt;/em&gt;. Each header has a name and a value.
-There are a bunch of headers that provide some information about the body
-(like its size or format), and there are a bunch of headers that provide
-information about the system that is sending the message. And there are others,
-like the date of the message.&lt;/p&gt;
-
-&lt;p&gt;Each message is either a request or a response. By being a request, a message
-indicates that it came from a web browser and is being sent to a web server.
-By being a response, a message indicates that it came from a web server and
-is being sent to a web browser. Each response sent from a particular server
-to a particular browser must be initiated by a request sent from the
-particular browser to particular server.&lt;/p&gt;
-
-&lt;p&gt;Every response has a body (explained above) and a status code. The status code
-is a number that explains whether the request succeeded and any quirks about its
-success or failure. For example, status code &lt;code&gt;200&lt;/code&gt; means that the request worked
-as expected, and status code &lt;code&gt;403&lt;/code&gt; means that you don’t have permission to do
-whatever you tried to do.&lt;/p&gt;
-
-&lt;p&gt;Each request must have a method. There are a bunch of methods, and you can think
-of them as different commands. Here are a few of them.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;POST&lt;/code&gt; is the method that asks the server to save a new document.
-  It contains a body.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;PUT&lt;/code&gt; is the method that asks the server to edit an existing document.
-  It contains a body.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;GET&lt;/code&gt; is the method that asks the server to send an existing document in the
-  body of the response (and not to alter it). The request does not contain a body.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt; is the method that asks the server to do everything that it would do in
-  for an equivalent &lt;code&gt;GET&lt;/code&gt; request except for sending the body. Like the &lt;code&gt;GET&lt;/code&gt;
-  request, the &lt;code&gt;HEAD&lt;/code&gt; request contains no body.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="receiving-and-reading-and-writing-and-sending"&gt;Receiving and reading and writing and sending&lt;/h3&gt;
-&lt;p&gt;A bunch of things in your web browser might initiate a request. For example, opening
-a web page makes one request, and loading an image on the web page makes another request.&lt;/p&gt;
-
-&lt;p&gt;A computer somewhere (Call it the “web server”.) is running a particular piece of software
-(Call it the “HTTP server”.) that is able to receive this request.
-The HTTP server receives the request, checks that it is valid, and breaks it into the
-method, headers, and body.&lt;/p&gt;
-
-&lt;p&gt;Then the HTTP server asks something else to decide what to do.
-After doing everything, this other thing decides what the outcome was and tells the HTTP server.&lt;/p&gt;
-
-&lt;p&gt;The HTTP server composes an HTTP response and
-sends that back to the browser.&lt;/p&gt;
-
-&lt;p&gt;The browser breaks that into its various parts and accordingly displays a web page,
-shows an image or does whatever else was specified.&lt;/p&gt;
-
-&lt;h2 id="a-protocol-is-an-expectation"&gt;A protocol is an expectation&lt;/h2&gt;
-&lt;p&gt;“Protocol” means the same thing for computers as it does for people.
-There are lots of different protocols, and some of them are very complicated,
-but the word “protocol” itself has a rather simple meaning; it’s just
-a way that we expect things to work.&lt;/p&gt;
-
-&lt;p&gt;Like how we agree to speak the same language (probably English if you’re reading this)
-or to drive on the same side of the street, we agree on a computer protocol because that
-makes it easier for us to make computers communicate. We can choose to build computers
-that don’t follow standard protocols, but that would make them hard to understand.&lt;/p&gt;
 </content>
   </entry>
 </feed>
