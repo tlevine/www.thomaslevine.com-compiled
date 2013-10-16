@@ -145,7 +145,7 @@
             that if it sounds like Greek.</em></p>
             
             <h3 id="rows">Rows</h3>
-            <p>The very first line in that table says “id, location, …”.
+            <p>The very first line in that table says “Country”, “Life Expectancy” and “Income Per Person”.
             This line is called the “header”, and we’ll get to that later.</p>
             
             <p>The rest of the lines are all <em>rows</em>.
@@ -262,16 +262,21 @@
             </table>
             
             <h3 id="tidy-data">Tidy data</h3>
+            <p>I said above that “row” is a synonym for “record”, “observation” and “trial
+            and that “column” is a synonym for “variable” and “feature”. This isn’t <em>entirely</em>
+            true. In my mind, these truly are synonyms, but I’m sometimes given a data
+            table that doesn’t look like this.</p>
+            
             <p>You could make a data table where rows don’t correspond to records
             and where columns don’t correspond to variables. For example, you could make
             a table where and columns are records and rows are variables. Or you could
-            make a table that includes a few rows that are totals of the other rows.
-            But I get confused when they I have tables like this.</p>
+            make a table that includes a few rows that are statistics about the other rows.
+            I get confused when they I have tables like this.</p>
             
-            <p><img src="untidy.jpg" alt="Tom gets confused when data aren't tidy" /></p>
+            <p><img src="untidy.jpg" alt="Tom gets confused when data aren't tidy" class="wide" /></p>
             
             <p>There’s actually a name for this sort of data table; it’s called <em>untidy</em>
-            data, and the first thing that I do when analysing such a data table is
+            data, and the first thing that I do when analyzing such a data table is
             converting it into the <em>tidy</em> format where each row is an observation/trial/record
             and each column is a variable.</p>
             
