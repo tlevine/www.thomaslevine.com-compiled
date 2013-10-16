@@ -86,14 +86,20 @@
         </header>
         <div id='article-wrapper'>
           <article>
+            <style>
+            #row tbody tr:nth-of-type(2n),
+            #column tbody tr td:nth-of-type(2n),
+            #header thead tr
+            {
+              color: white;
+              background-color: rgb(254, 87, 161);
+            }
+            </style>
+            
             <h2 id="data-means-table">“Data” means “table”</h2>
             <p>I don’t really like to distinguish between data and anything else
             because <a href="/!/world-data-world">everything is data to me</a>. But I sort
-            of do make a distinction, and here it is.</p>
-            
-            <blockquote>
-              <p>Data are things in data tables</p>
-            </blockquote>
+            of do make a distinction, and here it is: Data are things in data tables.</p>
             
             <p>Once we express the world in data tables, we can study it with a
             wide body of analytical tools that expect data to be in tables.
@@ -101,13 +107,42 @@
             words to describe all of the different parts of a table.</p>
             
             <h2 id="rows-and-columns">Rows and columns</h2>
-            <p>Here’s a data table.</p>
+            <p>Here’s a data table about the wealth and health of nations.</p>
             
-            <p><img src="" alt="A handwritten data table" /></p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Life expectancy (years)</th>
+                  <th>Income Per Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>United States</td>
+                  <td>79</td>
+                  <td>$41,678</td>
+                </tr>
+                <tr>
+                  <td>Ukraine</td>
+                  <td>68</td>
+                  <td>$6,390</td>
+                </tr>
+                <tr>
+                  <td>Ethiopia</td>
+                  <td>63</td>
+                  <td>$959</td>
+                </tr>
+              </tbody>
+            </table>
             
             <p>It has a grid with a value in each of the rectangular boxes.
             Being this sort of grid, it has columns and rows. These columns
             and rows mean special things.</p>
+            
+            <p><em>What we’re calling “income per person” is technically gross-domestic product per
+            capita, adjusted for purchasing power parity and inflation. But don’t worry about
+            that if it sounds like Greek.</em></p>
             
             <h3 id="rows">Rows</h3>
             <p>The very first line in that table says “id, location, …”.
@@ -115,106 +150,146 @@
             
             <p>The rest of the lines are all <em>rows</em>.
             A data table represents a collection of things, and each individual
-            thing is represented as a row. For example, this table is about a
-            collection of XXX, so each row is a XXX.</p>
+            thing is represented as a row. For example, the table above is about a
+            collection of countries, so each row is a country. I’ve copied it down
+            here again, this time highlighting one of its three rows.</p>
             
-            <p><img src="" alt="The same handwritten data table, but with a row of the table highlighted" /></p>
+            <table id="row">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Life expectancy (years)</th>
+                  <th>Income Per Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>United States</td>
+                  <td>79</td>
+                  <td>$41,678</td>
+                </tr>
+                <tr>
+                  <td>Ukraine</td>
+                  <td>68</td>
+                  <td>$6,390</td>
+                </tr>
+                <tr>
+                  <td>Ethiopia</td>
+                  <td>63</td>
+                  <td>$959</td>
+                </tr>
+              </tbody>
+            </table>
             
-            <p>It is quite important to know that each row is a XXX, so we have a
-            name for this relationship; we say that XXX is the the <em>statistical unit</em>
+            <p>It is quite important to know that each row is a country, so we have a
+            name for this relationship; we say that country is the the <em>statistical unit</em>
             in this data table.</p>
             
-            <p><strong>Synonyms</strong>: Rows are also called <em>records</em></p>
+            <p><strong>Synonyms</strong>: Rows are also called <em>records</em>, <em>observations</em>, <em>trials</em>
+            and probably a bunch of other things.</p>
             
             <h3 id="columns">Columns</h3>
             <p>In this data table, we have recorded a bunch of information about
-            each XXX. More precisely, we have recorded the same sorts of information
-            about each XXX. For example, the first box in each row contains the YYY
-            for that XXX, and the second box in each row contains the ZZZ for the XXX.</p>
+            each the wealth and health of nations. More precisely, we have recorded
+            the same sorts of information about each country during the year 2012.
+            The first box in each row contains the name of that country,
+            and the second box contains the life expectancy for that country,
+            and the third contains the income per person.</p>
             
             <p>Thus, all of the values in a given column are about the same sort of thing.
-            For example, the second column contains all of the ZZZs. We usually indicate
-            this in the header line; we know that the second column contains ZZZs because
-            the box at the top of the column says “ZZZ”.</p>
+            For example, the second column contains all of the life expectencies.</p>
             
-            <p><img src="" alt="The same handwritten data table, but with a column of the table highlighted" /></p>
+            <table id="column">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Life expectancy (years)</th>
+                  <th>Income Per Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>United States</td>
+                  <td>79</td>
+                  <td>$41,678</td>
+                </tr>
+                <tr>
+                  <td>Ukraine</td>
+                  <td>68</td>
+                  <td>$6,390</td>
+                </tr>
+                <tr>
+                  <td>Ethiopia</td>
+                  <td>63</td>
+                  <td>$959</td>
+                </tr>
+              </tbody>
+            </table>
             
             <p><strong>Synonyms</strong>: Columns are also called <em>variables</em> and <em>features</em>. These words
             sound very fancy, but they’re not; when a data scientist says “variable” or
-            “feature”, he’s just using a fancy word for “column”.</p>
+            “feature”, she’s just using a fancy word for “column”.</p>
             
-            <h4 id="another-meaning-of-variable">Another meaning of “variable”</h4>
-            <p>This meaning of the word “variable” can be confusing if you were taught a different
-            meaning of “variable” in school. If you are used to this meaning, you’ll think that
-            <em>x</em> in the following equation is a variable.</p>
+            <h3 id="header">Header</h3>
+            <p>We usually indicate the names of the columns in the <em>header</em>, which is
+            highlighted below. This is how we know what each column means.</p>
             
-            <script type="math/tex; mode=display">12 = x + 7</script>
+            <table id="header">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Life expectancy (years)</th>
+                  <th>Income Per Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>United States</td>
+                  <td>79</td>
+                  <td>$41,678</td>
+                </tr>
+                <tr>
+                  <td>Ukraine</td>
+                  <td>68</td>
+                  <td>$6,390</td>
+                </tr>
+                <tr>
+                  <td>Ethiopia</td>
+                  <td>63</td>
+                  <td>$959</td>
+                </tr>
+              </tbody>
+            </table>
             
-            <p>I usually think of these as different meanings of the word “variable”,
-            but it turns out that these two senses of “variable” are quite related.
-            The next paragraph explains how they are related. This relationship usually
-            confuses me, so it might confuse you. If it does, just ignore the next paragraph
-            and go on.</p>
+            <h3 id="tidy-data">Tidy data</h3>
+            <p>You could make a data table where rows don’t correspond to records
+            and where columns don’t correspond to variables. For example, you could make
+            a table where and columns are records and rows are variables. Or you could
+            make a table that includes a few rows that are totals of the other rows.
+            But I get confused when they I have tables like this.</p>
             
-            <p>Once we have created a data table, we might decide to make a fancy equation that
-            explains how some values in the table are related to each other. We might call
-            this a <em>model</em>. It might be something like this.</p>
+            <p><img src="untidy.jpg" alt="Tom gets confused when data aren't tidy" /></p>
             
-            <script type="math/tex; mode=display">Sunday ridership = Saturday ridership - 1 million people</script>
-            
-            <p>In this model, Sunday ridership and Saturday ridership are
-            just numbers that we take from one row of the table.
-            To make that look more like what you might be used to, let’s
-            rewrite it like this.</p>
-            
-            <script type="math/tex; mode=display">y = x - 1 million people</script>
-            
-            <p>A model allows us to express complex things with more simply.
-            The model won’t be exactly right, of course; it’s just a model.
-            One way we can use a model is to make predictions. Typically we
-            write the equation such that the left side is the thing we are
-            predicting and the right side is the stuff we know.</p>
-            
-            <p>The last row in our data table is the observation for this year.
-            Note that we don’t have a value for the “actual spending” column.
-            That’s because we’ll have to wait a few months before we see what
-            the government spends this year. We don’t want to wait that long,
-            so let’s use our model to predict it. We know <em>x</em>, so let’s plug
-            that in.</p>
-            
-            <!-- maybe switch this for something simpler, like inmates in jail next month -->
-            
-            <script type="math/tex; mode=display">y = 8 - 3 </script>
-            
-            <p>When we have such an equation, we can plug in the values we know
-            and solve for the value on the left side.</p>
-            
-            <p>Let’s get back to why these two senses of variable are the same
-            thing. One sense is a column in a table, and the other sense is
-            an unknown in an equation. A variable in the column sense is just
-            a lot of variables in the latter sense; we’re solving the same
-            equation lots of times (as many times as we have rows), by
-            plugging in different values for the same unknows.</p>
-            
-            <p><img src="" alt="Explanatory picture" /></p>
-            
-            <h2 id="lists">Lists</h2>
-            <p>Earlier, I said that a column is a special list of values. We could also say</p>
-            
-            <p>(Actually, people might say <em>vector</em> instead of <em>list</em>, but they mean
-            pretty much the same thing.)</p>
-            
-            <h3 id="you-cant-switch-them">You can’t switch them</h3>
-            <p>You could make a data table where rows are variables and columns are records,
-            but hardly anyone does that, and I get confused when people do.</p>
-            
-            <h2 id="schemas-and-formats">Schemas and formats</h2>
+            <p>There’s actually a name for this sort of data table; it’s called <em>untidy</em>
+            data, and the first thing that I do when analysing such a data table is
+            converting it into the <em>tidy</em> format where each row is an observation/trial/record
+            and each column is a variable.</p>
             
             <h2 id="review">Review</h2>
             
             <ul>
-              <li>A <strong>foo</strong> is a bar baz.</li>
+              <li>Data scientists like to put things in tables.</li>
+              <li>In the table, a row is a record/observation/trial, which corresponds to the
+              statistical unit of the dataset.</li>
+              <li>In the table, a column is a variable/feature.</li>
+              <li>This layout of a table is called “tidy data”, and data scientists like their
+              data to be tidy.</li>
             </ul>
+            
+            <h2 id="ask-questions">Ask questions!</h2>
+            
+            <p>Data science has lots of words and concepts that often sound fancier
+            than they really are. What should I tell you about next?</p>
           </article>
         </div>
         <div id='pagination'>

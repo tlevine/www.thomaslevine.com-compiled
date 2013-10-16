@@ -67,6 +67,14 @@ it says I “must provide a valid email.”&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="data-us.png" alt="&amp;quot;Due to the lapse in federal government funding, this website is not available&amp;quot;" class="wide" /&gt;&lt;/p&gt;
 
+&lt;p&gt;It’s not just websites that are getting it wrong; some mail servers don’t
+recognize it!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;[redacted]@hotmail.com&amp;gt;: host mx2.hotmail.com[65.55.92.168] said: 550
+    5.7.0 (SNT0-MC3-F22) Message could not be delivered. Please ensure the
+    message is RFC 5322 compliant. (in reply to end of DATA command)
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Fix your &lt;a href="http://tools.ietf.org/html/rfc3696"&gt;email address&lt;/a&gt; validators, people!&lt;/p&gt;
 </content>
   </entry>
