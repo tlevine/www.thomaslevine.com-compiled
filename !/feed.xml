@@ -2,13 +2,215 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-10-13T00:00:00Z</updated>
+  <updated>2013-10-29T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-10-29:/!/missouri-data-licensing/index.html</id>
+    <title type="html">License-free data in Missouri's data portal</title>
+    <published>2013-10-29T00:00:00Z</published>
+    <updated>2013-10-29T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/missouri-data-licensing/index.html"/>
+    <content type="html">
+&lt;h2 id="which-specific-datasets-have-license-metadata"&gt;Which specific datasets have license metadata?&lt;/h2&gt;
+&lt;p&gt;I recently &lt;a href="/!/open-data-licensing"&gt;found&lt;/a&gt; that most datasets on the
+open data portals I’ve been looking at don’t have open licenses or.
+public domain dedications.&lt;/p&gt;
+
+&lt;p&gt;But a lot of datasets do have licenses or public domain dedication, and
+licensing this varies within portals. I wanted to see which datasets get
+have some sort of licensing metadata and which ones
+don’t.
+Or this is what I thought I wanted;
+I started looking at this on one data portal, and I
+wound up going down a slightly different rabbit hole.&lt;/p&gt;
+
+&lt;h2 id="the-missouri-data-portal"&gt;The Missouri Data Portal&lt;/h2&gt;
+&lt;p&gt;I looked at the Missouri Data Portal,
+&lt;a href="https://data.mo.gov"&gt;data.mo.gov&lt;/a&gt;. Here’s why I chose it.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;To make it easy to download the license information, I wanted to use
+ Socrata’s DCAT endpoint. This endpoint only returns up to 1000
+ datasets, so I needed a portal with no more than 1000 datasets.
+ Missouri’s portal has 897 datasets.&lt;/li&gt;
+  &lt;li&gt;I think I’ve figured out how to
+ &lt;a href="/!/socrata-deduplicate"&gt;deduplicate federated datasets&lt;/a&gt;,
+ but I didn’t want to deal with that.
+ The Missouri portal federates only the
+ &lt;a href="https://data.kcmo.org"&gt;Kansas City data portal&lt;/a&gt;,
+ so no federal data should be duplicated in this portal.&lt;/li&gt;
+  &lt;li&gt;Missouri has &lt;a href="/!/socrata-formats"&gt;a lot of PDF files&lt;/a&gt;,
+ so I thought there might be something in there that would be more
+ original than mere facts and covered under copyright; this would
+ make a license more important.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I wound up categorizing the datasets quite a bit more than I originally
+intended, so now I know a lot about the sorts of data on the portal.&lt;/p&gt;
+
+&lt;h2 id="licenses"&gt;Licenses&lt;/h2&gt;
+&lt;p&gt;Most datasets (619) on the
+Missouri portal are listed as in the public domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/publicdomain.png" alt="plot of chunk publicdomain" /&gt; &lt;/p&gt;
+
+&lt;p&gt;The rest (278 datasets) have nothing in the “license” metadata field.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+##      
+##       FALSE TRUE
+##   Yes   619    0
+##   No      0  278
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id="formats"&gt;Formats&lt;/h2&gt;
+&lt;p&gt;Proportionately more PDF files are public domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/publicdomain_pdf.png" alt="plot of chunk publicdomain_pdf" /&gt; &lt;/p&gt;
+
+&lt;p&gt;I noticed a bunch of PDF files with names like these.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/nfur-xwk2"&gt;  SWTWESTP EW 5 HR 2009 A PCW&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/5zv3-u47y"&gt;  SHAWNEEWARD 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/i2ip-cykb"&gt;PROSPECTSWOPE 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/6gz3-267n"&gt;    OAKVOLKER 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/yjr5-e96s"&gt;         OAK9 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/sqpd-738e"&gt;        OAK12 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/9ddu-xy68"&gt;       MAIN13 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/eyii-3nuq"&gt;        MAIN8 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://data.mo.gov/d/n2kq-rg69"&gt;    MADISON43 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are all traffic surveys, and it turns out that they account for
+almost all of the PDF files on the portal.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/pdf_trafficsurvey.png" alt="plot of chunk pdf_trafficsurvey" /&gt; &lt;/p&gt;
+
+&lt;h2 id="dataset-kinds"&gt;Dataset kinds&lt;/h2&gt;
+&lt;p&gt;A lot of PDF files had public domain licenses, but it’s not clear-cut,
+so I looked more specifically at what datasets are on the portal. The only
+field in the dataset that really told me much about this was the
+&lt;code&gt;title&lt;/code&gt; field, which is what I used above to find the traffic surveys.
+I kept going with that for the other datasets.&lt;/p&gt;
+
+&lt;p&gt;I just used a bunch of reasonably simple
+&lt;a href="https://github.com/tlevine/socrata-catalog/blob/master/src/missouri.license.r"&gt;string matches&lt;/a&gt;.
+For example, a bunch of datasets came from the American Community Survey,
+and these said “ACS” or “American Community Survey” in the title.
+Data from the federal said “Census”. And liquor license data said either
+“Liquor” or “Alcohol”.&lt;/p&gt;
+
+&lt;p&gt;In the plot below, I map out the different kinds of datasets, whether
+they are PDF files and whether they have public domain licenses.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/kinds_counts.png" alt="plot of chunk kinds_counts" /&gt; &lt;/p&gt;
+
+&lt;p&gt;Here’s the same plot but with proportions instead of counts. This makes
+the small bars more apparent.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/kinds_prop.png" alt="plot of chunk kinds_prop" /&gt; &lt;/p&gt;
+
+&lt;p&gt;I didn’t manage to get it much more precise than this, but I did find that
+the uncategorized datasets containing the word “Missouri” tended not to
+have a license.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/says_missouri.png" alt="plot of chunk says_missouri" /&gt; &lt;/p&gt;
+
+&lt;h2 id="the-merits-of-explicitly-stating-that-a-dataset-is-in-the-public-domain"&gt;The merits of explicitly stating that a dataset is in the public domain&lt;/h2&gt;
+&lt;p&gt;A few years ago, a few open government advocates came up with
+&lt;a href="http://www.opengovdata.org/home/8principles"&gt;eight principles of open government data&lt;/a&gt;.
+Among these is the principle that the data be free of license.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Data are not subject to any copyright, patent, trademark or trade secret regulation. Reasonable privacy, security and privilege restrictions may be allowed as governed by other statutes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In some cases, government data already meet this criterion by default.
+As the /unitedstates project &lt;a href="http://theunitedstates.io/licensing/"&gt;explains&lt;/a&gt;,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Copyright applies to some government data but not others (and never to U.S. law). When it applies, it must be waived by the agency (or owner if not the agency) for the data to meet the “license-free” principle. In this case, data is dedicated to the public domain, not licensed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In some cases, copyright does not apply at all because it is a government
+product. In other cases, it might not apply because the data might be
+facts, which can’t be copyrighted. However, it can be quite difficult for
+a consumer of data to determine whether copyright applies to a dataset.
+Thus, it makes sense to be explicit. As the /unitedstates project explains,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Data is more valuable when its copyright status is clear through an explicit statement.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id="the-importance-of-an-explicit-statement-for-traffic-surveys"&gt;The importance of an explicit statement for traffic surveys&lt;/h2&gt;
+&lt;p&gt;Traffic surveys are a perfect example of where you need to be explicit.&lt;/p&gt;
+
+&lt;h3 id="are-traffic-surveys-facts"&gt;Are traffic surveys facts?&lt;/h3&gt;
+&lt;p&gt;In some cases, copyright might not apply to a dataset simply because the
+dataset isn’t sufficiently original; if the dataset contains only facts,
+copyright won’t apply. This might be okay for parts of the traffic survey
+files. Here’s part of a page from
+&lt;a href="https://data.mo.gov/Traffic/OAKVOLKER-5-HR-2009-A-TMC/6gz3-267n?"&gt;this traffic survey&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-table.png" alt="A data table" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The page above just has a table of numbers. This might count as facts, so
+it is possible that it would not be original enough for copyright to apply.
+This next page is a bit fancier.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-diagram.png" alt="A diagram of a street intersection" /&gt;&lt;/p&gt;
+
+&lt;p&gt;While this diagram contains facts (counts of cars taking different routes
+through the intersection), it also contains a fancy drawing of the intersection.
+The numbers are facts, and those should be free from copyright, but does
+copyright apply to the diagram?&lt;/p&gt;
+
+&lt;h3 id="are-traffic-surveys-government-works"&gt;Are traffic surveys government works?&lt;/h3&gt;
+&lt;p&gt;Copyright protection does not apply to government works, but it could apply
+to works produced by contractors. From the file on the data portal website,
+we can’t tell whether it was produced entirely by government workers, so
+we can’t use this law for assurance that the data are free of a license.&lt;/p&gt;
+
+&lt;h3 id="yay-for-explicit-statement"&gt;Yay for explicit statement&lt;/h3&gt;
+&lt;p&gt;Given the potential ambiguities above, it is quite important that these traffic
+survey files have explicit notices where it’s possible. I commend the state of
+Missouri for providing such notices.&lt;/p&gt;
+
+&lt;h2 id="what-i-really-learned-from-this"&gt;What I really learned from this&lt;/h2&gt;
+&lt;p&gt;I used this analysis to provide an example of a situation where it is
+important to have an explicit statement about the license of a dataset
+or about the absense of license. Beyond that, this analysis doesn’t
+really tell us much about licensing.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, I feel like I’ve come up with a reasonably complete
+grouping of the datasets in the Missouri data portal.&lt;/p&gt;
+
+&lt;p&gt;In the more granular groupings, I think
+I’ve arrived at datasets that could naturally be combined into one data
+table. This is even true for the traffic survey data; each particular PDF
+traffic survey report could be converted into a single row in a data table.&lt;/p&gt;
+
+&lt;p&gt;I arrived at these groupings pretty much entirely by looking at the tables,
+but the groupings seem to relate to trends in other variables, like the
+license field of the dataset. I’ve been wanting to come up with methods for
+relating datasets to each other. I thought these methods would need to be
+&lt;a href="/!/open-data-plans#better-search-and-linked-data"&gt;somewhat involved&lt;/a&gt;, but
+maybe we can start with something simpler.&lt;/p&gt;
+
+&lt;h2 id="future-study"&gt;Future study&lt;/h2&gt;
+&lt;p&gt;In the Missouri portal, I used only title to group datasets; I didn’t
+look at the long-form description, the author or the schema. There were
+pretty clear-cut divisions between titles, but I would like to see how
+reasonable this approach really is; I want to whether groups of similarly
+named datasets tend to have similar schemas.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-10-13:/!/dot-at-thomaslevine-dot-com/index.html</id>
     <title type="html">A new email address</title>
@@ -417,135 +619,6 @@ before people can stop caring about counts.&lt;/p&gt;
 
 &lt;script src="graph-diagram.js"&gt;&lt;/script&gt;
 
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-09-17:/!/open-data-plans/index.html</id>
-    <title type="html">Open data possibilities</title>
-    <published>2013-09-17T00:00:00Z</published>
-    <updated>2013-09-17T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-plans/index.html"/>
-    <content type="html">&lt;p&gt;I’ve brief suspended my open data studies to prepare
-some things for &lt;a href="http://zipfianacademy"&gt;Zipfian Academy&lt;/a&gt;’s
-first twelve-week course, but I’ve been accumulating
-lots of ideas of things you could do with data about
-open data. I plan on doing a lot of them, but I
-probably can’t do all, so you should take one of these
-ideas and do something awesome.&lt;/p&gt;
-
-&lt;h2 id="whats-in-the-portals"&gt;What’s in the portals?&lt;/h2&gt;
-
-&lt;h3 id="socrata-v-github"&gt;Socrata v GitHub&lt;/h3&gt;
-&lt;p&gt;GitHub has a pretty CSV table visualizer thingy that supports small CSV files.
-What proportion of Socrata tables are small enough to be supported by GitHub?&lt;/p&gt;
-
-&lt;h3 id="compare-official-datasets-to-derived-datasets"&gt;Compare official datasets to derived datasets&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;data.json&lt;/code&gt; file contains only the official datasets and the federated datasets.
-The search of the site contains all of the derived views. Let’s compare these two to
-see what sort of data gets studied within the data portal.&lt;/p&gt;
-
-&lt;h3 id="openness-by-department-and-city"&gt;Openness by department and city&lt;/h3&gt;
-&lt;p&gt;Some departments are more resistant to opening data. I’m told that the departments
-that are more political tend to be more resistant to opening data. I want to use
-open data release as an indicator of politicalness of a department, and I want to
-see how open data release (politicalness) of equivalent departments (like education)
-vary by city.&lt;/p&gt;
-
-&lt;h2 id="better-search-and-linked-data"&gt;Better search and linked data&lt;/h2&gt;
-
-&lt;p&gt;Let’s find links between datasets. Ideally, let’s get a bunch of datasets with rich
-linked data about them and try to predict the linkages. Specific things I want to try&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Find datasets that can be joined on common variables (columns).&lt;/li&gt;
-  &lt;li&gt;Determine the statistical unit (meaning of a row) of a dataset.&lt;/li&gt;
-  &lt;li&gt;Aggregate datasets so that they can be joined.&lt;/li&gt;
-  &lt;li&gt;Automatically union datasets by selecting datasets with the same variables (columns)
-  and statistical units (rows)&lt;/li&gt;
-  &lt;li&gt;Fill in the codebook (data dictionary). For datasets missing codebooks, we might be
-  able to pick some of the information out of codebooks with other dictionaries.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="data-quality"&gt;Data quality&lt;/h2&gt;
-
-&lt;h3 id="dataset-and-data-portal-scorecard"&gt;Dataset and data portal scorecard&lt;/h3&gt;
-&lt;p&gt;The current obvious metrics of dataset and data portal quality are
-size, like number of records and number of datasets. There are other
-things that we might want to worry about.&lt;/p&gt;
-
-&lt;p&gt;There are a few guidelines as to how to do open data.
-There’s one from &lt;a href="http://sunlightfoundation.com/opendataguidelines/"&gt;Sunlight&lt;/a&gt;,
-there’s one from the &lt;a href="http://www.appgen.me/audit/"&gt;AppGen audit&lt;/a&gt;,
-I have a list from a conversation from &lt;a href="http://noneck.org/"&gt;Noel&lt;/a&gt;,
-there’s Tim Berners-Lee’s &lt;a href="http://5stardata.info/"&gt;five stars&lt;/a&gt;,
-and there are a bunch of open data laws and policies.&lt;/p&gt;
-
-&lt;p&gt;People like the Sunlight Foundation
-have rated the openness of various places. I would like to make
-such a rating in a more automated way.&lt;/p&gt;
-
-&lt;h3 id="completeness-of-portals"&gt;Completeness of portals&lt;/h3&gt;
-&lt;p&gt;By looking at data from FOIA and other portals, we can guess whether
-a city has a particular dataset internally and check whether it has
-been released publicly. Let’s do this across all cities and see whether
-a particular sort of data is available in particular cities.&lt;/p&gt;
-
-&lt;h3 id="dependencies"&gt;Dependencies&lt;/h3&gt;
-&lt;p&gt;Maybe one dataset is only useful if we also have another dataset.
-For example, maybe we need the mapping from school identifier to
-school location before a school dataset is interesting. If we look
-at historical release and usage of datasets, we might get an idea
-of these dependencies and interactions.&lt;/p&gt;
-
-&lt;h3 id="real-outcomes"&gt;Real outcomes&lt;/h3&gt;
-&lt;p&gt;Open data isn’t useful in itself; it’s useful because good things
-will happen if we do. Or at least that’s the idea. As
-&lt;a href="https://twitter.com/IanJKalin"&gt;Ian Kalin&lt;/a&gt; says, the data portal
-metrics should really tell us how many tax dollars the open data
-saved and how many jobs the data portal created. If we’re creative,
-we can come up with something like this.&lt;/p&gt;
-
-&lt;h2 id="collect-more-data"&gt;Collect more data&lt;/h2&gt;
-&lt;p&gt;There are lots of data portals, and not all
-aspects of the various data portals software
-are documented. Here are some things that will
-help with further studies in the areas discussed
-above.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Who federates whom on Socrata? Figure this out by checking the
-  home pages.&lt;/li&gt;
-  &lt;li&gt;Download data from other data portal software. I currently just
-  have all of the Socrata portals, but it won’t be hard to get all
-  of the CKAN, Junar and OpenDataSoft portals as well.&lt;/li&gt;
-  &lt;li&gt;Collect data about FOIA from places like MuckRock and FOIA Machine.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="studies-with-open-data"&gt;Studies with open data&lt;/h2&gt;
-&lt;p&gt;I’ve been studying the use of open data, but we could also do some studies
-that use open data. Here are two particular things that I want to do.&lt;/p&gt;
-
-&lt;h3 id="gentrification"&gt;Gentrification&lt;/h3&gt;
-&lt;p&gt;Where is gentrification gonna happen next, or where should a hipster move?
-Look at hipster places in open data, and model historical data about gentrification
-to find places that will become hipster soon. My current thought is that these
-places are the ones where it is easy to move and start something new; they might
-have efficient housing markets, decent public transit, and open social circles.
-Note well: I suspect that my thinking is quite naive and that there are probably
-loads of doctoral students working on this already&lt;/p&gt;
-
-&lt;h3 id="tutorial-on-using-open-data"&gt;Tutorial on using open data&lt;/h3&gt;
-&lt;p&gt;I want to do all this aforementioned stuff to make it easier to find and connect
-open data. But people might not want to wait until all of that stuff exists.
-So I want to make a tutorial about finding and connecting open data from different
-governments in order to learn cool things.&lt;/p&gt;
-
-&lt;h2 id="bug-me"&gt;Bug me&lt;/h2&gt;
-&lt;p&gt;I have a pretty clear list of things to do, but I’ve only planned out the next
-couple blog posts. If you would like to influence the order in which I do things,
-please take Jason’s lead and bug me.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/jasonmhare/status/379739193230233600"&gt;&lt;img src="jason.png" alt="@thomaslevine tell me about my #socrata site ;)" /&gt;&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>License-free data in Missouri's data portal</title>
+    <meta content="I grouped the datasets in Missouri's data portal and looked at licensing by dataset group." name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content="Missouri's data portal has lots of traffic surveys" name='twitter:title'>
+    <meta content="I grouped the datasets in Missouri's data portal and looked at licensing by dataset group." name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/missouri-data-licensing/OAKVOLKER-5-HR-2009-A-TMC-diagram.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/missouri-data-licensing/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content="I grouped the datasets in Missouri's data portal and looked at licensing by dataset group." property='og:description'>
+    <meta content="Missouri's data portal has lots of traffic surveys" property='og:title'>
+    <meta content='http://thomaslevine.com/!/missouri-data-licensing/OAKVOLKER-5-HR-2009-A-TMC-diagram.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              License-free data in Missouri's data portal
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            October 29, 2013
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            
+            <h2 id="which-specific-datasets-have-license-metadata">Which specific datasets have license metadata?</h2>
+            <p>I recently <a href="/!/open-data-licensing">found</a> that most datasets on the
+            open data portals I’ve been looking at don’t have open licenses or.
+            public domain dedications.</p>
+            
+            <p>But a lot of datasets do have licenses or public domain dedication, and
+            licensing this varies within portals. I wanted to see which datasets get
+            have some sort of licensing metadata and which ones
+            don’t.
+            Or this is what I thought I wanted;
+            I started looking at this on one data portal, and I
+            wound up going down a slightly different rabbit hole.</p>
+            
+            <h2 id="the-missouri-data-portal">The Missouri Data Portal</h2>
+            <p>I looked at the Missouri Data Portal,
+            <a href="https://data.mo.gov">data.mo.gov</a>. Here’s why I chose it.</p>
+            
+            <ol>
+              <li>To make it easy to download the license information, I wanted to use
+             Socrata’s DCAT endpoint. This endpoint only returns up to 1000
+             datasets, so I needed a portal with no more than 1000 datasets.
+             Missouri’s portal has 897 datasets.</li>
+              <li>I think I’ve figured out how to
+             <a href="/!/socrata-deduplicate">deduplicate federated datasets</a>,
+             but I didn’t want to deal with that.
+             The Missouri portal federates only the
+             <a href="https://data.kcmo.org">Kansas City data portal</a>,
+             so no federal data should be duplicated in this portal.</li>
+              <li>Missouri has <a href="/!/socrata-formats">a lot of PDF files</a>,
+             so I thought there might be something in there that would be more
+             original than mere facts and covered under copyright; this would
+             make a license more important.</li>
+            </ol>
+            
+            <p>I wound up categorizing the datasets quite a bit more than I originally
+            intended, so now I know a lot about the sorts of data on the portal.</p>
+            
+            <h2 id="licenses">Licenses</h2>
+            <p>Most datasets (619) on the
+            Missouri portal are listed as in the public domain.</p>
+            
+            <p><img src="figure/publicdomain.png" alt="plot of chunk publicdomain" /> </p>
+            
+            <p>The rest (278 datasets) have nothing in the “license” metadata field.</p>
+            
+            <p><code>&#x000A;##      &#x000A;##       FALSE TRUE&#x000A;##   Yes   619    0&#x000A;##   No      0  278</code></p>
+            
+            <h2 id="formats">Formats</h2>
+            <p>Proportionately more PDF files are public domain.</p>
+            
+            <p><img src="figure/publicdomain_pdf.png" alt="plot of chunk publicdomain_pdf" /> </p>
+            
+            <p>I noticed a bunch of PDF files with names like these.</p>
+            
+            <ul>
+              <li><a href="https://data.mo.gov/d/nfur-xwk2">  SWTWESTP EW 5 HR 2009 A PCW</a></li>
+              <li><a href="https://data.mo.gov/d/5zv3-u47y">  SHAWNEEWARD 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/i2ip-cykb">PROSPECTSWOPE 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/6gz3-267n">    OAKVOLKER 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/yjr5-e96s">         OAK9 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/sqpd-738e">        OAK12 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/9ddu-xy68">       MAIN13 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/eyii-3nuq">        MAIN8 5 HR 2009 A TMC</a></li>
+              <li><a href="https://data.mo.gov/d/n2kq-rg69">    MADISON43 5 HR 2009 A TMC</a></li>
+            </ul>
+            
+            <p>These are all traffic surveys, and it turns out that they account for
+            almost all of the PDF files on the portal.</p>
+            
+            <p><img src="figure/pdf_trafficsurvey.png" alt="plot of chunk pdf_trafficsurvey" /> </p>
+            
+            <h2 id="dataset-kinds">Dataset kinds</h2>
+            <p>A lot of PDF files had public domain licenses, but it’s not clear-cut,
+            so I looked more specifically at what datasets are on the portal. The only
+            field in the dataset that really told me much about this was the
+            <code>title</code> field, which is what I used above to find the traffic surveys.
+            I kept going with that for the other datasets.</p>
+            
+            <p>I just used a bunch of reasonably simple
+            <a href="https://github.com/tlevine/socrata-catalog/blob/master/src/missouri.license.r">string matches</a>.
+            For example, a bunch of datasets came from the American Community Survey,
+            and these said “ACS” or “American Community Survey” in the title.
+            Data from the federal said “Census”. And liquor license data said either
+            “Liquor” or “Alcohol”.</p>
+            
+            <p>In the plot below, I map out the different kinds of datasets, whether
+            they are PDF files and whether they have public domain licenses.</p>
+            
+            <p><img src="figure/kinds_counts.png" alt="plot of chunk kinds_counts" /> </p>
+            
+            <p>Here’s the same plot but with proportions instead of counts. This makes
+            the small bars more apparent.</p>
+            
+            <p><img src="figure/kinds_prop.png" alt="plot of chunk kinds_prop" /> </p>
+            
+            <p>I didn’t manage to get it much more precise than this, but I did find that
+            the uncategorized datasets containing the word “Missouri” tended not to
+            have a license.</p>
+            
+            <p><img src="figure/says_missouri.png" alt="plot of chunk says_missouri" /> </p>
+            
+            <h2 id="the-merits-of-explicitly-stating-that-a-dataset-is-in-the-public-domain">The merits of explicitly stating that a dataset is in the public domain</h2>
+            <p>A few years ago, a few open government advocates came up with
+            <a href="http://www.opengovdata.org/home/8principles">eight principles of open government data</a>.
+            Among these is the principle that the data be free of license.</p>
+            
+            <blockquote>
+              <p>Data are not subject to any copyright, patent, trademark or trade secret regulation. Reasonable privacy, security and privilege restrictions may be allowed as governed by other statutes.</p>
+            </blockquote>
+            
+            <p>In some cases, government data already meet this criterion by default.
+            As the /unitedstates project <a href="http://theunitedstates.io/licensing/">explains</a>,</p>
+            
+            <blockquote>
+              <p>Copyright applies to some government data but not others (and never to U.S. law). When it applies, it must be waived by the agency (or owner if not the agency) for the data to meet the “license-free” principle. In this case, data is dedicated to the public domain, not licensed.</p>
+            </blockquote>
+            
+            <p>In some cases, copyright does not apply at all because it is a government
+            product. In other cases, it might not apply because the data might be
+            facts, which can’t be copyrighted. However, it can be quite difficult for
+            a consumer of data to determine whether copyright applies to a dataset.
+            Thus, it makes sense to be explicit. As the /unitedstates project explains,</p>
+            
+            <blockquote>
+              <p>Data is more valuable when its copyright status is clear through an explicit statement.</p>
+            </blockquote>
+            
+            <h2 id="the-importance-of-an-explicit-statement-for-traffic-surveys">The importance of an explicit statement for traffic surveys</h2>
+            <p>Traffic surveys are a perfect example of where you need to be explicit.</p>
+            
+            <h3 id="are-traffic-surveys-facts">Are traffic surveys facts?</h3>
+            <p>In some cases, copyright might not apply to a dataset simply because the
+            dataset isn’t sufficiently original; if the dataset contains only facts,
+            copyright won’t apply. This might be okay for parts of the traffic survey
+            files. Here’s part of a page from
+            <a href="https://data.mo.gov/Traffic/OAKVOLKER-5-HR-2009-A-TMC/6gz3-267n?">this traffic survey</a></p>
+            
+            <p><img src="OAKVOLKER-5-HR-2009-A-TMC-table.png" alt="A data table" /></p>
+            
+            <p>The page above just has a table of numbers. This might count as facts, so
+            it is possible that it would not be original enough for copyright to apply.
+            This next page is a bit fancier.</p>
+            
+            <p><img src="OAKVOLKER-5-HR-2009-A-TMC-diagram.png" alt="A diagram of a street intersection" /></p>
+            
+            <p>While this diagram contains facts (counts of cars taking different routes
+            through the intersection), it also contains a fancy drawing of the intersection.
+            The numbers are facts, and those should be free from copyright, but does
+            copyright apply to the diagram?</p>
+            
+            <h3 id="are-traffic-surveys-government-works">Are traffic surveys government works?</h3>
+            <p>Copyright protection does not apply to government works, but it could apply
+            to works produced by contractors. From the file on the data portal website,
+            we can’t tell whether it was produced entirely by government workers, so
+            we can’t use this law for assurance that the data are free of a license.</p>
+            
+            <h3 id="yay-for-explicit-statement">Yay for explicit statement</h3>
+            <p>Given the potential ambiguities above, it is quite important that these traffic
+            survey files have explicit notices where it’s possible. I commend the state of
+            Missouri for providing such notices.</p>
+            
+            <h2 id="what-i-really-learned-from-this">What I really learned from this</h2>
+            <p>I used this analysis to provide an example of a situation where it is
+            important to have an explicit statement about the license of a dataset
+            or about the absense of license. Beyond that, this analysis doesn’t
+            really tell us much about licensing.</p>
+            
+            <p>On the other hand, I feel like I’ve come up with a reasonably complete
+            grouping of the datasets in the Missouri data portal.</p>
+            
+            <p>In the more granular groupings, I think
+            I’ve arrived at datasets that could naturally be combined into one data
+            table. This is even true for the traffic survey data; each particular PDF
+            traffic survey report could be converted into a single row in a data table.</p>
+            
+            <p>I arrived at these groupings pretty much entirely by looking at the tables,
+            but the groupings seem to relate to trends in other variables, like the
+            license field of the dataset. I’ve been wanting to come up with methods for
+            relating datasets to each other. I thought these methods would need to be
+            <a href="/!/open-data-plans#better-search-and-linked-data">somewhat involved</a>, but
+            maybe we can start with something simpler.</p>
+            
+            <h2 id="future-study">Future study</h2>
+            <p>In the Missouri portal, I used only title to group datasets; I didn’t
+            look at the long-form description, the author or the schema. There were
+            pretty clear-cut divisions between titles, but I would like to see how
+            reasonable this approach really is; I want to whether groups of similarly
+            named datasets tend to have similar schemas.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/missouri-data-licensing/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
