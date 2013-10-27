@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Data set as Data point</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Data set as Data point' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/dataset-as-datapoint/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Data set as Data point' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <header class='title-card'>
+          <hgroup>
+            <h1>
+              Data set as Data point
+            </h1>
+            <p>
+              
+            </p>
+          </hgroup>
+          <div class='date'>
+            
+          </div>
+        </header>
+        <div id='article-wrapper'>
+          <article>
+            <!-- For the winter issue of Socrata's magazine -->
+            <p>I’ve recently been collecting and studying
+            <a href="/open-data">data about open data</a>.</p>
+            
+            <p>The key insight that makes this possible
+            and relevance
+            metrics</p>
+            
+            <h2 id="data-set-as-data-point">Data set as data point</h2>
+            <p>The inspiration for all of these studies is the idea that
+            any collection of things could be seen as data to be analyzed.</p>
+            
+            <p>Specifically, even a collection of datasets could be treated
+            as a dataset of datasets, with a record for each particular
+            dataset.</p>
+            
+            <h2 id="metadata-as-data">Metadata as data</h2>
+            <p>The term “metadata” is sort of funny. Metadata are data about
+            data, but they’re still data, so do we really need another term
+            for it? In studying metadata about 100,000 datasets, I started
+            to see what it means. When people talk about “metadata”, they’re
+            usually thinking of information that you’d use for cataloging
+            and framing the data rather than stuff that you would do “data
+            analysis” on. Of course, it doesn’t have to be this way.</p>
+            
+            <p>When we see datasets as data points, we see metadata as data.
+            Inside of our collection of datasets, we have a record for each
+            sub-dataset; and inside each record, we have a bunch of
+            fields/attributes/variables/features about the dataset. What fields
+            should go in there? The metadata fields are a pretty good place
+            to start.</p>
+            
+            <h2 id="creating-new-fields-in-our-dataset-of-datasets">Creating new fields in our dataset of datasets</h2>
+            <p>Another thing about metadata is that they are usually recorded
+            separately of the data. For example, the title of a dataset will
+            probably be in the metadata, but the number of rows in the dataset
+            might not be. This shouldn’t stop us from from counting how many
+            rows each sub-dataset has and putting that in our dataset-of-datasets.</p>
+            
+            <p>Don’t get me wrong; there is much to be learned by studying the
+            metadata alone. In a <a href="/!/socrata-formats">couple</a>
+            <a href="/!/socrata-deduplicate">cases</a>, I used data straight from
+            Socrata’s <a href="">DCAT</a> endpoint,
+            which only includes some minimal metadata.</p>
+            
+            <p>I’m still at the early stages of computing new fields to describe
+            the different sub-datasets in our dataset-of-datasets, but some
+            interesting things are already coming out of this approach.</p>
+            
+            <p>In many cases, I treated the names of the columns as a field.
+            Thus, for each sub-dataset in the dataset of datasets, I had
+            fields relating to the names and data types of different columns.
+            I also treated the number of rows as a field. In concert, these
+            fields allowed me to find <a href="http://appgen.me/audit/report">similar datasets</a>,
+            <a href="/!/socrata-summary">large datasets</a> and
+            <a href="/!/socrata-genealogies">changes to datasets</a>.</p>
+            
+            <h2 id="why-this-matters">Why this matters</h2>
+            <p>By treating datasets as datapoints, treating metadata as data
+            and creating of new attributes to describe datasets, I am able
+            to conduct all of these studies about open data. But why should
+            anyone else treat open data this way? I believe that thinking
+            of datasets as datapoints will lead to lots of useful things.
+            For now, I’ll talk about two things: searching for datasets,
+            measuring data portal usage.</p>
+            
+            <h3 id="searching-for-datasets">Searching for datasets</h3>
+            <p>Part of the goal of a data catalog is to make it easier to find
+            datasets, so that we don’t need to ask someone where to find them.
+            Data portal software lets us search the catalogs, but the search
+            typically isn’t very helpful. On all of the data portals I’ve
+            looked at, the text search is just an ordinary text search on the
+            metadata and, in some cases, the full dataset. We can do better.</p>
+            
+            <p>Datasets are highly structured, and we can use that to make the
+            search better.  Let’s say we have a dataset containing a post code
+            column and we search for “crimes in Shoreditch”. The dataset might
+            not actually say “Shoreditch” anywhere because it just has post
+            codes, but we should be able to find the dataset.</p>
+            
+            <p>If we’re thinking about datasets and data points, this is sort of
+            natural; here’s a crude version. We get a list of all of the names
+            of neighborhoods in London. We look at each dataset, determine
+            the dataset contains data about each neighborhood, and assign a
+            value of yes or no for each of these neighborhoods. Since we’re
+            thinking of the dataset as a row in a data table, we’re just adding
+            a bunch of columns to the data table. With these richer table, we
+            can improve our search feature.</p>
+            
+            <h3 id="data-portal-usage">Data portal usage</h3>
+            <p>We often use the number of datasets on a portal as a measure of
+            data portal quality. Unfortunately, this number isn’t very meaningful.</p>
+            
+            <p>Depending on the situation, it could make sense to break up a
+            larger dataset or to combine a bunch of smaller datasets.
+            Neither of these manipulations really changes the amount of data
+            on the portal, but they will substantially impact our metric
+            (number of datasets on the portal). Thus, this isn’t a particularly
+            informative metric. Moreover, such a metric may encourage us to
+            break up a larger dataset into pieces when it doesn’t really
+            make sense to.</p>
+            
+            <p>We can develop a better metric for the amount of data on a portal,
+            but we should also come up with measures for the other things that
+            we really care about. Here are some examples.</p>
+            
+            <ul>
+              <li><strong>Completeness</strong>: What proportion of a government’s data has been
+              released on the portal?</li>
+              <li><strong>User groups</strong>: Does the dataset tend to be used by people inside
+              of government or outside of government? What proportion of dowloads
+              come from government buildings?</li>
+              <li><strong>Timeliness</strong>: How up-to-date are the data? How many datasets
+              that were published more than a year ago have been updated within
+              the past year?</li>
+            </ul>
+            
+            <p>If we think of datasets as data points, it is natural for us to
+            get creative about the data that we collect about each dataset.</p>
+            
+            <h2 id="conclusion">Conclusion</h2>
+            <p>Open data portals make it easier to consume data once someone
+            has decided to publish them, but they don’t yet give us the
+            bigger picture of what’s going on inside an open data initiative.
+            We can’t really tell what datasets are available, who’s using them,
+            what impact they’re having, or whether they are of good quality.</p>
+            
+            <p>We need to give data publishers and data consumers a better picture
+            of what is going on in open data portals. I don’t know how we’ll do
+            that, but I think we’ll get somewhere if we start thinking of datasets
+            as datapoints.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/dataset-as-datapoint/index.md">View source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
