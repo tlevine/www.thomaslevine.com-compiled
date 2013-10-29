@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content="Missouri's data portal has lots of traffic surveys" name='twitter:title'>
+    <meta content='Why you need to be explicit about dataset licensing.' name='twitter:title'>
     <meta content="I grouped the datasets in Missouri's data portal and looked at licensing by dataset group." name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/!/missouri-data-licensing/OAKVOLKER-5-HR-2009-A-TMC-diagram.png' name='twitter:image:src'>
@@ -32,7 +32,7 @@
     <meta content='http://thomaslevine.com/!/missouri-data-licensing/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content="I grouped the datasets in Missouri's data portal and looked at licensing by dataset group." property='og:description'>
-    <meta content="Missouri's data portal has lots of traffic surveys" property='og:title'>
+    <meta content='Why you need to be explicit about dataset licensing.' property='og:title'>
     <meta content='http://thomaslevine.com/!/missouri-data-licensing/OAKVOLKER-5-HR-2009-A-TMC-diagram.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -86,10 +86,11 @@
         </header>
         <div id='article-wrapper'>
           <article>
+            <!-- https://github.com/tlevine/socrata-catalog/ -->
             
             <h2 id="which-specific-datasets-have-license-metadata">Which specific datasets have license metadata?</h2>
             <p>I recently <a href="/!/open-data-licensing">found</a> that most datasets on the
-            open data portals I’ve been looking at don’t have open licenses or.
+            open data portals I’ve been looking at don’t have open licenses or
             public domain dedications.</p>
             
             <p>But a lot of datasets do have licenses or public domain dedication, and
@@ -106,7 +107,8 @@
             
             <ol>
               <li>To make it easy to download the license information, I wanted to use
-             Socrata’s DCAT endpoint. This endpoint only returns up to 1000
+             <a href="/!/socrata-formats/">Socrata’s data.json endpoint</a>.
+             This endpoint only returns up to 1000
              datasets, so I needed a portal with no more than 1000 datasets.
              Missouri’s portal has 897 datasets.</li>
               <li>I think I’ve figured out how to
@@ -249,7 +251,7 @@
             <h2 id="what-i-really-learned-from-this">What I really learned from this</h2>
             <p>I used this analysis to provide an example of a situation where it is
             important to have an explicit statement about the license of a dataset
-            or about the absense of license. Beyond that, this analysis doesn’t
+            or about the absence of license. Beyond that, this analysis doesn’t
             really tell us much about licensing.</p>
             
             <p>On the other hand, I feel like I’ve come up with a reasonably complete

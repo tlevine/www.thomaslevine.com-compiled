@@ -15,10 +15,11 @@
     <published>2013-10-29T00:00:00Z</published>
     <updated>2013-10-29T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/missouri-data-licensing/index.html"/>
-    <content type="html">
+    <content type="html">&lt;!-- https://github.com/tlevine/socrata-catalog/ --&gt;
+
 &lt;h2 id="which-specific-datasets-have-license-metadata"&gt;Which specific datasets have license metadata?&lt;/h2&gt;
 &lt;p&gt;I recently &lt;a href="/!/open-data-licensing"&gt;found&lt;/a&gt; that most datasets on the
-open data portals I’ve been looking at don’t have open licenses or.
+open data portals I’ve been looking at don’t have open licenses or
 public domain dedications.&lt;/p&gt;
 
 &lt;p&gt;But a lot of datasets do have licenses or public domain dedication, and
@@ -35,7 +36,8 @@ wound up going down a slightly different rabbit hole.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;To make it easy to download the license information, I wanted to use
- Socrata’s DCAT endpoint. This endpoint only returns up to 1000
+ &lt;a href="/!/socrata-formats/"&gt;Socrata’s data.json endpoint&lt;/a&gt;.
+ This endpoint only returns up to 1000
  datasets, so I needed a portal with no more than 1000 datasets.
  Missouri’s portal has 897 datasets.&lt;/li&gt;
   &lt;li&gt;I think I’ve figured out how to
@@ -178,7 +180,7 @@ Missouri for providing such notices.&lt;/p&gt;
 &lt;h2 id="what-i-really-learned-from-this"&gt;What I really learned from this&lt;/h2&gt;
 &lt;p&gt;I used this analysis to provide an example of a situation where it is
 important to have an explicit statement about the license of a dataset
-or about the absense of license. Beyond that, this analysis doesn’t
+or about the absence of license. Beyond that, this analysis doesn’t
 really tell us much about licensing.&lt;/p&gt;
 
 &lt;p&gt;On the other hand, I feel like I’ve come up with a reasonably complete
