@@ -102,18 +102,18 @@ Data from the federal said “Census”. And liquor license data said either
 &lt;p&gt;In the plot below, I map out the different kinds of datasets, whether
 they are PDF files and whether they have public domain licenses.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="figure/kinds_counts.png" alt="plot of chunk kinds_counts" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src="figure/kinds_counts.png" alt="plot of chunk kinds_counts" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here’s the same plot but with proportions instead of counts. This makes
 the small bars more apparent.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="figure/kinds_prop.png" alt="plot of chunk kinds_prop" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src="figure/kinds_prop.png" alt="plot of chunk kinds_prop" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;I didn’t manage to get it much more precise than this, but I did find that
 the uncategorized datasets containing the word “Missouri” tended not to
 have a license.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="figure/says_missouri.png" alt="plot of chunk says_missouri" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src="figure/says_missouri.png" alt="plot of chunk says_missouri" class="wide" /&gt;&lt;/p&gt;
 
 &lt;h2 id="the-merits-of-explicitly-stating-that-a-dataset-is-in-the-public-domain"&gt;The merits of explicitly stating that a dataset is in the public domain&lt;/h2&gt;
 &lt;p&gt;A few years ago, a few open government advocates came up with
@@ -149,9 +149,9 @@ Thus, it makes sense to be explicit. As the /unitedstates project explains,&lt;/
 dataset isn’t sufficiently original; if the dataset contains only facts,
 copyright won’t apply. This might be okay for parts of the traffic survey
 files. Here’s part of a page from
-&lt;a href="https://data.mo.gov/Traffic/OAKVOLKER-5-HR-2009-A-TMC/6gz3-267n?"&gt;this traffic survey&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://data.mo.gov/Traffic/OAKVOLKER-5-HR-2009-A-TMC/6gz3-267n?"&gt;this traffic survey&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-table.png" alt="A data table" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-table.png" alt="A data table" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;The page above just has a table of numbers. This might count as facts, so
 it is possible that it would not be original enough for copyright to apply.
