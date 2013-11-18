@@ -2,13 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-10-29T00:00:00Z</updated>
+  <updated>2013-11-18T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-11-18:/!/open-data-in-plain-english/index.html</id>
+    <title type="html">Open Data in Plain English</title>
+    <published>2013-11-18T00:00:00Z</published>
+    <updated>2013-11-18T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-in-plain-english/index.html"/>
+    <content type="html">&lt;video poster="screenshot.png" src="open-data-in-plain-english.webm" controls="" width="100%"&gt;&lt;/video&gt;
+
+&lt;p&gt;I found this video &lt;a href="http://www.youtube.com/watch?v=aHxv_2BMJfw"&gt;on YouTube&lt;/a&gt;
+and then &lt;a href="https://github.com/tlevine/open-data-a-la-loupe"&gt;translated&lt;/a&gt;
+the audio to English.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-10-29:/!/missouri-data-licensing/index.html</id>
     <title type="html">License-free data in Missouri's data portal</title>
@@ -490,130 +503,6 @@ the data as if she had produced them herself.&lt;/p&gt;
 &lt;p&gt;If you want to enforce that datasets derived from your dataset be released
 openly, consider something like the
 &lt;a href="http://opendatacommons.org/licenses/odbl/summary/"&gt;Open Database License&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-09-23:/!/socrata-deduplicate/index.html</id>
-    <title type="html">What's in a count?</title>
-    <published>2013-09-23T00:00:00Z</published>
-    <updated>2013-09-23T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/socrata-deduplicate/index.html"/>
-    <content type="html">&lt;p&gt;Lots of governments use Socrata data portals to release their open data.
-This results in a super-dataset of datasets that tells us something about
-the ecosystem surrounding open data.&lt;/p&gt;
-
-&lt;p&gt;For a &lt;a href="/!/socrata-summary"&gt;couple months&lt;/a&gt;, I’ve been studying the data
-about these data and have continuously been dealing with duplicated data.
-I finally fixed that, so now I have more accurate statistics on portals.&lt;/p&gt;
-
-&lt;p&gt;Quick preview:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;(I’ll explain later.)&lt;/p&gt;
-
-&lt;h2 id="types-of-duplication"&gt;Types of duplication&lt;/h2&gt;
-&lt;p&gt;I’m concerned with
-&lt;a href="/!/socrata-genealogies/#types-of-duplicate-datasets"&gt;two forms of duplication&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href="/!/socrata-genealogies/#term-view"&gt;Views&lt;/a&gt; derived from original
- &lt;a href="/!/socrata-genealogies/#term-dataset"&gt;datasets&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Federated datasets, which are just links to datasets on another portal&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="dealing-with-derived-views"&gt;Dealing with derived views&lt;/h2&gt;
-&lt;p&gt;It’s easy enough to deal with the former type of duplication.
-One way is to use the &lt;code&gt;/data.json&lt;/code&gt; (or &lt;code&gt;/api/dcat&lt;/code&gt;) endpoint.
-Unfortunately, this endpoint only provides the first 1000 entries.
-I have been told that this has been fixed, but I had trouble getting
-it working this morning.&lt;/p&gt;
-
-&lt;p&gt;That’s not a big deal because there’s another easy way. I produced a
-&lt;a href="https://github.com/tlevine/socrata-analysis/blob/master/socrata.csv"&gt;CSV file of Socrata data&lt;/a&gt;
-a couple months ago. Each row in the file corresponds to a view on Socrata,
-and the views that are original datasets have a displayType of &lt;code&gt;table&lt;/code&gt;, I think.
-(There’s a notable exception: Sometimes, the original table is private and
-a derived view is made available to the public.)&lt;/p&gt;
-
-&lt;h2 id="dealing-with-federation"&gt;Dealing with federation&lt;/h2&gt;
-&lt;p&gt;Dealing with federation is less straightforward. The &lt;code&gt;/data.json&lt;/code&gt; endpoint
-doesn’t clearly indicate whether a dataset is federated, and neither does
-my CSV file. If I had been more careful when producing the CSV file, it could
-have such a field, but I don’t want to make another one because that took a
-long time. So I took the federation links from somewhere else.&lt;/p&gt;
-
-&lt;p&gt;Scroll down on the homepage of a portal (like &lt;a href="https://explore.data.gov/"&gt;data.gov&lt;/a&gt;),
-and you might see something like this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="federated-domains.png" alt="Federated Domains" /&gt;&lt;/p&gt;
-
-&lt;p&gt;This shows up if the portal is federating any other portals. It’s part of the
-search menu, so it lets you filter your search by portal.&lt;/p&gt;
-
-&lt;p&gt;I &lt;a href="https://github.com/tlevine/socrata-defederate"&gt;downloaded all of the homepages and pulled out the federation links&lt;/a&gt;.
-Here they are, in a rather plain diagram. (Hover over a node to see the portal name.)&lt;/p&gt;
-
-&lt;style&gt;
-  line { stroke: white; }
-  circle { fill: rgb(254, 87, 161); }
-&lt;/style&gt;
-
-&lt;div id="graph-diagram"&gt;&lt;/div&gt;
-
-&lt;p&gt;Yay! Now we can deduplicate based on federation. I looked through the CSV file
-that I produced a couple months ago and removed records that were federated.
-That is, if two datasets had the same 4x4 identifier, I kept the one belonging
-to the portal that was being federated.&lt;/p&gt;
-
-&lt;h2 id="better-statistics"&gt;Better statistics&lt;/h2&gt;
-&lt;p&gt;I plotted two graphs again to get a feel for how this changes things.&lt;/p&gt;
-
-&lt;h3 id="dataset-counts-by-portal"&gt;Dataset counts by portal&lt;/h3&gt;
-&lt;p&gt;First, here’s the graph of dataset counts from the new data.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="histogram.png" alt="Histogram of dataset counts by portal" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;My &lt;a href="/!/socrata-summary/#sizes"&gt;first version&lt;/a&gt;, also below, includes both types of deplication.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-summary/figure/big_portals_datasets.png" alt="Old histogram" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href="/!/socrata-formats/#how-many-datasets"&gt;version that uses &lt;code&gt;data.json&lt;/code&gt;&lt;/a&gt;, also below,
-doesn’t have the derived-view duplication, but it does have the federation duplication.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:3000/!/socrata-formats/figure/portal-counts.png" alt="data.json version" /&gt;&lt;/p&gt;
-
-&lt;h3 id="dataset-creation-dates"&gt;Dataset creation dates&lt;/h3&gt;
-&lt;p&gt;I also plotted dataset creation dates over time.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="dates.png" alt="Dataset creation over time" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I hadn’t made a plot quite like this before, but the issue of duplication
-has turned up in other plots about dataset creation dates, like in the
-&lt;a href="/!/socrata-summary/#time"&gt;original summary&lt;/a&gt; and in the study of
-&lt;a href="/!/socrata-formats/#csv"&gt;dataset formats&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id="arbitrary-metrics-are-arbitrary"&gt;Arbitrary metrics are arbitrary&lt;/h2&gt;
-&lt;p&gt;Dataset count might sound like a decent metric, but it’s quite hard to say
-what a dataset is. If you &lt;a href="http://appgen.me/audit/report"&gt;split up a dataset by year&lt;/a&gt;,
-do you have multiple datasets? Similarly, if you create
-&lt;a href="/!/socrata-genealogies"&gt;lots of different queries&lt;/a&gt; on the same dataset,
-have you created new datasets? And do you have more datasets if you just copy
-them from another data portal?&lt;/p&gt;
-
-&lt;p&gt;I’m told that there is perennial competition between Chicago and New York
-and between &lt;code&gt;data.gov&lt;/code&gt; and &lt;code&gt;data.gov.uk&lt;/code&gt; over the dataset count on their portals.
-Given the ambiguity of this measure, it is quite hilarious that such competition
-exists.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, that’s the only obvious metric that we see in data portals.
-Maybe we need to make &lt;a href="/!/open-data-plans/#data-quality"&gt;new metrics&lt;/a&gt;
-before people can stop caring about counts.&lt;/p&gt;
-
-&lt;script src="d3.v3.min.js"&gt;&lt;/script&gt;
-
-&lt;script src="graph-diagram.js"&gt;&lt;/script&gt;
-
 </content>
   </entry>
 </feed>

@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Data set as Data point</title>
+    <title>Open Data Had Better Be Data-Driven</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Data set as Data point' name='twitter:title'>
+    <meta content='Open Data Had Better Be Data-Driven' name='twitter:title'>
     <meta content='' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
@@ -32,7 +32,7 @@
     <meta content='http://thomaslevine.com/!/dataset-as-datapoint/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='' property='og:description'>
-    <meta content='Data set as Data point' property='og:title'>
+    <meta content='Open Data Had Better Be Data-Driven' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,7 +74,7 @@
         <header class='title-card'>
           <hgroup>
             <h1>
-              Data set as Data point
+              Open Data Had Better Be Data-Driven
             </h1>
             <p>
               
@@ -87,136 +87,66 @@
         <div id='article-wrapper'>
           <article>
             <!-- For the winter issue of Socrata's magazine -->
-            <p>I’ve recently been collecting and studying
-            <a href="/open-data">data about open data</a>.</p>
             
-            <p>The key insight that makes this possible
-            and relevance
-            metrics</p>
+            <p>The opening of data has advanced and is now a well-documented process. There is data on how people publish and consume open data, which means you can set up data-backed benchmarks and projections and make data-driven decisions about your strategy for opening data.</p>
             
-            <h2 id="data-set-as-data-point">Data set as data point</h2>
-            <p>The inspiration for all of these studies is the idea that
-            any collection of things could be seen as data to be analyzed.</p>
+            <p>How is this possible? Datasets are complicated, but we can extract simple properties from the datasets, like the number of records, the number of missing values, and the date of the oldest record.</p>
             
-            <p>Specifically, even a collection of datasets could be treated
-            as a dataset of datasets, with a record for each particular
-            dataset.</p>
+            <p><img src="dataset-features.jpg" alt="Extracting simple properties from datasets" /></p>
             
-            <h2 id="metadata-as-data">Metadata as data</h2>
-            <p>The term “metadata” is sort of funny. Metadata are data about
-            data, but they’re still data, so do we really need another term
-            for it? In studying metadata about 100,000 datasets, I started
-            to see what it means. When people talk about “metadata”, they’re
-            usually thinking of information that you’d use for cataloging
-            and framing the data rather than stuff that you would do “data
-            analysis” on. Of course, it doesn’t have to be this way.</p>
+            <p>In addition to the dataset itself, we also have metadata published alongside the dataset; metadata tells us things like who published the data and how many times it has been downloaded. Below are some metadata (from <a href="https://data.mo.gov/views/mahp-izvx.json">here</a>) about Missouri’s <a href="https://data.mo.gov/Government-Administration/Open-Meetings-Calendar/mahp-izvx">open meetings calendar</a>.</p>
             
-            <p>When we see datasets as data points, we see metadata as data.
-            Inside of our collection of datasets, we have a record for each
-            sub-dataset; and inside each record, we have a bunch of
-            fields/attributes/variables/features about the dataset. What fields
-            should go in there? The metadata fields are a pretty good place
-            to start.</p>
+            <pre><code>"id" : "mahp-izvx",&#x000A;"name" : "Open Meetings Calendar",&#x000A;"averageRating" : 0,&#x000A;"category" : "Government Administration",&#x000A;"createdAt" : 1337110426,&#x000A;"description" : "Schedule of Missouri Open Meetings",&#x000A;"displayType" : "calendar",&#x000A;"downloadCount" : 68,&#x000A;"iconUrl" : "10D0D792-72EC-474C-8605-2958B80EE8A2",&#x000A;"moderationStatus" : true,&#x000A;"newBackend" : false,&#x000A;"numberOfComments" : 0,&#x000A;"oid" : 6433334,&#x000A;"publicationAppendEnabled" : false,&#x000A;"publicationDate" : 1384531257,&#x000A;"publicationGroup" : 326921,&#x000A;"publicationStage" : "published",&#x000A;"rowsUpdatedAt" : 1384531248,&#x000A;"rowsUpdatedBy" : "8xqn-4t42",&#x000A;</code></pre>
             
-            <h2 id="creating-new-fields-in-our-dataset-of-datasets">Creating new fields in our dataset of datasets</h2>
-            <p>Another thing about metadata is that they are usually recorded
-            separately of the data. For example, the title of a dataset will
-            probably be in the metadata, but the number of rows in the dataset
-            might not be. This shouldn’t stop us from from counting how many
-            rows each sub-dataset has and putting that in our dataset-of-datasets.</p>
+            <p>By extracting some properties from each dataset and collecting metadata about each dataset, it’s possible to create a dataset about the publication and use of other datasets.</p>
             
-            <p>Don’t get me wrong; there is much to be learned by studying the
-            metadata alone. In a <a href="/!/socrata-formats">couple</a>
-            <a href="/!/socrata-deduplicate">cases</a>, I used data straight from
-            Socrata’s <a href="">DCAT</a> endpoint,
-            which only includes some minimal metadata.</p>
+            <h2 id="datasets-as-data-points">Datasets as Data Points</h2>
+            <p>In a dataset of other datasets (e.g. a super-dataset), you create a single row or record (a data point) about each dataset, containing information like when that dataset was published, what kind of data it contains, etc. With this setup, you can naturally perform all kinds of functions and analysis about the publication and use of other datasets: you can look at <a href="http://thomaslevine.com/!/socrata-deduplicate/">how many datasets are on different catalogs</a>,</p>
             
-            <p>I’m still at the early stages of computing new fields to describe
-            the different sub-datasets in our dataset-of-datasets, but some
-            interesting things are already coming out of this approach.</p>
+            <p><img src="http://thomaslevine.com/!/socrata-deduplicate/histogram.png" alt="Number of datasets by data portal" /></p>
             
-            <p>In many cases, I treated the names of the columns as a field.
-            Thus, for each sub-dataset in the dataset of datasets, I had
-            fields relating to the names and data types of different columns.
-            I also treated the number of rows as a field. In concert, these
-            fields allowed me to find <a href="http://appgen.me/audit/report">similar datasets</a>,
-            <a href="/!/socrata-summary">large datasets</a> and
-            <a href="/!/socrata-genealogies">changes to datasets</a>.</p>
+            <p>how data is <a href="http://www.chriswhong.com/nycopendata/">queried and reported</a>,</p>
             
-            <h2 id="why-this-matters">Why this matters</h2>
-            <p>By treating datasets as datapoints, treating metadata as data
-            and creating of new attributes to describe datasets, I am able
-            to conduct all of these studies about open data. But why should
-            anyone else treat open data this way? I believe that thinking
-            of datasets as datapoints will lead to lots of useful things.
-            For now, I’ll talk about two things: searching for datasets,
-            measuring data portal usage.</p>
+            <p><img src="http://media.tumblr.com/615d48b9924a6d857937ef274133e944/tumblr_inline_mrsb74gFdc1qz4rgp.png" alt="Visualizing NYC's open data" /></p>
             
-            <h3 id="searching-for-datasets">Searching for datasets</h3>
-            <p>Part of the goal of a data catalog is to make it easier to find
-            datasets, so that we don’t need to ask someone where to find them.
-            Data portal software lets us search the catalogs, but the search
-            typically isn’t very helpful. On all of the data portals I’ve
-            looked at, the text search is just an ordinary text search on the
-            metadata and, in some cases, the full dataset. We can do better.</p>
+            <p>what <a href="http://thomaslevine.com/!/open-data-licensing">licenses</a> datasets have,</p>
             
-            <p>Datasets are highly structured, and we can use that to make the
-            search better.  Let’s say we have a dataset containing a post code
-            column and we search for “crimes in Shoreditch”. The dataset might
-            not actually say “Shoreditch” anywhere because it just has post
-            codes, but we should be able to find the dataset.</p>
+            <p><img src="http://thomaslevine.com/!/open-data-licensing/p2.png" alt="What licenses do datasets have?" /></p>
             
-            <p>If we’re thinking about datasets and data points, this is sort of
-            natural; here’s a crude version. We get a list of all of the names
-            of neighborhoods in London. We look at each dataset, determine
-            the dataset contains data about each neighborhood, and assign a
-            value of yes or no for each of these neighborhoods. Since we’re
-            thinking of the dataset as a row in a data table, we’re just adding
-            a bunch of columns to the data table. With these richer table, we
-            can improve our search feature.</p>
+            <p>and how many of them are <a href="http://thomaslevine.com/!/missouri-data-licensing/">traffic surveys</a>.</p>
             
-            <h3 id="data-portal-usage">Data portal usage</h3>
-            <p>We often use the number of datasets on a portal as a measure of
-            data portal quality. Unfortunately, this number isn’t very meaningful.</p>
+            <p><img src="http://thomaslevine.com/!/missouri-data-licensing/figure/pdf_trafficsurvey.png" alt="Traffic surveys" /></p>
             
-            <p>Depending on the situation, it could make sense to break up a
-            larger dataset or to combine a bunch of smaller datasets.
-            Neither of these manipulations really changes the amount of data
-            on the portal, but they will substantially impact our metric
-            (number of datasets on the portal). Thus, this isn’t a particularly
-            informative metric. Moreover, such a metric may encourage us to
-            break up a larger dataset into pieces when it doesn’t really
-            make sense to.</p>
+            <p>We often talk about studying open data and building products from open data, but the examples above are something different.
+            In these cases, we’re collecting a super-dataset about open data in order to study how people publish and use open data.</p>
             
-            <p>We can develop a better metric for the amount of data on a portal,
-            but we should also come up with measures for the other things that
-            we really care about. Here are some examples.</p>
+            <h2 id="metadata-as-data">Metadata as Data</h2>
+            <p>Even though the word “metadata” contains the word “data”, people don’t typically think of metadata as actual data. In the context of open data, we use metadata to search for data, label charts, and interpret specific datasets; we don’t think of metadata as data that we can analyze. </p>
             
-            <ul>
-              <li><strong>Completeness</strong>: What proportion of a government’s data has been
-              released on the portal?</li>
-              <li><strong>User groups</strong>: Does the dataset tend to be used by people inside
-              of government or outside of government? What proportion of dowloads
-              come from government buildings?</li>
-              <li><strong>Timeliness</strong>: How up-to-date are the data? How many datasets
-              that were published more than a year ago have been updated within
-              the past year?</li>
-            </ul>
+            <p><img src="calendar-metadata.png" alt="Metadata on a webpage" /></p>
             
-            <p>If we think of datasets as data points, it is natural for us to
-            get creative about the data that we collect about each dataset.</p>
+            <p>However, if you import metadata about a dataset into a super-dataset, that metadata suddenly becomes real data, offering meaningful information such as time of publication, description of content, and download count.</p>
             
-            <h2 id="conclusion">Conclusion</h2>
-            <p>Open data portals make it easier to consume data once someone
-            has decided to publish them, but they don’t yet give us the
-            bigger picture of what’s going on inside an open data initiative.
-            We can’t really tell what datasets are available, who’s using them,
-            what impact they’re having, or whether they are of good quality.</p>
+            <p><img src="spreadsheet-spreadsheet.png" alt="Metadata in a spreadsheet" /></p>
             
-            <p>We need to give data publishers and data consumers a better picture
-            of what is going on in open data portals. I don’t know how we’ll do
-            that, but I think we’ll get somewhere if we start thinking of datasets
-            as datapoints.</p>
+            <h2 id="why-this-matters">Why This Matters</h2>
+            <p>Ironically, open data initiatives so far haven’t been particularly data-driven. There are numerous case studies
+            (<a href="http://beyondtransparency.org/">Code for America</a>,
+            <a href="http://www.socrata.com/case-studies/">Socrata</a>,
+            <a href="http://ckan.org/case-studies/">CKAN</a>,
+            <a href="http://theodi.org/case-studies">Open Data Institute</a>)
+            about how to open up government data, but these are based strongly on personal experiences about opening data and not on precise, quantitative data about opening data.</p>
+            
+            <p>There is <a href="http://thomaslevine.com/open-data">comparatively little</a> work that uses data to come up with guidelines or decisions about the opening of data. Similarly, no data catalog software implements standard data-driven features like randomized experiments (A/B testing) and recommender systems.</p>
+            
+            <p>By opening data, people are also producing data about their release of data, which could be used to make open data initiatives more data-driven. That is, it’s possible to measure how people use the data being opened up, who tends to use which datasets, and which formats are best for different people. It’s also possible to help people find datasets they wouldn’t have thought to search for and automate processes for dataset quality-control.</p>
+            
+            <p>Open data efforts aren’t very data-driven right now, but it shouldn’t be hard to change that. Most data catalogs are already collecting some sort of data about how people use their datasets, and it’s possible to study existing data to drive decisions about open data. This is almost achievable and mostly just requires a shift in thinking.</p>
+            
+            <h2 id="open-data-should-be-data-driven">Open Data Should Be Data-Driven</h2>
+            <p>Open data portals make it easier to organize data for publication, but they don’t yet provide the bigger picture of what’s going on, what’s working, and what isn’t. We haven’t made it easy to see what sorts of data are available, who’s using them, what impact they’re having, or whether they are of good quality.</p>
+            
+            <p>Collecting data about the use of open data forms a clearer picture of what is happening in open data. Making data-driven decisions about open data becomes achievable. All it takes is for people to start thinking of metadata as data and see datasets as data points.</p>
           </article>
         </div>
         <div id='pagination'>
