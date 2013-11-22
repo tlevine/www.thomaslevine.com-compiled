@@ -39,9 +39,16 @@
     <meta content="http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png" property="og:image">
     <link href="../favicon.ico" rel="icon" type="image/x-icon">
     <link href="../!/feed.xml" rel="alternate" title="Thomas Levine" type="application/atom+xml">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css">
+    <script>
+      if (window.location.host === 'localhost:3000') {
+        // Local for development
+      } else {
+        // CDN otherwise
+        document.write('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" type="text/css">')
+        document.write('<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML></' + 'script>')
+      }
+    </script>
     <link href="../css/style-cb653401acb.css" rel="stylesheet">
-    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script src="../js/modernizr-cb42306a279.js"></script>
   </head>
   <body class="open-data">
@@ -84,6 +91,14 @@
           </div>
         </header>
         <div class="clearfix" id="links">
+          <div class="link">
+            <strong>
+              <a href="../!/data-updatedness/">Updating of data catalogs</a>
+            </strong>
+            <footer>
+              Nov 22, 2013
+            </footer>
+          </div>
           <div class="link">
             <strong>
               <a href="../!/open-data-in-plain-english/">Open Data in Plain English</a>
@@ -166,7 +181,7 @@
           </div>
           <div class="link">
             <strong>
-              <a href="../!/socrata-users/">Who uses Socrata's analysis tools?</a>
+              <a href="../!/socrata-users/">Who uses Socrata's in-browser charting features?</a>
             </strong>
             <footer>
               Jul 25, 2013

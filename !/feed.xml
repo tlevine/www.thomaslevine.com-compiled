@@ -2,13 +2,575 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-11-18T00:00:00Z</updated>
+  <updated>2013-11-22T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-11-22:/!/data-updatedness/index.html</id>
+    <title type="html">Updating of data catalogs</title>
+    <published>2013-11-22T00:00:00Z</published>
+    <updated>2013-11-22T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/data-updatedness/index.html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://project-open-data.github.io/principles/"&gt;Project Open Data&lt;/a&gt;,
+the &lt;a href="http://sunlightfoundation.com/opendataguidelines/#real-time-updates"&gt;Sunlight Foundation&lt;/a&gt;,
+a bunch of
+&lt;a href="http://le.utah.gov/~2013/bills/sbillenr/SB0283.pdf"&gt;open&lt;/a&gt;
+&lt;a href="http://www.scribd.com/fullscreen/26442622?access_key=key-20rfsh26eu0ob66xlbmu"&gt;data&lt;/a&gt;)
+&lt;a href="http://www.governor.ny.gov/executiveorder/95"&gt;policies&lt;/a&gt;,
+and probably everyone else says that it’s important that open data
+be kept up-to-date. So I was wondering how up-to-date they actually are.&lt;/p&gt;
+
+&lt;p&gt;I collected some data about the updatedness of open data.
+Based on these data about open data,
+the open data don’t seem very up-to-date.&lt;/p&gt;
+
+&lt;h2 id="the-data-about-data"&gt;The data about data&lt;/h2&gt;
+&lt;p&gt;I &lt;a href="/!/socrata-summary/"&gt;downloaded&lt;/a&gt;
+all the metadata about all of the public datasets that are hosted on
+58
+data portals run by &lt;a href="http://socrata.com"&gt;Socrata&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="removing-duplicates"&gt;Removing duplicates&lt;/h3&gt;
+&lt;p&gt;I had to do a lot to remove duplicate datasets.
+I did these two things.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Remove federated datasets&lt;/li&gt;
+  &lt;li&gt;Deal with derived views&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Dealing with federation was annoying, but I had already
+done that; you can read about that
+&lt;a href="/!/socrata-deduplicate/#dealing-with-federation"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dealing with derived views is more complicated.
+Socrata has this feature where you can create multiple
+&lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt; from a single
+&lt;a href="/!/socrata-genealogies#term-table"&gt;table&lt;/a&gt;.
+It is hard to separate the official views, created by someone in the
+government, from the unofficial, derived views. I did not try to determine
+which view/dataset was the original, official one, but I did separate
+them based on their &lt;code&gt;tableId&lt;/code&gt;, which links all of the different views
+that use the same data. Because I didn’t figure out which view is the
+original one for each table, I can’t tell you things like the name of
+the original dataset. On the other hand, I can tell you a lot of things.
+Most importantly, this manner of removing duplicates doesn’t hinder
+my approach for determining updatedness.&lt;/p&gt;
+
+&lt;h3 id="dates"&gt;Dates&lt;/h3&gt;
+&lt;p&gt;The Socrata API provides four date fields for each view.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;createdAt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;publicationDate&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;rowsUpdatedAt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;viewLastModified&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;createdAt&lt;/code&gt; is when someone clicked the button to include the dataset;
+it’s always the oldest one. It is possible to create a dataset but keep
+it private, for internal review. If you spend a couple days reviewing
+the dataset privately before you post it publically, the &lt;code&gt;publicationDate&lt;/code&gt;
+will reflect this latter date, while &lt;code&gt;createdAt&lt;/code&gt; will still be the time
+when you added the private dataset. Also, &lt;code&gt;createdAt&lt;/code&gt; is different for
+different views of the same data, but &lt;code&gt;publicationDate&lt;/code&gt; is not.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;table(subset(socrata, tableId == 926641)$publicationDate)
+2013-06-18 
+        46
+
+
+table(subset(socrata, tableId == 926641)$createdAt)
+2011-09-26 2011-10-25 2011-12-22 2012-01-03 2012-01-04 2012-01-30 
+         2         17          1          1          1          6 
+2012-01-31 2012-02-06 2013-04-08 2013-05-30 
+         7          9          1          1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;rowsUpdatedAt&lt;/code&gt; and &lt;code&gt;viewLastModified&lt;/code&gt; presumably have something to do
+with the time the dataset was updated. I don’t really know what those
+mean, but I think &lt;code&gt;rowsUpdatedAt&lt;/code&gt; is the one I want. Recall from above
+that views with the same &lt;code&gt;tableId&lt;/code&gt; share the share the underlying data.
+If the data get updated, it should be reflected in all of the datasets.
+This is the case for &lt;code&gt;rowsUpdatedAt&lt;/code&gt;; for all
+46
+datasets with an &lt;code&gt;tableId&lt;/code&gt; of &lt;code&gt;926641&lt;/code&gt;, the &lt;code&gt;rowsUpdatedAt&lt;/code&gt; field
+is the same.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; table(subset(socrata.deduplicated.orig, tableId == 926641)$rowsUpdatedAt)
+1371584568 
+        46
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On the other hand, the &lt;code&gt;viewLastModified&lt;/code&gt; field is quite different.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; table(subset(socrata.deduplicated.orig, tableId == 926641)$viewLastModified)
+1320681652 1320681806 1320683489 1320683529 1320683572 1320683615 
+         1          1          1          1          1          1 
+1320683652 1320683694 1320683740 1320683775 1320683818 1320684414 
+         1          1          1          1          1          1 
+1320684459 1320684504 1320684542 1320684575 1320684625 1325697249 
+         1          1          1          1          1          1 
+1327951380 1327951474 1327951571 1327951655 1327951743 1327951864 
+         1          1          1          1          1          1 
+1328026858 1328027111 1328027387 1328027479 1328028650 1328031765 
+         1          1          1          1          1          1 
+1328037223 1328544614 1328544754 1328544905 1328545059 1328545187 
+         1          1          1          1          1          1 
+1328545294 1328545431 1328545524 1328545643 1328734273 1330367612 
+         1          1          1          1          1          1 
+1365458282 1365463347 1369872686 1371584597 
+         1          1          1          1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thus, I’m using &lt;code&gt;rowsUpdatedAt&lt;/code&gt; for calculating the updatedness measure.&lt;/p&gt;
+
+&lt;h2 id="what-is-an-update"&gt;What is an “update”&lt;/h2&gt;
+&lt;p&gt;I’m going to use the term &lt;em id="term-update"&gt;update&lt;/em&gt; to mean a reasonably particular
+thing that excludes some other things that you might consider an update.&lt;/p&gt;
+
+&lt;p&gt;The Socrata data portal software has 
+&lt;a href="http://dev.socrata.com/publishers/getting-started"&gt;this publisher API&lt;/a&gt;
+that lets the publisher (usually a government) upload data as a
+&lt;a href="/!/socrata-genealogies/#term-dataset"&gt;dataset&lt;/a&gt;-type &lt;a href="/!/socrata-genealogies#term-view"&gt;view&lt;/a&gt;,
+with its own unique URL based on its
+&lt;a href="http://dev.socrata.com/docs/endpoints"&gt;4x4 identifier&lt;/a&gt;.
+I presume that there’s some web interface for this too.&lt;/p&gt;
+
+&lt;p&gt;An update only occurs when you use the API (or the presumed web interface)
+in a particular manner. I’ll tell you about three ways you might use it,
+and I only count the third way as an update.&lt;/p&gt;
+
+&lt;h3 id="upload-a-new-version-and-delete-the-old-version"&gt;Upload a new version and delete the old version&lt;/h3&gt;
+&lt;p&gt;Let’s say you have a dataset of
+&lt;a href="https://data.oregon.gov/dataset/Contracts-Lottery-Fiscal-Year-2011/dwi6-thje"&gt;lottery contracts for 2011&lt;/a&gt;
+and you notice a spelling error in one of the fields. You fix it on your own computer,
+but how do you get it to the main site? You could upload the new one and delete the old
+one, but then the URL will change.&lt;/p&gt;
+
+&lt;p&gt;When someone uploads a new version of the dataset to Socrata
+but it has a different URL, I do not count it as an update.&lt;/p&gt;
+
+&lt;h3 id="upload-new-data-as-a-separate-dataset"&gt;Upload new data as a separate dataset&lt;/h3&gt;
+&lt;p&gt;What if you want to add the 2012 data but keep the 2011 data the same?
+You could upload the 2012 data as a
+&lt;a href="https://data.oregon.gov/Revenue-Expense/Contracts-Lottery-Fiscal-Year-2012/i3ri-n6hq"&gt;separate dataset&lt;/a&gt;.
+The old dataset would still have the same URL,
+but but the new one would be hard to find; the open data catalog doesn’t make a link between these two datasets.&lt;/p&gt;
+
+&lt;p&gt;Within the present article, I do not consider this to be an update either.&lt;/p&gt;
+
+&lt;h3 id="using-the-append-and-replace-api-methods"&gt;Using the append and replace API methods&lt;/h3&gt;
+&lt;p&gt;The publisher API lets you
+&lt;a href="http://dev.socrata.com/publishers/importing#append_replace"&gt;append to or replace&lt;/a&gt;
+the data in an existing dataset. That is, you can upload new data for an
+existing dataset while keeping its 4x4 identifier and all of its metadata.&lt;/p&gt;
+
+&lt;p&gt;This approach is much better than the other two because it
+makes it much easier to find the new data; we can get the
+new data while still referencing the same URL. This is the
+only of the three approaches that I count as an update.&lt;/p&gt;
+
+&lt;h2 id="data-summary"&gt;Data summary&lt;/h2&gt;
+&lt;p&gt;We have data from mid-2011 to mid-2013. In order to fit this all on
+one plot, let’s look first at which datasets were updated; we’re ignoring
+the dates when they were updated. Each horizontal band is a data portal,
+each dot is a data &lt;a href="/!/socrata-genealogies#term-table"&gt;table&lt;/a&gt;
+inside of a data portal,
+and the dots are colored based on whether the data were ever updated.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/summary.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This plot shows us that older datasets are more likely to have been
+updated. It also subtly points out that different data portals have
+different amounts of datasets and that they have grown at different
+rates over time. Let’s plot that more clearly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/dataset_counts_over_time.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Data portals grow over time, often in sudden bursts. Two notes about
+that plot:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;It assumes that no data have ever been deleted from a portal;
+ it’s all based on the publication date.&lt;/li&gt;
+  &lt;li&gt;It is counting the number of &lt;a href="/!/socrata-genealogies#term-table"&gt;tables&lt;/a&gt;
+ rather than the number of &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Let’s also relate the update dates to the publication dates.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/up_to_date.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;It looks like most data were “updated” only within an hour of their
+initial publications. Colloquially, we’d say that they haven’t been
+updated ever. But there are some spikes here and there.&lt;/p&gt;
+
+&lt;p&gt;Also, it appears that only certain kinds of data get updated.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; table(socrata.deduplicated$viewType, is.na(socrata.deduplicated$rowsUpdatedAt))
+        FALSE TRUE
+blobby      0 1752
+geo         0  400
+href        0  571
+tabular  5552  151
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tabular data (the stuff you’re used to) get updated, but links to
+external data (&lt;code&gt;href&lt;/code&gt;), geospatial data (&lt;code&gt;geo&lt;/code&gt;) and ordinary files (&lt;code&gt;blobby&lt;/code&gt;)
+don’t seem to get updates. I don’t know whether this is a feature of
+Socrata or just a strong tendency for those sorts of data.&lt;/p&gt;
+
+&lt;h2 id="motivating-an-updatedness-measure"&gt;Motivating an updatedness measure&lt;/h2&gt;
+&lt;p&gt;The update date can tell us how up-to-date a particular dataset is,
+but I want to get a bigger picture. I want to quantitatively compare
+datasets and groups of datasets. I tried to come up with a simple
+statistic that would let us do that.&lt;/p&gt;
+
+&lt;p&gt;One measure that I came up with is &lt;strong&gt;proportion of datasets older than
+a year that have been updated within the year&lt;/strong&gt;. (The timespan of a
+year is pretty arbitrary, though.) Here’s how I arrived at that measure.&lt;/p&gt;
+
+&lt;h3 id="general-formulation"&gt;General formulation&lt;/h3&gt;
+&lt;p&gt;In producing a measure of updateness, we are trying to come up with a
+simple number that matches our intuition about whether something is
+up-to-date. Let’s think a bit about what would count as up-to-date.&lt;/p&gt;
+
+&lt;p&gt;A dataset first gets published at some time. For a little while, the
+data will be up-to-date even if no updates are sent. For example, if
+data about wifi usage per month are uploaded on the first of the month,
+we’ll consider them to be up-to-date two weeks later.&lt;/p&gt;
+
+&lt;p&gt;After some point, we must have received an update in order for the
+data to be up-to-date. In the case of monthly wifi usage, we need an
+update on the first of the second month; if we haven’t received one
+by then, we’ll consider the data out-of-date. Thus, I arrive at the
+general concept of comparing the date of initial publication to the
+date at which the dataset was last updated.&lt;/p&gt;
+
+&lt;h3 id="differences-by-dataset"&gt;Differences by dataset&lt;/h3&gt;
+&lt;p&gt;If a dataset of scores on standardized math tests taken in schools
+was uploaded two weeks ago and hasn’t been touched since, I’d say it’s
+up-to-date. A particular standardized math tests might be administered
+yearly, so I don’t expect the data to have changed in a couple of weeks.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if a dataset of 311 calls hasn’t been updated in
+two weeks, we could say that it is out-of-date because 311 calls are
+always coming in.&lt;/p&gt;
+
+&lt;p&gt;A dataset about something that happens often needs to be refreshed
+more often for us to consider it up-to-date. A very cool measure of
+updatedness would account for out how often new data come in and
+check whether those new data show up in the dataset. But that would
+be a lot of work, so let’s start with something simpler.&lt;/p&gt;
+
+&lt;h3 id="keep-it-simple"&gt;Keep it simple&lt;/h3&gt;
+&lt;p&gt;Rather than worring about the exact time period, let’s address a simpler
+issue. I’ve heard complaints that some data get uploaded data once and
+never updated, ever. Rather than worring about the exact time since update,
+let’s just check whether the dataset has been updated ever.&lt;/p&gt;
+
+&lt;p&gt;I’m going to use the format of &lt;em&gt;datasets older than X that have been updated since&lt;/em&gt;
+and just choose an appropriate time X. The time probably has to be kind of
+long, so that we don’t count datasets as out-of-date when they just have
+long update cycles (like yearly data). On the other hand, the time can’t be
+too long, because then we’ll wind up saying that everything is out-of-date.&lt;/p&gt;
+
+&lt;h3 id="choosing-a-less-arbitrary-cutoff"&gt;Choosing a less arbitrary cutoff&lt;/h3&gt;
+&lt;p&gt;We can check whether different values will give us the same value on our
+updatedness measure. To say it fancy-like, we can check whether our updatedness
+measure is robust to the cutoff.&lt;/p&gt;
+
+&lt;p&gt;A simple way of checking this is to plot the value of our updatedness
+measure for different cutoff values. If we find a region where the value
+of the updatedness measure doesn’t change very much when we change the
+cutoff, we could say that cutoffs in that region are safe to use.&lt;/p&gt;
+
+&lt;p&gt;I also had to decide whether to use &lt;code&gt;rowsUpdatedAt&lt;/code&gt; or &lt;code&gt;viewLastModified&lt;/code&gt;
+as the date of update. I don’t really know what either of these means, so
+let’s just try both.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/robustness.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The main thing I notice is that the value of this statistic
+(again, proportion of datasets older than some date that have been updated since)
+is pretty close to zero for all of the portals at any time.
+This is very bad; it means that we pretty much never update
+data that we put on data portals.&lt;/p&gt;
+
+&lt;p&gt;The next thing I notice is that the value varies widely when there aren’t
+very many datasets on the portal. Visually, this shows itself as skinny
+lines (few datasets) jumping up and down very suddenly, like for
+&lt;code&gt;data.cms.gov&lt;/code&gt;. When there are very few datasets on a portal
+(like 12), an addition of a dataset or an update to a dataset will have
+a large impact on the value of our updatedness measure (the height of the line).
+This is not interesting, and the plot below should explain why.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/small_samples.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In these two plots, we’re only looking at &lt;code&gt;data.cms.gov&lt;/code&gt;. The first
+plot is the same as the corresponding plot in the previous image,
+only larger. The second shows the dates at which each
+&lt;a href="/!/socrata-genealogies#term-table"&gt;data table&lt;/a&gt; was
+published and most recently updated. Red dots are publication dates,
+and blue dots are update dates. If there was no update or the most
+recent update was within a day of the publication date, no blue dot
+is shown.&lt;/p&gt;
+
+&lt;p&gt;The bumps in the top plot only occur when the portal contains very
+few datasets; the figure stabilizes at the end of March 2013, when
+a bunch of datasets get published. (In case you’re curious, these
+datasets are all derived from the
+&lt;a href="http://www.resdac.org/cms-data/files/bsf"&gt;Beneficiary Summary File&lt;/a&gt;,
+according to their respective descriptions in the portal.)&lt;/p&gt;
+
+&lt;h2 id="even-simpler"&gt;Even simpler&lt;/h2&gt;
+&lt;p&gt;I’d assumed that people actually update their data, but it looks
+like people don’t.
+I think we need something even simpler to drive this conclusion home.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the number of datasets that have ever been updated, by
+portal. We’ll count a dataset as having been updated if it has a value
+in &lt;code&gt;rowsUpdatedAt&lt;/code&gt; that is more than one day greater than the value
+in &lt;code&gt;publicationDate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/any_update.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Keep my &lt;a href="#term-update"&gt;definition of “update”&lt;/a&gt; in mind;
+in the above count, I’m including neither situations where old datasets
+were deleted and replaced with new ones nor situations where new records
+were uploaded as a separate dataset.&lt;/p&gt;
+
+&lt;h3 id="which-datasets-have-been-updated"&gt;Which datasets have been updated?&lt;/h3&gt;
+&lt;p&gt;Only 655 of the
+8426 datasets have ever been updated.&lt;/p&gt;
+
+&lt;p&gt;These 655 datasets are
+contained within only 29
+portals, out of the 58
+that I looked at. Here are the updates over time by portal.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/updates_over_time_by_portal.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;A few datasets are still updated today (indicated by the tiny bumps
+towards the right of the graphs), but most were only updated two years
+ago.&lt;/p&gt;
+
+&lt;p&gt;You might have guessed already, but these recent updates tend to be for
+datasets that were recently updated, rather than old datasets that have
+been maintained for a while. You can see that in this plot of publication
+date versus update date. The update date is along the x-axis, and the
+publication date is along the y-axis. The diagonal line is where the
+publication date and update date are the same, and it is impossible for
+a dataset to appear above the diagonal line. Datasets towards the bottom-left
+of the plot were published and updated a long time ago. Datasets towards
+the top-right were published and updated recently. Datasets towards the
+bottom-right were published a long time ago and updated recently.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/publish_v_update.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I didn’t really look into why there were so many updates a long
+time ago and so few in between, but I suspect it has something to do
+with how all of these portals are managed by Socrata; there might have
+been some change in software or in technical support practices that
+would have impacted all of the portals.&lt;/p&gt;
+
+&lt;h3 id="which-old-datasets-are-still-kept-up-to-date"&gt;Which old datasets are still kept up-to-date?&lt;/h3&gt;
+&lt;p&gt;Recall that the points at the bottom-right of the previous plot
+correspond to old datasets that have been updated recently. Let’s
+look more closely at these.&lt;/p&gt;
+
+&lt;p&gt;I selected the datasets that were uploaded before 2013 and have
+been updated during 2013; they are represented the ones contained
+by the rectangle in the plot below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/publish_v_update_2013.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are, in fact, only 13 such datasets,
+and they’re in 8 portals.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/updates_2013_hist.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here they are by url.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/updates_2013_url.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was wondering whether anything was special about these. Maybe
+they have a lot of records or get downloaded a lot? For both of
+these statistics, I’m using the total across all &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt; in the
+&lt;a href="/!/socrata-genealogies#term-table"&gt;table/family&lt;/a&gt;, not just the value for that particular view.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/updates_2013_specialness.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I didn’t find anything special about these, but I didn’t look very hard.
+In case you want to give it a shot, here they are.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/zg3h-r2t8"&gt;Pre-Approval for Public Comments: NOAA Aquaculture Listening Sessions (2010)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/u5id-8nqp"&gt;2011 Aquaculture Public Comments Form&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/49sy-iumi"&gt;Map of U.S. Department of Commerce Comments&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;nmfs.socrata.com&lt;/code&gt;: &lt;a href="https://nmfs.socrata.com/-/-/ncry-xzwf"&gt;Photo Directory Example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.cityofchicago.org&lt;/code&gt;: &lt;a href="https://data.cityofchicago.org/-/-/zfg3-p7xv"&gt;Performance Metrics - Innovation &amp;amp; Technology - Site Availability&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.seattle.gov&lt;/code&gt;: &lt;a href="https://data.seattle.gov/-/-/gigx-p9h7"&gt;Heatmap - Assault&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.kingcounty.gov&lt;/code&gt;: &lt;a href="https://data.kingcounty.gov/-/-/cuea-cmxg"&gt;Damage report form for primary residences&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.ok.gov&lt;/code&gt;: &lt;a href="https://data.ok.gov/-/-/2d47-x2mx"&gt;Library Map&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.honolulu.gov&lt;/code&gt;: &lt;a href="https://data.honolulu.gov/-/-/a96q-gyhq"&gt;Crime Incidents&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.honolulu.gov&lt;/code&gt;: &lt;a href="https://data.honolulu.gov/-/-/ix32-iw26"&gt;Traffic Incidents&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.oregon.gov&lt;/code&gt;: &lt;a href="https://data.oregon.gov/-/-/6y98-3xjn"&gt;GPL Documents&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.honolulu.gov&lt;/code&gt;: &lt;a href="https://data.honolulu.gov/-/-/a3ah-kpkr"&gt;Data Catalog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;data.austintexas.gov&lt;/code&gt;: &lt;a href="https://data.austintexas.gov/-/-/nmp9-45v2"&gt;Austin Green Infrastructure Inventory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note well: These links go to arbitrary &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt; on the particular
+&lt;a href="/!/socrata-genealogies#term-table"&gt;table&lt;/a&gt; that was updated; you’ll have to follow a few links to get to
+the original dataset.&lt;/p&gt;
+
+&lt;h3 id="updated-datasets-in-context"&gt;Updated datasets in context&lt;/h3&gt;
+&lt;p&gt;Maybe there actually is something different about the sort of dataset that
+gets updated.&lt;/p&gt;
+
+&lt;p&gt;It turns out that data that have been updated tend to get more downloads than
+data that data that haven’t. (This again uses the family/table totals rather
+that the values for the particular views.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/update_download.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;To give you some more concrete numbers, the median download count was
+88 among data tables that got updated and 15
+among data tables that didn’t. A Wilcoxon rank sum test says that this
+difference is significant (assuming that our 8426
+datasets are a representative sample of some super-population, yadda yadda),
+with a p-value far less than 0.001.&lt;/p&gt;
+
+&lt;p&gt;There is a similar relationship with number of records.
+It turns out that data that have been updated tend to contain more records than
+data that data that haven’t.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/update_nrow.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The median record count was
+66 among data tables that got updated and 17
+among data tables that didn’t. A Wilcoxon rank sum test says that this
+difference too is significant.&lt;/p&gt;
+
+&lt;h2 id="a-proposal-for-an-updatedness-measure"&gt;A proposal for an updatedness measure&lt;/h2&gt;
+&lt;p&gt;I thought I was going to find out which datasets are more up-to-date,
+when they get updated, and so on, but I really just found that the data
+are completely out-of-date.&lt;/p&gt;
+
+&lt;p&gt;Perhaps this says something about the need for more measures of the progress of
+our open data efforts. We have a crude measure of the size of a data catalog
+(the number of datasets it contains), so we can check that number and make sure
+that it is increasing. But that’s pretty much the only one we have, and there
+are surely other things that are worth measuring. Nobody is measuring updatedness,
+so how can we expect anyone to know that the data are out-of-date?
+I think that we’ll keep these portals more up-to-date if we come up with a
+measure of their updateness that is easy to calculate and easy to understand.&lt;/p&gt;
+
+&lt;p&gt;Having found hardly any datasets that get updated, it’s difficult for me to
+say whether any measure I come up with will be all that helpful. But here’s
+my best guess as to the measure we should try to arrive at.&lt;/p&gt;
+
+&lt;h3 id="update-cycles"&gt;Update cycles&lt;/h3&gt;
+&lt;p&gt;As I explained above, different datasets have different update cycles
+(daily, weekly, quarterly, yearly, &amp;amp;c.), and we can know what this cycle
+is for most datasets. In many cases, we don’t know exactly how often a
+dataset will be updated, but we can be reasonably confident that it will
+be within a certain range.&lt;/p&gt;
+
+&lt;h3 id="what-we-do-in-treasuryio"&gt;What we do in treasury.io&lt;/h3&gt;
+&lt;p&gt;We do something like this in &lt;a href="http://treasury.io"&gt;treasury.io&lt;/a&gt;.
+The Financial Management Service (FMS) provides a daily treasury
+statement. One statement is provided per work day, so we should
+get updates approximately every day. In order to make sure that
+our daily importer is working, we check every day that the
+resulting dataset is up-to-date.&lt;/p&gt;
+
+&lt;p&gt;We know from experience that
+the file doesn’t always come out on time; that is, we might only recieve
+today’s statement two days from now. On the other hand, we’ve
+rarely (never?) seen it take longer than that. Our daily updatedness
+test checks how far behind the data are, and it sends us an email
+if the data are
+&lt;a href="https://github.com/csvsoundsystem/federal-treasury-api/blob/master/tests/is_it_running.py#L47"&gt;more than three days behind&lt;/a&gt;;
+if this happens,
+we’ll suspect that it’s something wrong with our importer rather
+than just a late upload from the FMS.&lt;/p&gt;
+
+&lt;h3 id="possibilities"&gt;Possibilities&lt;/h3&gt;
+&lt;p&gt;I brainstormed a bit with &lt;a href="https://twitter.com/criscristina"&gt;Cris Cristina&lt;/a&gt;
+about how we could present this sort of information inside of a data catalog
+website to help people maintain it.&lt;/p&gt;
+
+&lt;p&gt;If we indicate how often each dataset needs to
+be updated, the data portal software could make us aware of which datasets
+need updating. Aside from comparing datasets to datasets, we could compare
+other groupings, like departments.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="mockups/dataset.jpg" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Rather than just presenting a bunch of raw statistics as in the previous
+sketch, we could aggregate these so that you can look at just one thing
+to get a quick idea of whether a dataset or group of datasets is in good
+shape. For example, we could have icons for the general health of a dataset:
+Sad face for bad, smily face for good, and big smiley face for awesome.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="mockups/datasets.jpg" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We could present much more detail about the updates to a dataset.
+Rather than simply saying the date at which it was last updated, we could
+have a timeline of the updates, and we could let you look at old versions
+of the dataset. (Actually, it’s super important to have access to old
+versions, but I won’t get into that now.) Perhaps you could put multiple
+datasets or groups of datasets on this timeline and compare them.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="mockups/timeline.jpg" alt="A sketch of a timeline of dataset updates" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, we can present specific action items. I don’t know exactly what
+these would be, but they might include datasets that are out-of-date
+and datasets that will soon be out-of-date. Imagine the following table
+being presented in some administration page in a data catalog.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="mockups/notifications.jpg" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h2 id="you-get-what-you-measure"&gt;You get what you measure&lt;/h2&gt;
+&lt;p&gt;I thought this article was going to be about which datasets are more up-to-date,
+when they get updated, and so on, but I really just found that the data
+are completely out-of-date.&lt;/p&gt;
+
+&lt;p&gt;The phrase “You get what you measure.” (or any of its variants) seems to
+describe our present situation quite well.
+We say a lot of things about how people should be doing open data,
+and people count &lt;a href="http://census.okfn.org/"&gt;some of these things once-in-a-while&lt;/a&gt;.
+Aside from efforts like the Open Data Census, we don’t really do anything.&lt;/p&gt;
+
+&lt;h3 id="current-metrics"&gt;Current metrics&lt;/h3&gt;
+&lt;p&gt;Well actually we sort of do at least count the number of datasets. There are
+&lt;a href="http://technickle.nicklin.info/post/58169276432/accurately-counting-socrata-datasets"&gt;problems&lt;/a&gt;,
+with this metric, but it does vaguely point us in the right direction.&lt;/p&gt;
+
+&lt;h3 id="other-metrics"&gt;Other metrics&lt;/h3&gt;
+&lt;p&gt;We measure the number of datasets, and we get more datasets. There are a bunch
+of other things that we want. We don’t measure them, and we don’t get them.
+As you saw above, we don’t measure updatedness, and we don’t get up-to-date data.
+Similarly, we don’t measure &lt;a href="http://theunitedstates.io/licensing/"&gt;license-free-ness&lt;/a&gt;,
+and we &lt;a href="/!/open-data-licensing/"&gt;don’t get license-free data&lt;/a&gt;. Also, we don’t
+check whether different datasets could be combined into one, and we get a lot
+of situations, at least in &lt;a href="http://appgen.me/audit/report"&gt;New York City&lt;/a&gt; and
+&lt;a href="/!/missouri-data-licensing/"&gt;Missouri&lt;/a&gt;, several datasets could be combined
+into one.&lt;/p&gt;
+
+&lt;h3 id="data-driven-open-data"&gt;Data-driven open data&lt;/h3&gt;
+&lt;p&gt;Considering that we’re doing open &lt;em&gt;data&lt;/em&gt;, it’s only reasonable that we make
+data-driven decisions about our open data efforts. We obviously need data
+about open data to make these data-driven decisions, so we had better start
+measuring the all of these things that we care about.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-11-18:/!/open-data-in-plain-english/index.html</id>
     <title type="html">Open Data in Plain English</title>
@@ -28,10 +590,7 @@ the audio to English.&lt;/p&gt;
     <published>2013-10-29T00:00:00Z</published>
     <updated>2013-10-29T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/missouri-data-licensing/index.html"/>
-    <content type="html">&lt;!-- https://github.com/tlevine/socrata-catalog/ --&gt;
-
-&lt;h2 id="which-specific-datasets-have-license-metadata"&gt;Which specific datasets have license metadata?&lt;/h2&gt;
-&lt;p&gt;I recently &lt;a href="/!/open-data-licensing"&gt;found&lt;/a&gt; that most datasets on the
+    <content type="html">&lt;p&gt;I recently &lt;a href="/!/open-data-licensing"&gt;found&lt;/a&gt; that most datasets on the
 open data portals I’ve been looking at don’t have open licenses or
 public domain dedications.&lt;/p&gt;
 
@@ -225,8 +784,7 @@ named datasets tend to have similar schemas.&lt;/p&gt;
     <published>2013-10-13T00:00:00Z</published>
     <updated>2013-10-13T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/dot-at-thomaslevine-dot-com/index.html"/>
-    <content type="html">&lt;h2 id="choosing-an-email-address"&gt;Choosing an email address&lt;/h2&gt;
-&lt;p&gt;Since I can have any address at thomaslevine.com,
+    <content type="html">&lt;p&gt;Since I can have any address at thomaslevine.com,
 I’ve had a hard time choosing one. There’s a fun,
 long story about previous email addresses, and I
 can explain that some other time. Anyway, I’ve
@@ -321,188 +879,6 @@ play &lt;em&gt;Complicity&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Actually, we printed a bunch.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="results.jpg" alt="A bunch of pieces of paper with the same poem on all of them" class="wide" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-10-02:/!/open-data-licensing/index.html</id>
-    <title type="html">Open data licensing</title>
-    <published>2013-10-02T00:00:00Z</published>
-    <updated>2013-10-02T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-licensing/index.html"/>
-    <content type="html">&lt;h2 id="open-data-are-open-but-do-their-licenses-reflect-that"&gt;Open data are “open”, but do their licenses reflect that?&lt;/h2&gt;
-
-&lt;p&gt;I downloaded all of the metadata files from 102 open data
-portals hosted on CKAN, Socrata and OpenDataSoft. Each of
-these data portal softwares has a metadata field for the
-license of each particular dataset. In the present article,
-I look at this metadata field.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;: It turns out that most of
-the datasets don’t have licenses. Or if they do, it’s not
-specified in this field. I think it would be nice if they did.&lt;/p&gt;
-
-&lt;h2 id="the-portals"&gt;The portals&lt;/h2&gt;
-&lt;p&gt;I looked at &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/portals.py"&gt;these portals&lt;/a&gt;,
-but I ignored the following three because they aren’t associated with specific governments.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;datahub.io&lt;/li&gt;
-  &lt;li&gt;datastore.opendatasoft.com&lt;/li&gt;
-  &lt;li&gt;opendata.socrata.com&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="reducing-license-names"&gt;Reducing license names&lt;/h2&gt;
-&lt;p&gt;I made a &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/query-license.py#L5"&gt;rough mapping&lt;/a&gt;
-between the free-form names of the
-licenses and some standard licenses.
-For example, &lt;a href="http://creativecommons.org/publicdomain/zero/1.0/"&gt;CC0&lt;/a&gt; 
-and other public domain licenses got grouped into “Public Domain”.&lt;/p&gt;
-
-&lt;p&gt;I didn’t test this
-very well, so there are probably some errors, but I think
-these results are still informative.&lt;/p&gt;
-
-&lt;h2 id="do-people-specify-a-license-at-all"&gt;Do people specify a license at all?&lt;/h2&gt;
-&lt;p&gt;In doing this, I distinguished between whether a license was
-specified. Here’s a histogram of the proportion of datasets
-with licenses, by portal. Portals on the right of the graph
-specified licenses for most of their datasets, and portals on
-the left specified licenses for few of their datasets.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="p1.png" alt="Do portals indicate the licenses of their datasets?" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I was actually slightly surprised that people had set licenses
-at all.&lt;/p&gt;
-
-&lt;h2 id="which-licenses"&gt;Which licenses?&lt;/h2&gt;
-&lt;p&gt;Then I looked at what these licenses (after I reduced them to
-a few standard names) were.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="p2.png" alt="Data license use across 100 portals" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;As we saw in the previous plot, most datasets don’t specify a
-license. They might be specified elsewhere.
-While many datasets have standard open licenses, the licenses&lt;/p&gt;
-
-&lt;h2 id="how-do-portals-differ"&gt;How do portals differ?&lt;/h2&gt;
-&lt;p&gt;I looked at the variation in this across portal.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="p4.png"&gt;&lt;img src="p4.png" alt="Data licenses by portal" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;publicdata.eu&lt;/code&gt; is pretty big. Like the three portals that I removed
-at the beginning, it isn’t associated with a particular government,
-so I removed it.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="p5.png"&gt;&lt;img src="p5.png" alt="Data licenses by portal, ignoring publicdata.eu" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id="do-people-put-licenses-elsewhere"&gt;Do people put licenses elsewhere?&lt;/h2&gt;
-&lt;p&gt;I looked around the websites for a few portals to see whether they
-grant a license somewhere else in the website. Let’s group them into
-two groups: Portals that specify lots of open licenses and portals
-that don’t specify very many license&lt;/p&gt;
-
-&lt;h3 id="lots-of-open-licenses"&gt;Lots of open licenses&lt;/h3&gt;
-
-&lt;h4 id="houston"&gt;Houston&lt;/h4&gt;
-&lt;p&gt;Everything’s public domain on the
-&lt;a href="http://data.codeforhouston.com/dataset/city-of-houston-funds"&gt;data.codeforhouston.com&lt;/a&gt;,
-and it says so in the individual datasets, but there’s no site-wide
-license page that explains this.&lt;/p&gt;
-
-&lt;h4 id="united-kingdom"&gt;United Kingdom&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;data.gov.uk&lt;/code&gt; is &lt;a href="http://data.gov.uk/terms-and-conditions"&gt;more explicit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The data and information available through www.data.gov.uk are available under terms described in the “licence” or “constraints” field of individual dataset records (meta-data). Except where otherwise noted this is the Open Government Licence.&lt;/p&gt;
-
-  &lt;p&gt;All dataset records (meta-data) published on www.data.gov.uk are licensed under the Open Government Licence.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id="few-licenses"&gt;Few licenses&lt;/h3&gt;
-
-&lt;h4 id="oregon"&gt;Oregon&lt;/h4&gt;
-&lt;p&gt;The closest thing I could find to a license on Oregon’s data portal was
-&lt;a href="http://www.oregon.gov/Pages/datamoderation.aspx"&gt;this&lt;/a&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Source Data&lt;/strong&gt;
-Applications using data supplied by this site must include the following disclaimers on their sites:&lt;/p&gt;
-
-  &lt;blockquote&gt;
-    &lt;p&gt;“The data made available here has been modified for use from its original source, which is the State of Oregon. THE STATE OF OREGON MAKES NO REPRESENTATIONS OR WARRANTY AS TO THE COMPLETENESS, ACCURACY, TIMELINESS, OR CONTENT OF ANY DATA MADE AVAILABLE THROUGH THIS SITE. THE STATE OF OREGON EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the Web feed is being used at one’s own risk.”&lt;/p&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I suppose that implies that it is okay to copy the data, modify
-the data and supply your application with it, but is this enough
-to give you the right to do that?&lt;/p&gt;
-
-&lt;h4 id="italy"&gt;Italy&lt;/h4&gt;
-&lt;p&gt;Few datasets on &lt;a href="http://it.ckan.net"&gt;it.ckan.net&lt;/a&gt; specify licenses,
-but it says in two places
-that most everything is released under the Open Database License.
-The &lt;a href="http://it.ckan.net/#credits"&gt;“Meta” section&lt;/a&gt; of the footer says this.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;© 2012 Open Knowledge Foundation Disponibile nei termini della Open Database License&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;And the &lt;a href="http://it.ckan.net/about"&gt;about/informazioni&lt;/a&gt; page says this.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Most of the data indexed at CKAN Italia is openly licensed, meaning anyone is free to use or re-use it however they like. Perhaps someone will take that nice dataset of a city’s public art that you found, and add it to a tourist map - or even make a neat app for your phone that’ll help you find artworks when you visit the city. Open data means more enterprise, collaborative science and transparent government. You can read more about open data in the Open Data Handbook.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Perhaps this implies that everything is licensed under ODbL unless
-something specifies otherwise?&lt;/p&gt;
-
-&lt;h2 id="why-licenses-matter"&gt;Why licenses matter&lt;/h2&gt;
-&lt;p&gt;Datasets on data portals often lack licenses, and there sometimes
-isn’t a site-wide license for data portals. We sort of don’t need
-licenses on these data portals, but I’d like to see them.&lt;/p&gt;
-
-&lt;h3 id="why-we-sort-of-dont-need-it"&gt;Why we sort of don’t need it&lt;/h3&gt;
-&lt;p&gt;For at least some data portals, it might be kind of safe to assume
-that everything on it is free for your use.&lt;/p&gt;
-
-&lt;p&gt;In the United States, this might not be too big of an issue because
-&lt;a href="http://www.lib.umich.edu/copyright/facts-and-data"&gt;you can’t copyright data&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Also, products of the United States federal government are public domain,
-so I’d love to think that everything on at least &lt;code&gt;data.gov&lt;/code&gt; is in the public domain.&lt;/p&gt;
-
-&lt;h3 id="why-we-sort-of-need-it"&gt;Why we sort of need it&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href="http://opendatacommons.org/faq/"&gt;Licensing is important because it reduces uncertainty.&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In some contexts, the creator of data can’t restrict you from copying them,
-remixing them and distributing derived works. But it’s hard to know whether
-you are in such a context. For example, Oregon apparently has the right to
-require you to add a disclaimer to software that use Oregon data.&lt;/p&gt;
-
-&lt;p&gt;The White House gets this. Even though products of the federal government
-are already in the public domain, the White house website makes this
-&lt;a href="http://www.whitehouse.gov/copyright"&gt;explicit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Even if the public already has the right to the data, you should make this
-clear on the website. This is especially relevant when someone is downloading
-datasets from 100 different portals run by different governments; it’s nice
-not to look up the intellectual property laws for all of the different places.&lt;/p&gt;
-
-&lt;h2 id="add-a-license"&gt;Add a license!&lt;/h2&gt;
-&lt;p&gt;If you run a data portal, add a license, even if you don’t really need one.
-Hmm I suppose I should tell you which license.&lt;/p&gt;
-
-&lt;p&gt;If your data portal is associated with a government,
-&lt;a href="http://creativecommons.org/publicdomain/zero/1.0/"&gt;Creative Commons Zero&lt;/a&gt;
-seems like a good one to me. This effectively allows anyone to do anything with
-the data as if she had produced them herself.&lt;/p&gt;
-
-&lt;p&gt;If you want to enforce that datasets derived from your dataset be released
-openly, consider something like the
-&lt;a href="http://opendatacommons.org/licenses/odbl/summary/"&gt;Open Database License&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>

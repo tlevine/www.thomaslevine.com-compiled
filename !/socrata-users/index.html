@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Who uses Socrata's analysis tools?</title>
+    <title>Who uses Socrata's in-browser charting features?</title>
     <meta content='That time I downloaded all of the 80,000 Socrata datasets, I also downloaded the 10,000 users.' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -32,13 +32,20 @@
     <meta content='http://thomaslevine.com/!/socrata-users/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='That time I downloaded all of the 80,000 Socrata datasets, I also downloaded the 10,000 users.' property='og:description'>
-    <meta content="Who uses Socrata's analysis tools?" property='og:title'>
+    <meta content="Who uses Socrata's in-browser charting features?" property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script>
+      if (window.location.host === 'localhost:3000') {
+        // Local for development
+      } else {
+        // CDN otherwise
+        document.write('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" type="text/css">')
+        document.write('<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML></' + 'script>')
+      }
+    </script>
     <link href='/css/style-cb653401acb.css' rel='stylesheet'>
-    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/modernizr-cb42306a279.js'></script>
   </head>
   <body>
@@ -71,21 +78,9 @@
             </li>
           </ul>
         </nav>
-        <header class='title-card'>
-          <hgroup>
-            <h1>
-              Who uses Socrata's analysis tools?
-            </h1>
-            <p>
-              
-            </p>
-          </hgroup>
-          <div class='date'>
-            July 25, 2013
-          </div>
-        </header>
         <div id='article-wrapper'>
           <article>
+            <h1>Who uses Socrata's in-browser charting features?</h1>
             <p>I recently downloaded the metadata files for all
             of the datasets on all of the Socrata portals (for a particular definition
             of “all”). And then I remembered that these datasets don’t just float in
@@ -523,6 +518,7 @@
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-users/index.md">View source</a>
+            <a href="https://github.com/tlevine/socrata-analysis">Other source</a>
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
         </div>

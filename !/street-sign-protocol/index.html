@@ -36,9 +36,16 @@
     <meta content='http://thomaslevine.com/!/street-sign-protocol/street-signs.jpg' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script>
+      if (window.location.host === 'localhost:3000') {
+        // Local for development
+      } else {
+        // CDN otherwise
+        document.write('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" type="text/css">')
+        document.write('<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML></' + 'script>')
+      }
+    </script>
     <link href='/css/style-cb653401acb.css' rel='stylesheet'>
-    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
     <script src='/js/modernizr-cb42306a279.js'></script>
   </head>
   <body>
@@ -71,28 +78,16 @@
             </li>
           </ul>
         </nav>
-        <header class='title-card'>
-          <hgroup>
-            <h1>
-              The Street Sign Protocol
-            </h1>
-            <p>
-              
-            </p>
-          </hgroup>
-          <div class='date'>
-            September 10, 2013
-          </div>
-        </header>
         <div id='article-wrapper'>
           <article>
+            <h1>The Street Sign Protocol</h1>
             <p>There are a lot of acronyms on the internet that end in “P”,
             like TCP, IP, and HTTP. This “P” stands for “protocol”.
             Perhaps you are wondering what a protocol is.</p>
             
             <p>“Protocol” is one of those words that sounds more special than it really is.
             The concept of a computer protocol might sound quite complex, but
-            it’s a rather generic concept that is something like a language,
+            it’s a rather generic concept; it’s something like a language,
             an expectation, and a social norm.</p>
             
             <p>The way a particular protocol works might be quite complicated, but
@@ -150,7 +145,7 @@
             
             <p>Poles must be mounted within about ten feet of a corner of the intersection
             but not on the paved area of the street or the intersection. (It is okay for them
-            to be mounted on the sidewalk.) It must stick straight out of the ground; the long
+            to be mounted on the sidewalk.) Each pole must stick straight out of the ground; the long
             axis of the cylinder must be approximately in line with the direction of gravity.</p>
             
             <p>Each street sign displays the name of one street. The street sign must include the
@@ -177,7 +172,7 @@
              of sidewalks, the traffic patterns and the presence of visual obstacles
              like trees.</li>
               <li>Print the signs with the street names.</li>
-              <li>Cast a pole.</li>
+              <li>Fabricate a pole.</li>
               <li>Put a pole and street signs on a truck.</li>
               <li>Drive the truck to the intersection, and park nearby.</li>
               <li>Carry the materials and some tools to the intersection.</li>
@@ -303,6 +298,7 @@
         <div id='pagination'>
           <div class='base-little-card'>
             <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/street-sign-protocol/index.md">View source</a>
+            
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
         </div>
