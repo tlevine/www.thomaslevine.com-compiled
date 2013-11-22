@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Updating of data catalogs</title>
+    <meta content='I looked at data from a bunch of open data catalogs, and it turns out that pretty much none of the datasets I was looking at have ever been updated.' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Updating of data catalogs' name='twitter:title'>
+    <meta content='I looked at data from a bunch of open data catalogs, and it turns out that pretty much none of the datasets I was looking at have ever been updated.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/data-updatedness/figure/small_samples.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/data-updatedness/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='I looked at data from a bunch of open data catalogs, and it turns out that pretty much none of the datasets I was looking at have ever been updated.' property='og:description'>
+    <meta content='Updating of data catalogs' property='og:title'>
+    <meta content='http://thomaslevine.com/!/data-updatedness/figure/small_samples.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <script>
+      if (window.location.host === 'localhost:3000') {
+        // Local for development
+      } else {
+        // CDN otherwise
+        document.write('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" type="text/css">')
+        document.write('<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML></' + 'script>')
+      }
+    </script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <h1>Updating of data catalogs</h1>
+            <p><a href="http://project-open-data.github.io/principles/">Project Open Data</a>,
+            the <a href="http://sunlightfoundation.com/opendataguidelines/#real-time-updates">Sunlight Foundation</a>,
+            a bunch of
+            <a href="http://le.utah.gov/~2013/bills/sbillenr/SB0283.pdf">open</a>
+            <a href="http://www.scribd.com/fullscreen/26442622?access_key=key-20rfsh26eu0ob66xlbmu">data</a>)
+            <a href="http://www.governor.ny.gov/executiveorder/95">policies</a>,
+            and probably everyone else says that it’s important that open data
+            be kept up-to-date. So I was wondering how up-to-date they actually are.</p>
+            
+            <p>I collected some data about the updatedness of open data.
+            Based on these data about open data,
+            the open data don’t seem very up-to-date.</p>
+            
+            <h2 id="the-data-about-data">The data about data</h2>
+            <p>I <a href="/!/socrata-summary/">downloaded</a>
+            all the metadata about all of the public datasets that are hosted on
+            58
+            data portals run by <a href="http://socrata.com">Socrata</a>.</p>
+            
+            <h3 id="removing-duplicates">Removing duplicates</h3>
+            <p>I had to do a lot to remove duplicate datasets.
+            I did these two things.</p>
+            
+            <ol>
+              <li>Remove federated datasets</li>
+              <li>Deal with derived views</li>
+            </ol>
+            
+            <p>Dealing with federation was annoying, but I had already
+            done that; you can read about that
+            <a href="/!/socrata-deduplicate/#dealing-with-federation">here</a>.</p>
+            
+            <p>Dealing with derived views is more complicated.
+            Socrata has this feature where you can create multiple
+            <a href="/!/socrata-genealogies#term-view">views</a> from a single
+            <a href="/!/socrata-genealogies#term-table">table</a>.
+            It is hard to separate the official views, created by someone in the
+            government, from the unofficial, derived views. I did not try to determine
+            which view/dataset was the original, official one, but I did separate
+            them based on their <code>tableId</code>, which links all of the different views
+            that use the same data. Because I didn’t figure out which view is the
+            original one for each table, I can’t tell you things like the name of
+            the original dataset. On the other hand, I can tell you a lot of things.
+            Most importantly, this manner of removing duplicates doesn’t hinder
+            my approach for determining updatedness.</p>
+            
+            <h3 id="dates">Dates</h3>
+            <p>The Socrata API provides four date fields for each view.</p>
+            
+            <ul>
+              <li><code>createdAt</code></li>
+              <li><code>publicationDate</code></li>
+              <li><code>rowsUpdatedAt</code></li>
+              <li><code>viewLastModified</code></li>
+            </ul>
+            
+            <p><code>createdAt</code> is when someone clicked the button to include the dataset;
+            it’s always the oldest one. It is possible to create a dataset but keep
+            it private, for internal review. If you spend a couple days reviewing
+            the dataset privately before you post it publically, the <code>publicationDate</code>
+            will reflect this latter date, while <code>createdAt</code> will still be the time
+            when you added the private dataset. Also, <code>createdAt</code> is different for
+            different views of the same data, but <code>publicationDate</code> is not.</p>
+            
+            <pre><code>table(subset(socrata, tableId == 926641)$publicationDate)&#x000A;2013-06-18 &#x000A;        46&#x000A;&#x000A;&#x000A;table(subset(socrata, tableId == 926641)$createdAt)&#x000A;2011-09-26 2011-10-25 2011-12-22 2012-01-03 2012-01-04 2012-01-30 &#x000A;         2         17          1          1          1          6 &#x000A;2012-01-31 2012-02-06 2013-04-08 2013-05-30 &#x000A;         7          9          1          1&#x000A;</code></pre>
+            
+            <p><code>rowsUpdatedAt</code> and <code>viewLastModified</code> presumably have something to do
+            with the time the dataset was updated. I don’t really know what those
+            mean, but I think <code>rowsUpdatedAt</code> is the one I want. Recall from above
+            that views with the same <code>tableId</code> share the share the underlying data.
+            If the data get updated, it should be reflected in all of the datasets.
+            This is the case for <code>rowsUpdatedAt</code>; for all
+            46
+            datasets with an <code>tableId</code> of <code>926641</code>, the <code>rowsUpdatedAt</code> field
+            is the same.</p>
+            
+            <pre><code>&gt; table(subset(socrata.deduplicated.orig, tableId == 926641)$rowsUpdatedAt)&#x000A;1371584568 &#x000A;        46&#x000A;</code></pre>
+            
+            <p>On the other hand, the <code>viewLastModified</code> field is quite different.</p>
+            
+            <pre><code>&gt; table(subset(socrata.deduplicated.orig, tableId == 926641)$viewLastModified)&#x000A;1320681652 1320681806 1320683489 1320683529 1320683572 1320683615 &#x000A;         1          1          1          1          1          1 &#x000A;1320683652 1320683694 1320683740 1320683775 1320683818 1320684414 &#x000A;         1          1          1          1          1          1 &#x000A;1320684459 1320684504 1320684542 1320684575 1320684625 1325697249 &#x000A;         1          1          1          1          1          1 &#x000A;1327951380 1327951474 1327951571 1327951655 1327951743 1327951864 &#x000A;         1          1          1          1          1          1 &#x000A;1328026858 1328027111 1328027387 1328027479 1328028650 1328031765 &#x000A;         1          1          1          1          1          1 &#x000A;1328037223 1328544614 1328544754 1328544905 1328545059 1328545187 &#x000A;         1          1          1          1          1          1 &#x000A;1328545294 1328545431 1328545524 1328545643 1328734273 1330367612 &#x000A;         1          1          1          1          1          1 &#x000A;1365458282 1365463347 1369872686 1371584597 &#x000A;         1          1          1          1&#x000A;</code></pre>
+            
+            <p>Thus, I’m using <code>rowsUpdatedAt</code> for calculating the updatedness measure.</p>
+            
+            <h2 id="what-is-an-update">What is an “update”</h2>
+            <p>I’m going to use the term <em id="term-update">update</em> to mean a reasonably particular
+            thing that excludes some other things that you might consider an update.</p>
+            
+            <p>The Socrata data portal software has 
+            <a href="http://dev.socrata.com/publishers/getting-started">this publisher API</a>
+            that lets the publisher (usually a government) upload data as a
+            <a href="/!/socrata-genealogies/#term-dataset">dataset</a>-type <a href="/!/socrata-genealogies#term-view">view</a>,
+            with its own unique URL based on its
+            <a href="http://dev.socrata.com/docs/endpoints">4x4 identifier</a>.
+            I presume that there’s some web interface for this too.</p>
+            
+            <p>An update only occurs when you use the API (or the presumed web interface)
+            in a particular manner. I’ll tell you about three ways you might use it,
+            and I only count the third way as an update.</p>
+            
+            <h3 id="upload-a-new-version-and-delete-the-old-version">Upload a new version and delete the old version</h3>
+            <p>Let’s say you have a dataset of
+            <a href="https://data.oregon.gov/dataset/Contracts-Lottery-Fiscal-Year-2011/dwi6-thje">lottery contracts for 2011</a>
+            and you notice a spelling error in one of the fields. You fix it on your own computer,
+            but how do you get it to the main site? You could upload the new one and delete the old
+            one, but then the URL will change.</p>
+            
+            <p>When someone uploads a new version of the dataset to Socrata
+            but it has a different URL, I do not count it as an update.</p>
+            
+            <h3 id="upload-new-data-as-a-separate-dataset">Upload new data as a separate dataset</h3>
+            <p>What if you want to add the 2012 data but keep the 2011 data the same?
+            You could upload the 2012 data as a
+            <a href="https://data.oregon.gov/Revenue-Expense/Contracts-Lottery-Fiscal-Year-2012/i3ri-n6hq">separate dataset</a>.
+            The old dataset would still have the same URL,
+            but but the new one would be hard to find; the open data catalog doesn’t make a link between these two datasets.</p>
+            
+            <p>Within the present article, I do not consider this to be an update either.</p>
+            
+            <h3 id="using-the-append-and-replace-api-methods">Using the append and replace API methods</h3>
+            <p>The publisher API lets you
+            <a href="http://dev.socrata.com/publishers/importing#append_replace">append to or replace</a>
+            the data in an existing dataset. That is, you can upload new data for an
+            existing dataset while keeping its 4x4 identifier and all of its metadata.</p>
+            
+            <p>This approach is much better than the other two because it
+            makes it much easier to find the new data; we can get the
+            new data while still referencing the same URL. This is the
+            only of the three approaches that I count as an update.</p>
+            
+            <h2 id="data-summary">Data summary</h2>
+            <p>We have data from mid-2011 to mid-2013. In order to fit this all on
+            one plot, let’s look first at which datasets were updated; we’re ignoring
+            the dates when they were updated. Each horizontal band is a data portal,
+            each dot is a data <a href="/!/socrata-genealogies#term-table">table</a>
+            inside of a data portal,
+            and the dots are colored based on whether the data were ever updated.</p>
+            
+            <p><img src="figure/summary.png" alt="" class="wide" /></p>
+            
+            <p>This plot shows us that older datasets are more likely to have been
+            updated. It also subtly points out that different data portals have
+            different amounts of datasets and that they have grown at different
+            rates over time. Let’s plot that more clearly.</p>
+            
+            <p><img src="figure/dataset_counts_over_time.png" alt="" class="wide" /></p>
+            
+            <p>Data portals grow over time, often in sudden bursts. Two notes about
+            that plot:</p>
+            
+            <ol>
+              <li>It assumes that no data have ever been deleted from a portal;
+             it’s all based on the publication date.</li>
+              <li>It is counting the number of <a href="/!/socrata-genealogies#term-table">tables</a>
+             rather than the number of <a href="/!/socrata-genealogies#term-view">views</a>.</li>
+            </ol>
+            
+            <p>Let’s also relate the update dates to the publication dates.</p>
+            
+            <p><img src="figure/up_to_date.png" alt="" class="wide" /></p>
+            
+            <p>It looks like most data were “updated” only within an hour of their
+            initial publications. Colloquially, we’d say that they haven’t been
+            updated ever. But there are some spikes here and there.</p>
+            
+            <p>Also, it appears that only certain kinds of data get updated.</p>
+            
+            <pre><code>&gt; table(socrata.deduplicated$viewType, is.na(socrata.deduplicated$rowsUpdatedAt))&#x000A;        FALSE TRUE&#x000A;blobby      0 1752&#x000A;geo         0  400&#x000A;href        0  571&#x000A;tabular  5552  151&#x000A;</code></pre>
+            
+            <p>Tabular data (the stuff you’re used to) get updated, but links to
+            external data (<code>href</code>), geospatial data (<code>geo</code>) and ordinary files (<code>blobby</code>)
+            don’t seem to get updates. I don’t know whether this is a feature of
+            Socrata or just a strong tendency for those sorts of data.</p>
+            
+            <h2 id="motivating-an-updatedness-measure">Motivating an updatedness measure</h2>
+            <p>The update date can tell us how up-to-date a particular dataset is,
+            but I want to get a bigger picture. I want to quantitatively compare
+            datasets and groups of datasets. I tried to come up with a simple
+            statistic that would let us do that.</p>
+            
+            <p>One measure that I came up with is <strong>proportion of datasets older than
+            a year that have been updated within the year</strong>. (The timespan of a
+            year is pretty arbitrary, though.) Here’s how I arrived at that measure.</p>
+            
+            <h3 id="general-formulation">General formulation</h3>
+            <p>In producing a measure of updateness, we are trying to come up with a
+            simple number that matches our intuition about whether something is
+            up-to-date. Let’s think a bit about what would count as up-to-date.</p>
+            
+            <p>A dataset first gets published at some time. For a little while, the
+            data will be up-to-date even if no updates are sent. For example, if
+            data about wifi usage per month are uploaded on the first of the month,
+            we’ll consider them to be up-to-date two weeks later.</p>
+            
+            <p>After some point, we must have received an update in order for the
+            data to be up-to-date. In the case of monthly wifi usage, we need an
+            update on the first of the second month; if we haven’t received one
+            by then, we’ll consider the data out-of-date. Thus, I arrive at the
+            general concept of comparing the date of initial publication to the
+            date at which the dataset was last updated.</p>
+            
+            <h3 id="differences-by-dataset">Differences by dataset</h3>
+            <p>If a dataset of scores on standardized math tests taken in schools
+            was uploaded two weeks ago and hasn’t been touched since, I’d say it’s
+            up-to-date. A particular standardized math tests might be administered
+            yearly, so I don’t expect the data to have changed in a couple of weeks.</p>
+            
+            <p>On the other hand, if a dataset of 311 calls hasn’t been updated in
+            two weeks, we could say that it is out-of-date because 311 calls are
+            always coming in.</p>
+            
+            <p>A dataset about something that happens often needs to be refreshed
+            more often for us to consider it up-to-date. A very cool measure of
+            updatedness would account for out how often new data come in and
+            check whether those new data show up in the dataset. But that would
+            be a lot of work, so let’s start with something simpler.</p>
+            
+            <h3 id="keep-it-simple">Keep it simple</h3>
+            <p>Rather than worring about the exact time period, let’s address a simpler
+            issue. I’ve heard complaints that some data get uploaded data once and
+            never updated, ever. Rather than worring about the exact time since update,
+            let’s just check whether the dataset has been updated ever.</p>
+            
+            <p>I’m going to use the format of <em>datasets older than X that have been updated since</em>
+            and just choose an appropriate time X. The time probably has to be kind of
+            long, so that we don’t count datasets as out-of-date when they just have
+            long update cycles (like yearly data). On the other hand, the time can’t be
+            too long, because then we’ll wind up saying that everything is out-of-date.</p>
+            
+            <h3 id="choosing-a-less-arbitrary-cutoff">Choosing a less arbitrary cutoff</h3>
+            <p>We can check whether different values will give us the same value on our
+            updatedness measure. To say it fancy-like, we can check whether our updatedness
+            measure is robust to the cutoff.</p>
+            
+            <p>A simple way of checking this is to plot the value of our updatedness
+            measure for different cutoff values. If we find a region where the value
+            of the updatedness measure doesn’t change very much when we change the
+            cutoff, we could say that cutoffs in that region are safe to use.</p>
+            
+            <p>I also had to decide whether to use <code>rowsUpdatedAt</code> or <code>viewLastModified</code>
+            as the date of update. I don’t really know what either of these means, so
+            let’s just try both.</p>
+            
+            <p><img src="figure/robustness.png" alt="" class="wide" /></p>
+            
+            <p>The main thing I notice is that the value of this statistic
+            (again, proportion of datasets older than some date that have been updated since)
+            is pretty close to zero for all of the portals at any time.
+            This is very bad; it means that we pretty much never update
+            data that we put on data portals.</p>
+            
+            <p>The next thing I notice is that the value varies widely when there aren’t
+            very many datasets on the portal. Visually, this shows itself as skinny
+            lines (few datasets) jumping up and down very suddenly, like for
+            <code>data.cms.gov</code>. When there are very few datasets on a portal
+            (like 12), an addition of a dataset or an update to a dataset will have
+            a large impact on the value of our updatedness measure (the height of the line).
+            This is not interesting, and the plot below should explain why.</p>
+            
+            <p><img src="figure/small_samples.png" alt="" class="wide" /></p>
+            
+            <p>In these two plots, we’re only looking at <code>data.cms.gov</code>. The first
+            plot is the same as the corresponding plot in the previous image,
+            only larger. The second shows the dates at which each
+            <a href="/!/socrata-genealogies#term-table">data table</a> was
+            published and most recently updated. Red dots are publication dates,
+            and blue dots are update dates. If there was no update or the most
+            recent update was within a day of the publication date, no blue dot
+            is shown.</p>
+            
+            <p>The bumps in the top plot only occur when the portal contains very
+            few datasets; the figure stabilizes at the end of March 2013, when
+            a bunch of datasets get published. (In case you’re curious, these
+            datasets are all derived from the
+            <a href="http://www.resdac.org/cms-data/files/bsf">Beneficiary Summary File</a>,
+            according to their respective descriptions in the portal.)</p>
+            
+            <h2 id="even-simpler">Even simpler</h2>
+            <p>I’d assumed that people actually update their data, but it looks
+            like people don’t.
+            I think we need something even simpler to drive this conclusion home.</p>
+            
+            <p>Let’s look at the number of datasets that have ever been updated, by
+            portal. We’ll count a dataset as having been updated if it has a value
+            in <code>rowsUpdatedAt</code> that is more than one day greater than the value
+            in <code>publicationDate</code>.</p>
+            
+            <p><img src="figure/any_update.png" alt="" class="wide" /></p>
+            
+            <p>Keep my <a href="#term-update">definition of “update”</a> in mind;
+            in the above count, I’m including neither situations where old datasets
+            were deleted and replaced with new ones nor situations where new records
+            were uploaded as a separate dataset.</p>
+            
+            <h3 id="which-datasets-have-been-updated">Which datasets have been updated?</h3>
+            <p>Only 655 of the
+            8426 datasets have ever been updated.</p>
+            
+            <p>These 655 datasets are
+            contained within only 29
+            portals, out of the 58
+            that I looked at. Here are the updates over time by portal.</p>
+            
+            <p><img src="figure/updates_over_time_by_portal.png" alt="" class="wide" /></p>
+            
+            <p>A few datasets are still updated today (indicated by the tiny bumps
+            towards the right of the graphs), but most were only updated two years
+            ago.</p>
+            
+            <p>You might have guessed already, but these recent updates tend to be for
+            datasets that were recently updated, rather than old datasets that have
+            been maintained for a while. You can see that in this plot of publication
+            date versus update date. The update date is along the x-axis, and the
+            publication date is along the y-axis. The diagonal line is where the
+            publication date and update date are the same, and it is impossible for
+            a dataset to appear above the diagonal line. Datasets towards the bottom-left
+            of the plot were published and updated a long time ago. Datasets towards
+            the top-right were published and updated recently. Datasets towards the
+            bottom-right were published a long time ago and updated recently.</p>
+            
+            <p><img src="figure/publish_v_update.png" alt="" class="wide" /></p>
+            
+            <p>I didn’t really look into why there were so many updates a long
+            time ago and so few in between, but I suspect it has something to do
+            with how all of these portals are managed by Socrata; there might have
+            been some change in software or in technical support practices that
+            would have impacted all of the portals.</p>
+            
+            <h3 id="which-old-datasets-are-still-kept-up-to-date">Which old datasets are still kept up-to-date?</h3>
+            <p>Recall that the points at the bottom-right of the previous plot
+            correspond to old datasets that have been updated recently. Let’s
+            look more closely at these.</p>
+            
+            <p>I selected the datasets that were uploaded before 2013 and have
+            been updated during 2013; they are represented the ones contained
+            by the rectangle in the plot below.</p>
+            
+            <p><img src="figure/publish_v_update_2013.png" alt="" class="wide" /></p>
+            
+            <p>There are, in fact, only 13 such datasets,
+            and they’re in 8 portals.</p>
+            
+            <p><img src="figure/updates_2013_hist.png" alt="" class="wide" /></p>
+            
+            <p>Here they are by url.</p>
+            
+            <p><img src="figure/updates_2013_url.png" alt="" class="wide" /></p>
+            
+            <p>I was wondering whether anything was special about these. Maybe
+            they have a lot of records or get downloaded a lot? For both of
+            these statistics, I’m using the total across all <a href="/!/socrata-genealogies#term-view">views</a> in the
+            <a href="/!/socrata-genealogies#term-table">table/family</a>, not just the value for that particular view.</p>
+            
+            <p><img src="figure/updates_2013_specialness.png" alt="" class="wide" /></p>
+            
+            <p>I didn’t find anything special about these, but I didn’t look very hard.
+            In case you want to give it a shot, here they are.</p>
+            
+            <ul>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/zg3h-r2t8">Pre-Approval for Public Comments: NOAA Aquaculture Listening Sessions (2010)</a></li>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/u5id-8nqp">2011 Aquaculture Public Comments Form</a></li>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/49sy-iumi">Map of U.S. Department of Commerce Comments</a></li>
+              <li><code>nmfs.socrata.com</code>: <a href="https://nmfs.socrata.com/-/-/ncry-xzwf">Photo Directory Example</a></li>
+              <li><code>data.cityofchicago.org</code>: <a href="https://data.cityofchicago.org/-/-/zfg3-p7xv">Performance Metrics - Innovation &amp; Technology - Site Availability</a></li>
+              <li><code>data.seattle.gov</code>: <a href="https://data.seattle.gov/-/-/gigx-p9h7">Heatmap - Assault</a></li>
+              <li><code>data.kingcounty.gov</code>: <a href="https://data.kingcounty.gov/-/-/cuea-cmxg">Damage report form for primary residences</a></li>
+              <li><code>data.ok.gov</code>: <a href="https://data.ok.gov/-/-/2d47-x2mx">Library Map</a></li>
+              <li><code>data.honolulu.gov</code>: <a href="https://data.honolulu.gov/-/-/a96q-gyhq">Crime Incidents</a></li>
+              <li><code>data.honolulu.gov</code>: <a href="https://data.honolulu.gov/-/-/ix32-iw26">Traffic Incidents</a></li>
+              <li><code>data.oregon.gov</code>: <a href="https://data.oregon.gov/-/-/6y98-3xjn">GPL Documents</a></li>
+              <li><code>data.honolulu.gov</code>: <a href="https://data.honolulu.gov/-/-/a3ah-kpkr">Data Catalog</a></li>
+              <li><code>data.austintexas.gov</code>: <a href="https://data.austintexas.gov/-/-/nmp9-45v2">Austin Green Infrastructure Inventory</a></li>
+            </ul>
+            
+            <p>Note well: These links go to arbitrary <a href="/!/socrata-genealogies#term-view">views</a> on the particular
+            <a href="/!/socrata-genealogies#term-table">table</a> that was updated; you’ll have to follow a few links to get to
+            the original dataset.</p>
+            
+            <h3 id="updated-datasets-in-context">Updated datasets in context</h3>
+            <p>Maybe there actually is something different about the sort of dataset that
+            gets updated.</p>
+            
+            <p>It turns out that data that have been updated tend to get more downloads than
+            data that data that haven’t. (This again uses the family/table totals rather
+            that the values for the particular views.)</p>
+            
+            <p><img src="figure/update_download.png" alt="" class="wide" /></p>
+            
+            <p>To give you some more concrete numbers, the median download count was
+            88 among data tables that got updated and 15
+            among data tables that didn’t. A Wilcoxon rank sum test says that this
+            difference is significant (assuming that our 8426
+            datasets are a representative sample of some super-population, yadda yadda),
+            with a p-value far less than 0.001.</p>
+            
+            <p>There is a similar relationship with number of records.
+            It turns out that data that have been updated tend to contain more records than
+            data that data that haven’t.</p>
+            
+            <p><img src="figure/update_nrow.png" alt="" class="wide" /></p>
+            
+            <p>The median record count was
+            66 among data tables that got updated and 17
+            among data tables that didn’t. A Wilcoxon rank sum test says that this
+            difference too is significant.</p>
+            
+            <h2 id="a-proposal-for-an-updatedness-measure">A proposal for an updatedness measure</h2>
+            <p>I thought I was going to find out which datasets are more up-to-date,
+            when they get updated, and so on, but I really just found that the data
+            are completely out-of-date.</p>
+            
+            <p>Perhaps this says something about the need for more measures of the progress of
+            our open data efforts. We have a crude measure of the size of a data catalog
+            (the number of datasets it contains), so we can check that number and make sure
+            that it is increasing. But that’s pretty much the only one we have, and there
+            are surely other things that are worth measuring. Nobody is measuring updatedness,
+            so how can we expect anyone to know that the data are out-of-date?
+            I think that we’ll keep these portals more up-to-date if we come up with a
+            measure of their updateness that is easy to calculate and easy to understand.</p>
+            
+            <p>Having found hardly any datasets that get updated, it’s difficult for me to
+            say whether any measure I come up with will be all that helpful. But here’s
+            my best guess as to the measure we should try to arrive at.</p>
+            
+            <h3 id="update-cycles">Update cycles</h3>
+            <p>As I explained above, different datasets have different update cycles
+            (daily, weekly, quarterly, yearly, &amp;c.), and we can know what this cycle
+            is for most datasets. In many cases, we don’t know exactly how often a
+            dataset will be updated, but we can be reasonably confident that it will
+            be within a certain range.</p>
+            
+            <h3 id="what-we-do-in-treasuryio">What we do in treasury.io</h3>
+            <p>We do something like this in <a href="http://treasury.io">treasury.io</a>.
+            The Financial Management Service (FMS) provides a daily treasury
+            statement. One statement is provided per work day, so we should
+            get updates approximately every day. In order to make sure that
+            our daily importer is working, we check every day that the
+            resulting dataset is up-to-date.</p>
+            
+            <p>We know from experience that
+            the file doesn’t always come out on time; that is, we might only recieve
+            today’s statement two days from now. On the other hand, we’ve
+            rarely (never?) seen it take longer than that. Our daily updatedness
+            test checks how far behind the data are, and it sends us an email
+            if the data are
+            <a href="https://github.com/csvsoundsystem/federal-treasury-api/blob/master/tests/is_it_running.py#L47">more than three days behind</a>;
+            if this happens,
+            we’ll suspect that it’s something wrong with our importer rather
+            than just a late upload from the FMS.</p>
+            
+            <h3 id="possibilities">Possibilities</h3>
+            <p>I brainstormed a bit with <a href="https://twitter.com/criscristina">Cris Cristina</a>
+            about how we could present this sort of information inside of a data catalog
+            website to help people maintain it.</p>
+            
+            <p>If we indicate how often each dataset needs to
+            be updated, the data portal software could make us aware of which datasets
+            need updating. Aside from comparing datasets to datasets, we could compare
+            other groupings, like departments.</p>
+            
+            <p><img src="mockups/dataset.jpg" alt="" class="wide" /></p>
+            
+            <p>Rather than just presenting a bunch of raw statistics as in the previous
+            sketch, we could aggregate these so that you can look at just one thing
+            to get a quick idea of whether a dataset or group of datasets is in good
+            shape. For example, we could have icons for the general health of a dataset:
+            Sad face for bad, smily face for good, and big smiley face for awesome.</p>
+            
+            <p><img src="mockups/datasets.jpg" alt="" class="wide" /></p>
+            
+            <p>We could present much more detail about the updates to a dataset.
+            Rather than simply saying the date at which it was last updated, we could
+            have a timeline of the updates, and we could let you look at old versions
+            of the dataset. (Actually, it’s super important to have access to old
+            versions, but I won’t get into that now.) Perhaps you could put multiple
+            datasets or groups of datasets on this timeline and compare them.</p>
+            
+            <p><img src="mockups/timeline.jpg" alt="A sketch of a timeline of dataset updates" class="wide" /></p>
+            
+            <p>Also, we can present specific action items. I don’t know exactly what
+            these would be, but they might include datasets that are out-of-date
+            and datasets that will soon be out-of-date. Imagine the following table
+            being presented in some administration page in a data catalog.</p>
+            
+            <p><img src="mockups/notifications.jpg" alt="" class="wide" /></p>
+            
+            <h2 id="you-get-what-you-measure">You get what you measure</h2>
+            <p>I thought this article was going to be about which datasets are more up-to-date,
+            when they get updated, and so on, but I really just found that the data
+            are completely out-of-date.</p>
+            
+            <p>The phrase “You get what you measure.” (or any of its variants) seems to
+            describe our present situation quite well.
+            We say a lot of things about how people should be doing open data,
+            and people count <a href="http://census.okfn.org/">some of these things once-in-a-while</a>.
+            Aside from efforts like the Open Data Census, we don’t really do anything.</p>
+            
+            <h3 id="current-metrics">Current metrics</h3>
+            <p>Well actually we sort of do at least count the number of datasets. There are
+            <a href="http://technickle.nicklin.info/post/58169276432/accurately-counting-socrata-datasets">problems</a>,
+            with this metric, but it does vaguely point us in the right direction.</p>
+            
+            <h3 id="other-metrics">Other metrics</h3>
+            <p>We measure the number of datasets, and we get more datasets. There are a bunch
+            of other things that we want. We don’t measure them, and we don’t get them.
+            As you saw above, we don’t measure updatedness, and we don’t get up-to-date data.
+            Similarly, we don’t measure <a href="http://theunitedstates.io/licensing/">license-free-ness</a>,
+            and we <a href="/!/open-data-licensing/">don’t get license-free data</a>. Also, we don’t
+            check whether different datasets could be combined into one, and we get a lot
+            of situations, at least in <a href="http://appgen.me/audit/report">New York City</a> and
+            <a href="/!/missouri-data-licensing/">Missouri</a>, several datasets could be combined
+            into one.</p>
+            
+            <h3 id="data-driven-open-data">Data-driven open data</h3>
+            <p>Considering that we’re doing open <em>data</em>, it’s only reasonable that we make
+            data-driven decisions about our open data efforts. We obviously need data
+            about open data to make these data-driven decisions, so we had better start
+            measuring the all of these things that we care about.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/data-updatedness/index.md">View source</a>
+            <a href="https://github.com/tlevine/socrata-analysis/tree/master/words/15-dates.Rmd">Other source</a>
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
