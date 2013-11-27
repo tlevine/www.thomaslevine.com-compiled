@@ -2,13 +2,67 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-11-22T00:00:00Z</updated>
+  <updated>2013-11-27T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-11-27:/!/open-data-500-global-open-data-initiative-survey/index.html</id>
+    <title type="html">Can we open our open data questionnaires?</title>
+    <published>2013-11-27T00:00:00Z</published>
+    <updated>2013-11-27T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-500-global-open-data-initiative-survey/index.html"/>
+    <content type="html">&lt;p&gt;On September 19, I got
+&lt;a href="http://us6.campaign-archive2.com/?u=1a990feb5c&amp;amp;id=46f97c829f&amp;amp;e=f59483af9a"&gt;this email&lt;/a&gt;
+from the &lt;a href="http://thegovlab.org/"&gt;GovLab&lt;/a&gt;.
+It requested that tell them about companies who are using open data
+by filling out a questionnaire within two weeks (September 27).&lt;/p&gt;
+
+&lt;p&gt;On November 24, I saw a tweet about a
+&lt;a href="http://sunlightfoundation.com/blog/2013/11/20/the-global-open-data-initiative-needs-your-input/"&gt;strangely similar request&lt;/a&gt;
+from the Sunlight Foundation,
+with the questionnaire due November 29.&lt;/p&gt;
+
+&lt;h2 id="sharing-data-to-save-time"&gt;Sharing data to save time&lt;/h2&gt;
+&lt;p&gt;These questionnaires are quite similar; could we (GovLab, Sunlight,
+and people filling out questionnaires) maybe save some work if GovLab
+and Sunlight shared the questionnaire data?&lt;/p&gt;
+
+&lt;p&gt;The questionnaires are not identical, so the questionnaire of one of
+these groups might not satisfy the needs of the other, but I think it
+would at least help.&lt;/p&gt;
+
+&lt;h2 id="open-our-data-about-open-data"&gt;Open our data about open data&lt;/h2&gt;
+&lt;p&gt;It’s quite possible that Sunlight has seen GovLab’s data. I hope they
+have, as that probably would have saved some time. But even if they did,
+I find it hilarious that &lt;strong&gt;I&lt;/strong&gt; haven’t seen the results of at least the
+GovLab questionnaire.&lt;/p&gt;
+
+&lt;p&gt;Lots of people say that much of open data is about
+&lt;a href="http://sunlightfoundation.com/opendataguidelines/#open-by-default"&gt;setting the default to open&lt;/a&gt;,
+so you would think that raw results of these questionnaires would be published.
+I guess Sunlight might want to wait until it closes the questionnaire before it
+publishes anything, but GovLab could totally have released its data by now.&lt;/p&gt;
+
+&lt;h2 id="sharing-data-to-get-people-to-contribute-data"&gt;Sharing data to get people to contribute data?&lt;/h2&gt;
+&lt;p&gt;When I saw each of these questionnaires, I considered sending it to
+people, but nine days didn’t seem like enough time for it to be worth
+me telling people about them.&lt;/p&gt;
+
+&lt;p&gt;Actually, that’s not really true; that’s what I say to myself, but
+it’s really an excuse; the real reason I didn’t send them around is
+that I’m generally quite skeptical that anyone is going to look
+closely at the questionnaire. Assembling the questionnaire and
+sending it out is a lot of work already; are they actually going
+to have any energy left once they get the results back?&lt;/p&gt;
+
+&lt;p&gt;I wonder: Would opening the results of questionnaires would get me
+to fill out the questionnaires?&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-11-22:/!/data-updatedness/index.html</id>
     <title type="html">Updating of data catalogs</title>
@@ -844,41 +898,6 @@ recognize it!&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Fix your &lt;a href="http://tools.ietf.org/html/rfc3696"&gt;email address&lt;/a&gt; validators, people!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-10-08:/!/orpheus-myth/index.html</id>
-    <title type="html">The Orpheus Myth</title>
-    <published>2013-10-08T00:00:00Z</published>
-    <updated>2013-10-08T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/orpheus-myth/index.html"/>
-    <content type="html">&lt;p&gt;This was part of a performance of
-&lt;a href="http://en.wikipedia.org/wiki/Abraham_Burickson"&gt;Abraham Burickson&lt;/a&gt;’s
-play &lt;em&gt;Complicity&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s the type being set.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="setting.jpg" alt="Type in a galley" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then we lock it up in the press.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="locked.jpg" alt="Type locked up in a galley press" /&gt;&lt;/p&gt;
-
-&lt;p&gt;We roll some ink&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="inking.jpg" alt="Ink on a piece of glass and a roller" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;and ink the type.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="inked.jpg" alt="Type with ink on it" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then we print one!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="result.jpg" alt="A long piece of paper with a poem printed on it" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Actually, we printed a bunch.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="results.jpg" alt="A bunch of pieces of paper with the same poem on all of them" class="wide" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
