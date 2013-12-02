@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Thomas Levine</title>
+    <title>100,000 open data across 100 portal</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -15,7 +15,7 @@
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='100,000 open data across 100 portal' name='twitter:title'>
     <meta content='' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
@@ -32,7 +32,7 @@
     <meta content='http://thomaslevine.com/!/data-about-open-data-talk-december-2-2013/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
     <meta content='' property='og:description'>
-    <meta content='' property='og:title'>
+    <meta content='100,000 open data across 100 portal' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,18 +74,66 @@
         <div id='article-wrapper'>
           <article>
             <header>
-              <h1></h1>
+              <h1>100,000 open data across 100 portal</h1>
               <em>
-                <time>
-                  
+                <time datetime='2013-12-02'>
+                  December 02, 2013
                 </time>
               </em>
               <span class='tags'>
+                <a href="/open-data">open-data</a>
               </span>
             </header>
             <hr>
             <p>Here are some materials for
-            <a href="http://www.meetup.com/NYC-Open-Data/events/147380312/">my talk at NYC Open Data</a>.</p>
+            <a href="http://www.meetup.com/NYC-Open-Data/events/147380312/">my talk at NYC Open Data</a>,
+            but they’re written in normal language, so they’ll probably serve as a decent summary
+            of my work thus far to people who are reading this on the internet.</p>
+            
+            <h2 id="schedule">Schedule</h2>
+            <p>The schedule for the talk will go sort of like this</p>
+            
+            <ul>
+              <li>7:00 to 7:50 I’ll talk about what I did</li>
+              <li>7:50 to 8:00 Questions about what I did</li>
+              <li>8:00 to 8:10 Introduce the exercises</li>
+              <li>8:10 to 8:45 Work on the exercises</li>
+              <li>8:45 to 9:00 Present findings from the exercises</li>
+            </ul>
+            
+            <p>Here’s how the exercises will work. Attendees will break into groups of four people
+            each. Each group will choose one of the two exercises and work on it for half an hour. 
+            At 8:45, each of the groups will have one minute to present its conclusions to the
+            larger group.</p>
+            
+            <h2 id="outline-of-the-talk">Outline of the talk</h2>
+            
+            <p>Introduction (4 minutes)</p>
+            
+            <ul>
+              <li>What are “open data”? Show the video.</li>
+              <li>Data about open data, data-driven open data</li>
+            </ul>
+            
+            <p>Two approaches (2 minutes)</p>
+            
+            <ol>
+              <li>We have all of these data, so something interesting must be in it.</li>
+              <li>We are interested in something. Let’s collect data that will tell us about that thing.</li>
+            </ol>
+            
+            <p>My process and findings (6 minutes each)</p>
+            
+            <ol>
+              <li>Data about open data.</li>
+              <li>Data about people who use open data.</li>
+              <li>Finding data is hard.</li>
+              <li>File formats of open data</li>
+              <li>Licensing of “open” data</li>
+              <li>Updating of data</li>
+            </ol>
+            
+            <p>Future things (3 minutes)</p>
             
             <h2 id="data-about-open-data">Data about open data</h2>
             <p>Let’s talk about some things I’ve been <a href="/open-data">learning about open data</a>.
@@ -105,23 +153,11 @@
             <p>Actually, they’re not, so I started doing that. Also, I’m doing it quite publicly,
             so you could say this is open data about open data.</p>
             
-            <h3 id="collecting-data">Collecting data</h3>
-            <p>Explain <a href="/!/socrata-summary">this</a>. Also, explain other data catalog software</p>
+            <h2 id="my-process-and-findings">My process and findings</h2>
+            <p>I was taught in school that you come up with your question and then collect data
+            that perfectly answer that question. This way works, but you can often learn more
+            faster and with less work if you’re a bit sloppier.</p>
             
-            <ul>
-              <li>https://github.com/tlevine/open-data-download</li>
-              <li>http://openprism.thomaslevine.com</li>
-            </ul>
-            
-            <h3 id="no-metadata">No metadata</h3>
-            <p>If we’re lucky, we have some data about our datasets, but we don’t have much data
-            about the data about our datasets. If anything, there’s API documentation, but it’s
-            usually pretty bad. So here’s how I figure out what’s going on.</p>
-            
-            <p>There are examples of this in most of the articles.
-            Maybe also take screenshots of the site and compare site to the metadata files.</p>
-            
-            <h2 id="brainstorming">Brainstorming</h2>
             <p>I like to think of two approaches of deciding what to study.</p>
             
             <ol>
@@ -129,12 +165,325 @@
               <li>We are interested in something. Let’s collect data that will tell us about that thing.</li>
             </ol>
             
-            <p>I think the former is more obvious; let’s talk a bit about the latter.
-            Specifically, let’s talk about brainstorming and six thinking hats.</p>
+            <p>I think the former is more obvious: Initially, I found it quite odd that
+            nobody had looked at the data about the data. So I did.</p>
+            
+            <p>Let’s talk a bit about the latter. Let’s say we want to study someone’s sleep patterns.
+            In order to do this, we wind to find out when the person is sleeping. We could do this
+            by having the person record on paper the times at which she goes to sleep and wakes up,
+            but that would be a lot of work. Other ideas</p>
+            
+            <p><a href="http://yihui.name/en/2009/10/50000-revisions-committed-to-r/">Version control commits</a></p>
+            
+            <p><img src="r-commits.gif" alt="R commits" class="wide" /></p>
+            
+            <p><a href="https://hackpad.com/Measuring-Socioeconomic-Indicators-in-Arabic-Tweets-IZ5ByP2LvIt">Tweets</a></p>
+            
+            <p><img src="tweet-times.jpg" alt="Bar plot of Tweet times" class="wide" /></p>
+            
+            <p>If the person is me, we can use shell history activity.</p>
+            
+            <pre><code>#!/bin/sh&#x000A;# This file is history.sh&#x000A;for epochtime in $(grep '^#[0-9]\{10\}$' ~/.history/sh-2013-1[12]*|cut -d\# -f2); do&#x000A;  date --date=@$epochtime +%H&#x000A;done | sort | uniq -c | awk '{print $2, "%"$1"s"}' &gt; /tmp/formatted&#x000A;&#x000A;while read line; do&#x000A;  # Remove the first space&#x000A;  nospace=$(echo $line | sed 's/ //')&#x000A;  printf "$line\n" | tr \  -|sed s/----------------------------------------/=/g|sed -e s/-//g -e 's/=/ =/'&#x000A;done &lt; /tmp/formatted&#x000A;</code></pre>
+            
+            <p>Here’s the resulting histogram.</p>
+            
+            <pre><code>$ ./history.sh&#x000A;00 =========&#x000A;01 =======&#x000A;02 =====&#x000A;03 ====&#x000A;04 =======&#x000A;05 ============&#x000A;06 ======&#x000A;07 ====&#x000A;08 =&#x000A;09 =&#x000A;10 =====&#x000A;11 ===&#x000A;12 ==&#x000A;13 ======&#x000A;14 =====&#x000A;15 ======&#x000A;16 ==============&#x000A;17 ==============================&#x000A;18 =======================================&#x000A;19 ============================&#x000A;20 ===============&#x000A;21 ==========&#x000A;22 ==================&#x000A;23 ==================&#x000A;</code></pre>
+            
+            <p>Note that these times are in UTC because that’s how I roll.</p>
+            
+            <p>In this approach of deciding what to study, the idea is that we can
+            answer our curiosities by building on some existing data collection.
+            Also, I have some brief thoughts on brainstorming <a href="/!/brainstorming">here</a>.</p>
+            
+            <p>If you want to really understand how I did all of this, pay attention to the following things throughout the talk.</p>
+            
+            <ol>
+              <li>How I outlined my programs</li>
+              <li>How I created simple variables to represent grand concepts</li>
+            </ol>
+            
+            <h3 id="data-about-data">Data about data</h3>
+            
+            <h4 id="getting-the-data">Getting the data</h4>
+            <p><a href="/!/socrata-summary"><img src="/!/socrata-summary/architecture.jpg" alt="Diagram about downloading Socrata data" class="wide" /></a></p>
+            
+            <p>Now I have a spreadsheet of datasets.</p>
+            
+            <p><a href="/!/dataset-as-datapoint"><img src="/!/dataset-as-datapoint/spreadsheet-spreadsheet.png" alt="A spreadsheet of spreadsheets" class="wide" /></a></p>
+            
+            <p>Here are the some of fields I get from that.</p>
+            
+            <ul>
+              <li>portal</li>
+              <li>id</li>
+              <li>name</li>
+              <li>attribution</li>
+              <li>averageRating</li>
+              <li>category</li>
+              <li>createdAt</li>
+              <li>description</li>
+              <li>displayType</li>
+              <li>downloadCount</li>
+              <li>numberOfComments</li>
+              <li>oid</li>
+              <li>publicationAppendEnabled</li>
+              <li>publicationDate</li>
+              <li>publicationStage</li>
+              <li>publicationGroup</li>
+              <li>rowsUpdatedBy</li>
+              <li>rowsUpdatedAt</li>
+              <li>signed</li>
+              <li>tableId</li>
+              <li>totalTimesRated</li>
+              <li>viewCount</li>
+              <li>viewLastModified</li>
+              <li>viewType</li>
+              <li>nrow</li>
+              <li>column names and types</li>
+              <li>owner.id</li>
+              <li>owner.displayName</li>
+              <li>owner.emailUnsubscribed</li>
+              <li>owner.privacyControl</li>
+              <li>owner.profileLastModified</li>
+              <li>owner.roleName</li>
+              <li>owner.screenName</li>
+              <li>owner.rights</li>
+              <li>tableAuthor.id</li>
+              <li>tableAuthor.displayName</li>
+              <li>tableAuthor.emailUnsubscribed</li>
+              <li>tableAuthor.privacyControl</li>
+              <li>tableAuthor.profileLastModified</li>
+              <li>tableAuthor.roleName</li>
+              <li>tableAuthor.screenName</li>
+              <li>tableAuthor.rights</li>
+              <li>displayFormat</li>
+              <li>flags</li>
+              <li>metadata</li>
+              <li>rights</li>
+              <li>tags</li>
+            </ul>
+            
+            <h4 id="what-i-found">What I found</h4>
+            <p>First, nobody has any idea of what is going on in open data.
+            This was my main conclusion after I tweeted about <a href="/!/socrata-summary/">this article</a>;
+            I thought it would not be that interesting, but people strangely liked it.
+            Many people know about datasets that are relevant to their work,
+            municipality, &amp;c., but nobody seems to know about the availability of
+            data on broader topics, and nobody seems to have a good way of
+            finding out what is available. And nobody has a great idea of who
+            is using which data.</p>
+            
+            <p>Second, resolving <a href="/!/socrata-genealogies/#types-of-duplicate-datasets">duplicate datasets</a> is annoying. Three types of duplication</p>
+            
+            <ol>
+              <li>SODA queries: Filtered views, charts, maps</li>
+              <li>Federation</li>
+              <li>Uploaded twice</li>
+            </ol>
+            
+            <h3 id="data-about-people-who-use-data">Data about people who use data</h3>
+            <p>Let’s look a bit at how people interact with these data. One of Socrata’s
+            features is built-in charting tools that are supposed to
+            “<a href="http://www.socrata.com/open-innovation/">consumeriz[e] the data experience</a>”
+            Basically, you can go to <code>data.cityofnewyork.us</code> or any Socrata site, find
+            an existing dataset, and make a new chart, map, query, &amp;c. from it.
+            It turns out that Socrata exposes a lot of knowledge about how this feature
+            gets used.</p>
+            
+            <h4 id="getting-the-data-1">Getting the data</h4>
+            <p>Notice the “owner” and “tableAuthor” fields in the previous download.
+            These refer to user accounts in Socrata.</p>
+            
+            <p>Internally, each new chart is represented as a “view” on the underlying
+            data “table”.</p>
+            
+            <p><a href="/!/socrata-genealogies#term-table"><img src="/!/socrata-genealogies/family.jpg" alt="A date table family in Socrata" class="wide" /></a></p>
+            
+            <p>Anyway, if I use just these columns,
+            I now have a dataset of users. I didn’t use SQL, but if I had, the
+            query would have been sort of like this.</p>
+            
+            <pre><code>SELECT * FROM (&#x000A;  SELECT &#x000A;    "owner.id",&#x000A;    "owner.displayName",&#x000A;    "owner.emailUnsubscribed",&#x000A;    "owner.privacyControl",&#x000A;    "owner.profileLastModified",&#x000A;    "owner.roleName",&#x000A;    "owner.screenName",&#x000A;    "owner.rights"&#x000A;  FROM "datasets"&#x000A;  UNION ALL&#x000A;  SELECT &#x000A;    "tableAuthor.id",&#x000A;    "tableAuthor.displayName",&#x000A;    "tableAuthor.emailUnsubscribed",&#x000A;    "tableAuthor.privacyControl",&#x000A;    "tableAuthor.profileLastModified",&#x000A;    "tableAuthor.roleName",&#x000A;    "tableAuthor.screenName",&#x000A;    "tableAuthor.rights"&#x000A;  FROM "datasets"&#x000A;)&#x000A;GROUP BY "id"&#x000A;</code></pre>
+            
+            <p>That is, I combine stack the owner columns and tableAuthor columns into one
+            table and then remove duplicates based on the <code>id</code> field. If I didn’t remove
+            duplicates, I would have multiple rows per user.
+            (The query would actually be a bit more complicated than this because it would
+            have to count how many times a user owns a view and has authored a table.)</p>
+            
+            <p>Don’t worry if that didn’t make sense to you; the point is that we can use
+            datasets in different ways than they seem to be intended.</p>
+            
+            <h4 id="what-i-found-1">What I found</h4>
+            <p>My main conclusion is that people don’t use these charting tools all that much.</p>
+            
+            <h5 id="big-users">Big users</h5>
+            <p>Most of the users in the dataset (7790 to be exact) had made exactly one view.
+            Actually, there are probably even more with no views, but I don’t have the
+            data on them.</p>
+            
+            <p><img src="/!/socrata-users/figure/n.views.png" alt="" class="wide" /></p>
+            
+            <p>Similarly, the users who have owned and authored the most tables tend to work
+            for either Socrata or clients of Socrata.</p>
+            
+            <p>Neither of these discoveries should be a surprise; you can call it the
+            <a href="http://en.wikipedia.org/wiki/Pareto_principle">Pareto principle</a> if you want.</p>
+            
+            <h5 id="consumerizing">Consumerizing</h5>
+            <p>I wanted to see examples of this consumerized data analysis that was being
+            advertised, so I tried to find users who were not employed by Socrata or its
+            clients. I eventually <a href="/!/socrata-users/#also-no-tables">found some</a>.</p>
+            
+            <p>As I said above, my main conclusion is that people don’t use these charting
+            tools all that much. More specifically,</p>
+            
+            <ol>
+              <li>The people who create the most charts are people who maintain data portals</li>
+              <li>Aside from those who maintain data portals, the people who create the most
+             charts are usually making different charts of the same data.</li>
+              <li>I found a small number of people who seem to be using the charts for broader
+             things. I haven’t really talked to any of them, but the little I do know of
+             their stories is interesting.</li>
+            </ol>
+            
+            <h3 id="finding-data-is-hard">Finding data is hard</h3>
+            <p>I realized that I using my spreadsheet rather than Socrata’s search tool to look
+            up data. This was funny, and it pointed out to me an interesting phenomenon about
+            the sharing of government data. As I said earlier, nobody has any idea of what is
+            going on with open data. At a most basic level, even though we have these catalogs
+            of datasets, people can’t really figure out what is in the catalog.</p>
+            
+            <p>I have <a href="/!/openprism">identified</a>
+            two broad categories of issues related to this.</p>
+            
+            <ol>
+              <li>Naive search method</li>
+              <li>Siloed open data portals</li>
+            </ol>
+            
+            <p>Let’s talk about the second one.</p>
+            
+            <p><img src="unsilo.jpg" alt="Diagram about siloed open data portals and some layer to un-silo them" class="wide" /></p>
+            
+            <p>I made a <a href="http://openprism.thomaslevine.com">rather simple site</a> to demonstrate this idea.</p>
+            
+            <h3 id="file-formats">File formats</h3>
+            
+            <p>We’re supposed to use certain file formats.</p>
+            
+            <ul>
+              <li>“Mandate open formats for government data” (<a href="http://sunlightfoundation.com/opendataguidelines/#open-formats">Sunlight Foundation</a>)</li>
+              <li>“structured data” (<a href="http://inkdroid.org/journal/2010/06/04/the-5-stars-of-open-linked-data/">5 stars</a></li>
+              <li>“Data Must Be Machine processable” (<a href="http://www.opengovdata.org/home/8principles">Open Government Working Group</a>)</li>
+            </ul>
+            
+            <h4 id="getting-the-data-2">Getting the data</h4>
+            <p>This time, I used the <code>data.json</code> endpoint, which is supposed to return
+            a <a href="http://project-open-data.github.io/schema/">DCAT</a> listing of all of
+            the datasets. It turns out that this endpoint
+            <a href="/!/socrata-formats/#cutoff-at-1000">isn’t implemented properly</a>,
+            but we’ll make do</p>
+            
+            <h4 id="what-i-found-2">What I found</h4>
+            <p>What are the file formats?</p>
+            
+            <p><img src="/!/socrata-formats/figure/all-formats.png" alt="Bar plot of file formats by portal" class="wide" /></p>
+            
+            <p>It turns out that file formats tell you quite a bit about the type of data too.
+            Take a look at <a href="/!/missouri-data-licensing/">Missouri</a></p>
+            
+            <h3 id="licensing">Licensing</h3>
+            <p>Other data catalog software <a href="https://github.com/tlevine/open-data-download">works differently</a>
+            than Socrata, but the process it isn’t any more fancy. I downloaded data from catalogs running
+            these software.</p>
+            
+            <ul>
+              <li>Socrata</li>
+              <li>CKAN</li>
+              <li>OpenDataSoft</li>
+              <li>Junar</li>
+            </ul>
+            
+            <p>And then I <a href="http://thomaslevine.com/!/open-data-licensing/">looked at</a>
+            the licenses that different datasets have.</p>
+            
+            <p><img src="/!/open-data-licensing/p2.png" alt="Licenses across all portals" class="wide" /></p>
+            
+            <p>Most data catalogs either have a license on everything or a license on nothing.)</p>
+            
+            <p><img src="/!/open-data-licensing/p1.png" alt="Bar graph of proportion of datasets" class="wide" /></p>
+            
+            <p>As I said before, <a href="/!/missouri-data-licensing/">Missouri</a> is interesting.
+            Also, they get this licensing right.</p>
+            
+            <blockquote>
+              <p><a href="http://opendatacommons.org/faq/">Licensing is important because it reduces uncertainty.</a></p>
+            </blockquote>
+            
+            <h3 id="updating">Updating</h3>
+            <p>Open government data are supposed to be kept up-to-date.
+            <a href="http://thomaslevine.com/!/data-updatedness/#even-simpler">Pretty much nobody</a> does this.</p>
+            
+            <h4 id="getting-the-data-3">Getting the data</h4>
+            <p>Recall that there were some date fields in those Socrata data.</p>
+            
+            <ul>
+              <li><code>createdAt</code></li>
+              <li><code>publicationDate</code></li>
+              <li><code>rowsUpdatedAt</code></li>
+              <li><code>viewLastModified</code></li>
+            </ul>
+            
+            <p>Once I figured out what these meant and dealt with <a href="/!/data-updatedness#removing-duplicates">duplicates</a>,
+            I could check whether datasets were being updated.</p>
+            
+            <h4 id="what-i-found-3">What I found</h4>
+            <p>First, hardly any datasets ever get updated.</p>
+            
+            <p><img src="/!/data-updatedness/figure/any_update.png" alt="Hardly any datasets get updated" class="wide" /></p>
+            
+            <p>Second, the ones that have been updated were mostly updated two years ago.
+            There might have been some bulk Socrata migration at the beginning of September 2011.</p>
+            
+            <p><img src="/!/data-updatedness/figure/publish_v_update.png" alt="Bulk migration?" class="wide" /></p>
+            
+            <p>Here are the datasets that got published before 2013 and got updated during 2013.</p>
+            
+            <p><img src="/!/data-updatedness/figure/publish_v_update_2013.png" alt="Old data still kept up-to-date" class="wide" /></p>
+            
+            <p>It’s only 13 datasets.</p>
+            
+            <p><img src="/!/data-updatedness/figure/updates_2013_url.png" alt="Those 13 datasets, by portal" class="wide" /></p>
+            
+            <h2 id="future-things">Future things</h2>
+            <p>The general thing I’m doing here is just studying data about open data.
+            People haven’t done much of this, so it’s turning up some interesting thing.</p>
+            
+            <p>I’ve started seeing four perspectives I could take in future study,
+            and the general idea for all of these is to automate existing manual processes.</p>
+            
+            <ol>
+              <li>Check how well open data guidelines are being followed.</li>
+              <li>Help people find data of interest to them; come up with something better than our current search bars.</li>
+              <li>Fill in blank metadata fields.</li>
+              <li>Figure out what makes for good data sharing; what are the impacts of organizational structures,
+             hackathons, data catalog software, and open data policies on things that we care about?</li>
+            </ol>
+            
+            <p>They’re really all the same thing, actually, but
+            I’m focusing on the first of these for the immediate future.</p>
             
             <h2 id="exercises">Exercises</h2>
+            <p>Attendees of this <a href="http://www.meetup.com/NYC-Open-Data/events/147380312/">NYC Open Data meetup</a>
+            typically want to learn exactly how to do things, rather than just getting a general
+            idea of some new idea. (At least, this is the impression I get.) It’s sort of “open data”
+            from a different angle; if everyone knows how to do things with data, then even messy data
+            would be quite open in a sense. But I digress.</p>
             
-            <h3 id="outline-a-program">Outline a program</h3>
+            <p>Let’s learn how to plan a crazy project like this. I’ve prepared two exercises.</p>
+            
+            <h3 id="outlining-a-program">Outlining a program</h3>
             <p>Choose an open data catalog from this list.</p>
             
             <ul>
@@ -153,7 +502,14 @@
             <p>After you’ve done that, change the labels in the diagram so that it describes
             a computer program that downloads the datasets.</p>
             
-            <h3 id="operationalizing-constructs">Operationalizing constructs</h3>
+            <p>If you’re lucky, you’ll find API documentation, but you don’t need it;
+            figure out what the API is, and write the documentation yourself.</p>
+            
+            <p>For the one-minute presentation, walk through your outline of your program.
+            You can draw a diagram, write out steps in words, click through the website,
+            or just explain it without any visuals.</p>
+            
+            <h3 id="using-simple-variables-to-represent-grand-concepts">Using simple variables to represent grand concepts</h3>
             <p>Select a document from this list, then select a single guideline within
             the document. Brainstorm ways that you could test how well the guideline
             is being followed. Try to come up with approaches that don’t involve
@@ -167,6 +523,13 @@
               <li>Sunlight Foundation <a href="http://sunlightfoundation.com/opendataguidelines/">Open Data Policy Guidelines</a></li>
               <li>Open Data Institute <a href="https://certificates.theodi.org/">Certificates</a></li>
             </ul>
+            
+            <p>For the one-minute presentation, show us the open data guidelines that you
+            chose and explain the approaches you came up with.</p>
+            
+            <p>You’ll probably have time to look at more than one guideline, but you probably
+            won’t have time to talk about more than two. If this is the case, choose
+            one or two that you though were most interesting.</p>
           </article>
         </div>
         <div id='pagination'>
