@@ -2,13 +2,284 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-12-02T00:00:00Z</updated>
+  <updated>2013-12-12T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2013-12-12:/!/my-datasets-about-open-data/index.html</id>
+    <title type="html">Datasets about open data</title>
+    <published>2013-12-12T00:00:00Z</published>
+    <updated>2013-12-12T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/my-datasets-about-open-data/index.html"/>
+    <content type="html">&lt;p&gt;I’ve recently been &lt;a href="/open-data"&gt;studying data about open data&lt;/a&gt;,
+and I’m hearing that other people want to do the same. Yay!&lt;/p&gt;
+
+&lt;p&gt;Some people have asked for the data that I’ve collected so that
+they can study things without spending a month downloading all
+the data and formatting them properly and whatnot.
+I haven’t had particularly good answers for these requests, but
+the present writing should change that.&lt;/p&gt;
+
+&lt;h2 id="metadata-about-data-about-metadata-from-socrata"&gt;Metadata about data about metadata from Socrata&lt;/h2&gt;
+&lt;p&gt;I’ve been using data from Socrata data portal websites for most
+of these studies. I think I’ve
+provided almost enough information so that people can reuse these
+data, and I hope that this article provides the remaining bits
+so that people can actually use the data to study open data.&lt;/p&gt;
+
+&lt;h3 id="what-ive-provided-so-far"&gt;What I’ve provided so far&lt;/h3&gt;
+&lt;p&gt;There are a lot of annoying quirks in the way
+data are modeled, and I’ve explained much of this before.&lt;/p&gt;
+
+&lt;p&gt;I posted spreadsheets of these data quite a long while ago, and
+people have been able to download them.&lt;/p&gt;
+
+&lt;h3 id="what-i-havent-provided"&gt;What I haven’t provided&lt;/h3&gt;
+&lt;p&gt;I haven’t explained which of the annoying quirks are fixed in the
+various spreadsheets.&lt;/p&gt;
+
+&lt;p&gt;Also, I haven’t prominently linked to these
+spreadsheets.&lt;/p&gt;
+
+&lt;h2 id="files-ive-produced"&gt;Files I’ve produced&lt;/h2&gt;
+&lt;p&gt;Here are some files that I’ve already produced so that you don’t have to
+create your own. I’ve referenced the programs that produced these files,
+but haven’t been trying to download the data more than once, so I suspect
+that the programs won’t work quite as you expect them to.&lt;/p&gt;
+
+&lt;p&gt;These files include only Socrata data.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata.csv"&gt;&lt;code&gt;socrata.csv&lt;/code&gt;&lt;/a&gt;
+  is based on metadata files from all views as of July.
+  It includes duplicates from both federation and derived views.
+  I produced it by searching all the portals
+  &lt;a href="#not-removing-duplicates"&gt;without attempting to remove duplicates&lt;/a&gt;.
+  The code is &lt;a href=""&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/users.csv"&gt;&lt;code&gt;users.csv&lt;/code&gt;&lt;/a&gt;
+  is a transformation of &lt;code&gt;socrata.csv&lt;/code&gt; such that each row is a user.
+  It includes counts of views and tables belonging to each user, but
+  I don’t remember how I handled duplicates there. The code for that
+  is &lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/numbers/run.py#L207"&gt;here&lt;/a&gt;,
+  and a high-level explanation is &lt;a href="/!/data-about-open-data-talk-december-2-2013/#data-about-people-who-use-data"&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-catalog/blob/3a7d72b5b7332a26dd6066edb44749a634bfe48c/catalogs-2013-08-28.db"&gt;&lt;code&gt;catalogs-2013-08-28.db&lt;/code&gt;&lt;/a&gt; is a table of all of the Socrata DCAT files.
+  It has resolved these quirks in these ways, but it still has these quirks&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata-deduplicated.csv"&gt;&lt;code&gt;socrata-deduplicated.csv&lt;/code&gt;&lt;/a&gt;
+  is &lt;code&gt;socrata.csv&lt;/code&gt; with
+  &lt;a href="#dealing-with-federation"&gt;federation-induced duplicates removed&lt;/a&gt;.
+  That is, if data were federated from one portal to three portals,
+  this file includes the data from only the first portal. It still
+  includes derived data. The code is &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py"&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/federation.json"&gt;&lt;code&gt;federation.json&lt;/code&gt;&lt;/a&gt; is also produced by
+  &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py"&gt;&lt;code&gt;dedupe.py&lt;/code&gt;&lt;/a&gt;.
+  (The &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/Makefile"&gt;Makefile&lt;/a&gt; may be informative.)
+  I used it to make &lt;a href="/!/socrata-deduplicate/#graph-diagram"&gt;this plot&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These files include data from Socrata, CKAN, Junar, and OpenDataSoft.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/licensing.csv"&gt;&lt;code&gt;licensing.csv&lt;/code&gt;&lt;/a&gt;
+  contains a record for each dataset across a bunch of catalogs.
+  The column &lt;code&gt;license_standard&lt;/code&gt; is the binned license.
+  (See &lt;a href="/!/open-data-licensing/#which-licenses"&gt;this plot&lt;/a&gt;.)
+  &lt;a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/query-license.py"&gt;&lt;code&gt;query-license.py&lt;/code&gt;&lt;/a&gt; might get you thinking about how it was produced.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://openprism.thomaslevine.com"&gt;OpenPrism&lt;/a&gt; lists a bunch of
+  data catalog websites &lt;a href="https://github.com/tlevine/openprism/blob/gh-pages/src/index.js"&gt;in its source code&lt;/a&gt;.
+  I assembled these lists by checking &lt;a href="http://datacatalogs.org"&gt;datacatalogs.org&lt;/a&gt;,
+  by checking the since-changed Socrata status page
+  and by contacting Junar and OpenDataSoft directly.&lt;/li&gt;
+  &lt;li&gt;It turns out that a bunch of CKAN instances listed on
+  &lt;a href="http://datacatalogs.org"&gt;datacatalogs.org&lt;/a&gt; aren’t up anymore.
+  &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/ckan_workingness.csv"&gt;&lt;code&gt;ckan_workingness.csv&lt;/code&gt;&lt;/a&gt; has a list of what’s still working,
+  and &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/download_ckan.py#L62"&gt;&lt;code&gt;download_ckan.py&lt;/code&gt;&lt;/a&gt; shows how that list was assembled.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The remainder of this article summarizes the various quirks that I’ve dealt
+with and haven’t dealt with.&lt;/p&gt;
+
+&lt;h2 id="how-data-are-stored-on-socrata"&gt;How data are stored on Socrata&lt;/h2&gt;
+&lt;p&gt;Data on Socrata is displayed in &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;,
+which are queries on &lt;a href="/!/socrata-genealogies#term-table"&gt;tables&lt;/a&gt;.
+When you put a new data source on a Socrata portal, you get both
+a new table and a &lt;a href="/!/socrata-genealogies#term-dataset"&gt;dataset&lt;/a&gt;
+view that is a query of the full table.
+(The dataset view would be &lt;code&gt;SELECT * FROM [table]&lt;/code&gt; in SQL.)&lt;/p&gt;
+
+&lt;h3 id="derivatives"&gt;Derivatives&lt;/h3&gt;
+&lt;p&gt;In the Socrata web interface, you can create lots of different views
+on the same source data. You can make different queries on the same
+table, and you can visualize them as charts, maps, and a
+&lt;a href="/!/socrata-calendars"&gt;bunch of other things&lt;/a&gt;.
+When you save your new view, it gets added to the data portal, and
+it will show up in searches.&lt;/p&gt;
+
+&lt;h3 id="federation"&gt;Federation&lt;/h3&gt;
+&lt;p&gt;Data are uploaded to one Socrata portal, but they can be
+&lt;a href="/!/socrata-genealogies#term-federation"&gt;federated&lt;/a&gt;
+to other Socrata portals. Thus, if you get all of the datasets from
+all of the portals, you can easily have duplicates and not know which
+portal they came from.&lt;/p&gt;
+
+&lt;h3 id="privacy"&gt;Privacy&lt;/h3&gt;
+&lt;p&gt;Some data on Socrata are private. In many cases, the source data are
+private and a query on the data (a &lt;a href="/!/socrata-genealogies#term-filtered-view"&gt;filtered view&lt;/a&gt;)
+is public. Thus, it is possible that the most complete form of the data
+that a data publisher is releasing would be in a different type of view
+than dataset.&lt;/p&gt;
+
+&lt;h3 id="view-metadata-files"&gt;View metadata files&lt;/h3&gt;
+&lt;p&gt;Regardless of whether it’s a dataset, filter, chart, map, or whatever,
+each view has a metadata file at a URL like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;https://data.maryland.gov/api/views/${id}.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example, here’s the file for
+&lt;a href="https://data.maryland.gov/Energy-and-Environment/Certified-Cover-Crops-Planted-in-the-Chesapeake-Ba/w6r7-apye?"&gt;this view&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href="https://data.maryland.gov/api/views/w6r7-apye.json"&gt;https://data.maryland.gov/api/views/w6r7-apye.json&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’ll refer to this “metadata file” quite a bit in the sections below.&lt;/p&gt;
+
+&lt;h2 id="removing-duplicates-from-derived-view"&gt;Removing duplicates from derived view&lt;/h2&gt;
+&lt;p&gt;If we want just the source data, we have to remove these derivative
+datasets. I’ll explain removing federated data later.&lt;/p&gt;
+
+&lt;h3 id="not-removing-duplicates"&gt;Not removing duplicates&lt;/h3&gt;
+&lt;p&gt;At first, I
+&lt;a href="/!/socrata-summary#acquiring-the-data"&gt;didn’t remove duplicates&lt;/a&gt;.
+I just searched browsed through all of the search results, followed
+the links to the datasets, and downloaded all of the metadata files.
+This has problems, as I’ve explained above; below are some better
+approaches.&lt;/p&gt;
+
+&lt;h3 id="searching-for-only-dataset-views"&gt;Searching for only dataset views&lt;/h3&gt;
+&lt;p&gt;If you run an ordinary search on a portal, filtering for only dataset
+views, you’ll get none of the derivatives. It’s possible that you’ll miss
+some data where the original dataset is private and only a filter on the
+dataset is public.&lt;/p&gt;
+
+&lt;p&gt;If you use the ordinary search webpages rather than the API, you can also
+deal with federation in the same step. In the HTML search interface that
+is intended for humans, federated datasets are shaded blue and shown as
+links to other data portals, rather than being shaded white and linking
+within the same portal. When searching the site, simply ignore these
+federated datasets, and you’re good.&lt;/p&gt;
+
+&lt;p&gt;All of the links to datasets include the 4x4 identifier for the dataset,
+and you can use that to determine the URL of the corresponding metadata file.&lt;/p&gt;
+
+&lt;h3 id="using-apidcatjson"&gt;Using &lt;code&gt;/api/dcat.json&lt;/code&gt;&lt;/h3&gt;
+&lt;!-- https://twitter.com/chrismetcalf/status/376079563240898560 --&gt;
+&lt;p&gt;The &lt;a href="https://data.oaklandnet.com/api/dcat.json"&gt;&lt;code&gt;/api/dcat.json&lt;/code&gt;&lt;/a&gt; page
+is supposed to give us a listing of all of the official data in a portal.
+It provides different data from the metadata files I discuss above, but
+it includes the dataset identifiers, and you can use those to look up
+the corresponding metadata files.&lt;/p&gt;
+
+&lt;p&gt;I was told that the &lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint shows only the source data.
+I haven’t checked this myself, and I don’t know how it handles datasets
+where the original upload is private but a filter on it is public.
+Anyway, let’s just hope that the &lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint lets deals with
+the derivatives properly for us.&lt;/p&gt;
+
+&lt;p&gt;In that case, we just have to deal with federation. The
+&lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint doesn’t give you any indication as to whether a
+dataset is federated, but you can use the method that is described
+&lt;a href="#dealing-with-federation"&gt;below&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The bigger problem with &lt;code&gt;/api/dcat.json&lt;/code&gt; is that it only returns the
+first 1,000 datasets. I am told that you can use query arguments to
+get more, but I’ve never gotten this working.&lt;/p&gt;
+
+&lt;h3 id="collapsing-by-tableid"&gt;Collapsing by tableId&lt;/h3&gt;
+&lt;p&gt;This is the approach I wind up using most of the time, mainly because
+the initial download of all the metadata took a long time and I didn’t
+want to run one again.&lt;/p&gt;
+
+&lt;p&gt;The metadata
+file for each view contains a &lt;code&gt;tableId&lt;/code&gt; field corresponding to the
+table that stores the data corresponding to the particular view.&lt;/p&gt;
+
+&lt;p&gt;If you download &lt;a href="#not-removing-duplicates"&gt;without removing duplicates&lt;/a&gt;,
+you’ll wind up with multiple files that all have the same &lt;code&gt;tableId&lt;/code&gt; field.
+If you put all of these files into a spreadsheet, with one row per metadata
+file, you’ll wind up with a &lt;code&gt;tableId&lt;/code&gt; column.&lt;/p&gt;
+
+&lt;p&gt;If you group the table by &lt;code&gt;tableId&lt;/code&gt;, you will wind up with one record
+per table. It’s still difficult to figure out which view is the
+original, but you can aggregate the various fields in different ways
+depending on what you need.&lt;/p&gt;
+
+&lt;p&gt;For example, I &lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/words/15-dates.r#L17"&gt;aggregated&lt;/a&gt;
+to maximum family-wide row count and the sum of family-wide download
+counts when I looked at the
+&lt;a href="/!/data-updatedness/"&gt;updating of datasets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="approaches-i-havent-tried-yet"&gt;Approaches I haven’t tried yet&lt;/h3&gt;
+&lt;p&gt;I’ve tried not to concern myself so much with fixing Socrata’s APIs,
+so I’ve been trying to deal with duplication in ways that are easy
+rather than best. Here are two things you could do to figure out
+exactly which view is the original view within a table.&lt;/p&gt;
+
+&lt;h4 id="parsing-queries"&gt;Parsing queries&lt;/h4&gt;
+&lt;p&gt;Some view metadata files include a query, presumably the query that
+is run on the original table to get the particular subset. By parsing
+these, you might be able to determine which view of the views belonging
+to one table is the original view.&lt;/p&gt;
+
+&lt;!-- XXX Link to examples. --&gt;
+
+&lt;h4 id="parsing-more-web-pages"&gt;Parsing more web pages&lt;/h4&gt;
+&lt;p&gt;I can figure out the genealogy by looking at the web pages, so a program
+could be written that does this. I think the site does some AJAXy something
+that I haven’t figured out yet, but would be easy to parse this with
+something like Selenium, PhantomJS, or jsdom that renders the whole page.&lt;/p&gt;
+
+&lt;h2 id="dealing-with-federation"&gt;Dealing with federation&lt;/h2&gt;
+&lt;p&gt;We can deal with federation by looking at the network of federation from the
+portal hope pages. Each portal’s homepage has a box like this that says
+which portals it federates.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/socrata-deduplicate/federated-domains.png" alt="Federated Domains" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The particular portal contains all of the datasets that all of these
+federated portals contain. If you construct the network of federation
+from these portal homepages, you can resolve duplicates properly. If
+the same dataset is on a few different portals, it’s because the
+different portals all federate the same portal. Since you know what
+the network of federation is from the homepages, you can figure out
+which portal was the original portal.&lt;/p&gt;
+
+&lt;p&gt;Regardless of the method you used to assemble your dataset of datasets,
+the resulting dataset will have a column for portal and a column for
+identifier. Once you determine what this network of federation is, you
+can look for identical datasets that are present in multiple portals
+and then remove datasets that are not from the original portal.
+I did that &lt;a href="/!/socrata-deduplicate"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="determining-the-size-of-data-views"&gt;Determining the size of data views&lt;/h2&gt;
+&lt;p&gt;The metadata file does not explicitly state the number of columns and the
+number of rows in the dataset, but there’s enough in the file to figure out
+what these two numbers are.&lt;/p&gt;
+
+&lt;p&gt;The metadata files contain a “columns” field, which has a list
+of dictionaries. Each of these dictionaries has a count of null
+values and a count non-null values, and the sum of these two
+counts is the number of columns.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/master/numbers/socrata/__init__.py#L93"&gt;This&lt;/a&gt;
+is the relevant code, I think. If I’m reading my own code correctly,
+the &lt;code&gt;original_data&lt;/code&gt; variable is just a parse of the JSON metadata file.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-12-02:/!/data-about-open-data-talk-december-2-2013/index.html</id>
     <title type="html">100,000 open data across 100 portal</title>
@@ -1149,200 +1420,6 @@ measuring the all of these things that we care about.&lt;/p&gt;
 &lt;p&gt;I found this video &lt;a href="http://www.youtube.com/watch?v=aHxv_2BMJfw"&gt;on YouTube&lt;/a&gt;
 and then &lt;a href="https://github.com/tlevine/open-data-a-la-loupe"&gt;translated&lt;/a&gt;
 the audio to English.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-10-29:/!/missouri-data-licensing/index.html</id>
-    <title type="html">License-free data in Missouri's data portal</title>
-    <published>2013-10-29T00:00:00Z</published>
-    <updated>2013-10-29T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/missouri-data-licensing/index.html"/>
-    <content type="html">&lt;p&gt;I recently &lt;a href="/!/open-data-licensing"&gt;found&lt;/a&gt; that most datasets on the
-open data portals I’ve been looking at don’t have open licenses or
-public domain dedications.&lt;/p&gt;
-
-&lt;p&gt;But a lot of datasets do have licenses or public domain dedication, and
-licensing this varies within portals. I wanted to see which datasets get
-have some sort of licensing metadata and which ones
-don’t.
-Or this is what I thought I wanted;
-I started looking at this on one data portal, and I
-wound up going down a slightly different rabbit hole.&lt;/p&gt;
-
-&lt;h2 id="the-missouri-data-portal"&gt;The Missouri Data Portal&lt;/h2&gt;
-&lt;p&gt;I looked at the Missouri Data Portal,
-&lt;a href="https://data.mo.gov"&gt;data.mo.gov&lt;/a&gt;. Here’s why I chose it.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;To make it easy to download the license information, I wanted to use
- &lt;a href="/!/socrata-formats/"&gt;Socrata’s data.json endpoint&lt;/a&gt;.
- This endpoint only returns up to 1000
- datasets, so I needed a portal with no more than 1000 datasets.
- Missouri’s portal has 897 datasets.&lt;/li&gt;
-  &lt;li&gt;I think I’ve figured out how to
- &lt;a href="/!/socrata-deduplicate"&gt;deduplicate federated datasets&lt;/a&gt;,
- but I didn’t want to deal with that.
- The Missouri portal federates only the
- &lt;a href="https://data.kcmo.org"&gt;Kansas City data portal&lt;/a&gt;,
- so no federal data should be duplicated in this portal.&lt;/li&gt;
-  &lt;li&gt;Missouri has &lt;a href="/!/socrata-formats"&gt;a lot of PDF files&lt;/a&gt;,
- so I thought there might be something in there that would be more
- original than mere facts and covered under copyright; this would
- make a license more important.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I wound up categorizing the datasets quite a bit more than I originally
-intended, so now I know a lot about the sorts of data on the portal.&lt;/p&gt;
-
-&lt;h2 id="licenses"&gt;Licenses&lt;/h2&gt;
-&lt;p&gt;Most datasets (619) on the
-Missouri portal are listed as in the public domain.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/publicdomain.png" alt="plot of chunk publicdomain" /&gt; &lt;/p&gt;
-
-&lt;p&gt;The rest (278 datasets) have nothing in the “license” metadata field.&lt;/p&gt;
-
-&lt;h2 id="formats"&gt;Formats&lt;/h2&gt;
-&lt;p&gt;Proportionately more PDF files are public domain.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/publicdomain_pdf.png" alt="plot of chunk publicdomain_pdf" /&gt; &lt;/p&gt;
-
-&lt;p&gt;I noticed a bunch of PDF files with names like these.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/nfur-xwk2"&gt;  SWTWESTP EW 5 HR 2009 A PCW&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/5zv3-u47y"&gt;  SHAWNEEWARD 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/i2ip-cykb"&gt;PROSPECTSWOPE 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/6gz3-267n"&gt;    OAKVOLKER 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/yjr5-e96s"&gt;         OAK9 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/sqpd-738e"&gt;        OAK12 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/9ddu-xy68"&gt;       MAIN13 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/eyii-3nuq"&gt;        MAIN8 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://data.mo.gov/d/n2kq-rg69"&gt;    MADISON43 5 HR 2009 A TMC&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These are all traffic surveys, and it turns out that they account for
-almost all of the PDF files on the portal.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/pdf_trafficsurvey.png" alt="plot of chunk pdf_trafficsurvey" /&gt; &lt;/p&gt;
-
-&lt;h2 id="dataset-kinds"&gt;Dataset kinds&lt;/h2&gt;
-&lt;p&gt;A lot of PDF files had public domain licenses, but it’s not clear-cut,
-so I looked more specifically at what datasets are on the portal. The only
-field in the dataset that really told me much about this was the
-&lt;code&gt;title&lt;/code&gt; field, which is what I used above to find the traffic surveys.
-I kept going with that for the other datasets.&lt;/p&gt;
-
-&lt;p&gt;I just used a bunch of reasonably simple
-&lt;a href="https://github.com/tlevine/socrata-catalog/blob/master/src/missouri.license.r"&gt;string matches&lt;/a&gt;.
-For example, a bunch of datasets came from the American Community Survey,
-and these said “ACS” or “American Community Survey” in the title.
-Data from the federal said “Census”. And liquor license data said either
-“Liquor” or “Alcohol”.&lt;/p&gt;
-
-&lt;p&gt;In the plot below, I map out the different kinds of datasets, whether
-they are PDF files and whether they have public domain licenses.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/kinds_counts.png" alt="plot of chunk kinds_counts" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Here’s the same plot but with proportions instead of counts. This makes
-the small bars more apparent.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/kinds_prop.png" alt="plot of chunk kinds_prop" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I didn’t manage to get it much more precise than this, but I did find that
-the uncategorized datasets containing the word “Missouri” tended not to
-have a license.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/says_missouri.png" alt="plot of chunk says_missouri" class="wide" /&gt;&lt;/p&gt;
-
-&lt;h2 id="the-merits-of-explicitly-stating-that-a-dataset-is-in-the-public-domain"&gt;The merits of explicitly stating that a dataset is in the public domain&lt;/h2&gt;
-&lt;p&gt;A few years ago, a few open government advocates came up with
-&lt;a href="http://www.opengovdata.org/home/8principles"&gt;eight principles of open government data&lt;/a&gt;.
-Among these is the principle that the data be free of license.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Data are not subject to any copyright, patent, trademark or trade secret regulation. Reasonable privacy, security and privilege restrictions may be allowed as governed by other statutes.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In some cases, government data already meet this criterion by default.
-As the /unitedstates project &lt;a href="http://theunitedstates.io/licensing/"&gt;explains&lt;/a&gt;,&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Copyright applies to some government data but not others (and never to U.S. law). When it applies, it must be waived by the agency (or owner if not the agency) for the data to meet the “license-free” principle. In this case, data is dedicated to the public domain, not licensed.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In some cases, copyright does not apply at all because it is a government
-product. In other cases, it might not apply because the data might be
-facts, which can’t be copyrighted. However, it can be quite difficult for
-a consumer of data to determine whether copyright applies to a dataset.
-Thus, it makes sense to be explicit. As the /unitedstates project explains,&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Data is more valuable when its copyright status is clear through an explicit statement.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id="the-importance-of-an-explicit-statement-for-traffic-surveys"&gt;The importance of an explicit statement for traffic surveys&lt;/h2&gt;
-&lt;p&gt;Traffic surveys are a perfect example of where you need to be explicit.&lt;/p&gt;
-
-&lt;h3 id="are-traffic-surveys-facts"&gt;Are traffic surveys facts?&lt;/h3&gt;
-&lt;p&gt;In some cases, copyright might not apply to a dataset simply because the
-dataset isn’t sufficiently original; if the dataset contains only facts,
-copyright won’t apply. This might be okay for parts of the traffic survey
-files. Here’s part of a page from
-&lt;a href="https://data.mo.gov/Traffic/OAKVOLKER-5-HR-2009-A-TMC/6gz3-267n?"&gt;this traffic survey&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-table.png" alt="A data table" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The page above just has a table of numbers. This might count as facts, so
-it is possible that it would not be original enough for copyright to apply.
-This next page is a bit fancier.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="OAKVOLKER-5-HR-2009-A-TMC-diagram.png" alt="A diagram of a street intersection" /&gt;&lt;/p&gt;
-
-&lt;p&gt;While this diagram contains facts (counts of cars taking different routes
-through the intersection), it also contains a fancy drawing of the intersection.
-The numbers are facts, and those should be free from copyright, but does
-copyright apply to the diagram?&lt;/p&gt;
-
-&lt;h3 id="are-traffic-surveys-government-works"&gt;Are traffic surveys government works?&lt;/h3&gt;
-&lt;p&gt;Copyright protection does not apply to government works, but it could apply
-to works produced by contractors. From the file on the data portal website,
-we can’t tell whether it was produced entirely by government workers, so
-we can’t use this law for assurance that the data are free of a license.&lt;/p&gt;
-
-&lt;h3 id="yay-for-explicit-statement"&gt;Yay for explicit statement&lt;/h3&gt;
-&lt;p&gt;Given the potential ambiguities above, it is quite important that these traffic
-survey files have explicit notices where it’s possible. I commend the state of
-Missouri for providing such notices.&lt;/p&gt;
-
-&lt;h2 id="what-i-really-learned-from-this"&gt;What I really learned from this&lt;/h2&gt;
-&lt;p&gt;I used this analysis to provide an example of a situation where it is
-important to have an explicit statement about the license of a dataset
-or about the absence of license. Beyond that, this analysis doesn’t
-really tell us much about licensing.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, I feel like I’ve come up with a reasonably complete
-grouping of the datasets in the Missouri data portal.&lt;/p&gt;
-
-&lt;p&gt;In the more granular groupings, I think
-I’ve arrived at datasets that could naturally be combined into one data
-table. This is even true for the traffic survey data; each particular PDF
-traffic survey report could be converted into a single row in a data table.&lt;/p&gt;
-
-&lt;p&gt;I arrived at these groupings pretty much entirely by looking at the tables,
-but the groupings seem to relate to trends in other variables, like the
-license field of the dataset. I’ve been wanting to come up with methods for
-relating datasets to each other. I thought these methods would need to be
-&lt;a href="/!/open-data-plans#better-search-and-linked-data"&gt;somewhat involved&lt;/a&gt;, but
-maybe we can start with something simpler.&lt;/p&gt;
-
-&lt;h2 id="future-study"&gt;Future study&lt;/h2&gt;
-&lt;p&gt;In the Missouri portal, I used only title to group datasets; I didn’t
-look at the long-form description, the author or the schema. There were
-pretty clear-cut divisions between titles, but I would like to see how
-reasonable this approach really is; I want to whether groups of similarly
-named datasets tend to have similar schemas.&lt;/p&gt;
 </content>
   </entry>
 </feed>

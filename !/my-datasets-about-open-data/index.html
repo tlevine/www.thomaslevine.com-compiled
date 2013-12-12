@@ -7,16 +7,16 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Thomas Levine, Dada Artist</title>
-    <meta content='' name='description'>
+    <title>Datasets about open data</title>
+    <meta content='I finally document my data about open data.' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
     <meta content='nanoc 3.6.4' name='generator'>
     <meta content='width=device-width' name='viewport'>
     <meta content='summary' name='twitter:card'>
     <meta content='@thomaslevine' name='twitter:site'>
-    <meta content='Thomas Levine' name='twitter:title'>
-    <meta content='' name='twitter:description'>
+    <meta content='Datasets about open data' name='twitter:title'>
+    <meta content='I finally document my data about open data.' name='twitter:description'>
     <meta content='@thomaslevine' name='twitter:creator'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
     <meta content='thomaslevine.com' name='twitter:domain'>
@@ -29,10 +29,10 @@
     <meta content='' name='twitter:app:id:iphone'>
     <meta content='' name='twitter:app:id:ipad'>
     <meta content='' name='twitter:app:id:googleplay'>
-    <meta content='http://thomaslevine.com/!/socrata-datasets/' property='og:url'>
+    <meta content='http://thomaslevine.com/!/my-datasets-about-open-data/' property='og:url'>
     <meta content='thomaslevine.com' property='og:site_name'>
-    <meta content='' property='og:description'>
-    <meta content='' property='og:title'>
+    <meta content='I finally document my data about open data.' property='og:description'>
+    <meta content='Datasets about open data' property='og:title'>
     <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
     <link href='/favicon.ico' rel='icon' type='image/x-icon'>
     <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
@@ -74,13 +74,14 @@
         <div id='article-wrapper'>
           <article>
             <header>
-              <h1></h1>
+              <h1>Datasets about open data</h1>
               <em>
-                <time>
-                  
+                <time datetime='2013-12-12'>
+                  December 12, 2013
                 </time>
               </em>
               <span class='tags'>
+                <a href="/open-data">open-data</a>
               </span>
             </header>
             <hr>
@@ -90,8 +91,8 @@
             <p>Some people have asked for the data that I’ve collected so that
             they can study things without spending a month downloading all
             the data and formatting them properly and whatnot.
-            This article is for those people and for people wha wanted that
-            but never asked.</p>
+            I haven’t had particularly good answers for these requests, but
+            the present writing should change that.</p>
             
             <h2 id="metadata-about-data-about-metadata-from-socrata">Metadata about data about metadata from Socrata</h2>
             <p>I’ve been using data from Socrata data portal websites for most
@@ -123,34 +124,49 @@
             <p>These files include only Socrata data.</p>
             
             <ul>
-              <li><a href=""><code>socrata.csv</code></a>
+              <li><a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata.csv"><code>socrata.csv</code></a>
               is based on metadata files from all views as of July.
               It includes duplicates from both federation and derived views.
               I produced it by searching all the portals
               <a href="#not-removing-duplicates">without attempting to remove duplicates</a>.
               The code is <a href="">here</a>.</li>
-              <li><a href=""><code>users.csv</code></a>
+              <li><a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/users.csv"><code>users.csv</code></a>
               is a transformation of <code>socrata.csv</code> such that each row is a user.
               It includes counts of views and tables belonging to each user, but
               I don’t remember how I handled duplicates there. The code for that
-              is <a href="">here</a>.</li>
-              <li><a href=""><code>catalogs-2013-08-28.db</code></a> is a table of all of the Socrata DCAT files.
+              is <a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/numbers/run.py#L207">here</a>,
+              and a high-level explanation is <a href="/!/data-about-open-data-talk-december-2-2013/#data-about-people-who-use-data">here</a>.</li>
+              <li><a href="https://github.com/tlevine/socrata-catalog/blob/3a7d72b5b7332a26dd6066edb44749a634bfe48c/catalogs-2013-08-28.db"><code>catalogs-2013-08-28.db</code></a> is a table of all of the Socrata DCAT files.
               It has resolved these quirks in these ways, but it still has these quirks</li>
-              <li><a href=""><code>socrata-deduplicated.csv</code></a>
+              <li><a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata-deduplicated.csv"><code>socrata-deduplicated.csv</code></a>
               is <code>socrata.csv</code> with
               <a href="#dealing-with-federation">federation-induced duplicates removed</a>.
               That is, if data were federated from one portal to three portals,
               this file includes the data from only the first portal. It still
-              includes derived data. The code is <a href="">here</a>.</li>
-              <li><a href=""><code>federation.json</code></a> is produced by this method. It has resolved these quirks in these ways, but it still has these quirks
-              Makefile, make json, make csv</li>
+              includes derived data. The code is <a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py">here</a>.</li>
+              <li><a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/federation.json"><code>federation.json</code></a> is also produced by
+              <a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py"><code>dedupe.py</code></a>.
+              (The <a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/Makefile">Makefile</a> may be informative.)
+              I used it to make <a href="/!/socrata-deduplicate/#graph-diagram">this plot</a>.</li>
             </ul>
             
             <p>These files include data from Socrata, CKAN, Junar, and OpenDataSoft.</p>
             
             <ul>
-              <li><a href=""><code>licensing.csv</code></a> is produced by this method. It has resolved these quirks in these ways, but it still has these quirks. query-licensing.py . also includes other portal software
-            ckan_workingness.csv  licensing-by-portal.csv  licensing.csv</li>
+              <li><a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/licensing.csv"><code>licensing.csv</code></a>
+              contains a record for each dataset across a bunch of catalogs.
+              The column <code>license_standard</code> is the binned license.
+              (See <a href="/!/open-data-licensing/#which-licenses">this plot</a>.)
+              <a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/query-license.py"><code>query-license.py</code></a> might get you thinking about how it was produced.</li>
+              <li><a href="http://openprism.thomaslevine.com">OpenPrism</a> lists a bunch of
+              data catalog websites <a href="https://github.com/tlevine/openprism/blob/gh-pages/src/index.js">in its source code</a>.
+              I assembled these lists by checking <a href="http://datacatalogs.org">datacatalogs.org</a>,
+              by checking the since-changed Socrata status page
+              and by contacting Junar and OpenDataSoft directly.</li>
+              <li>It turns out that a bunch of CKAN instances listed on
+              <a href="http://datacatalogs.org">datacatalogs.org</a> aren’t up anymore.
+              <a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/ckan_workingness.csv"><code>ckan_workingness.csv</code></a> has a list of what’s still working,
+              and <a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/download_ckan.py#L62"><code>download_ckan.py</code></a> shows how that list was assembled.</li>
             </ul>
             
             <p>The remainder of this article summarizes the various quirks that I’ve dealt
@@ -188,7 +204,7 @@
             
             <h3 id="view-metadata-files">View metadata files</h3>
             <p>Regardless of whether it’s a dataset, filter, chart, map, or whatever,
-            each view has a metadata file at a url like this.</p>
+            each view has a metadata file at a URL like this.</p>
             
             <pre><code>https://data.maryland.gov/api/views/${id}.json&#x000A;</code></pre>
             
@@ -219,7 +235,7 @@
             some data where the original dataset is private and only a filter on the
             dataset is public.</p>
             
-            <p>If you use the ordinary search webpages rather than the API, you can ols
+            <p>If you use the ordinary search webpages rather than the API, you can also
             deal with federation in the same step. In the HTML search interface that
             is intended for humans, federated datasets are shaded blue and shown as
             links to other data portals, rather than being shaded white and linking
@@ -271,7 +287,10 @@
             original, but you can aggregate the various fields in different ways
             depending on what you need.</p>
             
-            <p>XXX Link to examples.</p>
+            <p>For example, I <a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/words/15-dates.r#L17">aggregated</a>
+            to maximum family-wide row count and the sum of family-wide download
+            counts when I looked at the
+            <a href="/!/data-updatedness/">updating of datasets</a>.</p>
             
             <h3 id="approaches-i-havent-tried-yet">Approaches I haven’t tried yet</h3>
             <p>I’ve tried not to concern myself so much with fixing Socrata’s APIs,
@@ -285,7 +304,7 @@
             these, you might be able to determine which view of the views belonging
             to one table is the original view.</p>
             
-            <p>XXX Link to an example</p>
+            <!-- XXX Link to examples. -->
             
             <h4 id="parsing-more-web-pages">Parsing more web pages</h4>
             <p>I can figure out the genealogy by looking at the web pages, so a program
@@ -315,9 +334,7 @@
             and then remove datasets that are not from the original portal.
             I did that <a href="/!/socrata-deduplicate">here</a>.</p>
             
-            <h2 id="notable-statistics-i-computed">Notable statistics I computed</h2>
-            
-            <h3 id="table-size">Table size</h3>
+            <h2 id="determining-the-size-of-data-views">Determining the size of data views</h2>
             <p>The metadata file does not explicitly state the number of columns and the
             number of rows in the dataset, but there’s enough in the file to figure out
             what these two numbers are.</p>
@@ -334,7 +351,7 @@
         </div>
         <div id='pagination'>
           <div class='base-little-card'>
-            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/socrata-datasets/index.md">View source</a>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/my-datasets-about-open-data/index.md">View source</a>
             
             <a href="https://twitter.com/thomaslevine">Discuss</a>
           </div>
