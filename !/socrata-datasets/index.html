@@ -7,7 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset='utf-8'>
-    <title>Thomas Levine</title>
+    <title>Thomas Levine, Dada Artist</title>
     <meta content='' name='description'>
     <meta content='Thomas Levine' name='author'>
     <link href='http://domain/humans.txt' rel='author' type='text/plain'>
@@ -84,62 +84,158 @@
               </span>
             </header>
             <hr>
-            <p>In my various studies of open data, I’ve been focusing on the
-            data in the Socrata portals and have had to deal with some
-            annoying quirks in the way the data are modeled. I haven’t
-            properly dealt with it yet. Until now!</p>
+            <p>I’ve recently been <a href="/open-data">studying data about open data</a>,
+            and I’m hearing that other people want to do the same. Yay!</p>
             
-            <h2 id="how-data-are-stored">How data are stored</h2>
-            <p>Data on Socrata is displayed in <a href="">views</a>,
-            which are queries on <a href="">tables</a>.
+            <p>Some people have asked for the data that I’ve collected so that
+            they can study things without spending a month downloading all
+            the data and formatting them properly and whatnot.
+            This article is for those people and for people wha wanted that
+            but never asked.</p>
+            
+            <h2 id="metadata-about-data-about-metadata-from-socrata">Metadata about data about metadata from Socrata</h2>
+            <p>I’ve been using data from Socrata data portal websites for most
+            of these studies. I think I’ve
+            provided almost enough information so that people can reuse these
+            data, and I hope that this article provides the remaining bits
+            so that people can actually use the data to study open data.</p>
+            
+            <h3 id="what-ive-provided-so-far">What I’ve provided so far</h3>
+            <p>There are a lot of annoying quirks in the way
+            data are modeled, and I’ve explained much of this before.</p>
+            
+            <p>I posted spreadsheets of these data quite a long while ago, and
+            people have been able to download them.</p>
+            
+            <h3 id="what-i-havent-provided">What I haven’t provided</h3>
+            <p>I haven’t explained which of the annoying quirks are fixed in the
+            various spreadsheets.</p>
+            
+            <p>Also, I haven’t prominently linked to these
+            spreadsheets.</p>
+            
+            <h2 id="files-ive-produced">Files I’ve produced</h2>
+            <p>Here are some files that I’ve already produced so that you don’t have to
+            create your own. I’ve referenced the programs that produced these files,
+            but haven’t been trying to download the data more than once, so I suspect
+            that the programs won’t work quite as you expect them to.</p>
+            
+            <p>These files include only Socrata data.</p>
+            
+            <ul>
+              <li><a href=""><code>socrata.csv</code></a>
+              is based on metadata files from all views as of July.
+              It includes duplicates from both federation and derived views.
+              I produced it by searching all the portals
+              <a href="#not-removing-duplicates">without attempting to remove duplicates</a>.
+              The code is <a href="">here</a>.</li>
+              <li><a href=""><code>users.csv</code></a>
+              is a transformation of <code>socrata.csv</code> such that each row is a user.
+              It includes counts of views and tables belonging to each user, but
+              I don’t remember how I handled duplicates there. The code for that
+              is <a href="">here</a>.</li>
+              <li><a href=""><code>catalogs-2013-08-28.db</code></a> is a table of all of the Socrata DCAT files.
+              It has resolved these quirks in these ways, but it still has these quirks</li>
+              <li><a href=""><code>socrata-deduplicated.csv</code></a>
+              is <code>socrata.csv</code> with
+              <a href="#dealing-with-federation">federation-induced duplicates removed</a>.
+              That is, if data were federated from one portal to three portals,
+              this file includes the data from only the first portal. It still
+              includes derived data. The code is <a href="">here</a>.</li>
+              <li><a href=""><code>federation.json</code></a> is produced by this method. It has resolved these quirks in these ways, but it still has these quirks
+              Makefile, make json, make csv</li>
+            </ul>
+            
+            <p>These files include data from Socrata, CKAN, Junar, and OpenDataSoft.</p>
+            
+            <ul>
+              <li><a href=""><code>licensing.csv</code></a> is produced by this method. It has resolved these quirks in these ways, but it still has these quirks. query-licensing.py . also includes other portal software
+            ckan_workingness.csv  licensing-by-portal.csv  licensing.csv</li>
+            </ul>
+            
+            <p>The remainder of this article summarizes the various quirks that I’ve dealt
+            with and haven’t dealt with.</p>
+            
+            <h2 id="how-data-are-stored-on-socrata">How data are stored on Socrata</h2>
+            <p>Data on Socrata is displayed in <a href="/!/socrata-genealogies#term-view">views</a>,
+            which are queries on <a href="/!/socrata-genealogies#term-table">tables</a>.
             When you put a new data source on a Socrata portal, you get both
-            a new table and a <a href="">dataset</a>
+            a new table and a <a href="/!/socrata-genealogies#term-dataset">dataset</a>
             view that is a query of the full table.
-            (So it would be <code>SELECT * FROM [table]</code> in SQL.)</p>
+            (The dataset view would be <code>SELECT * FROM [table]</code> in SQL.)</p>
             
             <h3 id="derivatives">Derivatives</h3>
             <p>In the Socrata web interface, you can create lots of different views
             on the same source data. You can make different queries on the same
             table, and you can visualize them as charts, maps, and a
-            <a href="">bunch of other things</a>.
+            <a href="/!/socrata-calendars">bunch of other things</a>.
             When you save your new view, it gets added to the data portal, and
             it will show up in searches.</p>
             
-            <h3 id="duplicates">Duplicates</h3>
+            <h3 id="federation">Federation</h3>
             <p>Data are uploaded to one Socrata portal, but they can be
-            <a href="">federated</a>
+            <a href="/!/socrata-genealogies#term-federation">federated</a>
             to other Socrata portals. Thus, if you get all of the datasets from
             all of the portals, you can easily have duplicates and not know which
             portal they came from.</p>
             
             <h3 id="privacy">Privacy</h3>
             <p>Some data on Socrata are private. In many cases, the source data are
-            private and a query on the data (a <a href="">filtered view</a>)
+            private and a query on the data (a <a href="/!/socrata-genealogies#term-filtered-view">filtered view</a>)
             is public. Thus, it is possible that the most complete form of the data
             that a data publisher is releasing would be in a different type of view
             than dataset.</p>
             
-            <h2 id="getting-just-the-source-data">Getting just the source data</h2>
-            <p>If we want just the source data, we have to remove these derivatives and
-            these duplicates.</p>
+            <h3 id="view-metadata-files">View metadata files</h3>
+            <p>Regardless of whether it’s a dataset, filter, chart, map, or whatever,
+            each view has a metadata file at a url like this.</p>
             
-            <h3 id="with-a-search">With a search</h3>
+            <pre><code>https://data.maryland.gov/api/views/${id}.json&#x000A;</code></pre>
+            
+            <p>For example, here’s the file for
+            <a href="https://data.maryland.gov/Energy-and-Environment/Certified-Cover-Crops-Planted-in-the-Chesapeake-Ba/w6r7-apye?">this view</a></p>
+            
+            <blockquote>
+              <p><a href="https://data.maryland.gov/api/views/w6r7-apye.json">https://data.maryland.gov/api/views/w6r7-apye.json</a></p>
+            </blockquote>
+            
+            <p>I’ll refer to this “metadata file” quite a bit in the sections below.</p>
+            
+            <h2 id="removing-duplicates-from-derived-view">Removing duplicates from derived view</h2>
+            <p>If we want just the source data, we have to remove these derivative
+            datasets. I’ll explain removing federated data later.</p>
+            
+            <h3 id="not-removing-duplicates">Not removing duplicates</h3>
+            <p>At first, I
+            <a href="/!/socrata-summary#acquiring-the-data">didn’t remove duplicates</a>.
+            I just searched browsed through all of the search results, followed
+            the links to the datasets, and downloaded all of the metadata files.
+            This has problems, as I’ve explained above; below are some better
+            approaches.</p>
+            
+            <h3 id="searching-for-only-dataset-views">Searching for only dataset views</h3>
             <p>If you run an ordinary search on a portal, filtering for only dataset
             views, you’ll get none of the derivatives. It’s possible that you’ll miss
             some data where the original dataset is private and only a filter on the
             dataset is public.</p>
             
-            <p>(Search API?)</p>
-            
-            <p>Dealing with federation is quite easy. In the HTML search interface that
+            <p>If you use the ordinary search webpages rather than the API, you can ols
+            deal with federation in the same step. In the HTML search interface that
             is intended for humans, federated datasets are shaded blue and shown as
             links to other data portals, rather than being shaded white and linking
             within the same portal. When searching the site, simply ignore these
             federated datasets, and you’re good.</p>
             
-            <h3 id="with-apidcatjson">With <code>/api/dcat.json</code></h3>
+            <p>All of the links to datasets include the 4x4 identifier for the dataset,
+            and you can use that to determine the URL of the corresponding metadata file.</p>
+            
+            <h3 id="using-apidcatjson">Using <code>/api/dcat.json</code></h3>
             <!-- https://twitter.com/chrismetcalf/status/376079563240898560 -->
-            <p>Go the <a href="https://data.oaklandnet.com/api/dcat.json"><code>/api/dcat.json</code></a> page</p>
+            <p>The <a href="https://data.oaklandnet.com/api/dcat.json"><code>/api/dcat.json</code></a> page
+            is supposed to give us a listing of all of the official data in a portal.
+            It provides different data from the metadata files I discuss above, but
+            it includes the dataset identifiers, and you can use those to look up
+            the corresponding metadata files.</p>
             
             <p>I was told that the <code>/api/dcat.json</code> endpoint shows only the source data.
             I haven’t checked this myself, and I don’t know how it handles datasets
@@ -147,17 +243,62 @@
             Anyway, let’s just hope that the <code>/api/dcat.json</code> endpoint lets deals with
             the derivatives properly for us.</p>
             
-            <p>In that case, we just have to deal with federation. Unfortunately, the
+            <p>In that case, we just have to deal with federation. The
             <code>/api/dcat.json</code> endpoint doesn’t give you any indication as to whether a
-            dataset is federated. Federated datasets share the same exact identifier
-            across portals, so it is easy to separate distinct datasets, but it is
-            less obvious how to tell which portals they came from.</p>
+            dataset is federated, but you can use the method that is described
+            <a href="#dealing-with-federation">below</a>.</p>
             
-            <p>We can deal with that by looking at the network of federation from the
+            <p>The bigger problem with <code>/api/dcat.json</code> is that it only returns the
+            first 1,000 datasets. I am told that you can use query arguments to
+            get more, but I’ve never gotten this working.</p>
+            
+            <h3 id="collapsing-by-tableid">Collapsing by tableId</h3>
+            <p>This is the approach I wind up using most of the time, mainly because
+            the initial download of all the metadata took a long time and I didn’t
+            want to run one again.</p>
+            
+            <p>The metadata
+            file for each view contains a <code>tableId</code> field corresponding to the
+            table that stores the data corresponding to the particular view.</p>
+            
+            <p>If you download <a href="#not-removing-duplicates">without removing duplicates</a>,
+            you’ll wind up with multiple files that all have the same <code>tableId</code> field.
+            If you put all of these files into a spreadsheet, with one row per metadata
+            file, you’ll wind up with a <code>tableId</code> column.</p>
+            
+            <p>If you group the table by <code>tableId</code>, you will wind up with one record
+            per table. It’s still difficult to figure out which view is the
+            original, but you can aggregate the various fields in different ways
+            depending on what you need.</p>
+            
+            <p>XXX Link to examples.</p>
+            
+            <h3 id="approaches-i-havent-tried-yet">Approaches I haven’t tried yet</h3>
+            <p>I’ve tried not to concern myself so much with fixing Socrata’s APIs,
+            so I’ve been trying to deal with duplication in ways that are easy
+            rather than best. Here are two things you could do to figure out
+            exactly which view is the original view within a table.</p>
+            
+            <h4 id="parsing-queries">Parsing queries</h4>
+            <p>Some view metadata files include a query, presumably the query that
+            is run on the original table to get the particular subset. By parsing
+            these, you might be able to determine which view of the views belonging
+            to one table is the original view.</p>
+            
+            <p>XXX Link to an example</p>
+            
+            <h4 id="parsing-more-web-pages">Parsing more web pages</h4>
+            <p>I can figure out the genealogy by looking at the web pages, so a program
+            could be written that does this. I think the site does some AJAXy something
+            that I haven’t figured out yet, but would be easy to parse this with
+            something like Selenium, PhantomJS, or jsdom that renders the whole page.</p>
+            
+            <h2 id="dealing-with-federation">Dealing with federation</h2>
+            <p>We can deal with federation by looking at the network of federation from the
             portal hope pages. Each portal’s homepage has a box like this that says
             which portals it federates.</p>
             
-            <p>()</p>
+            <p><img src="/!/socrata-deduplicate/federated-domains.png" alt="Federated Domains" /></p>
             
             <p>The particular portal contains all of the datasets that all of these
             federated portals contain. If you construct the network of federation
@@ -166,6 +307,29 @@
             different portals all federate the same portal. Since you know what
             the network of federation is from the homepages, you can figure out
             which portal was the original portal.</p>
+            
+            <p>Regardless of the method you used to assemble your dataset of datasets,
+            the resulting dataset will have a column for portal and a column for
+            identifier. Once you determine what this network of federation is, you
+            can look for identical datasets that are present in multiple portals
+            and then remove datasets that are not from the original portal.
+            I did that <a href="/!/socrata-deduplicate">here</a>.</p>
+            
+            <h2 id="notable-statistics-i-computed">Notable statistics I computed</h2>
+            
+            <h3 id="table-size">Table size</h3>
+            <p>The metadata file does not explicitly state the number of columns and the
+            number of rows in the dataset, but there’s enough in the file to figure out
+            what these two numbers are.</p>
+            
+            <p>The metadata files contain a “columns” field, which has a list
+            of dictionaries. Each of these dictionaries has a count of null
+            values and a count non-null values, and the sum of these two
+            counts is the number of columns.</p>
+            
+            <p><a href="https://github.com/tlevine/socrata-analysis/blob/master/numbers/socrata/__init__.py#L93">This</a>
+            is the relevant code, I think. If I’m reading my own code correctly,
+            the <code>original_data</code> variable is just a parse of the JSON metadata file.</p>
           </article>
         </div>
         <div id='pagination'>
