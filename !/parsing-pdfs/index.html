@@ -251,7 +251,7 @@
             
             <p>This function is contains all of the parsing functions for a specific page of
             the pdf file once it has been converted to SVG. It takes an
-            <code>lxml.etree._ElementTree</code> object like the one we get from lxml.etree.parse,
+            <code>lxml.etree._ElementTree</code> object like the one we get from <code>lxml.etree.parse</code>,
             along with some metadata. It runs a crazy XPath selector (determined only after
             much test-driven development) to pick out the table rows, and then runs a bunch
             of functions (not included) to pick out the cells within the rows.</p>
@@ -271,11 +271,6 @@
             <h2 id="review">Review</h2>
             <p>When I’m parsing PDFs, I use some combination of these tools.</p>
             
-            <p>I prefer the
-            ones earlier in the list when the parsing is less involved because the tools
-            do more of the work for me. I prefer the ones towards the end as the job gets
-            more complex because these tools give me more control.</p>
-            
             <ol>
               <li>Basic file analysis tools (<code>ls</code> or another language’s equivalent)</li>
               <li>PDF metadata tools (<code>pdfinfo</code> or an equivalent)</li>
@@ -284,6 +279,11 @@
               <li>Inkscape via <a href="https://github.com/scraperwiki/pdf2svg"><code>pdf2svg</code></a></li>
               <li><a href="http://www.unixuser.org/~euske/python/pdfminer/">PDFMiner</a></li>
             </ol>
+            
+            <p>I prefer the
+            ones earlier in the list when the parsing is less involved because the tools
+            do more of the work for me. I prefer the ones towards the end as the job gets
+            more complex because these tools give me more control.</p>
             
             <p>If I need OCR, I use <code>pdfimages</code> to remove the images and <code>tesseract</code> to run
             OCR. If I needed to run OCR and know more about the layout, I might convert the
