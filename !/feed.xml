@@ -2,13 +2,292 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2013-12-26T00:00:00Z</updated>
+  <updated>2014-01-01T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-01-01:/!/making-your-personal-website/index.html</id>
+    <title type="html">How to make a personal website, in 9001 easy steps</title>
+    <published>2014-01-01T00:00:00Z</published>
+    <updated>2014-01-01T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/making-your-personal-website/index.html"/>
+    <content type="html">&lt;p&gt;Making your own personal website might seem daunting, but
+it’s not hard if you break it into smaller steps.&lt;/p&gt;
+
+&lt;h2 id="recording-your-works"&gt;Recording your works&lt;/h2&gt;
+&lt;p&gt;Start recording everything worth recording. Write
+it down, take video, or whatever. It doesn’t matter how
+you do it or how you organize things; just record things
+while you still remember them, and store them in a place
+you won’t lose them. (Email attachments are perfectly
+acceptable.)&lt;/p&gt;
+
+&lt;p&gt;Before I had a good system, I stored things in email
+attachments, Google Docs, hard drives, Gitorious (git
+repositories), Tumblr, SmugMug, S3, Twitter, Facebook,
+a CouchDB, and in a 60-page book written in LaTeX.
+I probably used other places too.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Fun fact: I named my 60-page book &lt;em&gt;The Dump&lt;/em&gt;, after
+Maurice Benayoun’s &lt;a href="http://www.the-dump.net/"&gt;The Dump&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;The main thing is to get everything digital so that you can
+carry the stuff around and search through it easily.&lt;/p&gt;
+
+&lt;h2 id="write-about-your-stuff"&gt;Write about your stuff&lt;/h2&gt;
+&lt;p&gt;You probably want to write a little something about each thing.
+At the very least, you probably want to give them a title.
+A paragraph and a date might be good too.&lt;/p&gt;
+
+&lt;p&gt;I wrote these descriptions all over the place, but a lot were
+as captions on SmugMug. This was sort of a good idea, but only
+because I was uploading lots of pictures to SmugMug. The point
+is that you don’t need to have a fancy website before you can
+create content for the website.&lt;/p&gt;
+
+&lt;p&gt;Also, &lt;strong&gt;don’t proofread&lt;/strong&gt;. Well, more accurately, only proofread
+after you’ve posted something on the internet and a few hundred
+people have read it and complimented you on it. Nobody is ever
+going to see most of your stuff, so don’t waste time on making
+it good.&lt;/p&gt;
+
+&lt;h2 id="organizing-your-works"&gt;Organizing your works&lt;/h2&gt;
+&lt;p&gt;Nobody other than you is going to read your website once
+you have it, at least at first, so don’t worry about
+designing it for other people. In fact, you don’t even need
+a website; just come up with some system that makes it
+easy for you to find the things you’ve recorded. I’ll
+divide my approach to this into two categories.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Making a list&lt;/li&gt;
+  &lt;li&gt;Organizing files into a standard structure&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="make-a-list"&gt;Make a list&lt;/h3&gt;
+&lt;p&gt;If you’ve been using email attachments to store your works,
+you could just list the names of the works and search terms
+that will find them. I actually didn’t do this, but the point
+is that it doesn’t have to be fancy.&lt;/p&gt;
+
+&lt;p&gt;I had already been doing this to some degree as I was recording
+things in my 60-page LaTeX book and in my SmugMug galleries.&lt;/p&gt;
+
+&lt;p&gt;Most of everything else was already publically accessible on the web,
+so I mostly made a list of all of the links to them. I did this
+as a &lt;a href="https://github.com/tlevine/www.thomaslevine.com/blob/c1e1302b2fe43bbe98902a08367bb4d01feea66e/content/index.html"&gt;webpage&lt;/a&gt;,
+but you could do it in an email or blog post or whatever.&lt;/p&gt;
+
+&lt;h3 id="make-a-consistent-file-structure"&gt;Make a consistent file structure&lt;/h3&gt;
+&lt;p&gt;For anything you have been storing as ordinary files, copy the
+files into a new place with standard naming conventions.
+I suggest the following structure.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;things-i-did/name-of-thing/file-about-thing
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;things-i-did/middle-names/askcensus.eml
+things-i-did/middle-names/cornell_middle_names_by_school.png
+things-i-did/middle-names/us_middle_names_over_time_by_state.pdf
+things-i-did/middle-names/us_middle_names_over_time.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Don’t worry yet about writing the web page about it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/tlevine/thomaslevine.com/tree/master/hack/blog"&gt;Here&lt;/a&gt;’s
+me putting the things into directories before I was using my current
+website-generator system.&lt;/p&gt;
+
+&lt;h2 id="make-a-simple-website"&gt;Make a simple website&lt;/h2&gt;
+&lt;p&gt;You wanted a website, so start putting stuff up on the web
+in whatever way is easy.&lt;/p&gt;
+
+&lt;p&gt;I wound up with a list of links before I had nicely
+structured files, so I just put that up. It went through
+many incarnations, but here are a few.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A bunch of files that I edited manually&lt;/li&gt;
+  &lt;li&gt;SmugMug photo gallery thing&lt;/li&gt;
+  &lt;li&gt;More files that I edited manually&lt;/li&gt;
+  &lt;li&gt;Pages generated from that 60-page LaTeX book with
+  &lt;a href="http://hevea.inria.fr/"&gt;HeVeA&lt;/a&gt; and a hacky shell script&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you have nicely structured files and no other list, you
+could just dump them on a plain Apache web server,
+like &lt;a href="http://chainsaw.thomaslevine.com/"&gt;this&lt;/a&gt;.
+I suspect there’s even some fancy easy-to-use
+drag-files-somewhere-and-have-them-magically-served thing.&lt;/p&gt;
+
+&lt;p&gt;I got this idea while talking with
+&lt;a href="http://cooperation.io/"&gt;Marina&lt;/a&gt;.
+Her site is a bunch of files served by a
+&lt;a href="https://gist.github.com/mk30/8210642"&gt;wonderfully sloppy script&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="make-a-fancy-website"&gt;Make a fancy website&lt;/h2&gt;
+&lt;p&gt;By now, you have a lot of nicely organized content on the web.
+This is still not quite what you want; the following things
+could be improved.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You want it to be easy for you to add new material to the
+  website.&lt;/li&gt;
+  &lt;li&gt;You want the website to look pretty.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now that you have a bunch of content, you can play around with
+a few different ways of arranging them fancy-like. So many
+possibilities! Here are two main things to think about.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to add new content&lt;/li&gt;
+  &lt;li&gt;How to manage the whole system&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Don’t worry about making it pretty or easy for other people to use.&lt;/p&gt;
+
+&lt;h3 id="how-do-you-like-to-add-new-content"&gt;How do you like to add new content?&lt;/h3&gt;
+&lt;p&gt;I like working with ordinary files, so I make new webpages by
+making new files inside of a terminal. But you might prefer to
+use a word processor on a website or to take videos with your phone.&lt;/p&gt;
+
+&lt;h3 id="how-can-you-make-this-whole-system-easy-to-manage"&gt;How can you make this whole system easy to manage?&lt;/h3&gt;
+&lt;p&gt;Lots of
+things could go wrong when things get fancy like this. Pay attention
+to things that seem annoying, and come up with ways around this.
+Annoying things might include&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Maintaining whatever server you have&lt;/li&gt;
+  &lt;li&gt;The process for uploading new files to the site&lt;/li&gt;
+  &lt;li&gt;Having the appropriate software to edit your site&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Try to keep this fancy system simple. When it has to be complicated,
+let the complicated things be either things you already understand
+well or things that you’ll learn quickly.&lt;/p&gt;
+
+&lt;h2 id="my-particular-website"&gt;My particular website&lt;/h2&gt;
+&lt;p&gt;You probably want a website that isn’t exactly like mine, but it
+might be worth explaining how my website works right now. If you’re
+not the sort of person who knows what text files and Git are,
+you might want to &lt;a href="#repeat"&gt;skip this section&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="copying-it"&gt;Copying it&lt;/h3&gt;
+&lt;p&gt;But before I explain any further, I would like to note that
+you are welcome to base your website on mine; the source code
+is &lt;a href="https://github.com/tlevine/www.thomaslevine.com"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The process for editing it is designed very specifically for me,
+so you might not like it. Also, it is not very well documented,
+but if you’re having trouble figuring out how it works, write to
+me, and I’ll document it better.&lt;/p&gt;
+
+&lt;p&gt;If you want to use it, start by keeping all of the logic the same
+and just changing things in the &lt;code&gt;content/!&lt;/code&gt; directory and in the
+&lt;code&gt;content/index.haml&lt;/code&gt; file. Get something working, and worry later
+about making it look pretty.&lt;/p&gt;
+
+&lt;h3 id="notable-featurues"&gt;Notable featurues&lt;/h3&gt;
+&lt;p&gt;If you don’t want to use it, you still might take some inspiration
+from some of the decisions I made&lt;/p&gt;
+
+&lt;h4 id="static-website-generator"&gt;Static website generator&lt;/h4&gt;
+&lt;p&gt;My website doesn’t have anything where people log in or upload files
+or otherwise send input to the server. Thus, I can serve my website
+as ordinary files.&lt;/p&gt;
+
+&lt;p&gt;Editing these files is annoying, so I use a static website generator that writes these files based on the simpler and less-annoying files
+with which I configure my website. I happen to use
+&lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt;, but there are tons of them.&lt;/p&gt;
+
+&lt;h4 id="git"&gt;Git&lt;/h4&gt;
+&lt;p&gt;It scares me to edit things without tracking their history. I settled
+a few years ago on using &lt;a href="http://git-scm.com"&gt;Git&lt;/a&gt; for this, so that’s
+what I use for versioning the all of the content on my website.
+(I’m right now making a distinction between content and logic.)&lt;/p&gt;
+
+&lt;p&gt;When I build the site with nanoc, the resulting files go into the
+&lt;code&gt;output&lt;/code&gt; directory, and then I upload them to a static file hosting
+service (more on that later).&lt;/p&gt;
+
+&lt;p&gt;This &lt;code&gt;output&lt;/code&gt; directory is a
+&lt;a href="http://git-scm.com/book/en/Git-Tools-Submodules"&gt;git submodule&lt;/a&gt;
+with just the resulting website. This is cool in case I ever can’t
+get nanoc working in the future; even if I can’t rebuild the site,
+I’ll be able to see what old versions looked like.&lt;/p&gt;
+
+&lt;h4 id="git-remotes"&gt;Git remotes&lt;/h4&gt;
+&lt;p&gt;It also scares me to edit things without having multiple backups on
+different continents, so I have Git remotes. I used to use Gitorious,
+and I still have my own server that I push things to, but I wind up
+using GitHub a lot of the time. It works decently and isn’t annoying
+once you’ve set things up the first time, but I don’t like this
+because it’s proprietary&lt;/p&gt;
+
+&lt;h4 id="github-pages"&gt;GitHub Pages&lt;/h4&gt;
+&lt;p&gt;If you already have everything in Git and you’ve already given in to
+proprietary GitHub software, you might as well use GitHub Pages to
+host your website. GitHub Pages serves a website from files committed
+to a Git repository.&lt;/p&gt;
+
+&lt;p&gt;Recall that the compiled website goes into the &lt;code&gt;output&lt;/code&gt; directory and
+that this directory is a git submodule. I push that submodule to
+GitHub, and it gets served through GitHub Pages.&lt;/p&gt;
+
+&lt;p&gt;I must point out that there are some things I don’t like about GitHub
+Pages. First, as I said above, it’s proprietary. Second, I can’t serve
+different pages depending on the
+&lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"&gt;Accept-Language header&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id="directory-structure"&gt;Directory structure&lt;/h4&gt;
+&lt;p&gt;I went with this directory structure for pages.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/!/this-cool-thing/index.html
+/!/that-cool-thing/index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This results in two pages, one at
+&lt;code&gt;http://thomaslevine.com/!/this-cool-thing&lt;/code&gt;,
+and the other at
+&lt;code&gt;http://thomaslevine.com/!/that-cool-thing&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This structure is nice because it gives me a place to put more
+than one file per page.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/!/this-cool-thing/index.html
+/!/this-cool-thing/picture-of-thing.jpg
+/!/that-cool-thing/index.html
+/!/that-cool-thing/ugh-microsoft-word.docx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="remember-you-might-be-different"&gt;Remember, you might be different&lt;/h3&gt;
+&lt;p&gt;I just explained how my site works, but you are probably not a clone
+of me. Starting with my ideas might not be a bad idea, but try to come
+up with something that suits you better.&lt;/p&gt;
+
+&lt;h2 id="repeat"&gt;Repeat&lt;/h2&gt;
+&lt;p&gt;It’s not like each of these steps only happens once.
+I still have at least half a lifetime of stuff that I’ve written about, 
+photographed, &amp;amp;c. but haven’t published on my website. I periodically
+go through those old things and copy them to the site.&lt;/p&gt;
+
+&lt;h2 id="review"&gt;Review&lt;/h2&gt;
+&lt;p&gt;Making your personal website might seem daunting, but it’s easy if you
+break it into tiny pieces. Start by saving everything. Once you have
+a lot of things, organize them and write about them. Don’t worry very
+much at first about making the website pretty; just get things started.
+And in designing your website, focus on making it easy for you to add
+content rather than on making it pleasant for other people to view.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2013-12-26:/!/socrata-products/index.html</id>
     <title type="html">Semi-open data about pricing of open data</title>
@@ -936,277 +1215,6 @@ just as we do in free software, wikis, and other forms of free culture.&lt;/p&gt
 we’re finding some value in sharing it. Open data is about accepting
 that there is value in sharing and collaborating on data and then
 planning for this sharing.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-12-12:/!/my-datasets-about-open-data/index.html</id>
-    <title type="html">Datasets about open data</title>
-    <published>2013-12-12T00:00:00Z</published>
-    <updated>2013-12-12T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/my-datasets-about-open-data/index.html"/>
-    <content type="html">&lt;p&gt;I’ve recently been &lt;a href="/open-data"&gt;studying data about open data&lt;/a&gt;,
-and I’m hearing that other people want to do the same. Yay!&lt;/p&gt;
-
-&lt;p&gt;Some people have asked for the data that I’ve collected so that
-they can study things without spending a month downloading all
-the data and formatting them properly and whatnot.
-I haven’t had particularly good answers for these requests, but
-the present writing should change that.&lt;/p&gt;
-
-&lt;h2 id="metadata-about-data-about-metadata-from-socrata"&gt;Metadata about data about metadata from Socrata&lt;/h2&gt;
-&lt;p&gt;I’ve been using data from Socrata data portal websites for most
-of these studies. I think I’ve
-provided almost enough information so that people can reuse these
-data, and I hope that this article provides the remaining bits
-so that people can actually use the data to study open data.&lt;/p&gt;
-
-&lt;h3 id="what-ive-provided-so-far"&gt;What I’ve provided so far&lt;/h3&gt;
-&lt;p&gt;There are a lot of annoying quirks in the way
-data are modeled, and I’ve explained much of this before.&lt;/p&gt;
-
-&lt;p&gt;I posted spreadsheets of these data quite a long while ago, and
-people have been able to download them.&lt;/p&gt;
-
-&lt;h3 id="what-i-havent-provided"&gt;What I haven’t provided&lt;/h3&gt;
-&lt;p&gt;I haven’t explained which of the annoying quirks are fixed in the
-various spreadsheets.&lt;/p&gt;
-
-&lt;p&gt;Also, I haven’t prominently linked to these
-spreadsheets.&lt;/p&gt;
-
-&lt;h2 id="files-ive-produced"&gt;Files I’ve produced&lt;/h2&gt;
-&lt;p&gt;Here are some files that I’ve already produced so that you don’t have to
-create your own. I’ve referenced the programs that produced these files,
-but haven’t been trying to download the data more than once, so I suspect
-that the programs won’t work quite as you expect them to.&lt;/p&gt;
-
-&lt;p&gt;These files include only Socrata data.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata.csv"&gt;&lt;code&gt;socrata.csv&lt;/code&gt;&lt;/a&gt;
-  is based on metadata files from all views as of July.
-  It includes duplicates from both federation and derived views.
-  I produced it by searching all the portals
-  &lt;a href="#not-removing-duplicates"&gt;without attempting to remove duplicates&lt;/a&gt;.
-  The code is &lt;a href=""&gt;here&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/users.csv"&gt;&lt;code&gt;users.csv&lt;/code&gt;&lt;/a&gt;
-  is a transformation of &lt;code&gt;socrata.csv&lt;/code&gt; such that each row is a user.
-  It includes counts of views and tables belonging to each user, but
-  I don’t remember how I handled duplicates there. The code for that
-  is &lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/numbers/run.py#L207"&gt;here&lt;/a&gt;,
-  and a high-level explanation is &lt;a href="/!/data-about-open-data-talk-december-2-2013/#data-about-people-who-use-data"&gt;here&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-catalog/blob/3a7d72b5b7332a26dd6066edb44749a634bfe48c/catalogs-2013-08-28.db"&gt;&lt;code&gt;catalogs-2013-08-28.db&lt;/code&gt;&lt;/a&gt; is a table of all of the Socrata DCAT files.
-  It has resolved these quirks in these ways, but it still has these quirks&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/socrata-deduplicated.csv"&gt;&lt;code&gt;socrata-deduplicated.csv&lt;/code&gt;&lt;/a&gt;
-  is &lt;code&gt;socrata.csv&lt;/code&gt; with
-  &lt;a href="#dealing-with-federation"&gt;federation-induced duplicates removed&lt;/a&gt;.
-  That is, if data were federated from one portal to three portals,
-  this file includes the data from only the first portal. It still
-  includes derived data. The code is &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py"&gt;here&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/federation.json"&gt;&lt;code&gt;federation.json&lt;/code&gt;&lt;/a&gt; is also produced by
-  &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/dedupe.py"&gt;&lt;code&gt;dedupe.py&lt;/code&gt;&lt;/a&gt;.
-  (The &lt;a href="https://github.com/tlevine/socrata-defederate/blob/c2c32f5f1db3563db8c4f671d7ebae6ab91c73ec/Makefile"&gt;Makefile&lt;/a&gt; may be informative.)
-  I used it to make &lt;a href="/!/socrata-deduplicate/#graph-diagram"&gt;this plot&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These files include data from Socrata, CKAN, Junar, and OpenDataSoft.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/licensing.csv"&gt;&lt;code&gt;licensing.csv&lt;/code&gt;&lt;/a&gt;
-  contains a record for each dataset across a bunch of catalogs.
-  The column &lt;code&gt;license_standard&lt;/code&gt; is the binned license.
-  (See &lt;a href="/!/open-data-licensing/#which-licenses"&gt;this plot&lt;/a&gt;.)
-  &lt;a href="https://github.com/tlevine/open-data-download/blob/8886bd048e1aafd9e5e64106c87f41394b6a7bcb/query-license.py"&gt;&lt;code&gt;query-license.py&lt;/code&gt;&lt;/a&gt; might get you thinking about how it was produced.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://openprism.thomaslevine.com"&gt;OpenPrism&lt;/a&gt; lists a bunch of
-  data catalog websites &lt;a href="https://github.com/tlevine/openprism/blob/gh-pages/src/index.js"&gt;in its source code&lt;/a&gt;.
-  I assembled these lists by checking &lt;a href="http://datacatalogs.org"&gt;datacatalogs.org&lt;/a&gt;,
-  by checking the since-changed Socrata status page
-  and by contacting Junar and OpenDataSoft directly.&lt;/li&gt;
-  &lt;li&gt;It turns out that a bunch of CKAN instances listed on
-  &lt;a href="http://datacatalogs.org"&gt;datacatalogs.org&lt;/a&gt; aren’t up anymore.
-  &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/ckan_workingness.csv"&gt;&lt;code&gt;ckan_workingness.csv&lt;/code&gt;&lt;/a&gt; has a list of what’s still working,
-  and &lt;a href="https://github.com/tlevine/open-data-download/blob/3115221f193e08d2e83eb753e8154ea9593fec55/download_ckan.py#L62"&gt;&lt;code&gt;download_ckan.py&lt;/code&gt;&lt;/a&gt; shows how that list was assembled.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The remainder of this article summarizes the various quirks that I’ve dealt
-with and haven’t dealt with.&lt;/p&gt;
-
-&lt;h2 id="how-data-are-stored-on-socrata"&gt;How data are stored on Socrata&lt;/h2&gt;
-&lt;p&gt;Data on Socrata is displayed in &lt;a href="/!/socrata-genealogies#term-view"&gt;views&lt;/a&gt;,
-which are queries on &lt;a href="/!/socrata-genealogies#term-table"&gt;tables&lt;/a&gt;.
-When you put a new data source on a Socrata portal, you get both
-a new table and a &lt;a href="/!/socrata-genealogies#term-dataset"&gt;dataset&lt;/a&gt;
-view that is a query of the full table.
-(The dataset view would be &lt;code&gt;SELECT * FROM [table]&lt;/code&gt; in SQL.)&lt;/p&gt;
-
-&lt;h3 id="derivatives"&gt;Derivatives&lt;/h3&gt;
-&lt;p&gt;In the Socrata web interface, you can create lots of different views
-on the same source data. You can make different queries on the same
-table, and you can visualize them as charts, maps, and a
-&lt;a href="/!/socrata-calendars"&gt;bunch of other things&lt;/a&gt;.
-When you save your new view, it gets added to the data portal, and
-it will show up in searches.&lt;/p&gt;
-
-&lt;h3 id="federation"&gt;Federation&lt;/h3&gt;
-&lt;p&gt;Data are uploaded to one Socrata portal, but they can be
-&lt;a href="/!/socrata-genealogies#term-federation"&gt;federated&lt;/a&gt;
-to other Socrata portals. Thus, if you get all of the datasets from
-all of the portals, you can easily have duplicates and not know which
-portal they came from.&lt;/p&gt;
-
-&lt;h3 id="privacy"&gt;Privacy&lt;/h3&gt;
-&lt;p&gt;Some data on Socrata are private. In many cases, the source data are
-private and a query on the data (a &lt;a href="/!/socrata-genealogies#term-filtered-view"&gt;filtered view&lt;/a&gt;)
-is public. Thus, it is possible that the most complete form of the data
-that a data publisher is releasing would be in a different type of view
-than dataset.&lt;/p&gt;
-
-&lt;h3 id="view-metadata-files"&gt;View metadata files&lt;/h3&gt;
-&lt;p&gt;Regardless of whether it’s a dataset, filter, chart, map, or whatever,
-each view has a metadata file at a URL like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://data.maryland.gov/api/views/${id}.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For example, here’s the file for
-&lt;a href="https://data.maryland.gov/Energy-and-Environment/Certified-Cover-Crops-Planted-in-the-Chesapeake-Ba/w6r7-apye?"&gt;this view&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href="https://data.maryland.gov/api/views/w6r7-apye.json"&gt;https://data.maryland.gov/api/views/w6r7-apye.json&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I’ll refer to this “metadata file” quite a bit in the sections below.&lt;/p&gt;
-
-&lt;h2 id="removing-duplicates-from-derived-view"&gt;Removing duplicates from derived view&lt;/h2&gt;
-&lt;p&gt;If we want just the source data, we have to remove these derivative
-datasets. I’ll explain removing federated data later.&lt;/p&gt;
-
-&lt;h3 id="not-removing-duplicates"&gt;Not removing duplicates&lt;/h3&gt;
-&lt;p&gt;At first, I
-&lt;a href="/!/socrata-summary#acquiring-the-data"&gt;didn’t remove duplicates&lt;/a&gt;.
-I just searched browsed through all of the search results, followed
-the links to the datasets, and downloaded all of the metadata files.
-This has problems, as I’ve explained above; below are some better
-approaches.&lt;/p&gt;
-
-&lt;h3 id="searching-for-only-dataset-views"&gt;Searching for only dataset views&lt;/h3&gt;
-&lt;p&gt;If you run an ordinary search on a portal, filtering for only dataset
-views, you’ll get none of the derivatives. It’s possible that you’ll miss
-some data where the original dataset is private and only a filter on the
-dataset is public.&lt;/p&gt;
-
-&lt;p&gt;If you use the ordinary search webpages rather than the API, you can also
-deal with federation in the same step. In the HTML search interface that
-is intended for humans, federated datasets are shaded blue and shown as
-links to other data portals, rather than being shaded white and linking
-within the same portal. When searching the site, simply ignore these
-federated datasets, and you’re good.&lt;/p&gt;
-
-&lt;p&gt;All of the links to datasets include the 4x4 identifier for the dataset,
-and you can use that to determine the URL of the corresponding metadata file.&lt;/p&gt;
-
-&lt;h3 id="using-apidcatjson"&gt;Using &lt;code&gt;/api/dcat.json&lt;/code&gt;&lt;/h3&gt;
-&lt;!-- https://twitter.com/chrismetcalf/status/376079563240898560 --&gt;
-&lt;p&gt;The &lt;a href="https://data.oaklandnet.com/api/dcat.json"&gt;&lt;code&gt;/api/dcat.json&lt;/code&gt;&lt;/a&gt; page
-is supposed to give us a listing of all of the official data in a portal.
-It provides different data from the metadata files I discuss above, but
-it includes the dataset identifiers, and you can use those to look up
-the corresponding metadata files.&lt;/p&gt;
-
-&lt;p&gt;I was told that the &lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint shows only the source data.
-I haven’t checked this myself, and I don’t know how it handles datasets
-where the original upload is private but a filter on it is public.
-Anyway, let’s just hope that the &lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint lets deals with
-the derivatives properly for us.&lt;/p&gt;
-
-&lt;p&gt;In that case, we just have to deal with federation. The
-&lt;code&gt;/api/dcat.json&lt;/code&gt; endpoint doesn’t give you any indication as to whether a
-dataset is federated, but you can use the method that is described
-&lt;a href="#dealing-with-federation"&gt;below&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The bigger problem with &lt;code&gt;/api/dcat.json&lt;/code&gt; is that it only returns the
-first 1,000 datasets. I am told that you can use query arguments to
-get more, but I’ve never gotten this working.&lt;/p&gt;
-
-&lt;h3 id="collapsing-by-tableid"&gt;Collapsing by tableId&lt;/h3&gt;
-&lt;p&gt;This is the approach I wind up using most of the time, mainly because
-the initial download of all the metadata took a long time and I didn’t
-want to run one again.&lt;/p&gt;
-
-&lt;p&gt;The metadata
-file for each view contains a &lt;code&gt;tableId&lt;/code&gt; field corresponding to the
-table that stores the data corresponding to the particular view.&lt;/p&gt;
-
-&lt;p&gt;If you download &lt;a href="#not-removing-duplicates"&gt;without removing duplicates&lt;/a&gt;,
-you’ll wind up with multiple files that all have the same &lt;code&gt;tableId&lt;/code&gt; field.
-If you put all of these files into a spreadsheet, with one row per metadata
-file, you’ll wind up with a &lt;code&gt;tableId&lt;/code&gt; column.&lt;/p&gt;
-
-&lt;p&gt;If you group the table by &lt;code&gt;tableId&lt;/code&gt;, you will wind up with one record
-per table. It’s still difficult to figure out which view is the
-original, but you can aggregate the various fields in different ways
-depending on what you need.&lt;/p&gt;
-
-&lt;p&gt;For example, I &lt;a href="https://github.com/tlevine/socrata-analysis/blob/33af3a27f58a20828801fe750524cb687d66d4e9/words/15-dates.r#L17"&gt;aggregated&lt;/a&gt;
-to maximum family-wide row count and the sum of family-wide download
-counts when I looked at the
-&lt;a href="/!/data-updatedness/"&gt;updating of datasets&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="approaches-i-havent-tried-yet"&gt;Approaches I haven’t tried yet&lt;/h3&gt;
-&lt;p&gt;I’ve tried not to concern myself so much with fixing Socrata’s APIs,
-so I’ve been trying to deal with duplication in ways that are easy
-rather than best. Here are two things you could do to figure out
-exactly which view is the original view within a table.&lt;/p&gt;
-
-&lt;h4 id="parsing-queries"&gt;Parsing queries&lt;/h4&gt;
-&lt;p&gt;Some view metadata files include a query, presumably the query that
-is run on the original table to get the particular subset. By parsing
-these, you might be able to determine which view of the views belonging
-to one table is the original view.&lt;/p&gt;
-
-&lt;!-- XXX Link to examples. --&gt;
-
-&lt;h4 id="parsing-more-web-pages"&gt;Parsing more web pages&lt;/h4&gt;
-&lt;p&gt;I can figure out the genealogy by looking at the web pages, so a program
-could be written that does this. I think the site does some AJAXy something
-that I haven’t figured out yet, but would be easy to parse this with
-something like Selenium, PhantomJS, or jsdom that renders the whole page.&lt;/p&gt;
-
-&lt;h2 id="dealing-with-federation"&gt;Dealing with federation&lt;/h2&gt;
-&lt;p&gt;We can deal with federation by looking at the network of federation from the
-portal hope pages. Each portal’s homepage has a box like this that says
-which portals it federates.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/!/socrata-deduplicate/federated-domains.png" alt="Federated Domains" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The particular portal contains all of the datasets that all of these
-federated portals contain. If you construct the network of federation
-from these portal homepages, you can resolve duplicates properly. If
-the same dataset is on a few different portals, it’s because the
-different portals all federate the same portal. Since you know what
-the network of federation is from the homepages, you can figure out
-which portal was the original portal.&lt;/p&gt;
-
-&lt;p&gt;Regardless of the method you used to assemble your dataset of datasets,
-the resulting dataset will have a column for portal and a column for
-identifier. Once you determine what this network of federation is, you
-can look for identical datasets that are present in multiple portals
-and then remove datasets that are not from the original portal.
-I did that &lt;a href="/!/socrata-deduplicate"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id="determining-the-size-of-data-views"&gt;Determining the size of data views&lt;/h2&gt;
-&lt;p&gt;The metadata file does not explicitly state the number of columns and the
-number of rows in the dataset, but there’s enough in the file to figure out
-what these two numbers are.&lt;/p&gt;
-
-&lt;p&gt;The metadata files contain a “columns” field, which has a list
-of dictionaries. Each of these dictionaries has a count of null
-values and a count non-null values, and the sum of these two
-counts is the number of columns.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/tlevine/socrata-analysis/blob/master/numbers/socrata/__init__.py#L93"&gt;This&lt;/a&gt;
-is the relevant code, I think. If I’m reading my own code correctly,
-the &lt;code&gt;original_data&lt;/code&gt; variable is just a parse of the JSON metadata file.&lt;/p&gt;
 </content>
   </entry>
 </feed>
