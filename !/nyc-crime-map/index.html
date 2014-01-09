@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>NYC Crime Map Data API</title>
+    <meta content='How to call the API for the NYC crime map' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='NYC Crime Map Data API' name='twitter:title'>
+    <meta content='How to call the API for the NYC crime map' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/nyc-crime-map/firefox.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/nyc-crime-map/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='How to call the API for the NYC crime map' property='og:description'>
+    <meta content='NYC Crime Map Data API' property='og:title'>
+    <meta content='http://thomaslevine.com/!/nyc-crime-map/firefox.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>NYC Crime Map Data API</h1>
+              <em>
+                <time datetime='2014-01-09'>
+                  January 09, 2014
+                </time>
+              </em>
+              <span class='tags'>
+              </span>
+            </header>
+            <hr>
+            <p>People have been complaining a lot about how you can’t get the raw data out of this
+            <a href="http://maps.nyc.gov/crime/">NYC Crime Map</a>. I don’t know what they’re talking about.
+            Here are the data, as two geojson files.</p>
+            
+            <ul>
+              <li><a href="http://chainsaw.thomaslevine.com/nyc-crime-data/02378420399528461352-17772055697785505571.geojson">Separated by crime type</a></li>
+              <li><a href="http://chainsaw.thomaslevine.com/nyc-crime-data/02378420399528461352-11853667273131550346.geojson">Totals across crime types</a></li>
+            </ul>
+            
+            <p>Read on to see how I got these files.</p>
+            
+            <h2 id="api-for-the-data">API for the data</h2>
+            <p>Go to the crime map, and look at the network requests that are being made.
+            You’ll see a bunch of calls to the Google Maps Engine API.</p>
+            
+            <p><img src="firefox.png" alt="A network request in the console in Firefox" /></p>
+            
+            <p>Look at one of them, and you’ll see the exact query that is being made.</p>
+            
+            <p><img src="request-window.png" alt="A window with more information about the request" /></p>
+            
+            <p>It’s calling the
+            <a href="https://developers.google.com/maps-engine/documentation/reference/v1/tables/features">Tables.features</a>
+            endpoint of the Google Maps Engine API.</p>
+            
+            <p>Here’s the function I wrote for calling that endpoint.</p>
+            
+            <pre><code>def table_features(table_id, select, where = None, maxResults = 1000, pageToken = None):&#x000A;    url = 'https://www.googleapis.com/mapsengine/v1/tables/%s/features/' % table_id&#x000A;&#x000A;    params = {&#x000A;        'key': KEY,&#x000A;        'version': 'published',&#x000A;        'maxResults': maxResults,&#x000A;        'select': select,&#x000A;    }&#x000A;    if where:&#x000A;        params['where'] = where&#x000A;    if pageToken:&#x000A;        params['pageToken'] = pageToken&#x000A;&#x000A;    headers = {&#x000A;        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0',&#x000A;        'Referer':  'http://maps.nyc.gov/crime/',&#x000A;    }&#x000A;&#x000A;    r = requests.get(url, headers = headers, params = params)&#x000A;    return r&#x000A;</code></pre>
+            
+            <h2 id="two-tables">Two tables</h2>
+            <p>The data are stored in two tables.</p>
+            
+            <ul>
+              <li>02378420399528461352-11853667273131550346</li>
+              <li>02378420399528461352-17772055697785505571</li>
+            </ul>
+            
+            <p>The latter of these tables contains a “CR” field for the crime type;
+            the former does not.</p>
+            
+            <p>I don’t know why they do this.</p>
+            
+            <h2 id="table-schema">Table schema</h2>
+            <p>You can supposedly get the table schema with the
+            <a href="https://developers.google.com/maps-engine/documentation/reference/v1/tables/get">Tables</a>
+            endpoint, but the <code>key</code> doesn’t seem to give us access to that.
+            Here’s the function I wrote to call the Tables endpoint.</p>
+            
+            <pre><code>def table(table_id):&#x000A;    '''&#x000A;    This would tell us the schema, among other things.&#x000A;    https://developers.google.com/maps-engine/documentation/reference/v1/tables#resource&#x000A;    '''&#x000A;&#x000A;    url = 'https://www.googleapis.com/mapsengine/v1/tables/%s/' % table_id&#x000A;    params = {&#x000A;        'key': KEY,&#x000A;    }&#x000A;    headers = {&#x000A;        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0',&#x000A;        'Referer':  'http://maps.nyc.gov/crime/',&#x000A;    }&#x000A;    r = requests.get(url, headers = headers, params = params)&#x000A;    return r&#x000A;</code></pre>
+            
+            <p>Now I try to run it.</p>
+            
+            <pre><code>import crime&#x000A;r = crime.table('02378420399528461352-17772055697785505571')&#x000A;print(r.text)&#x000A;</code></pre>
+            
+            <p>And here’s the result.</p>
+            
+            <pre><code>{&#x000A; "error": {&#x000A;  "errors": [&#x000A;   {&#x000A;    "domain": "global",&#x000A;    "reason": "required",&#x000A;    "message": "Login Required",&#x000A;    "locationType": "header",&#x000A;    "location": "Authorization"&#x000A;   }&#x000A;  ],&#x000A;  "code": 401,&#x000A;  "message": "Login Required"&#x000A; }&#x000A;}&#x000A;</code></pre>
+            
+            <p>You can see some of the columns in the crime map JavaScript code, but there
+            might be columns in the table that aren’t exposed in the crime map website.</p>
+            
+            <h2 id="getting-the-data-as-geojson">Getting the data as GeoJSON</h2>
+            <p>I downloaded the full tables from the Google Maps Engine API,
+            so now you can download them as ordinary GeoJSON files, one per table.
+            Read more <a href="https://github.com/tlevine/nyc-crime-map">here</a>.</p>
+            
+            <h2 id="more-seriously">More seriously</h2>
+            <p>While everyone has permission to download these data, I do know that getting
+            them seems impossible to some people. It’s funny, though, that it has taken
+            me so long to do something so simple.</p>
+            
+            <p>It usually takes quite a lot to convince me that something might be vaguely
+            useful. People complained a bunch about this map, so I finally got the
+            data into a nicer form, but I’m still skeptical that it’s really useful at all.</p>
+            
+            <p>So please convince me that I didn’t just waste two hours.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/nyc-crime-map/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

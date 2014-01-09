@@ -2,13 +2,152 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2014-01-01T00:00:00Z</updated>
+  <updated>2014-01-09T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-01-09:/!/nyc-crime-map/index.html</id>
+    <title type="html">NYC Crime Map Data API</title>
+    <published>2014-01-09T00:00:00Z</published>
+    <updated>2014-01-09T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/nyc-crime-map/index.html"/>
+    <content type="html">&lt;p&gt;People have been complaining a lot about how you can’t get the raw data out of this
+&lt;a href="http://maps.nyc.gov/crime/"&gt;NYC Crime Map&lt;/a&gt;. I don’t know what they’re talking about.
+Here are the data, as two geojson files.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://chainsaw.thomaslevine.com/nyc-crime-data/02378420399528461352-17772055697785505571.geojson"&gt;Separated by crime type&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://chainsaw.thomaslevine.com/nyc-crime-data/02378420399528461352-11853667273131550346.geojson"&gt;Totals across crime types&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Read on to see how I got these files.&lt;/p&gt;
+
+&lt;h2 id="api-for-the-data"&gt;API for the data&lt;/h2&gt;
+&lt;p&gt;Go to the crime map, and look at the network requests that are being made.
+You’ll see a bunch of calls to the Google Maps Engine API.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="firefox.png" alt="A network request in the console in Firefox" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Look at one of them, and you’ll see the exact query that is being made.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="request-window.png" alt="A window with more information about the request" /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s calling the
+&lt;a href="https://developers.google.com/maps-engine/documentation/reference/v1/tables/features"&gt;Tables.features&lt;/a&gt;
+endpoint of the Google Maps Engine API.&lt;/p&gt;
+
+&lt;p&gt;Here’s the function I wrote for calling that endpoint.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def table_features(table_id, select, where = None, maxResults = 1000, pageToken = None):
+    url = 'https://www.googleapis.com/mapsengine/v1/tables/%s/features/' % table_id
+
+    params = {
+        'key': KEY,
+        'version': 'published',
+        'maxResults': maxResults,
+        'select': select,
+    }
+    if where:
+        params['where'] = where
+    if pageToken:
+        params['pageToken'] = pageToken
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0',
+        'Referer':  'http://maps.nyc.gov/crime/',
+    }
+
+    r = requests.get(url, headers = headers, params = params)
+    return r
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="two-tables"&gt;Two tables&lt;/h2&gt;
+&lt;p&gt;The data are stored in two tables.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;02378420399528461352-11853667273131550346&lt;/li&gt;
+  &lt;li&gt;02378420399528461352-17772055697785505571&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The latter of these tables contains a “CR” field for the crime type;
+the former does not.&lt;/p&gt;
+
+&lt;p&gt;I don’t know why they do this.&lt;/p&gt;
+
+&lt;h2 id="table-schema"&gt;Table schema&lt;/h2&gt;
+&lt;p&gt;You can supposedly get the table schema with the
+&lt;a href="https://developers.google.com/maps-engine/documentation/reference/v1/tables/get"&gt;Tables&lt;/a&gt;
+endpoint, but the &lt;code&gt;key&lt;/code&gt; doesn’t seem to give us access to that.
+Here’s the function I wrote to call the Tables endpoint.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def table(table_id):
+    '''
+    This would tell us the schema, among other things.
+    https://developers.google.com/maps-engine/documentation/reference/v1/tables#resource
+    '''
+
+    url = 'https://www.googleapis.com/mapsengine/v1/tables/%s/' % table_id
+    params = {
+        'key': KEY,
+    }
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0',
+        'Referer':  'http://maps.nyc.gov/crime/',
+    }
+    r = requests.get(url, headers = headers, params = params)
+    return r
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I try to run it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import crime
+r = crime.table('02378420399528461352-17772055697785505571')
+print(r.text)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here’s the result.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+ "error": {
+  "errors": [
+   {
+    "domain": "global",
+    "reason": "required",
+    "message": "Login Required",
+    "locationType": "header",
+    "location": "Authorization"
+   }
+  ],
+  "code": 401,
+  "message": "Login Required"
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see some of the columns in the crime map JavaScript code, but there
+might be columns in the table that aren’t exposed in the crime map website.&lt;/p&gt;
+
+&lt;h2 id="getting-the-data-as-geojson"&gt;Getting the data as GeoJSON&lt;/h2&gt;
+&lt;p&gt;I downloaded the full tables from the Google Maps Engine API,
+so now you can download them as ordinary GeoJSON files, one per table.
+Read more &lt;a href="https://github.com/tlevine/nyc-crime-map"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="more-seriously"&gt;More seriously&lt;/h2&gt;
+&lt;p&gt;While everyone has permission to download these data, I do know that getting
+them seems impossible to some people. It’s funny, though, that it has taken
+me so long to do something so simple.&lt;/p&gt;
+
+&lt;p&gt;It usually takes quite a lot to convince me that something might be vaguely
+useful. People complained a bunch about this map, so I finally got the
+data into a nicer form, but I’m still skeptical that it’s really useful at all.&lt;/p&gt;
+
+&lt;p&gt;So please convince me that I didn’t just waste two hours.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2014-01-01:/!/making-your-personal-website/index.html</id>
     <title type="html">How to make a personal website, in 9001 easy steps</title>
@@ -1148,73 +1287,6 @@ of things that I want to do.&lt;/p&gt;
 &lt;h2 id="interested"&gt;Interested?&lt;/h2&gt;
 &lt;p&gt;If you want any of the things above,
 email me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-12-17:/!/what-is-open-data/index.html</id>
-    <title type="html">What is open data?</title>
-    <published>2013-12-17T00:00:00Z</published>
-    <updated>2013-12-17T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/what-is-open-data/index.html"/>
-    <content type="html">&lt;p&gt;Part of the reason for &lt;a href="/open-data"&gt;my recent studies&lt;/a&gt; on open data
-has been unclarity as to what open data really is. This unclarity has
-recently become more clear to me.&lt;/p&gt;
-
-&lt;p&gt;As far as I can tell, open data is the phenomenon of multiple people
-creating, sharing, and reading with the same data. We call data “open”
-when anyone in the world is allowed to interact with the data, but the
-same issues arise even if only some people in the world are allowed
-to interact with the data.&lt;/p&gt;
-
-&lt;h2 id="open-data-in-government"&gt;Open data in government&lt;/h2&gt;
-&lt;p&gt;&lt;a href="/!/open-data-in-plain-english/"&gt;This&lt;/a&gt; is my favorite video introduction
-to the concept of open-data, at least in the context of government.&lt;/p&gt;
-
-&lt;video poster="/!/open-data-in-plain-english/screenshot.png" src="/!/open-data-in-plain-english/open-data-in-plain-english.webm" controls="" width="100%"&gt;&lt;/video&gt;
-
-&lt;p&gt;The general thought is that we can find data that can be released safely
-and that releasing these data might allow new good things could happen.&lt;/p&gt;
-
-&lt;p&gt;Because the above video is focusing on governments who are trying to
-start getting data out somewhere, it doesn’t discuss more involved sorts
-of sharing.  Different government departments, companies, and ordinary
-people could all create their own datasets and assist in the collection
-or auditing of shared datasets.&lt;/p&gt;
-
-&lt;h2 id="sharing-data-in-general"&gt;Sharing data in general&lt;/h2&gt;
-&lt;p&gt;You don’t have to be a government releasing data to the public in
-order to be sharing data. For example, if you use a lot of proprietary
-data in an organization of at least ten people, your situation is
-probably quite similar to that of this open data ecosystem. You have
-enough different data sources that not everyone will know everything
-about all of the data sources, so you’ll come up with approaches for
-storing all of these data, versioning them, finding them, and so on.
-Francis Irving and Rufus Pollock would call this a
-&lt;a href="http://blog.okfn.org/2012/03/09/from-cms-to-dms-c-is-for-content-d-is-for-data/"&gt;data management system&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;While they don’t share data with the public, large financial institutions
-might have some of the strongest open data ecosystems internally.
-&lt;a href="http://www.datagotham.com/speakers/#newport"&gt;Bill Newport&lt;/a&gt; spoke at
-Data Gotham this year about mananging data at Goldman Sachs. We attendees
-were asked not to share what he had said, so I’ll just say that they
-were doing everything that I’d been wanting in the area of open data.
-And I’ve heard similary awesome things about data management at
-Bridgewater and JP Morgan.&lt;/p&gt;
-
-&lt;h2 id="concept-of-ownership"&gt;Concept of ownership&lt;/h2&gt;
-&lt;p&gt;When a bunch of people are working collectively on the same dataset,
-the concept of ownership changes. One person or group may initially
-collect most of the data, but other people may continuously audit the
-data, structure the dataset differently, or collect more data. We wind
-up with something more like
-&lt;a href="http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/"&gt;a bazaar than a cathedral&lt;/a&gt;,
-just as we do in free software, wikis, and other forms of free culture.&lt;/p&gt;
-
-&lt;h2 id="plan-for-sharing"&gt;Plan for sharing&lt;/h2&gt;
-&lt;p&gt;Now that we are interacting with so much structured digital content,
-we’re finding some value in sharing it. Open data is about accepting
-that there is value in sharing and collaborating on data and then
-planning for this sharing.&lt;/p&gt;
 </content>
   </entry>
 </feed>

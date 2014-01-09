@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Thomas Levine, Dada Artist</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/downloading-binary-files-non-magic/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1></h1>
+              <em>
+                <time>
+                  
+                </time>
+              </em>
+              <span class='tags'>
+              </span>
+            </header>
+            <hr>
+            <p>If you have some idea of how to write a website,
+            you </p>
+            
+            <p>complicated but not magic</p>
+            
+            <h2 id="downloading-a-text-file">Downloading a text file</h2>
+            <p>When you type in a URL in your web browser and hit enter,
+            your web browser usually makes an HTTP GET request.[^protocol]
+            You can do that like so in <a href="http://python.org/">Python</a>
+            with <a href="http://www.python-requests.org/">requests</a>.</p>
+            
+            <pre><code># Python&#x000A;import requests&#x000A;response = requests.get('http://thomaslevine.com')&#x000A;</code></pre>
+            
+            <p><em>(I say “usually” because this only happens if you are using
+            HTTP; if the url you enter starts with “ftp://”, for example,
+            it does something different.)</em></p>
+            
+            <p>This response object contains a lot of things related to HTTP. If you’re
+            curious, you can read more about that <a href="/!/street-sign-protocol">here</a>.
+            For now, just know that the file that you are downloading is inside this
+            response object.</p>
+            
+            <p>In this particular example, the HTML of the webpage is the file that we
+            are downloading. Let’s look at the first 200 characters of the file.</p>
+            
+            <pre><code># Python&#x000A;print(response.content[:200])&#x000A;</code></pre>
+            
+            <p>This is what gets printed.</p>
+            
+            <pre><code>b'&lt;!DOCTYPE html&gt;\n&lt;!--[if lt IE 7]&gt; &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&gt;\n&lt;html class="no-js lt-ie9 lt-ie8 lt-ie7"&gt;&lt;/html&gt;\n &lt;![endif]'&#x000A;</code></pre>
+            
+            <p>I can save this stuff to a file.</p>
+            
+            <pre><code># Python&#x000A;open('/tmp/www.thomaslevine.com', 'wb').write(response.content)&#x000A;</code></pre>
+            
+            <p>And once I do that, it’s an ordinary text file.</p>
+            
+            <pre><code># Shell&#x000A;head /tmp/www.thomaslevine.com&#x000A;</code></pre>
+            
+            <p>This is what gets printed.</p>
+            
+            <pre><code>&lt;!DOCTYPE html&gt;&#x000A;&lt;!--[if lt IE 7]&gt; &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&gt;&#x000A;&lt;html class="no-js lt-ie9 lt-ie8 lt-ie7"&gt;&lt;/html&gt;&#x000A; &lt;![endif]--&gt;&lt;!--[if IE 7]&gt;    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&gt;&#x000A;&lt;html class="no-js lt-ie9 lt-ie8"&gt;&lt;/html&gt;&#x000A; &lt;![endif]--&gt;&lt;!--[if IE 8]&gt;    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&gt;&#x000A;&lt;html class="no-js lt-ie9"&gt;&lt;/html&gt;&#x000A; &lt;![endif]--&gt;&lt;!--[if gt IE 8]&gt;&lt;!--&gt;&lt;html class="no-js"&gt;&#x000A;  &lt;!--&lt;![endif]--&gt;&#x000A;  &lt;head&gt;&#x000A;</code></pre>
+            
+            <h3 id="as-one-code-block">As one code block</h3>
+            <p>The code above is separated across multiple blocks.
+            Here is the code for downloading the file and then
+            saving it to a file, in one code block.</p>
+            
+            <pre><code># Python&#x000A;import requests&#x000A;response = requests.get('http://thomaslevine.com')&#x000A;open('/tmp/www.thomaslevine.com', 'wb').write(response.content)&#x000A;</code></pre>
+            
+            <h2 id="bytes-and-bits">Bytes and bits</h2>
+            <p>The <code>response.content</code> is displayed as a series of characters, but it is
+            stored in Python as bytes.</p>
+            
+            <pre><code>print(type(response.content))&#x000A;# builtins.bytes&#x000A;</code></pre>
+            
+            <p>Starting with the above example, it becomes relevant that I’m using Python 3
+            (specifically, 3.3.3) and not Python 2.</p>
+            
+            <h3 id="bytes-as-characters">Bytes as characters</h3>
+            <p>It’s easy to confuse the two because we often
+            represent bytes as characters when displaying them.
+            At a lower level, bytes represent numbers between 0 and 255 (inclusive),
+            so we can also represent bytes as a series of numbers; here are the first
+            ten bytes represented as characters.</p>
+            
+            <pre><code>print(response.content[:10])&#x000A;# b'&lt;!DOCTYPE '&#x000A;</code></pre>
+            
+            <h3 id="bytes-as-numbers">Bytes as numbers</h3>
+            <p>And here they are represented as numbers.</p>
+            
+            <pre><code>print([x for x in response.content[:10]])&#x000A;# [60, 33, 68, 79, 67, 84, 89, 80, 69, 32]&#x000A;</code></pre>
+            
+            <h3 id="bytes-as-base-2-numbers">Bytes as base 2 numbers</h3>
+            <p>We happen to represent numbers in base 10 usually, but
+            we could also represent these bytes as numbers in base two.</p>
+            
+            <pre><code>print([bin(x) for x in response.content[:10]])&#x000A;# [ '0b111100',  '0b100001', '0b1000100',&#x000A;#  '0b1001111', '0b1000011', '0b1010100',&#x000A;#  '0b1011001', '0b1010000', '0b1000101',&#x000A;#   '0b100000']&#x000A;</code></pre>
+            
+            <p>The number is the part after <code>0b</code>; the following representation
+            might be more clear</p>
+            
+            <pre><code>print([bin(x)[2:].zfill(8) for x in response.content[:10]])&#x000A;# ['00111100', '00100001', '01000100',&#x000A;#  '01001111', '01000011', '01010100',&#x000A;#  '01011001', '01010000', '01000101',&#x000A;#  '00100000']&#x000A;</code></pre>
+            
+            <h3 id="bytes-are-eight-bits">Bytes are eight bits</h3>
+            <p>To be clear, I’ve shown these three representations of the
+            first byte.</p>
+            
+            <ol>
+              <li>As a character, it’s <code>&lt;</code>.</li>
+              <li>As a base 10 number, it’s 60.</li>
+              <li>As a base 2 number, it’s 111100.</li>
+            </ol>
+            
+            <p>Each byte is made of eight bits. Each bit can be on or off.
+            If you have eight light switches, there are 256 different lighting
+            combinations (<script type="math/tex">2^8</script>), and this is how we arrive at the aforementioned
+            range of byte values.</p>
+            
+            <p>To say it another way, the highest possible value for a byte is 255.</p>
+            
+            <pre><code>In [50]: bytes([255])&#x000A;Out[50]: b'\xff'&#x000A;</code></pre>
+            
+            <p>I’ll get an error if I try to make a byte of value 256.</p>
+            
+            <pre><code>In [51]: bytes([256])                                                                                                                   &#x000A;---------------------------------------------------------------------------&#x000A;ValueError                                Traceback (most recent call last)&#x000A;&lt;ipython-input-51-a19a7ec1812b&gt; in &lt;module&gt;()&#x000A;----&gt; 1 bytes([256])&#x000A;&#x000A;ValueError: bytes must be in range(0, 256)&#x000A;</code></pre>
+            
+            <h3 id="bits">Bits</h3>
+            <p>So far, I’ve been representing the HTML as a series of bytes.
+            We could also represent it as a series of bits, not grouped
+            into bytes.</p>
+            
+            <pre><code>print(''.join(bin(x)[2:].zfill(8) for x in response.content[:10]))&#x000A;# 00111100001000010100010001001111010000110101010001011001010100000100010100100000&#x000A;</code></pre>
+            
+            <p><code>bin(x)[2:].zfill(8)</code> is my hacky and concise way of converting an integer into
+            a string of zeros and ones.</p>
+            
+            <h3 id="encodings">Encodings</h3>
+            <p>If I wanted to remember that mommy was riding a horse, I might use a pen to
+            write “Mommy is riding a horse.” When I type this on a keyboard and save it
+            as a file, I’m representing the sentence as a series of bytes (numbers between 0 and 255).</p>
+            
+            <p>There are all sorts of methods by which we could represent the sentence as
+            numbers, and each of these different methods is called an “encoding”.
+            For example, we could assign a number to each sentence.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Number</th>
+                  <th>Sentence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td>Mommy is riding a horse.</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Daddy is riding a horse.</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Mommy is riding an elephant.</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Daddy is riding an elephant.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>Or we could assign a number to each word.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Number</th>
+                  <th>Sentence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td>Mommy</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>is</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>riding</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>a</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>horse</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>.</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Daddy</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>elephant</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>We could also do something more complicated, like having numbers for different
+            languages, grammatical constructs, and capitalizations.</p>
+            
+            <p>It’s a lot of work to explain how an encoding works, so it’s nice if we can
+            all use the same encodings rather than always inventing our own. By now,
+            we have a few standard ways of encoding text.</p>
+            
+            <p>I downloaded a text webpage, and it got sent to me as bytes, and there are a
+            lot of ways we can represent bytes. One way we can represent bytes is as
+            characters, through an encoding called <a href="http://en.wikipedia.org/wiki/ISO/IEC_8859-1">latin1</a>.
+            But there are other encodings. Here’s a sentence.</p>
+            
+            <pre><code>sentence = bytes([229, 170, 189, 229, 170, 189, 233, 168, 142,&#x000A;                  233, 166, 172, 239, 188, 140, 233, 166, 172,&#x000A;                  230, 133, 162, 239, 188, 140, 229, 170, 189,&#x000A;                  229, 170, 189, 231, 189, 181, 233, 166, 172,&#x000A;                  227, 128, 130])&#x000A;</code></pre>
+            
+            <p>Let’s decode it with latin1.</p>
+            
+            <pre><code>print(sentence.decode('latin1'))&#x000A;# åª½åª½é¨é¦¬ï¼é¦¬æ¢ï¼åª½åª½ç½µé¦¬ã&#x000A;</code></pre>
+            
+            <p>That looks ugly; maybe it was encoded as something other than latin1.
+            It turns out that it was encoded as <a href="http://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.</p>
+            
+            <pre><code>print(sentence.decode('utf-8'))&#x000A;# 媽媽騎馬，馬慢，媽媽罵馬。&#x000A;</code></pre>
+            
+            <h2 id="downloading-a-video">Downloading a video</h2>
+            <p>A video file is also a series of bytes, but it is not encoded as latin1.
+            It’s also not encoded as utf-8. For example, this
+            <a href="http://thomaslevine.com/!/open-data-in-plain-english/open-data-in-plain-english.webm">video about open data</a>
+            is encoded as <a href="http://en.wikipedia.org/wiki/WebM">WebM</a>.</p>
+            
+            <p>Regardless of the encoding, it’s still a series of bytes, and we don’t need to
+            know anything about the encoding in order to download a series of bytes;
+            downloading this file is the same as downloading a text file.</p>
+            
+            <pre><code># Python&#x000A;import requests&#x000A;url = 'http://thomaslevine.com/!/open-data-in-plain-english/open-data-in-plain-english.webm'&#x000A;response = requests.get(url)&#x000A;open('/tmp/open-data-in-plain-english.webm', 'wb').write(response.content)&#x000A;</code></pre>
+            
+            <p>We could decode the bytes with one of our text decoders, but it will probably
+            look pretty nonsense.</p>
+            
+            <pre><code>In [153]: print(response.content[:10])&#x000A;b'\x1aE\xdf\xa3\x01\x00\x00\x00\x00\x00'&#x000A;&#x000A;In [154]: print(response.content[:20].decode('latin1'))&#x000A;'\x1aEß£\x01\x00\x00\x00\x00\x00\x00\x1fB\x86\x81\x01B÷\x81\x01'&#x000A;</code></pre>
+            
+            <p>Yep, nonsense. And the UTF-8 decoder doesn’t even understand it.</p>
+            
+            <pre><code>In [155]: print(response.content[:20].decode('utf-8'))&#x000A;---------------------------------------------------------------------------&#x000A;UnicodeDecodeError                        Traceback (most recent call last)&#x000A;&lt;ipython-input-155-c3e10d8dd816&gt; in &lt;module&gt;()&#x000A;----&gt; 1 response.content.decode('utf-8')&#x000A;&#x000A;UnicodeDecodeError: 'utf-8' codec can't decode byte 0x86 in position 13: invalid start byte&#x000A;</code></pre>
+            
+            <p>It might make more sense if we play the file with a video player
+            that understands WebM.</p>
+            
+            <pre><code>mplayer /tmp/open-data-in-plain-english.webm&#x000A;</code></pre>
+            
+            <h2 id="files-are-files">Files are files</h2>
+            <p>Files are files, even when they’re not text that you can read, and even when
+            you’re downloading them from the internet.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/downloading-binary-files-non-magic/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
