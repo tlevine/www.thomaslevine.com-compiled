@@ -17,7 +17,7 @@
     <link rel="alternate" href="http://www.thomaslevine.com/!/data-catalog-dead-links/index.html"/>
     <content type="html">&lt;p&gt;As I started looking at data on &lt;a href="http://ckan.org/"&gt;CKAN&lt;/a&gt; sites, I noticed that a lot of the
 datasets were links to files on other websites and that a lot of these links
-were dead. Then I started wondering how many and which ones.&lt;/p&gt;
+were dead. Then I started wondering which links were dead and how this happens.&lt;/p&gt;
 
 &lt;h2 id="why-study-dead-links"&gt;Why study dead links&lt;/h2&gt;
 &lt;p&gt;It goes without saying that websites usually shouldn’t have dead links, but
