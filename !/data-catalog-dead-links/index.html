@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Dead links on data catalogs</title>
+    <meta content='Software just might influence the liveliness of URLs.' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Dead links on data catalogs' name='twitter:title'>
+    <meta content='Software just might influence the liveliness of URLs.' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/data-catalog-dead-links/figure/prop_links.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/data-catalog-dead-links/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='Software just might influence the liveliness of URLs.' property='og:description'>
+    <meta content='Dead links on data catalogs' property='og:title'>
+    <meta content='http://thomaslevine.com/!/data-catalog-dead-links/figure/prop_links.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>Dead links on data catalogs</h1>
+              <em>
+                <time datetime='2014-01-16'>
+                  January 16, 2014
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <p>It goes without saying that websites usually shouldn’t have dead links, but
+            here are a bunch of fancy reasons why dead links are bad on open data sites.</p>
+            
+            <ul>
+              <li><a href="http://sunlightfoundation.com/opendataguidelines/#permanent-access">Sunlight Foundation</a>
+              says to “Create permanent, lasting access to data”.</li>
+              <li><a href="http://project-open-data.github.io/principles/">Project Open Data</a> says
+              that data should be “Managed Post-Release”.</li>
+              <li>The <a href="http://census.okfn.org/faq/#what-do-all-the-questions-about-the-datasets-mean-">questions</a>
+              for Open Knowledge Foundation’s Open Data Census include
+                <ul>
+                  <li>“Is the data available online?”</li>
+                  <li>“URL of data online?”</li>
+                </ul>
+              </li>
+              <li>The Open Data Institute
+              <a href="https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take">Open Data Certificate questionnaire</a>
+              asks for a bunch of URLs about the dataset to be certified;
+              I presume they should be alive.
+              It also asks “How long will this data be available for?”</li>
+            </ul>
+            
+            <p>In summary, dead links are bad.</p>
+            
+            <p>That said, if the alternative to having a dead link to a dataset is having no
+            link to a dataset, I’d say it’s better to have the dead link so we know that the
+            data exist. But live links are better; let’s move on.</p>
+            
+            <p>As I started looking at data on <a href="http://ckan.org/">CKAN</a> sites, I noticed that a lot of the
+            datasets were links to files on other websites and that a lot of these links
+            were dead. Then I started wondering how many and which ones.</p>
+            
+            <h2 id="acquiring-the-data">Acquiring the data</h2>
+            <p>I collected data about dead links from CKAN and
+            <a href="http://www.socrata.com/open-data-portal/">Socrata</a> catalogs;
+            it went a bit like this.</p>
+            
+            <p><img src="data-collection.png" alt="Diagram of the data collection process" class="wide" /></p>
+            
+            <p>The next few sections explain this a bit more.</p>
+            
+            <h3 id="accessing-data-catalogs">Accessing data catalogs</h3>
+            <p>I downloaded <a href="https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD">a list of Socrata catalogs</a>
+            (<a href="https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD">mirror</a>)
+            and <a href="http://instances.ckan.org/config/instances.json">a list of CKAN catalogs</a>
+            (<a href="https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json">mirror</a>).</p>
+            
+            <p>I tried querying the APIs for all of these sites.
+            I couldn’t do this for some of the sites, mainly because they required
+            authorization (lolz open data) that I did not have or because
+            the URL I found for the catalog did not correspond with the
+            domain for the CKAN or Socrata API.
+            I continued with all of the sites for which I could get the data;
+            this wound up being
+            44 CKAN catalogs and
+            52 Socrata catalogs.</p>
+            
+            <h3 id="dataset-metadata">Dataset metadata</h3>
+            <p>With each of these catalogs, I acquired the metadata JSON file for each dataset
+            in the catalog. Here they are for
+            <a href="https://github.com/tlevine/socrata-views">Socrata</a> and for
+            <a href="https://github.com/tlevine/ckan-datasets">CKAN</a>. These are also
+            <a href="https://github.com/tlevine/open-data/tree/master/downloads">submodules</a>
+            to the <a href="https://github.com/tlevine/open-data/tree/master">main repository</a>.</p>
+            
+            <h3 id="link-liveliness">Link liveliness</h3>
+            <p>From the metadata for each dataset, I pulled out the
+            URL
+            for the dataset if there was a URL.
+            Here’s the code
+            for <a href="https://github.com/tlevine/open-data/blob/master/links.py#L13">Socrata</a> and
+            for <a href="https://github.com/tlevine/open-data/blob/master/links.py#L32">CKAN</a>.</p>
+            
+            <p>I checked whether datasets were alive by trying to download them.
+            (<a href="https://github.com/tlevine/open-data/blob/master/links.py#L37">More precisely</a>,
+            I really issued a HEAD request and checked the status code.)</p>
+            
+            <h3 id="internal-versus-external-storage">Internal versus external storage</h3>
+            <p>Once I had the metadata files about each dataset, I also
+            <a href="https://github.com/tlevine/open-data/blob/master/links.py">determined</a>
+            whether the dataset was stored <em>internally</em> or <em>externally</em>.
+            These are terms that I just invented, so I define them below.</p>
+            
+            <p>With <strong>internal storage</strong>, the dataset is uploaded to the data catalog software
+            itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
+            the dataset gets stored in Socrata’s data storage. (There isn’t really a
+            name for this place in Socrata’s architecture, as far as I know.)</p>
+            
+            <p>With <strong>external storage</strong>, the dataset is a file that is stored on some other
+            website on the internet, and we can reference the dataset with a URL. When we
+            add the dataset to CKAN or Socrata, we are just linking to this other website.</p>
+            
+            <p>As I imply above, Socrata and CKAN both support both of these two approaches.</p>
+            
+            <h3 id="final-database">Final database</h3>
+            <p>I combined this all into the same
+            <a href="http://bigdada.thomaslevine.com/open-data.sqlite.gz">SQLite3 file</a>
+            as I used for the <a href="/!/socrata-products">Socrata products analysis</a>.</p>
+            
+            <h2 id="results">Results</h2>
+            
+            <h3 id="how-many-data-catalogs-have-external-links">How many data catalogs have external links?</h3>
+            <p>As I mention above, there are
+            52 Socrata catalogs.
+            Of these,
+            19
+            (37%)
+            have at least one externally stored dataset.</p>
+            
+            <p><img src="figure/has_links_socrata.png" alt="Socrata catalogs with externally stored datasets" /> </p>
+            
+            <p>Of the 44 CKAN catalogs,
+            43
+            (98%)
+            have at least one externally stored dataset.</p>
+            
+            <p><img src="figure/has_links.png" alt="Proportion of data catalogs with externally stored datasets" /> </p>
+            
+            <p>That’s a big difference.</p>
+            
+            <h3 id="link-types-and-liveliness-by-catalog">Link types and liveliness by catalog</h3>
+            <p>Rather than looking at just whether there are any externally stored datasets at all,
+            let’s now look at what proportion of the datasets are stored externally.</p>
+            
+            <p><img src="figure/software_all_types.png" alt="Non-links, live links, and dead links across data catalog" class="wide" /></p>
+            
+            <p>Whether a dataset is stored internally or externally is related to whether it
+            stays alive. This is a plot of what proportion of datasets on Socrata are stored
+            internally and what proportion of datasets are alive; each dot is a data catalog
+            run by Socrata.</p>
+            
+            <p><img src="figure/prop_links_socrata.png" alt="Only externally stored data can be dead" /> </p>
+            
+            <p>Socrata data catalogs with more externally stored data tend to have more dead links.</p>
+            
+            <p>The above plot was for just Socrata; let’s see what happens when we add CKAN.</p>
+            
+            <p><img src="figure/prop_links.png" alt="CKAN catalogs have more externally stored datasets and more dead datasets" class="wide" /></p>
+            
+            <p>CKAN catalogs tend to have more externally stored data. When we add CKAN, the
+            association between externally stored data and dead links continues.</p>
+            
+            <h3 id="liveliness-among-externally-stored-data">Liveliness among externally stored data</h3>
+            <p>Here’s another way of seeing the above relationship. Let’s look at only the externally
+            stored datasets, and check what proportion of those are alive.</p>
+            
+            <p><img src="figure/software_only_links.png" alt="Of only the external links, what proportion of datasets are alive?" class="wide" /></p>
+            
+            <p><em>Catalogs with no external links appear as empty bars.</em> This is ambiguous,
+            because empty bars could also mean that there are external links but they’re
+            all dead. Oh, well.</p>
+            
+            <p>Some data catalogs are better than others, but about a quarter of externally stored
+            datasets tend to be dead. Thus, when we make more externally stored datasets,
+            we should expect more dead datasets.</p>
+            
+            <p>Possibly interesting: the catalogs in this plot are ordered the same way they
+            are in the <a href="#link-types-and-liveliness-by-catalog">earlier similar-looking plot</a>,
+            so higher catalogs
+            are ones with fewer dead links.</p>
+            
+            <h2 id="software-suggests-behavior">Software suggests behavior</h2>
+            <p>While both softwares support both storage methods, Socrata encourages the
+            use of internal storage, and CKAN encourages the use of external storage.
+            Let’s walk through how you create a dataset in both CKAN and Socrata through
+            their respective web interfaces.</p>
+            
+            <h3 id="ckan">CKAN</h3>
+            <p>In CKAN, this is the screen you get when you are specifying the data file
+            for your dataset.</p>
+            
+            <p><img src="ckan-1.png" alt="&quot;1. Create dataset&quot; page" class="wide" /></p>
+            
+            <p>The first screen says nothing about how to enter the data, but the second one does.</p>
+            
+            <p><img src="ckan-2.png" alt="&quot;2. Additional Data&quot; page" class="wide" /></p>
+            
+            <p>You enter the URL of a file or an API,</p>
+            
+            <p><img src="ckan-3.png" alt="Filling in the &quot;Resource&quot; field with a &quot;Link to an API&quot;" class="wide" /></p>
+            
+            <p>or you upload a file.</p>
+            
+            <p><img src="ckan-4.png" alt="The &quot;File Upload&quot; file picker window" class="wide" /></p>
+            
+            <p>After you upload the file, the box gets populated with the URL to which that
+            has been uploaded. (This URL is inside the CKAN FileStore.)</p>
+            
+            <p><img src="ckan-5.png" alt="Filling in the &quot;Resource&quot; field with a &quot;Upload a file&quot;" class="wide" /></p>
+            
+            <p>The first two cases lead to external storage, and
+            the third case leads to internal storage.
+            CKAN does fancy things depending on whether you say it’s a file or an API
+            and depending on the file format you tell it, but that’s separate from the
+            issue of internal versus external storage.</p>
+            
+            <p>As you might notice above, CKAN subtly encourages you to store things externally.</p>
+            
+            <ol>
+              <li>There are two options for external storage but just one for internal.</li>
+              <li>The two tabs for external storage options come before the third tab for
+             internal storage.</li>
+              <li>In the web interface, internally stored, uploaded files are treated like
+             external links.</li>
+              <li>One of the external storage options (the “Link to a file” tab) is selected
+             by default when you arrive at the page.</li>
+            </ol>
+            
+            <p>CKAN is a bit subtle in encouraging external storage, but do keep this in mind.</p>
+            
+            <h3 id="socrata">Socrata</h3>
+            <p>While externally stored data exist on Socrata, I didn’t find any way of creating
+            such a dataset with the Socrata website. Here’s what creating a new dataset on 
+            Socrata looks like.</p>
+            
+            <p><img src="socrata-start.png" alt="&quot;How would you like to create your new Dataset?&quot; page, with three options: &quot;Design from Scratch&quot;, &quot;Import a Data File&quot; and &quot;Upload a Non-Data File&quot;" class="wide" /></p>
+            
+            <p>If you choose to “Design from Scratch”, you wind up entering the data through
+            the table interface in Socrata; after you click through a few screens, you get
+            an editor like this.</p>
+            
+            <p><img src="socrata-scratch-2.png" alt="A spreadsheet-like table editor in Socrata Open Data Portal software" /></p>
+            
+            <p>If you choose to “Import a Data File”, you see this.</p>
+            
+            <p><img src="socrata-1.png" alt="&quot;Where is the file located&quot; page, with two options: &quot;On my computer&quot; and &quot;On the internet&quot;" class="wide" /></p>
+            
+            <p>Because I was looking for a place to add externally stored data, I clicked on
+            “On the Internet”. I entered a file into this box, and the file got downloaded
+            to Socrata.</p>
+            
+            <p><img src="socrata-2.png" alt="&quot;Please indicate where your data file lives.&quot;, with a text input box containing the URL &quot;http://chainsaw.thomaslevine.com/aurora.csv&quot;" class="wide" /></p>
+            
+            <p>Then I got this schema editor,</p>
+            
+            <p><img src="socrata-3.png" alt="Display of column names and types for the uploaded dataset, with buttons for editing the information" class="wide" /></p>
+            
+            <p>and the data got imported to the internal storage.</p>
+            
+            <p><img src="socrata-5.png" alt="The same spreadsheet-like editor as above, but with the aurora.csv data" class="wide" /></p>
+            
+            <p>The non-data file approach also leads to internal storage.</p>
+            
+            <p><img src="socrata-non-data.png" alt="&quot;Please choose a file to upload&quot; page that looks nearly identical to the &quot;Where is the file located&quot; page" class="wide" /></p>
+            
+            <p>I don’t even see any documentation as to how to do this
+            <a href="http://dev.socrata.com/publishers/importing">with the API</a>.</p>
+            
+            <p>Socrata Support did send me an
+            <a href="https://twitter.com/SocrataSupport/status/423600872501690368">answer</a>,
+            but I need to log in to ZenDesk to do that (lolz open data again),
+            and I was having trouble doing that.</p>
+            
+            <p>So it’s pretty hard to add an externally stored dataset to Socrata.</p>
+            
+            <h2 id="internal-storage-encourages-live-links">Internal storage encourages live links</h2>
+            <p>If your data are stored in CKAN’s FileStore or in Socrata’s
+            data storage (rather than as an external link), then it is
+            practically impossible for the link to be dead.</p>
+            
+            <p>If we want to use fancy design-speak, we can call this a forcing function.
+            A forcing function is an aspect in the design of a thing that makes it
+            impossible for people to do something that they aren’t supposed to do.
+            If we make it impossible for links to be dead, they won’t ever be dead.</p>
+            
+            <h2 id="other-ways-of-encouraging-live-links">Other ways of encouraging live links</h2>
+            <p>Removing the external link feature should reduce the number of dead links
+            to zero, and that might be nice. On the other hand, there might be some good
+            things about external links, so maybe we can instead come up with some other
+            software feature that helps people avoid or fix dead links. For example,
+            perhaps there could be a page that lists the dead datasets and counts how
+            many times people have tried accessing them.</p>
+            
+            <p>The <a href="https://github.com/okfn/ckanext-qa">CKAN Quality Assurance Extension</a>
+            does just this; here’s one of its reports.</p>
+            
+            <p><a href="http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs"><img src="ckanext-qa.png" alt="A table of datasets with statistics about how dead they are" class="wide" /></a></p>
+            
+            <h2 id="why-measure-data-catalogs">Why measure data catalogs</h2>
+            <p>Detecting dead links is one of several things that we can easily do to
+            measure the quality of a data catalog. Similarly, we can also measure
+            <a href="/!/open-data-licensing">what licenses are used</a>,
+            <a href="/!/data-updatedness">how up-to-date the data are</a>,
+            and <a href="/!/socrata-formats">what data formats the data are in</a>.</p>
+            
+            <p>When we have lots of datasets on our data catalog, it becomes too much
+            for someone to read through all of them. Measures like these help us get
+            some idea of what is going on across the data catalog. They also help us
+            choose where to focus our attention, so that we may identify good
+            practices and diagnose problems.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/data-catalog-dead-links/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

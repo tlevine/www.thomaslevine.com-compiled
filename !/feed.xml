@@ -2,13 +2,311 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2014-01-09T00:00:00Z</updated>
+  <updated>2014-01-16T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-01-16:/!/data-catalog-dead-links/index.html</id>
+    <title type="html">Dead links on data catalogs</title>
+    <published>2014-01-16T00:00:00Z</published>
+    <updated>2014-01-16T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/data-catalog-dead-links/index.html"/>
+    <content type="html">&lt;p&gt;It goes without saying that websites usually shouldn’t have dead links, but
+here are a bunch of fancy reasons why dead links are bad on open data sites.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://sunlightfoundation.com/opendataguidelines/#permanent-access"&gt;Sunlight Foundation&lt;/a&gt;
+  says to “Create permanent, lasting access to data”.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://project-open-data.github.io/principles/"&gt;Project Open Data&lt;/a&gt; says
+  that data should be “Managed Post-Release”.&lt;/li&gt;
+  &lt;li&gt;The &lt;a href="http://census.okfn.org/faq/#what-do-all-the-questions-about-the-datasets-mean-"&gt;questions&lt;/a&gt;
+  for Open Knowledge Foundation’s Open Data Census include
+    &lt;ul&gt;
+      &lt;li&gt;“Is the data available online?”&lt;/li&gt;
+      &lt;li&gt;“URL of data online?”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The Open Data Institute
+  &lt;a href="https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take"&gt;Open Data Certificate questionnaire&lt;/a&gt;
+  asks for a bunch of URLs about the dataset to be certified;
+  I presume they should be alive.
+  It also asks “How long will this data be available for?”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In summary, dead links are bad.&lt;/p&gt;
+
+&lt;p&gt;That said, if the alternative to having a dead link to a dataset is having no
+link to a dataset, I’d say it’s better to have the dead link so we know that the
+data exist. But live links are better; let’s move on.&lt;/p&gt;
+
+&lt;p&gt;As I started looking at data on &lt;a href="http://ckan.org/"&gt;CKAN&lt;/a&gt; sites, I noticed that a lot of the
+datasets were links to files on other websites and that a lot of these links
+were dead. Then I started wondering how many and which ones.&lt;/p&gt;
+
+&lt;h2 id="acquiring-the-data"&gt;Acquiring the data&lt;/h2&gt;
+&lt;p&gt;I collected data about dead links from CKAN and
+&lt;a href="http://www.socrata.com/open-data-portal/"&gt;Socrata&lt;/a&gt; catalogs;
+it went a bit like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="data-collection.png" alt="Diagram of the data collection process" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next few sections explain this a bit more.&lt;/p&gt;
+
+&lt;h3 id="accessing-data-catalogs"&gt;Accessing data catalogs&lt;/h3&gt;
+&lt;p&gt;I downloaded &lt;a href="https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD"&gt;a list of Socrata catalogs&lt;/a&gt;
+(&lt;a href="https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD"&gt;mirror&lt;/a&gt;)
+and &lt;a href="http://instances.ckan.org/config/instances.json"&gt;a list of CKAN catalogs&lt;/a&gt;
+(&lt;a href="https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json"&gt;mirror&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;I tried querying the APIs for all of these sites.
+I couldn’t do this for some of the sites, mainly because they required
+authorization (lolz open data) that I did not have or because
+the URL I found for the catalog did not correspond with the
+domain for the CKAN or Socrata API.
+I continued with all of the sites for which I could get the data;
+this wound up being
+44 CKAN catalogs and
+52 Socrata catalogs.&lt;/p&gt;
+
+&lt;h3 id="dataset-metadata"&gt;Dataset metadata&lt;/h3&gt;
+&lt;p&gt;With each of these catalogs, I acquired the metadata JSON file for each dataset
+in the catalog. Here they are for
+&lt;a href="https://github.com/tlevine/socrata-views"&gt;Socrata&lt;/a&gt; and for
+&lt;a href="https://github.com/tlevine/ckan-datasets"&gt;CKAN&lt;/a&gt;. These are also
+&lt;a href="https://github.com/tlevine/open-data/tree/master/downloads"&gt;submodules&lt;/a&gt;
+to the &lt;a href="https://github.com/tlevine/open-data/tree/master"&gt;main repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="link-liveliness"&gt;Link liveliness&lt;/h3&gt;
+&lt;p&gt;From the metadata for each dataset, I pulled out the
+URL
+for the dataset if there was a URL.
+Here’s the code
+for &lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L13"&gt;Socrata&lt;/a&gt; and
+for &lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L32"&gt;CKAN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I checked whether datasets were alive by trying to download them.
+(&lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L37"&gt;More precisely&lt;/a&gt;,
+I really issued a HEAD request and checked the status code.)&lt;/p&gt;
+
+&lt;h3 id="internal-versus-external-storage"&gt;Internal versus external storage&lt;/h3&gt;
+&lt;p&gt;Once I had the metadata files about each dataset, I also
+&lt;a href="https://github.com/tlevine/open-data/blob/master/links.py"&gt;determined&lt;/a&gt;
+whether the dataset was stored &lt;em&gt;internally&lt;/em&gt; or &lt;em&gt;externally&lt;/em&gt;.
+These are terms that I just invented, so I define them below.&lt;/p&gt;
+
+&lt;p&gt;With &lt;strong&gt;internal storage&lt;/strong&gt;, the dataset is uploaded to the data catalog software
+itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
+the dataset gets stored in Socrata’s data storage. (There isn’t really a
+name for this place in Socrata’s architecture, as far as I know.)&lt;/p&gt;
+
+&lt;p&gt;With &lt;strong&gt;external storage&lt;/strong&gt;, the dataset is a file that is stored on some other
+website on the internet, and we can reference the dataset with a URL. When we
+add the dataset to CKAN or Socrata, we are just linking to this other website.&lt;/p&gt;
+
+&lt;p&gt;As I imply above, Socrata and CKAN both support both of these two approaches.&lt;/p&gt;
+
+&lt;h3 id="final-database"&gt;Final database&lt;/h3&gt;
+&lt;p&gt;I combined this all into the same
+&lt;a href="http://bigdada.thomaslevine.com/open-data.sqlite.gz"&gt;SQLite3 file&lt;/a&gt;
+as I used for the &lt;a href="/!/socrata-products"&gt;Socrata products analysis&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="results"&gt;Results&lt;/h2&gt;
+
+&lt;h3 id="how-many-data-catalogs-have-external-links"&gt;How many data catalogs have external links?&lt;/h3&gt;
+&lt;p&gt;As I mention above, there are
+52 Socrata catalogs.
+Of these,
+19
+(37%)
+have at least one externally stored dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/has_links_socrata.png" alt="Socrata catalogs with externally stored datasets" /&gt; &lt;/p&gt;
+
+&lt;p&gt;Of the 44 CKAN catalogs,
+43
+(98%)
+have at least one externally stored dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/has_links.png" alt="Proportion of data catalogs with externally stored datasets" /&gt; &lt;/p&gt;
+
+&lt;p&gt;That’s a big difference.&lt;/p&gt;
+
+&lt;h3 id="link-types-and-liveliness-by-catalog"&gt;Link types and liveliness by catalog&lt;/h3&gt;
+&lt;p&gt;Rather than looking at just whether there are any externally stored datasets at all,
+let’s now look at what proportion of the datasets are stored externally.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/software_all_types.png" alt="Non-links, live links, and dead links across data catalog" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Whether a dataset is stored internally or externally is related to whether it
+stays alive. This is a plot of what proportion of datasets on Socrata are stored
+internally and what proportion of datasets are alive; each dot is a data catalog
+run by Socrata.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/prop_links_socrata.png" alt="Only externally stored data can be dead" /&gt; &lt;/p&gt;
+
+&lt;p&gt;Socrata data catalogs with more externally stored data tend to have more dead links.&lt;/p&gt;
+
+&lt;p&gt;The above plot was for just Socrata; let’s see what happens when we add CKAN.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/prop_links.png" alt="CKAN catalogs have more externally stored datasets and more dead datasets" /&gt; &lt;/p&gt;
+
+&lt;p&gt;CKAN catalogs tend to have more externally stored data. When we add CKAN, the
+association between externally stored data and dead links continues.&lt;/p&gt;
+
+&lt;h3 id="liveliness-among-externally-stored-data"&gt;Liveliness among externally stored data&lt;/h3&gt;
+&lt;p&gt;Here’s another way of seeing the above relationship. Let’s look at only the externally
+stored datasets, and check what proportion of those are alive.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/software_only_links.png" alt="Of only the external links, what proportion of datasets are alive?" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Catalogs with no external links appear as empty bars.&lt;/em&gt; This is ambiguous,
+because empty bars could also mean that there are external links but they’re
+all dead. Oh, well.&lt;/p&gt;
+
+&lt;p&gt;Some data catalogs are better than others, but about a quarter of externally stored
+datasets tend to be dead. Thus, when we make more externally stored datasets,
+we should expect more dead datasets.&lt;/p&gt;
+
+&lt;p&gt;Possibly interesting: the catalogs in this plot are ordered the same way they
+are in the &lt;a href="#link-types-and-liveliness-by-catalog"&gt;earlier similar-looking plot&lt;/a&gt;,
+so higher catalogs
+are ones with fewer dead links.&lt;/p&gt;
+
+&lt;h2 id="software-suggests-behavior"&gt;Software suggests behavior&lt;/h2&gt;
+&lt;p&gt;While both softwares support both storage methods, Socrata encourages the
+use of internal storage, and CKAN encourages the use of external storage.
+Let’s walk through how you create a dataset in both CKAN and Socrata through
+their respective web interfaces.&lt;/p&gt;
+
+&lt;h3 id="ckan"&gt;CKAN&lt;/h3&gt;
+&lt;p&gt;In CKAN, this is the screen you get when you are specifying the data file
+for your dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="ckan-1.png" alt="&amp;quot;1. Create dataset&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first screen says nothing about how to enter the data, but the second one does.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="ckan-2.png" alt="&amp;quot;2. Additional Data&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;You enter the URL of a file or an API,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="ckan-3.png" alt="Filling in the &amp;quot;Resource&amp;quot; field with a &amp;quot;Link to an API&amp;quot;" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;or you upload a file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="ckan-4.png" alt="The &amp;quot;File Upload&amp;quot; file picker window" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;After you upload the file, the box gets populated with the URL to which that
+has been uploaded. (This URL is inside the CKAN FileStore.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="ckan-5.png" alt="Filling in the &amp;quot;Resource&amp;quot; field with a &amp;quot;Upload a file&amp;quot;" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first two cases lead to external storage, and
+the third case leads to internal storage.
+CKAN does fancy things depending on whether you say it’s a file or an API
+and depending on the file format you tell it, but that’s separate from the
+issue of internal versus external storage.&lt;/p&gt;
+
+&lt;p&gt;As you might notice above, CKAN subtly encourages you to store things externally.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;There are two options for external storage but just one for internal.&lt;/li&gt;
+  &lt;li&gt;The two tabs for external storage options come before the third tab for
+ internal storage.&lt;/li&gt;
+  &lt;li&gt;In the web interface, internally stored, uploaded files are treated like
+ external links.&lt;/li&gt;
+  &lt;li&gt;One of the external storage options (the “Link to a file” tab) is selected
+ by default when you arrive at the page.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;CKAN is a bit subtle in encouraging external storage, but do keep this in mind.&lt;/p&gt;
+
+&lt;h3 id="socrata"&gt;Socrata&lt;/h3&gt;
+&lt;p&gt;While externally stored data exist on Socrata, I didn’t find any way of creating
+such a dataset with the Socrata website. Here’s what creating a new dataset on 
+Socrata looks like.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-start.png" alt="&amp;quot;How would you like to create your new Dataset?&amp;quot; page, with three options: &amp;quot;Design from Scratch&amp;quot;, &amp;quot;Import a Data File&amp;quot; and &amp;quot;Upload a Non-Data File&amp;quot;" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you choose to “Design from Scratch”, you wind up entering the data through
+the table interface in Socrata; after you click through a few screens, you get
+an editor like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-scratch-2.png" alt="A spreadsheet-like table editor in Socrata Open Data Portal software" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you choose to “Import a Data File”, you see this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-1.png" alt="&amp;quot;Where is the file located&amp;quot; page, with two options: &amp;quot;On my computer&amp;quot; and &amp;quot;On the internet&amp;quot;" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Because I was looking for a place to add externally stored data, I clicked on
+“On the Internet”. I entered a file into this box, and the file got downloaded
+to Socrata.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-2.png" alt="&amp;quot;Please indicate where your data file lives.&amp;quot;, with a text input box containing the URL &amp;quot;http://chainsaw.thomaslevine.com/aurora.csv&amp;quot;" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I got this schema editor,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-3.png" alt="Display of column names and types for the uploaded dataset, with buttons for editing the information" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;and the data got imported to the internal storage.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-5.png" alt="The same spreadsheet-like editor as above, but with the aurora.csv data" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The non-data file approach also leads to internal storage.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="socrata-non-data.png" alt="&amp;quot;Please choose a file to upload&amp;quot; page that looks nearly identical to the &amp;quot;Where is the file located&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I don’t even see any documentation as to how to do this
+&lt;a href="http://dev.socrata.com/publishers/importing"&gt;with the API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Socrata Support did send me an
+&lt;a href="https://twitter.com/SocrataSupport/status/423600872501690368"&gt;answer&lt;/a&gt;,
+but I need to log in to ZenDesk to do that (lolz open data again),
+and I was having trouble doing that.&lt;/p&gt;
+
+&lt;p&gt;So it’s pretty hard to add an externally stored dataset to Socrata.&lt;/p&gt;
+
+&lt;h2 id="internal-storage-encourages-live-links"&gt;Internal storage encourages live links&lt;/h2&gt;
+&lt;p&gt;If your data are stored in CKAN’s FileStore or in Socrata’s
+data storage (rather than as an external link), then it is
+practically impossible for the link to be dead.&lt;/p&gt;
+
+&lt;p&gt;If we want to use fancy design-speak, we can call this a forcing function.
+A forcing function is an aspect in the design of a thing that makes it
+impossible for people to do something that they aren’t supposed to do.
+If we make it impossible for links to be dead, they won’t ever be dead.&lt;/p&gt;
+
+&lt;h2 id="other-ways-of-encouraging-live-links"&gt;Other ways of encouraging live links&lt;/h2&gt;
+&lt;p&gt;Removing the external link feature should reduce the number of dead links
+to zero, and that might be nice. On the other hand, there might be some good
+things about external links, so maybe we can instead come up with some other
+software feature that helps people avoid or fix dead links. For example,
+perhaps there could be a page that lists the dead datasets and counts how
+many times people have tried accessing them.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="https://github.com/okfn/ckanext-qa"&gt;CKAN Quality Assurance Extension&lt;/a&gt;
+does just this; here’s one of its reports.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs"&gt;&lt;img src="ckanext-qa.png" alt="A table of datasets with statistics about how dead they are" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="why-measure-data-catalogs"&gt;Why measure data catalogs&lt;/h2&gt;
+&lt;p&gt;Detecting dead links is one of several things that we can easily do to
+measure the quality of a data catalog. Similarly, we can also measure
+&lt;a href="/!/open-data-licensing"&gt;what licenses are used&lt;/a&gt;,
+&lt;a href="/!/data-updatedness"&gt;how up-to-date the data are&lt;/a&gt;,
+and &lt;a href="/!/socrata-formats"&gt;what data formats the data are in&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When we have lots of datasets on our data catalog, it becomes too much
+for someone to read through all of them. Measures like these help us get
+some idea of what is going on across the data catalog. They also help us
+choose where to focus our attention, so that we may identify good
+practices and diagnose problems.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2014-01-09:/!/nyc-crime-map/index.html</id>
     <title type="html">NYC Crime Map Data API</title>
@@ -1250,43 +1548,6 @@ our equation rather than just a single number.&lt;/p&gt;
 &lt;h2 id="ask-more-questions"&gt;Ask more questions&lt;/h2&gt;
 &lt;p&gt;What else are you wondering about data science?
 Tell me what I should write about next week.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-12-18:/!/get-meta/index.html</id>
-    <title type="html">Get Meta! (Hire me.)</title>
-    <published>2013-12-18T00:00:00Z</published>
-    <updated>2013-12-18T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/get-meta/index.html"/>
-    <content type="html">&lt;p&gt;As you may have realized, I’ve recently been &lt;a href="/open-data"&gt;studying&lt;/a&gt;
-data about &lt;a href="/!/what-is-open-data"&gt;open data&lt;/a&gt;
-so that we can use data to drive our opening of
-data. Because data. Data, data, data!&lt;/p&gt;
-
-&lt;p&gt;I want to keep doing this research all day.&lt;/p&gt;
-
-&lt;h2 id="things-i-can-do-for-you"&gt;Things I can do for you&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;If you work for a data-related software company&lt;/strong&gt;, I can prototype or implement new
-features in your product to help your users find value in open data. This could involve
-&lt;a href="/!/data-updatedness/"&gt;identification of out-of-date data&lt;/a&gt; and
-&lt;a href="/!/openprism/"&gt;new ways of searching for data&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;If you work for an organization that wants to release open data&lt;/strong&gt;
-or share data internally, I can help you do that better.
-By collecting data about your data, I can figure out what’s working
-and what isn’t to help you decide what to do next. For example,
-I can determine
-&lt;a href="/!/missouri-data-licensing/"&gt;what sorts of data you have&lt;/a&gt;,
-&lt;a href="/!/open-data-licensing/"&gt;whether your datasets are licensed properly&lt;/a&gt;, and
-&lt;a href="/!/socrata-users/"&gt;how people are using your data&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;If you are giving grants in relation to open data&lt;/strong&gt;, we should talk.
-I have a &lt;a href="https://github.com/tlevine/open-data-things/tree/master/.plans/proposed"&gt;long list&lt;/a&gt;
-of things that I want to do.&lt;/p&gt;
-
-&lt;h2 id="interested"&gt;Interested?&lt;/h2&gt;
-&lt;p&gt;If you want any of the things above,
-email me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
