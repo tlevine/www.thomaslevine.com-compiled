@@ -15,7 +15,12 @@
     <published>2014-01-16T00:00:00Z</published>
     <updated>2014-01-16T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/data-catalog-dead-links/index.html"/>
-    <content type="html">&lt;p&gt;It goes without saying that websites usually shouldn’t have dead links, but
+    <content type="html">&lt;p&gt;As I started looking at data on &lt;a href="http://ckan.org/"&gt;CKAN&lt;/a&gt; sites, I noticed that a lot of the
+datasets were links to files on other websites and that a lot of these links
+were dead. Then I started wondering how many and which ones.&lt;/p&gt;
+
+&lt;h2 id="why-study-dead-links"&gt;Why study dead links&lt;/h2&gt;
+&lt;p&gt;It goes without saying that websites usually shouldn’t have dead links, but
 here are a bunch of fancy reasons why dead links are bad on open data sites.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -42,10 +47,6 @@ here are a bunch of fancy reasons why dead links are bad on open data sites.&lt;
 &lt;p&gt;That said, if the alternative to having a dead link to a dataset is having no
 link to a dataset, I’d say it’s better to have the dead link so we know that the
 data exist. But live links are better; let’s move on.&lt;/p&gt;
-
-&lt;p&gt;As I started looking at data on &lt;a href="http://ckan.org/"&gt;CKAN&lt;/a&gt; sites, I noticed that a lot of the
-datasets were links to files on other websites and that a lot of these links
-were dead. Then I started wondering how many and which ones.&lt;/p&gt;
 
 &lt;h2 id="acquiring-the-data"&gt;Acquiring the data&lt;/h2&gt;
 &lt;p&gt;I collected data about dead links from CKAN and
@@ -152,7 +153,7 @@ run by Socrata.&lt;/p&gt;
 
 &lt;p&gt;The above plot was for just Socrata; let’s see what happens when we add CKAN.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="figure/prop_links.png" alt="CKAN catalogs have more externally stored datasets and more dead datasets" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src="figure/prop_links.png" alt="CKAN catalogs have more externally stored datasets and more dead datasets" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;CKAN catalogs tend to have more externally stored data. When we add CKAN, the
 association between externally stored data and dead links continues.&lt;/p&gt;
