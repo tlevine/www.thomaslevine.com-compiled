@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Organizing my data about data</title>
+    <meta content="I'm starting to put my data data in one code repository." name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Organizing my data about data' name='twitter:title'>
+    <meta content="I'm starting to put my data data in one code repository." name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/better-datasets-about-open-data/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content="I'm starting to put my data data in one code repository." property='og:description'>
+    <meta content='Organizing my data about data' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>Organizing my data about data</h1>
+              <em>
+                <time datetime='2014-01-27'>
+                  January 27, 2014
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <p>I’ve recently been <a href="/open-data">studying data about open data</a>,
+            and I want to make it easy for other people to use my data data for more
+            data data studies.
+            I previously <a href="/!/my-datasets-about-open-data">documented</a>
+            much of the data data that I’d collected, but that was all a mess,
+            so I’ve been organizing them a bit more nicely. All of the old stuff
+            still applies, but stuff I do in the near future will follow the
+            presently document structure.</p>
+            
+            <h2 id="getting-the-code">Getting the code</h2>
+            <p>I’m trying to put all programs for accessing the data data into a single git
+            repository <a href="https://github.com/tlevine/open-data">hosted on GitHub</a>.
+            Get it like so.</p>
+            
+            <pre><code>git clone git@github.com:tlevine/open-data.git --recursive&#x000A;</code></pre>
+            
+            <p>You need <code>--recursive</code> because
+            there are separate submodules for different data data sources.</p>
+            
+            <h2 id="running-things">Running things</h2>
+            <p>Most of the directions for downloading stuff from other places are written as
+            Python modules and are stored in the root of the repository. I intend for
+            <code>run.py</code> to be the entry point to all of these modules. In some cases,
+            however, I copied a file from another place and didn’t integrate it into this
+            structure.</p>
+            
+            <p>Don’t expect things to be particularly well documented, but you can try to
+            figure out what I did by looking in the Makefile.
+            Most of the make tasks involve importing the <code>run.py</code> file and
+            running one of the functions in it.</p>
+            
+            <h2 id="directory-structure">Directory structure</h2>
+            <p>The root of the repository contains five directories.</p>
+            
+            <pre><code>$ git ls-files|sed -n 's/\/.*//p'|uniq&#x000A;downloads&#x000A;instances.ckan.org&#x000A;opendata.socrata.com&#x000A;reports&#x000A;</code></pre>
+            
+            <p>The <code>instances.ckan.org</code> and <code>opendata.socrata.com</code> directories contain one
+            webpage file each. These files contain lists of data catalogs.</p>
+            
+            <p>The <code>downloads</code> directory contains a few git submodules, and most of the 
+            stuff that gets downloaded winds up in these submodules.</p>
+            
+            <p>The <code>reports</code> directory contains lots of English and R rather than Python.
+            Each report has an R script (named something <code>.r</code>) that renders an Rmarkdown
+            file (named something <code>.Rmd</code>). There are other small files too, but I don’t
+            have a system as to why they go where they do.</p>
+            
+            <p>Some of the scripts produce a <code>./cache</code> directory.</p>
+            
+            <pre><code>$ ls -d */&#x000A;cache/  downloads/  instances.ckan.org/  opendata.socrata.com/  reports/&#x000A;</code></pre>
+            
+            <p>The function of this directory is explained later.</p>
+            
+            <h2 id="loading-cached-data">Loading cached data</h2>
+            <p>On all of the computers that I might run this code on, I store the <code>/tmp</code> 
+            directory on RAM.</p>
+            
+            <pre><code>$ df -h|sed -n -e 1p -e '/\/tmp$/p'&#x000A;Filesystem      Size  Used Avail Use% Mounted on&#x000A;tmpfs           7.8G  1.3G  6.6G  16% /tmp&#x000A;</code></pre>
+            
+            <p>To make things run faster, I use <code>/tmp/open-data.sqlite</code> to store caches that
+            I can lose. Run <code>make to-disk</code> to copy this file to the <code>./cache</code> directory, 
+            and run <code>make from-disk</code> to copy <code>./cache/open-data.sqlite</code> to the <code>/tmp</code> directory.</p>
+            
+            <h2 id="documentation">Documentation</h2>
+            <p>If it’s taking you a while to figure out how something works,
+            <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#095;&#064;&#116;&#104;&#111;&#109;&#097;&#115;&#108;&#101;&#118;&#105;&#110;&#101;&#046;&#099;&#111;&#109;">email me</a>, and I might document it.
+            And if you figure out how something works, do send me any
+            documentation that you happen to come up with, even if it’s a mess.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/better-datasets-about-open-data/index.md">View source</a>
+            
+            <a href="">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

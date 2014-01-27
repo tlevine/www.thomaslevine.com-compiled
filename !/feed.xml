@@ -2,13 +2,100 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2014-01-16T00:00:00Z</updated>
+  <updated>2014-01-27T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-01-27:/!/better-datasets-about-open-data/index.html</id>
+    <title type="html">Organizing my data about data</title>
+    <published>2014-01-27T00:00:00Z</published>
+    <updated>2014-01-27T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/better-datasets-about-open-data/index.html"/>
+    <content type="html">&lt;p&gt;I’ve recently been &lt;a href="/open-data"&gt;studying data about open data&lt;/a&gt;,
+and I want to make it easy for other people to use my data data for more
+data data studies.
+I previously &lt;a href="/!/my-datasets-about-open-data"&gt;documented&lt;/a&gt;
+much of the data data that I’d collected, but that was all a mess,
+so I’ve been organizing them a bit more nicely. All of the old stuff
+still applies, but stuff I do in the near future will follow the
+presently document structure.&lt;/p&gt;
+
+&lt;h2 id="getting-the-code"&gt;Getting the code&lt;/h2&gt;
+&lt;p&gt;I’m trying to put all programs for accessing the data data into a single git
+repository &lt;a href="https://github.com/tlevine/open-data"&gt;hosted on GitHub&lt;/a&gt;.
+Get it like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:tlevine/open-data.git --recursive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You need &lt;code&gt;--recursive&lt;/code&gt; because
+there are separate submodules for different data data sources.&lt;/p&gt;
+
+&lt;h2 id="running-things"&gt;Running things&lt;/h2&gt;
+&lt;p&gt;Most of the directions for downloading stuff from other places are written as
+Python modules and are stored in the root of the repository. I intend for
+&lt;code&gt;run.py&lt;/code&gt; to be the entry point to all of these modules. In some cases,
+however, I copied a file from another place and didn’t integrate it into this
+structure.&lt;/p&gt;
+
+&lt;p&gt;Don’t expect things to be particularly well documented, but you can try to
+figure out what I did by looking in the Makefile.
+Most of the make tasks involve importing the &lt;code&gt;run.py&lt;/code&gt; file and
+running one of the functions in it.&lt;/p&gt;
+
+&lt;h2 id="directory-structure"&gt;Directory structure&lt;/h2&gt;
+&lt;p&gt;The root of the repository contains five directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git ls-files|sed -n 's/\/.*//p'|uniq
+downloads
+instances.ckan.org
+opendata.socrata.com
+reports
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;instances.ckan.org&lt;/code&gt; and &lt;code&gt;opendata.socrata.com&lt;/code&gt; directories contain one
+webpage file each. These files contain lists of data catalogs.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;downloads&lt;/code&gt; directory contains a few git submodules, and most of the 
+stuff that gets downloaded winds up in these submodules.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;reports&lt;/code&gt; directory contains lots of English and R rather than Python.
+Each report has an R script (named something &lt;code&gt;.r&lt;/code&gt;) that renders an Rmarkdown
+file (named something &lt;code&gt;.Rmd&lt;/code&gt;). There are other small files too, but I don’t
+have a system as to why they go where they do.&lt;/p&gt;
+
+&lt;p&gt;Some of the scripts produce a &lt;code&gt;./cache&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ls -d */
+cache/  downloads/  instances.ckan.org/  opendata.socrata.com/  reports/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function of this directory is explained later.&lt;/p&gt;
+
+&lt;h2 id="loading-cached-data"&gt;Loading cached data&lt;/h2&gt;
+&lt;p&gt;On all of the computers that I might run this code on, I store the &lt;code&gt;/tmp&lt;/code&gt; 
+directory on RAM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ df -h|sed -n -e 1p -e '/\/tmp$/p'
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           7.8G  1.3G  6.6G  16% /tmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make things run faster, I use &lt;code&gt;/tmp/open-data.sqlite&lt;/code&gt; to store caches that
+I can lose. Run &lt;code&gt;make to-disk&lt;/code&gt; to copy this file to the &lt;code&gt;./cache&lt;/code&gt; directory, 
+and run &lt;code&gt;make from-disk&lt;/code&gt; to copy &lt;code&gt;./cache/open-data.sqlite&lt;/code&gt; to the &lt;code&gt;/tmp&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;h2 id="documentation"&gt;Documentation&lt;/h2&gt;
+&lt;p&gt;If it’s taking you a while to figure out how something works,
+&lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;email me&lt;/a&gt;, and I might document it.
+And if you figure out how something works, do send me any
+documentation that you happen to come up with, even if it’s a mess.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2014-01-16:/!/data-catalog-dead-links/index.html</id>
     <title type="html">Dead links on data catalogs</title>
@@ -1365,190 +1452,6 @@ probably buy a new one, maybe they also come up with interesting
 ways of reducing the number of datasets that they have.
 I’d need rather reliable knowledge about each client’s plan in order
 to do this.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2013-12-22:/!/variables/index.html</id>
-    <title type="html">Two meanings of "variable"</title>
-    <published>2013-12-22T00:00:00Z</published>
-    <updated>2013-12-22T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/variables/index.html"/>
-    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
-
-&lt;h3 id="variable-in-an-equation"&gt;Variable in an equation&lt;/h3&gt;
-&lt;p&gt;If you ever took an algebra class, you’ll think that
-&lt;em&gt;x&lt;/em&gt; in the following equation is a variable.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;12 = x + 7&lt;/script&gt;
-
-&lt;h3 id="variable-in-a-data-table"&gt;Variable in a data table&lt;/h3&gt;
-&lt;p&gt;As I’ve &lt;a href="/!/table-words"&gt;explained prevously&lt;/a&gt;, when I say “variable”,
-I’m usually talking about a column in a data table. That is, “variable”
-is a synonym for “column”.&lt;/p&gt;
-
-&lt;p&gt;This meaning of the word “variable” can be confusing if you were taught
-a different meaning of “variable” in school. You might find it strange that
-we use the word “variable” in two seemingly different ways. In fact,
-I usually think of these as different meanings of the word “variable”.&lt;/p&gt;
-
-&lt;h3 id="relatedness"&gt;Relatedness&lt;/h3&gt;
-&lt;p&gt;It turns out that these two senses of “variable” are quite related.
-In the current blog post, I hope to explain why we use the same word to
-describe two concepts that seem sort of different.&lt;/p&gt;
-
-&lt;h2 id="fitting-models"&gt;Fitting models&lt;/h2&gt;
-&lt;p&gt;Once we have created a data table, we might decide to make a fancy equation that
-explains how some values in the table are related to each other. We might call
-this a &lt;em&gt;fitted model&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s part of a data table about the wealth and health of nations.
-(You may have &lt;a href="/!/table-words#rows-and-columns"&gt;seen this before&lt;/a&gt;.)&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Year&lt;/th&gt;
-      &lt;th&gt;Country&lt;/th&gt;
-      &lt;th&gt;Life expectancy (years)&lt;/th&gt;
-      &lt;th&gt;Income Per Person&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2012&lt;/td&gt;
-      &lt;td&gt;United States&lt;/td&gt;
-      &lt;td&gt;79&lt;/td&gt;
-      &lt;td&gt;$41,678&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2012&lt;/td&gt;
-      &lt;td&gt;Ukraine&lt;/td&gt;
-      &lt;td&gt;68&lt;/td&gt;
-      &lt;td&gt;$6,390&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2012&lt;/td&gt;
-      &lt;td&gt;Ethiopia&lt;/td&gt;
-      &lt;td&gt;63&lt;/td&gt;
-      &lt;td&gt;$959&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;What we’re calling “income per person” is technically gross-domestic product per
-capita, adjusted for purchasing power parity and inflation. But don’t worry about
-that if it sounds like Greek.&lt;/p&gt;
-
-&lt;p&gt;Here’s a fancy &lt;a href="http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2012$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=283;dataMax=110808$map_y;scale=lin;dataMin=18;dataMax=87$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75"&gt;graph&lt;/a&gt;
-of the data.&lt;/p&gt;
-
-&lt;p&gt;And here’s an equation that describes those data.&lt;/p&gt;
-
-&lt;!-- 
-lm(formula = c(79, 68, 63) ~ log(c(41678, 6390, 959)))
-lm(formula = c(79, 68, 63) ~ log10(c(41678, 6390, 959)))
---&gt;
-
-&lt;script type="math/tex; mode=display"&gt;Predicted\; life\; expectancy = 32 + 4.239 \times log\left(Income\; per\; person\right)&lt;/script&gt;
-
-&lt;p&gt;In this equation, life expectency and income per person
-just numbers that we take from one row of the table.
-To make that look more like what you might be used to, let’s
-rewrite it like this.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y = 32 + 4.239 \times log\left(x\right)&lt;/script&gt;
-
-&lt;p&gt;By distilling this relationship to a simple equation, we can express complex
-information as a simple summary of it is small enough to fit in our brains.&lt;/p&gt;
-
-&lt;h3 id="making-predictions"&gt;Making predictions&lt;/h3&gt;
-&lt;p&gt;There are lots of ways we can use this equation (the fitted model).
-Right now, we’re just going to talk about using the equation to make
-predictions.&lt;/p&gt;
-
-&lt;p&gt;Typically we write the equation such that the left side is the thing
-we are predicting and the right side is the stuff we know. This is
-how I’ve been writing it so far, so we are predicting life expectency
-(&lt;em&gt;y&lt;/em&gt;) based on income per person (&lt;em&gt;x&lt;/em&gt;). Let’s say that we have measured
-the income per person of another country but don’t know the life
-expectency. We can use our equation to predict it! Here’s a new row&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Year&lt;/th&gt;
-      &lt;th&gt;Country&lt;/th&gt;
-      &lt;th&gt;Life expectancy (years)&lt;/th&gt;
-      &lt;th&gt;Income Per Person&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2012&lt;/td&gt;
-      &lt;td&gt;China&lt;/td&gt;
-      &lt;td&gt;&lt;!-- 75 --&gt; unknown&lt;/td&gt;
-      &lt;td&gt;$9,502&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;We know China’s income per person &lt;em&gt;x&lt;/em&gt;, so let’s plug that into our
-equation to predict China’s life expectency.&lt;/p&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y = 32 + 4.239 \times log\left(9502\right)&lt;/script&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y = 32 + 4.239 \times 9.159258&lt;/script&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y = 32 + 38.82609&lt;/script&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y = 70.82609&lt;/script&gt;
-
-&lt;script type="math/tex; mode=display"&gt;y \approx 71 &lt;/script&gt;
-
-&lt;p&gt;We thus predict China’s life expectency to be 71 years.
-The actual value is 75, so that’s pretty close.&lt;/p&gt;
-
-&lt;p&gt;Let’s get back to why these two senses of variable are the same
-thing. Our fitted model is an equation with two variables, income per
-person and life expectency. Each of these variables corresponds
-to a column in our data table.&lt;/p&gt;
-
-&lt;p&gt;In the first data table I presented, we knew the values of all
-of the cells. That is, we knew the income per person and life
-expectancy for each of the three countries.&lt;/p&gt;
-
-&lt;p&gt;In the second table, we didn’t only knew the value for one of
-the two variables (income per person). In order to predict the value
-for the other variable (life expectency), we plugged in the
-variable that we did know into our equation, and we solved
-it for the variable that we didn’t know.&lt;/p&gt;
-
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;The word “variable” sort of has two senses, and it can be confusing
-to listen to data scientists when you don’t realize this.&lt;/p&gt;
-
-&lt;p&gt;If you’ve taken an algebra class, you probably think of a variable as
-a letter in an equation.&lt;/p&gt;
-
-&lt;p&gt;When data scientists talk about variables, that &lt;em&gt;might&lt;/em&gt; be what they mean.
-But they might also be talking about columns in data tables.&lt;/p&gt;
-
-&lt;p&gt;These two meanings of the word “variable” arise because of we model
-data. We come up with equations to describe the relationships within the dataset,
-so a variable in the column sense is sort of like a lot of variables in the
-letter-in-an-equation sense. Once we have our fitted model (equation), we can
-plug in variables for some of the variables in order to predict other
-variables.&lt;/p&gt;
-
-&lt;p&gt;We’ll often solve the same equation as many times as we have rows in our
-table, so it’s sort of like we’re plugging a whole column of numbers into
-our equation rather than just a single number.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="variables.jpg" alt="Explanatory picture could go here." class="wide" /&gt;&lt;/p&gt;
-
-&lt;h2 id="ask-more-questions"&gt;Ask more questions&lt;/h2&gt;
-&lt;p&gt;What else are you wondering about data science?
-Tell me what I should write about next week.&lt;/p&gt;
 </content>
   </entry>
 </feed>
