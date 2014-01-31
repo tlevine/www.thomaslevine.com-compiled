@@ -25,7 +25,7 @@ You may have read about it in.
 &lt;a href="http://www.forbes.com/sites/bethsimonenoveck/2014/01/08/from-faith-based-to-evidence-based-the-open-data-500-and-understanding-how-open-data-helps-the-american-economy/"&gt;Forbes&lt;/a&gt;,
 &lt;a href="http://www.informationweek.com/government/open-government/open-government-data-companies-cash-in/d/d-id/1113143"&gt;Information Week&lt;/a&gt;, or
 &lt;a href="http://fedscoop.com/open-data-500-intersection-open-data-economy/"&gt;Fedscoop&lt;/a&gt;
-This is &lt;a href="/open-data"&gt;data about open data&lt;/a&gt;, so I naturally wanted it.&lt;/p&gt;
+This is &lt;a href="/open-data"&gt;data about open data&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;The Open Data 500 Team doesn’t provide a data dictionary, so I pieced one
 together for my own purposes. And I figured somebody else might want it for
@@ -37,6 +37,9 @@ her own purposes, so here it is. The present article discusses&lt;/p&gt;
   &lt;li&gt;Clarification of some possible points of confusion&lt;/li&gt;
   &lt;li&gt;Recommendations as to how to work with the data&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;This article has more detail than most people will want, so
+&lt;a href="#key-points-and-recommendations"&gt;jump to the summary&lt;/a&gt; if you like.&lt;/p&gt;
 
 &lt;h2 id="data-collection-methods"&gt;Data collection methods&lt;/h2&gt;
 &lt;p&gt;The Open Data 500 looks a bit scary and complicated when you read its website
@@ -74,7 +77,7 @@ understood the questionnaire properly.&lt;/p&gt;
 &lt;p&gt;The Open Data 500 uses a sampling strategy that they term “comprehensive call”.
 That sounds really complicated, but it’s actually quite simple.&lt;/p&gt;
 
-&lt;p&gt;The questionnaire results can be considered a convenience sample
+&lt;p&gt;The questionnaire results can be considered a 
 &lt;a href="http://en.wikipedia.org/wiki/Accidental_sampling"&gt;convenience sample&lt;/a&gt;
 of companies that meet the Open Data 500 eligibility criteria.&lt;/p&gt;
 
@@ -123,17 +126,13 @@ of companies that meet the Open Data 500 eligibility criteria; there is not
 a control group of companies that do not meet the criteria.&lt;/p&gt;
 
 &lt;h2 id="just-a-questionnaire"&gt;Just a questionnaire&lt;/h2&gt;
-&lt;p&gt;This is the main thing that confused me about the study, so I’m going to
-explain this part in a bit more depth in case anyone else was also confused.&lt;/p&gt;
-
 &lt;p&gt;Aside from the undocumented data collection, which produces only coarse information,
 the data collection for the Open Data 500 is just the questionnaire.
-&lt;strong&gt;Really&lt;/strong&gt;.
-For example, the Team isn’t looking at companies products to see which open data
+&lt;strong&gt;Really&lt;/strong&gt;. (This is the main thing that confused me.)&lt;/p&gt;
+
+&lt;p&gt;For example, the Team isn’t looking at companies products to see which open data
 are used, and it isn’t looking at annual reports to determine whether the
-company does a lot of business in the United States. This is confusing because
-the data releases do not look like the questionnaire, but I’m pretty sure that
-the data come rather directly from the questionnaire.&lt;/p&gt;
+company does a lot of business in the United States.&lt;/p&gt;
 
 &lt;h2 id="sample-size"&gt;Sample size&lt;/h2&gt;
 &lt;p&gt;It is unclear to me how many companies responded to the questionnaire, but I
@@ -1127,7 +1126,7 @@ Team does!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The different data files present conflicting versions of the data&lt;/strong&gt;,
 and I haven’t figured out how to resolve this.
 The different data files do largely agree with each other,
-so they should be okay for prototyping your analyses, but you should contact the
+so any one should be okay for prototyping your analyses, but you should contact the
 Open Data 500 Team for clarification if this starts to matter.&lt;/p&gt;
 </content>
   </entry>
