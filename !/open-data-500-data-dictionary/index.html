@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>A data dictionary of the Open Data 500 data</title>
+    <meta content='I like writing documentation' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='A data dictionary of the Open Data 500 data' name='twitter:title'>
+    <meta content='I like writing documentation' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/open-data-500-data-dictionary/figure/preview_v_candidates.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/open-data-500-data-dictionary/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='I like writing documentation' property='og:description'>
+    <meta content='A data dictionary of the Open Data 500 data' property='og:title'>
+    <meta content='http://thomaslevine.com/!/open-data-500-data-dictionary/figure/preview_v_candidates.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>A data dictionary of the Open Data 500 data</h1>
+              <em>
+                <time datetime='2014-01-31'>
+                  January 31, 2014
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <style>
+            tr { text-align: left; }
+            </style>
+            
+            <p>The <a href="http://www.opendata500.com/download/">Open Data 500</a> is
+            “the first comprehensive study of U.S. companies using open government data to develop new products and services.”
+            You may have read about it in.
+            <a href="http://www.forbes.com/sites/bethsimonenoveck/2014/01/08/from-faith-based-to-evidence-based-the-open-data-500-and-understanding-how-open-data-helps-the-american-economy/">Forbes</a>,
+            <a href="http://www.informationweek.com/government/open-government/open-government-data-companies-cash-in/d/d-id/1113143">Information Week</a>, or
+            <a href="http://fedscoop.com/open-data-500-intersection-open-data-economy/">Fedscoop</a>
+            This is <a href="/open-data">data about open data</a>, so I naturally wanted it.</p>
+            
+            <p>The Open Data 500 Team doesn’t provide a data dictionary, so I pieced one
+            together for my own purposes. And I figured somebody else might want it for
+            her own purposes, so here it is. The present article discusses</p>
+            
+            <ul>
+              <li>What the Open Data 500 is, in terms of research methods</li>
+              <li>How the released data files are structured</li>
+              <li>Clarification of some possible points of confusion</li>
+              <li>Recommendations as to how to work with the data</li>
+            </ul>
+            
+            <h2 id="data-collection-methods">Data collection methods</h2>
+            <p>The Open Data 500 looks a bit scary and complicated when you read its website
+            and the articles about it, but the Open Data 500 is pretty much just a
+            straightforward questionnaire survey.</p>
+            
+            <h3 id="the-population-of-interest">The population of interest</h3>
+            <p>The Open Data 500 Team is interested in companies that meet their
+            <a href="http://www.opendata500.com/about/#about-eligibility">eligibility criteria</a>,
+            which they describe as follows.</p>
+            
+            <ol>
+              <li>Be U.S.-based – which can include international companies with a major presence in the U.S.</li>
+              <li>Earn revenue from its products and services. In addition to for-profit companies, nonprofits may qualify if they support themselves primarily through sales of products and services rather than philanthropy.</li>
+              <li>Use open government data as a critical resource for its business. (While most Open Data 500 companies will work with federal data, the study will also include some that use city or state data if their work can scale regionally or nationally)</li>
+            </ol>
+            
+            <p>The Open Data 500 site does not explain how they operationalize these criteria,
+            but I presume that it works as follows.</p>
+            
+            <ol>
+              <li>The questionnaire must indicate that a company has a major presence in the U.S.</li>
+              <li>The answer to “Which of the following are significant sources of revenue for your company?”
+              must include something other than “Philanthropy”.</li>
+              <li>The answer to “Which of the following are critical sources of data for your company?”
+              must include “Federal Open Data”, the questionnaire must indicate elsewhere that
+              the company is using state or city data from a range of states or cities.</li>
+            </ol>
+            
+            <p>They are “<a href="http://www.opendata500.com/about/#about-vetted">vetting</a>” companies,
+            but this sounds like just a conversation with the submitters to check that they
+            understood the questionnaire properly.</p>
+            
+            <h3 id="comprehensive-call-sampling-strategy">Comprehensive call sampling strategy</h3>
+            <p>The Open Data 500 uses a sampling strategy that they term “comprehensive call”.
+            That sounds really complicated, but it’s actually quite simple.</p>
+            
+            <p>The questionnaire results can be considered a convenience sample
+            <a href="http://en.wikipedia.org/wiki/Accidental_sampling">convenience sample</a>
+            of companies that meet the Open Data 500 eligibility criteria.</p>
+            
+            <p>The Open Data 500 Team distributed links to the questionnaire in
+            <a href="http://www.opendata500.com/about/#about-identify">these places</a>.</p>
+            
+            <blockquote>
+              <ul>
+                <li>Recommendations from government and non-governmental organizations studying this field.</li>
+                <li>List of companies using datasets from Data.gov, the federal hub for government data</li>
+                <li>Online Open Data Userbase created by Socrata</li>
+                <li>Directory of open data companies developed by Deloitte</li>
+                <li>Mass email to 3100 people in the GovLab network</li>
+                <li>Mass email to 2200 people on contact list for OpenDataNow.com, website of Open Data 500 project director Joel Gurin</li>
+                <li>Companies identified in research for upcoming book, Open Data Now</li>
+                <li>Response to coverage of the Open Data 500 in Information Week and FedScoop</li>
+                <li>Outreach through Twitter</li>
+                <li>Outreach at “Data Transparency 2013” conference (September 2013, Washington, DC)</li>
+                <li>Blog posts on TheGovLab.org and OpenDataNow.com</li>
+              </ul>
+            </blockquote>
+            
+            <p>That’s all that “comprehensive call” means!</p>
+            
+            <p>I think their use of comprehensive call is why the Open Data 500 Team considers
+            the Open Data 500 to be a comprehensive study.</p>
+            
+            <h3 id="undocumented-data-collection">Undocumented data collection</h3>
+            <p>Open Data 500 Team solicited responses to
+            <a href="http://www.opendata500.com/submitCompany/">this questionnaire</a> through
+            <a href="#comprehensive-call-sampling-strategy">comprehensive call</a>,
+             but they also looked for companies
+            that did not respond to the questionnaire.</p>
+            
+            <p>I couldn’t find any documentation about the process they went through for
+            collecting data without the questionnaire. After talking to one of the Team
+            members, I think that the Team collected data about these companies without
+            talking directly to anyone who works there, but I do not know how they chose
+            the companies nor how they collected the data.</p>
+            
+            <h3 id="case-study">Case study</h3>
+            <p>In both the questionnaire section of the study and in the undocumented data
+            collection, only companies that meet the eligibility criteria are considered.
+            Thus, the Open Data 500 is a <a href="http://en.wikipedia.org/wiki/Case_study">case study</a>
+            of companies that meet the Open Data 500 eligibility criteria; there is not
+            a control group of companies that do not meet the criteria.</p>
+            
+            <h2 id="just-a-questionnaire">Just a questionnaire</h2>
+            <p>This is the main thing that confused me about the study, so I’m going to
+            explain this part in a bit more depth in case anyone else was also confused.</p>
+            
+            <p>Aside from the undocumented data collection, which produces only coarse information,
+            the data collection for the Open Data 500 is just the questionnaire.
+            <strong>Really</strong>.
+            For example, the Team isn’t looking at companies products to see which open data
+            are used, and it isn’t looking at annual reports to determine whether the
+            company does a lot of business in the United States. This is confusing because
+            the data releases do not look like the questionnaire, but I’m pretty sure that
+            the data come rather directly from the questionnaire.</p>
+            
+            <h2 id="sample-size">Sample size</h2>
+            <p>It is unclear to me how many companies responded to the questionnaire, but I
+            think it is either 51 companies or
+            100 companies.
+            I explain this more in the
+            <a href="#which-companies-are-in-the-preview?">Which companies are in the preview?</a>
+            section.</p>
+            
+            <h2 id="pre-launch">Pre-launch</h2>
+            <p>According to the “<a href="http://www.opendata500.com/about">About</a>” page on the
+            Open Data 500 site, the Open Data 500 “will identify, describe, and analyze
+            companies that use open government data in their businesses.”</p>
+            
+            <p>As I understand it, the analysis component of this has yet to occur.
+            At the moment, the Open Data 500 is in “pre-launch”. This means that they have
+            begun to collect data but that they haven’t done any sort of analysis on it.
+            (This part isn’t explained on the website, but a member of the Open Data 500
+            Team explained this to me in person.)</p>
+            
+            <h2 id="data-files">Data files</h2>
+            <p>The Open Data 500 Team has released six main data files.</p>
+            
+            <ul>
+              <li><a href="http://www.opendata500.com/download/Preview50_Companies.csv"><code>Preview50_Companies.csv</code></a></li>
+              <li><a href="http://www.opendata500.com/download/500_Companies.csv"><code>500_Companies.csv</code></a></li>
+              <li><a href="http://www.opendata500.com/download/OD500_Companies.json"><code>OD500_Companies.json</code></a></li>
+              <li><a href="http://www.opendata500.com/download/OD500_Datasets.json"><code>OD500_Datasets.json</code></a></li>
+              <li><a href="http://www.opendata500.com/preview/"><code>preview</code></a> (HTML)</li>
+              <li><a href="http://www.opendata500.com/candidates/"><code>candidates</code></a> (HTML)</li>
+            </ul>
+            
+            <p>There are also individual pages about each company, but I’m pretty sure that
+            the only extra information on those is comments submitted through the comment
+            forms.</p>
+            
+            <h3 id="preview50companiescsv">Preview50_Companies.csv</h3>
+            <p><a href="http://www.opendata500.com/download/Preview50_Companies.csv"><code>Preview50_Companies.csv</code></a>
+            is a denormalized CSV file with
+            25 columns and 102 rows.
+            Each row corresponds to a dataset within a company, and
+            each column corresponds to a question from the
+            <a href="http://www.opendata500.com/submitCompany/">questionnaire</a>.
+            51 different companies are
+            represented in this dataset.</p>
+            
+            <p>The column names in this file correspond quite closely to the name
+            attributes in the HTML form source code for the questionnaire.</p>
+            
+            <p>These columns describe the companies, and they are identical across different
+            rows about the same company. </p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code in the file</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>CompanyName</code></td>
+                  <td>Name of your company</td>
+                </tr>
+                <tr>
+                  <td><code>URL</code></td>
+                  <td>Company URL</td>
+                </tr>
+                <tr>
+                  <td><code>city</code></td>
+                  <td>In which city is this company located?</td>
+                </tr>
+                <tr>
+                  <td><code>STATE</code></td>
+                  <td>State [1]</td>
+                </tr>
+                <tr>
+                  <td><code>abbrev</code></td>
+                  <td>State [1]</td>
+                </tr>
+                <tr>
+                  <td><code>zipCode</code></td>
+                  <td>Zip Code</td>
+                </tr>
+                <tr>
+                  <td><code>ceoFirstName</code></td>
+                  <td>First Name of CEO</td>
+                </tr>
+                <tr>
+                  <td><code>ceoLastName</code></td>
+                  <td>Last Name of CEO</td>
+                </tr>
+                <tr>
+                  <td><code>companyPreviousName</code></td>
+                  <td>???</td>
+                </tr>
+                <tr>
+                  <td><code>yearFounded</code></td>
+                  <td>Founding Year</td>
+                </tr>
+                <tr>
+                  <td><code>FTE</code></td>
+                  <td>Number of FTE’s [2]</td>
+                </tr>
+                <tr>
+                  <td><code>companyType</code></td>
+                  <td>Type of Company (Data management and analysis, Nonprofit, Private, Public) [3]</td>
+                </tr>
+                <tr>
+                  <td><code>companyCategory</code></td>
+                  <td>What category best describes your company? (Business &amp; Legal Services, Data/Technology, Education, Energy, Environment &amp; Weather, Finance &amp; Investment, Food &amp; Agriculture, Geospatial/Mapping, Governance, Healthcare, Housing/Real Estate, Lifestyle &amp; Consumer, Scientific Research) [1]</td>
+                </tr>
+                <tr>
+                  <td><code>companyFunction</code></td>
+                  <td>Which best describes the function of your company? (many different levels) [3]</td>
+                </tr>
+                <tr>
+                  <td><code>sectors</code></td>
+                  <td>What category best describes your company? (many different levels) [1,3]</td>
+                </tr>
+                <tr>
+                  <td><code>revenueSource</code></td>
+                  <td>Which of the following are significant sources of revenue for your company? [4]</td>
+                </tr>
+                <tr>
+                  <td><code>descriptionLong</code></td>
+                  <td>Please give us a short public statement describing your company’s mission and work. You can take this material from your website or other publications if you choose to.</td>
+                </tr>
+                <tr>
+                  <td><code>descriptionShort</code></td>
+                  <td>As a summary, please provide a one sentence description of your company.</td>
+                </tr>
+                <tr>
+                  <td><code>socialImpact</code></td>
+                  <td>Besides revenue generation, how do you measure the impact your company has for society and the public good?</td>
+                </tr>
+                <tr>
+                  <td><code>financialInfo</code></td>
+                  <td>Please include any financial or operational information that will help us understand your company. We are interested in specific information like past and projected annual revenues, total outside investment dollars to date, and significant investors or partners.</td>
+                </tr>
+                <tr>
+                  <td><code>criticalDataTypes</code></td>
+                  <td>Which of the following are critical sources of data for your company? By “critical,” we mean that your company would have to shut down a line of business, shut down completely, or replace the data in some way if the data were no longer available.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>It does not include the following questions from that first page of the questionnaire.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code from the web form</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>firstName</code></td>
+                  <td>First Name [5]</td>
+                </tr>
+                <tr>
+                  <td><code>lastName</code></td>
+                  <td>Last Name</td>
+                </tr>
+                <tr>
+                  <td><code>title</code></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><code>email</code></td>
+                  <td>Email</td>
+                </tr>
+                <tr>
+                  <td><code>phone</code></td>
+                  <td>Phone</td>
+                </tr>
+                <tr>
+                  <td><code>contacted</code></td>
+                  <td>Please check here if you would be willing to be contacted for further information about your company.</td>
+                </tr>
+                <tr>
+                  <td><code>datasetWishList</code></td>
+                  <td>What datasets (if any) are not currently available that would be useful for your company to have as government open data?</td>
+                </tr>
+                <tr>
+                  <td><code>companyRec</code></td>
+                  <td>What other companies, either in your sector or other sectors, would you recommend we contact regarding their use of government open data?</td>
+                </tr>
+                <tr>
+                  <td><code>conferenceRec</code></td>
+                  <td>What conferences or events do you think would be helpful to us in surveying the field of open data companies?</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>The following columns come from the
+            <a href="http://www.opendata500.com/addData/52eb5431def7fa00029abc8f/">“New Dataset”</a>
+            page of the questionnaire.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code in the file</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>datasetName</code></td>
+                  <td>Name of Dataset</td>
+                </tr>
+                <tr>
+                  <td><code>datasetURL</code></td>
+                  <td>URL of Dataset</td>
+                </tr>
+                <tr>
+                  <td><code>agencyOrDatasetSource</code></td>
+                  <td>Agency or Source</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>The file does not include the following columns from the “New Dataset” page.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code from the web form</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>typeOfDataset</code></td>
+                  <td>Type of Dataset (Federal Open Data, State Open Data, City/Local Open Data, Other)</td>
+                </tr>
+                <tr>
+                  <td><code>rating</code></td>
+                  <td>On a scale of 1 to 4, how would you rate the usefulness of this dataset? (1- poor, 4- excellent) Your answer can reflect your experience with data quality, format of the data, or other factors.</td>
+                </tr>
+                <tr>
+                  <td><code>reason</code></td>
+                  <td>Why did you give it this rating?</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>Finally, there is also a <code>DATASETS</code> column, which is the number of datasets
+            submitted for the particular the company.</p>
+            
+            <p>You can think of this file as a CSV version of <code>OD500_Companies.json</code>.</p>
+            
+            <!-- all(unique(sort(preview.csv$CompanyName)) == sort(sapply(candidates.json, function(x){x$companyName}))) -->
+            
+            <p>Notes:</p>
+            
+            <ol>
+              <li>In some cases, answers to one question are presented redundantly across
+             multiple columns.</li>
+              <li>“FTE” probably stands for “full-time equivalent employees”.</li>
+              <li>The questionnaire has different categories from the levels reported in
+             this file.</li>
+              <li>This cell contains a comma-and-space (<code>, </code>) delimited list of items,
+             and I haven’t picked apart the lists to find all of the possible values
+             in the list.</li>
+              <li>This is from the “Personal Information” section, which presumably
+             describes the person who is filling out the questionnaire.</li>
+            </ol>
+            
+            <h3 id="companiescsv">500_Companies.csv</h3>
+            <p><a href="http://www.opendata500.com/download/500_Companies.csv"><code>500_Companies.csv</code></a>
+            is a CSV file with
+            7 columns and 503 rows.
+            Each row corresponds to a unique company, and
+            each column corresponds to a question from the
+            <a href="http://www.opendata500.com/submitCompany/">questionnaire</a>.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code in the file</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>CompanyName</code></td>
+                  <td>Name of your company</td>
+                </tr>
+                <tr>
+                  <td><code>URL</code></td>
+                  <td>Company URL</td>
+                </tr>
+                <tr>
+                  <td><code>city</code></td>
+                  <td>In which city is this company located?</td>
+                </tr>
+                <tr>
+                  <td><code>STATE</code></td>
+                  <td>State</td>
+                </tr>
+                <tr>
+                  <td><code>abbrev</code></td>
+                  <td>State</td>
+                </tr>
+                <tr>
+                  <td><code>zipCode</code></td>
+                  <td>Zip Code</td>
+                </tr>
+                <tr>
+                  <td><code>companyCategory</code></td>
+                  <td>What category best describes your company? (Business &amp; Legal Services, Data/Technology, Education, Energy, Environment &amp; Weather, Finance &amp; Investment, Food &amp; Agriculture, Geospatial/Mapping, Governance, Healthcare, Housing/Real Estate, Lifestyle &amp; Consumer, Scientific Research)</td>
+                </tr>
+                <tr>
+                  <td><code>descriptionShort</code></td>
+                  <td>As a summary, please provide a one sentence description of your company.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>This file provides no data about datasets used by the companies.</p>
+            
+            <p>Recall that the study includes both questionnaire data and data collected
+            by undocumented means. This file contains data collected by both methods.</p>
+            
+            <h3 id="od500companiesjson">OD500_Companies.json</h3>
+            <p><a href="http://www.opendata500.com/download/OD500_Companies.json"><code>OD500_Companies.json</code></a>
+            is a JSON file with an array of associative arrays (that is, a list of mappings).
+            It has 51 rows (associative ararys) and 
+            22 columns (items per associative array).
+            Each row corresponds to a unique company,
+            and each column corresponds to a questionnaire question.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code in the file</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>companyName</code></td>
+                  <td>Name of your company</td>
+                </tr>
+                <tr>
+                  <td><code>url</code></td>
+                  <td>Company URL</td>
+                </tr>
+                <tr>
+                  <td><code>city</code></td>
+                  <td>In which city is this company located?</td>
+                </tr>
+                <tr>
+                  <td><code>state</code></td>
+                  <td>State [1]</td>
+                </tr>
+                <tr>
+                  <td><code>zipCode</code></td>
+                  <td>Zip Code</td>
+                </tr>
+                <tr>
+                  <td><code>ceoFirstName</code></td>
+                  <td>First Name of CEO</td>
+                </tr>
+                <tr>
+                  <td><code>ceoLastName</code></td>
+                  <td>Last Name of CEO</td>
+                </tr>
+                <tr>
+                  <td><code>previousName</code></td>
+                  <td>???</td>
+                </tr>
+                <tr>
+                  <td><code>yearFounded</code></td>
+                  <td>Founding Year</td>
+                </tr>
+                <tr>
+                  <td><code>fte</code></td>
+                  <td>Number of FTE’s [2]</td>
+                </tr>
+                <tr>
+                  <td><code>companyType</code></td>
+                  <td>Type of Company (Data management and analysis, Nonprofit, Private, Public) [3]</td>
+                </tr>
+                <tr>
+                  <td><code>companyCategory</code></td>
+                  <td>What category best describes your company? (Business &amp; Legal Services, Data/Technology, Education, Energy, Environment &amp; Weather, Finance &amp; Investment, Food &amp; Agriculture, Geospatial/Mapping, Governance, Healthcare, Housing/Real Estate, Lifestyle &amp; Consumer, Scientific Research) [1]</td>
+                </tr>
+                <tr>
+                  <td><code>companyFunction</code></td>
+                  <td>Which best describes the function of your company? (many different levels) [3]</td>
+                </tr>
+                <tr>
+                  <td><code>sector</code></td>
+                  <td>What category best describes your company? (many different levels) [1,3]</td>
+                </tr>
+                <tr>
+                  <td><code>revenueSource</code></td>
+                  <td>Which of the following are significant sources of revenue for your company?</td>
+                </tr>
+                <tr>
+                  <td><code>descriptionLong</code></td>
+                  <td>Please give us a short public statement describing your company’s mission and work. You can take this material from your website or other publications if you choose to.</td>
+                </tr>
+                <tr>
+                  <td><code>descriptionShort</code></td>
+                  <td>As a summary, please provide a one sentence description of your company.</td>
+                </tr>
+                <tr>
+                  <td><code>socialImpact</code></td>
+                  <td>Besides revenue generation, how do you measure the impact your company has for society and the public good?</td>
+                </tr>
+                <tr>
+                  <td><code>soccialInfo</code></td>
+                  <td>Please include any financial or operational information that will help us understand your company. We are interested in specific information like past and projected annual revenues, total outside investment dollars to date, and significant investors or partners.</td>
+                </tr>
+                <tr>
+                  <td><code>criticalDataTypes</code></td>
+                  <td>Which of the following are critical sources of data for your company? By “critical,” we mean that your company would have to shut down a line of business, shut down completely, or replace the data in some way if the data were no longer available.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <!-- subset(preview.csv, CompanyName == 'BillGuard')[1,'financialInfo'] == preview.json[[3]]$socialInfo -->
+            
+            <p>It does not include the following questions from that first page of the questionnaire.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code from the web form</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>firstName</code></td>
+                  <td>First Name [4]</td>
+                </tr>
+                <tr>
+                  <td><code>lastName</code></td>
+                  <td>Last Name</td>
+                </tr>
+                <tr>
+                  <td><code>title</code></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><code>email</code></td>
+                  <td>Email</td>
+                </tr>
+                <tr>
+                  <td><code>phone</code></td>
+                  <td>Phone</td>
+                </tr>
+                <tr>
+                  <td><code>contacted</code></td>
+                  <td>Please check here if you would be willing to be contacted for further information about your company.</td>
+                </tr>
+                <tr>
+                  <td><code>datasetWishList</code></td>
+                  <td>What datasets (if any) are not currently available that would be useful for your company to have as government open data?</td>
+                </tr>
+                <tr>
+                  <td><code>companyRec</code></td>
+                  <td>What other companies, either in your sector or other sectors, would you recommend we contact regarding their use of government open data?</td>
+                </tr>
+                <tr>
+                  <td><code>conferenceRec</code></td>
+                  <td>What conferences or events do you think would be helpful to us in surveying the field of open data companies?</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>In addition to the 20 columns I describe above, there are two columns for
+            identificatiers. One is the <code>companyId</code> column, which is the unique
+            identifier for the particular company. Within the questionnaire, this shows up
+            inside the URL for the
+            <a href="http://www.opendata500.com/addData/52eb5431def7fa00029abc8f/">“New Dataset”</a>
+            page.</p>
+            
+            <pre><code>http://www.opendata500.com/addData/$companyId/&#x000A;</code></pre>
+            
+            <p>The other is the <code>datasets</code> column, which lists identification codes
+            for datasets (like  151fe3724a03bb3b4c52ae10) and references the
+            <code>datasetID</code> column in <code>OD500_Datasets.json</code>.</p>
+            
+            <p>You can think of this file as a JSON version of <code>Preview50_Companies.csv</code>.</p>
+            
+            <!-- all(unique(sort(preview.csv$CompanyName)) == sort(sapply(candidates.json, function(x){x$companyName}))) -->
+            
+            <p>Notes:</p>
+            
+            <ol>
+              <li>In some cases, answers to one question are presented redundantly across
+             multiple columns.</li>
+              <li>“FTE” probably stands for “full-time equivalent employees”.</li>
+              <li>The questionnaire has different categories from the levels reported in
+             this file.</li>
+              <li>This is from the “Personal Information” section, which presumably
+             describes the person who is filling out the questionnaire.</li>
+            </ol>
+            
+            <h3 id="od500datasetsjson">OD500_Datasets.json</h3>
+            <p><a href="http://www.opendata500.com/download/OD500_Datasets.json"><code>OD500_Datasets.json</code></a>
+            is a JSON file with an array of associative arrays (that is, a list of mappings).
+            It has 51 rows (associative ararys) and 
+            22 columns (items per associative array).
+            Each row corresponds to a dataset. Three of the columns correspond directly to
+            questionnaire questions.</p>
+            
+            <p>The following columns come from the
+            <a href="http://www.opendata500.com/addData/52eb5431def7fa00029abc8f/">“New Dataset”</a>
+            page of the questionnaire.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code in the file</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>datasetName</code></td>
+                  <td>Name of Dataset</td>
+                </tr>
+                <tr>
+                  <td><code>datasetURL</code></td>
+                  <td>URL of Dataset</td>
+                </tr>
+                <tr>
+                  <td><code>source</code></td>
+                  <td>Agency or Source</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>The file does not include the following columns from the “New Dataset” page.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Code from the web form</th>
+                  <th>Question from the questionnaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>typeOfDataset</code></td>
+                  <td>Type of Dataset (Federal Open Data, State Open Data, City/Local Open Data, Other)</td>
+                </tr>
+                <tr>
+                  <td><code>rating</code></td>
+                  <td>On a scale of 1 to 4, how would you rate the usefulness of this dataset? (1- poor, 4- excellent) Your answer can reflect your experience with data quality, format of the data, or other factors.</td>
+                </tr>
+                <tr>
+                  <td><code>reason</code></td>
+                  <td>Why did you give it this rating?</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>The file also contains two identifier columns. identificatiers.
+            One is the <code>datasetID</code> column, which serves as a primary key for this table.
+            The other is the <code>usedByCompany</code> column, which references the <code>companyId</code>
+            in <code>OD500_Companies.json</code>,</p>
+            
+            <h3 id="preview-html">preview (HTML)</h3>
+            <p><a href="http://www.opendata500.com/preview/"><code>preview</code></a> is an HTML page
+            containing a non-standard representation of a data table about companies.</p>
+            
+            <p>The companies are represented as a nodes with the following XPath.</p>
+            
+            <pre><code>[1] "//ul[@class=\"m-preview-list\"]/li[@class=\"m-list-company\"]"&#x000A;</code></pre>
+            
+            <p>The file contains 51 companies and about 11 fields
+            (depending on your definition of a field). The fields are approximately
+            a subset of the fields for <code>Preview50_Companies.csv</code>.</p>
+            
+            <p>I don’t feel like writing out selectors for every field within each company
+            node, but you can figure it out by looking at the code for the first company.</p>
+            
+            <pre><code>&lt;li class="m-list-company"&gt;&#x000A;&lt;div class="m-list-company-summary"&gt;&#x000A;&lt;div class="m-preview-list-control"&gt;&lt;span class="m-expand-arrow"/&gt;&lt;/div&gt;&#x000A;&lt;div class="m-preview-list-name"&gt;&lt;strong&gt;Archimedes Inc.&lt;/strong&gt;&lt;/div&gt;&#x000A;&lt;div class="m-preview-list-sectors"&gt;Healthcare&lt;/div&gt;&#x000A;&lt;div class="m-preview-list-desc"&gt;Archimedes applies quantitative analysis to evidence from clinical trials, epidemiological studies, and other sources to create models that show healthcare decision makers how different options affect outcomes and costs.&lt;/div&gt;&#x000A;&lt;/div&gt;&#x000A;&lt;div class="m-list-company-full"&gt;&#x000A;&lt;div class="m-half"&gt;&#x000A;&lt;h3&gt;Company Information&lt;/h3&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Year Founded:&lt;/strong&gt; 2006&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; San Francisco, CA&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;FTE:&lt;/strong&gt; 50&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Type of Company:&lt;/strong&gt; Private&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Company Function:&lt;/strong&gt; Data management and analysis&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Healthcare&lt;/p&gt;&#x000A;&lt;p&gt;&lt;strong&gt;Source of Revenue: &lt;/strong&gt;Software licensing&lt;/p&gt;&#x000A;&lt;br/&gt;&lt;a class="m-button" href="/Archimedes-Inc/"&gt;Comment&lt;/a&gt;&#x000A;&lt;br/&gt;&lt;/div&gt;&#x000A;&lt;div class="m-half"&gt;&#x000A;&lt;h3&gt;Description:&lt;/h3&gt;&#x000A;&lt;p&gt;Archimedes is a healthcare modeling and analytics organization. With the Archimedes Model at its core, the company enables people to combine real-world healthcare data and simulation data to create compelling and actionable evidence used in individual healthcare decision making, as well as in populations, with applications in health and economic outcomes research, policy creation, and clinical trial design and operations.&lt;/p&gt;&#x000A;&lt;h3&gt;Social Impact:&lt;/h3&gt;&#x000A;&lt;p&gt;Archimedes solutions help make better decisions about health and healthcare, whether for individuals or populations.&lt;/p&gt;&#x000A;&lt;h3&gt;Financial Info:&lt;/h3&gt;&#x000A;&lt;p&gt;Not answered by company&lt;/p&gt;&#x000A;&lt;/div&gt;&#x000A;&lt;div class="m-full datasets"&gt;&#x000A;&lt;h3&gt;Datasets&lt;/h3&gt;&#x000A;&lt;ul&gt;&lt;li&gt;&lt;a href="http://www.cdc.gov/nchs/nhanes.htm"&gt;National Health and Nutrition Examination Survey (NHANES)&lt;/a&gt;&lt;/li&gt;&#x000A;&#x000A;&#x000A;&lt;li&gt;&lt;a href="http://www.cdc.gov/nchs/ahcd.htm"&gt;National Ambulatory Medical Care Survey (NAMCS)&lt;/a&gt;&lt;/li&gt;&#x000A;&#x000A;&#x000A;&lt;li&gt;&lt;a href="http://www.cdc.gov/nchs/nhds.htm"&gt;National Hospital Discharge Survey (NHDS)&lt;/a&gt;&lt;/li&gt;&#x000A;&#x000A;&#x000A;&lt;li&gt;&lt;a href="http://www.cdc.gov/nchs/data_access/cmf.htm"&gt;Compressed Mortality File (CMF)&lt;/a&gt;&lt;/li&gt;&#x000A;&#x000A;&#x000A;&lt;/ul&gt;&lt;/div&gt;&#x000A;&lt;/div&gt;&#x000A;&lt;/li&gt;&#x000A;</code></pre>
+            
+            <p>I do want to point out the dataset nodes in particular. Each company node lists
+            zero or more datasets, each with a URL and a title. Here is how you query them.</p>
+            
+            <pre><code>df &lt;- data.frame(urls = unlist(xpathApply(preview.html[[1]], "div[@class=\"m-list-company-full\"]/div[@class=\"m-full datasets\"]/ul/li/a/@href"), &#x000A;    use.names = FALSE), titles = xpathSApply(preview.html[[1]], "div[@class=\"m-list-company-full\"]/div[@class=\"m-full datasets\"]/ul/li/a/text()", &#x000A;    xmlValue))&#x000A;kable(df)&#x000A;</code></pre>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align: left">urls</th>
+                  <th style="text-align: left">titles</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left">http://www.cdc.gov/nchs/nhanes.htm</td>
+                  <td style="text-align: left">National Health and Nutrition Examination Survey (NHANES)</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">http://www.cdc.gov/nchs/ahcd.htm</td>
+                  <td style="text-align: left">National Ambulatory Medical Care Survey (NAMCS)</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">http://www.cdc.gov/nchs/nhds.htm</td>
+                  <td style="text-align: left">National Hospital Discharge Survey (NHDS)</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">http://www.cdc.gov/nchs/data_access/cmf.htm</td>
+                  <td style="text-align: left">Compressed Mortality File (CMF)</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3 id="candidates-html">candidates (HTML)</h3>
+            <p><a href="http://www.opendata500.com/candidates/"><code>candidates</code></a> is another HTML page
+            containing a non-standard representation of a data table about companies.
+            You can select the companies with the following XPath.</p>
+            
+            <pre><code>[1] "//div[@class=\"m-candidates isotopes-container\"]/div"&#x000A;</code></pre>
+            
+            <p>This file contains 501 companies. To give you a feel
+            for the schema, the first company is represented like this.</p>
+            
+            <pre><code>&lt;div class="m-candidates-item  Finance--Investment  NY "&gt;&#x000A;&lt;a href="/1099is"&gt;&lt;h3&gt;&lt;strong&gt;1099.is&lt;/strong&gt;&lt;/h3&gt;&lt;/a&gt;&#x000A;&lt;p class="m-homepage-list-location"&gt; New York&lt;/p&gt;&#x000A;&lt;em&gt; Finance &amp;amp; Investment&lt;/em&gt;&#x000A;&lt;p class="m-homepage-list-desc"&gt;1099.is helps people navigate the confusing tax code that applies to the self-employed, providing advice from experts and people who have been through this before in transparent, clear, simple language.&lt;/p&gt;&#x000A;&lt;/div&gt;&#x000A;</code></pre>
+            
+            <p>I’d say that this file contains seven fields. Four of them are direct
+            questionnaire questions.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>XPath within the company node</th>
+                  <th>Questionnaire question or meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a/h3/strong/text()</td>
+                  <td>Name of your company</td>
+                </tr>
+                <tr>
+                  <td>p[@class=”m-homepage-list-location”]/text()</td>
+                  <td>In which city is this company located?</td>
+                </tr>
+                <tr>
+                  <td>em/text()</td>
+                  <td>Which best describes the function of your company?</td>
+                </tr>
+                <tr>
+                  <td>p[@class=”m-homepage-list-desc”]/text()</td>
+                  <td>As a summary, please provide a one sentence description of your company.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>Three of them are not.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>XPath within the company node</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>contains(@class, “preview-company”)</td>
+                  <td>Is the company part of the “Preview” companies?</td>
+                </tr>
+                <tr>
+                  <td>contains(@class, “survey-company”)</td>
+                  <td>Did the company submit the questionnaire, or were its data collected by undocumented means?</td>
+                </tr>
+                <tr>
+                  <td>a/@href</td>
+                  <td>Link to a page on the Open Data 500 site with more information from the questionnaire about the company</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h2 id="loading-into-r">Loading into R</h2>
+            <p>You can load the data into R like so.</p>
+            
+            <pre><code>system('npm install r-open-data-500')&#x000A;library(nprm)&#x000A;open.data.500 &lt;- nprm.require('open-data-500')&#x000A;</code></pre>
+            
+            <p>If you haven’t installed <a href="https://github.com/tlevine/nprm">nprm</a>,
+            install it like so.</p>
+            
+            <pre><code>library(devtools)&#x000A;install_github('nprm','tlevine')&#x000A;</code></pre>
+            
+            <p>If you don’t want to use nprm, you can manually download
+            <a href="https://raw.github.com/tlevine/open-data-500/master/main.r">this script</a></p>
+            
+            <h2 id="distintion-between-the-preview-and-the-candidates">Distintion between the “Preview” and the “Candidates”</h2>
+            <p>The Open Data 500 Team released an
+            “<a href="http://www.opendata500.com/preview/">in-depth view</a>” of “50 of the first
+            to complete [the] survey”. They also released a
+            “<a href="http://www.opendata500.com/candidates/">full list</a>” of
+            “500 candidate companies”.</p>
+            
+            <p>I explained earlier that some data were collected through a questionnaire
+            and that others were collected through an undocumented process. The “preview”
+            companies are the ones for which the data were collected by questionnaire;
+            the “candidates” include both these companies and the companies whose data
+            were collected by the undocumented means. Here’s how I figured that out.</p>
+            
+            <h3 id="are-they-just-the-companies-that-have-submitted-questionnaires">Are they just the companies that have submitted questionnaires?</h3>
+            <p>The preview companies are simply all of the companies that have
+            submitted the questionnaire; the non-preview companies are companies for
+            which the the Open Data 500 team effectively filled out the questionnaire.</p>
+            
+            <p>I came to that conclusion by looking at the following plot. In this plot,
+            the height of the bars represents the number of companies in a particular
+            category. The left category is companies that have completed the questionnaire,
+            and the right category is companies that haven’t. (The Open Data 500 Team
+            collect information about the companies but not through a questionnaire.)
+            The datasets are also color-coded based on whether the companies are included
+            in the Preview set.</p>
+            
+            <p><img src="figure/preview_v_candidates.png" alt="Preview companies are questionnaire responses" class="wide" /></p>
+            
+            <p>Note that the entire left bar is blue and the entire right bar is red;
+            this means that all of the survey companies are in the preview set and
+            that none of the non-survey companies are in the preview set.</p>
+            
+            <p>Well maybe. Given what I’m about to say in the next section, I’m starting
+            to wonder whether there was a mistake in the HTML version.</p>
+            
+            <h2 id="which-companies-are-in-the-preview">Which companies are in the preview?</h2>
+            <p>I still haven’t resolved which companies are considered to be the preview
+            companies.</p>
+            
+            <h3 id="companies">51 companies?</h3>
+            <p>Three of the files (<code>Preview50_Companies.csv</code>, <code>OD500_Companies.json</code>,
+            and <code>preview</code>) agree as to which companies are in the preview.</p>
+            
+            <pre><code>all(setequal(preview.companies.csv, preview.companies.json), setequal(preview.companies.csv, &#x000A;    preview.companies.preview.html))&#x000A;## [1] TRUE&#x000A;</code></pre>
+            
+            <p>According to those three files, the following
+            51 companies are in the preview.</p>
+            
+            <pre><code> [1] "Archimedes Inc."          "Azavea"                  &#x000A; [3] "BillGuard"                "BuildZoom"               &#x000A; [5] "Calcbench, Inc."          "Captricity"              &#x000A; [7] "Civinomics"               "Climate Corporation"     &#x000A; [9] "Construction Monitor LLC" "Consumer Reports"        &#x000A;[11] "Energy Points, Inc."      "Energy Solutions Forum"  &#x000A;[13] "Enigma.io"                "Esri"                    &#x000A;[15] "FarmLogs"                 "Fastcase"                &#x000A;[17] "GreatSchools"             "HDScores, Inc"           &#x000A;[19] "Healthgrades"             "HealthPocket, Inc."      &#x000A;[21] "HelloWallet"              "iTriage"                 &#x000A;[23] "Lawdragon"                "LegiNation, Inc."        &#x000A;[25] "Lucid"                    "MapBox"                  &#x000A;[27] "Mercaris"                 "New Media Parents"       &#x000A;[29] "Ontodia, Inc"             "OpportunitySpace, Inc."  &#x000A;[31] "Overture Technologies"    "Owler"                   &#x000A;[33] "Panjiva"                  "Personal, Inc."          &#x000A;[35] "PolicyMap"                "Quertle"                 &#x000A;[37] "Science Exchange"         "SeeClickFix"             &#x000A;[39] "Simple Energy"            "Socrata"                 &#x000A;[41] "SolarList"                "SpotCrime"               &#x000A;[43] "Stormpulse"               "StreetCred Software, Inc"&#x000A;[45] "Symcat"                   "Synthicity"              &#x000A;[47] "TagniFi"                  "Trulia"                  &#x000A;[49] "Walk Score"               "Way Better Patents"      &#x000A;[51] "Brightscope"&#x000A;</code></pre>
+            
+            <h3 id="companies-1">100 companies?</h3>
+            <p>The remaining file, <code>candidates</code>, agrees that the above companies are in
+            the preview,</p>
+            
+            <pre><code>setequal(intersect(preview.companies.candidates.html, preview.companies.csv), &#x000A;    preview.companies.csv)&#x000A;## [1] TRUE&#x000A;</code></pre>
+            
+            <p>but it includes 49  additional companies, for a total of 100.</p>
+            
+            <h3 id="companies-2">50 companies?</h3>
+            <p>There is even a third conflicting concept of the preview!
+            Several articles indicate that there are 50 companies in the preview,
+            not 51 nor 100.</p>
+            
+            <p>The introduction to the <a href="http://www.opendata500.com/preview/"><code>preview</code></a> page says
+            “[t]hese companies are 50 of the first to complete our survey for the Open Data 500”.
+            The <a href="http://www.opendata500.com/download/">download</a> page calls the preview
+            files “List[s] of 50”. The <a href="http://www.opendata500.com/">home page</a> says that the
+            preview is the “list of the first 50 companies that have filled out our survey”.</p>
+            
+            <p>The various press coverage also counts the preview companies at 50.
+            The article in
+            <a href="http://www.forbes.com/sites/bethsimonenoveck/2014/01/08/from-faith-based-to-evidence-based-the-open-data-500-and-understanding-how-open-data-helps-the-american-economy/">Forbes</a>
+            says “We’ve also posted in-depth profiles of 50 of them”.
+            The <a href="http://www.informationweek.com/government/open-government/open-government-data-companies-cash-in/d/d-id/1113143">Information Week</a> article
+            says that “[i]n addition to publishing a list of 500 open data companies,
+            GovLab also published profiles of 50 companies creating value from open government data.”
+            And the <a href="http://fedscoop.com/open-data-500-intersection-open-data-economy/">Fedscoop</a> article
+            talks about “50 companies profiled for early release”.</p>
+            
+            <h2 id="which-companies-are-the-candidates">Which companies are the candidates?</h2>
+            <p>There are also slight conflicts as to what the full list of companies is.</p>
+            
+            <h3 id="what-the-data-files-say">What the data files say</h3>
+            <p><code>500_Companies.csv</code> contains 503 companies, and
+            <code>candidates</code> contains 501 companies.
+            Collectively, they list 505 different
+            companies, and they agree about 498 of these 505 companies.</p>
+            
+            <pre><code>csv &lt;- cset(sub(" *$", "", candidates.csv$CompanyName))&#x000A;html &lt;- cset(sub(" *$", "", as.character(candidates.html$name)))&#x000A;</code></pre>
+            
+            <p>These are in the CSV but not in the HTML.</p>
+            
+            <pre><code>print(cset_difference(csv, html))&#x000A;## {"Bureau Blank", "Capital Access Network", "DocGraph Journal",&#x000A;##  "Opower", "Spikes Cavell"}&#x000A;</code></pre>
+            
+            <p>These are in the HTML but not in the CSV.</p>
+            
+            <pre><code>print(cset_difference(html, csv))&#x000A;## {"CAN Capital", "Roadify", "Spikes Cavell Analytic Inc"}&#x000A;</code></pre>
+            
+            <h3 id="what-the-descriptions-in-english-say">What the descriptions in English say</h3>
+            <p>Much of the Open Data 500 website references a list of 500 companies.
+            The <a href="http://www.opendata500.com/download">download page</a> refers to
+            <a href="http://www.opendata500.com/download/500_Companies.csv"><code>500_Companies.csv</code></a>
+            as the “List of 500 Candidates”. And the three news articles linked from
+            the homepage also reference a list of 500 companies.</p>
+            
+            <h2 id="ness">500-ness</h2>
+            <p>I’m still unsure as to what the “500” in the title means.
+            As we saw above, it might have something to do with the number of responses,
+            but I find it odd that someone would name a study after its sample size.
+            So there’s probably more to it.</p>
+            
+            <h3 id="fortune-500">Fortune 500?</h3>
+            <p>Many people have suggested that the name is allusion to
+            <a href="http://en.wikipedia.org/wiki/Fortune_500">Fortune 500</a>,
+            but I don’t think that’s it.
+            The Fortune 500 is list of “the top 500 U.S. closely held and public
+            corporations as ranked by their gross revenue after adjustments”. That is,
+            it’s the 500 biggest U.S. companies for a particular definition of “big”.</p>
+            
+            <p>The Fortune 500 and the Open Data 500 are both about U.S. companies, but
+            the similarities stop there; as explained on the
+            “<a href="http://www.opendata500.com/about/#about-results">About</a>” page,
+            the Open Data 500 is explicitly not a ranking and not about company size.</p>
+            
+            <h3 id="number-of-responses">Number of responses?</h3>
+            <p>The website says that the Open Data 500 is a list of 500 companies, so it
+            might be that the “500” refers to the number of companies that they listed.
+            As I said above, naming studies after their sample size is a bit odd.
+            It seems like they continued looking for companies until they came up with
+            500, but I don’t understand why they chose the number 500.</p>
+            
+            <p>The Open Data 500 website <a href="http://www.opendata500.com/about/#about-results">says</a>
+            that “the Open Data 500 study is not meant to provide information for definitive
+            statistical analysis”, so I doubt they did anything like a power analysis to
+            determine how many they needed.</p>
+            
+            <p>One member of the Team told me that this was just a big number as a challenge
+            to themselves. Another told me that they expected, based on Joel Gurin’s
+            network, that there were about 500 companies that would respond.</p>
+            
+            <h2 id="key-points-and-recommendations">Key points and recommendations</h2>
+            <p>That was a lot of details of the Open Data 500 data. Let’s see if I can
+            summarize my conclusions about the structure of the study and the data.</p>
+            
+            <h3 id="two-sub-studies">Two sub-studies</h3>
+            <p>The Open Data 500 Team is assembling two lists.</p>
+            
+            <p><strong>The shorter list</strong> (called the “preview” or the “list of 50”) is the
+            results of a questionnaire, with one response per company. This part is
+            a straightforward questionnaire-based case study, and the data that get
+            released come directly from the questionnaires.</p>
+            
+            <p><strong>The longer list</strong> (called the “list of 500 candidates”) makes more sense
+            if you think about it as the sum of two lists; some of the companies come from
+            the shorter list (the questionnaire responses), and the rest (most) come from
+            an undocumented process.</p>
+            
+            <h3 id="which-data-files-you-should-use">Which data files you should use</h3>
+            <p><strong>If you are interested in the questionnaire results</strong>, I recommend using the
+            <a href="http://www.opendata500.com/download/Preview50_Companies.csv"><code>Preview50_Companies.csv</code></a>
+            file; this file is structured more simply than the corresponding JSON files
+            (<a href="http://www.opendata500.com/download/OD500_Companies.json"><code>OD500_Companies.json</code></a>
+            and <a href="http://www.opendata500.com/download/OD500_Datasets.json"><code>OD500_Datasets.json</code></a>).</p>
+            
+            <p><strong>If you are interested in the long list</strong>, choose your data file based on the
+            fields you want and based on whether you want the full list or an incomplete list.
+            The two files contain different columns; for example, the flag as to whether the
+            data come from the questionnaire or the undocumented process is only available
+            in the HTML version,
+            and the link to the company website is only available in the CSV version.
+            Thus, you need to choose the file based on which fields you need.
+            Also, each of these files contains different companies; if you want to have the
+            full list of companies, you need to combine these files, removing duplicates.</p>
+            
+            <p><strong>I’ve already loaded the data into R</strong>, so look
+            <a href="#loading-into-r">here</a> if you want that.</p>
+            
+            <h3 id="other-confusing-things">Other confusing things</h3>
+            <p><strong>The “500” in “Open Data 500” doesn’t mean anything</strong> as far as I can tell;
+            it’s not the number of responses, and it’s not a reference to the Fortune 500.
+            Don’t let this confuse you.</p>
+            
+            <p><strong>The Open Data 500 is considered “comprehensive” because of its sampling strategy</strong>,
+            which is termed “comprehensive call”. This strategy is a form of convenience sampling.</p>
+            
+            <p><strong>The Open Data 500 is only at data collection stage</strong>; the “analysis”
+            component of the study has yet to begin. But the data are already being
+            released, so you can start analyzing the data before the Open Data 500
+            Team does!</p>
+            
+            <p><strong>The different data files present conflicting versions of the data</strong>,
+            and I haven’t figured out how to resolve this.
+            The different data files do largely agree with each other,
+            so they should be okay for prototyping your analyses, but you should contact the
+            Open Data 500 Team for clarification if this starts to matter.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/open-data-500-data-dictionary/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>

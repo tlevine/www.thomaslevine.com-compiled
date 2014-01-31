@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Thomas Levine, Dada Artist</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/opengov-grant-search-proposal/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1></h1>
+              <em>
+                <time>
+                  
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <p>With all of our wonderful government open data efforts, we now have more
+            government data floating around than anyone could possibly follow. It’s getting
+            to the point that we need new ways of finding data.</p>
+            
+            <h2 id="the-difficulties-in-searching-open-data">The difficulties in searching open data</h2>
+            <p>Through <a href="/open-data">assorted studies of open data</a>, I <a href="/!/openprism">identified</a>
+            two difficulties in searching open datasets.</p>
+            
+            <ol>
+              <li><strong>Naive search method</strong>.
+             Open data portals approach searching data as if data were normal prose;
+             you enter text and search datasets as if they were normal documents.</li>
+              <li><strong>Siloed search engines</strong>.
+             Governments release data to their own websites (data portals), often
+             containing their own website-specific search engines. This is a very
+             reasonable approach for releasing the data, but it means that people need
+             to go to a bunch of different sites when they’re looking for data.</li>
+            </ol>
+            
+            <h2 id="existing-prototypes-of-alternative-search-methods">Existing prototypes of alternative search methods</h2>
+            <p>I’ve begun prototyping alternatives to the two above situations.
+            <a href="http://www.appgen.me/">AppGen</a> is an example of a different search method;
+            it searches for datasets with the same variables as each other,
+            and the results are automatically generated app prototypes.</p>
+            
+            <p><a href="http://openprism.thomaslevine.com">OpenPrism</a> is an example of a single
+            search engine for many websites; it sends a search to about a hundred different
+            open data catalogs and returns the results to you in the same page.</p>
+            
+            <p>My exploration of measures of data quality have involved ad-hoc searches
+            based on some less obvious things, such as</p>
+            
+            <ul>
+              <li><a href="/!/open-data-licensing">Licensing</a></li>
+              <li><a href="/!/socrata-users">The person who created a chart</a></li>
+              <li>Data <a href="/!/socrata-formats">formats</a> and <a href="/!/socrata-calendars">displays</a></li>
+              <li>How <a href="/!/data-updatedness">up-to-date</a> data are</li>
+            </ul>
+            
+            <h2 id="my-proposal-search-spreadsheets-with-spreadsheets">My proposal: Search spreadsheets with spreadsheets</h2>
+            <p>I propose to develop and package these various prototypes and ideas into a
+            search tool for datasets. I call this tool “superprism”.</p>
+            
+            <h3 id="guiding-principle">Guiding principle</h3>
+            <p>The design of this tool will follow this principle:</p>
+            
+            <blockquote>
+              <p>When we are searching for texts, we enter text into a search engine and
+            recieve a list of texts. When we are searching for spreadsheets, we should
+            enter a spreadsheet into the search engine and receive a list of spreadsheets.</p>
+            </blockquote>
+            
+            <h3 id="mock-up-of-the-interface">Mock-up of the interface</h3>
+            <p>The tool will be implemented as a command-line program, and here’s what the
+            interface will look like.</p>
+            
+            <p>The input to the search is a CSV file.</p>
+            
+            <pre><code>$ superprism lobbyists.csv&#x000A;</code></pre>
+            
+            <p>The output is a list of URLs.</p>
+            
+            <pre><code>http://catalog.data.gov/dataset/lobbying-disclosure-reports&#x000A;http://catalog.data.gov/dataset/us-international-trade-in-goods-and-services&#x000A;</code></pre>
+            
+            <p>All of the fancy dataset search methods (schema, users, &amp;c.) are hidden from
+            the user; these methods are used to select the output datasets, but the user
+            doesn’t need to know what they are.</p>
+            
+            <p>Most users won’t need to see exactly how the datasets are chosen, but there is
+            a flag for displaying information about how the result datasets were chosen.
+            This flag is called <code>--debug</code>. I have yet to decide the exact format of the
+            output, and it will mainly be based on what is helpful for me while developing
+            the tool.</p>
+            
+            <p>You can also specify which type of URL should be returned; the output can
+            be either URLs to data catalog web pages or URLs directly to spreadsheet files.
+            The former is the default; to get the latter, pass the <code>-u</code> flag.</p>
+            
+            <pre><code>$ superprism -u lobbyists.csv&#x000A;https://explore.data.gov/api/views/aqdm-v85k/rows.csv?accessType=DOWNLOAD&#x000A;http://www.census.gov/foreign-trade/statistics/historical/exhibit_history.xls&#x000A;</code></pre>
+            
+            <p>The search tool will be released as free software, and I will build the
+            underlying search libraries with the intent that other people may easily use
+            them in their own programs, without calling superprism from the command line.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/opengov-grant-search-proposal/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='feedback'>
+      <strong>
+        Tom requests your feedback.
+      </strong>
+      <p>
+        I can never decide what to write;
+        tell me what you like,
+        and my decisions will be easier.
+        (Contact information is <a href="/" target="_blank" >here</a>.)
+      </p>
+      <a class='close' href='javascript:$("#feedback").fadeOut()'>
+        Close
+      </a>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
