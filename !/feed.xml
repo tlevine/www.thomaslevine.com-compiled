@@ -15,9 +15,7 @@
     <published>2014-02-03T00:00:00Z</published>
     <updated>2014-02-03T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-500-data-package/index.html"/>
-    <content type="html">&lt;style&gt;tr { text-align: left; }&lt;/style&gt;
-
-&lt;p&gt;I recently took a stab at documenting the
+    <content type="html">&lt;p&gt;I recently took a stab at documenting the
 &lt;a href="http://www.opendata500.com"&gt;Open Data 500&lt;/a&gt; data format,
 but my &lt;a href="/!/open-data-500-data-dictionary"&gt;work thus far&lt;/a&gt;
 leaves much to be desired. I looked at it a bit more over the weekend,
@@ -253,11 +251,7 @@ anything that you find with the data!&lt;/p&gt;
     <published>2014-01-31T00:00:00Z</published>
     <updated>2014-01-31T00:00:00Z</updated>
     <link rel="alternate" href="http://www.thomaslevine.com/!/open-data-500-data-dictionary/index.html"/>
-    <content type="html">&lt;style&gt;
-tr { text-align: left; }
-&lt;/style&gt;
-
-&lt;p&gt;The &lt;a href="http://www.opendata500.com/download/"&gt;Open Data 500&lt;/a&gt; is
+    <content type="html">&lt;p&gt;The &lt;a href="http://www.opendata500.com/download/"&gt;Open Data 500&lt;/a&gt; is
 “the first comprehensive study of U.S. companies using open government data to develop new products and services.”
 You may have read about it in.
 &lt;a href="http://www.forbes.com/sites/bethsimonenoveck/2014/01/08/from-faith-based-to-evidence-based-the-open-data-500-and-understanding-how-open-data-helps-the-american-economy/"&gt;Forbes&lt;/a&gt;,
