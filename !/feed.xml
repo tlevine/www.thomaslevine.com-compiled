@@ -2,13 +2,568 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2014-02-21T00:00:00Z</updated>
+  <updated>2014-02-22T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-02-22:/!/zombie-links/index.html</id>
+    <title type="html">Zombie links on data catalogs</title>
+    <published>2014-02-22T00:00:00Z</published>
+    <updated>2014-02-22T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/zombie-links/index.html"/>
+    <content type="html">&lt;p&gt;After I wrote about
+&lt;a href="/!/dead-links-on-data-catalogs"&gt;dead links on data catalogs&lt;/a&gt;,
+some people commented that the links were less dead than I’d thought.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/statshero/status/424147773852622848"&gt;&lt;img src="trentino.png" alt="Anecdotally I don't think that @DatiTrentinoit has so many broken links. Check validator? @thomaslevine http://thomaslevine.com/!/data-catalog-dead-links/" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/waldojaquith/status/424026174508261376"&gt;&lt;img src="openva.png" alt="@thomaslevine You've got ~45% of data․openva․com datasets missing. I just audited 75% of them, and found just 2 missing. Any idea what's up?" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Some explanations were proposed. Samuele and Jindřich both suggested that
+the CKAN FileStore doesn’t support HEAD requests.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/_rshk/status/424208140016418816"&gt;&lt;img src="samuele.png" alt="@DatiTrentinoit @statshero @thomaslevine Ckan returns 404 on HEAD requests, that's the problem.." /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/jindrichmynarz/status/428194318063370241"&gt;&lt;img src="jindrich.png" alt="" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And &lt;a href="http://waldo.jaquith.org/"&gt;Waldo&lt;/a&gt;
+suggested that I might be checking for status code 200 but
+receiving status code 303 (redirect) from OpenVA.&lt;/p&gt;
+
+&lt;p&gt;So what was going on?&lt;/p&gt;
+
+&lt;h2 id="not-reasons"&gt;Not reasons&lt;/h2&gt;
+&lt;p&gt;I considered the two possibilities that were mentioned above, and
+I don’t think either of them was the issue.&lt;/p&gt;
+
+&lt;h3 id="head"&gt;HEAD&lt;/h3&gt;
+&lt;p&gt;CKAN does just fine on HEAD requests.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'
+import requests
+
+get = requests.get(url)
+head = requests.head(url)
+
+print(get.status_code)
+# 200
+print(head.status_code)
+# 200
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So I don’t think the issue was that CKAN returns 404 on HEAD requests.&lt;/p&gt;
+
+&lt;h3 id="status-code"&gt;Status code&lt;/h3&gt;
+&lt;p&gt;I counted a link as alive if and only if it returned a status code of 200.
+Could the issue be that I needed to check for other status codes? Specifically,
+could it be that the URLs for files hosted on some CKAN FileStores are redirects
+rather than final URLs?&lt;/p&gt;
+
+&lt;p&gt;URLs from the CKAN FileStore should not be an issue because I didn’t check URLs
+when the data were marked as being stored internally in the catalog.&lt;/p&gt;
+
+&lt;p&gt;That said, it’s possible that people uploaded the data to the CKAN FileStore and
+then told CKAN that it was an external link; it turns out that this was the case
+for OpenVA&lt;/p&gt;
+
+&lt;p&gt;Running this query&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT DISTINCT url FROM links WHERE catalog = 'data.openva.com' AND NOT is_link;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yields three URLs with that characteristic.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json
+https://data.openva.com.s3.amazonaws.com/2013-12-16T03:06:56.875Z/sentencing.csv
+https://data.openva.com.s3.amazonaws.com/2013-05-11T04:57:18.031Z/agency-websites.csv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They have issues with SSL certificates,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;requests.head('https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json')
+# SSLError: hostname 'data.openva.com.s3.amazonaws.com' doesn't match either of '*.s3.amazonaws.com', 's3.amazonaws.com'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and they work just fine with unencrypted HTTP.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;requests.head('http://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json').status_code
+# 200
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moreover, there aren’t very many redirect status codes across all the links.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_no_redirects.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Redirects are normally of status code 301 or 303, or at least in the 300-399
+range. I followed redirects when I downloaded them, so this plot contains no
+redirect status codes.&lt;/p&gt;
+
+&lt;h2 id="reasons"&gt;Reasons&lt;/h2&gt;
+&lt;p&gt;If the HEAD request thing and the redirect status code weren’t the issues,
+what was?&lt;/p&gt;
+
+&lt;p&gt;To figure this out, I tweaked my downloader and ran it on just the links that
+had timed out or otherwise not responded; I didn’t run it on links that had
+responded with error status codes like 404. I also pulled out the hostname of
+the links. (For example, &lt;code&gt;thomaslevine.com&lt;/code&gt; of the URL of the page you’re
+reading.) Then I looked at the errors I got back.&lt;/p&gt;
+
+&lt;p&gt;I also looked around in the SQLite3 database in which I’d been storing
+everything for this link analysis.&lt;/p&gt;
+
+&lt;p&gt;It’s not like there was just one issue, of course.
+Here are the main factors I see as leading to the strange results.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I didn’t fully parse links to datasets.&lt;/li&gt;
+  &lt;li&gt;I had a low timeout on my HTTP requests (2 seconds).&lt;/li&gt;
+  &lt;li&gt;I had duplicate data in my database.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="incompletely-parsed-urls"&gt;Incompletely parsed URLs&lt;/h3&gt;
+&lt;p&gt;I looked at the different sorts of errors that I got when I requested links
+to different hostnames.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_error.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;That the left-most bar, for the hostname &lt;code&gt;http:&lt;/code&gt;, is quite large and has
+a lot of invalid URLs. Things that my hostname-parser detected as &lt;code&gt;http:&lt;/code&gt; are
+usually invalid URLs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1] "http://"
+[2] "http://www..ic.nhs.uk/catalogue/PUB09271/per-soc-ser-adu-soc-car-sur-eng-2011-12-fin-tables-charts.xls"
+[3] "http://Gemeente-Den-Haag-open-data-Bodemenergie-restwarmtelocaties-bestaande-warmte-koude-opslag.zip"
+[4] "http://financial-transactions-data-west-midlands-strategic-health-authority-October-2012"
+[5] "http://Con la legge 18 giugno 2009, n. 69 è stato previsto, all’art. 21, che le pubbliche amministrazioni pubblichino sui rispettivi siti internet le retribuzioni annuali, i curricula vitae, gli indirizzi di posta elettronica e i numeri telefonici ad uso professionale dei dirigenti, nonché le statistiche sui tassi di assenza e di maggiore presenza del personale distinti per uffici di livello dirigenziale.  La Presidenza è quindi impegnata nella necessaria raccolta dei dati trattati dai diversi Uffici del Segretariato generale e dei Ministri senza portafoglio, anche al fine di assicurarne l’omogeneità indispensabile per poter presentare elaborazioni attendibili e significative di una realtà complessa ed articolata come quella della Presidenza del Consiglio. "
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Many of the links were specified as relative URLs, and I didn’t try to parse them.
+I could have known to look for this, but having absolute URLs would still have
+been easier.&lt;/p&gt;
+
+&lt;p&gt;Also, some of the URLs were intranet file paths (like &lt;code&gt;S:Foo\Bar\Baz.xls&lt;/code&gt;).
+Not all datasets are public yet, so this is better than nothing.
+That said, I wonder whether people realize that these intranet paths are not
+accessible on the normal internet.&lt;/p&gt;
+
+&lt;h3 id="low-timeout"&gt;Low Timeout&lt;/h3&gt;
+&lt;p&gt;Aside from the invalid URLs, most of the bad links gave a timeout.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_errors_total.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;As we saw above, different websites (hostnames) tend to give different errors.
+The following plot should make it more clear.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_facet.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall that people thought that CKAN doesn’t respond to HEAD requests. It might
+just be that CKAN is slow to respond to requests. Here is a plot with datasets
+color-coded based on whether they appear to be served from a CKAN FileStore.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/storage.png" alt="plot of chunk storage" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;(The &lt;code&gt;/storage&lt;/code&gt; endpoint is typically used for the CKAN FileStore.)&lt;/p&gt;
+
+&lt;p&gt;It looks like the CKAN FileStore can take a while to respond, and that might be
+why people thought that HEAD requests fail.&lt;/p&gt;
+
+&lt;h2 id="duplicate-data"&gt;Duplicate data&lt;/h2&gt;
+&lt;p&gt;It turned out that I had duplicate records in my table of link information. As I was working
+with it, I forgot the correct schema and remembered a different one; I thought I had a unique
+index on something for which I didn’t.&lt;/p&gt;
+
+&lt;p&gt;To illustrate this, see below a plot of the number of CKAN datasets for which my link liveliness
+data has duplicate records. The top bar graph is for datasets that were stored internally, and
+the bottom bar graph is for datasets that were stored externally.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_duplicates_ckan.png" alt="plot of chunk p_duplicates_ckan" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We see that there were quite a many duplicates, particularly for datasets that were stored
+externally. This happened because I ran my downloader script multiple times, thinking that
+duplicates were being skipped rather than resolved properly.&lt;/p&gt;
+
+&lt;p&gt;Because of how I set up the database, it’s hard to see this in the Socrata data.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust
+## this. stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to
+## adjust this.
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_duplicates_socrata.png" alt="plot of chunk p_duplicates_socrata" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This plot shows that I have hundreds of duplicates of the same dataset.
+Most of these duplicates probably came from original Socrata site (as explained
+&lt;a href="/!/socrata-deduplicate"&gt;here&lt;/a&gt;).
+Like with the CKAN datasets, my database schema issue probably only doubled or
+tripled the duplication for the Socrata datasets.&lt;/p&gt;
+
+&lt;h2 id="new-results"&gt;New results&lt;/h2&gt;
+&lt;p&gt;I used a longer timeout on the previously-erring links and deduplicated my duplicates.
+Here are new results that correspond with the plots in the
+&lt;a href="/!/data-catalog-dead-links"&gt;previous article&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In these plots, each bar represents all of the datasets for one data catalog. The bar
+is colored differently at different segments to represent different categories of dataset.&lt;/p&gt;
+
+&lt;p&gt;The first plot shows that most datasets within a given catalog are alive, either because
+they are internally stored or because they are stored externally and have live links.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_link_types.png" alt="plot of chunk p_link_types" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s ignore the datasets that are stored internally. The bars will represent only the
+datasets that are external links, and the missing bars correspond to catalogs with no
+external links.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_link_types_onlylinks.png" alt="plot of chunk p_link_types_onlylinks" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;One of my main conclusions in the prior article was that Socrata and CKAN encourage
+different paradigms for adding data to the catalog. Socrata sites are more likely to
+have internally stored data, and CKAN sites are more likely to have externally stored
+data. On the other hand, externally stored datasets are more likely to be alive in
+CKAN sites than in Socrata sites. I made this plot to explain that.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/!/data-catalog-dead-links/figure/prop_links.png" alt="Old version of the plot" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The plot looks a bit different with the fixed data (below),&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_prop_links.png" alt="plot of chunk p_prop_links" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;but conclusion still seems reasonable.&lt;/p&gt;
+
+&lt;h2 id="unexplained"&gt;Unexplained&lt;/h2&gt;
+&lt;p&gt;Let’s look closely at the two catalogs for which my prior results didn’t seem right.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_link_types_specifics.png" alt="plot of chunk p_link_types_specifics" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;OpenVA is looking more alive than it did before, and the links that I marked as dead
+are links with SSL problems. But I don’t know why Trentino’s links are marked as dead.
+I checked a few of these links, and they download just fine.&lt;/p&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;My prior article gave some strange figures regarding the liveliness of datasets.
+In particular, there were high rates of dead links for some catalogs.
+Most of the strange figures in my prior article are explained by me having duplicates
+in my database. Also, some dead links are explained by factors that we might not think
+of as dead links, such as ambigous URLs or bad SSL configurations.&lt;/p&gt;
+
+&lt;p&gt;My main conclusion in the previous article is that CKAN and Socrata encourage storing
+data in different places (internally and externally). After I accounted for the
+duplication, this conclusion continues to seem valid.&lt;/p&gt;
+
+&lt;p&gt;Finally, we saw some interesting issues with the construction of URLs for datasets.
+There was a bit more variation in URLs than I had anticipated.&lt;/p&gt;
+
+&lt;h1 id="appendix-how-i-figured-this-all-out"&gt;Appendix: How I figured this all out&lt;/h1&gt;
+&lt;p&gt;Here are a bunch of things I tried doing in order to figure out what was going on.
+It’s not very well organized or explained, but you might find it interesting.&lt;/p&gt;
+
+&lt;h2 id="status-codes"&gt;Status codes&lt;/h2&gt;
+&lt;p&gt;I called a URL alive if an ordinary HEAD request to it returned a
+&lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"&gt;status code&lt;/a&gt; of 200.
+This simplifies things a little bit.
+I started out by considering whether this was an appropriate test.&lt;/p&gt;
+
+&lt;p&gt;Here are all of the status codes that I received, from all of the different
+links from all of the catalogs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/status_codes.png" alt="plot of chunk status_codes" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s look at this for just the specific catalogs that those Tweets were about.
+Here’s OpenVA.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/status_codes_va.png" alt="plot of chunk status_codes_va" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here’s Trentino.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/status_codes_trentino.png" alt="plot of chunk status_codes_trentino" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Aside from 200, all of those status codes are errors, so this method of checking
+seems fine. On the other hand, it seems like there were a lot of non-responses….
+More about non-responses later; for now, we’ll just say that the status code
+check is fine.&lt;/p&gt;
+
+&lt;h2 id="duplicates"&gt;Duplicates&lt;/h2&gt;
+&lt;p&gt;When plotting this, I realized that some of the data didn’t line up. I set up
+a database schema that was more normalized so that I wouldn’t check a link twice
+if two datasets linked to it. I thus had a datasets table and a links table.&lt;/p&gt;
+
+&lt;p&gt;Then I wound up changing my mind and using the links table to store a single record
+per dataset. Here arose a problem; there was no unique index on this datasets table,
+but I thought there was, so I added multiple records for each link.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style="text-align: left"&gt;catalog&lt;/th&gt;
+      &lt;th style="text-align: left"&gt;identifier&lt;/th&gt;
+      &lt;th style="text-align: right"&gt;count(*)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_excavation_data&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_geophysics_cmdminiexplorer&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_geophysics_flashres64&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_geophysics_geoscanrm15&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_laboratorydata&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_monitoring_apparent_permitivity_cstdr100&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_monitoring_bulk_electrical_conductivity_cstdr100&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_monitoring_soilconductivity_imko_pico_t3p&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_monitoring_temperature_cs107l&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style="text-align: left"&gt;dartportal.leeds.ac.uk&lt;/td&gt;
+      &lt;td style="text-align: left"&gt;dart_monitoring_weather_data&lt;/td&gt;
+      &lt;td style="text-align: right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I had thought that there was a unique index on
+&lt;code&gt;links.software, links.catalog, links.identifier&lt;/code&gt;,
+but there wasn’t!&lt;/p&gt;
+
+&lt;h2 id="misinterpreting-nulls"&gt;Misinterpreting NULLs&lt;/h2&gt;
+&lt;p&gt;Another issue: I had interpreted NULL as meaning that the dataset is not a link,
+but it really represents that link’s liveliness has yet  to be checked;
+here’s the relevant line of code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don’t remember exactly how this affected the results thought; it might not have
+been a big deal.&lt;/p&gt;
+
+&lt;h2 id="unresponsive-datasets"&gt;Unresponsive datasets&lt;/h2&gt;
+&lt;p&gt;I recorded when HTTP requests for datasets had timed out or otherwise
+not responded. (In the database, these are indicated as status code -42.)
+I checked a few of these manually. Here are two of them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
+https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They both work, but they take a while. Also, I found that they took longer
+to download to my desktop computer on my desk than they took to download to
+my server in a datacenter.
+In case the problem was my internet connection (tethered from a phone),
+I used that server in a datacenter to run the checker again on
+all datasets that had timed out. Results didn’t remarkably change.&lt;/p&gt;
+
+&lt;h2 id="slow-datasets"&gt;Slow datasets&lt;/h2&gt;
+&lt;p&gt;Those links took a while to download. Maybe my timeout threshold is being hit?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'
+import requests
+
+timeout = requests.head(url, timeout = 2)
+# timeout error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it is. More detail follows.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get = requests.get(url)
+head = requests.head(url)
+
+print(get)
+# &amp;lt;Response [200]&amp;gt;
+
+print(head)
+# &amp;lt;Response [200]&amp;gt;
+
+print(head.elapsed)
+# datetime.timedelta(0, 3, 353558)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The link is alive, but my timeout of 2 seconds was too short.
+In this case, the request with a timeout failed, so the initial
+response took too long. Also, it took a total of 3.35 seconds to
+download. The elapsed time isn’t the same thing as the time until
+which the request will time out, but they’re related.&lt;/p&gt;
+
+&lt;h3 id="bad-urls"&gt;Bad URLs&lt;/h3&gt;
+&lt;p&gt;A bunch of datasets have a field for an external link but provided
+an empty URL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1] catalog  count(*)
+&amp;lt;0 rows&amp;gt; (or 0-length row.names)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aside from being interesting in itself, this pointed out to me that
+there were probably lots of types of errors that I hadn’t really
+thought about. I realized I could look at the errors for each of the links
+I checked. I thought I had saved the error in the database, but
+my code for doing that turned out to be broken.&lt;/p&gt;
+
+&lt;p&gt;So I fixed that! Collecting better error information, I ran the checker
+on all of the links that had failed before.&lt;/p&gt;
+
+&lt;h3 id="hostname"&gt;Hostname&lt;/h3&gt;
+&lt;p&gt;I figured that errors might be related to the server that a dataset comes
+from, and I figured that the hostname of the URL would be a decent proxy
+for server. (In the URL “http://thomaslevine.com/open-data”, the hostname
+is “thomaslevine.com”.) So I wrote a sloppy function to detect these hostnames.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  datasets$hostname &amp;lt;- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here are the top few hostnames and the number of datasets with each hostname.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;              \t 0ccfs001.sussex.nhs.uk\\csu
+               1                           1
+10.96.9.105:8080               176.32.230.19
+               1                           1
+ 192.171.153.213               194.151.67.33
+               1                           1
+   195.217.160.2              195.55.247.252
+               1                           1
+ 2010.census.gov              207.251.86.229
+               1                           1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Having come up with this variable, I now could look at error types by hostname.&lt;/p&gt;
+
+&lt;h3 id="base-error-rate"&gt;Base error rate&lt;/h3&gt;
+&lt;p&gt;&lt;img src="figure/p_errors_total.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_total.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_error.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_facet.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h3 id="invalid-urls"&gt;Invalid URLs&lt;/h3&gt;
+&lt;p&gt;The “http:” datasets weren’t valid URLs.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Error type&lt;/th&gt;
+      &lt;th&gt;URL&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ConnectionError&lt;/td&gt;
+      &lt;td&gt;http:// Localisation des accès des offices de tourisme&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ConnectionError&lt;/td&gt;
+      &lt;td&gt;http://nullFPM.shp.zip&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ConnectionError&lt;/td&gt;
+      &lt;td&gt;http:// 2012_PNOA.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ConnectionError&lt;/td&gt;
+      &lt;td&gt;http://fotovoltaico.provincia.tn.it\solar.xml&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LocationParseError&lt;/td&gt;
+      &lt;td&gt;http://2011 NFL draft: Andrew Luck is cementing his status as the No. 1 overall prospect on the board.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id="connection-errors"&gt;Connection errors&lt;/h3&gt;
+&lt;p&gt;Connection errors seem to correspond to some datasets with strange URLs and others for
+which the site just can’t be contacted.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/connectionerror.png" alt="plot of chunk connectionerror" class="wide" /&gt;&lt;/p&gt;
+
+&lt;h3 id="invalid-schemas"&gt;Invalid schemas&lt;/h3&gt;
+&lt;p&gt;Invalid schemas are for datasets sent over protocals other than HTTP, like FTP.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/invalidschema.png" alt="plot of chunk invalidschema" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of these schemas indicate that the files are stored on local systems
+rather than being accessible from the internet. But a large minority of these
+(FTP, specifically) is fully reasonable to put on the internet; I didn’t
+check them properly.&lt;/p&gt;
+
+&lt;h3 id="missing-schemas"&gt;Missing schemas&lt;/h3&gt;
+&lt;p&gt;Missing schemas tend to be for datasets where the hostname was not specified.
+Examples:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1] "/storage/f/2012-08-13T002240/COSCParks.kmz"
+[2] "/storage/f/2012-08-22T025312/prod_test.csv"
+[3] "/storage/f/2012-08-10T100153/sc_addies.csv"
+[4] "/en/storage/f/2013-02-11T170442/Copy-of-GB_Certified_130211_for-map.csv"
+[5] "/storage/f/2012-08-10T071459/annual-new-h2o-meters-2000-2010.csv"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="figure/missingschema.png" alt="plot of chunk missingschema" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a valid relative URL. I could have gotten the hostname from the site
+from which I got the link, but I did not do this.&lt;/p&gt;
+
+&lt;h3 id="ssl-errors"&gt;SSL Errors&lt;/h3&gt;
+&lt;p&gt;A bunch of sites did not have SSL certificates that I recognized.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_ssl_error.png" alt="plot of chunk p_ssl_error" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I could ignore the certificates and download the dataset, but the SSL warning
+is slightly unnerving.&lt;/p&gt;
+
+&lt;p&gt;SSL errors explain only a small part of the links I marked as dead. Of the
+datasets that I’d marked as dead before, 457 had SSL errors and 7630 did not.&lt;/p&gt;
+
+&lt;p&gt;They are interesting, but they don’t explain my strange results.&lt;/p&gt;
+
+&lt;h3 id="timeouts"&gt;Timeouts&lt;/h3&gt;
+&lt;p&gt;Once we get rid of the strange URLs, most of these links have no errors or have
+timeouts. (Remember, these are the links that I marked as dead in my previous
+analysis, and I tried downloading again for the present analysis.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_hostname_facet.png" alt="" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The “www-genesis.destatis.de” datasets seem mostly okay, though there are some timeouts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/plot_destatis.png" alt="plot of chunk plot_destatis" class="wide" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="figure/p_elapsed.png" alt="plot of chunk p_elapsed" class="wide" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2014-02-21:/!/decompilers-in-css/index.html</id>
     <title type="html">Decompilers in CSS</title>
@@ -1484,305 +2039,6 @@ and run &lt;code&gt;make from-disk&lt;/code&gt; to copy &lt;code&gt;./cache/open
 &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#095;&amp;#064;&amp;#116;&amp;#104;&amp;#111;&amp;#109;&amp;#097;&amp;#115;&amp;#108;&amp;#101;&amp;#118;&amp;#105;&amp;#110;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;email me&lt;/a&gt;, and I might document it.
 And if you figure out how something works, do send me any
 documentation that you happen to come up with, even if it’s a mess.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2014-01-16:/!/data-catalog-dead-links/index.html</id>
-    <title type="html">Dead links on data catalogs</title>
-    <published>2014-01-16T00:00:00Z</published>
-    <updated>2014-01-16T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/data-catalog-dead-links/index.html"/>
-    <content type="html">&lt;p&gt;As I started looking at data on &lt;a href="http://ckan.org/"&gt;CKAN&lt;/a&gt; sites, I noticed that a lot of the
-datasets were links to files on other websites and that a lot of these links
-were dead. Then I started wondering which links were dead and how this happens.&lt;/p&gt;
-
-&lt;h2 id="why-study-dead-links"&gt;Why study dead links&lt;/h2&gt;
-&lt;p&gt;It goes without saying that websites usually shouldn’t have dead links, but
-here are a bunch of fancy reasons why dead links shouldn’t be on open data sites.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://sunlightfoundation.com/opendataguidelines/#permanent-access"&gt;Sunlight Foundation&lt;/a&gt;
-  says to “Create permanent, lasting access to data”.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://project-open-data.github.io/principles/"&gt;Project Open Data&lt;/a&gt; says
-  that data should be “Managed Post-Release”.&lt;/li&gt;
-  &lt;li&gt;The &lt;a href="http://census.okfn.org/faq/#what-do-all-the-questions-about-the-datasets-mean-"&gt;questions&lt;/a&gt;
-  for Open Knowledge Foundation’s Open Data Census include
-    &lt;ul&gt;
-      &lt;li&gt;“Is the data available online?”&lt;/li&gt;
-      &lt;li&gt;“URL of data online?”&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;The Open Data Institute
-  &lt;a href="https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take"&gt;Open Data Certificate questionnaire&lt;/a&gt;
-  asks for a bunch of URLs about the dataset to be certified;
-  I presume they should be alive.
-  It also asks “How long will this data be available for?”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In summary, dead links are bad.&lt;/p&gt;
-
-&lt;p&gt;That said, if the alternative to having a dead link to a dataset is having no
-link to a dataset, I’d say it’s better to have the dead link so we know that the
-data exist. But live links are better; let’s move on.&lt;/p&gt;
-
-&lt;h2 id="acquiring-the-data"&gt;Acquiring the data&lt;/h2&gt;
-&lt;p&gt;I collected data about dead links from CKAN and
-&lt;a href="http://www.socrata.com/open-data-portal/"&gt;Socrata&lt;/a&gt; catalogs;
-it went a bit like this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="data-collection.png" alt="Diagram of the data collection process" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The next few sections explain this a bit more.&lt;/p&gt;
-
-&lt;h3 id="accessing-data-catalogs"&gt;Accessing data catalogs&lt;/h3&gt;
-&lt;p&gt;I downloaded &lt;a href="https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD"&gt;a list of Socrata catalogs&lt;/a&gt;
-(&lt;a href="https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD"&gt;mirror&lt;/a&gt;)
-and &lt;a href="http://instances.ckan.org/config/instances.json"&gt;a list of CKAN catalogs&lt;/a&gt;
-(&lt;a href="https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json"&gt;mirror&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;I tried querying the APIs for all of these sites.
-I couldn’t do this for some of the sites, mainly because they required
-authorization (lolz open data) that I did not have or because
-the URL I found for the catalog did not correspond with the
-domain for the CKAN or Socrata API.
-I continued with all of the sites for which I could get the data;
-this wound up being
-44 CKAN catalogs and
-52 Socrata catalogs.&lt;/p&gt;
-
-&lt;h3 id="dataset-metadata"&gt;Dataset metadata&lt;/h3&gt;
-&lt;p&gt;With each of these catalogs, I acquired the metadata JSON file for each dataset
-in the catalog. Here they are for
-&lt;a href="https://github.com/tlevine/socrata-views"&gt;Socrata&lt;/a&gt; and for
-&lt;a href="https://github.com/tlevine/ckan-datasets"&gt;CKAN&lt;/a&gt;. These are also
-&lt;a href="https://github.com/tlevine/open-data/tree/master/downloads"&gt;submodules&lt;/a&gt;
-to the &lt;a href="https://github.com/tlevine/open-data/tree/master"&gt;main repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="link-liveliness"&gt;Link liveliness&lt;/h3&gt;
-&lt;p&gt;From the metadata for each dataset, I pulled out the
-URL
-for the dataset if there was a URL.
-Here’s the code
-for &lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L13"&gt;Socrata&lt;/a&gt; and
-for &lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L32"&gt;CKAN&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I checked whether datasets were alive by trying to download them.
-(&lt;a href="https://github.com/tlevine/open-data/blob/master/links.py#L37"&gt;More precisely&lt;/a&gt;,
-I really issued a HEAD request and checked the status code.)&lt;/p&gt;
-
-&lt;h3 id="internal-versus-external-storage"&gt;Internal versus external storage&lt;/h3&gt;
-&lt;p&gt;Once I had the metadata files about each dataset, I also
-&lt;a href="https://github.com/tlevine/open-data/blob/master/links.py"&gt;determined&lt;/a&gt;
-whether the dataset was stored &lt;em&gt;internally&lt;/em&gt; or &lt;em&gt;externally&lt;/em&gt;.
-These are terms that I just invented, so I define them below.&lt;/p&gt;
-
-&lt;p&gt;With &lt;strong&gt;internal storage&lt;/strong&gt;, the dataset is uploaded to the data catalog software
-itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
-the dataset gets stored in Socrata’s data storage. (There isn’t really a
-name for this place in Socrata’s architecture, as far as I know.)&lt;/p&gt;
-
-&lt;p&gt;With &lt;strong&gt;external storage&lt;/strong&gt;, the dataset is a file that is stored on some other
-website on the internet, and we can reference the dataset with a URL. When we
-add the dataset to CKAN or Socrata, we are just linking to this other website.&lt;/p&gt;
-
-&lt;p&gt;As I imply above, Socrata and CKAN both support both of these two approaches.&lt;/p&gt;
-
-&lt;h3 id="final-database"&gt;Final database&lt;/h3&gt;
-&lt;p&gt;I combined this all into the same
-&lt;a href="http://bigdada.thomaslevine.com/open-data.sqlite.gz"&gt;SQLite3 file&lt;/a&gt;
-as I used for the &lt;a href="/!/socrata-products"&gt;Socrata products analysis&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id="results"&gt;Results&lt;/h2&gt;
-
-&lt;h3 id="how-many-data-catalogs-have-external-links"&gt;How many data catalogs have external links?&lt;/h3&gt;
-&lt;p&gt;As I mention above, there are
-52 Socrata catalogs.
-Of these,
-19
-(37%)
-have at least one externally stored dataset.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/has_links_socrata.png" alt="Socrata catalogs with externally stored datasets" /&gt; &lt;/p&gt;
-
-&lt;p&gt;Of the 44 CKAN catalogs,
-43
-(98%)
-have at least one externally stored dataset.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/has_links.png" alt="Proportion of data catalogs with externally stored datasets" /&gt; &lt;/p&gt;
-
-&lt;p&gt;That’s a big difference.&lt;/p&gt;
-
-&lt;h3 id="link-types-and-liveliness-by-catalog"&gt;Link types and liveliness by catalog&lt;/h3&gt;
-&lt;p&gt;Rather than looking at just whether there are any externally stored datasets at all,
-let’s now look at what proportion of the datasets are stored externally.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/software_all_types.png" alt="Non-links, live links, and dead links across data catalog" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Whether a dataset is stored internally or externally is related to whether it
-stays alive. This is a plot of what proportion of datasets on Socrata are stored
-internally and what proportion of datasets are alive; each dot is a data catalog
-run by Socrata.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/prop_links_socrata.png" alt="Only externally stored data can be dead" /&gt; &lt;/p&gt;
-
-&lt;p&gt;Socrata data catalogs with more externally stored data tend to have more dead links.&lt;/p&gt;
-
-&lt;p&gt;The above plot was for just Socrata; let’s see what happens when we add CKAN.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/prop_links.png" alt="CKAN catalogs have more externally stored datasets and more dead datasets" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;CKAN catalogs tend to have more externally stored data. When we add CKAN, the
-association between externally stored data and dead links continues.&lt;/p&gt;
-
-&lt;h3 id="liveliness-among-externally-stored-data"&gt;Liveliness among externally stored data&lt;/h3&gt;
-&lt;p&gt;Here’s another way of seeing the above relationship. Let’s look at only the externally
-stored datasets, and check what proportion of those are alive.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="figure/software_only_links.png" alt="Of only the external links, what proportion of datasets are alive?" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Catalogs with no external links appear as empty bars.&lt;/em&gt; This is ambiguous,
-because empty bars could also mean that there are external links but they’re
-all dead. Oh, well.&lt;/p&gt;
-
-&lt;p&gt;Some data catalogs are better than others, but about a quarter of externally stored
-datasets tend to be dead. Thus, when we make more externally stored datasets,
-we should expect more dead datasets.&lt;/p&gt;
-
-&lt;p&gt;Possibly interesting: the catalogs in this plot are ordered the same way they
-are in the &lt;a href="#link-types-and-liveliness-by-catalog"&gt;earlier similar-looking plot&lt;/a&gt;,
-so higher catalogs
-are ones with fewer dead links.&lt;/p&gt;
-
-&lt;h2 id="software-suggests-behavior"&gt;Software suggests behavior&lt;/h2&gt;
-&lt;p&gt;While both softwares support both storage methods, Socrata encourages the
-use of internal storage, and CKAN encourages the use of external storage.
-Let’s walk through how you create a dataset in both CKAN and Socrata through
-their respective web interfaces.&lt;/p&gt;
-
-&lt;h3 id="ckan"&gt;CKAN&lt;/h3&gt;
-&lt;p&gt;In CKAN, this is the screen you get when you are specifying the data file
-for your dataset.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="ckan-1.png" alt="&amp;quot;1. Create dataset&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The first screen says nothing about how to enter the data, but the second one does.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="ckan-2.png" alt="&amp;quot;2. Additional Data&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;You enter the URL of a file or an API,&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="ckan-3.png" alt="Filling in the &amp;quot;Resource&amp;quot; field with a &amp;quot;Link to an API&amp;quot;" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;or you upload a file.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="ckan-4.png" alt="The &amp;quot;File Upload&amp;quot; file picker window" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;After you upload the file, the box gets populated with the URL to which that
-has been uploaded. (This URL is inside the CKAN FileStore.)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="ckan-5.png" alt="Filling in the &amp;quot;Resource&amp;quot; field with a &amp;quot;Upload a file&amp;quot;" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The first two cases lead to external storage, and
-the third case leads to internal storage.
-CKAN does fancy things depending on whether you say it’s a file or an API
-and depending on the file format you tell it, but that’s separate from the
-issue of internal versus external storage.&lt;/p&gt;
-
-&lt;p&gt;As you might notice above, CKAN subtly encourages you to store things externally.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;There are two options for external storage but just one for internal.&lt;/li&gt;
-  &lt;li&gt;The two tabs for external storage options come before the third tab for
- internal storage.&lt;/li&gt;
-  &lt;li&gt;In the web interface, internally stored, uploaded files are treated like
- external links.&lt;/li&gt;
-  &lt;li&gt;One of the external storage options (the “Link to a file” tab) is selected
- by default when you arrive at the page.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;CKAN is a bit subtle in encouraging external storage, but do keep this in mind.&lt;/p&gt;
-
-&lt;h3 id="socrata"&gt;Socrata&lt;/h3&gt;
-&lt;p&gt;While externally stored data exist on Socrata, I didn’t find any way of creating
-such a dataset with the Socrata website. Here’s what creating a new dataset on 
-Socrata looks like.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-start.png" alt="&amp;quot;How would you like to create your new Dataset?&amp;quot; page, with three options: &amp;quot;Design from Scratch&amp;quot;, &amp;quot;Import a Data File&amp;quot; and &amp;quot;Upload a Non-Data File&amp;quot;" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you choose to “Design from Scratch”, you wind up entering the data through
-the table interface in Socrata; after you click through a few screens, you get
-an editor like this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-scratch-2.png" alt="A spreadsheet-like table editor in Socrata Open Data Portal software" /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you choose to “Import a Data File”, you see this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-1.png" alt="&amp;quot;Where is the file located&amp;quot; page, with two options: &amp;quot;On my computer&amp;quot; and &amp;quot;On the internet&amp;quot;" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Because I was looking for a place to add externally stored data, I clicked on
-“On the Internet”. I entered a file into this box, and the file got downloaded
-to Socrata.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-2.png" alt="&amp;quot;Please indicate where your data file lives.&amp;quot;, with a text input box containing the URL &amp;quot;http://chainsaw.thomaslevine.com/aurora.csv&amp;quot;" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then I got this schema editor,&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-3.png" alt="Display of column names and types for the uploaded dataset, with buttons for editing the information" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;and the data got imported to the internal storage.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-5.png" alt="The same spreadsheet-like editor as above, but with the aurora.csv data" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The non-data file approach also leads to internal storage.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="socrata-non-data.png" alt="&amp;quot;Please choose a file to upload&amp;quot; page that looks nearly identical to the &amp;quot;Where is the file located&amp;quot; page" class="wide" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I don’t even see any documentation as to how to do this
-&lt;a href="http://dev.socrata.com/publishers/importing"&gt;with the API&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Socrata Support did send me an
-&lt;a href="https://twitter.com/SocrataSupport/status/423600872501690368"&gt;answer&lt;/a&gt;,
-but I need to log in to ZenDesk to do that (lolz open data again),
-and I was having trouble doing that.&lt;/p&gt;
-
-&lt;p&gt;So it’s pretty hard to add an externally stored dataset to Socrata.&lt;/p&gt;
-
-&lt;h2 id="internal-storage-encourages-live-links"&gt;Internal storage encourages live links&lt;/h2&gt;
-&lt;p&gt;If your data are stored in CKAN’s FileStore or in Socrata’s
-data storage (rather than as an external link), then it is
-practically impossible for the link to be dead.&lt;/p&gt;
-
-&lt;p&gt;If we want to use fancy design-speak, we can call this a forcing function.
-A forcing function is an aspect in the design of a thing that makes it
-impossible for people to do something that they aren’t supposed to do.
-If we make it impossible for links to be dead, they won’t ever be dead.&lt;/p&gt;
-
-&lt;h2 id="other-ways-of-encouraging-live-links"&gt;Other ways of encouraging live links&lt;/h2&gt;
-&lt;p&gt;Removing the external link feature should reduce the number of dead links
-to zero, and that might be nice. On the other hand, there might be some good
-things about external links, so maybe we can instead come up with some other
-software feature that helps people avoid or fix dead links. For example,
-perhaps there could be a page that lists the dead datasets and counts how
-many times people have tried accessing them.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href="https://github.com/okfn/ckanext-qa"&gt;CKAN Quality Assurance Extension&lt;/a&gt;
-does just this; here’s one of its reports.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs"&gt;&lt;img src="ckanext-qa.png" alt="A table of datasets with statistics about how dead they are" class="wide" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id="why-measure-data-catalogs"&gt;Why measure data catalogs&lt;/h2&gt;
-&lt;p&gt;Detecting dead links is one of several things that we can easily do to
-measure the quality of a data catalog. Similarly, we can also measure
-&lt;a href="/!/open-data-licensing"&gt;what licenses are used&lt;/a&gt;,
-&lt;a href="/!/data-updatedness"&gt;how up-to-date the data are&lt;/a&gt;,
-and &lt;a href="/!/socrata-formats"&gt;what data formats the data are in&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;When we have lots of datasets on our data catalog, it becomes too much
-for someone to read through all of them. Measures like these help us get
-some idea of what is going on across the data catalog. They also help us
-choose where to focus our attention, so that we may identify good
-practices and diagnose problems.&lt;/p&gt;
 </content>
   </entry>
 </feed>

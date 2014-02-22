@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <title>Zombie links on data catalogs</title>
+    <meta content="Some of these links were less dead than I'd thought." name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Zombie links on data catalogs' name='twitter:title'>
+    <meta content="Some of these links were less dead than I'd thought." name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/!/zombie-links/figure/prop_links.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/zombie-links/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content="Some of these links were less dead than I'd thought." property='og:description'>
+    <meta content='Zombie links on data catalogs' property='og:title'>
+    <meta content='http://thomaslevine.com/!/zombie-links/figure/prop_links.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>Zombie links on data catalogs</h1>
+              <em>
+                <time datetime='2014-02-22'>
+                  February 22, 2014
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <p>After I wrote about
+            <a href="/!/dead-links-on-data-catalogs">dead links on data catalogs</a>,
+            some people commented that the links were less dead than I’d thought.</p>
+            
+            <p><a href="https://twitter.com/statshero/status/424147773852622848"><img src="trentino.png" alt="Anecdotally I don't think that @DatiTrentinoit has so many broken links. Check validator? @thomaslevine http://thomaslevine.com/!/data-catalog-dead-links/" /></a></p>
+            
+            <p><a href="https://twitter.com/waldojaquith/status/424026174508261376"><img src="openva.png" alt="@thomaslevine You've got ~45% of data․openva․com datasets missing. I just audited 75% of them, and found just 2 missing. Any idea what's up?" /></a></p>
+            
+            <p>Some explanations were proposed. Samuele and Jindřich both suggested that
+            the CKAN FileStore doesn’t support HEAD requests.</p>
+            
+            <p><a href="https://twitter.com/_rshk/status/424208140016418816"><img src="samuele.png" alt="@DatiTrentinoit @statshero @thomaslevine Ckan returns 404 on HEAD requests, that's the problem.." /></a></p>
+            
+            <p><a href="https://twitter.com/jindrichmynarz/status/428194318063370241"><img src="jindrich.png" alt="" /></a></p>
+            
+            <p>And <a href="http://waldo.jaquith.org/">Waldo</a>
+            suggested that I might be checking for status code 200 but
+            receiving status code 303 (redirect) from OpenVA.</p>
+            
+            <p>So what was going on?</p>
+            
+            <h2 id="not-reasons">Not reasons</h2>
+            <p>I considered the two possibilities that were mentioned above, and
+            I don’t think either of them was the issue.</p>
+            
+            <h3 id="head">HEAD</h3>
+            <p>CKAN does just fine on HEAD requests.</p>
+            
+            <pre><code>url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'&#x000A;import requests&#x000A;&#x000A;get = requests.get(url)&#x000A;head = requests.head(url)&#x000A;&#x000A;print(get.status_code)&#x000A;# 200&#x000A;print(head.status_code)&#x000A;# 200&#x000A;</code></pre>
+            
+            <p>So I don’t think the issue was that CKAN returns 404 on HEAD requests.</p>
+            
+            <h3 id="status-code">Status code</h3>
+            <p>I counted a link as alive if and only if it returned a status code of 200.
+            Could the issue be that I needed to check for other status codes? Specifically,
+            could it be that the URLs for files hosted on some CKAN FileStores are redirects
+            rather than final URLs?</p>
+            
+            <p>URLs from the CKAN FileStore should not be an issue because I didn’t check URLs
+            when the data were marked as being stored internally in the catalog.</p>
+            
+            <p>That said, it’s possible that people uploaded the data to the CKAN FileStore and
+            then told CKAN that it was an external link; it turns out that this was the case
+            for OpenVA</p>
+            
+            <p>Running this query</p>
+            
+            <pre><code>SELECT DISTINCT url FROM links WHERE catalog = 'data.openva.com' AND NOT is_link;&#x000A;</code></pre>
+            
+            <p>yields three URLs with that characteristic.</p>
+            
+            <pre><code>https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json&#x000A;https://data.openva.com.s3.amazonaws.com/2013-12-16T03:06:56.875Z/sentencing.csv&#x000A;https://data.openva.com.s3.amazonaws.com/2013-05-11T04:57:18.031Z/agency-websites.csv&#x000A;</code></pre>
+            
+            <p>They have issues with SSL certificates,</p>
+            
+            <pre><code>requests.head('https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json')&#x000A;# SSLError: hostname 'data.openva.com.s3.amazonaws.com' doesn't match either of '*.s3.amazonaws.com', 's3.amazonaws.com'&#x000A;</code></pre>
+            
+            <p>and they work just fine with unencrypted HTTP.</p>
+            
+            <pre><code>requests.head('http://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json').status_code&#x000A;# 200&#x000A;</code></pre>
+            
+            <p>Moreover, there aren’t very many redirect status codes across all the links.</p>
+            
+            <p><img src="figure/p_no_redirects.png" alt="" class="wide" /></p>
+            
+            <p>Redirects are normally of status code 301 or 303, or at least in the 300-399
+            range. I followed redirects when I downloaded them, so this plot contains no
+            redirect status codes.</p>
+            
+            <h2 id="reasons">Reasons</h2>
+            <p>If the HEAD request thing and the redirect status code weren’t the issues,
+            what was?</p>
+            
+            <p>To figure this out, I tweaked my downloader and ran it on just the links that
+            had timed out or otherwise not responded; I didn’t run it on links that had
+            responded with error status codes like 404. I also pulled out the hostname of
+            the links. (For example, <code>thomaslevine.com</code> of the URL of the page you’re
+            reading.) Then I looked at the errors I got back.</p>
+            
+            <p>I also looked around in the SQLite3 database in which I’d been storing
+            everything for this link analysis.</p>
+            
+            <p>It’s not like there was just one issue, of course.
+            Here are the main factors I see as leading to the strange results.</p>
+            
+            <ul>
+              <li>I didn’t fully parse links to datasets.</li>
+              <li>I had a low timeout on my HTTP requests (2 seconds).</li>
+              <li>I had duplicate data in my database.</li>
+            </ul>
+            
+            <h3 id="incompletely-parsed-urls">Incompletely parsed URLs</h3>
+            <p>I looked at the different sorts of errors that I got when I requested links
+            to different hostnames.</p>
+            
+            <p><img src="figure/p_hostname_error.png" alt="" class="wide" /></p>
+            
+            <p>That the left-most bar, for the hostname <code>http:</code>, is quite large and has
+            a lot of invalid URLs. Things that my hostname-parser detected as <code>http:</code> are
+            usually invalid URLs.</p>
+            
+            <pre><code>[1] "http://"&#x000A;[2] "http://www..ic.nhs.uk/catalogue/PUB09271/per-soc-ser-adu-soc-car-sur-eng-2011-12-fin-tables-charts.xls"&#x000A;[3] "http://Gemeente-Den-Haag-open-data-Bodemenergie-restwarmtelocaties-bestaande-warmte-koude-opslag.zip"&#x000A;[4] "http://financial-transactions-data-west-midlands-strategic-health-authority-October-2012"&#x000A;[5] "http://Con la legge 18 giugno 2009, n. 69 è stato previsto, all’art. 21, che le pubbliche amministrazioni pubblichino sui rispettivi siti internet le retribuzioni annuali, i curricula vitae, gli indirizzi di posta elettronica e i numeri telefonici ad uso professionale dei dirigenti, nonché le statistiche sui tassi di assenza e di maggiore presenza del personale distinti per uffici di livello dirigenziale.  La Presidenza è quindi impegnata nella necessaria raccolta dei dati trattati dai diversi Uffici del Segretariato generale e dei Ministri senza portafoglio, anche al fine di assicurarne l’omogeneità indispensabile per poter presentare elaborazioni attendibili e significative di una realtà complessa ed articolata come quella della Presidenza del Consiglio. "&#x000A;</code></pre>
+            
+            <p>Many of the links were specified as relative URLs, and I didn’t try to parse them.
+            I could have known to look for this, but having absolute URLs would still have
+            been easier.</p>
+            
+            <p>Also, some of the URLs were intranet file paths (like <code>S:Foo\Bar\Baz.xls</code>).
+            Not all datasets are public yet, so this is better than nothing.
+            That said, I wonder whether people realize that these intranet paths are not
+            accessible on the normal internet.</p>
+            
+            <h3 id="low-timeout">Low Timeout</h3>
+            <p>Aside from the invalid URLs, most of the bad links gave a timeout.</p>
+            
+            <p><img src="figure/p_errors_total.png" alt="" class="wide" /></p>
+            
+            <p>As we saw above, different websites (hostnames) tend to give different errors.
+            The following plot should make it more clear.</p>
+            
+            <p><img src="figure/p_hostname_facet.png" alt="" class="wide" /></p>
+            
+            <p>Recall that people thought that CKAN doesn’t respond to HEAD requests. It might
+            just be that CKAN is slow to respond to requests. Here is a plot with datasets
+            color-coded based on whether they appear to be served from a CKAN FileStore.</p>
+            
+            <p><img src="figure/storage.png" alt="plot of chunk storage" class="wide" /></p>
+            
+            <p>(The <code>/storage</code> endpoint is typically used for the CKAN FileStore.)</p>
+            
+            <p>It looks like the CKAN FileStore can take a while to respond, and that might be
+            why people thought that HEAD requests fail.</p>
+            
+            <h2 id="duplicate-data">Duplicate data</h2>
+            <p>It turned out that I had duplicate records in my table of link information. As I was working
+            with it, I forgot the correct schema and remembered a different one; I thought I had a unique
+            index on something for which I didn’t.</p>
+            
+            <p>To illustrate this, see below a plot of the number of CKAN datasets for which my link liveliness
+            data has duplicate records. The top bar graph is for datasets that were stored internally, and
+            the bottom bar graph is for datasets that were stored externally.</p>
+            
+            <p><img src="figure/p_duplicates_ckan.png" alt="plot of chunk p_duplicates_ckan" class="wide" /></p>
+            
+            <p>We see that there were quite a many duplicates, particularly for datasets that were stored
+            externally. This happened because I ran my downloader script multiple times, thinking that
+            duplicates were being skipped rather than resolved properly.</p>
+            
+            <p>Because of how I set up the database, it’s hard to see this in the Socrata data.</p>
+            
+            <p><code>&#x000A;## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust&#x000A;## this. stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to&#x000A;## adjust this.</code></p>
+            
+            <p><img src="figure/p_duplicates_socrata.png" alt="plot of chunk p_duplicates_socrata" class="wide" /></p>
+            
+            <p>This plot shows that I have hundreds of duplicates of the same dataset.
+            Most of these duplicates probably came from original Socrata site (as explained
+            <a href="/!/socrata-deduplicate">here</a>).
+            Like with the CKAN datasets, my database schema issue probably only doubled or
+            tripled the duplication for the Socrata datasets.</p>
+            
+            <h2 id="new-results">New results</h2>
+            <p>I used a longer timeout on the previously-erring links and deduplicated my duplicates.
+            Here are new results that correspond with the plots in the
+            <a href="/!/data-catalog-dead-links">previous article</a>.</p>
+            
+            <p>In these plots, each bar represents all of the datasets for one data catalog. The bar
+            is colored differently at different segments to represent different categories of dataset.</p>
+            
+            <p>The first plot shows that most datasets within a given catalog are alive, either because
+            they are internally stored or because they are stored externally and have live links.</p>
+            
+            <p><img src="figure/p_link_types.png" alt="plot of chunk p_link_types" class="wide" /></p>
+            
+            <p>Let’s ignore the datasets that are stored internally. The bars will represent only the
+            datasets that are external links, and the missing bars correspond to catalogs with no
+            external links.</p>
+            
+            <p><img src="figure/p_link_types_onlylinks.png" alt="plot of chunk p_link_types_onlylinks" class="wide" /></p>
+            
+            <p>One of my main conclusions in the prior article was that Socrata and CKAN encourage
+            different paradigms for adding data to the catalog. Socrata sites are more likely to
+            have internally stored data, and CKAN sites are more likely to have externally stored
+            data. On the other hand, externally stored datasets are more likely to be alive in
+            CKAN sites than in Socrata sites. I made this plot to explain that.</p>
+            
+            <p><img src="/!/data-catalog-dead-links/figure/prop_links.png" alt="Old version of the plot" class="wide" /></p>
+            
+            <p>The plot looks a bit different with the fixed data (below),</p>
+            
+            <p><img src="figure/p_prop_links.png" alt="plot of chunk p_prop_links" class="wide" /></p>
+            
+            <p>but conclusion still seems reasonable.</p>
+            
+            <h2 id="unexplained">Unexplained</h2>
+            <p>Let’s look closely at the two catalogs for which my prior results didn’t seem right.</p>
+            
+            <p><img src="figure/p_link_types_specifics.png" alt="plot of chunk p_link_types_specifics" class="wide" /></p>
+            
+            <p>OpenVA is looking more alive than it did before, and the links that I marked as dead
+            are links with SSL problems. But I don’t know why Trentino’s links are marked as dead.
+            I checked a few of these links, and they download just fine.</p>
+            
+            <h2 id="conclusion">Conclusion</h2>
+            <p>My prior article gave some strange figures regarding the liveliness of datasets.
+            In particular, there were high rates of dead links for some catalogs.
+            Most of the strange figures in my prior article are explained by me having duplicates
+            in my database. Also, some dead links are explained by factors that we might not think
+            of as dead links, such as ambigous URLs or bad SSL configurations.</p>
+            
+            <p>My main conclusion in the previous article is that CKAN and Socrata encourage storing
+            data in different places (internally and externally). After I accounted for the
+            duplication, this conclusion continues to seem valid.</p>
+            
+            <p>Finally, we saw some interesting issues with the construction of URLs for datasets.
+            There was a bit more variation in URLs than I had anticipated.</p>
+            
+            <h1 id="appendix-how-i-figured-this-all-out">Appendix: How I figured this all out</h1>
+            <p>Here are a bunch of things I tried doing in order to figure out what was going on.
+            It’s not very well organized or explained, but you might find it interesting.</p>
+            
+            <h2 id="status-codes">Status codes</h2>
+            <p>I called a URL alive if an ordinary HEAD request to it returned a
+            <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">status code</a> of 200.
+            This simplifies things a little bit.
+            I started out by considering whether this was an appropriate test.</p>
+            
+            <p>Here are all of the status codes that I received, from all of the different
+            links from all of the catalogs.</p>
+            
+            <p><img src="figure/status_codes.png" alt="plot of chunk status_codes" class="wide" /></p>
+            
+            <p>Let’s look at this for just the specific catalogs that those Tweets were about.
+            Here’s OpenVA.</p>
+            
+            <p><img src="figure/status_codes_va.png" alt="plot of chunk status_codes_va" class="wide" /></p>
+            
+            <p>And here’s Trentino.</p>
+            
+            <p><img src="figure/status_codes_trentino.png" alt="plot of chunk status_codes_trentino" class="wide" /></p>
+            
+            <p>Aside from 200, all of those status codes are errors, so this method of checking
+            seems fine. On the other hand, it seems like there were a lot of non-responses….
+            More about non-responses later; for now, we’ll just say that the status code
+            check is fine.</p>
+            
+            <h2 id="duplicates">Duplicates</h2>
+            <p>When plotting this, I realized that some of the data didn’t line up. I set up
+            a database schema that was more normalized so that I wouldn’t check a link twice
+            if two datasets linked to it. I thus had a datasets table and a links table.</p>
+            
+            <p>Then I wound up changing my mind and using the links table to store a single record
+            per dataset. Here arose a problem; there was no unique index on this datasets table,
+            but I thought there was, so I added multiple records for each link.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align: left">catalog</th>
+                  <th style="text-align: left">identifier</th>
+                  <th style="text-align: right">count(*)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_excavation_data</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_geophysics_cmdminiexplorer</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_geophysics_flashres64</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_geophysics_geoscanrm15</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_laboratorydata</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_monitoring_apparent_permitivity_cstdr100</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_monitoring_bulk_electrical_conductivity_cstdr100</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_monitoring_soilconductivity_imko_pico_t3p</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_monitoring_temperature_cs107l</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">dartportal.leeds.ac.uk</td>
+                  <td style="text-align: left">dart_monitoring_weather_data</td>
+                  <td style="text-align: right">5</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>I had thought that there was a unique index on
+            <code>links.software, links.catalog, links.identifier</code>,
+            but there wasn’t!</p>
+            
+            <h2 id="misinterpreting-nulls">Misinterpreting NULLs</h2>
+            <p>Another issue: I had interpreted NULL as meaning that the dataset is not a link,
+            but it really represents that link’s liveliness has yet  to be checked;
+            here’s the relevant line of code.</p>
+            
+            <pre><code>url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]&#x000A;</code></pre>
+            
+            <p>I don’t remember exactly how this affected the results thought; it might not have
+            been a big deal.</p>
+            
+            <h2 id="unresponsive-datasets">Unresponsive datasets</h2>
+            <p>I recorded when HTTP requests for datasets had timed out or otherwise
+            not responded. (In the database, these are indicated as status code -42.)
+            I checked a few of these manually. Here are two of them.</p>
+            
+            <pre><code>dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv&#x000A;https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html&#x000A;</code></pre>
+            
+            <p>They both work, but they take a while. Also, I found that they took longer
+            to download to my desktop computer on my desk than they took to download to
+            my server in a datacenter.
+            In case the problem was my internet connection (tethered from a phone),
+            I used that server in a datacenter to run the checker again on
+            all datasets that had timed out. Results didn’t remarkably change.</p>
+            
+            <h2 id="slow-datasets">Slow datasets</h2>
+            <p>Those links took a while to download. Maybe my timeout threshold is being hit?</p>
+            
+            <pre><code>url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'&#x000A;import requests&#x000A;&#x000A;timeout = requests.head(url, timeout = 2)&#x000A;# timeout error&#x000A;</code></pre>
+            
+            <p>So it is. More detail follows.</p>
+            
+            <pre><code>get = requests.get(url)&#x000A;head = requests.head(url)&#x000A;&#x000A;print(get)&#x000A;# &lt;Response [200]&gt;&#x000A;&#x000A;print(head)&#x000A;# &lt;Response [200]&gt;&#x000A;&#x000A;print(head.elapsed)&#x000A;# datetime.timedelta(0, 3, 353558)&#x000A;</code></pre>
+            
+            <p>The link is alive, but my timeout of 2 seconds was too short.
+            In this case, the request with a timeout failed, so the initial
+            response took too long. Also, it took a total of 3.35 seconds to
+            download. The elapsed time isn’t the same thing as the time until
+            which the request will time out, but they’re related.</p>
+            
+            <h3 id="bad-urls">Bad URLs</h3>
+            <p>A bunch of datasets have a field for an external link but provided
+            an empty URL.</p>
+            
+            <pre><code>[1] catalog  count(*)&#x000A;&lt;0 rows&gt; (or 0-length row.names)&#x000A;</code></pre>
+            
+            <p>Aside from being interesting in itself, this pointed out to me that
+            there were probably lots of types of errors that I hadn’t really
+            thought about. I realized I could look at the errors for each of the links
+            I checked. I thought I had saved the error in the database, but
+            my code for doing that turned out to be broken.</p>
+            
+            <p>So I fixed that! Collecting better error information, I ran the checker
+            on all of the links that had failed before.</p>
+            
+            <h3 id="hostname">Hostname</h3>
+            <p>I figured that errors might be related to the server that a dataset comes
+            from, and I figured that the hostname of the URL would be a decent proxy
+            for server. (In the URL “http://thomaslevine.com/open-data”, the hostname
+            is “thomaslevine.com”.) So I wrote a sloppy function to detect these hostnames.</p>
+            
+            <pre><code>  datasets$hostname &lt;- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)&#x000A;</code></pre>
+            
+            <p>Here are the top few hostnames and the number of datasets with each hostname.</p>
+            
+            <pre><code>              \t 0ccfs001.sussex.nhs.uk\\csu&#x000A;               1                           1&#x000A;10.96.9.105:8080               176.32.230.19&#x000A;               1                           1&#x000A; 192.171.153.213               194.151.67.33&#x000A;               1                           1&#x000A;   195.217.160.2              195.55.247.252&#x000A;               1                           1&#x000A; 2010.census.gov              207.251.86.229&#x000A;               1                           1&#x000A;</code></pre>
+            
+            <p>Having come up with this variable, I now could look at error types by hostname.</p>
+            
+            <h3 id="base-error-rate">Base error rate</h3>
+            <p><img src="figure/p_errors_total.png" alt="" class="wide" /></p>
+            
+            <p><img src="figure/p_hostname_total.png" alt="" class="wide" /></p>
+            
+            <p><img src="figure/p_hostname_error.png" alt="" class="wide" /></p>
+            
+            <p><img src="figure/p_hostname_facet.png" alt="" class="wide" /></p>
+            
+            <h3 id="invalid-urls">Invalid URLs</h3>
+            <p>The “http:” datasets weren’t valid URLs.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Error type</th>
+                  <th>URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ConnectionError</td>
+                  <td>http:// Localisation des accès des offices de tourisme</td>
+                </tr>
+                <tr>
+                  <td>ConnectionError</td>
+                  <td>http://nullFPM.shp.zip</td>
+                </tr>
+                <tr>
+                  <td>ConnectionError</td>
+                  <td>http:// 2012_PNOA.</td>
+                </tr>
+                <tr>
+                  <td>ConnectionError</td>
+                  <td>http://fotovoltaico.provincia.tn.it\solar.xml</td>
+                </tr>
+                <tr>
+                  <td>LocationParseError</td>
+                  <td>http://2011 NFL draft: Andrew Luck is cementing his status as the No. 1 overall prospect on the board.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3 id="connection-errors">Connection errors</h3>
+            <p>Connection errors seem to correspond to some datasets with strange URLs and others for
+            which the site just can’t be contacted.</p>
+            
+            <p><img src="figure/connectionerror.png" alt="plot of chunk connectionerror" class="wide" /></p>
+            
+            <h3 id="invalid-schemas">Invalid schemas</h3>
+            <p>Invalid schemas are for datasets sent over protocals other than HTTP, like FTP.</p>
+            
+            <p><img src="figure/invalidschema.png" alt="plot of chunk invalidschema" class="wide" /></p>
+            
+            <p>Most of these schemas indicate that the files are stored on local systems
+            rather than being accessible from the internet. But a large minority of these
+            (FTP, specifically) is fully reasonable to put on the internet; I didn’t
+            check them properly.</p>
+            
+            <h3 id="missing-schemas">Missing schemas</h3>
+            <p>Missing schemas tend to be for datasets where the hostname was not specified.
+            Examples:</p>
+            
+            <pre><code>[1] "/storage/f/2012-08-13T002240/COSCParks.kmz"&#x000A;[2] "/storage/f/2012-08-22T025312/prod_test.csv"&#x000A;[3] "/storage/f/2012-08-10T100153/sc_addies.csv"&#x000A;[4] "/en/storage/f/2013-02-11T170442/Copy-of-GB_Certified_130211_for-map.csv"&#x000A;[5] "/storage/f/2012-08-10T071459/annual-new-h2o-meters-2000-2010.csv"&#x000A;</code></pre>
+            
+            <p><img src="figure/missingschema.png" alt="plot of chunk missingschema" class="wide" /></p>
+            
+            <p>This is a valid relative URL. I could have gotten the hostname from the site
+            from which I got the link, but I did not do this.</p>
+            
+            <h3 id="ssl-errors">SSL Errors</h3>
+            <p>A bunch of sites did not have SSL certificates that I recognized.</p>
+            
+            <p><img src="figure/p_ssl_error.png" alt="plot of chunk p_ssl_error" class="wide" /></p>
+            
+            <p>I could ignore the certificates and download the dataset, but the SSL warning
+            is slightly unnerving.</p>
+            
+            <p>SSL errors explain only a small part of the links I marked as dead. Of the
+            datasets that I’d marked as dead before, 457 had SSL errors and 7630 did not.</p>
+            
+            <p>They are interesting, but they don’t explain my strange results.</p>
+            
+            <h3 id="timeouts">Timeouts</h3>
+            <p>Once we get rid of the strange URLs, most of these links have no errors or have
+            timeouts. (Remember, these are the links that I marked as dead in my previous
+            analysis, and I tried downloading again for the present analysis.)</p>
+            
+            <p><img src="figure/p_hostname_facet.png" alt="" class="wide" /></p>
+            
+            <p>The “www-genesis.destatis.de” datasets seem mostly okay, though there are some timeouts.</p>
+            
+            <p><img src="figure/plot_destatis.png" alt="plot of chunk plot_destatis" class="wide" /></p>
+            
+            <p><img src="figure/p_elapsed.png" alt="plot of chunk p_elapsed" class="wide" /></p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/zombie-links/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
