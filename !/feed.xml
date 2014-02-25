@@ -484,6 +484,9 @@ tools all that much. More specifically,&lt;/p&gt;
  in other sites’ charting tools.&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;If you are making a data catalog for your organization, I recommend that you
+not worry about including data visualization things in the catalog.&lt;/p&gt;
+
 &lt;h4 id="links"&gt;Links&lt;/h4&gt;
 &lt;p&gt;Links can go &lt;a href="/404.html"&gt;dead&lt;/a&gt;. I looked at dataset liveliness for Socrata
 and CKAN.&lt;/p&gt;
