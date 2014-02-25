@@ -90,6 +90,10 @@
             but they’re written in normal language, so they’ll probably serve as a decent summary
             of my work thus far to people who are reading this on the internet.</p>
             
+            <h2 id="before-we-start-why-i-can-be-here">Before we start: Why I can be here.</h2>
+            
+            <p>https://github.com/tlevine/undervalued-sublets</p>
+            
             <h2 id="outline-of-the-talk">Outline of the talk</h2>
             
             <p>Introduction</p>
@@ -453,9 +457,20 @@
             But that’s hard, so I’m starting simpler; we can start by seeing what different
             software products do.</p>
             
+            <p>What do I mean by different products? Any of the below things would count.</p>
+            
+            <ul>
+              <li>Different features within a product</li>
+              <li>Different vendors (Socrata, Open Knowledge Foundation, Junar, OpenDataSoft, &amp;c.)</li>
+              <li>Different plugins and <a href="http://ckan.org/category/extensions/">extensions</a></li>
+              <li>Different <a href="/!/socrata-products">products and services</a> sold by one company</li>
+            </ul>
+            
+            <p>This can be framed as practical questions like “Which data catalog software should I use?”</p>
+            
             <h4 id="charting-tools">Charting tools</h4>
-            <p>These open data catalog softwares all have charting tools built in. Socrata’s
-            is the most built-out. People don’t use these charting tools all that much.</p>
+            <p>These open data catalog softwares all have charting tools built in.
+            Basically, people don’t use these charting tools all that much.</p>
             
             <p>The Socrata metadata indicate the users that updated the data.
             Most of the users in the dataset (7790 to be exact) had made exactly one view.</p>
@@ -487,13 +502,49 @@
               <li>I found a small number of people who seem to be using the charts for broader
              things. I haven’t really talked to any of them, but the little I do know of
              their stories is interesting.</li>
+              <li>All of the data catalog softwares have charting tools like this.
+             Socrata’s is the most built-out, so I doubt that we’ll see more usage
+             in other sites’ charting tools.</li>
             </ol>
             
             <h4 id="links">Links</h4>
-            <p>(I’ll fill this in later.)</p>
+            <p>Links can go <a href="/404.html">dead</a>. I looked at dataset liveliness for Socrata
+            and CKAN.</p>
+            
+            <p><img src="http://thomaslevine.com/!/zombie-links/figure/p_prop_links.png" alt="" class="wide" /></p>
+            
+            <p>In Socrata, datasets tend to be stored in the Socrata application and strongly
+            associated with the entity on the data portal. All of these internally stored
+            datasets stay alive (presumably). There are a few externally stored datasets,
+            and some of those are dead.</p>
+            
+            <p>In CKAN, datasets tend to reference external files, and a lot of them are dead.
+            That said, it seems to be better at keeping external links alive than Socrata is.</p>
+            
+            <p>This difference totally makes sense if you look at the processes for
+            <a href="/!/data-catalog-dead-links/#software-suggests-behavior">uploading data</a>.</p>
+            
+            <p>We can also see what sorts of problems are arising.</p>
+            
+            <p><img src="/!/zombie-links/figure/p_no_redirects.png" alt="" class="wide" /></p>
+            
+            <p><img src="/!/zombie-links/figure/storage.png" alt="" class="wide" /></p>
+            
+            <p>Read more <a href="http://thomaslevine.com/!/zombie-links/#new-results">here</a></p>
             
             <h2 id="final-thoughts">Final thoughts</h2>
-            <p>(???)</p>
+            
+            <ol>
+              <li>Ways of inquiring
+                <ul>
+                  <li>Question to data</li>
+                  <li>Data to question</li>
+                </ul>
+              </li>
+              <li>Open data is about sharing.</li>
+              <li>You can collect data about data.</li>
+              <li>You don’t really need to distinguish between metadata and data.</li>
+            </ol>
           </article>
         </div>
         <div id='pagination'>
