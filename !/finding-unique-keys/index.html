@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <title>Finding unique keys in a thousand spreadsheets</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <link href='https://www.google.com/accounts/o8/ud?source=profiles' rel='openid2.provider'>
+    <link href='https://profiles.google.com/112237825767532686869' rel='openid2.local_id'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Finding unique keys in a thousand spreadsheets' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/finding-unique-keys/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Finding unique keys in a thousand spreadsheets' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>Finding unique keys in a thousand spreadsheets</h1>
+              <em>
+                <time>
+                  
+                </time>
+              </em>
+              <span class='tags'>
+                <a href="/open-data">open-data</a>
+              </span>
+            </header>
+            <hr>
+            <p>People often complain about how people don’t write good metadata for their
+            spreadsheets. That is, we don’t have a good description of how the data were
+            collected, what the fields mean, who updates them, &amp;c. Since we rarely seem
+            to get people to do this, I’ve been thinking that we should just expect
+            metadata to be woefully incomplete and that we should deal with it rather
+            than trying to get people to write metadata in the way that we’re used to.</p>
+            
+            <p>In <a href="/open-data">playing with lots of spreadsheets</a>, I’ve started thinking
+            that we can just figure out the metadata given an ordinary CSV file.
+            Today, I explain how I identified unique indices in a bunch of spreadsheets,
+            and then I encourage you to do something cool with the resulting graph.</p>
+            
+            <h2 id="collecting-the-spreadsheets">Collecting the spreadsheets</h2>
+            <p>I used all of the spreadsheets in all of the <a href="https://opendatasoft.com">OpenDataSoft</a>
+            catalogs that I knew about.</p>
+            
+            <ul>
+              <li><a href="http://data.iledefrance.fr">http://data.iledefrance.fr</a></li>
+              <li><a href="http://opendata.paris.fr.opendatasoft.com">http://opendata.paris.fr.opendatasoft.com</a></li>
+              <li><a href="http://tourisme04.opendatasoft.com">http://tourisme04.opendatasoft.com</a></li>
+              <li><a href="http://tourisme62.opendatasoft.com">http://tourisme62.opendatasoft.com</a></li>
+              <li><a href="http://grandnancy.opendatasoft.com">http://grandnancy.opendatasoft.com</a></li>
+              <li><a href="http://bistrotdepays.opendatasoft.com">http://bistrotdepays.opendatasoft.com</a></li>
+              <li><a href="http://scisf.opendatasoft.com">http://scisf.opendatasoft.com</a></li>
+              <li><a href="http://pod.opendatasoft.com">http://pod.opendatasoft.com</a></li>
+              <li><a href="http://dataratp.opendatasoft.com">http://dataratp.opendatasoft.com</a></li>
+              <li><a href="http://public.opendatasoft.com">http://public.opendatasoft.com</a></li>
+              <li><a href="http://ressources.data.sncf.com">http://ressources.data.sncf.com</a></li>
+            </ul>
+            
+            <p>The process for downloading them is reasonably
+            similar to the process for any other data catalog software, and it’s explained
+            <a href="">here</a>.</p>
+            
+            <p>The “CSV” files that come out of OpenDataSoft are delimited by semicolons;
+            I guess we could call them “SSV” files or “SCSV” files, but I’m going to keep
+            calling them “CSV”.</p>
+            
+            <h3 id="why-opendatasoft">Why OpenDataSoft</h3>
+            <p>Here are a few reasons why I chose OpenDataSoft.</p>
+            
+            <p>First, all of the data are stored on OpenDataSoft’s system, at very predictable URLs
+            based on the dataset identifiers.
+            (This is <a href="">similar to Socrata and different from CKAN</a>.)
+            This makes it easy to download all of the datasets.</p>
+            
+            <p>Second, OpenDataSoft is easier for me to work with than Socrata; it is much faster,
+            it doesn’t have the same <a href="">duplication issues</a>,
+            and the API is a bit simpler and better documented.</p>
+            
+            <p>Third, I suspected that OpenDataSoft would have more complete metadata than other
+            catalogs. I suspected this based on a discussion I had with Marie-{}, Jean-Marc
+            and Benoit. They explained to me that they focus a lot on making it easy to add
+            metadata; here is their reasoning: If it’s easy to add metadata, then people will
+            add metadata, and if the data have good metadata, then people will use them.</p>
+            
+            <h3 id="too-big-for-csv">Too big for CSV!?</h3>
+            <p>A few of the files contained cells that were too big for the CSV parser I was using.
+            Here’s an example of the error, which happened on
+            <a href="http://public.opendatasoft.com/explore/dataset/scisf_housing_affordability_gap_by_neighborhood_san_francisco_ca/download?format=csv">this CSV file</a>.</p>
+            
+            <pre><code>Traceback (most recent call last):&#x000A;  File "/lockers/tlevine_vol/git/featured-spreadsheets/featured_spreadsheets/examine.py", line 26, in featurize&#x000A;    pk = fromcsv(fp, delimiter = ';')&#x000A;  File "/usr/local/lib/python3.3/dist-packages/special_snowflake/api.py", line 6, in fromcsv&#x000A;    return _fromdicts(header, data, n_columns, only_adjacent)&#x000A;  File "/usr/local/lib/python3.3/dist-packages/special_snowflake/fromdicts.py", line 23, in _fromdicts&#x000A;    for row in data:&#x000A;  File "/usr/lib/python3.3/csv.py", line 110, in __next__&#x000A;    row = next(self.reader)&#x000A;_csv.Error: field larger than field limit (131072)&#x000A;</code></pre>
+            
+            <p>It turns out that that field contains some large geojson features.
+            Rather than dealing with this in a smart way, I just ignored all
+            spreadsheets containing that type of column (“geo_shape”).</p>
+            
+            <h2 id="finding-the-unique-keys">Finding the unique keys</h2>
+            <p>My approach for finding the unique keys in a spreadsheet is explained
+            below and is codified in the
+            <a href="special_snowflake">https://pypi.python.org/pypi/special_snowflake</a> package.</p>
+            
+            <h3 id="choosing-candidates">Choosing candidates</h3>
+            <p>special_snowflake takes three parameters</p>
+            
+            <ul>
+              <li>A spreadsheet (or other form of data table)</li>
+              <li><code>n_columns</code>: Across how many columns the unique index should span</li>
+              <li><code>only_adjacent</code>: Whether columns in the unique index must be adjacent to each other</li>
+            </ul>
+            
+            <p>To get all possible candidates, set <code>only_adjacent</code> to false
+            and <code>n_columns</code> to the number of columns in the spreadsheet.</p>
+            
+            <p>For the present… I ran it with <code>only_adjacent</code> …</p>
+            
+            <h3 id="checking-whether-each-candidate-index-is-unique">Checking whether each candidate index is unique</h3>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/finding-unique-keys/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
