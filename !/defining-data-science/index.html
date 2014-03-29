@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <title>Thomas Levine, Dada Artist</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <link href='https://www.google.com/accounts/o8/ud?source=profiles' rel='openid2.provider'>
+    <link href='https://profiles.google.com/112237825767532686869' rel='openid2.local_id'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Thomas Levine' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/defining-data-science/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1></h1>
+              <em>
+                <time>
+                  
+                </time>
+              </em>
+              <span class='tags'>
+              </span>
+            </header>
+            <hr>
+            <p>A bunch of people were telling me a year ago that I should teach data science.
+            I figured that I’d better define it if Iwas going to teach it.</p>
+            
+            <p>I’ve always been skeptical of the utility of the educational
+            “data science” that I’ve seen, but that might be because I’m always skeptical
+            of schooling and of anything termed “data science”. Or maybe I’m just skeptical
+            of everything. My distaste for the buzzterms tends to relate largely to the
+            semantic ambiguity of the terms, but the various related concepts tend to be
+            meaningful and appealing, so it is worth defining and teaching them.</p>
+            
+            <ol>
+              <li>It is fun to learn how complex systems work and to apply the resulting
+             knowledge, and quantitative information can assist in this fun.</li>
+              <li>Everything can be turned into a number.</li>
+              <li>It is rude and statistically unsound to ask people questions that will only
+             be used for study.
+                <ul>
+                  <li>It is better to surveille people unobtrusobly (like by watching security
+              cameras or reading web server logs) or to use questions that they have
+              other reason to answer (like by reading credit card purchases or
+              Tweets).</li>
+                  <li>I actually don’t see those two approaches as different; it’s more like
+              they’re different ways of saying the same thing.</li>
+                </ul>
+              </li>
+              <li>As a corallary to the previous point, if collecting data on complex behaviors
+             is convenient/inexpensive, you should collect the data even if you have no
+             plans to use them. For example, if you make a website that starts getting
+             much traffic, you should log every interaction that you can conveniently
+             log, or at least every HTTP request that is made.</li>
+              <li>When asked a question about the world, adapt the question so that it can be
+             answered with an existing and convenient dataset.</li>
+            </ol>
+            
+            <p>I think these points stem from a desire to learn how complex systems work.
+            If you want to do that and you are alive today, you might get excited by the
+            potential off the ease of collecting and storing quantitative information,
+            and the aspects above follow logically.</p>
+            
+            <h2 id="specific-lessons">Specific lessons</h2>
+            <p>If I were to teach data science, I would teach things that are obvious
+            consequences of the above mindset. That is, I would expose and reinforce
+            the above mindset, and I would teach methods that allow people to embody
+            the above mindset.</p>
+            
+            <p>The course would generally follow this schedule, with a few lessons per item.</p>
+            
+            <ol>
+              <li>The data mindset</li>
+              <li>Converting a mess into data</li>
+              <li>Stuff you can do once you have data.
+                <ul>
+                  <li>Graphs</li>
+                  <li>Interactives</li>
+                  <li>Statistics and predictions</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <p>The numbered points would go in order, but the different stuff that you do
+            once you have data could be ordered quite flexibly. I would want students to
+            be learning that stuff only after they have a unique dataset to try them on.</p>
+            
+            <p>The following sections are these various topics, grouped into lessons
+            and ordered in the order I would give them. (But if a lesson is titled
+            “Lesson XXX”, I haven’t figured out where it goes yet.)</p>
+            
+            <h3 id="but-first-some-small-notes">But first, some small notes</h3>
+            <p>I happen to mention R libraries for most things, but I actually think
+            people should be using some other language. Python (pandas) and Scala
+            (Saddle) seem better because they’re faster. I wouldn’t really care what
+            students use.</p>
+            
+            <p>One point I want to get across is that <strong>you</strong> can do data science too.
+            I don’t mention many buzzwords in the following descriptions, but I
+            would define them as they come up and briefly rant about how they’re
+            not usually much more meaningful than ordinary words.</p>
+            
+            <h3 id="lesson-1-everything-can-be-quantified">Lesson 1: Everything can be quantified</h3>
+            <p>I would break down distinctions between qualitative information and
+            quantitative information and distinctions between unstructured and structured
+            data.</p>
+            
+            <p>I would discuss what people mean by “qualitative” and “quantitative”
+            information, what they mean by “unstructured” and “structured” data, and how
+            people can convert between these opposites.</p>
+            
+            <p>I would model flows of information through a bureaucracy and show
+            how that could be gradually converted to computer program. (If you’ve
+            seen me give a talk in the last year, I’ve probably done something like
+            this with an example of the review of permits to dredge or fill wetlands.)</p>
+            
+            <p>I would have students write some small program that converts some
+            inconvenient data source into a table that would produce an interesting
+            plot.</p>
+            
+            <h3 id="lesson-xxx-tidy-data">Lesson XXX: Tidy data</h3>
+            <p>I would say that “data” means “table” to me. And if you’re doing
+            calculations on a non-relational database, you’re approximating a table;
+            the non-relational structure is just an implementation detail.</p>
+            
+            <p>I would talk about the concept and merits of tidyness and about how you
+            can achieve this with <code>plyr</code> and <code>reshape2</code>. I’d discuss some theory and
+            language that is embodied in the two libraries.</p>
+            
+            <p>I’d have students tidy a dataset to the point that they can grammatically
+            plot it or run a regression or whatnot.</p>
+            
+            <h3 id="lesson-xxx-data-storage">Lesson XXX: Data storage</h3>
+            <p>Data is a table, but you can store it in a lot of ways.</p>
+            
+            <p>I’ll also talk about how data stores can be used as interfaces between
+            languages.</p>
+            
+            <p>A toy project could involve querying a JSON API, loading that into a
+            fancy database, querying that database, maybe serializing the output
+            as CSV, and then doing something pretty with the resulting data.</p>
+            
+            <h3 id="lesson-xxx-development-practices">Lesson XXX: Development practices</h3>
+            <p>This stuff will be quite helpful in the projects, and people don’t usually
+            teach this in school. Students don’t have to follow these processes
+            diligently, but it’s nice to know about them.</p>
+            
+            <ul>
+              <li>Test-driven development</li>
+              <li>Documentation-driven development</li>
+              <li>Behavior-driven development</li>
+              <li>Agile</li>
+            </ul>
+            
+            <p>I’d want to read more about these too.</p>
+            
+            <h3 id="lesson-xxx-the-shell-and-dotfiles">Lesson XXX: The shell and dotfiles</h3>
+            <p>I would talk about some shell concepts.</p>
+            
+            <ul>
+              <li>Pipes</li>
+              <li>Directing output</li>
+              <li>STDIN, STDOUT, STDERR</li>
+              <li><code>#!</code></li>
+              <li><code>$PATH</code></li>
+              <li>Access environment variables from other languages</li>
+              <li><code>set -e</code></li>
+            </ul>
+            
+            <p>I’d also talk about some useful specific programs.</p>
+            
+            <p>I would have students write a shell script that ties together some things
+            we’ve already done. And I’d encourage students play with vim or emacs and
+            git if they aren’t already.</p>
+            
+            <h3 id="lesson-xxx-querying-data-stores">Lesson XXX: Querying data stores</h3>
+            <p>I would discuss a few general paradigms</p>
+            
+            <ul>
+              <li>Filesystem</li>
+              <li>MapReduce</li>
+              <li>SQL and variants</li>
+              <li>ReST</li>
+            </ul>
+            
+            <h3 id="lesson-xxx-performance-concerns">Lesson XXX: Performance concerns</h3>
+            <p>When data gets more than tiny, you have to think about RAM, storage,
+            speed, &amp;c. I would discuss how this stuff comes up and how you can
+            deal with it.</p>
+            
+            <p>I’d rather not assign any practical work that involves dealing with
+            more than a few gigabytes of data; it would take a while, and the
+            result wouldn’t be that interesting. But some smaller-scale things
+            would be fun for students who haven’t dealt them.</p>
+            
+            <ul>
+              <li>Extract some bits of information from a shit ton of huge files
+              without using much memory at once.</li>
+              <li>Optimize some code in a dynamic language by calling C. For example,
+              in R, you might vectorize the code or use Rcpp.</li>
+              <li>Randomly sample a dataset.</li>
+            </ul>
+            
+            <h3 id="lesson-xxx-visual-displays-of-quantitative-information">Lesson XXX: Visual displays of quantitative information</h3>
+            <p>I would talk about different kinds of plots and how they relate to types
+            of variables. I read an awesome book by Bill Clevelend in the Cornell
+            Math Library that categoriezed plots based on the types of input data.</p>
+            
+            <p>I would talk about some of Edward Tufte’s principles, and I would have
+            people draw graphs on paper that embody some of his principles. The main
+            ones that I think about day to day are below, but I might add others, and
+            I might also look at other recommendations regarding visual displays.</p>
+            
+            <ul>
+              <li>Data:ink ratio</li>
+              <li>Multidimensionality</li>
+            </ul>
+            
+            <p>There might also be some general graphic design things. I quite like
+            <em>Design Elements</em>, by Timothy Samara.</p>
+            
+            <h3 id="lesson-xxx-quantifying-the-real-world">Lesson XXX: Quantifying the real world</h3>
+            <p>I would teach people enough about microcontrollers that they would be able
+            to hook up a sensor to an Arduino and send the sensings to some safe place.</p>
+            
+            <p>As a project, students could select a sensor, put it in a breadboard,
+            connect it to an Arduino, write some program, leave it somewhere for a
+            week, and make a plot. For added fun, they could assemble a Boarduino,
+            solder it to a breadboard and solder the sensor to it.</p>
+            
+            <p>I feel like this project and lesson should be optional.</p>
+            
+            <h3 id="lesson-xxx-grammar-of-graphics">Lesson XXX: Grammar of graphics</h3>
+            <p>When exploring data, producing mundane visuals or planning complex visuals,
+            I find the grammar of graphics to be quite helpful. I would explain the
+            concepts, show examples in <code>ggplot2</code> or <code>d3</code>, and have students make plots
+            that slice a complex dataset in <code>ggplot2</code> or <code>d3</code>.</p>
+            
+            <h3 id="lesson-xxx-storytelling-and-interactivity">Lesson XXX: Storytelling and interactivity</h3>
+            <p>People in journalism talk about telling stories with data to make things
+            more real. I’d pick from my talk on interactive data from Kelton’s
+            symposium.</p>
+            
+            <p>If students don’t know much about web development, there could be a basic
+            project where students are given a data source with a convenient web API
+            and they make a website that displays the data in a way that lets people
+            find their own stories.</p>
+            
+            <h3 id="lesson-a-web-scraping">Lesson a: Web Scraping</h3>
+            <p>It’s sort of hard to avoid this series if I’m teaching. I would do
+            something akin to my talks at the ScraperWiki data camps; I would show
+            how to diagram a website, make GET requests and parse the HTML. I would
+            use a website that had one page involving a messy HTTP request, and I
+            would skip that for now.</p>
+            
+            <h3 id="lesson-a--1-http">Lesson a + 1: HTTP</h3>
+            <p>I would discuss the components of an HTTP request, talk about the ReST
+            thing, show how to use some web APIs, and show how to build up a web
+            request that matches the one your web browser made. I would finish the
+            part of the site from the web scraping lesson that involved the messy
+            HTTP request.</p>
+            
+            <h3 id="lessons-xxx-statistics-machine-learning-c">Lessons XXX: Statistics, machine learning, &amp;c.</h3>
+            <p>I think it’s too easy for people to talk more than is helpful about
+            statistics or machine learning. I don’t know how many lessons I would
+            devote to this, but here are some things that would get discussed</p>
+            
+            <ul>
+              <li>Fundamental statistical concepts like mean and variance</li>
+              <li>Emphasizing prediction versus inference, which I see as the main
+              distinction between machine learning and statistics</li>
+              <li>Categorizing algorithms
+                <ul>
+                  <li>Unsupervised versus supervised</li>
+                  <li>Type signature (like this: one discrete variables ~ many continuous variables)</li>
+                  <li>Frequentist versus Bayesian</li>
+                </ul>
+              </li>
+            </ul>
+            
+            <p>A project could involve computing some quantity or building some model
+            based on some data that students already have.</p>
+            
+            <h2 id="specific-projects">Specific projects</h2>
+            <p>Preferably, there wouldn’t be much of me standing in a room giving formal
+            lessons; there would be more of people working on related projects with
+            my help. People would work on complex projects that interest them.</p>
+            
+            <p>Creation of any reasonably complex data project should help convince
+            an employer to employ someone as a data scientist, but if people are
+            particularly concerned for their employability, I could make sure that
+            projects hit a few skill sets that would be relevant for their desired
+            employment.</p>
+            
+            <p>If people can’t come up with an idea, I would seed their thoughts with</p>
+            
+            <ol>
+              <li>the various projects that I’ve started and maybe collected data for</li>
+              <li>studies of their personal information, like emails, chat logs,
+             activity on websites, &amp;c.</li>
+              <li>projects of relevance to their work or to a non-profit organization</li>
+            </ol>
+            
+            <p>Depending on the length of the course, it might be one or three projects
+            that embody the data science mindset and use some skills that were discussed.
+            Here follow some components of these projects</p>
+            
+            <h3 id="mess-to-numbers">Mess to numbers</h3>
+            <p>The project should convert a mess of information into at least one
+            tidy table. (This table might not be exposed directly to consumers of
+            the project.)</p>
+            
+            <p>The mess could be the real world, collected with sensors or a
+            previously-digitized repository, like book scans.</p>
+            
+            <h3 id="answer-a-question">Answer a question</h3>
+            <p>The project should answer a question. This could be one specific
+            question, like “which copy should we use on the product”, but it could
+            also be a class of questions that consumers of the project might ask,
+            like “which hair stylist should I choose”.</p>
+            
+            <h3 id="teaching">Teaching</h3>
+            <p>The project should explain how it works to people with no knowledge of
+            data science. That is, the math and software should be explained in
+            simple or simplified terms and related to the question(s) at hand.</p>
+            
+            <p>Visuals (or some other high-dimensional data presentation format) should
+            be present and explained.</p>
+            
+            <h3 id="web">Web</h3>
+            <p>The project should be explained as a website. Minimally, this could be
+            just a Tumblr blog post about an analysis, but it would be more cool if
+            interactions and animations can be used to add more dimensions of data
+            or to make a story that is more relevant to the particular viewer.</p>
+            
+            <ul>
+              <li>Automatic compilation of the website (with knitr, for example)</li>
+              <li>Writing of some HTML, CSS, Javascript, &amp;c.</li>
+              <li>Sexy moving visuals and whatnot</li>
+              <li>Website automatically updates with new data from a data feed.</li>
+            </ul>
+            
+            <p>This is partly for my convenience, but it’s mainly because it’s worth
+            learning these webby things and because I’d be able to teach them.</p>
+            
+            <h3 id="selling-the-data-mindset">Selling the data mindset</h3>
+            <p>It’s cool if the project can get people thinking more about how they
+            can use the data science mindset for related things. For example, if
+            someone assembled a dataset of preferred olive oils and related it
+            to personality types, it might be fun to comment on what other data
+            could be collected about olive oils or about what would happen if we
+            combined the dataset with a dataset about the olive farms and their
+            weather.</p>
+            
+            <p>This sort of commentary is most appropriate for projects where the
+            student worked closely with a specific client organization or where
+            the project is related to the student’s own work.</p>
+            
+            <h3 id="live">Live</h3>
+            <p>Students should present their projects in person because that’s fun.
+            Maybe they get like five minutes each because I get bored of long
+            presentations.</p>
+            
+            <h2 id="general-relationship-to-existing-fields">General relationship to existing fields</h2>
+            <p>People with data science mindset want to start studying things in certain
+            ways, so they wind up deciding to learn certain sorts of things. At a high
+            level, the following doodle explains those things.</p>
+            
+            <p><img src="/!/defining-data-science/data-people.png" alt="Plot of the four professions' abilities with analysis and abilities with computers" /></p>
+            
+            <p>Data scientists know both how to learn things from numbers (analysis skills)
+            and how to turn things into numbers (computer skills).</p>
+            
+            <h3 id="not-domain-knowledge">Not domain knowledge</h3>
+            <p>Drew Conway says that domain knowledge is also part of the data science thing,
+            but I don’t like including that. Here are few reasons why.</p>
+            
+            <h4 id="domain-knowledge-is-good-for-everyone">1. Domain knowledge is good for everyone.</h4>
+            <p>It’s probably good for anyone working in a particular area to know about
+            that area. For example, analysts need to know the area so they can analyze
+            it, statisticians need to know the area so they can specify appropriate
+            models and write good reports, and engineers need to understand how their
+            users use things. So domain expertise doesn’t distinguish data scientists
+            from anyone else.</p>
+            
+            <h4 id="domain-knowledge-is-seen-as-the-role-of-the-analyst-or-the-academic">2. Domain knowledge is seen as the role of the analyst or the academic</h4>
+            <p>In contemporary organizations and society, domain knowledge appears to be
+            the role of the analyst or the academic. With experience, the
+            analyst/academic learns a lot about a particular domain, whereas other role
+            get better at other things that can be applied to different domains.</p>
+            
+            <h4 id="the-data-science-mindset-is-about-learning-and-teaching">3. The data science mindset is about learning and teaching</h4>
+            <p>The data science mindset is about the using digital quantitative
+            information to learn how complex systems work and to convey this
+            knowledge to others; the specific manner of system isn’t part of the
+            mindset.</p>
+            
+            <h4 id="what-is-a-domain-anyway">4. What is a domain anyway?</h4>
+            <p>When I’m with a group of people who don’t know computer stuff know that
+            computers could help their organization do stuff better, maybe I’m acting
+            as an expert in the domain of data science.</p>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/defining-data-science/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
