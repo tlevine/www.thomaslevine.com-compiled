@@ -103,7 +103,8 @@
             
             <h2 id="example-pdfs">Example PDFs</h2>
             <p>I’ll show a few different approaches to parsing and analyzing
-            <a href="https://github.com/tlevine/scott-documents">these</a> PDF files.
+            <a href="https://github.com/tlevine/scott-documents">these</a> PDF files
+            (also available <a href="http://tlevine.the-nsa.org/big/scott-documents.tar.gz">here</a>).
             Different approaches make sense depending on the question you ask.</p>
             
             <p>These files are public notices of applications for permits to dredge or fill
@@ -114,9 +115,11 @@
             
             <p>Theses files are
             <a href="https://github.com/tlevine/scott/tree/master/reader">downloaded daily</a>
-            from the <a href="http://www2.mvn.usace.army.mil/ops/regulatory/publicnotices.asp?ShowLocationOrder=False">New Orleans Army Corps of Engineers website</a>
+            from a no-longer-available version of the
+            New Orleans Army Corps of Engineers website
+            <!-- http://www2.mvn.usace.army.mil/ops/regulatory/publicnotices.asp?ShowLocationOrder=False -->
             and renamed according to the permit application and the date of download.
-            They feed into <a href="http://scott.thomaslevine.com">this website</a>, which is primarily
+            They feed into <a href="https://github.com/tlevine/scott">this program</a>, which is primarily
             used by the Gulf Restoration Network in their efforts to protect the wetlands.</p>
             
             <h2 id="if-i-dont-need-the-file-contents">If I don’t need the file contents</h2>
@@ -195,7 +198,8 @@
             key paragraphs</p>
             
             <p><a href="https://github.com/tlevine/scott/blob/master/reader/bin/translate">My approach</a>
-            is pretty crude. For the PDFs that aren’t scans, I just use <code>pdftotext</code>.</p>
+            is pretty crude. For the PDFs that aren’t scans, I just use <code>pdftotext</code>,
+            which is part of <code>poppler-utils</code>.</p>
             
             <pre><code># translate&#x000A;pdftotext "$FILE" "$FILE"&#x000A;</code></pre>
             
@@ -204,7 +208,10 @@
             <p><code>pdftotext</code> normally screws up the layout of PDF files, especially when they
             have multiple columns, but it’s fine for what I’m doing because I only need to
             find small chunks of text rather than a whole table or a specific line on
-            multiple pages.</p>
+            multiple pages. You can try <code>pdftotext -layout</code> if you need to preserve more
+            of the layout.</p>
+            
+            <pre><code>pdftotext -layout file.pdf&#x000A;</code></pre>
             
             <p>As we saw earlier, most of the files contain images, so I need to run OCR.
             Like <code>pdftotext</code>, OCR programs often mess up the page layout, but I don’t
@@ -223,7 +230,8 @@
             <a href="http://www.unixuser.org/~euske/python/pdfminer/">PDFMiner</a>.</p>
             
             <h3 id="pdftohtml">pdftohtml</h3>
-            <p><code>pdftohtml</code> is useful because of its <code>-xml</code> flag.</p>
+            <p><code>pdftohtml</code>, also part of <code>poppler-utils</code>,
+            is particularly useful because of its <code>-xml</code> flag.</p>
             
             <pre><code>$ pdftohtml -xml MVN-2013-00180-ETT/public_notice.pdf&#x000A;Page-1&#x000A;Page-2&#x000A;Page-3&#x000A;$ head MVN-2013-00180-ETT/public_notice.xml &#x000A;&lt;?xml version="1.0" encoding="UTF-8"?&gt;&#x000A;&lt;!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd"&gt;&#x000A;&#x000A;&lt;pdf2xml producer="poppler" version="0.22.0"&gt;&#x000A;&lt;page number="1" position="absolute" top="0" left="0" height="1188" width="918"&gt;&#x000A;        &lt;fontspec id="0" size="37" family="Times" color="#000000"/&gt;&#x000A;        &lt;fontspec id="1" size="21" family="Times" color="#000000"/&gt;&#x000A;        &lt;fontspec id="2" size="16" family="Times" color="#000000"/&gt;&#x000A;        &lt;fontspec id="3" size="13" family="Times" color="#000000"/&gt;&#x000A;        &lt;fontspec id="4" size="16" family="Times" color="#000000"/&gt;&#x000A;</code></pre>
             
@@ -240,7 +248,9 @@
             <h3 id="inkscape">Inkscape</h3>
             <p>Inkscape can convert a PDF page to an SVG file. I have a
             <a href="https://github.com/scraperwiki/pdf2svg">little script</a> that runs this across
-            all pages within a PDF file.</p>
+            all pages within a PDF file. You can also install it from NPM.</p>
+            
+            <pre><code>npm install -g pdf2svg&#x000A;</code></pre>
             
             <p>Once you’ve converted the PDF file to a bunch of SVG files, you can open it
             with an XML parser just like you could with the <code>pdftohtml</code> output, except
@@ -291,6 +301,24 @@
             OCR. If I needed to run OCR and know more about the layout, I might convert the
             PDFs to SVG with Inkscape and, and then take the images out of the SVG in order
             to know more precisely where they are in the page’s structure.</p>
+            
+            <h2 id="broader-ideas">Broader ideas</h2>
+            <p>PDF has a weird semi-proprietary binary format that can be annoying to read,
+            so my first step in reading PDF files is converting them to something that is
+            supported better and that I’m more used to.</p>
+            
+            <p>There are all sorts of ways of encoding data in PDF files, so it’s not like
+            there’s a straightforward PDF-to-spreadsheet conversion. (This is just like
+            any other file format.) Figure out what data you want to extract from the
+            files, and select your parsing strategy accordingly.</p>
+            
+            <p>And if it seems like too much work to get exactly what you want, try to come
+            up with something else that is easier to extract and that will still tell you
+            something similar.</p>
+            
+            <p>Finally, it’s quite hard to convert data formats without losing information,
+            so don’t worry about losing information. You can always write a new parser
+            for any other information that you want.</p>
           </article>
         </div>
         <div id='pagination'>
