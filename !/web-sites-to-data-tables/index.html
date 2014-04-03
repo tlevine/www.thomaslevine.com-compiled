@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js'>
+  <!--<![endif]-->
+  <head>
+    <meta charset='utf-8'>
+    <meta content='nanoc 3.6.4' name='generator'>
+    <meta content='width=device-width' name='viewport'>
+    <title>Websites to data tables</title>
+    <meta content='' name='description'>
+    <meta content='Thomas Levine' name='author'>
+    <link href='http://domain/humans.txt' rel='author' type='text/plain'>
+    <link href='https://www.google.com/accounts/o8/ud?source=profiles' rel='openid2.provider'>
+    <link href='https://profiles.google.com/112237825767532686869' rel='openid2.local_id'>
+    <meta content='summary' name='twitter:card'>
+    <meta content='@thomaslevine' name='twitter:site'>
+    <meta content='Websites to data tables' name='twitter:title'>
+    <meta content='' name='twitter:description'>
+    <meta content='@thomaslevine' name='twitter:creator'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' name='twitter:image:src'>
+    <meta content='thomaslevine.com' name='twitter:domain'>
+    <meta content='' name='twitter:app:name:iphone'>
+    <meta content='' name='twitter:app:name:ipad'>
+    <meta content='' name='twitter:app:name:googleplay'>
+    <meta content='' name='twitter:app:url:iphone'>
+    <meta content='' name='twitter:app:url:ipad'>
+    <meta content='' name='twitter:app:url:googleplay'>
+    <meta content='' name='twitter:app:id:iphone'>
+    <meta content='' name='twitter:app:id:ipad'>
+    <meta content='' name='twitter:app:id:googleplay'>
+    <meta content='http://thomaslevine.com/!/web-sites-to-data-tables/' property='og:url'>
+    <meta content='thomaslevine.com' property='og:site_name'>
+    <meta content='' property='og:description'>
+    <meta content='Websites to data tables' property='og:title'>
+    <meta content='http://thomaslevine.com/apple-touch-icon-144x144-precomposed.png' property='og:image'>
+    <link href='/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='/!/feed.xml' rel='alternate' title='Thomas Levine' type='application/atom+xml'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src='https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'></script>
+    <link href='/css/style-cb653401acb.css' rel='stylesheet'>
+    <script src='/js/modernizr-cb42306a279.js'></script>
+  </head>
+  <body>
+    <!--[if lt IE 7 ]>
+      <p class='chromeframe'>
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+        <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <div id='wrapper'>
+      <div id='container'>
+        <nav>
+          <ul class='nobullet'>
+            <li class='link'>
+              <a href='/'>
+                <div>~</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/'>
+                <div>!</div>
+              </a>
+            </li>
+            <li class='link'>
+              <a href='/!/about/'>
+                <div>?</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id='article-wrapper'>
+          <article>
+            <header>
+              <h1>Websites to data tables</h1>
+              <em>
+                <time>
+                  
+                </time>
+              </em>
+              <span class='tags'>
+              </span>
+            </header>
+            <hr>
+            <p>I apparently know a lot about making websites into data tables.
+            You might call this “web scraping”. Here’s a bit of how I go about
+            writing computer programs that do that.</p>
+            
+            <h2 id="what-i-mean-by-making-websites-into-data-tables">What I mean by “making websites into data tables”</h2>
+            <p>Much of the world’s data are stored in ways that are annoying for me
+            to work with. For example, they might be on paper,
+            in <a href="/!/parsing-pdfs/">PDF files</a>, or in HTML files. And they might be
+            spread across many files of various formats. Sometimes we’re lucky enough
+            that the files are available on a website.</p>
+            
+            <p>When one format doesn’t work for me, I convert the data to a different format.
+            In the present article, I focus on getting data out of HTML files that were
+            downloaded over the web (with the hypertext transfer protocal).</p>
+            
+            <h2 id="human-parallels">Human parallels</h2>
+            <p>Once you figure out how a human could acquire the
+            data from the website, it’s rather straightforward (though probably
+            still tedious) to get a computer to do it. Imagine that different
+            websites are different buildings and that you are running around
+            among a few buildings to get the data you want. You go to one place
+            and find some of the data that you need, and that place points you
+            to a few other places. You follow all of these leads, recording what
+            you find along the way.</p>
+            
+            <p>Conceptually, this process doesn’t change that much when you switch
+            from humans to computers. It also doesn’t change that much if the website
+            you’re using calls itself an “application programming interface” (API).
+            The API might be a little easier to read, but you’re still going to the
+            API, asking it for something, getting stuff back, and continuing on to
+            wherever it points you.</p>
+            
+            <h2 id="concepts">Concepts</h2>
+            <p>I like to think of three main components of a system that converts
+            webpages into data tables.</p>
+            
+            <ol>
+              <li>Download a web page (HTTP)</li>
+              <li>Read file formats (HTML, JSON, Javascript, RSS, &amp;c.)</li>
+              <li>Save the data as a table (CSV, JSON, SQL, &amp;c.)</li>
+            </ol>
+            
+            <h3 id="downloading">Downloading</h3>
+            <p>Web browsers and web servers communicate over the
+            <a href="/!/street-sign-protocol/">hypertext transfer protocol</a>.
+            Thus, I like to use an HTTP client when downloading webpages.
+            I usually use <a href="http://python-requests.org">requests</a>
+            if I’m working in Python.</p>
+            
+            <pre><code>import requests&#x000A;response = requests.get('http://thomaslevine.com')&#x000A;</code></pre>
+            
+            <p>This downloading step is the one scary step of the process.
+            It’s scary because we don’t know how the download is going to
+            go. Moreover, our internet connection might go down, and
+            the webpage might get updated. Thus, it’s good to save HTTP
+            responses. In Python, I like to save the responses with
+            <a href="http://pypi.python.org/pypi/pickle_warehouse">pickle_warehouse</a>.</p>
+            
+            <pre><code>import pickle_warehouse&#x000A;w = pickle_warehouse.Warehouse('responses')&#x000A;w['http://thomaslevine.com'] = response&#x000A;</code></pre>
+            
+            <p>This is also nice because you can load the HTTP responses from
+            your own computer rather than downloading them each time.</p>
+            
+            <h3 id="parsing">Parsing</h3>
+            <p>Once we’ve downloaded the data, we have files sitting on our computer.
+            HTML files are quite common on the web, so let’s discuss how I parse
+            HTML files. I use an HTML parser to convert the raw HTML text into a
+            fancy HTML object in whatever programming language I’m using. This lets
+            me search the HTML in lots of fancy ways. In Python, I would use lxml.</p>
+            
+            <pre><code>import lxml.html&#x000A;html = lxml.html.fromstring(response.text)&#x000A;</code></pre>
+            
+            <p>Once the HTML is parsed, I usually use one of two languages for
+            searching within the parsed html object. These languages are CSS selectors
+            and XPath, and lxml supports both of them. For example, here’s how
+            you might select a table.</p>
+            
+            <pre><code>html.xpath('//id("main")/table')&#x000A;html.cssselect('#main &gt; table')&#x000A;</code></pre>
+            
+            <p>Regardless of what HTML parser you use, I recommend that you use CSS selectors
+            or XPath rather than using a special language that is specific to your particular
+            library; this way, your skills will transfer easily to other libraries.</p>
+            
+            <p>As I said, there are a lot of HTML files on the web, but there are other
+            file formats too. You’ll have to use other methods to parse other file formats.
+            Here are some other articles about other parsing methods.</p>
+            
+            <ul>
+              <li><a href="http://www.grymoire.com/Unix/Regular.html">Regular expressions</a></li>
+              <li><a href="/!/parsing-pdfs/">Portable document format</a></li>
+              <li><a href="http://linux.die.net/man/3/strptime">strptime</a></li>
+            </ul>
+            
+            <h3 id="saving">Saving</h3>
+            <p>I’m presuming that you want to save the data as a
+            <a href="http://www.datakind.org/blog/whats-in-a-table/">data table</a>.
+            You might prefer a graph structure or something else,
+            but that won’t make things much different.</p>
+            
+            <p>Once your program has read the web page, you have the data
+            saved in data structures in your programming language. Now you
+            just need to write them out to structured files. You can use
+            an ordinary CSV or JSON writer to write to simple files, and
+            you can use a database driver to write to a fancier database.</p>
+            
+            <p>You can also convert to some intermediary data structure before
+            saving to a file. In R, you might use data frames. In Python,
+            you might use SQLAlchemy. Surrounding both these structures
+            are a slew of tools that will convert to all different formats.</p>
+            
+            <p>Regardless of which of these methods I use, I set up my program
+            such that I can whimsically destroy the table and regenerate it
+            based on other files that I have saved to my computer. Things
+            gen annoyingly complicated when the parsing depends on the data
+            in the output table.</p>
+            
+            <h2 id="libraries-you-want">Libraries you want</h2>
+            <p>As a summary, here are the sorts of libraries that you might want.</p>
+            
+            <ul>
+              <li>HTTP client</li>
+              <li>Storage of some sort
+                <ul>
+                  <li>Files</li>
+                  <li>Relational database</li>
+                </ul>
+              </li>
+              <li>Text parsers
+                <ul>
+                  <li>HTML/XML, XPath, CSS</li>
+                  <li>JSON</li>
+                  <li>Regular expressions</li>
+                  <li>strptime</li>
+                </ul>
+              </li>
+              <li>Other parsers
+                <ul>
+                  <li>PDF</li>
+                  <li>Images</li>
+                  <li>Video</li>
+                  <li>&amp;c.</li>
+                </ul>
+              </li>
+            </ul>
+            
+            <p>Most of these probably exist in whatever language you’re using,
+            so you probably just need to figure out what the right library is.</p>
+            
+            <h2 id="starting-a-project">Starting a project</h2>
+            <p>Here’s what I do when I’m contemplating getting data tables out of websites.</p>
+            
+            <p>First, I ponder whether it’s worth doing at all. I first want to know that
+            someone will use the data table that I produce.</p>
+            
+            <p>Second, I ponder whether it’s worth automating nicely. If the data are just
+            a few numbers spread across a few pages, it’s probably not worth writing a
+            special thing.</p>
+            
+            <p>Third, I figure out how a person would navigate all of the websites and
+            do whatever is desired.</p>
+            
+            <p>Fourth, I start automating just part of the human process. I try to start with
+            a tiny part that is easy and will be useful quickly.</p>
+            
+            <h2 id="units-of-a-project">Units of a project</h2>
+            <p>I like to break my program into units for each type of file that is downloaded.
+            Every time I acquire a new file from a webpage, I have to form an HTTP request,
+            parse the file, save some results. And depending on the results, I might decide
+            to look for yet another file.</p>
+            
+            <h2 id="examples">Examples</h2>
+            
+            <ul>
+              <li><a href="https://github.com/tlevine/scott">Scott</a></li>
+              <li><a href="https://github.com/tlevine/scarsdale-property-inquiry">Scarsdale property</a></li>
+              <li><a href="https://pypi.python.org/pypi/craigsgenerator">Craigslist</a></li>
+            </ul>
+          </article>
+        </div>
+        <div id='pagination'>
+          <div class='base-little-card'>
+            <a href="https://github.com/tlevine/www.thomaslevine.com/tree/master/content/!/web-sites-to-data-tables/index.md">View source</a>
+            
+            <a href="https://twitter.com/thomaslevine">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/js/application-cb286d6f677.js'></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.thomaslevine.com/" : "http://piwik.thomaslevine.com/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://piwik.thomaslevine.com/piwik.php?idsite=2" style="border:0" alt="Piwik tracking image" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
+  </body>
+</html>
