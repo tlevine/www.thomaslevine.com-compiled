@@ -2,13 +2,351 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.thomaslevine.com/</id>
   <title>Thomas Levine</title>
-  <updated>2014-03-29T00:00:00Z</updated>
+  <updated>2014-04-16T00:00:00Z</updated>
   <link rel="alternate" href="http://www.thomaslevine.com/"/>
   <link rel="self" href="http://www.thomaslevine.com/!/feed.xml"/>
   <author>
     <name>Thomas Levine</name>
     <uri>http://www.thomaslevine.com</uri>
   </author>
+  <entry>
+    <id>tag:www.thomaslevine.com,2014-04-16:/!/downloading-binary-files-is-not-magic/index.html</id>
+    <title type="html">Don't let binary files scare you</title>
+    <published>2014-04-16T00:00:00Z</published>
+    <updated>2014-04-16T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.thomaslevine.com/!/downloading-binary-files-is-not-magic/index.html"/>
+    <content type="html">&lt;p&gt;Binary files might seem scary if you’re used to looking at text.
+They might be even scarier if they’re floating around in the internet
+rather than sitting on your hard drive.
+Today I try to calm your fears.&lt;/p&gt;
+
+&lt;h2 id="downloading-a-text-file"&gt;Downloading a text file&lt;/h2&gt;
+&lt;p&gt;When you type in a URL in your web browser and hit enter,
+your web browser usually makes an &lt;a href="/!/street-sign-protocol"&gt;HTTP GET request&lt;/a&gt;.
+You can do that like so in &lt;a href="http://python.org/"&gt;Python&lt;/a&gt;
+with &lt;a href="http://www.python-requests.org/"&gt;requests&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Python
+import requests
+response = requests.get('http://thomaslevine.com')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;(I say “usually” because this only happens if you are using
+HTTP; if the url you enter starts with “ftp://”, for example,
+it does something different.)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This response object contains a lot of things related to HTTP. If you’re
+curious, you can read more about that &lt;a href="/!/street-sign-protocol"&gt;here&lt;/a&gt;.
+For now, just know that the file that you are downloading is inside this
+response object.&lt;/p&gt;
+
+&lt;p&gt;In this particular example, the HTML of the webpage is the file that we
+are downloading. Let’s look at the first 200 characters of the file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Python
+print(response.content[:200])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is what gets printed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;b'&amp;lt;!DOCTYPE html&amp;gt;\n&amp;lt;!--[if lt IE 7]&amp;gt; &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&amp;gt;\n&amp;lt;html class="no-js lt-ie9 lt-ie8 lt-ie7"&amp;gt;&amp;lt;/html&amp;gt;\n &amp;lt;![endif]'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can save this stuff to a file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Python
+open('/tmp/www.thomaslevine.com', 'wb').write(response.content)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And once I do that, it’s an ordinary text file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Shell
+head /tmp/www.thomaslevine.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is what gets printed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;!--[if lt IE 7]&amp;gt; &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&amp;gt;
+&amp;lt;html class="no-js lt-ie9 lt-ie8 lt-ie7"&amp;gt;&amp;lt;/html&amp;gt;
+ &amp;lt;![endif]--&amp;gt;&amp;lt;!--[if IE 7]&amp;gt;    &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&amp;gt;
+&amp;lt;html class="no-js lt-ie9 lt-ie8"&amp;gt;&amp;lt;/html&amp;gt;
+ &amp;lt;![endif]--&amp;gt;&amp;lt;!--[if IE 8]&amp;gt;    &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"&amp;gt;
+&amp;lt;html class="no-js lt-ie9"&amp;gt;&amp;lt;/html&amp;gt;
+ &amp;lt;![endif]--&amp;gt;&amp;lt;!--[if gt IE 8]&amp;gt;&amp;lt;!--&amp;gt;&amp;lt;html class="no-js"&amp;gt;
+  &amp;lt;!--&amp;lt;![endif]--&amp;gt;
+  &amp;lt;head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="as-one-code-block"&gt;As one code block&lt;/h3&gt;
+&lt;p&gt;The code above is separated across multiple blocks.
+Here is the code for downloading the file and then
+saving it to a file, in one code block.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Python
+import requests
+response = requests.get('http://thomaslevine.com')
+open('/tmp/www.thomaslevine.com', 'wb').write(response.content)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="bytes-and-bits"&gt;Bytes and bits&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;response.content&lt;/code&gt; is displayed as a series of characters, but it is
+stored in Python as bytes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(type(response.content))
+# builtins.bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Starting with the above example, it becomes relevant that I’m using Python 3
+(specifically, 3.3.3) and not Python 2.&lt;/p&gt;
+
+&lt;h3 id="bytes-as-characters"&gt;Bytes as characters&lt;/h3&gt;
+&lt;p&gt;It’s easy to confuse the two because we often
+represent bytes as characters when displaying them.
+At a lower level, bytes represent numbers between 0 and 255 (inclusive),
+so we can also represent bytes as a series of numbers; here are the first
+ten bytes represented as characters.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(response.content[:10])
+# b'&amp;lt;!DOCTYPE '
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="bytes-as-numbers"&gt;Bytes as numbers&lt;/h3&gt;
+&lt;p&gt;And here they are represented as numbers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(list(response.content[:10]))
+# [60, 33, 68, 79, 67, 84, 89, 80, 69, 32]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="bytes-as-base-2-numbers"&gt;Bytes as base 2 numbers&lt;/h3&gt;
+&lt;p&gt;We happen to represent numbers in base 10 usually, but
+we could also represent these bytes as numbers in base two.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print([bin(x) for x in response.content[:10]])
+# [ '0b111100',  '0b100001',  '0b1000100',
+#   '0b1001111', '0b1000011', '0b1010100',
+#   '0b1011001', '0b1010000', '0b1000101',
+#   '0b100000']
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The number is the part after &lt;code&gt;0b&lt;/code&gt;; the following representation
+might be more clear&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print([bin(x)[2:].zfill(8) for x in response.content[:10]])
+# ['00111100', '00100001', '01000100',
+#  '01001111', '01000011', '01010100',
+#  '01011001', '01010000', '01000101',
+#  '00100000']
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="bytes-are-eight-bits"&gt;Bytes are eight bits&lt;/h3&gt;
+&lt;p&gt;To be clear, I’ve shown these three representations of the
+first byte.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;As a character, it’s &lt;code&gt;&amp;lt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;As a base 10 number, it’s &lt;code&gt;60&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;As a base 2 number, it’s &lt;code&gt;111100&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Each byte is made of eight bits. Each bit can be on or off.
+If you have eight light switches, there are 256 different lighting
+combinations (&lt;script type="math/tex"&gt;2^8&lt;/script&gt;), and this is how we arrive at the aforementioned
+range of byte values.&lt;/p&gt;
+
+&lt;p&gt;To say it another way, the highest possible value for a byte is 255.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [50]: bytes([255])
+Out[50]: b'\xff'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I’ll get an error if I try to make a byte of value 256.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [51]: bytes([256])                                                                                                                   
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+&amp;lt;ipython-input-51-a19a7ec1812b&amp;gt; in &amp;lt;module&amp;gt;()
+----&amp;gt; 1 bytes([256])
+
+ValueError: bytes must be in range(0, 256)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="bits"&gt;Bits&lt;/h3&gt;
+&lt;p&gt;So far, I’ve been representing the HTML as a series of bytes.
+We could also represent it as a series of bits, not grouped
+into bytes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(''.join(bin(x)[2:].zfill(8) for x in response.content[:10]))
+# 00111100001000010100010001001111010000110101010001011001010100000100010100100000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bin(x)[2:].zfill(8)&lt;/code&gt; is my hacky and concise way of converting an integer into
+a string of zeros and ones.&lt;/p&gt;
+
+&lt;h3 id="encodings"&gt;Encodings&lt;/h3&gt;
+&lt;p&gt;If I wanted to remember that mommy was riding a horse, I might use a pen to
+write “Mommy is riding a horse.” When I type this on a keyboard and save it
+as a file, I’m representing the sentence as a series of bytes (numbers between 0 and 255).&lt;/p&gt;
+
+&lt;p&gt;There are all sorts of methods by which we could represent the sentence as
+numbers, and each of these different methods is called an “encoding”.
+For example, we could assign a number to each sentence.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Number&lt;/th&gt;
+      &lt;th&gt;Sentence&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;Mommy is riding a horse.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Daddy is riding a horse.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Mommy is riding an elephant.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Daddy is riding an elephant.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Or we could assign a number to each word.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Number&lt;/th&gt;
+      &lt;th&gt;Sentence&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;Mommy&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;is&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;riding&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;a&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;horse&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;Daddy&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;elephant&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We could also do something more complicated, like having numbers for different
+languages, grammatical constructs, and capitalizations.&lt;/p&gt;
+
+&lt;p&gt;It’s a lot of work to explain how an encoding works, so it’s nice if we can
+all use the same encodings rather than always inventing our own. By now,
+we have a few standard ways of encoding text.&lt;/p&gt;
+
+&lt;p&gt;I downloaded a text webpage, and it got sent to me as bytes, and there are a
+lot of ways we can represent bytes. One way we can represent bytes is as
+characters, through an encoding called &lt;a href="http://en.wikipedia.org/wiki/ISO/IEC_8859-1"&gt;latin1&lt;/a&gt;.
+But there are other encodings. Here’s a sentence.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sentence = bytes([229, 170, 189, 229, 170, 189, 233, 168, 142,
+                  233, 166, 172, 239, 188, 140, 233, 166, 172,
+                  230, 133, 162, 239, 188, 140, 229, 170, 189,
+                  229, 170, 189, 231, 189, 181, 233, 166, 172,
+                  227, 128, 130])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let’s decode it with latin1.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(sentence.decode('latin1'))
+# åª½åª½é¨Žé¦¬ï¼Œé¦¬æ…¢ï¼Œåª½åª½ç½µé¦¬ã€‚
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That looks ugly; maybe it was encoded as something other than latin1.
+It turns out that it was encoded as &lt;a href="http://en.wikipedia.org/wiki/UTF-8"&gt;UTF-8&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print(sentence.decode('utf-8'))
+# 媽媽騎馬，馬慢，媽媽罵馬。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="downloading-a-video"&gt;Downloading a video&lt;/h2&gt;
+&lt;p&gt;A video file is also a series of bytes, but it is not encoded as latin1.
+It’s also not encoded as utf-8. For example, this
+&lt;a href="http://thomaslevine.com/!/open-data-in-plain-english/open-data-in-plain-english.webm"&gt;video about open data&lt;/a&gt;
+is encoded as &lt;a href="http://en.wikipedia.org/wiki/WebM"&gt;WebM&lt;/a&gt;.
+Text files are a binary file where the data are encoded with a text encoding
+(like latin1 or utf-8 rather than webm).&lt;/p&gt;
+
+&lt;p&gt;Regardless of its encoding, a file still a series of bytes, and we don’t need to
+know anything about the encoding in order to download a series of bytes;
+downloading this file is the same as downloading a text file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Python
+import requests
+url = 'http://thomaslevine.com/!/open-data-in-plain-english/open-data-in-plain-english.webm'
+response = requests.get(url)
+open('/tmp/open-data-in-plain-english.webm', 'wb').write(response.content)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We could decode the bytes with one of our text decoders, but it will probably
+look pretty nonsense.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [153]: print(response.content[:10])
+b'\x1aE\xdf\xa3\x01\x00\x00\x00\x00\x00'
+
+In [154]: print(response.content[:20].decode('latin1'))
+'\x1aEß£\x01\x00\x00\x00\x00\x00\x00\x1fB\x86\x81\x01B÷\x81\x01'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yep, nonsense. And the UTF-8 decoder doesn’t even understand it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [155]: print(response.content[:20].decode('utf-8'))
+---------------------------------------------------------------------------
+UnicodeDecodeError                        Traceback (most recent call last)
+&amp;lt;ipython-input-155-c3e10d8dd816&amp;gt; in &amp;lt;module&amp;gt;()
+----&amp;gt; 1 response.content.decode('utf-8')
+
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x86 in position 13: invalid start byte
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It might make more sense if we play the file with a video player
+that understands WebM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mplayer /tmp/open-data-in-plain-english.webm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="files-are-files"&gt;Files are files&lt;/h2&gt;
+&lt;p&gt;Files are files, even when they’re not text that you can read, and even when
+you’re downloading them from the internet.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.thomaslevine.com,2014-03-29:/!/social-science/index.html</id>
     <title type="html">Practical conclusion of social science</title>
@@ -1151,43 +1489,6 @@ analysis, and I tried downloading again for the present analysis.)&lt;/p&gt;
 &lt;p&gt;&lt;img src="figure/plot_destatis.png" alt="plot of chunk plot_destatis" class="wide" /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="figure/p_elapsed.png" alt="plot of chunk p_elapsed" class="wide" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.thomaslevine.com,2014-02-21:/!/decompilers-in-css/index.html</id>
-    <title type="html">Decompilers in CSS</title>
-    <published>2014-02-21T00:00:00Z</published>
-    <updated>2014-02-21T00:00:00Z</updated>
-    <link rel="alternate" href="http://www.thomaslevine.com/!/decompilers-in-css/index.html"/>
-    <content type="html">&lt;p&gt;I wrote
-&lt;a href="https://github.com/tlevine/csv.css"&gt;CSV&lt;/a&gt;,
-&lt;a href="http://openprism.thomaslevine.com/"&gt;markdown&lt;/a&gt;, and
-&lt;a href="https://github.com/tlevine/html2tex"&gt;LaTeX&lt;/a&gt;
-decompilers in CSS.&lt;/p&gt;
-
-&lt;p&gt;And now the tables on thomaslevine.com are styled as CSVs!&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;column1&lt;/th&gt;
-      &lt;th&gt;column2&lt;/th&gt;
-      &lt;th&gt;column3&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;6&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
 </content>
   </entry>
 </feed>
